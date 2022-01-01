@@ -70,6 +70,15 @@
     ntp.enable = lib.mkDefault true;
     dnscrypt-proxy2.enable = lib.mkDefault true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
     usbguard.enable = true;
+    logind = {
+      powerKey = "hibernate";
+      powerKeyLongPress = "reboot";
+      lidSwitch = "suspend";
+      # settings.Login = {
+      #   HandlePowerKey = "hibernate";
+      #   HandleLidSwitch = "suspend";
+      # };
+    };
     auto-cpufreq.settings = {
       battery = {
         governor = "powersave"; # Maximum battery savings

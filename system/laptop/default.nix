@@ -10,25 +10,15 @@
     ../module/i18n.nix
   ];
 
-  boot.kernelParams = [ "mem_sleep_default=deep" ]; # Suspend then Hibernate
-
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
+  # boot.kernelParams = [ "mem_sleep_default=deep" ]; # Suspend then Hibernate
+  # systemd.sleep.extraConfig = '' FIXME makes Framework Laptop 13 Intel 12 bootloop
+  #   HibernateDelaySec=30m
+  #   SuspendState=mem
+  # '';
 
   services = {
     # power-profiles-daemon.enable = true; # Suspend the Hibernate
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
-    logind = {
-      powerKey = "suspend";
-      powerKeyLongPress = "reboot";
-      lidSwitch = "suspend-then-hibernate";
-      # settings.Login = {
-      #   HandlePowerKey = "suspend";
-      #   HandleLidSwitch = "suspend";
-      # };
-    };
   };
 
   environment.systemPackages = [ pkgs.brightnessctl ]; # Keyboard brightness control
