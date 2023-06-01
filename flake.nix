@@ -38,14 +38,13 @@
         desktop0 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./systems.nix/desktop/default.nix
-            # Home
+            ./system.nix/desktop/default.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.gf = {
-                imports = [ ./homes.nix/gf.nix ];
+                imports = [ ./home.nix/gf.nix ];
               };
             }
           ];
@@ -53,7 +52,17 @@
         # Framework laptop
         laptop0 = lib.nixosSystem {
           inherit system;
-          modules = [ ./systems.nix/laptop/default.nix ];
+          modules = [
+            ./system.nix/laptop/default.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.gf = {
+                imports = [ ./home.nix/gf.nix ];
+              };
+            }
+          ];
         };
       };
 
@@ -64,7 +73,7 @@
       #     username = "gf";
       #     homeDirectory = "/home/gf";
       #     configuration = {
-      #       imports = [ ./gf.nix ];
+      #       imports = [ ./home.nix/gf.nix ];
       #     };
       #   };
       # };
