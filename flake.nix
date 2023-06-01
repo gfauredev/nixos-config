@@ -34,27 +34,26 @@
     {
       # Systems
       nixosConfigurations = {
+        # Main desktop
         desktop0 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./0desktop.nix
+            ./systems.nix/desktop/default.nix
             # Home
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.gf = {
-                imports = [ ./gf.nix ];
+                imports = [ ./homes.nix/gf.nix ];
               };
             }
           ];
         };
-      };
-
-      nixosConfigurations = {
-        framework-laptop1 = lib.nixosSystem {
+        # Framework laptop
+        laptop0 = lib.nixosSystem {
           inherit system;
-          modules = [ ./1framework-laptop.nix ];
+          modules = [ ./systems.nix/laptop/default.nix ];
         };
       };
 
