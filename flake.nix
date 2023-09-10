@@ -30,7 +30,7 @@
       nixosConfigurations = {
         gfFrameworkLaptop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit system; };
-          modules = [ ./nixos/configuration.nix ];
+          modules = [ ./system/gfFrameworkLaptop.nix ];
         };
       };
 
@@ -39,7 +39,7 @@
         "gf@gfFrameworkLaptop" = home-manager.lib.homeManagerConfiguration {
           # pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit system; };
-          modules = [ ./home-manager/configuration.nix ];
+          modules = [ ./user/gf.nix ];
         };
       };
     };
