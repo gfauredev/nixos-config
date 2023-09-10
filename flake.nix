@@ -1,81 +1,44 @@
 {
-  description = "Guilhem Fauré’s systems and homes configurations";
+  description = "Your new nix config";
 
-  inputs =
-    let
-      version = "23.05"; # NixOS version of stable inputs
-    in
-    {
-      # Primary nixpkgs repository
-      nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-      # Stable nixpkgs repository
-      # nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-${version}";
-      # Primary Home Manager repository
-      home-manager = {
-        url = "github:nix-community/home-manager/master";
-        inputs.nixpkgs.follows = "nixpkgs"; # Use same nixpkgs than system
+  inputs = {
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # TODO: Add any other flake you might need
+    # hardware.url = "github:nixos/nixos-hardware";
+
+    # Shameless plug: looking for a way to nixify your themes and make
+    # everything match nicely? Try nix-colors!
+    # nix-colors.url = "github:misterio77/nix-colors";
+  };
+
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      # FIXME replace with your hostname
+      your-hostname = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        # > Our main nixos configuration file <
+        modules = [ ./nixos/configuration.nix ];
       };
-      # Stable Home Manager repository
-      # home-manager-stable = {
-      #   url = "github:nix-community/home-manager/release-${version}";
-      #   inputs.nixpkgs.follows = "nixpkgs-stable"; # Use same stable nixpkgs than system
-      # };
     };
 
-  outputs = { self, nixpkgs, home-manager }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
+    # Standalone home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
+    homeConfigurations = {
+      # FIXME replace with your username@hostname
+      "your-username@your-hostname" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        # > Our main home-manager configuration file <
+        modules = [ ./home-manager/home.nix ];
       };
-      lib = nixpkgs.lib;
-    in
-    {
-      # Systems
-      nixosConfigurations = {
-        # Main desktop
-        desktop0 = lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./system.nix/desktop/default.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.gf = {
-                imports = [ ./home.nix/gf.nix ];
-              };
-            }
-          ];
-        };
-        # Framework laptop
-        laptop0 = lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./system.nix/laptop/default.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.gf = {
-                imports = [ ./home.nix/gf.nix ];
-              };
-            }
-          ];
-        };
-      };
-
-      # Homes
-      # hmConfig = {
-      #   gf = home-manager.lib.homeManagerConfiguration {
-      #     inherit system pkgs;
-      #     username = "gf";
-      #     homeDirectory = "/home/gf";
-      #     configuration = {
-      #       imports = [ ./home.nix/gf.nix ];
-      #     };
-      #   };
-      # };
     };
+  };
 }
