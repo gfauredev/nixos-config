@@ -1,93 +1,150 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
+# Everything that is strictly related to the ninja’s hardware
 
 { inputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
-    # If you want to use modules from other flakes (such as nixos-hardware):
+    # use modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
-    ./hardware-configuration.nix
+    # <nixos-hardware/framework> # This computer hardware specific
   ];
 
+  ## Hardware ##
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
+  boot.kernelModules = [ "kvm-intel" ];
+
+  fileSystems."/" =
+    {
+      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
+      fsType = "btrfs";
+      options = [ "subvol=root" "compress=zstd" "noatime" ];
+    };
+
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/99d1fcd1-6945-47ad-b7a1-e3ce08e02b42";
+
+  fileSystems."/nix" =
+    {
+      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
+      fsType = "btrfs";
+      options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/persist" =
+    {
+      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
+      fsType = "btrfs";
+      options = [ "subvol=persist" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/home" =
+    {
+      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
+      fsType = "btrfs";
+      options = [ "subvol=home" "compress=zstd" "noatime" ];
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-uuid/8E04-C403";
+      fsType = "vfat";
+    };
+  ## End hardware ##
+
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # If you want to use overlays exported from other flakes:
+      # use overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
-      # Or define it inline, for example:
+      # Or define inline, for example:
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
 
   nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
+    # add each flake input as a registry
+    # To make nix3 commands consistent with flake
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
+    # add inputs to the system's legacy channels
+    # Making legacy nix commands consistent as well
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
-      # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
       auto-optimise-store = true;
     };
   };
 
-  # FIXME: Add the rest of your current configuration
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    # TODO: ensure relevance
+    # opengl = {
+    #   extraPackages = with pkgs; [
+    #     intel-media-driver
+    #     vaapiIntel
+    #     vaapiVdpau
+    #     libvdpau-va-gl
+    #   ];
+    # };
+  };
 
-  # TODO: Set your hostname
-  networking.hostName = "your-hostname";
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "nvme.noacpi=1"
+      "i915.force_probe=4626"
+    ];
+    extraModprobeConfig = ''
+      blacklist hid_sensor_hub
+      options snd_usb_audio vid=0x1235 pid=0x8210 device_setup=1
+    '';
+  };
 
-  # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
-
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    # FIXME: Replace with your username
-    your-username = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "correcthorsebatterystaple";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" ];
+  # TODO: Use the hostname in the flake.nix
+  networking = {
+    hostName = "ninja";
+    firewall = {
+      allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
+      allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
+    };
+    networkmanager = {
+      enable = true;
+      # dns = "default";
     };
   };
 
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
-    enable = true;
-    # Forbid root login through SSH.
-    permitRootLogin = "no";
-    # Use keys only. Remove if you want to SSH using password (not recommended)
-    passwordAuthentication = false;
+  security = {
+    # TODO: fix
+    # pam.services = {
+    #   system-local-login.fprintAuth = true;
+    #   # login.fprintAuth = true;
+    # };
   };
 
-  # Set your system kind (needed for flakes)
+  services = {
+    # TODO: fix
+    # fprintd = {
+    #   enable = true; # Support for figerprint reader
+    #   tod = {
+    #     enable = true; # Support for figerprint reader
+    #     driver = pkgs.libfprint-2-tod1-goodix;
+    #   };
+    # };
+  };
+
+  # system kind (needed for flakes)
   nixpkgs.hostPlatform = "x86_64-linux";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
