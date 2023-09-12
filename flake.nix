@@ -21,7 +21,7 @@
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       ninja = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
           ./system/ninja.nix # Light & quick laptop : ninja
@@ -34,7 +34,7 @@
         ];
       };
       knight = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
           ./system/knight.nix # Heavy & strong desktop : knight
@@ -47,7 +47,7 @@
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
           ./system/hydra.nix # Multi-purpose hypervisor : hydra
