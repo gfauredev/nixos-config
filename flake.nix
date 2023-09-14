@@ -26,15 +26,14 @@
         modules = [
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
+          ./system/default.nix
           ./system/ninja.nix # Light & quick laptop : ninja
           ./system/gf.nix # Main user
           ./system/laptop.nix
           ./system/realtime.nix
           ./system/wireless.nix
-          ./system/remaps.nix
-          ./system/wayland.nix
+          ./system/remap.nix
           ./system/print-scan.nix
-          ./system/misc.nix
         ];
       };
       knight = nixpkgs.lib.nixosSystem {
@@ -42,21 +41,21 @@
         system = "x86_64-linux";
         modules = [
           musnix.nixosModules.musnix # System improvements for audio
+          ./system/default.nix
           ./system/knight.nix # Heavy & strong desktop : knight
           ./system/gf.nix # Main user
           ./system/realtime.nix
           ./system/wireless.nix
-          ./system/remaps.nix
+          ./system/remap.nix
           ./system/xorg.nix
-          # ./system/wayland.nix
           ./system/print-scan.nix
-          ./system/misc.nix
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
+          ./system/default.nix
           ./system/hydra.nix # Multi-purpose hypervisor : hydra
           ./system/hypervisor.nix
         ];
@@ -70,14 +69,15 @@
         extraSpecialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./user/gf.nix
-          ./user/gf.laptop.nix
-          ./user/gf.tech.nix
-          ./user/gf.audio.nix
-          ./user/gf.photo.nix
-          ./user/gf.social.nix
-          ./user/gf.media.nix
-          ./user/gf.misc.nix
+          ./user/default.nix # Default, like text editor
+          ./user/gf.nix # User
+          ./user/sway.nix # sway window manager
+          ./user/laptop.nix # Laptop related
+          ./user/hard.nix # Hardware creation
+          ./user/audio.nix # Audio & Music creation
+          ./user/photo.nix # Photo & Images creation
+          ./user/social.nix # Social interaction
+          ./user/media.nix # Media consuming
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -85,15 +85,16 @@
         extraSpecialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./user/gf.nix
-          ./user/gf.tech.nix
-          ./user/gf.audio.nix
-          ./user/gf.video.nix
-          ./user/gf.photo.nix
-          ./user/gf.social.nix
-          ./user/gf.media.nix
-          ./user/gf.game.nix
-          ./user/gf.misc.nix
+          ./user/default.nix # Default, like text editor
+          ./user/gf.nix # User
+          ./user/i3.nix # i3 window manager
+          ./user/hard.nix # Hardware creation
+          ./user/audio.nix # Audio & Music creation
+          ./user/video.nix # Video & Animation creation
+          ./user/photo.nix # Photo & Images creation
+          ./user/social.nix # Social interaction
+          ./user/media.nix # Media consuming
+          ./user/game.nix # Video gaming
         ];
       };
     };
