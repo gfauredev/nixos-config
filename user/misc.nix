@@ -1,123 +1,8 @@
-{ inputs, lib, config, pkgs, ... }:
-
-{
-  home-manager.users.gf = { config, pkgs, lib, ... }: {
-    imports = [
-      ./zsh.nix # shell config
-      ./neovim.nix # text editor config
-      ./helix.nix # text editor config
-    ];
-
-    home = {
-      stateVersion = "22.05";
-      sessionVariables = lib.mkForce {
-        XDG_DESKTOP_DIR = "$HOME";
-        XDG_DOCUMENTS_DIR = "$HOME/doc";
-        XDG_DOWNLOAD_DIR = "$HOME/dl";
-        XDG_MUSIC_DIR = "$HOME/audio";
-        XDG_PICTURES_DIR = "$HOME/img";
-        XDG_VIDEOS_DIR = "$HOME/vid";
-        XDG_CONFIG_HOME = "$HOME/.config";
-
-        EDITOR = "nvim";
-        BROWSER = "brave";
-        # VISUAL = "nvim";
-        # TERMINAL = "wezterm";
-        # TERM = "wezterm";
-
-        PNPM_HOME = "$HOME/.local/share/pnpm";
-        TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts";
-        # TYPST_ROOT = "$HOME/.local/share/typst";
-      };
-    };
-
-    fonts.fontconfig.enable = true;
-
+{ inputs, lib, config, pkgs, ... }: {
+  home = {
     programs = {
-      zoxide = {
+      password-store = {
         enable = true;
-        enableZshIntegration = true;
-      };
-      git = {
-        enable = true;
-        userName = "Guilhem Fauré";
-        userEmail = "pro@gfaure.eu";
-        lfs.enable = true;
-        delta.enable = true;
-        extraConfig = {
-          init = {
-            defaultBranch = "main";
-          };
-          pull = {
-            rebase = false;
-          };
-          lfs = {
-            locksverify = true;
-          };
-          filter.lfs = {
-            required = true;
-            clean = "git-lfs clean -- %f";
-            smudge = "git-lfs smudge -- %f";
-            process = "git-lfs filter-process";
-          };
-          submodule = {
-            recurse = true;
-            fetchjobs = 8;
-          };
-          credential = {
-            helper = "store";
-          };
-        };
-        ignores = [
-          "*.pdf"
-          "*.jpg"
-          "*.jpeg"
-          "*.png"
-          "*.avif"
-          "*.webp"
-          "*.odt"
-          "*.odf"
-          "*.odp"
-          "*.doc"
-          "*.docx"
-          "*.pptx"
-        ];
-      };
-      starship = {
-        enable = true;
-        enableZshIntegration = true;
-        settings = {
-          character = {
-            format = "$symbol ";
-            # success_symbol = "[☭](bold green)";
-            # error_symbol = "[\\$](bold red)";
-            vimcmd_symbol = "[N](bold blue)";
-            vimcmd_replace_one_symbol = "[r](bold blue)";
-            vimcmd_replace_symbol = "[R](bold blue)";
-            vimcmd_visual_symbol = "[V](bold blue)";
-          };
-        };
-      };
-      less = {
-        enable = true;
-        keys = ''
-          t forw-line
-          s back-line
-          T forw-line-force
-          S back-line-force
-        '';
-      };
-      fzf = {
-        enable = true;
-        enableZshIntegration = true;
-        # keybindings = true;
-        # fuzzyCompletion = true;
-      };
-      bat = {
-        enable = true;
-        config = {
-          pager = "less -i";
-        };
       };
       pandoc = {
         enable = true;
@@ -148,11 +33,11 @@
         #   "report.latex" = ../report.latex;
         # };
       };
-      # go.enable = true;
-      # aerc.enable = true;
     };
 
-    home.packages = with pkgs; [
+
+    # TODO: Shells with everything related to specific activities
+    packages = with pkgs; [
       # Fonts
       ## Serif
       libre-baskerville # Great, stylish serif
@@ -184,8 +69,8 @@
 
       # File management & editing
       trash-cli
-      # ripgrep-all
-      xplr
+      ripgrep-all
+      # xplr
       silver-searcher
       exa
       fd
@@ -196,21 +81,21 @@
       tree
       typst # Modern typesetting engine
       sd
-      hexyl
-      nomino
+      # hexyl
+      # nomino
       lsof
-      dcfldd
+      # dcfldd
       testdisk
       restic # Efficient backup
       fuse
-      exfatprogs
+      # exfatprogs
       ffmpeg
       # youtube-dl # download videos from internet
       yt-dlp # download videos from internet
       poppler_utils # Read PDF metadata
       mediainfo # info about audio or video
       ventoy-full # create bootable keys
-      udiskie
+      # udiskie
       tectonic # LaTeX typesetting engine
       # broot
       # python311Packages.weasyprint # HTML to PDF
@@ -223,42 +108,42 @@
       procs
       tldr
       pulsemixer
-      pulseaudio
+      # pulseaudio
       imagemagick
       sshfs
-      cachix
+      # cachix
       jmtpfs # Media transfer protocol
       # android-file-transfer
       # android-tools # ADB & Fastboot
       # android-udev-rules
-      interception-tools
+      # interception-tools
       bluetooth_battery
       wine
       winetricks
       yabridge
       yabridgectl
       eva
-      dwfv
-      sonar-scanner-cli
+      # dwfv
+      # sonar-scanner-cli
       rsync
       acpi
       usbutils
       pciutils
       lm_sensors
-      powertop
+      # powertop
       wakelan
       inetutils
-      mongosh
-      mongodb-tools
-      mongoaudit
-      arduino-core # Arduino from CLI
-      arduino-cli # Arduino from CLI
-      minicom # Serial
+      # mongosh
+      # mongodb-tools
+      # mongoaudit
+      # arduino-core # Arduino from CLI
+      # arduino-cli # Arduino from CLI
+      # minicom # Serial
       libnotify # Notifications management
       watchexec # Run command when file changes
       plantuml-c4 # UML diagrams
-      zola # Static site generator
-      hugo # Static site generator
+      # zola # Static site generator
+      # hugo # Static site generator
       # spotify-tui
       # khal # Calendar compatible with WebCal
       # entr # Run command when file changes
@@ -274,25 +159,25 @@
       # mdds
       # firectl
       # ignite
-      kubernetes
+      # kubernetes
 
       # Encryption & Network
       # git-secrets # Encrypted storage in public git repo
-      pass # Minimal password manager
-      pinentry
+      # pass # Minimal password manager
+      # pinentry
       veracrypt
       dislocker
       qbittorrent-nox
-      wireguard-tools
-      ciscoPacketTracer8 # Network simulation
-      cryptsetup
-      nmap
-      websocat
-      rustscan
-      gobuster
-      httrack
-      tshark
-      termshark
+      # wireguard-tools
+      # ciscoPacketTracer8 # Network simulation
+      # cryptsetup
+      # nmap
+      # websocat
+      # rustscan
+      # gobuster
+      # httrack
+      # tshark
+      # termshark
       curl # Mythic HTTP client
       xh # User-friendly HTTP client similar to HTTPie
       protonvpn-cli # Free VPN service
@@ -305,21 +190,21 @@
 
       # Language servers & Linters & Correcters
       ## Script 
-      nodePackages_latest.bash-language-server # Bash
-      rnix-lsp # Nix
-      lua-language-server # Lua
-      nodePackages_latest.pyright # Python linter & type checker
-      ruff # Fast Python linter
+      # nodePackages_latest.bash-language-server # Bash
+      # rnix-lsp # Nix
+      # lua-language-server # Lua
+      # nodePackages_latest.pyright # Python linter & type checker
+      # ruff # Fast Python linter
       # python311Packages.ruff-lsp # LSP for Ruff
-      black # Better Python formatter
+      # black # Better Python formatter
       # isort # Python import sorter
       ## Web
-      nodePackages_latest.vscode-langservers-extracted # Web
-      nodePackages_latest.typescript-language-server # Typescript
+      # nodePackages_latest.vscode-langservers-extracted # Web
+      # nodePackages_latest.typescript-language-server # Typescript
       ## Low level
       # rust-analyzer
-      arduino-language-server # Arduino lsp
-      ccls # C/C++ language server
+      # arduino-language-server # Arduino lsp
+      # ccls # C/C++ language server
       ## Misc
       # sqls # Language server
       # java-language-server
@@ -338,15 +223,15 @@
       hunspellDicts.es_ES
 
       # Compilers & Runtimes & Package managers & Misc
-      nodePackages_latest.typescript # Typescript compiler
+      # nodePackages_latest.typescript # Typescript compiler
       # nodejs # JS runtime
       # bun # Faster JS runtime
-      nodePackages_latest.pnpm # Better JS package manager
-      python3Full # Python runtime
-      poetry # Python package & dependency manager + build system
+      # nodePackages_latest.pnpm # Better JS package manager
+      # python3Full # Python runtime
+      # poetry # Python package & dependency manager + build system
       # virtualenv # Python isolated environments
       # pypy3 # Faster Python runtime
-      python311Packages.pip # Python package manager
+      # python311Packages.pip # Python package manager
       # python311Packages.ipython # Better Python REPL
       # python311Packages.venvShellHook # Python virtual env Nix
       # nodePackages_latest.html-minifier
@@ -354,14 +239,14 @@
       # go # The go compiler
 
       # Pentesting & Benchmarking
-      aircrack-ng
+      # aircrack-ng
       # john
       # thc-hydra
       # sn0int
       # maigret
       # sqlmap
       # mitmproxy
-      hyperfine
+      # hyperfine
       # wireshark
       # metasploit
       # zap

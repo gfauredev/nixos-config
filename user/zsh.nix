@@ -1,24 +1,6 @@
-{ pkgs, config, ... }: {
-  programs.command-not-found.enable = true;
+{ inputs, lib, config, pkgs, ... }: {
   programs.zsh = {
     enable = true;
-    # sessionVariables = {
-    #   XDG_DESKTOP_DIR = "$HOME";
-    #   XDG_DOCUMENTS_DIR = "$HOME/doc";
-    #   XDG_DOWNLOAD_DIR = "$HOME/dl";
-    #   XDG_MUSIC_DIR = "$HOME/audio";
-    #   XDG_PICTURES_DIR = "$HOME/img";
-    #   XDG_VIDEOS_DIR = "$HOME/vid";
-    #   XDG_CONFIG_HOME = "$HOME/.config";
-    #
-    #   EDITOR = "nvim";
-    #   BROWSER = "brave";
-    #   # VISUAL = "nvim";
-    #   # TERMINAL = "wezterm";
-    #   # TERM = "wezterm";
-    #
-    #   PATH = "$PATH:$HOME/.local/bin:$HOME/.cargo/bin";
-    # };
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     autocd = true;
@@ -248,16 +230,49 @@
       NOTE = "$HOME/in";
       USB = "$HOME/usb";
     };
-    # Old options
-    # "auto_cd"
-    # "auto_pushd"
-    # "cdable_vars"
-    # "chase_links"
-    # "extended_glob"
-    # "no_case_glob"
-    # "nomatch"
-    # "menucomplete"
-    # "share_history"
-    # "correct_all"
+  };
+
+  programs = {
+    command-not-found.enable = true;
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        character = {
+          format = "$symbol ";
+          # success_symbol = "[☭](bold green)";
+          # error_symbol = "[\\$](bold red)";
+          vimcmd_symbol = "[N](bold blue)";
+          vimcmd_replace_one_symbol = "[r](bold blue)";
+          vimcmd_replace_symbol = "[R](bold blue)";
+          vimcmd_visual_symbol = "[V](bold blue)";
+        };
+      };
+    };
+    less = {
+      enable = true;
+      keys = ''
+        t forw-line
+        s back-line
+        T forw-line-force
+        S back-line-force
+      '';
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      # keybindings = true;
+      # fuzzyCompletion = true;
+    };
+    bat = {
+      enable = true;
+      config = {
+        pager = "less -i";
+      };
+    };
   };
 }
