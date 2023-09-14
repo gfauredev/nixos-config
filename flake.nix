@@ -68,7 +68,13 @@
         system = "x86_64-linux";
         modules = [
           ./user/gf.nix
-          ./user/laptop.nix
+          ./user/gf.laptop.nix
+          ./user/gf.tech.nix
+          ./user/gf.audio.nix
+          ./user/gf.photo.nix
+          ./user/gf.social.nix
+          ./user/gf.media.nix
+          ./user/gf.misc.nix
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -77,6 +83,14 @@
         system = "x86_64-linux";
         modules = [
           ./user/gf.nix
+          ./user/gf.tech.nix
+          ./user/gf.audio.nix
+          ./user/gf.video.nix
+          ./user/gf.photo.nix
+          ./user/gf.social.nix
+          ./user/gf.media.nix
+          ./user/gf.game.nix
+          ./user/gf.misc.nix
         ];
       };
     };
