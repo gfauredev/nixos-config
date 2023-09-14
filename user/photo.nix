@@ -1,3 +1,9 @@
 { inputs, lib, config, pkgs, ... }: {
-  # Basic Nix file
+  home.packages = with pkgs; [
+    # TODO use specific options when possible
+    gimp # image editor
+    # krita # image editor
+    inkscape # vector image editor
+    darktable # RAW pictures editing
+  ];
 }

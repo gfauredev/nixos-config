@@ -1,3 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
-  # Basic Nix file
+  home.packages = with pkgs; [
+    # TODO use specific options when possible
+    openscad
+    # freecad
+    # ideamaker
+  ];
 }

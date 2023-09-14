@@ -1,123 +1,17 @@
 { inputs, lib, config, pkgs, ... }: {
   home = {
     packages = with pkgs; [
-      # Text & Document
-      zathura # Minimalist PDF reader
-      masterpdfeditor4 # PDF editor
-      libreoffice-fresh # Office suite
-      # libreoffice-qt # Office suite
-      # libreoffice # Office suite
-      # libreoffice-fresh-unwrapped # Office suite
-      # libreoffice-still # Office suite
-      anki-bin # Memorisation
-      # languagetool # Grammar checking
-      # appflowy
-      # xournalpp
-      # write_stylus
-      # markdown-anki-decks
-      # logseq # Outliner note taking
-      # marktext # markdown editor
-      # calibre # Ebook management
-
-      # Utilities & Software
-      # albert # General purpose launcher
-      xdg-utils # Mime type based file oppening
-      tesseract # OCR on PDF or images
-      qbittorrent-nox # CLI Bittorrent client
-      fontforge # Font editor
-      # qbittorrent # Bittorrent client
-      # appimage-run # Run appimages directly
-      # steam-run # Run in isolated FHS
-      # gnome.simple-scan # Document scanner
-      # transmission-qt # Bittorrent client
-      # filezilla # FTP client
-      # xbanish # Hide mouse Xorg
-      # emacsPackages.org-roam-ui
-      # hovercraft # impress.js presentations
+      # TODO refile them properly
       # sqldeveloper # PROPRIETARY SQL Oracle IDE
       # sqlcl # Oracle DB CLI
-      # emanote # Structured view text notes
       # insomnia # REST client
-      # steam # PROPRIETARY video games store and launcher
-      # heroic # gog and epic games launcher
-      # legendary-gl # epic games launcher alternative
-      # gogdl # gog dl module for heroic launcher
-      # gamescope # steamos compositing manager
-      # handlr # Default app launcher
-      # obs-studio
-      # obs-studio-plugins.wlrobs
-      # obs-wlrobs
       # dbeaver # Database (SQL) analyzer
       # gns3-gui # Network simulator
       # umlet
       # android-studio
       # usbimager
-      # webtorrent_desktop
-      # gnome.seahorse
-      # bleachbit
-      # rnote
       # blueman
       # nodePackages.browser-sync # Live website preview, use apache instead
-      # chntpw # Access Windows (dual boot) registry
-
-      # Web & Communications
-      brave # Blink based secure and private web browser
-      firefox # Gecko based web browser
-      signal-desktop # Secure messaging
-      # discord # PROPRIETARY messaging and general communication
-      # nyxt # Keyboard driven lightweight web browser
-      chromium # Blink based web browser
-      # discord-canary # PROPRIETARY messaging and general communication
-      # teams-for-linux # PROPRIETARY services messaging and work
-      # protonvpn-gui # Free VPN service
-      # zoom         # PROPRIETARY messaging and work
-      mailspring # mail client
-
-      # Music & Sound
-      spotify # PROPRIETARY music streaming
-      playerctl # MPRIS media players control
-      klick # Metronome
-      qpwgraph # PipeWire flux visualisation and control
-      ardour # Full fledged digital audio workstation
-      distrho # Repository of audio plugins
-      easyeffects # Realtime pipewire effects
-      drumgizmo # High quality drums sampler
-      # audacity # Simple audio editor
-      # alsa-scarlett-gui
-      # geonkick
-      # surge-XT
-      # lsp-plugins
-      # fluidsynth
-      # linuxsampler
-      # qsampler
-      # helm
-      # drumkv1
-      # samplv1
-      # surge
-
-      # Image & Video & 3D
-      swayimg # image viewer
-      # sxiv # image viewer
-      mpv
-      openscad
-      gimp # image editor
-      # krita # image editor
-      inkscape # vector image editor
-      # blender # 3D, animation & video editor
-      # shotcut # video editor
-      libsForQt5.kdenlive # video editor
-      # davinci-resolve # PROPRIETARY video editor
-      # glaxnimate # video editing library
-      # flowblade # non linear video editor
-      # olive-editor # non linear video editor
-      # natron # non linear video editor
-      # freecad
-      # ideamaker
-      darktable # RAW pictures editing
-      # imv
-
-      # Theme & Style
-      nordzy-cursor-theme
     ];
 
     programs = {
