@@ -1,5 +1,23 @@
-{ pkgs, config, ... }: {
-  wayland.windowManager.sway =
+{ inputs, lib, config, pkgs, ... }: {
+  home.packages = with pkgs; [
+    swayidle # Perform actions if inactive
+    swaylock # Screen locker for wayland
+    wlr-randr # Edit display settings for wayland
+    wl-clipboard # Copy from CLI
+    wl-color-picker
+    grim # Take screenshots
+    slurp # Select a screen zone with mouse
+    wev # Evaluate inputs to wayland
+    swaybg # Display a background
+    autotiling # Simulate dwindle layout on sway and i3
+    # kanshi # TEST if relevant
+    # pcmanfm # TEST if relevant, TODO display files previews in terminal
+    # autotiling-rs
+    # wpaperd
+    # fuzzel
+    # eww
+  ];
+  home.wayland.windowManager.sway =
     let
       term = "wezterm"; # Terminal command
       term-exec = "${term} start --always-new-process"; # Exec
@@ -128,8 +146,8 @@
           "${mod}+p" = "workspace ; exec pgrep -i spotify || spotify";
           "${mod}+i" = "workspace 󰋼; exec pgrep -i btm || ${term-exec} --class btm btm";
           "${mod}+e" = "workspace  …";
-          # "${mod}+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note' || exec ${term-exec} --cwd ~/note/ --class note note";
-          "${mod}+n" = "workspace ";
+          "${mod}+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note' || exec ${term-exec} --cwd ~/note/ --class note $EDITOR";
+          # "${mod}+n" = "workspace ";
           # "${mod}+Control+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note-tomorrow' || exec ${term-exec} --cwd ~/note/ --class note-tomorrow note tomorrow";
           # "${mod}+Shift+Control+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note-yesterday' || exec ${term-exec} --cwd ~/note/ --class note-yesterday note yesterday";
           "${mod}+l" = "workspace 󰑴; exec pgrep -i anki || anki";
@@ -195,7 +213,7 @@
 
           # Other controls
           "XF86RFKill" = "exec rfkill toggle 0 1";
-          "XF86AudioMedia" = "exec ${term-menu} sh -c 'neofetch&&zsh'";
+          "XF86AudioMedia" = "exec ${term-menu} sh -c 'neofetch && zsh'";
         };
         bars = [
           {
@@ -210,16 +228,11 @@
         ];
         startup = [
           { command = "autotiling --limit 4"; }
-          { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; }
-          # { command = "albert"; }
-          # { command = "${term-menu} sh -c up"; }
-          # { command = "${term-menu} sh -c veramount"; }
+          # { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; } # TODO With Nix directly
+          # { command = "albert"; } # FIX
         ];
-        # defaultWorkspace = "workspace 7:etc";
-        defaultWorkspace = "workspace etc";
-        window = {
-          titlebar = false;
-        };
+        defaultWorkspace = "workspace …";
+        window.titlebar = false;
         modes = { };
       };
       extraConfig = ''
@@ -229,14 +242,19 @@
 
         for_window [app_id="menu"] floating enable, resize set width 888 px height 420 px
       '';
-      extraOptions = [
-        "--unsupported-gpu"
-        # "--verbose"
-        # "--debug"
-      ];
-      extraSessionCommands = ''
-        ln --force -s ${pkgs.nordzy-cursor-theme}/share/icons/Nordzy-cursors/ $HOME/.icons/  # Set up cursor icons
-      '';
+      # extraOptions = [
+      # "--unsupported-gpu"
+      # "--verbose"
+      # "--debug"
+      # ];
+      # extraSessionCommands = '' # TODO with nix directly
+      #   ln --force -s ${pkgs.nordzy-cursor-theme}/share/icons/Nordzy-cursors/ $HOME/.icons/  # Set up cursor icons
+      # '';
       systemd.enable = true;
+      wrapperFeatures = {
+        base = true;
+        # gtk = true; # TEST if relevant
+      };
+      xwayland = true;
     };
 }
