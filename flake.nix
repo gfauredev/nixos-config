@@ -27,10 +27,11 @@
           ./system/ninja.nix # Light & quick laptop : ninja
           ./system/gf.nix # Main user
           ./system/laptop.nix
+          # ./system/realtime.nix
           ./system/wireless.nix
           ./system/remaps.nix
           ./system/wayland.nix
-          # ./system/realtime.nix
+          # ./system/print-scan.nix
         ];
       };
       knight = nixpkgs.lib.nixosSystem {
@@ -39,11 +40,12 @@
         modules = [
           ./system/knight.nix # Heavy & strong desktop : knight
           ./system/gf.nix # Main user
+          # ./system/realtime.nix
           ./system/wireless.nix
           ./system/remaps.nix
           ./system/xorg.nix
           # ./system/wayland.nix
-          # ./system/realtime.nix
+          # ./system/print-scan.nix
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {
@@ -57,12 +59,24 @@
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
-    # homeConfigurations = {
-    #   "gf@ninja" = home-manager.lib.homeManagerConfiguration {
-    #     pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-    #     system = "x86_64-linux";
-    #     modules = [ ./user/gf.nix ];
-    #   };
-    # };
+    homeConfigurations = {
+      "gf@ninja" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = inputs;
+        system = "x86_64-linux";
+        modules = [
+          ./user/gf.nix
+          ./user/laptop.nix
+        ];
+      };
+      "gf@knight" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = inputs;
+        system = "x86_64-linux";
+        modules = [
+          ./user/gf.nix
+        ];
+      };
+    };
   };
 }
