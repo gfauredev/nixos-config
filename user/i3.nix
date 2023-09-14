@@ -1,4 +1,14 @@
 { pkgs, config, ... }: {
+  packages = with pkgs; [
+    feh # Background display
+    i3lock # Screen locker
+    # xclip # TEST pertinence
+    # xsel # TEST pertinence
+    xorg.xev # Evaluate input
+    # xorg.xauth # TEST pertinence
+    # xcompmgr
+  ];
+
   xsession.windowManager.i3 =
     let
       term = "alacritty"; # Terminal command

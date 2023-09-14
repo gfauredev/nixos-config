@@ -1,34 +1,4 @@
 { config, lib, pkgs, ... }: {
-  imports =
-    [
-      ./gf.nix # my own user basics settings
-      ./interception-tools.nix # remap caps lock to esc+ctrl
-      <musnix> # Realtime & general audio enhancements
-    ];
-
-  home-manager.users.gf = { pkgs, ... }: {
-    imports = [
-      ./sway.nix # sway wm config
-      ./i3.nix # i3 wm config
-    ];
-
-
-  };
-
-
-  services.windowManager.i3 = {
-    enable = true;
-    extraPackages = with pkgs; [
-      # xcompmgr
-      xorg.xauth
-      feh
-      i3lock
-      xclip
-      xsel
-      xorg.xev # Evaluate input
-    ];
-  };
-
   # qt = { # TEST if relevant
   #   enable = true;
   #   # platformTheme = "gtk2";

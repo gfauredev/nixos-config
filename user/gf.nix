@@ -51,6 +51,8 @@
 
   # fonts.fontconfig.enable = true; # TODO: test pertinence
 
+  # TODO some options may belong to default.nix
+
   programs = {
     home-manager.enable = true; # MANDATORY
     git = {
