@@ -8,48 +8,9 @@
     # inputs.hardware.nixosModules.common-ssd
 
     # <nixos-hardware/framework> # This computer hardware specific
+
+    /etc/nixos/hardware-configuration.nix # Hardware specific conf
   ];
-
-  ## Hardware ##
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" ];
-
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
-    };
-
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/99d1fcd1-6945-47ad-b7a1-e3ce08e02b42";
-
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
-    };
-
-  fileSystems."/persist" =
-    {
-      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
-      fsType = "btrfs";
-      options = [ "subvol=persist" "compress=zstd" "noatime" ];
-    };
-
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/95d2d844-008b-4c0e-a7b1-914b16db9888";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" "noatime" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/8E04-C403";
-      fsType = "vfat";
-    };
-  ## End hardware ##
 
   nixpkgs = {
     overlays = [
@@ -126,7 +87,7 @@
   };
 
   security = {
-    # TODO: fix
+    # TODO: fix fprint login
     # pam.services = {
     #   system-local-login.fprintAuth = true;
     #   # login.fprintAuth = true;
@@ -134,7 +95,7 @@
   };
 
   services = {
-    # TODO: fix
+    # TODO: fix fprint login
     # fprintd = {
     #   enable = true; # Support for figerprint reader
     #   tod = {
