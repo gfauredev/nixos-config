@@ -106,6 +106,12 @@
     #     driver = pkgs.libfprint-2-tod1-goodix;
     #   };
     # };
+    fstrim = {
+      enable = true;
+    };
+    fwupd.enable = true; # Update firmwares
+    # tlp.enable = true; # To save some power
+    # thermald.enable = true; # Try to keep cool
     geoclue2 = {
       enable = true;
     };
