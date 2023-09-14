@@ -28,20 +28,6 @@
     };
   };
 
-  nix = {
-    # add each flake input as a registry
-    # To make nix3 commands consistent with flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-    # add inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-
-    settings = {
-      experimental-features = "nix-command flakes";
-      auto-optimise-store = true;
-    };
-  };
-
   hardware = {
     cpu.intel.updateMicrocode = true;
     # TODO: ensure relevance

@@ -66,6 +66,7 @@
 
   security = {
     sudo.enable = true;
-    polkit.enable = true;
+    # polkit.enable = true; # TODO: test pertinence
+    # apparmor.enable = true; # TODO: test pertinence
   };
 }
