@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     # TODO use specific options when possible
     # Text & Document
-    zathura # Minimalist PDF reader
     masterpdfeditor4 # PDF editor
     libreoffice-fresh # Office suite
     # libreoffice-qt # Office suite
@@ -18,6 +17,7 @@
     # logseq # Outliner note taking
     # marktext # Markdown editor
     # calibre # Ebook management
+    # zathura # Minimalist PDF reader
 
     # Audio & Music
     spotify # PROPRIETARY music streaming
@@ -47,4 +47,29 @@
     # webtorrent_desktop
     # rnote
   ];
+
+  services.mpris-proxy.enable = true;
+
+  programs.zathura = {
+    enable = true;
+    extraConfig = ''
+      set sandbox none
+      set selection-clipboard clipboard
+
+      set scroll-step 50
+      set scroll-hstep 10
+
+      map t scroll down
+      map s scroll up
+      map T navigate next
+      map S navigate previous
+      map c scroll left
+      map r scroll right
+
+      map R rotate rotate-cw
+      map C rotate rotate-ccw
+
+      map b recolor
+    '';
+  };
 }

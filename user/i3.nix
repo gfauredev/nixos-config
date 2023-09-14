@@ -179,4 +179,37 @@
         for_window [class="menu"] floating enable, resize set width 888 px height 420 px
       '';
     };
+
+  # WARNING things below may have to be set outside of home manager
+  programs = {
+    zsh.loginExtra = ''
+      # Start window managers at login on firsts TTYs
+      if [ -z "''${DISPLAY}" ]; then
+        if [ "''${XDG_VTNR}" -eq 1 ]; then
+          exec startx $HOME/.nix-profile/bin/i3
+        fi
+        if [ "''${XDG_VTNR}" -eq 2 ]; then
+          exec $HOME/.nix-profile/bin/sway
+        fi
+      fi
+    '';
+    i3status-rust = {
+      enable = true;
+      bars = {
+        bottom = {
+          blocks = [
+            {
+              block = "time";
+              interval = 1;
+              format = "$timestamp.datetime(f:'%H:%M:%S | %A %d %B %Y')";
+            }
+            { block = "sound"; }
+          ];
+          settings = {
+            theme.theme = "solarized-dark";
+          };
+        };
+      };
+    };
+  };
 }

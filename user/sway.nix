@@ -1,5 +1,5 @@
 { inputs, lib, config, pkgs, ... }: {
-  home.packages = with pkgs; [
+  packages = with pkgs; [
     # TODO use home.programs when possible
     swayidle # Perform actions if inactive
     wlr-randr # Edit display settings for wayland
@@ -19,7 +19,7 @@
     # eww
   ];
 
-  home.wayland.windowManager.sway =
+  wayland.windowManager.sway =
     let
       term = "wezterm"; # Terminal command
       term-exec = "${term} start --always-new-process"; # Exec
@@ -262,7 +262,6 @@
 
 
   # WARNING things below may have to be set outside of home manager
-
   services = {
     clipman = {
       enable = true;
