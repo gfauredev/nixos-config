@@ -32,6 +32,7 @@
           ./system/remaps.nix
           ./system/wayland.nix
           # ./system/print-scan.nix
+          ./system/misc.nix
         ];
       };
       knight = nixpkgs.lib.nixosSystem {
@@ -46,6 +47,7 @@
           ./system/xorg.nix
           # ./system/wayland.nix
           # ./system/print-scan.nix
+          ./system/misc.nix
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {

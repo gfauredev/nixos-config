@@ -1,5 +1,4 @@
 # Everything that is strictly related to the ninja’s hardware
-
 { inputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
@@ -61,6 +60,8 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
     };
+    consoleLogLevel = 0;
+    kernel.sysctl = { "kernel.sysrq" = 176; }; # SysRq magic keys
     kernelParams = [
       "quiet"
       "udev.log_level=3"
@@ -86,6 +87,8 @@
     };
   };
 
+  location.provider = "geoclue2";
+
   security = {
     # TODO: fix fprint login
     # pam.services = {
@@ -103,6 +106,9 @@
     #     driver = pkgs.libfprint-2-tod1-goodix;
     #   };
     # };
+    geoclue2 = {
+      enable = true;
+    };
   };
 
   # system kind (needed for flakes)

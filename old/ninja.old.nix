@@ -61,6 +61,7 @@
   };
 
   programs = {
+    # TODO add to user
     light.enable = true;
   };
 
@@ -104,6 +105,7 @@
 
   home-manager.users.gf = { config, pkgs, lib, ... }: {
     services = {
+      # TODO add to user config
       cbatticon = {
         enable = true;
         lowLevelPercent = 30;
