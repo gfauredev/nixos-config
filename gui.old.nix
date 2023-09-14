@@ -29,32 +29,7 @@
     ];
   };
 
-  programs = {
-    sway = {
-      enable = true;
-      extraPackages = with pkgs; [
-        swayidle
-        swaylock
-        wlr-randr
-        wl-clipboard
-        kanshi
-        wl-color-picker
-        pcmanfm
-        grim
-        slurp
-        wev
-        swaybg
-        autotiling
-        # autotiling-rs
-        # wpaperd
-        # fuzzel
-        # eww
-      ];
-    };
-    xwayland.enable = true;
-  };
-
-  # qt = {
+  # qt = { # TEST if relevant
   #   enable = true;
   #   # platformTheme = "gtk2";
   #   # style = "gtk2";
@@ -62,17 +37,17 @@
   #   # style = "adwaita-dark";
   # };
 
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      # xdgOpenUsePortal = true;
-    };
-    #   mime = {
-    #     enable = true;
-    #   };
-    #   autostart.enable = true;
-  };
+  # xdg = { # TEST if relevant
+  #   portal = {
+  #     enable = true;
+  #     wlr.enable = true;
+  #     xdgOpenUsePortal = true;
+  #   };
+  #     mime = {
+  #       enable = true;
+  #     };
+  #     autostart.enable = true;
+  # };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

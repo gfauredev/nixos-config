@@ -13,3 +13,24 @@ lang: en
 - [Vimjoyer youtube channel](https://www.youtube.com/watch?v=bjTxiFLSNFA&list=PLko9chwSoP-15ZtZxu64k_CuTzXrFpxPE)
 - [hlissner dotfiles](https://github.com/hlissner/dotfiles)
 - [nix.dev](https://nix.dev)
+
+## TODO
+
+> Consider TODO, FIXME, TEST and WARNING tags already inside files
+
+- Study & configure Musnix & realtime audio & audio improvements
+- Study & configure Nixos-hardware & hardware improvements
+- Power consumption improvements
+
+## Optional packages
+
+> These are packages I don’t want in my config but will eventually
+> install with `nix-env -iA nixpkgs.$PACKAGE`
+
+## Non-redistributable packages
+
+> These are packages that require downloading assets from various places
+> and add them to the Nix store with `nix ???`
+> before being installed with `nix-env -iA nixpkgs.$PACKAGE`
+
+- `ciscoPacketTracer8` # Advanced network simulation

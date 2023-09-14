@@ -1,7 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
+    # TODO use home.programs when possible
     swayidle # Perform actions if inactive
-    swaylock # Screen locker for wayland
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
     wl-color-picker
@@ -12,11 +12,13 @@
     autotiling # Simulate dwindle layout on sway and i3
     # kanshi # TEST if relevant
     # pcmanfm # TEST if relevant, TODO display files previews in terminal
+    # swaylock # Screen locker for wayland
     # autotiling-rs
     # wpaperd
     # fuzzel
     # eww
   ];
+
   home.wayland.windowManager.sway =
     let
       term = "wezterm"; # Terminal command
@@ -229,7 +231,7 @@
         startup = [
           { command = "autotiling --limit 4"; }
           # { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; } # TODO With Nix directly
-          # { command = "albert"; } # FIX
+          # { command = "albert"; } # FIXME
         ];
         defaultWorkspace = "workspace …";
         window.titlebar = false;
@@ -250,11 +252,219 @@
       # extraSessionCommands = '' # TODO with nix directly
       #   ln --force -s ${pkgs.nordzy-cursor-theme}/share/icons/Nordzy-cursors/ $HOME/.icons/  # Set up cursor icons
       # '';
-      systemd.enable = true;
+      # systemd.enable = true; # TEST relevance
       wrapperFeatures = {
         base = true;
         # gtk = true; # TEST if relevant
       };
       xwayland = true;
     };
+
+
+  # WARNING things below may have to be set outside of home manager
+
+  services = {
+    clipman = {
+      enable = true;
+      systemdTarget = "sway-session.target";
+    };
+    swayidle = {
+      enable = true;
+      events = [
+        { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
+        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.lockscreen"; }
+      ];
+      timeouts = [
+        {
+          timeout = 300;
+          command = "swaymsg 'output * dpms off'";
+          resumeCommand = "swaymsg 'output * dpms on'";
+        }
+        {
+          timeout = 330;
+          command = "swaylock -f -i $HOME/.lockscreen";
+        }
+        { timeout = 600; command = "systemctl suspend"; }
+      ];
+      systemdTarget = "sway-session.target";
+    };
+  };
+
+  programs = {
+    zsh.loginExtra = ''
+      # Start window managers at login on first TTYs
+      if [ -z "''${DISPLAY}" ]; then
+        if [ "''${XDG_VTNR}" -eq 1 ]; then
+          exec $HOME/.nix-profile/bin/sway
+        fi
+        if [ "''${XDG_VTNR}" -eq 2 ]; then
+          exec startx $HOME/.nix-profile/bin/i3
+        fi
+      fi
+    '';
+    swaylock = {
+      enable = true;
+      settings = {
+        indicator-idle-visible = true;
+      };
+    };
+    waybar = {
+      enable = true;
+      settings = {
+        bottomBar = {
+          layer = "top";
+          position = "bottom";
+          # height = 0;
+          # width = 0;
+
+          modules-left = [
+            "battery"
+            "temperature"
+            "cpu"
+            "memory"
+            "network"
+            "pulseaudio"
+          ];
+          modules-center = [
+            "sway/workspaces"
+            "sway/window"
+          ];
+          modules-right = [
+            "tray"
+            "mpris"
+            "clock"
+          ];
+
+          margin = "0 3 3 3";
+          spacing = 3;
+          exclusive = true;
+          fixed-center = false;
+          passthrough = true;
+
+          battery = {
+            states = {
+              warning = "30";
+              critical = "15";
+            };
+            format = "{icon} {capacity}";
+            format-charging = "󱐥 {capacity}";
+            # format-time = "{H}:{M}";
+            format-icons = [ " " " " " " " " " " ];
+            max-length = 8;
+            tooltip = false;
+          };
+
+          temperature = {
+            # thermal-zone = 5;
+            thermal-zone = 2;
+            critical-threshold = "75";
+            format = "{icon} {temperatureC}";
+            format-icons = [ "" "" "" "" "" ];
+            max-length = 6;
+            tooltip = false;
+          };
+
+          cpu = {
+            states = {
+              warning = "60";
+              critical = "80";
+            };
+            format = "󰻠 {usage}";
+            max-length = 6;
+            tooltip = false;
+          };
+
+          memory = {
+            states = {
+              warning = "60";
+              critical = "80";
+            };
+            format = " {percentage}";
+            max-length = 6;
+            tooltip = false;
+          };
+
+          network = {
+            format = "󰈂 {ifname}";
+            format-wifi = "{icon} {ipaddr}/{cidr}";
+            format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+            format-ethernet = "󰈀 {ipaddr}/{cidr}";
+            format-disconnected = "󰤮 {ifname}";
+            max-length = 20;
+            tooltip = false;
+          };
+
+          pulseaudio = {
+            format = "{icon} {volume} {format_source}";
+            format-bluetooth = "{icon}  {volume} {format_source}";
+            format-bluetooth-muted = "{icon}  󰸈 {format_source}";
+            format-muted = "󰸈 {format_source}";
+            format-source = " {volume}";
+            format-source-muted = " ";
+            format-icons = {
+              headphone = "";
+              hands-free = "󰋎";
+              headset = "󰋎";
+              phone = "";
+              portable = "";
+              car = " ";
+              default = [ "" "" " " ];
+            };
+            max-length = 20;
+            tooltip = false;
+          };
+
+          window = {
+            format = "{title}";
+            max-length = 400;
+            icon = true;
+            tooltip = false;
+          };
+
+          workspaces = {
+            all-outputs = false;
+            format = "{name}";
+            disable-scroll = true; # TODO not working
+            disable-click = true; # TODO not working
+          };
+
+          tray = {
+            spacing = 3;
+          };
+
+          mpris = {
+            # format = "{status_icon} {dynamic} {player_icon}";
+            format = "{player_icon} {status_icon}";
+            player-icons = {
+              default = "";
+              spotify = "";
+              spotifyd = "";
+              mpv = "";
+              brave = "";
+              chromium = "";
+              chrome = "";
+              firefox = "";
+            };
+            status-icons = {
+              stopped = "";
+              playing = "";
+              paused = "󰏤";
+            };
+          };
+
+          clock = {
+            timezone = "Europe/Paris";
+            format = "{: %H:%M  %a %d %b}";
+            max-length = 30;
+            tooltip = false;
+          };
+        };
+      };
+      style = pkgs.lib.readFile ../style/waybar.css;
+      # systemd = { # TEST relevance
+      #   enable = true;
+      #   target = "sway-session.target";
+      # };
+    };
+  };
 }
