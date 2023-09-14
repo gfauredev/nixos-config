@@ -6,7 +6,8 @@
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
-    # <nixos-hardware/framework> # This computer hardware specific
+    # This computer hardware specific
+    # <nixos-hardware/framework-12th-gen-intel>
 
     /etc/nixos/hardware-configuration.nix # Hardware specific conf
   ];

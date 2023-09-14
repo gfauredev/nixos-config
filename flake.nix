@@ -17,21 +17,23 @@
     musnix.url = "github:musnix/musnix";
   };
 
-  outputs = { self, nixpkgs, home-manager }@inputs: {
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, musnix }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       ninja = nixpkgs.lib.nixosSystem {
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
+          nixos-hardware.nixosModules.framework-12th-gen-intel
+          musnix.nixosModules.musnix # System improvements for audio
           ./system/ninja.nix # Light & quick laptop : ninja
           ./system/gf.nix # Main user
           ./system/laptop.nix
-          # ./system/realtime.nix
+          ./system/realtime.nix
           ./system/wireless.nix
           ./system/remaps.nix
           ./system/wayland.nix
-          # ./system/print-scan.nix
+          ./system/print-scan.nix
           ./system/misc.nix
         ];
       };
@@ -39,14 +41,15 @@
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
+          musnix.nixosModules.musnix # System improvements for audio
           ./system/knight.nix # Heavy & strong desktop : knight
           ./system/gf.nix # Main user
-          # ./system/realtime.nix
+          ./system/realtime.nix
           ./system/wireless.nix
           ./system/remaps.nix
           ./system/xorg.nix
           # ./system/wayland.nix
-          # ./system/print-scan.nix
+          ./system/print-scan.nix
           ./system/misc.nix
         ];
       };
