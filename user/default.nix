@@ -17,7 +17,7 @@
     # nordzy-cursor-theme # TEST relevance
 
     # Misc
-    # albert # General purpose launcher FIXME
+    albert # General purpose launcher FIXME
     # xbanish # Hide mouse Xorg
     # bleachbit
     # gnome.seahorse
@@ -74,6 +74,7 @@
         };
       };
     };
+    browserpass.enable = true;
   };
 
   # gtk = { # TEST relevance
