@@ -14,15 +14,6 @@
       enable = true;
       settings = { };
     };
-    udiskie = {
-      enable = true;
-      automount = true;
-      notify = true;
-      tray = "never";
-    };
-    syncthing = {
-      enable = true;
-    };
     udev.packages = [
       pkgs.android-udev-rules
     ];

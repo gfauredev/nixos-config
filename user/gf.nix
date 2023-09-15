@@ -46,16 +46,6 @@
       # TYPST_ROOT = "$HOME/.local/share/typst";
     };
 
-    programs = {
-      git = {
-        userName = "Guilhem Fauré";
-        userEmail = "pro@gfaure.eu";
-      };
-      ripgrep.enable = true;
-      xplr.enable = true;
-      fzf.enable = true;
-    };
-
     packages = with pkgs; [
       #################### Serif Fonts ####################
       libre-baskerville # Great, stylish serif
@@ -181,8 +171,60 @@
       # cpufrequtils
       # pcscliteWithPolkit
     ];
-  };
 
+    services = {
+      udiskie = {
+        enable = true;
+        automount = true;
+        notify = true;
+        tray = "never";
+      };
+      syncthing = {
+        enable = true;
+      };
+      # System-wide text expander
+      # espanso = {
+      #   enable = true;
+      #   configs.matches = [
+      #     {
+      #       # Text replacement
+      #       trigger = ":name";
+      #       replace = "Guilhem Fauré";
+      #     }
+      #     {
+      #       # Date
+      #       trigger = ":date";
+      #       replace = "{{date}}";
+      #       vars = [{
+      #         name = "date";
+      #         type = "date";
+      #         params = { format = "%d/%m/%Y"; };
+      #       }];
+      #     }
+      #     {
+      #       # Shell command
+      #       trigger = ":host";
+      #       replace = "{{hostname}}";
+      #       vars = [{
+      #         name = "hostname";
+      #         type = "shell";
+      #         params = { cmd = "hostname"; };
+      #       }];
+      #     }
+      #   ];
+      # };
+    };
+
+    programs = {
+      git = {
+        userName = "Guilhem Fauré";
+        userEmail = "pro@gfaure.eu";
+      };
+      ripgrep.enable = true;
+      xplr.enable = true;
+      fzf.enable = true;
+    };
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
