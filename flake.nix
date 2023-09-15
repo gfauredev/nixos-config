@@ -76,6 +76,15 @@
           ./system/print-scan.nix
         ];
       };
+      installer = nixpkgs.lib.nixosSystem {
+        specialArgs = inputs;
+        system = "x86_64-linux";
+        modules = [
+          ./system/default.nix
+          ./system/installer.nix # NixOS installer
+          ./system/wireless.nix
+        ];
+      };
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
