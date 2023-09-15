@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "Commiting changes"
+git --git-dir=$HOME/.note/ --work-tree=$HOME/note/ add $HOME/note/
+git --git-dir=$HOME/.note/ --work-tree=$HOME/note/ commit -m "Updated notes"
+
+echo "Pulling remote changes"
+git --git-dir=$HOME/.note/ --work-tree=$HOME/note/ pull --recurse-submodules --jobs=8
+
+echo "Pushing changes"
+git --git-dir=$HOME/.note/ --work-tree=$HOME/note/ push -u origin main

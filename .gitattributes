@@ -1,0 +1,2 @@
+*.ott filter=lfs diff=lfs merge=lfs -text
+*.otp filter=lfs diff=lfs merge=lfs -text
