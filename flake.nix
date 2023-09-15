@@ -123,5 +123,18 @@
         ];
       };
     };
+
+    # Used with `nix develop`
+    devShells.x86_64-linux = {
+      shell = pkgs.mkShell { };
+      lua = pkgs.mkShell { };
+      web = pkgs.mkShell { };
+      python = pkgs.mkShell { };
+      java = pkgs.mkShell { };
+      rust = pkgs.mkShell { };
+      c = pkgs.mkShell { };
+      query = pkgs.mkShell { };
+      default = pkgs.mkShell { };
+    };
   };
 }
