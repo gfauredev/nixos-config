@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ inputs, lib, config, pkgs, ... }: {
   services = {
     interception-tools = {
       enable = true;

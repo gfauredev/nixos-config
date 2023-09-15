@@ -1,4 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
+  imports = [
+    /etc/nixos/hardware-configuration.nix # Hardware specific conf
+  ];
+
   nix = {
     # add each flake input as a registry
     # To make nix3 commands consistent with flake
@@ -20,7 +24,7 @@
   };
 
   console.font = "Lat2-Terminus16";
-  console.keyMap = "fr-bepo";
+  console.keyMap = lib.mkDefault "fr-bepo";
 
   time = {
     timeZone = lib.mkDefault "Europe/Paris";

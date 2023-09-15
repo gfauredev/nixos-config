@@ -128,13 +128,6 @@
   #   driSupport32Bit = true;
   # };
 
-  # musnix = { # TEST relevance
-  #   enable = true;
-  #   kernel = {
-  #     # realtime = true;
-  #   };
-  # };
-
   # qt = { # TEST if relevant
   #   enable = true;
   #   # platformTheme = "gtk2";

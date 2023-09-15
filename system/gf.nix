@@ -5,7 +5,7 @@
     homeMode = "700";
     createHome = true;
     description = "Guilhem Fauré";
-    # shell = pkgs.zsh; # TODO: verify pertinence with home-manager
+    # shell = pkgs.zsh; # TEST pertinence with home-manager
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -14,22 +14,19 @@
       "realtime"
       "lp"
       "scanner"
-      "smb"
       "fuse"
       "uucp"
       "mtp"
-      "libvirt"
       "libvirtd"
       "adbusers"
       "vboxusers"
       "docker"
-      "dialout"
-      # "srv"
+      # "dialout"
+      # "smb"
     ];
   };
 
   users.groups = {
     mtp = { };
-    # srv = { };
   };
 }

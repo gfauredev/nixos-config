@@ -27,10 +27,11 @@
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system/default.nix
+          ./system/multilingual.nix
           ./system/ninja.nix # Light & quick laptop : ninja
           ./system/gf.nix # Main user
           ./system/laptop.nix
-          ./system/realtime.nix
+          # ./system/realtime.nix # TODO adapt for laptops
           ./system/wireless.nix
           ./system/remap.nix
           ./system/print-scan.nix
@@ -42,6 +43,7 @@
         modules = [
           musnix.nixosModules.musnix # System improvements for audio
           ./system/default.nix
+          ./system/multilingual.nix
           ./system/knight.nix # Heavy & strong desktop : knight
           ./system/gf.nix # Main user
           ./system/realtime.nix
@@ -58,6 +60,20 @@
           ./system/default.nix
           ./system/hydra.nix # Multi-purpose hypervisor : hydra
           ./system/hypervisor.nix
+        ];
+      };
+      scout = nixpkgs.lib.nixosSystem {
+        specialArgs = inputs;
+        system = "x86_64-linux";
+        modules = [
+          ./system/default.nix
+          ./system/multilingual.nix
+          ./system/scout.nix # Light laptop for travel : scout
+          ./system/gf.nix # Main user
+          ./system/laptop.nix
+          ./system/wireless.nix
+          ./system/remap.nix
+          ./system/print-scan.nix
         ];
       };
     };

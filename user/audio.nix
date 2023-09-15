@@ -1,5 +1,4 @@
 { inputs, lib, config, pkgs, ... }: {
-  # TODO work with musnix & realtime
   home.packages = with pkgs; [
     # TODO use specific options when possible
     playerctl # MPRIS media players control

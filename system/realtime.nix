@@ -1,3 +1,10 @@
 { inputs, lib, config, pkgs, ... }: {
-  # security.rtkit.enable = true; # TODO: test pertinence
+  musnix = {
+    enable = true; # WARNING increases power consumption
+    kernel = {
+      realtime = true; # WARNING needs to compile kernel ourselves
+    };
+  };
+
+  # security.rtkit.enable = true; # TEST relevance
 }

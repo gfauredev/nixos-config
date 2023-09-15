@@ -4,6 +4,15 @@ lang: en
 
 # My NixOS flake-based systems and homes configurations
 
+## NixOS installation instructions
+
+If you read this, you’ve already done the first step which is 
+downloading this config.
+
+### Encrypt & format disks
+
+### Install from the Nix Flake
+
 ## Documentation ressources :
 
 - [Home manager documentation](https://nix-community.github.io/home-manager/index.html#ch-nix-flakes)
