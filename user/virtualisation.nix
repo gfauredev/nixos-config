@@ -1,20 +1,15 @@
-# Test virtualisation configuration
-# Help: configuration.nix(5) man page and NixOS manual: ’nixos-help’
-
-{ config, pkgs, ... }:
-
-{
-  programs = {
-    dconf.enable = true;
-  };
+{ inputs, lib, config, pkgs, ... }: {
+  # programs = { # TEST relevance
+  #   dconf.enable = true;
+  # };
 
   environment.systemPackages = with pkgs; [
-    # libvirt
-    docker-compose
-    vagrant # VM orchestrator
-    kubernetes # Container orchestrator
-    looking-glass-client
-    virt-manager
+    # TODO use dedicated option when possible
+    # virt-manager
+    # vagrant # VM orchestrator
+    # looking-glass-client
+    # docker-compose
+    # kubernetes # Container orchestrator
   ];
 
   virtualisation = {
@@ -24,9 +19,9 @@
     docker.enable = true;
     virtualbox.host = {
       enable = true;
-      # enableExtensionPack = true;
+      # enableExtensionPack = true; # WARNING needs a lot of compilation
     };
-    # vmware.host = {
+    # vmware.host = { # PROPRIETARY
     #   enable = true;
     # };
   };

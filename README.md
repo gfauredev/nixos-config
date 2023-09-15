@@ -27,6 +27,7 @@ downloading this config.
 
 > Consider TODO, FIXME, TEST and WARNING tags already inside files
 
+- Add useful things from old config to dev shells
 - Study & configure Musnix & realtime audio & audio improvements
 - Study & configure Nixos-hardware & hardware improvements
 - Power consumption improvements
@@ -43,3 +44,5 @@ downloading this config.
 > before being installed with `nix-env -iA nixpkgs.$PACKAGE`
 
 - `ciscoPacketTracer8` # Advanced network simulation
+- `sqldeveloper` # Oracle SQL IDE
+- `sqlcl` # Oracle SQL CLI

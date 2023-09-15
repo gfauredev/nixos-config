@@ -1,7 +1,5 @@
 { inputs, lib, config, pkgs, ... }: {
   imports = [
-    # use home-manager modules from other flakes ex:
-    # inputs.nix-colors.homeManagerModule
     ./zsh.nix # Shell config
   ];
 
@@ -49,56 +47,10 @@
     };
   };
 
-  # fonts.fontconfig.enable = true; # TODO: test pertinence
-
-  # TODO some options may belong to default.nix
-
   programs = {
-    home-manager.enable = true; # MANDATORY
     git = {
-      enable = true; # MANDATORY
       userName = "Guilhem Fauré";
       userEmail = "pro@gfaure.eu";
-      lfs.enable = true;
-      delta.enable = true;
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-        pull = {
-          rebase = false;
-        };
-        lfs = {
-          locksverify = true;
-        };
-        filter.lfs = {
-          required = true;
-          clean = "git-lfs clean -- %f";
-          smudge = "git-lfs smudge -- %f";
-          process = "git-lfs filter-process";
-        };
-        submodule = {
-          recurse = true;
-          fetchjobs = 8;
-        };
-        credential = {
-          helper = "store";
-        };
-      };
-      ignores = [
-        "*.pdf"
-        "*.jpg"
-        "*.jpeg"
-        "*.png"
-        "*.avif"
-        "*.webp"
-        "*.odt"
-        "*.odf"
-        "*.odp"
-        "*.doc"
-        "*.docx"
-        "*.pptx"
-      ];
     };
   };
 

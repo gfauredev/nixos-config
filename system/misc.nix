@@ -38,7 +38,7 @@
     #   enable = true;
     #   wrappedBinaries = { };
     # };
-    adb.enable = true;
+    adb.enable = true; # Talk to Android devices
     ssh.startAgent = true;
   };
 
@@ -49,20 +49,20 @@
       age
       gnupg
       openssl
-      libsecret
+      # libsecret
 
       zip
       unzip
       p7zip
       gzip
       bzip2
-      bzip3
-      librsvg
+      # bzip3
+      # librsvg
 
       exfat
       ntfs3g
 
-      # Graphical
+      # Graphical TEST relevance
       # mesa
       # libsForQt5.breeze-gtk
       # libsForQt5.breeze-qt5

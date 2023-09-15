@@ -98,11 +98,12 @@
           ./user/gf.nix # User
           ./user/sway.nix # sway window manager
           ./user/laptop.nix # Laptop related
-          ./user/hard.nix # Hardware creation
+          # ./user/hard.nix # Hardware creation
           ./user/audio.nix # Audio & Music creation
-          ./user/photo.nix # Photo & Images creation
+          # ./user/photo.nix # Photo & Images creation
           ./user/social.nix # Social interaction
           ./user/media.nix # Media consuming
+          # ./user/virtualisation.nix
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -120,6 +121,7 @@
           ./user/social.nix # Social interaction
           ./user/media.nix # Media consuming
           ./user/game.nix # Video gaming
+          ./user/virtualisation.nix
         ];
       };
     };

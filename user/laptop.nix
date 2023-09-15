@@ -7,7 +7,7 @@
         commandLowLevel = ''
           notify-send "LOW BATTERY"
         '';
-        criticalLevelPercent = 10;
+        criticalLevelPercent = 15;
         commandCriticalLevel = ''
           systemctl suspend
         '';

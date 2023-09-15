@@ -1,14 +1,4 @@
 { pkgs, config, ... }: {
-  packages = with pkgs; [
-    feh # Background display
-    i3lock # Screen locker
-    # xclip # TEST pertinence
-    # xsel # TEST pertinence
-    xorg.xev # Evaluate input
-    # xorg.xauth # TEST pertinence
-    # xcompmgr
-  ];
-
   xsession.windowManager.i3 =
     let
       term = "alacritty"; # Terminal command
@@ -159,10 +149,12 @@
           # { command = "xcompmgr"; }
           # { command = "xbanish"; }
           { command = "autotiling --limit 4"; }
-          # { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; } # TEST pertinence
+          { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; }
           { command = "feh --bg-fill $HOME/.wallpaper"; }
           { command = "albert"; }
-          { command = "xset r rate 250 50"; } # TODO with a better way
+          { command = "xset r rate 250 50"; }
+          { command = "${term-menu} -e sh -c up"; }
+          # { command = "${term-menu} -e sh -c veramount"; }
         ];
         defaultWorkspace = "workspace 7:etc";
         window = {
@@ -187,37 +179,4 @@
         for_window [class="menu"] floating enable, resize set width 888 px height 420 px
       '';
     };
-
-  # WARNING things below may have to be set outside of home manager
-  programs = {
-    zsh.loginExtra = ''
-      # Start window managers at login on firsts TTYs
-      if [ -z "''${DISPLAY}" ]; then
-        if [ "''${XDG_VTNR}" -eq 1 ]; then
-          exec startx $HOME/.nix-profile/bin/i3
-        fi
-        if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec $HOME/.nix-profile/bin/sway
-        fi
-      fi
-    '';
-    i3status-rust = {
-      enable = true;
-      bars = {
-        bottom = {
-          blocks = [
-            {
-              block = "time";
-              interval = 1;
-              format = "$timestamp.datetime(f:'%H:%M:%S | %A %d %B %Y')";
-            }
-            { block = "sound"; }
-          ];
-          settings = {
-            theme.theme = "solarized-dark";
-          };
-        };
-      };
-    };
-  };
 }

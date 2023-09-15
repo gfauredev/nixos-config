@@ -45,9 +45,60 @@
         };
       };
     };
+    # kanshi = { # TEST relevance
+    #   enable = true;
+    #   profiles = {};
+    # };
+    # picom = {
+    #   enable = true;
+    # };
   };
 
   programs = {
+    home-manager.enable = true; # MANDATORY
+    git = {
+      enable = true; # MANDATORY
+      lfs.enable = true;
+      delta.enable = true;
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+        pull = {
+          rebase = false;
+        };
+        lfs = {
+          locksverify = true;
+        };
+        filter.lfs = {
+          required = true;
+          clean = "git-lfs clean -- %f";
+          smudge = "git-lfs smudge -- %f";
+          process = "git-lfs filter-process";
+        };
+        submodule = {
+          recurse = true;
+          fetchjobs = 8;
+        };
+        credential = {
+          helper = "store";
+        };
+      };
+      ignores = [
+        "*.pdf"
+        "*.jpg"
+        "*.jpeg"
+        "*.png"
+        "*.avif"
+        "*.webp"
+        "*.odt"
+        "*.odf"
+        "*.odp"
+        "*.doc"
+        "*.docx"
+        "*.pptx"
+      ];
+    };
     wezterm = {
       enable = true;
       extraConfig = ''
@@ -75,6 +126,16 @@
       };
     };
     browserpass.enable = true;
+    # autorandr = { # TEST relevance
+    #   enable = true;
+    # };
+    # eww = {
+    #   enable = true;
+    #   configDir = ../eww;
+    # };
+    # eclipse = {
+    #   enable = true;
+    # };
   };
 
   # gtk = { # TEST relevance

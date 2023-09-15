@@ -1,7 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
     # TODO use specific options when possible
-    playerctl # MPRIS media players control
     klick # Metronome
     qpwgraph # PipeWire flux visualisation and control
     ardour # Full fledged digital audio workstation

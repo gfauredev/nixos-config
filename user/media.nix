@@ -8,45 +8,47 @@
     # libreoffice # Office suite
     # libreoffice-fresh-unwrapped # Office suite
     # libreoffice-still # Office suite
-    anki-bin # Memorisation
-    # languagetool # Grammar checking, now using the LSP version
-    # appflowy
     # xournalpp
     # write_stylus
     # markdown-anki-decks
-    # logseq # Outliner note taking
     # marktext # Markdown editor
     # calibre # Ebook management
     # zathura # Minimalist PDF reader
-
-    # Audio & Music
-    spotify # PROPRIETARY music streaming
-
-    # Image & Video
-    swayimg # image viewer
-    # sxiv # image viewer
-    mpv
-    # imv
-
-    # Utilities & Software # TODO refile more precisely
-    xdg-utils # Mime type based file oppening
-    tesseract # OCR on PDF or images
-    qbittorrent-nox # CLI Bittorrent client
-    fontforge # Font editor
-    # qbittorrent # Bittorrent client
+    # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
-    # transmission-qt # Bittorrent client
-    # filezilla # FTP client
+
+    # Note & Organization
+    anki-bin # Memorisation
+    plantuml-c4 # UML diagrams from text
     # emacsPackages.org-roam-ui
     # hovercraft # impress.js presentations
     # emanote # Structured view text notes
-    # handlr # Default app launcher
-    # obs-studio
-    # obs-studio-plugins.wlrobs
-    # obs-wlrobs
-    # webtorrent_desktop
+    # logseq # Outliner note taking
     # rnote
+    # appflowy
+
+    # Audio & Music
+    playerctl # MPRIS media players control
+    spotify # PROPRIETARY music streaming
+
+    # Image & Video
+    swayimg # Image viewer that can integrate with terminals
+    mpv # Video & Audio player
+    # sxiv # Image viewer
+    # imv # Image viewer
+
+    # Utilities & Software # TODO refile more precisely
+    qbittorrent-nox # CLI Bittorrent client
+    fontforge # Font editor
+    # languagetool # Grammar checking, now using the LSP version
+    # qbittorrent # Bittorrent client
+    # transmission-qt # Bittorrent client
+    # filezilla # FTP client
+    # xdg-utils # Mime type based file oppening # TEST if relevant
+    # handlr # Default app launcher # TEST if relevant
   ];
+
+  # fonts.fontconfig.enable = true; # TODO: test pertinence
 
   services.mpris-proxy.enable = true;
 

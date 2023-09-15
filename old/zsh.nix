@@ -1,11 +1,28 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, config, ... }: {
+  programs.command-not-found.enable = true;
   programs.zsh = {
     enable = true;
+    # sessionVariables = {
+    #   XDG_DESKTOP_DIR = "$HOME";
+    #   XDG_DOCUMENTS_DIR = "$HOME/doc";
+    #   XDG_DOWNLOAD_DIR = "$HOME/dl";
+    #   XDG_MUSIC_DIR = "$HOME/audio";
+    #   XDG_PICTURES_DIR = "$HOME/img";
+    #   XDG_VIDEOS_DIR = "$HOME/vid";
+    #   XDG_CONFIG_HOME = "$HOME/.config";
+    #
+    #   EDITOR = "nvim";
+    #   BROWSER = "brave";
+    #   # VISUAL = "nvim";
+    #   # TERMINAL = "wezterm";
+    #   # TERM = "wezterm";
+    #
+    #   PATH = "$PATH:$HOME/.local/bin:$HOME/.cargo/bin";
+    # };
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    # TEST revelance of options below
     completionInit = ''
       autoload -Uz compinit && compinit -i && _comp_options+=(globdots)
 
@@ -39,19 +56,19 @@
       share = true;
     };
     historySubstringSearch.enable = true;
-    # initExtra = '' # TODO directly with nix
-    #   # create dl dir in user temp dir
-    #   [ -d /run/user/''$(id -u)/dl ] || mkdir -m 700 /run/user/$(id -u)/dl
-    #   # [ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$(id -u)/dl $XDG_DOWNLOAD_DIR # TODO do with home manager
-    #   # delete some annoying dirs
-    #   [ -d $HOME/Downloads ] && rmdir $HOME/Downloads
-    #   [ -d $HOME/intelephense ] && rmdir $HOME/intelephense
-    #
-    #   source $XDG_CONFIG_HOME/functions.sh
-    # '';
+    initExtra = ''
+      # create dl dir in user temp dir
+      [ -d /run/user/''$(id -u)/dl ] || mkdir -m 700 /run/user/$(id -u)/dl
+      # [ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$(id -u)/dl $XDG_DOWNLOAD_DIR # TODO do with home manager
+      # delete some annoying dirs
+      [ -d $HOME/Downloads ] && rmdir $HOME/Downloads
+      [ -d $HOME/intelephense ] && rmdir $HOME/intelephense
+
+      source $XDG_CONFIG_HOME/functions.sh
+    '';
     shellAliases = {
       # sudo
-      # su = "sudo su ";
+      su = "sudo su ";
       sudo = "sudo ";
       se = "sudoedit ";
 
@@ -73,53 +90,53 @@
       ts = "trash -v";
       empty = "trash-empty -i";
       restore = "trash-restore";
-      shred = "shred -vu";
+      destroy = "shred -vu";
       mv = "mv -uv";
       mvi = "mv -iv";
       cp = "cp -urv";
       cpi = "cp -irv";
       rs = "rsync -Prluvh";
       rsa = "rsync -Pauvh";
-      # mvdl = "mv $HOME/dl/*";
-      # cpdl = "cp $HOME/dl/*";
+      mvdl = "mv $HOME/dl/*";
+      cpdl = "cp $HOME/dl/*";
 
       # Edit, Open, Navigate
       ex = "$HOME/.local/bin/extract";
       rg = "rg -S -C 2";
-      ## Quick access to parent directories
-      # "..." = "../../";
-      # "...." = "../../../";
-      # "....." = "../../../../";
-      # "......" = "../../../../../";
-      # "......." = "../../../../../../";
+      ## Parent directories
+      "..." = "../../";
+      "...." = "../../../";
+      "....." = "../../../../";
+      "......" = "../../../../../";
+      "......." = "../../../../../../";
 
       # System & Misc
       mix = "pulsemixer";
       du = "dust";
       df = "duf -hide special";
       dfa = "duf -all";
-      sys = "systemctl";
+      sys = "sudo systemctl";
       jo = "sudo journalctl -xfe";
       hist = "$EDITOR $XDG_CONFIG_HOME/zsh/zsh_history";
       wi = "nmcli device wifi";
       wid = "nmcli device disconnect";
       re = "exec zsh";
-      # py = "python3"; # TODO inside specific shells
-      # py = "python";
+      # py = "python3";
+      py = "python";
       # pi = "ipython -i --ext=autoreload --ext=storemagic";
-      # pi = "python -i";
-      # ju = "term jupyter-notebook .";
+      pi = "python -i";
+      ju = "term jupyter-notebook .";
       wcp = "wl-copy";
       wpt = "wl-paste";
-      # neo = "neofetch";
+      neo = "neofetch";
       boot = "sudo bootctl";
-      # rebuild = "sudo nixos-rebuild -v"; # TODO for flake system
-      # update = "sudo nix-channel --update"; # TODO for flake system
+      rebuild = "sudo nixos-rebuild -v";
+      update = "sudo nix-channel --update";
       gc = "nix-collect-garbage";
       wx = "watchexec";
       ## Bluetooth & Network
       bt = "bluetoothctl";
-      # btc = "bluetoothctl connect";
+      btc = "bluetoothctl connect";
       http = "xh";
       https = "xh --https";
       ## Media controls
@@ -128,32 +145,32 @@
       prev = "playerctl previous";
       inhib = "systemd-inhibit sleep";
       clic = "klick --auto-connect --interactive";
-      clicmap = "klick --auto-connect --tempo-map";
-      ## WARNING Hacky, TODO do this properly
+      clif = "klick --auto-connect --tempo-map";
+      ## WARNING Hacky, find a way to do this properly
       poweroff = "veracrypt -t -d && systemctl poweroff";
       off = "veracrypt -t -d && systemctl poweroff";
       reboot = "veracrypt -t -d && systemctl reboot";
       ## Tools & Documents
-      # hu = "rm -frv public && hugo"; # TODO inside a specific shell
-      # hu = "hugo --cleanDestinationDir";
-      # tec = "pandoc --pdf-engine=tectonic"; # TODO inside a specific shell
-      # wea = "pandoc --pdf-engine=weasyprint";
-      # img = "swayimg"; # TODO with default openner
+      # hu = "rm -frv public && hugo";
+      hu = "hugo --cleanDestinationDir";
+      tec = "pandoc --pdf-engine=tectonic";
+      wea = "pandoc --pdf-engine=weasyprint";
+      rust = "nix-shell $XDG_CONFIG_HOME/nix/shells/rust.nix";
+      img = "swayimg";
       scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      # mail = "aerc";
+      mail = "aerc";
 
       # Mounting
+      # mtpm = "mkdir $HOME/mtp ; sudo aft-mtp-mount $HOME/mtp";
       mtp = "mkdir $HOME/mtp; jmtpfs $HOME/mtp";
       mtpu = "fusermount -u $HOME/mtp && rmdir $HOME/mtp";
-      usbu = "udiskie-umount --all --eject";
-      # usbe = "udiskie-umount --all --eject";
-      # mtpm = "mkdir $HOME/mtp ; sudo aft-mtp-mount $HOME/mtp";
-      # udm = "udisksctl mount -b";
-      # udu = "udisksctl unmount -b";
-      # mnt = "sudo mount -o umask=027,uid=$(id -u),gid=$(id -g)";
+      udm = "udisksctl mount -b";
+      udu = "udisksctl unmount -b";
+      mnt = "sudo mount -o umask=027,uid=$(id -u),gid=$(id -g)";
       # usba = "udiskie-mount --all";
       # usbu = "udiskie-umount";
       # usbe = "udiskie-umount --detach --eject";
+      usbe = "udiskie-umount --all --eject";
 
       # Git
       status = "git status";
@@ -174,7 +191,7 @@
       pusha = "git commit -am 'Unnamed update'; git push";
       upsub = "git commit -am 'Updated submodule(s)'; git push";
       pull = "git pull --recurse-submodules --jobs=16";
-      pupu = "git pull --recurse-submodules --jobs=16 && git push";
+      pu = "git pull --recurse-submodules --jobs=16 && git push";
       checkout = "git checkout";
       main = "git checkout main";
       merge = "git merge";
@@ -193,20 +210,13 @@
       ## Config files management
       cfg = "git --git-dir=$HOME/.bare/ --work-tree=$HOME";
       cfgs = "cfg status";
-      cfgcmt = "cfg commit -am";
-      cfgamend = "cfg commit --amend";
+      cfgcommit = "cfg commit";
+      cfgcommitm = "cfg commit -m";
+      cfgcommita = "cfg commit -a";
+      cfgamend = "cfg commit --amend -a";
       cfgamendm = "cfg commit --amend -m";
       cfgamendam = "cfg commit --amend -am";
-      # cfgcommit = "cfg commit";
-      # cfgcommitm = "cfg commit -m";
-      # cfgcommita = "cfg commit -a";
-      ## Notes management
-      not = "git --git-dir=$HOME/.note/ --work-tree=$HOME/note/";
-      nots = "not status";
-      notcmt = "not commit -am";
-      notamend = "not commit --amend";
-      notamendm = "not commit --amend -m";
-      notamendam = "not commit --amend -am";
+      cfgcmt = "cfg commit -am";
 
       # ONE LETTER ALIASES, difficult to live without
       ## List
@@ -227,7 +237,7 @@
       f = "fd"; # quicker, better find
       b = "br"; # CLI files explorer
       t = "term"; # smart terminal window opener
-      # x = "xplr"; # CLI files explorer
+      x = "xplr"; # CLI files explorer
     };
     shellGlobalAliases = {
       AUD = "$HOME/aud";
@@ -238,49 +248,16 @@
       NOTE = "$HOME/in";
       USB = "$HOME/usb";
     };
-  };
-
-  programs = {
-    command-not-found.enable = true;
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        character = {
-          format = "$symbol ";
-          # success_symbol = "[☭](bold green)";
-          # error_symbol = "[\\$](bold red)";
-          vimcmd_symbol = "[N](bold blue)";
-          vimcmd_replace_one_symbol = "[r](bold blue)";
-          vimcmd_replace_symbol = "[R](bold blue)";
-          vimcmd_visual_symbol = "[V](bold blue)";
-        };
-      };
-    };
-    less = {
-      enable = true;
-      keys = ''
-        t forw-line
-        s back-line
-        T forw-line-force
-        S back-line-force
-      '';
-    };
-    bat = {
-      enable = true;
-      config = {
-        pager = "less -i";
-      };
-    };
-    # fzf = { # TEST relevance
-    #   enable = true;
-    #   enableZshIntegration = true;
-    #   keybindings = true;
-    #   fuzzyCompletion = true;
-    # };
+    # Old options
+    # "auto_cd"
+    # "auto_pushd"
+    # "cdable_vars"
+    # "chase_links"
+    # "extended_glob"
+    # "no_case_glob"
+    # "nomatch"
+    # "menucomplete"
+    # "share_history"
+    # "correct_all"
   };
 }

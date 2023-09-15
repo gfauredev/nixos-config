@@ -7,8 +7,8 @@
         cursor-shape = {
           normal = "block";
           insert = "bar";
-          select = "block";
-          replace = "underline";
+          # select = "block";
+          # replace = "underline";
         };
       };
       keys.normal = {
