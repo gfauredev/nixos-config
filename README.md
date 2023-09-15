@@ -65,3 +65,4 @@ Use the command `nix ???`.
 - `ciscoPacketTracer8` # Advanced network simulation
 - `sqldeveloper` # Oracle SQL IDE
 - `sqlcl` # Oracle SQL CLI
+- `burpsuite` # Pentesting suite

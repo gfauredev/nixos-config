@@ -62,6 +62,8 @@
       exfat
       ntfs3g
 
+      lsof # list openned files
+
       # Graphical TEST relevance
       # mesa
       # libsForQt5.breeze-gtk

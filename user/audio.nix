@@ -1,5 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
+    yabridge
+    yabridgectl
     # TODO use specific options when possible
     klick # Metronome
     qpwgraph # PipeWire flux visualisation and control

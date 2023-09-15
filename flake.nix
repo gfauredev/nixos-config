@@ -128,7 +128,7 @@
 
     # Used with `nix develop`
     devShells.x86_64-linux = {
-      media = pkgs.mkShell { }; # Tools for documents, like pandoc or latex
+      media = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
       lua = pkgs.mkShell { };
       web = pkgs.mkShell { };
       python = pkgs.mkShell { };
@@ -136,6 +136,7 @@
       rust = pkgs.mkShell { };
       c = pkgs.mkShell { };
       query = pkgs.mkShell { };
+      pentest = pkgs.mkShell { };
       default = pkgs.mkShell { };
     };
   };
