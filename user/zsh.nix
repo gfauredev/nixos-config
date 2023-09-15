@@ -1,4 +1,32 @@
 { inputs, lib, config, pkgs, ... }: {
+  home.packages = with pkgs; let
+    empty_cr = pkgs.writeShellScript "empty_cr" ''
+      empty_cr () { # clear screen & give info on empty line
+        if [[ -z $BUFFER ]]; then
+          clear
+          echo $(date)
+          # echo "Why I am doing what I do ?"
+          if [ $(hostnamectl chassis) = "laptop" ]; then
+            acpi -b
+          fi
+          echo
+          exa --icons --git -l --no-permissions --no-user --sort=age
+          if git rev-parse --git-dir > /dev/null 2>&1 ; then
+            echo
+            zsh -ic "status"
+          fi
+        fi
+        zle accept-line
+      }
+      # Use this function when entering in an empty line
+      zle -N empty_cr
+      bindkey '^M' empty_cr
+    '';
+  in
+  [
+    empty_cr
+  ];
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
