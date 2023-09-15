@@ -9,10 +9,11 @@ lang: en
 If you read this, you’ve already done the first step which is 
 downloading this config.
 
-### *1.* Encrypt & format disks according to hardware-config template
+### *1.* Partition, (encrypt), format disks according to hardware-config templates
 
-Use the tools `fdisk` or `cfdisk` to allocate space for partitions and label
-them properly.
+Use the tools `fdisk` or `cfdisk` to partition and label disks properly.
+
+Then use `cryptsetup ???` to encrypt the root partition.
 
 Then use `mkfs.fat -F 32 /dev/???` to format `/boot` and `mkfs.btrfs /dev/???`
 (or `mkfs.bcachefs /dev/???`) to format `/` (the root).
@@ -59,7 +60,7 @@ Use the command `nix ???`.
 
 > These are packages that require downloading assets from various places \
 > and add them to the Nix store with `nix ???` \
-> before being installed with `nix-env -iA nixpkgs.$PACKAGE` \
+> before being installed with `nix-env -iA nixpkgs.$PACKAGE`
 
 - `ciscoPacketTracer8` # Advanced network simulation
 - `sqldeveloper` # Oracle SQL IDE

@@ -128,7 +128,7 @@
 
     # Used with `nix develop`
     devShells.x86_64-linux = {
-      shell = pkgs.mkShell { };
+      media = pkgs.mkShell { }; # Tools for documents, like pandoc or latex
       lua = pkgs.mkShell { };
       web = pkgs.mkShell { };
       python = pkgs.mkShell { };
