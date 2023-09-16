@@ -1,6 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   imports = [
-    /etc/nixos/hardware-configuration.nix # Hardware specific conf
+    ./hardware-configuration.nix # Hardware specific conf
   ];
 
   nix = {

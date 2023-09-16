@@ -25,7 +25,8 @@ commands.
 
 ### *2.* Handle hardware configuration
 
-Run the command `nixos-generate-config --root /mnt`.
+Run the command `nixos-generate-config --root /mnt --dir .` to create a hardware
+config in this directory.
 
 Then, correct with according to choosen system/partitioning/ template.
 
