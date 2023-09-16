@@ -27,7 +27,7 @@
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system/default.nix
-          ./system/multilingual.nix
+          ./system/pc.nix # It’s a personal computer, not headless
           ./system/ninja.nix # Light & quick laptop : ninja
           ./system/gf.nix # Main user
           ./system/laptop.nix
@@ -43,7 +43,7 @@
         modules = [
           musnix.nixosModules.musnix # System improvements for audio
           ./system/default.nix
-          ./system/multilingual.nix
+          ./system/pc.nix # It’s a personal computer, not headless
           ./system/knight.nix # Heavy & strong desktop : knight
           ./system/gf.nix # Main user
           ./system/realtime.nix

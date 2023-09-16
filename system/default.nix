@@ -41,22 +41,47 @@
     wireguard.enable = lib.mkDefault true;
   };
 
-  # security.apparmor.enable = true; # TEST relevance
+  security = {
+    sudo.enable = lib.mkDefault true;
+    # polkit.enable = lib.mkDefault true; # TEST pertinence
+    # apparmor.enable = lib.mkDefault true; # TEST pertinence
+  };
 
   users.mutableUsers = lib.mkDefault true; # Set passwords imperatively
 
-  # programs = { # TEST relevance
-  #   neovim = {
-  #     enable = true;
-  #     defaultEditor = true;
-  #     viAlias = true;
-  #     vimAlias = true;
-  #   };
-  #   git.enable = true;
-  # };
+  services = {
+    nfs.server.enable = lib.mkDefault true;
+  };
+
+  programs = {
+    # neovim = { # TEST relevance
+    #   enable = true;
+    #   defaultEditor = true;
+    #   viAlias = true;
+    #   vimAlias = true;
+    # };
+    # git.enable = true; # TEST relevance
+  };
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
     defaultLocale = lib.mkDefault "en_US.UTF-8";
+  };
+
+  environment = {
+    systemPackages = with pkgs; [
+      lsof # list openned files
+      zip # Compression
+      unzip # Decompression
+      p7zip # Compression / Decompression
+      gzip # Compression / Decompression
+      bzip2 # Compression / Decompression
+      # TEST relevance of below
+      # bzip3
+      # librsvg
+      # openssl
+      # age
+      # libsecret
+    ];
   };
 }

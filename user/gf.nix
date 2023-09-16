@@ -220,6 +220,9 @@
         userName = "Guilhem Fauré";
         userEmail = "pro@gfaure.eu";
       };
+      gpg = {
+        enable = true;
+      };
       ripgrep.enable = true;
       # TODO set an explorer that can open & preview every file
       broot.enable = true; # TEST which is better

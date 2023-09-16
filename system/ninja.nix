@@ -18,15 +18,17 @@
 
   hardware = {
     # cpu.intel.updateMicrocode = true; # TEST if set by hardware
-    # TODO: ensure relevance
-    # opengl = {
-    #   extraPackages = with pkgs; [
-    #     intel-media-driver
-    #     vaapiIntel
-    #     vaapiVdpau
-    #     libvdpau-va-gl
-    #   ];
-    # };
+    opengl = {
+      #   enable = true; # TEST relevance
+      #   driSupport = true; # TEST relevance
+      #   driSupport32Bit = true; # TEST relevance
+      #   extraPackages = with pkgs; [ # TEST relevance
+      #     intel-media-driver
+      #     vaapiIntel
+      #     vaapiVdpau
+      #     libvdpau-va-gl
+      #   ];
+    };
   };
 
   boot = {
@@ -86,6 +88,86 @@
   };
 
   location.provider = "geoclue2";
+
+  environment = {
+    shells = with pkgs; [ zsh ];
+    # pathsToLink = [ "/share/zsh" ];
+    systemPackages = with pkgs; [
+      exfat
+      ntfs3g
+      # Graphical TEST relevance
+      # mesa
+      # libsForQt5.breeze-gtk
+      # libsForQt5.breeze-qt5
+      # libsForQt5.breeze-icons
+      # libsForQt5.qt5.qtwayland
+      # qt6.qtwayland
+      # polkit_gnome
+      # swt
+    ];
+    sessionVariables = {
+      # TEST relevance of each
+      # GTK_IM_MODULE = "ibus";
+      # NIXOS_OZONE_WL = "1";
+      # XCURSOR_THEME = "Nordzy-cursors";
+      # WLR_DRM_NO_ATOMIC = "1";
+      # WLR_NO_HARDWARE_CURSORS = "1";
+      # GBM_BACKEND = "nvidia-drm";
+      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      # LIBVA_DRIVER_NAME = "nvidia";
+      # QT_QPA_PLATFORM = "wayland";
+      # QT_QPA_PLATFORM_PLUGIN_PATH = "/run/current-system/sw/lib";
+
+      # QT_IM_MODULE=xim;
+      # GTK_IM_MODULE=xim;
+      # XMODIFIERS="@im=none";
+
+      # SDL_VIDEODRIVER=wayland;
+
+      # GTK_THEME = "Breeze:dark";
+      # CALIBRE_USE_DARK_PALETTE = "1";
+      # ANKI_WAYLAND = "1";
+
+      # EGL_PLATFORM = "wayland";
+      # MOZ_DISABLE_RDD_SANDBOX = "1";
+    };
+  };
+
+  # systemd = { # TEST relevance
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     description = "polkit-gnome-authentication-agent-1";
+  #     wantedBy = [ "sway-session.target" ];
+  #     wants = [ "sway-session.target" ];
+  #     after = [ "sway-session.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  # };
+
+  # qt = { # TEST if relevant
+  #   enable = true;
+  #   # platformTheme = "gtk2";
+  #   # style = "gtk2";
+  #   # platformTheme = "qt5ct";
+  #   # style = "adwaita-dark";
+  # };
+
+  # xdg = { # TEST if relevant
+  #   portal = {
+  #     enable = true;
+  #     wlr.enable = true;
+  #     xdgOpenUsePortal = true;
+  #   };
+  #     mime = {
+  #       enable = true;
+  #     };
+  #     autostart.enable = true;
+  # };
 
   # system kind (needed for flakes)
   nixpkgs.hostPlatform = "x86_64-linux";
