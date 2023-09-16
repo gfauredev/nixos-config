@@ -1,5 +1,21 @@
 { inputs, lib, config, pkgs, ... }: {
   services = {
+    # upower = { # TEST revelance, taking udev into account
+    #   enable = true;
+    #   percentageLow = 30;
+    #   percentageCritical = 20;
+    #   percentageAction = 15;
+    #   criticalPowerAction = "HybridSleep";
+    # };
+    udev = {
+      enable = true;
+      # TEST if below rules are working
+      extraRules = ''
+        SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="2[0-5]", RUN+="${pkgs.libnotify}/bin/notify-send 'LOW BATTERY'"
+
+        SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="1[0-5]", RUN+="${pkgs.systemd}/bin/systemctl suspend"
+      '';
+    };
     logind = {
       lidSwitch = "suspend";
       extraConfig = "HandlePowerKey=suspend";

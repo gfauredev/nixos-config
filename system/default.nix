@@ -78,6 +78,11 @@
       p7zip # Compression / Decompression
       gzip # Compression / Decompression
       bzip2 # Compression / Decompression
+      acpi # Information about hardware
+      usbutils # lsusb
+      pciutils # lspci
+      lm_sensors # get temps
+      wakelan # send magick packet to wake WoL devices
       # TEST relevance of below
       # bzip3
       # librsvg

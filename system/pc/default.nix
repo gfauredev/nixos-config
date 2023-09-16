@@ -64,6 +64,9 @@
     systemPackages = with pkgs; [
       exfat # fs tool
       ntfs3g # fs tool
+      tldr # short man pages
+      sshfs # browser ssh as directory
+      rsync # cp through network & with superpowers
       # Graphical TEST relevance
       # mesa
       # libsForQt5.breeze-gtk

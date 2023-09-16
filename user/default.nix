@@ -9,26 +9,22 @@
     # TODO use home.programs or flakes when possible
     # Web
     brave # Blink based secure and private web browser
-    firefox # Gecko based web browser
     # nyxt # Keyboard driven lightweight web browser
-    # chromium # Blink based web browser
 
     # Theme & Style
     # nordzy-cursor-theme # TEST relevance
 
     # Misc
     albert # General purpose launcher FIXME
-    # xbanish # Hide mouse Xorg
+    # protonvpn-gui # Free VPN service
     # bleachbit
     # gnome.seahorse
     # chntpw # Access Windows (dual boot) registry
-    # protonvpn-gui # Free VPN service
   ];
-
 
   services = {
     dunst = {
-      enable = true;
+      enable = true; # Notifications
       settings = {
         global = {
           width = 600;
@@ -124,6 +120,12 @@
           size = 14;
         };
       };
+    };
+    firefox = {
+      enable = true;
+    };
+    chromium = {
+      enable = true;
     };
     browserpass.enable = true;
     # autorandr = { # TEST relevance

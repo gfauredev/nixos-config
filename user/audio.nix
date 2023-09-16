@@ -1,7 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
-    yabridge
-    yabridgectl
+    yabridge # use VSTs with wine
+    yabridgectl # use VSTs with wine
     # TODO use specific options when possible
     klick # Metronome
     qpwgraph # PipeWire flux visualisation and control

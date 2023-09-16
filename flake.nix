@@ -95,14 +95,14 @@
         system = "x86_64-linux";
         modules = [
           ./user # Default, like text editor # TODO auto import default.nix
+          ./user/zsh.nix # Shell config
           ./user/gf.nix # My main user
           ./user/sway.nix # sway window manager
-          ./user/laptop.nix # Laptop related
           # ./user/hard.nix # Hardware creation
           ./user/audio.nix # Audio & Music creation
           # ./user/photo.nix # Photo & Images creation
-          ./user/social.nix # Social interaction
           ./user/media.nix # Media consuming
+          ./user/social.nix # Social interaction
           # ./user/virtualisation.nix
         ];
       };
@@ -112,6 +112,7 @@
         system = "x86_64-linux";
         modules = [
           ./user # Default, like text editor # TODO auto import default.nix
+          ./user/zsh.nix # Shell config
           ./user/gf.nix # My main user
           ./user/i3.nix # i3 window manager
           ./user/hard.nix # Hardware creation

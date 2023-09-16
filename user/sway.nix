@@ -1,7 +1,5 @@
 { inputs, lib, config, pkgs, ... }: {
   packages = with pkgs; [
-    # TODO use home.programs when possible
-    swayidle # Perform actions if inactive
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
     wl-color-picker
@@ -10,6 +8,7 @@
     wev # Evaluate inputs to wayland
     swaybg # Display a background
     autotiling # Simulate dwindle layout on sway and i3
+    # swayidle # Perform actions if inactive
     # kanshi # TEST if relevant
     # pcmanfm # TEST if relevant, TODO display files previews in terminal
     # swaylock # Screen locker for wayland
@@ -24,7 +23,7 @@
       term = "wezterm"; # Terminal command
       term-exec = "${term} start --always-new-process"; # Exec
       term-menu = "${term-exec} --class menu"; # Menu term
-      launch = "albert"; # Launcher
+      launch = "${pkgs.albert}"; # Launcher
       mod = "Mod4"; # Keys used to work with windows
       left = "c";
       down = "t";
@@ -41,15 +40,15 @@
         right = right;
         output = {
           "*" = {
-            bg = "$HOME/.lockscreen fill";
+            bg = "$HOME/.bg0 fill";
           };
           eDP-1 = {
-            bg = "$HOME/.wallpaper fill";
+            bg = "$HOME/.bg1 fill";
             scale = "1.5";
             resolution = "2256x1504";
           };
           DP-1 = {
-            bg = "$HOME/.wallpaper fill";
+            bg = "$HOME/.bg2 fill";
             scale = "1.5";
             # resolution = "3440x1440";
           };
@@ -260,8 +259,6 @@
       xwayland = true;
     };
 
-
-  # WARNING things below may have to be set outside of home manager
   services = {
     clipman = {
       enable = true;
@@ -290,6 +287,7 @@
   };
 
   programs = {
+    # TODO set with nix directly
     zsh.loginExtra = ''
       # Start window managers at login on first TTYs
       if [ -z "''${DISPLAY}" ]; then

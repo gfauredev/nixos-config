@@ -1,4 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
+  packages = with pkgs; [
+    # xbanish # Hide mouse Xorg
+  ];
+
   services = {
     xserver = {
       enable = true;

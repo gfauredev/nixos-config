@@ -1,8 +1,4 @@
 { inputs, lib, config, pkgs, ... }: {
-  imports = [
-    ./zsh.nix # Shell config
-  ];
-
   nixpkgs = {
     overlays = [
       # use overlays exported from other flakes:
@@ -23,7 +19,7 @@
   };
 
   home = {
-    username = "gf";
+    # username = "gf"; # TODO get directly from flake
     homeDirectory = "/home/gf";
 
     sessionVariables = lib.mkDefault {
@@ -35,13 +31,13 @@
       XDG_VIDEOS_DIR = "$HOME/vid";
       XDG_CONFIG_HOME = "$HOME/.config";
 
-      # EDITOR = "nvim"; TODO: test pertinence
+      # EDITOR = "nvim"; TEST pertinence
       # BROWSER = "brave";
       # VISUAL = "nvim";
       # TERMINAL = "wezterm";
       # TERM = "wezterm";
 
-      # PNPM_HOME = "$HOME/.local/share/pnpm"; TODO: test pertinence
+      # PNPM_HOME = "$HOME/.local/share/pnpm"; TEST pertinence
       # TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts";
       # TYPST_ROOT = "$HOME/.local/share/typst";
     };
@@ -80,7 +76,7 @@
       exa # ls replacement
       # ripgrep-all
       silver-searcher
-      fd
+      fd # better find
       duf # global disk usage
       du-dust # disk usage of a directory
       bottom # htop alternative
@@ -99,7 +95,7 @@
       restic # Efficient backup
       # fuse # TEST relevance
       exfatprogs # Tools for exfat fs
-      ffmpeg
+      ffmpeg # media conversion
       # youtube-dl # download videos from internet
       yt-dlp # download videos from internet
       ventoy-full # create bootable keys
@@ -111,7 +107,7 @@
       # git-secrets # Encrypted storage in public git repo
       pass # Minimal password manager
       pinentry # enter passwords
-      veracrypt
+      veracrypt # multiplatform encryption
       dislocker # decrypt bitlocker
       # cryptsetup # TEST relevance
       # wireguard-tools
@@ -137,15 +133,11 @@
 
       #################### Miscelaneous ####################
       # TODO refile more precisely
-      tldr
-      pulsemixer
-      imagemagick # image edit
-      sshfs
-      rsync
+      pulsemixer # TUI to manage sound
       # procs # better ps
       # pulseaudio # TEST relevance
       # cachix # TEST relevance
-      jmtpfs # Media transfer protocol
+      jmtpfs # Media transfer protocol with Android devices
       # android-file-transfer
       # android-tools # ADB & Fastboot
       # android-udev-rules
@@ -153,15 +145,10 @@
       # bluetooth_battery # TEST relevance
       wine # Execute Window$ programs
       winetricks # Execute Window$ programs
-      acpi
-      usbutils # lsusb
-      pciutils # lspci
-      lm_sensors # get temps
-      wakelan
       libnotify # Notifications management
       watchexec # Run command when file changes
       hyperfine # benchmark
-      # eva
+      # eva # Evaluate math expression
       # dwfv
       # inetutils
       # spotify-tui

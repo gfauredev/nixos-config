@@ -32,14 +32,15 @@
     spotify # PROPRIETARY music streaming
 
     # Image & Video
+    imagemagick # CLI image edit
     swayimg # Image viewer that can integrate with terminals
-    mpv # Video & Audio player
+    # mpv # Video & Audio player
     # sxiv # Image viewer
     # imv # Image viewer
 
     # Utilities & Software # TODO refile more precisely
     qbittorrent-nox # CLI Bittorrent client
-    fontforge # Font editor
+    # fontforge # Font editor
     # languagetool # Grammar checking, now using the LSP version
     # qbittorrent # Bittorrent client
     # transmission-qt # Bittorrent client
@@ -52,26 +53,31 @@
 
   services.mpris-proxy.enable = true;
 
-  programs.zathura = {
-    enable = true;
-    extraConfig = ''
-      set sandbox none
-      set selection-clipboard clipboard
+  programs = {
+    mpv = {
+      enable = true;
+    };
+    zathura = {
+      enable = true;
+      extraConfig = ''
+        set sandbox none
+        set selection-clipboard clipboard
 
-      set scroll-step 50
-      set scroll-hstep 10
+        set scroll-step 50
+        set scroll-hstep 10
 
-      map t scroll down
-      map s scroll up
-      map T navigate next
-      map S navigate previous
-      map c scroll left
-      map r scroll right
+        map t scroll down
+        map s scroll up
+        map T navigate next
+        map S navigate previous
+        map c scroll left
+        map r scroll right
 
-      map R rotate rotate-cw
-      map C rotate rotate-ccw
+        map R rotate rotate-cw
+        map C rotate rotate-ccw
 
-      map b recolor
-    '';
+        map b recolor
+      '';
+    };
   };
 }
