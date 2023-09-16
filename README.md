@@ -6,31 +6,38 @@ lang: en
 
 ## NixOS installation instructions
 
-If you read this, you’ve already done the first step which is 
-downloading this config.
+If you read this, you’ve already done the first step which is downloading this
+config.
 
-### *1.* Partition, (encrypt), format disks according to hardware-config templates
+### *1.* Partition, encrypt, format disks (according to partitioning/ templates)
 
 Use the tools `fdisk` or `cfdisk` to partition and label disks properly.
 
-Then use `cryptsetup ???` to encrypt the root partition.
+Then use `cryptsetup …` to encrypt the root partition if the choosen
+filesystem doesn’t support its own encryption.
 
-Then use `mkfs.fat -F 32 /dev/???` to format `/boot` and `mkfs.btrfs /dev/???`
-(or `mkfs.bcachefs /dev/???`) to format `/` (the root).
+Then use `mkfs.fat -F 32 /dev/???` to format `/boot` and `mkfs.??? /dev/???` to
+format `/` (the root).
 
-Finaly create proper subvolumes with commands `btrfs ???`.
+Finaly, depending on the choosen(s) filesystem(s), continue formating with
+`mkfs.??? /etc/???` or create proper **subvolumes** with filesystem specific
+commands.
 
-### *2.* Create `/mnt/etc/nixos/hardware-config.nix` from template with real UUIDs
+### *2.* Handle hardware configuration
 
-Create directory `/mnt/etc/nixos/` and copy proper template to it as
-`hardware-config.nix`.
+Run the command `nixos-generate-config --root /mnt`.
 
-Then fill in the template with actual UUIDs got with
-`lsblk -o NAME,SIZE,UUID,LABEL`.
+Then, correct with according to choosen system/partitioning/ template.
+
+PS : UUIDs can be got with `lsblk -o NAME,SIZE,UUID,LABEL`.
 
 ### *3.* Install from the Nix Flake
 
-Use the command `nix ???`.
+Use the command `nixos-install -v --root /mnt --flake '.#HOSTNAME'` to install
+NixOS from this flake (according you run this command from the same directory
+as this current file).
+
+Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 
 ## Documentation ressources :
 
