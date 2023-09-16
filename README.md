@@ -43,7 +43,9 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 
 - [NixOS documentation](https://nixos.org/manual/nixos/stable/#sec-building-image)
 - [Home manager documentation](https://nix-community.github.io/home-manager/index.html#ch-nix-flakes)
+- [Every home manager options](https://nix-community.github.io/home-manager/options.html)
 - [NixOS Wiki](https://nixos.wiki/wiki/Flakes)
+- [Nix Cookbook](https://nixos.wiki/wiki/Nix_Cookbook)
 - [NixOS starter flake configs](https://github.com/Misterio77/nix-starter-configs/tree/main)
 - [Vimjoyer youtube channel](https://www.youtube.com/watch?v=bjTxiFLSNFA&list=PLko9chwSoP-15ZtZxu64k_CuTzXrFpxPE)
 - [hlissner dotfiles](https://github.com/hlissner/dotfiles)
@@ -57,6 +59,8 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 - [ ] Study & configure Musnix & realtime audio & audio improvements
 - [ ] Study & configure Nixos-hardware & hardware improvements
 - [ ] Power consumption improvements
+- [ ] Use `pkgs.symlinkJoin` to create config links
+- [ ] Use `pkgs.runCommand` to run config commands
 
 ## Optional packages
 
