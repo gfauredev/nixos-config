@@ -1,4 +1,21 @@
 { inputs, lib, config, pkgs, ... }: {
+  nixpkgs = {
+    overlays = [
+      # use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # config = { # TEST pertinence
+    #   allowUnfree = true;
+    # };
+  };
+
   i18n = {
     # Locales internatinalization properties
     supportedLocales = [

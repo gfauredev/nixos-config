@@ -1,6 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   nixpkgs.config = {
-    allowUnfree = false;
+    allowUnfree = true; # for printers plugins
   };
 
   services = {

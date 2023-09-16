@@ -3,23 +3,6 @@
     ./ninja-hardware.nix # Hardware specific conf
   ];
 
-  nixpkgs = {
-    overlays = [
-      # use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # config = { # TEST pertinence
-    #   allowUnfree = false;
-    # };
-  };
-
   hardware = {
     # cpu.intel.updateMicrocode = true; # TEST if set by hardware
     opengl = {
