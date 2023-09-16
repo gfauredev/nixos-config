@@ -26,7 +26,7 @@
         modules = [
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
-          ./system
+          ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/ninja.nix # Light & quick laptop : ninja
           ./system/pc/gf.nix # Main user
@@ -42,7 +42,7 @@
         system = "x86_64-linux";
         modules = [
           musnix.nixosModules.musnix # System improvements for audio
-          ./system
+          ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/knight.nix # Heavy & strong desktop : knight
           ./system/pc/gf.nix # Main user
@@ -57,22 +57,22 @@
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./system/default.nix
-          ./system/hydra.nix # Multi-purpose hypervisor : hydra
-          ./system/hypervisor.nix
+          ./system # TODO sub modules of defaults auto import default.nix
+          ./system/headless/hydra.nix # Multi-purpose hypervisor : hydra
+          ./system/headless/hypervisor.nix
         ];
       };
       scout = nixpkgs.lib.nixosSystem {
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./system/default.nix
-          ./system/multilingual.nix
-          ./system/scout.nix # Light laptop for travel : scout
-          ./system/gf.nix # Main user
-          ./system/laptop.nix
+          ./system # TODO sub modules of defaults auto import default.nix
+          ./system/pc # It’s a personal computer, not headless
+          ./system/pc/scout.nix # Light laptop for travel : scout
+          ./system/pc/gf.nix # Main user
+          ./system/pc/laptop.nix
           ./system/wireless.nix
-          ./system/remap.nix
+          ./system/pc/remap.nix
           ./system/print-scan.nix
         ];
       };
@@ -80,8 +80,8 @@
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./system/default.nix
-          ./system/installer.nix # NixOS installer
+          ./system # TODO sub modules of defaults auto import default.nix
+          ./system/headless/installer.nix # NixOS installer, ideally through SSH
           ./system/wireless.nix
         ];
       };
@@ -94,8 +94,8 @@
         extraSpecialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./user/default.nix # Default, like text editor
-          ./user/gf.nix # User
+          ./user # Default, like text editor # TODO auto import default.nix
+          ./user/gf.nix # My main user
           ./user/sway.nix # sway window manager
           ./user/laptop.nix # Laptop related
           # ./user/hard.nix # Hardware creation
@@ -111,8 +111,8 @@
         extraSpecialArgs = inputs;
         system = "x86_64-linux";
         modules = [
-          ./user/default.nix # Default, like text editor
-          ./user/gf.nix # User
+          ./user # Default, like text editor # TODO auto import default.nix
+          ./user/gf.nix # My main user
           ./user/i3.nix # i3 window manager
           ./user/hard.nix # Hardware creation
           ./user/audio.nix # Audio & Music creation
@@ -128,7 +128,7 @@
 
     # Used with `nix develop`
     devShells.x86_64-linux = {
-      media = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
+      doc = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
       lua = pkgs.mkShell { };
       web = pkgs.mkShell { };
       python = pkgs.mkShell { };
@@ -137,7 +137,7 @@
       c = pkgs.mkShell { };
       query = pkgs.mkShell { };
       pentest = pkgs.mkShell { };
-      default = pkgs.mkShell { };
+      # default = pkgs.mkShell { }; # TEST relevance
     };
   };
 }
