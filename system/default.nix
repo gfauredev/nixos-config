@@ -23,6 +23,11 @@
     };
   };
 
+  boot = {
+    loader.systemd-boot.enable = lib.mkDefault true; # Light EFI boot loader
+    loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
+  };
+
   console.font = "Lat2-Terminus16";
   console.keyMap = lib.mkDefault "fr-bepo";
 
@@ -31,7 +36,24 @@
     hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Windows
   };
 
-  networking.firewall.enable = lib.mkDefault true;
+  networking = {
+    firewall.enable = lib.mkDefault true;
+    wireguard.enable = lib.mkDefault true;
+  };
+
+  # security.apparmor.enable = true; # TEST relevance
+
+  users.mutableUsers = lib.mkDefault true; # Set passwords imperatively
+
+  # programs = { # TEST relevance
+  #   neovim = {
+  #     enable = true;
+  #     defaultEditor = true;
+  #     viAlias = true;
+  #     vimAlias = true;
+  #   };
+  #   git.enable = true;
+  # };
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];

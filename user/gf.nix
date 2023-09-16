@@ -75,6 +75,7 @@
       # font-awesome # A lot of icons
       # noto-fonts-emoji # Emojies
 
+      # TODO some packages below may suit better zsh.nix file
       #################### Monitoring ####################
       exa # ls replacement
       # ripgrep-all
@@ -88,7 +89,6 @@
       mediainfo # info about audio or video
       hexyl # hex viever
       # tree
-      # broot
 
       #################### Files management ####################
       trash-cli
@@ -110,13 +110,13 @@
       #################### Encryption & Network ####################
       # git-secrets # Encrypted storage in public git repo
       pass # Minimal password manager
-      pinentry
+      pinentry # enter passwords
       veracrypt
-      dislocker
+      dislocker # decrypt bitlocker
       # cryptsetup # TEST relevance
-      wireguard-tools
+      # wireguard-tools
       # nmap # TEST relevance with below
-      rustscan
+      rustscan # scan networks
       protonvpn-cli # Free VPN service
       signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
@@ -150,12 +150,12 @@
       # android-udev-rules
       # interception-tools # TEST relevance
       # bluetooth_battery # TEST relevance
-      wine
-      winetricks
+      wine # Execute Window$ programs
+      winetricks # Execute Window$ programs
       acpi
-      usbutils
-      pciutils
-      lm_sensors
+      usbutils # lsusb
+      pciutils # lspci
+      lm_sensors # get temps
       wakelan
       libnotify # Notifications management
       watchexec # Run command when file changes
@@ -221,7 +221,10 @@
         userEmail = "pro@gfaure.eu";
       };
       ripgrep.enable = true;
-      xplr.enable = true;
+      # TODO set an explorer that can open & preview every file
+      broot.enable = true; # TEST which is better
+      xplr.enable = true; # TEST which is better
+      nnn.enable = true; # TEST which is better
       fzf.enable = true;
     };
   };

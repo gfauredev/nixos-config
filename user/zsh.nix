@@ -24,7 +24,7 @@
     '';
   in
   [
-    empty_cr
+    empty_cr # Actions to perform when pressing return in an empty prompt
   ];
 
   programs.zsh = {
