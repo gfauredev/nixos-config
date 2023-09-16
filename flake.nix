@@ -30,7 +30,7 @@
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/ninja.nix # Light & quick laptop : ninja
           ./system/pc/gf.nix # Main user
-          ./system/laptop.nix
+          ./system/pc/laptop.nix
           # ./system/realtime.nix # TODO adapt for laptops
           ./system/wireless.nix
           ./system/pc/remap.nix
@@ -49,7 +49,7 @@
           ./system/realtime.nix
           ./system/wireless.nix
           ./system/pc/remap.nix
-          ./system/xorg.nix
+          ./system/pc/xorg.nix
           ./system/print-scan.nix
         ];
       };
