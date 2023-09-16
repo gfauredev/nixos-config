@@ -1,9 +1,14 @@
 { inputs, lib, config, pkgs, ... }: {
+  nixpkgs.config = {
+    allowUnfree = false;
+  };
+
   services = {
     printing = {
       enable = true; # Enable CUPS to print documents
       cups-pdf.enable = true; # Printing to PDF
       drivers = with pkgs; [
+        # hplip
         hplipWithPlugin
       ];
     };
