@@ -61,6 +61,8 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 - [ ] Study & configure Nixos-hardware & hardware improvements
 - [ ] Power consumption improvements
 - [ ] Use `pkgs.symlinkJoin` to create config links
+  - [ ] `~/dl` → `/run/user/$UID/dl` (needs a mkdir)
+  - [ ] `~/usb` → `/run/media/$USER` (needs a mkdir)
 - [ ] Use `pkgs.runCommand` to run config commands
 
 ## Optional packages
