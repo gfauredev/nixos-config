@@ -129,15 +129,15 @@
 
     # Used with `nix develop`
     devShells.x86_64-linux = {
-      doc = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
-      lua = pkgs.mkShell { };
-      web = pkgs.mkShell { };
-      python = pkgs.mkShell { };
-      java = pkgs.mkShell { };
-      rust = pkgs.mkShell { };
-      c = pkgs.mkShell { };
-      query = pkgs.mkShell { };
-      pentest = pkgs.mkShell { };
+      # doc = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
+      # lua = pkgs.mkShell { };
+      # web = pkgs.mkShell { };
+      # python = pkgs.mkShell { };
+      # java = pkgs.mkShell { };
+      # rust = pkgs.mkShell { };
+      # c = pkgs.mkShell { };
+      # query = pkgs.mkShell { };
+      # pentest = pkgs.mkShell { };
       # default = pkgs.mkShell { }; # TEST relevance
     };
   };
