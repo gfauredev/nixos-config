@@ -1,4 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
+  imports = [
+    ./ninja-hardware.nix # Hardware specific conf
+  ];
+
   nixpkgs = {
     overlays = [
       # use overlays exported from other flakes:

@@ -1,8 +1,4 @@
 { inputs, lib, config, pkgs, ... }: {
-  imports = [
-    ./hardware-configuration.nix # Hardware specific conf
-  ];
-
   nix = {
     # add each flake input as a registry
     # To make nix3 commands consistent with flake

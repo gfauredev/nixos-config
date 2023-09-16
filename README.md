@@ -28,7 +28,7 @@ commands.
 Run the command `nixos-generate-config --root /mnt --dir .` to create a hardware
 config in this directory.
 
-Then, correct with according to choosen system/partitioning/ template.
+Then, compare with choosen system hardware configuration and fix it if needed.
 
 PS : UUIDs can be got with `lsblk -o NAME,SIZE,UUID,LABEL`.
 
