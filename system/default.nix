@@ -26,6 +26,8 @@
   boot = {
     loader.systemd-boot.enable = lib.mkDefault true; # Light EFI boot loader
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
+    consoleLogLevel = 0; # Don’t clutter screen at boot
+    kernel.sysctl = { "kernel.sysrq" = 176; }; # Enable great SysRq magic keys
   };
 
   console.font = "Lat2-Terminus16";

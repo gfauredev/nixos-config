@@ -10,7 +10,7 @@
     useDHCP = lib.mkDefault true;
     networkmanager = {
       enable = lib.mkDefault true;
-      dns = lib.mkDefault "default";
+      # dns = lib.mkDefault "default";
     };
   };
 }

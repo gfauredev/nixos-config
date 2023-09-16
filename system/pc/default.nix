@@ -25,30 +25,116 @@
   services = {
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
-      alsa.enable = true; # Enable support for old audio system
-      jack.enable = true; # Enable support for old audio system
-      pulse.enable = true; # Enable support for old audio system
+      alsa.enable = true; # Support kernel audio
+      jack.enable = true; # Support advanced audio
+      pulse.enable = true; # Support previous audio system
     };
     udisks2 = {
-      enable = true;
+      enable = true; # Mount USB without privileges
       settings = { };
     };
     udev.packages = [
-      pkgs.android-udev-rules
+      pkgs.android-udev-rules # Talk to Android devices
     ];
+    geoclue2 = {
+      enable = true; # Location provider
+    };
+    fwupd.enable = lib.mkDefault true; # Update firmwares
   };
 
+  location.provider = "geoclue2";
+
   programs = {
-    # zsh.enable = true; TODO: test pertinence with hm
     gnupg = {
       agent.enable = true;
       agent.pinentryFlavor = "curses";
     };
-    # firejail = { # TODO: test pertinence
+    ssh.startAgent = true;
+    adb.enable = true; # Talk to Android devices
+    # zsh.enable = true; TEST pertinence with hm
+    # firejail = { # TEST pertinence
     #   enable = true;
     #   wrappedBinaries = { };
     # };
-    adb.enable = true; # Talk to Android devices
-    ssh.startAgent = true;
   };
+
+  environment = {
+    shells = with pkgs; [ zsh ];
+    # pathsToLink = [ "/share/zsh" ];
+    systemPackages = with pkgs; [
+      exfat # fs tool
+      ntfs3g # fs tool
+      # Graphical TEST relevance
+      # mesa
+      # libsForQt5.breeze-gtk
+      # libsForQt5.breeze-qt5
+      # libsForQt5.breeze-icons
+      # libsForQt5.qt5.qtwayland
+      # qt6.qtwayland
+      # polkit_gnome
+      # swt
+    ];
+    sessionVariables = {
+      # TEST relevance of each
+      # GTK_IM_MODULE = "ibus";
+      # NIXOS_OZONE_WL = "1";
+      # XCURSOR_THEME = "Nordzy-cursors";
+      # WLR_DRM_NO_ATOMIC = "1";
+      # WLR_NO_HARDWARE_CURSORS = "1";
+      # GBM_BACKEND = "nvidia-drm";
+      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      # LIBVA_DRIVER_NAME = "nvidia";
+      # QT_QPA_PLATFORM = "wayland";
+      # QT_QPA_PLATFORM_PLUGIN_PATH = "/run/current-system/sw/lib";
+
+      # QT_IM_MODULE=xim;
+      # GTK_IM_MODULE=xim;
+      # XMODIFIERS="@im=none";
+
+      # SDL_VIDEODRIVER=wayland;
+
+      # GTK_THEME = "Breeze:dark";
+      # CALIBRE_USE_DARK_PALETTE = "1";
+      # ANKI_WAYLAND = "1";
+
+      # EGL_PLATFORM = "wayland";
+      # MOZ_DISABLE_RDD_SANDBOX = "1";
+    };
+  };
+
+  # systemd = { # TEST relevance
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     description = "polkit-gnome-authentication-agent-1";
+  #     wantedBy = [ "sway-session.target" ];
+  #     wants = [ "sway-session.target" ];
+  #     after = [ "sway-session.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  # };
+
+  # qt = { # TEST if relevant
+  #   enable = true;
+  #   # platformTheme = "gtk2";
+  #   # style = "gtk2";
+  #   # platformTheme = "qt5ct";
+  #   # style = "adwaita-dark";
+  # };
+
+  # xdg = { # TEST if relevant
+  #   portal = {
+  #     enable = true;
+  #     wlr.enable = true;
+  #     xdgOpenUsePortal = true;
+  #   };
+  #     mime = {
+  #       enable = true;
+  #     };
+  #     autostart.enable = true;
+  # };
 }

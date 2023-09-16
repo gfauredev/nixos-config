@@ -126,6 +126,7 @@
       rnix-lsp # Nix
       nodePackages_latest.bash-language-server # Bash
       ltex-ls # Grammar language server
+      nodePackages_latest.prettier # General purpose formatter
       # nodePackages_latest.markdownlint-cli2
       # marksman # Markdown
       hunspell

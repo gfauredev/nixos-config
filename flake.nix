@@ -2,19 +2,15 @@
   description = "Guilhem Fauré’s NixOS Configurations";
 
   inputs = {
-    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05"; # NixOS 23.05
 
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager"; # Home manager
+    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
 
-    # Hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
 
-    # Misc
-    musnix.url = "github:musnix/musnix";
+    musnix.url = "github:musnix/musnix"; # Realtime audio
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, musnix }@inputs: {
@@ -41,6 +37,10 @@
         specialArgs = inputs;
         system = "x86_64-linux";
         modules = [
+          nixos-hardware.nixosModules.common-cpu-amd # Hardware related
+          nixos-hardware.nixosModules.common-gpu-nvidia # Hardware related
+          nixos-hardware.nixosModules.common-pc # Hardware related
+          nixos-hardware.nixosModules.common-pc-ssd # Hardware related
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless

@@ -18,7 +18,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # TEST relevance of each
+    # TEST relevance of each, take hardware into account
     # iio-sensor-proxy
     # libinput
     # xorg.xf86videointel
