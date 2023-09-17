@@ -84,7 +84,6 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 > install with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
 - `chntpw` Edit an installed Windows registry
-- `sbctl` Secure Boot Control
 
 ## Non-redistributable packages
 

@@ -84,6 +84,7 @@
       tldr # short man pages
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
+      sbctl # Secure Boot Control
       # Graphical TEST relevance
       # mesa
       # libsForQt5.breeze-gtk
