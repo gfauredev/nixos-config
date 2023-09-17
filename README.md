@@ -60,7 +60,7 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 - [ ] Study & configure Musnix & realtime audio & audio improvements
 - [ ] Study & configure Nixos-hardware & hardware improvements
 - [ ] Power consumption improvements
-- [ ] Use `pkgs.symlinkJoin` to create config links
+- [ ] Try to use `pkgs.runCommand` to create config links
   - [ ] `~/dl` → `/run/user/$UID/dl` (needs a mkdir)
   - [ ] `~/usb` → `/run/media/$USER` (needs a mkdir)
 - [ ] Use `pkgs.runCommand` to run config commands
@@ -76,11 +76,13 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 > These are packages I don’t want in my config but will eventually \
 > install with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
+- `chntpw` Edit an installed Windows registry
+- `sbctl` Secure Boot Control
+
 ## Non-redistributable packages
 
 > These are packages that require downloading assets from various places \
-> and add them to the Nix store with
-`$ nix-store --add-fixed sha256 /path/to/file` \
+> and add them to the Nix store with `$ nix-store --add-fixed sha256 /path/to/file` \
 > before being installed with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
 - `ciscoPacketTracer8` # Advanced network simulation

@@ -19,7 +19,6 @@
     # protonvpn-gui # Free VPN service
     # bleachbit
     # gnome.seahorse
-    # chntpw # Access Windows (dual boot) registry
   ];
 
   services = {
