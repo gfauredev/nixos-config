@@ -178,7 +178,7 @@
             acpi -b
           fi
           echo
-          exa --icons --git -l --no-permissions --no-user --sort=age
+          eza --icons --git -l --no-permissions --no-user --sort=age
           if git rev-parse --git-dir > /dev/null 2>&1 ; then
             echo
             zsh -ic "status"
@@ -233,16 +233,16 @@
       se = "sudoedit ";
 
       # List
-      ls = "exa --icons --git";
-      sl = "exa --icons --git --reverse";
-      lsd = "exa --icons --git -l --no-permissions --sort=age";
-      sld = "exa --icons --git -l --no-permissions --sort=age --reverse";
-      lss = "exa --icons --git -l --no-permissions --time-style full-iso";
-      # ll = "exa --icons --git -l --group --extended";
-      ll = "exa --icons --git -l --group";
-      # la = "exa --icons --git -l --group -all --extended";
-      la = "exa --icons --git -l --group -all";
-      al = "exa --icons --git -l --group -all --reverse";
+      ls = "eza --icons --git";
+      sl = "eza --icons --git --reverse";
+      lsd = "eza --icons --git -l --no-permissions --sort=age";
+      sld = "eza --icons --git -l --no-permissions --sort=age --reverse";
+      lss = "eza --icons --git -l --no-permissions --time-style full-iso";
+      # ll = "eza --icons --git -l --group --extended";
+      ll = "eza --icons --git -l --group";
+      # la = "eza --icons --git -l --group -all --extended";
+      la = "eza --icons --git -l --group -all";
+      al = "eza --icons --git -l --group -all --reverse";
       fd = "fd --color always";
 
       # Copy, Move, Delete
@@ -387,7 +387,7 @@
 
       # ONE LETTER ALIASES, difficult to live without
       ## List
-      l = "exa --icons --git -l --no-permissions --no-user"; # quicker, beter ls
+      l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
       g = "rga-fzf"; # search among all files contents
       ## Edit
       e = "$EDITOR"; # default text editor

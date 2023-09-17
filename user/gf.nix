@@ -63,7 +63,8 @@
 
       # TODO some packages below may suit better zsh.nix file
       #################### Monitoring ####################
-      exa # ls replacement
+      eza # ls replacement (exa fork)
+      # exa # unmaintained ls replacement
       # ripgrep-all
       silver-searcher
       fd # better find
