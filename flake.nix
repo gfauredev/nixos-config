@@ -17,8 +17,8 @@
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       ninja = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
@@ -34,8 +34,8 @@
         ];
       };
       knight = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           nixos-hardware.nixosModules.common-cpu-amd # Hardware related
           nixos-hardware.nixosModules.common-gpu-nvidia # Hardware related
@@ -54,8 +54,8 @@
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/headless/hydra.nix # Multi-purpose hypervisor : hydra
@@ -63,8 +63,8 @@
         ];
       };
       scout = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
@@ -77,8 +77,8 @@
         ];
       };
       installer = nixpkgs.lib.nixosSystem {
-        specialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/headless/installer.nix # NixOS installer, ideally through SSH
@@ -91,8 +91,8 @@
     homeConfigurations = {
       "gf@ninja" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./user # Default, like text editor # TODO auto import default.nix
           ./user/zsh.nix # Shell config
@@ -108,8 +108,8 @@
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = inputs;
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./user # Default, like text editor # TODO auto import default.nix
           ./user/zsh.nix # Shell config
