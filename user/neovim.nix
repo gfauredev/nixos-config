@@ -9,13 +9,13 @@
       })
       vim.cmd [[colorscheme tokyonight]]
 
-      ${lib.strings.fileContents ../script/nvim/lua/opt.lua}
+      ${builtins.readFile ../nvim/opt.lua}
 
-      ${lib.strings.fileContents ../script/nvim/lua/key.lua}
+      ${builtins.readFile ../nvim/key.lua}
 
-      ${lib.strings.fileContents ../script/nvim/lua/lsp.lua}
+      ${builtins.readFile ../nvim/lsp.lua}
 
-      ${lib.strings.fileContents ../script/nvim/lua/set.lua}
+      ${builtins.readFile ../nvim/set.lua}
     '';
     # require "opt" -- (Neo)Vim options
     # require "key" -- Custom remaps

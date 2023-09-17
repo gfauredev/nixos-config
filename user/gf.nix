@@ -185,7 +185,7 @@
       xcompose = {
         target = ".XCompose";
         # TODO find a cleaner way to write this file
-        text = lib.strings.fileContents ../script/XCompose;
+        text = builtins.readFile ../XCompose;
       };
     };
 
