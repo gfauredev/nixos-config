@@ -1,2 +1,0 @@
-#!/bin/sh
-sudo sh -c "echo GPP0 > /proc/acpi/wakeup"

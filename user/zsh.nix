@@ -1,5 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; let
+    # FIXME place empty_cr as zsh init script
     empty_cr = pkgs.writeShellScript "empty_cr" ''
       empty_cr () { # clear screen & give info on empty line
         if [[ -z $BUFFER ]]; then
@@ -22,9 +23,119 @@
       zle -N empty_cr
       bindkey '^M' empty_cr
     '';
+    rsback = pkgs.writeShellScriptBin "rsync_backup" ''
+      if [ -n "$1" ]; then
+        readonly SOURCE_DIR="$(realpath "$1")"
+      else
+        readonly SOURCE_DIR="$HOME/.data"
+      fi
+      echo "Backup $SOURCE_DIR"
+
+      if [ -n "$2" ]; then
+        readonly BACKUPS_DIR="$(realpath "$2")"
+      else
+        readonly BACKUPS_DIR="$HOME/.backup"
+      fi
+      echo "Into $BACKUPS_DIR"
+
+      readonly DATE="$(date '+%Y-%m-%d_%H:%M:%S')"
+      readonly THIS_BACKUP_DIR="$BACKUPS_DIR/$DATE"
+      readonly LATEST_LINK="$BACKUPS_DIR/latest-backup"
+
+      echo "Creating new backup at $THIS_BACKUP_DIR"
+      mkdir -p $THIS_BACKUP_DIR
+
+      echo "Beginning transfer"
+      rsync -vah --progress --delete \
+        "$SOURCE_DIR/" \
+        --link-dest "$LATEST_LINK" \
+        "$THIS_BACKUP_DIR"
+
+      echo "Delete previous link & create new"
+      rm -fr "$LATEST_LINK"
+      ln -fs "$THIS_BACKUP_DIR" "$LATEST_LINK"
+    '';
+    fingers = pkgs.writeShellScriptBin "enroll_fingers" ''
+      for finger in {left-middle-finger,left-index-finger,right-thumb,right-index-finger,right-middle-finger}; do
+        echo "PREPARE YOUR $finger, ENROLL IS COMING …"
+        sleep 2
+        sudo fprintd-enroll -f "$finger" gf
+      done
+    '';
+    ex = pkgs.writeShellScriptBin "extract" ''
+      if [ -z "$1" ]; then
+          # display usage if no parameters given
+          echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+          echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+      else
+          for n in "$@"
+          do
+            if [ -f "$n" ] ; then
+                case "''${n%,}" in
+                  *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                                          tar xvf "$n"       ;;
+                  *.lzma)                 unlzma ./"$n"      ;;
+                  *.bz2)                  bunzip2 ./"$n"     ;;
+                  *.cbr|*.rar)            unrar x -ad ./"$n" ;;
+                  *.gz)                   gunzip ./"$n"      ;;
+                  *.cbz|*.epub|*.zip)     unzip ./"$n"       ;;
+                  *.z)                    uncompress ./"$n"  ;;
+                  *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                                          7z x ./"$n"        ;;
+                  *.xz)                   unxz ./"$n"        ;;
+                  *.exe)                  cabextract ./"$n"  ;;
+                  *.cpio)                 cpio -id < ./"$n"  ;;
+                  *.cba|*.ace)            unace x ./"$n"     ;;
+                  *)
+                                          echo "extract: '$n' - unknown archive method"
+                                          return 1 ;;
+                esac
+            else
+                echo "'$n' - file does not exist"
+                return 1
+            fi
+          done
+      fi
+    '';
+    veramount = pkgs.writeShellScriptBin "veracrypt_mount" ''
+      lsblk -o PATH,SIZE,TYPE,LABEL
+      read -p "Device to decrypt (auto mount all) /dev/" device
+
+      if [ -n "$device" ]; then
+        # Decrypt the single device the user requested
+        veracrypt -t --filesystem=none "/dev/$device"
+      else
+        # Decrypt all veracrypt devices
+        veracrypt -t --auto-mount=devices --filesystem=none
+      fi
+
+      defaultDecrypt="veracrypt1"
+      defaultPoint=".data"
+
+      lsblk -o PATH,SIZE,TYPE,LABEL
+      # Ask the user for a decrypted device to mount, defaults to loop0
+      read -p "Decrypted device to mount ($defaultDecrypt) /dev/mapper/" decrypt
+      # read -p "Mount point (leave not mounted) : " point
+      read -p "Mount point (.data) : " point
+
+      # Mount a device for the user
+      if [ "$decrypt" == "" ]; then
+        decrypt="$defaultDecrypt"
+      fi
+
+      if [ -n "$point" ]; then
+          sudo mount -o uid=$(id -u),gid=$(id -g),umask=027 /dev/mapper/$decrypt $point
+        else
+          sudo mount -o uid=$(id -u),gid=$(id -g),umask=027 /dev/mapper/$decrypt $defaultPoint
+      fi
+    '';
   in
   [
-    empty_cr # Actions to perform when pressing return in an empty prompt
+    # empty_cr # When pressing return in an empty prompt
+    ex # Extract any compressed file
+    rsback # Incremental backup with rsync
+    fingers # Enroll fingers for finger print reader
+    veramount # Interactively mount veracrypt devices
   ];
 
   programs.zsh = {

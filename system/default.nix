@@ -67,7 +67,9 @@
   };
 
   environment = {
+    binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
     systemPackages = with pkgs; [
+      dash # Small & light POSIX shell for scripts
       lsof # list openned files
       zip # Compression
       unzip # Decompression

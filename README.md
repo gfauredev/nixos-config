@@ -64,6 +64,9 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
   - [ ] `~/dl` → `/run/user/$UID/dl` (needs a mkdir)
   - [ ] `~/usb` → `/run/media/$USER` (needs a mkdir)
 - [ ] Use `pkgs.runCommand` to run config commands
+- [ ] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
+- [ ] Eventually `git pull --recurse-submodules --jobs=8` on this directory & password store at boot to update
+- [ ] FIX `ninja`’s fingerprint reader
 
 ## Optional packages
 
