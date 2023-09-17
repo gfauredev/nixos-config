@@ -152,45 +152,24 @@
     ];
 
     file = {
-      pulsemixer = {
-        target = ".config/pulsemixer.cfg";
-        # TODO find a cleaner way to write this TOML config file
-        text = ''
-          [general]
-          step = 1
-          step-big = 10
-
-          [keys]
-           up        = s, KEY_UP, KEY_PPAGE
-           down      = t, KEY_DOWN, KEY_NPAGE
-           left      = c, KEY_LEFT
-           right     = r, KEY_RIGHT
-           left-big  = C, KEY_SLEFT
-           right-big = R, KEY_SRIGHT
-           top       = g, KEY_HOME
-           bottom    = G, KEY_END
-           mode1     = u
-           mode2     = i
-           mode3     = e
-           mute      = m
-           quit      = a, q, KEY_ESC
-
-           [style]
-           info-locked        = L
-           info-unlocked      = U
-           info-muted         = 🔇
-           info-unmuted       = 🔉
-        '';
-      };
       xcompose = {
         target = ".XCompose";
         # TODO find a cleaner way to write this file
-        text = builtins.readFile ../XCompose;
+        # text = builtins.readFile ../XCompose;
+        source = ../XCompose;
       };
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.05";
+  };
+
+  xdg.configFile = {
+    pulsemixer = {
+      target = "pulsemixer.cfg";
+      # TODO find a cleaner way to write this TOML config file
+      source = ../pulsemixer.toml;
+    };
   };
 
   # Nicely reload system units when changing configs
