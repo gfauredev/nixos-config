@@ -1,6 +1,7 @@
-# Use `nixos-generate-config --root /mnt` during install.
-# The correct the resulting `/mnt/etc/nixos/hardware-config.nix`
-# with informations from this file.
+# Btrfs partitioning TEMPLATE
+# Use `nixos-generate-config --root /mnt` during install,
+# then correct the resulting `/mnt/etc/nixos/hardware-config.nix`
+# to match this template.
 
 { config, lib, pkgs, ... }: {
   fileSystems."/" =
@@ -30,5 +31,5 @@
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
   };
-  # We can IGNORE everything BELOW
+  # We can ignore things below
 }

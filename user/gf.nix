@@ -1,25 +1,15 @@
 { inputs, lib, config, pkgs, ... }: {
   nixpkgs = {
-    overlays = [
-      # use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
+    # overlays = [ ];
     config = {
       allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      # Fixes https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
     };
   };
 
   home = {
-    # username = "gf"; # TODO get directly from flake
+    # username = "gf"; # TODO get directly from flake name
     homeDirectory = "/home/gf";
 
     sessionVariables = lib.mkDefault {
@@ -160,64 +150,97 @@
       # pcscliteWithPolkit
     ];
 
-    services = {
-      udiskie = {
-        enable = true;
-        automount = true;
-        notify = true;
-        tray = "never";
-      };
-      syncthing = {
-        enable = true;
-      };
-      # System-wide text expander
-      # espanso = {
-      #   enable = true;
-      #   configs.matches = [
-      #     {
-      #       # Text replacement
-      #       trigger = ":name";
-      #       replace = "Guilhem Fauré";
-      #     }
-      #     {
-      #       # Date
-      #       trigger = ":date";
-      #       replace = "{{date}}";
-      #       vars = [{
-      #         name = "date";
-      #         type = "date";
-      #         params = { format = "%d/%m/%Y"; };
-      #       }];
-      #     }
-      #     {
-      #       # Shell command
-      #       trigger = ":host";
-      #       replace = "{{hostname}}";
-      #       vars = [{
-      #         name = "hostname";
-      #         type = "shell";
-      #         params = { cmd = "hostname"; };
-      #       }];
-      #     }
-      #   ];
-      # };
-    };
+    file = {
+      pulsemixer = {
+        target = ".config/pulsemixer.cfg";
+        # TODO find a cleaner way to write this TOML config file
+        text = ''
+          [general]
+          step = 1
+          step-big = 10
 
-    programs = {
-      git = {
-        userName = "Guilhem Fauré";
-        userEmail = "pro@gfaure.eu";
+          [keys]
+           up        = s, KEY_UP, KEY_PPAGE
+           down      = t, KEY_DOWN, KEY_NPAGE
+           left      = c, KEY_LEFT
+           right     = r, KEY_RIGHT
+           left-big  = C, KEY_SLEFT
+           right-big = R, KEY_SRIGHT
+           top       = g, KEY_HOME
+           bottom    = G, KEY_END
+           mode1     = u
+           mode2     = i
+           mode3     = e
+           mute      = m
+           quit      = a, q, KEY_ESC
+
+           [style]
+           info-locked        = L
+           info-unlocked      = U
+           info-muted         = 🔇
+           info-unmuted       = 🔉
+        '';
       };
-      gpg = {
-        enable = true;
-      };
-      ripgrep.enable = true;
-      # TODO set an explorer that can open & preview every file
-      broot.enable = true; # TEST which is better
-      xplr.enable = true; # TEST which is better
-      nnn.enable = true; # TEST which is better
-      fzf.enable = true;
     };
+  };
+
+  services = {
+    udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "never";
+    };
+    syncthing = {
+      enable = true;
+    };
+    # System-wide text expander
+    # espanso = {
+    #   enable = true;
+    #   configs.matches = [
+    #     {
+    #       # Text replacement
+    #       trigger = ":name";
+    #       replace = "Guilhem Fauré";
+    #     }
+    #     {
+    #       # Date
+    #       trigger = ":date";
+    #       replace = "{{date}}";
+    #       vars = [{
+    #         name = "date";
+    #         type = "date";
+    #         params = { format = "%d/%m/%Y"; };
+    #       }];
+    #     }
+    #     {
+    #       # Shell command
+    #       trigger = ":host";
+    #       replace = "{{hostname}}";
+    #       vars = [{
+    #         name = "hostname";
+    #         type = "shell";
+    #         params = { cmd = "hostname"; };
+    #       }];
+    #     }
+    #   ];
+    # };
+  };
+
+  programs = {
+    git = {
+      userName = "Guilhem Fauré";
+      userEmail = "pro@gfaure.eu";
+    };
+    gpg = {
+      enable = true;
+    };
+    ripgrep.enable = true;
+    # TODO set an explorer that can open & preview every file
+    broot.enable = true; # TEST which is better
+    xplr.enable = true; # TEST which is better
+    nnn.enable = true; # TEST which is better
+    fzf.enable = true;
   };
 
   # Nicely reload system units when changing configs

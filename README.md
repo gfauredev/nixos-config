@@ -67,6 +67,9 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 - [ ] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
 - [ ] Eventually `git pull --recurse-submodules --jobs=8` on this directory & password store at boot to update
 - [ ] FIX `ninja`’s fingerprint reader
+- [ ] Synchronize `.config/libreoffice/4/user/template/$USER` contents (eventually with syncthing)
+- [ ] Test if zoxide works correctly
+- [ ] Port ruff config in dev shell
 
 ## Optional packages
 
