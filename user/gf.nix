@@ -9,8 +9,8 @@
   };
 
   home = {
-    # username = "gf"; # TODO get directly from flake name
-    # homeDirectory = "/home/gf"; # TODO get directly from flake
+    username = "gf";
+    homeDirectory = "/home/gf";
 
     sessionVariables = lib.mkDefault {
       XDG_DESKTOP_DIR = "$HOME";
