@@ -24,6 +24,7 @@
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
     kernel.sysctl = { "kernel.sysrq" = 176; }; # Enable great SysRq magic keys
+    swraid.enable = false; # FIX for some issue with mdadm
   };
 
   console.font = "Lat2-Terminus16";
