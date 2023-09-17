@@ -81,15 +81,15 @@
           ./system/print-scan.nix
         ];
       };
-      installer = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./system # TODO sub modules of defaults auto import default.nix
-          ./system/headless/installer.nix # NixOS installer, ideally through SSH
-          ./system/wireless.nix
-        ];
-      };
+      # installer = nixpkgs.lib.nixosSystem { # TODO this directly here
+      #   system = "x86_64-linux";
+      #   specialArgs = { inherit inputs; };
+      #   modules = [
+      #     ./system # TODO sub modules of defaults auto import default.nix
+      #     ./system/headless/installer.nix # NixOS installer, ideally through SSH
+      #     ./system/wireless.nix
+      #   ];
+      # };
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'

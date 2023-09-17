@@ -6,8 +6,15 @@ lang: en
 
 ## NixOS installation instructions
 
-If you read this, you’ve already done the first step which is downloading this
-config.
+### *0.* Build the installer image
+
+Run `nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=system/installer.nix`
+to build the installer ISO image.
+
+Place it in a bootable USB stick, for example made with Ventoy, then boot it
+on the machine on which to install NixOS.
+
+Once booted, get this git repo with the command `clone`.
 
 ### *1.* Partition, encrypt, format disks (according to partitioning/ templates)
 
