@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   packages = with pkgs; [
     feh # Background display
     i3lock # Screen locker

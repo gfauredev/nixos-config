@@ -99,10 +99,15 @@
       enable = true;
       extraConfig = ''
         cfg = wezterm.config_builder() -- Base config
-        require "cfg" -- Global options
-        require "key" -- Custom remaps
+
+        ${lib.strings.fileContents ../script/wezterm/lua/cfg.lua}
+
+        ${lib.strings.fileContents ../script/wezterm/lua/key.lua}
+
         return cfg
       '';
+      # require "cfg" -- Global options
+      # require "key" -- Custom remaps
     };
     alacritty = {
       enable = true;

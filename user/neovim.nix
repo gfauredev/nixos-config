@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -9,11 +9,18 @@
       })
       vim.cmd [[colorscheme tokyonight]]
 
-      require "opt" -- (Neo)Vim options
-      require "key" -- Custom remaps
-      require "lsp" -- LSP Zero, completion
-      require "set" -- Plugins setups
+      ${lib.strings.fileContents ../script/nvim/lua/opt.lua}
+
+      ${lib.strings.fileContents ../script/nvim/lua/key.lua}
+
+      ${lib.strings.fileContents ../script/nvim/lua/lsp.lua}
+
+      ${lib.strings.fileContents ../script/nvim/lua/set.lua}
     '';
+    # require "opt" -- (Neo)Vim options
+    # require "key" -- Custom remaps
+    # require "lsp" -- LSP Zero, completion
+    # require "set" -- Plugins setups
     # require "dap" -- Debugging
     # require "cmp" -- Autocompletion
     # require "lsp" -- Language servers
