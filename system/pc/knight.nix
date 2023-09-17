@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ inputs, lib, config, pkgs, ... }: {
   imports = [
     ./gui.nix # main user settings, with graphical env
     ./virtualisation.nix # virtualisation setup
