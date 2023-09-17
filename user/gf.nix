@@ -10,7 +10,7 @@
 
   home = {
     # username = "gf"; # TODO get directly from flake name
-    homeDirectory = "/home/gf";
+    # homeDirectory = "/home/gf"; # TODO get directly from flake
 
     sessionVariables = lib.mkDefault {
       XDG_DESKTOP_DIR = "$HOME";
@@ -188,68 +188,69 @@
       };
     };
 
-    services = {
-      udiskie = {
-        enable = true;
-        automount = true;
-        notify = true;
-        tray = "never";
-      };
-      syncthing = {
-        enable = true;
-      };
-      # System-wide text expander
-      # espanso = {
-      #   enable = true;
-      #   configs.matches = [
-      #     {
-      #       # Text replacement
-      #       trigger = ":name";
-      #       replace = "Guilhem Fauré";
-      #     }
-      #     {
-      #       # Date
-      #       trigger = ":date";
-      #       replace = "{{date}}";
-      #       vars = [{
-      #         name = "date";
-      #         type = "date";
-      #         params = { format = "%d/%m/%Y"; };
-      #       }];
-      #     }
-      #     {
-      #       # Shell command
-      #       trigger = ":host";
-      #       replace = "{{hostname}}";
-      #       vars = [{
-      #         name = "hostname";
-      #         type = "shell";
-      #         params = { cmd = "hostname"; };
-      #       }];
-      #     }
-      #   ];
-      # };
-    };
-
-    programs = {
-      git = {
-        userName = "Guilhem Fauré";
-        userEmail = "pro@gfaure.eu";
-      };
-      gpg = {
-        enable = true;
-      };
-      ripgrep.enable = true;
-      # TODO set an explorer that can open & preview every file
-      broot.enable = true; # TEST which is better
-      xplr.enable = true; # TEST which is better
-      nnn.enable = true; # TEST which is better
-      fzf.enable = true;
-    };
-
-    # Nicely reload system units when changing configs
-    systemd.user.startServices = "sd-switch";
-
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "23.05";
-  }
+    stateVersion = "23.05";
+  };
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
+  services = {
+    udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "never";
+    };
+    syncthing = {
+      enable = true;
+    };
+    # System-wide text expander
+    # espanso = {
+    #   enable = true;
+    #   configs.matches = [
+    #     {
+    #       # Text replacement
+    #       trigger = ":name";
+    #       replace = "Guilhem Fauré";
+    #     }
+    #     {
+    #       # Date
+    #       trigger = ":date";
+    #       replace = "{{date}}";
+    #       vars = [{
+    #         name = "date";
+    #         type = "date";
+    #         params = { format = "%d/%m/%Y"; };
+    #       }];
+    #     }
+    #     {
+    #       # Shell command
+    #       trigger = ":host";
+    #       replace = "{{hostname}}";
+    #       vars = [{
+    #         name = "hostname";
+    #         type = "shell";
+    #         params = { cmd = "hostname"; };
+    #       }];
+    #     }
+    #   ];
+    # };
+  };
+
+  programs = {
+    git = {
+      userName = "Guilhem Fauré";
+      userEmail = "pro@gfaure.eu";
+    };
+    gpg = {
+      enable = true;
+    };
+    ripgrep.enable = true;
+    # TODO set an explorer that can open & preview every file
+    broot.enable = true; # TEST which is better
+    xplr.enable = true; # TEST which is better
+    nnn.enable = true; # TEST which is better
+    fzf.enable = true;
+  };
+}

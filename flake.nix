@@ -92,7 +92,6 @@
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations = {
       "gf@ninja" = home-manager.lib.homeManagerConfiguration {
-        system = "x86_64-linux";
         extraSpecialArgs = { inherit inputs; };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
@@ -109,7 +108,6 @@
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
-        system = "x86_64-linux";
         extraSpecialArgs = { inherit inputs; };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
