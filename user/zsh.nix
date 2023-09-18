@@ -207,7 +207,7 @@
       dfa = "duf -all";
       sys = "systemctl";
       jo = "sudo journalctl -xfe";
-      hist = "$EDITOR $XDG_CONFIG_HOME/zsh/zsh_history";
+      hist = "$EDITOR $ZDOTDIR/history";
       wi = "nmcli device wifi";
       wid = "nmcli device disconnect";
       re = "exec zsh";
