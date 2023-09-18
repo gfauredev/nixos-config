@@ -1,8 +1,8 @@
 { lib, config, pkgs, ... }: {
   imports = [
     # <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel.nix>
-    <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
-    <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
+    # <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
+    # <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -36,7 +36,7 @@
         PasswordAuthentication = true;
       };
     };
-    nfs.server.enable = lib.mkDefault true;
+    # nfs.server.enable = lib.mkDefault true;
   };
 
   programs = {
@@ -47,14 +47,14 @@
       vimAlias = true;
     };
     git.enable = true;
-    zsh = {
-      enable = true;
-      syntaxHighlighting.enable = true;
-      enableCompletion = true;
-      autosuggestions = {
-        enable = true;
-      };
-    };
+    # zsh = {
+    #   enable = true;
+    #   syntaxHighlighting.enable = true;
+    #   enableCompletion = true;
+    #   autosuggestions = {
+    #     enable = true;
+    #   };
+    # };
   };
 
   i18n = {
@@ -67,7 +67,7 @@
 
   environment = {
     # binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
-    shells = with pkgs; [ zsh ];
+    # shells = with pkgs; [ zsh ];
     shellAliases = {
       clone = "git clone https://gitlab.com/gfauredev/nixos-config.git"; # Easilly clone this repo
     };
@@ -92,6 +92,6 @@
 
   users.users.nixos = {
     password = "password"; # Directly able to login via SSH
-    shell = pkgs.zsh;
+    # shell = pkgs.zsh;
   };
 }
