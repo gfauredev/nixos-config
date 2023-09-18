@@ -160,15 +160,15 @@
       };
       bg0 = {
         target = ".bg0";
-        source = ../bg.jpg;
+        source = ../bg0.jpg;
       };
       bg1 = {
         target = ".bg1";
-        source = ../bg.jpg;
+        source = ../bg1.jpg;
       };
       bg2 = {
         target = ".bg2";
-        source = ../bg.jpg;
+        source = ../bg2.jpg;
       };
     };
 
