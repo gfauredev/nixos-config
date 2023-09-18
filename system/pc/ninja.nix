@@ -6,9 +6,9 @@
   hardware = {
     # cpu.intel.updateMicrocode = true; # TEST if set by hardware
     opengl = {
-      #   enable = true; # TEST relevance
-      #   driSupport = true; # TEST relevance
-      #   driSupport32Bit = true; # TEST relevance
+      enable = true; # TEST relevance
+      # driSupport = true; # TEST relevance
+      # driSupport32Bit = true; # TEST relevance
       #   extraPackages = with pkgs; [ # TEST relevance
       #     intel-media-driver
       #     vaapiIntel
