@@ -6,13 +6,12 @@
   ];
 
   home.packages = with pkgs; [
-    # TODO use home.programs or flakes when possible
     # Web
     brave # Blink based secure and private web browser
     # nyxt # Keyboard driven lightweight web browser
 
     # Theme & Style
-    # nordzy-cursor-theme # TEST relevance
+    # nordzy-cursor-theme # TODO set with home manager
 
     # Misc
     albert # General purpose launcher FIXME
@@ -131,7 +130,7 @@
     chromium = {
       enable = true;
     };
-    browserpass.enable = true;
+    # browserpass.enable = true; # TEST relevance
     # autorandr = { # TEST relevance
     #   enable = true;
     # };

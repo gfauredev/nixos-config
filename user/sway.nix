@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
-    wl-color-picker
+    wl-color-picker # A color picker
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs to wayland
@@ -287,7 +287,7 @@
   };
 
   programs = {
-    # TODO set with nix directly
+    # TODO set with nix directly, or more cleanly
     zsh.loginExtra = ''
       # Start window managers at login on first TTYs
       if [ -z "''${DISPLAY}" ]; then

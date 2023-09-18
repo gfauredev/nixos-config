@@ -122,8 +122,7 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    # TEST revelance of each options below
-    # TODO improve
+    # TEST revelance of each options below # TODO improve
     completionInit = ''
       autoload -Uz compinit && compinit -i && _comp_options+=(globdots)
 
@@ -157,8 +156,7 @@
       share = true;
     };
     historySubstringSearch.enable = true;
-    # TODO this more cleanly
-    initExtra = builtins.readFile ../zshrc.sh;
+    initExtra = builtins.readFile ../zshrc.sh; # TODO this more cleanly
     shellAliases = {
       # sudo
       # su = "sudo su ";

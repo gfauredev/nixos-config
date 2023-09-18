@@ -1,6 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   services = {
-    # upower = { # TEST revelance, taking udev into account
+    # upower = { # TEST revelance, taking below udev rules into account
     #   enable = true;
     #   percentageLow = 30;
     #   percentageCritical = 20;

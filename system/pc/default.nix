@@ -17,6 +17,7 @@
   };
 
   i18n = {
+    # TODO place this in home config
     # Locales internatinalization properties
     supportedLocales = [
       "en_US.UTF-8/UTF-8"
@@ -40,6 +41,7 @@
   };
 
   services = {
+    # TODO this may belong to home config
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
       alsa.enable = true; # Support kernel audio

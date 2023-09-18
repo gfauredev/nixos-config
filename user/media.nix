@@ -31,8 +31,7 @@
     playerctl # MPRIS media players control
     spotify # PROPRIETARY music streaming
 
-    # Image & Video
-    imagemagick # CLI image edit
+    # Image & Video # TODO find better image viewer
     swayimg # Image viewer that can integrate with terminals
     # mpv # Video & Audio player
     # sxiv # Image viewer
@@ -47,6 +46,8 @@
     # filezilla # FTP client
     # xdg-utils # Mime type based file oppening # TEST if relevant
     # handlr # Default app launcher # TEST if relevant
+    wine # Execute Window$ programs
+    winetricks # Execute Window$ programs
   ];
 
   # fonts.fontconfig.enable = true; # TODO: test pertinence

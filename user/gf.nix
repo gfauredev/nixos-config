@@ -36,14 +36,14 @@
       #################### Serif Fonts ####################
       libre-baskerville # Great, stylish serif
       merriweather # Serif readable on low res screens
-      vollkorn # Great serif font
+      # vollkorn # Great serif font
       # gelasio # Serif Georgia replacement
       # lmodern # Classic serif
       # noto-fonts-cjk-serif
       #################### Sans Fonts ####################
       fira-go # Great sans with icons
-      inter # Interesting sans font
       nacelle # Helvetica replacement
+      # inter # Interesting sans font
       # carlito # Calibri replacement
       # merriweather-sans # Sans font readable on low res
       # libre-franklin
@@ -66,12 +66,12 @@
       eza # ls replacement (exa fork)
       # exa # unmaintained ls replacement
       # ripgrep-all
-      silver-searcher
+      silver-searcher # better grep
       fd # better find
       duf # global disk usage
       du-dust # disk usage of a directory
       bottom # htop alternative
-      neofetch
+      neofetch # system info
       poppler_utils # Read PDF metadata
       mediainfo # info about audio or video
       hexyl # hex viever
@@ -87,6 +87,7 @@
       # fuse # TEST relevance
       exfatprogs # Tools for exfat fs
       ffmpeg # media conversion
+      imagemagick # CLI image edition
       # youtube-dl # download videos from internet
       yt-dlp # download videos from internet
       ventoy-full # create bootable keys
@@ -96,12 +97,12 @@
 
       #################### Encryption & Network ####################
       # git-secrets # Encrypted storage in public git repo
-      pass # Minimal password manager
+      pass # CLI password manager
       pinentry # enter passwords
-      veracrypt # multiplatform encryption
       dislocker # decrypt bitlocker
+      # veracrypt # multiplatform encryption
       # cryptsetup # TEST relevance
-      # wireguard-tools
+      # wireguard-tools # TEST relevance
       # nmap # TEST relevance with below
       rustscan # scan networks
       protonvpn-cli # Free VPN service
@@ -110,17 +111,17 @@
       # curl # Mythic HTTP client TEST xh only
 
       #################### Languages helpers ####################
-      rnix-lsp # Nix
-      nodePackages_latest.bash-language-server # Bash
+      rnix-lsp # Nix LSP
+      nodePackages_latest.bash-language-server # Bash LSP
       ltex-ls # Grammar language server
       nodePackages_latest.prettier # General purpose formatter
       # nodePackages_latest.markdownlint-cli2
       # marksman # Markdown
-      hunspell
-      hunspellDicts.fr-any
-      hunspellDicts.en_US
-      hunspellDicts.en_GB-ise
-      hunspellDicts.es_ES
+      hunspell # Natural language spell checker
+      hunspellDicts.fr-any # For french
+      hunspellDicts.en_US # For english
+      hunspellDicts.en_GB-ise # For english
+      hunspellDicts.es_ES # For spanish
 
       #################### Miscelaneous ####################
       # TODO refile more precisely
@@ -134,8 +135,6 @@
       # android-udev-rules
       # interception-tools # TEST relevance
       # bluetooth_battery # TEST relevance
-      wine # Execute Window$ programs
-      winetricks # Execute Window$ programs
       libnotify # Notifications management
       watchexec # Run command when file changes
       hyperfine # benchmark
@@ -185,7 +184,7 @@
     syncthing = {
       enable = true;
     };
-    # System-wide text expander
+    # System-wide text expander # FIXME
     # espanso = {
     #   enable = true;
     #   configs.matches = [
@@ -226,11 +225,11 @@
     gpg = {
       enable = true;
     };
-    ripgrep.enable = true;
+    ripgrep.enable = true; # Better grep
     # TODO set an explorer that can open & preview every file
     broot.enable = true; # TEST which is better
     xplr.enable = true; # TEST which is better
     nnn.enable = true; # TEST which is better
-    fzf.enable = true;
+    # fzf.enable = true; # Fuzzy search
   };
 }
