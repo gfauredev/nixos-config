@@ -42,23 +42,33 @@
 
   services = {
     # TODO this may belong to home config
+    fwupd.enable = lib.mkDefault true; # Update firmwares
+    udisks2 = {
+      enable = true; # Mount USB without privileges
+      settings = { };
+    };
+    geoclue2 = {
+      enable = true; # Location provider
+    };
+    xserver = {
+      enable = true;
+      autorun = false;
+      layout = "fr,us,fr";
+      xkbVariant = "bepo_afnor,,";
+      xkbOptions = "grp:ctrls_toggle";
+      dpi = 144; # TODO enable this without xserver
+      libinput.enable = true; # Enable touchpad support
+      desktopManager.xterm.enable = false;
+    };
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
       alsa.enable = true; # Support kernel audio
       jack.enable = true; # Support advanced audio
       pulse.enable = true; # Support previous audio system
     };
-    udisks2 = {
-      enable = true; # Mount USB without privileges
-      settings = { };
-    };
     udev.packages = [
       pkgs.android-udev-rules # Talk to Android devices
     ];
-    geoclue2 = {
-      enable = true; # Location provider
-    };
-    fwupd.enable = lib.mkDefault true; # Update firmwares
   };
 
   location.provider = "geoclue2";
