@@ -39,12 +39,17 @@
       viAlias = true;
       vimAlias = true;
     };
-    git.enable = true;
+    git = {
+      enable = true;
+      userName = "Guilhem Fauré";
+      userEmail = "pro@gfaure.eu";
+    };
   };
 
   environment = {
     shellAliases = {
       clone = "git clone https://gitlab.com/gfauredev/nixos-config.git"; # Easilly clone this repo
+      clones = "git clone git@gitlab.com:gfauredev/nixos-config.git"; # Easilly clone this repo with SSH
     };
     # systemPackages = with pkgs; [
     #   util-linux # System utilities
