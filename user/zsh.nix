@@ -237,10 +237,10 @@
       inhib = "systemd-inhibit sleep";
       clic = "klick --auto-connect --interactive";
       clicmap = "klick --auto-connect --tempo-map";
-      ## WARNING Hacky, TODO do this properly
-      poweroff = "veracrypt -t -d && systemctl poweroff";
-      off = "veracrypt -t -d && systemctl poweroff";
-      reboot = "veracrypt -t -d && systemctl reboot";
+      off = "systemctl poweroff";
+      reboot = "systemctl reboot";
+      # off = "veracrypt -t -d && systemctl poweroff"; # WARNING Hacky, TODO do this properly
+      # reboot = "veracrypt -t -d && systemctl reboot"; # WARNING Hacky, TODO do this properly
       ## Tools & Documents
       # hu = "rm -frv public && hugo"; # TODO inside a specific shell
       # hu = "hugo --cleanDestinationDir";
