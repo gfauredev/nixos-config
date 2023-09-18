@@ -183,6 +183,11 @@
     };
     syncthing = {
       enable = true;
+      settings = {
+        folders = {
+          "/home/gf/Sync".enable = false;
+        };
+      };
     };
     # System-wide text expander # FIXME
     # espanso = {
