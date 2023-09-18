@@ -150,7 +150,7 @@
       ignoreDups = true;
       ignorePatterns = [ ];
       ignoreSpace = true;
-      path = { inherit dotDir; } + "/zsh_history";
+      path = ".config/zsh/zsh_history"; # FIXME make this dependant on above
       size = 12420;
       share = true;
     };
