@@ -12,7 +12,7 @@
     username = "gf";
     homeDirectory = "/home/gf";
 
-    sessionVariables = lib.mkDefault {
+    sessionVariables = {
       XDG_DESKTOP_DIR = "$HOME";
       XDG_DOCUMENTS_DIR = "$HOME/doc";
       XDG_DOWNLOAD_DIR = "$HOME/dl";
@@ -21,11 +21,12 @@
       XDG_VIDEOS_DIR = "$HOME/vid";
       XDG_CONFIG_HOME = "$HOME/.config";
 
-      # EDITOR = "nvim"; TEST pertinence
-      # BROWSER = "brave";
-      # VISUAL = "nvim";
-      # TERMINAL = "wezterm";
-      # TERM = "wezterm";
+      BROWSER = "brave";
+      TERMINAL = "wezterm";
+      TERM = "wezterm"; # TEST pertinence
+
+      # EDITOR = "nvim"; # TEST pertinence
+      # VISUAL = "nvim"; # TEST pertinence
 
       # PNPM_HOME = "$HOME/.local/share/pnpm"; TEST pertinence
       # TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts";
