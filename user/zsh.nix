@@ -143,15 +143,14 @@
       bindkey -M vicmd 'r' vi-forward-char
     '';
     defaultKeymap = "viins";
-    # dotDir = "${config.home-manager.users.gf.home.sessionVariables.XDG_CONFIG_HOME}/zsh";
+    # dotDir = "${config.home-manager.users.gf.home.sessionVariables.XDG_CONFIG_HOME}/zsh"; # FIXME
     dotDir = ".config/zsh";
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
       ignorePatterns = [ ];
       ignoreSpace = true;
-      path = "$XDG_CONFIG_HOME/zsh/zsh_history";
-      # path = ".config/zsh/zsh_history";
+      path = { inherit dotDir; } + "/zsh_history";
       size = 12420;
       share = true;
     };
