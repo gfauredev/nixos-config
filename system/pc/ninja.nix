@@ -9,12 +9,13 @@
       enable = true; # TEST relevance
       # driSupport = true; # TEST relevance
       # driSupport32Bit = true; # TEST relevance
-      #   extraPackages = with pkgs; [ # TEST relevance
-      #     intel-media-driver
-      #     vaapiIntel
-      #     vaapiVdpau
-      #     libvdpau-va-gl
-      #   ];
+      extraPackages = with pkgs; [
+        # TEST relevance
+        intel-media-driver
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
     };
   };
 
