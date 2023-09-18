@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05"; # NixOS 23.05
 
-    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
+    # lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
