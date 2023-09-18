@@ -2,7 +2,7 @@ empty_cr () { # Clear screen & give info on empty line CR
   if [[ -z $BUFFER ]]; then
     clear
     echo $(date)
-    echo "Why I am doing what I do ?"
+    # echo "Why I am doing what I do ?"
     if [ $(hostnamectl chassis) = "laptop" ]; then
       acpi -b
     fi
