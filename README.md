@@ -8,8 +8,8 @@ lang: en
 
 ### *0.* Build the installer image
 
-Traditionally run `nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=installer.nix`
-to build the installer ISO image, but `nixos-generate -f iso -c installer.nix` seems better.
+Build a custom image with the [official method](https://nixos.org/manual/nixos/unstable/#sec-building-image). \
+(More convenient `nixos-generate -f iso -c installer.nix` might also work)
 
 Place it in a bootable USB stick, for example made with Ventoy, then boot it
 on the machine on which to install NixOS.
