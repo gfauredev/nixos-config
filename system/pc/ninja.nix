@@ -39,7 +39,7 @@
   };
 
   networking = {
-    # hostName = "ninja"; # TEST if set by the flake.nix
+    hostName = "ninja";
     firewall = {
       allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
