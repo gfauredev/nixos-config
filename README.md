@@ -45,7 +45,8 @@ Use the command `nixos-install -v --root /mnt --flake '.#HOSTNAME'` to install
 NixOS from this flake (according you run this command from the same directory
 as this current file).
 
-Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
+Then user homes can be installed with `home-manager switch --flake .#USER`,
+and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch`.
 
 ## Documentation ressources :
 
