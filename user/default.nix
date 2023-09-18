@@ -143,11 +143,29 @@
     # };
   };
 
-  # gtk = { # TEST relevance
-  #   cursorTheme = {
-  #     name = "Nordzy-cursors";
-  #   };
-  # };
+  gtk = {
+
+    enable = true;
+    cursorTheme = {
+      # TEST relevance
+      package = pkgs.nordzy-cursor-theme;
+      name = "Nordzy-cursors";
+      size = 22;
+    };
+    # font = { # TODO configure
+    # package = pkgs.;
+    # name = "";
+    # size = 20;
+    # };
+    # theme = { # TODO configure
+    # package = pkgs.;
+    # name = "";
+    # };
+    # iconTheme = { # TODO configure
+    # package = pkgs.;
+    # name = "";
+    # };
+  };
 
   # xdg = { # TEST relevance
   #   enable = true;
