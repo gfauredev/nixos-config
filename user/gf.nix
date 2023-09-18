@@ -157,6 +157,18 @@
         # text = builtins.readFile ../XCompose;
         source = ../XCompose;
       };
+      bg0 = {
+        target = ".bg0";
+        source = ../bg.jpg;
+      };
+      bg1 = {
+        target = ".bg1";
+        source = ../bg.jpg;
+      };
+      bg2 = {
+        target = ".bg2";
+        source = ../bg.jpg;
+      };
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
