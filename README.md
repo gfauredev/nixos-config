@@ -81,6 +81,7 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 ## Optional packages
 
 > These are packages I don’t want in my config but will eventually \
+> use ephemarally with `nix-shell -p $PACKAGE` or \
 > install with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
 - `chntpw` Edit an installed Windows registry
@@ -90,7 +91,8 @@ Then to update the system run `sudo nixos-rebuild --flake '.#HOSTNAME' switch`.
 
 > These are packages that require downloading assets from various places \
 > and add them to the Nix store with `$ nix-store --add-fixed sha256 /path/to/file` \
-> before being installed with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
+> before being ephemarally used with `nix-shell -p $PACKAGE` or \
+> being installed with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
 - `ciscoPacketTracer8` # Advanced network simulation
 - `sqldeveloper` # Oracle SQL IDE
