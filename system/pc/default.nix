@@ -70,7 +70,7 @@
     };
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
-    zsh.enable = true; # TEST pertinence with hm
+    # zsh.enable = true; # TEST pertinence with hm
     firejail = {
       enable = true; # TEST pertinence
       wrappedBinaries = { };
