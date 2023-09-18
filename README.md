@@ -8,7 +8,7 @@ lang: en
 
 ### *0.* Build the installer image
 
-Run `nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=system/installer.nix`
+Run `nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=installer.nix`
 to build the installer ISO image.
 
 Place it in a bootable USB stick, for example made with Ventoy, then boot it

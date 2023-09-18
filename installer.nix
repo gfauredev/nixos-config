@@ -1,23 +1,23 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
     # <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel.nix>
+    <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
     <nixpkgs/nixos/modules/installer/cd-dvd/channel.nix>
   ];
 
   nixpkgs.config.allowUnfree = true;
-  hardware.enableAllFirmware = true;
+  # hardware.enableAllFirmware = true;
 
   boot = {
     kernel.sysctl = { "kernel.sysrq" = 176; }; # Enable great SysRq magic keys
   };
 
-  console.font = "Lat2-Terminus16";
+  # console.font = "Lat2-Terminus16";
   console.keyMap = lib.mkDefault "fr-bepo"; # My favorite keymap
 
   time = {
-    timeZone = lib.mkDefault "Europe/Paris";
-    hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Windows
+    # timeZone = lib.mkDefault "Europe/Paris";
+    # hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Windows
   };
 
   networking = {
@@ -66,13 +66,12 @@
   };
 
   environment = {
-    binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
+    # binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
     shells = with pkgs; [ zsh ];
     shellAliases = {
       clone = "git clone https://gitlab.com/gfauredev/nixos-config.git"; # Easilly clone this repo
     };
     systemPackages = with pkgs; [
-      dash # Small & light POSIX shell for scripts
       util-linux # System utilities
       xh # HTTP client
       lsof # list openned files
@@ -86,6 +85,7 @@
       pciutils # lspci
       lm_sensors # get temps
       wakelan # send magick packet to wake WoL devices
+      # dash # Small & light POSIX shell for scripts
       # curl # HTTP client
     ];
   };
