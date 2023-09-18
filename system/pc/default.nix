@@ -69,10 +69,10 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true; # TEST pertinence with hm
-    # firejail = { # TEST pertinence
-    #   enable = true;
-    #   wrappedBinaries = { };
-    # };
+    firejail = {
+      enable = true; # TEST pertinence
+      wrappedBinaries = { };
+    };
   };
 
   environment = {
@@ -85,6 +85,7 @@
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
+      sbsigntool # Secure Boot Sign
       # Graphical TEST relevance
       # mesa
       # libsForQt5.breeze-gtk
