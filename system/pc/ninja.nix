@@ -47,10 +47,11 @@
   };
 
   security = {
-    # pam.services = { # FIXME
-    #   system-local-login.fprintAuth = true;
-    #   # login.fprintAuth = true;
-    # };
+    pam.services = {
+      swaylock = { };
+      # system-local-login.fprintAuth = true; # FIXME
+      # login.fprintAuth = true;
+    };
   };
 
   services = {
