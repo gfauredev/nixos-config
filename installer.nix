@@ -92,6 +92,11 @@
 
   users.users.nixos = {
     password = "password"; # Directly able to login via SSH
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
     # shell = pkgs.zsh;
   };
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "23.11";
 }
