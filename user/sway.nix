@@ -8,7 +8,7 @@
     wev # Evaluate inputs to wayland
     swaybg # Display a background
     autotiling # Simulate dwindle layout on sway and i3
-    onagre # TEST which launcher is better
+    # onagre # TEST which launcher is better
     # albert # Previous general purpose launcher
     # swayidle # Perform actions if inactive
     # kanshi # TEST if relevant
@@ -467,9 +467,11 @@
     };
     rofi = {
       enable = true; # TEST which launcher is better
+      package = pkgs.rofi-wayland;
     };
     wofi = {
       enable = true; # TEST which launcher is better
+      # package = pkgs.wofi-emoji; # Not the right
     };
   };
 }
