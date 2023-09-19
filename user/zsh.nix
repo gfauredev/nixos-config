@@ -1,7 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages =
     let
-      rsback = pkgs.writeShellScriptBin "rsync_backup" ''
+      rsync-backup = pkgs.writeShellScriptBin "rsback" ''
         if [ -n "$1" ]; then
           readonly SOURCE_DIR="$(realpath "$1")"
         else
@@ -33,14 +33,14 @@
         rm -fr "$LATEST_LINK"
         ln -fs "$THIS_BACKUP_DIR" "$LATEST_LINK"
       '';
-      fingers = pkgs.writeShellScriptBin "enroll_fingers" ''
+      fingerprints-enroll = pkgs.writeShellScriptBin "fingers" ''
         for finger in {left-middle-finger,left-index-finger,right-thumb,right-index-finger,right-middle-finger}; do
           echo "PREPARE YOUR $finger, ENROLL IS COMING …"
           sleep 2
           sudo fprintd-enroll -f "$finger" gf
         done
       '';
-      ex = pkgs.writeShellScriptBin "extract" ''
+      extract = pkgs.writeShellScriptBin "ex" ''
         if [ -z "$1" ]; then
             # display usage if no parameters given
             echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -75,7 +75,7 @@
             done
         fi
       '';
-      veramount = pkgs.writeShellScriptBin "veracrypt_mount" ''
+      veracrypt-mount = pkgs.writeShellScriptBin "veramount" ''
         lsblk -o PATH,SIZE,TYPE,LABEL
         read -p "Device to decrypt (auto mount all) /dev/" device
 
@@ -109,10 +109,10 @@
       '';
     in
     [
-      ex # Extract any compressed file
-      rsback # Incremental backup with rsync
-      fingers # Enroll fingers for finger print reader
-      veramount # Interactively mount veracrypt devices
+      extract # Extract any compressed file
+      rsync-backup # Incremental backup with rsync
+      fingerprints-enroll # Enroll fingers for finger print reader
+      veracrypt-mount # Interactively mount veracrypt devices
     ];
 
 
