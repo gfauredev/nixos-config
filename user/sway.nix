@@ -22,11 +22,11 @@
 
   wayland.windowManager.sway =
     let
-      term = "wezterm"; # Terminal command
-      term-exec = "${term} start --always-new-process"; # Exec
+      term = "${pkgs.wezterm}/bin/wezterm start --always-new-process"; # Exec
+      term-exec = term;
       term-menu = "${term-exec} --class menu"; # Menu term
-      launch = "${pkgs.albert}"; # Launcher
-      mod = "Mod4"; # Keys used to work with windows
+      launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
+      mod = "Mod4"; # Keys used to work with SUPER
       left = "c";
       down = "t";
       up = "s";
@@ -95,7 +95,7 @@
         };
         keybindings = {
           # Start a terminal
-          "${mod}+Return" = "exec ${term-exec}";
+          "${mod}+Return" = "exec ${term}";
           "${mod}+Shift+Return" = "exec ${term-menu}";
           "${mod}+Control+Return" = "exec ${term-menu}";
 
@@ -107,15 +107,15 @@
           # Exit sway (logs out of Wayland session)
           "${mod}+Control+Shift+q" = "exec swaymsg exit";
           # Lock & Suspend
-          "${mod}+comma" = "exec swaylock -f -i $HOME/.wallpapers/desert.jpg";
+          "${mod}+comma" = "exec swaylock -f -i $HOME/.wallpapers/desert.jpg"; # TODO select a random one
           "${mod}+Shift+comma" = "exec systemctl suspend";
 
           # Launch
-          "${mod}+space" = "exec sh -c '${launch} toggle'";
-          "${mod}+Shift+space" = "exec sh -c '${launch} settings'";
+          "${mod}+space" = "exec ${launch}"; # General
+          "${mod}+Shift+space" = "exec ${launch}"; # TODO setings
           "${mod}+Shift+m" = "exec ${term-menu} eva";
-          "${mod}+o" = "exec ${term-menu} zsh -ic 'br'";
-          "${mod}+Shift+o" = "exec ${term-exec} --class xplr xplr";
+          "${mod}+o" = "exec ${launch}"; # TODO file opening
+          "${mod}+Shift+o" = "exec ${launch}"; # TODO advanced file opening
           # Tools
           "${mod}+d" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
           "${mod}+Shift+d" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
@@ -232,7 +232,6 @@
         startup = [
           { command = "autotiling --limit 4"; }
           # { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; } # TODO With Nix directly
-          # { command = "albert"; } # FIXME
         ];
         defaultWorkspace = "workspace …";
         window.titlebar = false;
@@ -468,10 +467,29 @@
     rofi = {
       enable = true; # TEST which launcher is better
       package = pkgs.rofi-wayland;
+      cycle = true;
+      extraConfig = { };
+      font = "FiraCode Nerd Font";
+      location = "top";
+      pass = {
+        enable = true;
+        # extraConfig = ''
+        # '';
+        # stores = [];
+      };
+      plugins = with pkgs; [
+        rofi-file-browser
+        rofi-calc
+        rofi-top
+        rofi-emoji
+        rofi-bluetooth
+        rofi-pulse-select
+        rofi-systemd
+      ];
+      terminal = "${pkgs.dash}/bin/dash";
     };
-    wofi = {
-      enable = true; # TEST which launcher is better
-      # package = pkgs.wofi-emoji; # Not the right
-    };
+    # wofi = {
+    #   enable = true; # TEST if better than rofi
+    # };
   };
 }
