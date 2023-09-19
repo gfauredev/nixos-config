@@ -170,8 +170,9 @@
     enable = true; # TEST if relevant
     platformTheme = "gtk";
     style = {
-      name = "gtk2";
-      package = pkgs.libsForQt5.qtstyleplugins;
+      # name = "gtk2";
+      name = "adwaita-dark";
+      # package = pkgs.libsForQt5.qtstyleplugins; # TEST pertinence
     };
   };
 }
