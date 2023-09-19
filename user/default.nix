@@ -144,7 +144,6 @@
   };
 
   gtk = {
-
     enable = true;
     cursorTheme = {
       # TEST relevance
@@ -165,5 +164,13 @@
     # package = pkgs.;
     # name = "";
     # };
+  };
+
+  qt = {
+    enable = true; # TEST if relevant
+    # platformTheme = "gtk2";
+    # style = "gtk2";
+    # platformTheme = "qt5ct";
+    # style = "adwaita-dark";
   };
 }

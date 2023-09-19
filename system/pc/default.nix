@@ -151,14 +151,6 @@
   #   };
   # };
 
-  # qt = { # TEST if relevant
-  #   enable = true;
-  #   # platformTheme = "gtk2";
-  #   # style = "gtk2";
-  #   # platformTheme = "qt5ct";
-  #   # style = "adwaita-dark";
-  # };
-
   # xdg = { # TEST if relevant
   #   portal = {
   #     enable = true;
