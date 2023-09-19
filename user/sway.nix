@@ -27,7 +27,7 @@
       term-exec = term;
       term-menu = "${term-exec} --class menu"; # Menu term
       # launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
-      launch = "rofi -show combi -combi-modes"; # Launcher # TODO absolute path
+      launch = "rofi -show combi -show-icons -combi-modes"; # Launcher # TODO absolute path
       mod = "Mod4"; # Keys used to work with SUPER
       left = "c";
       down = "t";
@@ -471,10 +471,6 @@
       enable = true; # TEST which launcher is better
       package = pkgs.rofi-wayland;
       cycle = true;
-      extraConfig = {
-        # modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
-        modi = "combi,drun,filebrowser,calc,emoji,top,window";
-      };
       font = "FiraCode Nerd Font";
       location = "top";
       pass = {
@@ -492,7 +488,13 @@
         rofi-pulse-select
         rofi-systemd
       ];
-      terminal = "${pkgs.dash}/bin/dash";
+      # shell = "${pkgs.dash}/bin/dash";
+      terminal = "${term-exec}";
+      theme = "arthur";
+      extraConfig = {
+        # modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
+        modi = "combi,drun,filebrowser,calc,emoji,top,window";
+      };
     };
     # wofi = {
     #   enable = true; # TEST if better than rofi
