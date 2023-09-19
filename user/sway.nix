@@ -268,7 +268,7 @@
       enable = true;
       events = [
         { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
-        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.lockscreen"; }
+        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpapers/desert.jpg"; }
       ];
       timeouts = [
         {
