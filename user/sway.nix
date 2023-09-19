@@ -255,7 +255,7 @@
       # systemd.enable = true; # TEST relevance
       wrapperFeatures = {
         base = true;
-        # gtk = true; # TEST if relevant
+        gtk = true; # TEST if relevant
       };
       xwayland = true;
     };
