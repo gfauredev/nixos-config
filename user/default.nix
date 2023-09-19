@@ -11,12 +11,11 @@
     # nyxt # Keyboard driven lightweight web browser
 
     # Theme & Style
-    # nordzy-cursor-theme # TODO set with home manager
     libsForQt5.qt5ct # TEST if relevant
-    pkgs.libsForQt5.qtstyleplugin-kvantum # TEST if relevant
+    libsForQt5.qtstyleplugin-kvantum # TEST if relevant
     libsForQt5.qt5.qtwayland # TEST if relevant
     qt6Packages.qt6ct # TEST if relevant
-    pkgs.qt6Packages.qtstyleplugin-kvantum # TEST if relevant
+    qt6Packages.qtstyleplugin-kvantum # TEST if relevant
     qt6.qtwayland # TEST if relevant
     libsForQt5.systemsettings # TEST if relevant
     adwaita-qt # TEST if relevant
