@@ -17,6 +17,7 @@
         libvdpau-va-gl
       ];
     };
+    sensor.iio.enable = true;
   };
 
   boot = {
