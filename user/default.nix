@@ -168,10 +168,11 @@
 
   qt = {
     enable = true; # TEST if relevant
-    platformTheme = "gtk";
+    # platformTheme = "gtk"; # TEST if relevant
     style = {
       # name = "gtk2";
-      name = "adwaita-dark";
+      # name = "adwaita-dark";
+      name = "kvantum";
       # package = pkgs.libsForQt5.qtstyleplugins; # TEST pertinence
     };
   };
