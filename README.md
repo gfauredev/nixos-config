@@ -65,20 +65,20 @@ and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch
 > Consider TODO, FIXME, TEST and WARNING tags already inside files
 
 - [ ] FIX audio controls
-- [ ] Add useful things from old config to dev shells
+- [ ] Make Dev shells
+  - [ ] Add useful things from old config
+  - [ ] Port ruff config in dev shell
 - [ ] Study & configure Musnix & realtime audio & audio improvements
-- [ ] Study & configure Nixos-hardware & hardware improvements
-- [ ] Power consumption improvements
-- [ ] Try to use `pkgs.runCommand` to create config links
+- [ ] hardware & Power consumption improvements
+- [ ] FIX `ninja`’s fingerprint reader
+- [ ] `pkgs.runCommand` or another nix-way to run config commands
+  - [ ] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
   - [ ] `~/dl` → `/run/user/$UID/dl` (needs a mkdir)
   - [ ] `~/usb` → `/run/media/$USER` (needs a mkdir)
-- [ ] Use `pkgs.runCommand` to run config commands
-- [ ] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
 - [ ] Eventually `git pull --recurse-submodules --jobs=8` on this directory & password store at boot to update
-- [ ] FIX `ninja`’s fingerprint reader
 - [ ] Synchronize `.config/libreoffice/4/user/template/$USER` contents (eventually with syncthing)
-- [ ] Test if zoxide works correctly
-- [ ] Port ruff config in dev shell
+- [ ] Improve rofi menu (estethics, fuzzy, frecency …)
+- [x] Test if zoxide works correctly
 
 ## Optional packages
 
