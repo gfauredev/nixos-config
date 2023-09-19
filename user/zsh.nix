@@ -298,12 +298,12 @@
       giff = "git diff";
       logg = "git log --oneline";
       ## Config files management
-      cfg = "git --git-dir=$HOME/.bare/ --work-tree=$HOME";
-      cfgs = "cfg status";
-      cfgcmt = "cfg commit -am";
-      cfgamend = "cfg commit --amend";
-      cfgamendm = "cfg commit --amend -m";
-      cfgamendam = "cfg commit --amend -am";
+      # cfg = "git --git-dir=$HOME/.bare/ --work-tree=$HOME";
+      # cfgs = "cfg status";
+      # cfgcmt = "cfg commit -am";
+      # cfgamend = "cfg commit --amend";
+      # cfgamendm = "cfg commit --amend -m";
+      # cfgamendam = "cfg commit --amend -am";
       # cfgcommit = "cfg commit";
       # cfgcommitm = "cfg commit -m";
       # cfgcommita = "cfg commit -a";

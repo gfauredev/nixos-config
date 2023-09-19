@@ -54,8 +54,9 @@ typ() {
 }
 
 # Create dl dir in user temp dir # TODO this with Nix directly
-[ -d /run/user/''$(id -u)/dl ] || mkdir -m 700 /run/user/$(id -u)/dl
-[ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$(id -u)/dl $XDG_DOWNLOAD_DIR #
+[ -d /run/user/$(id -u)/dl ] || mkdir -m 700 /run/user/$(id -u)/dl
+[ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$(id -u)/dl $XDG_DOWNLOAD_DIR
+[ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb
 # Delete some annoying dirs # TODO this with Nix directly
 [ -d $HOME/Downloads ] && rmdir $HOME/Downloads
 [ -d $HOME/intelephense ] && rmdir $HOME/intelephense
