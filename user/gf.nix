@@ -19,7 +19,7 @@
       XDG_MUSIC_DIR = "$HOME/audio";
       XDG_PICTURES_DIR = "$HOME/img";
       XDG_VIDEOS_DIR = "$HOME/vid";
-      XDG_CONFIG_HOME = "$HOME/.config";
+      # XDG_CONFIG_HOME = "$HOME/.config";
 
       BROWSER = "brave";
       TERMINAL = "wezterm";
@@ -247,5 +247,55 @@
     xplr.enable = true; # TEST which is better
     nnn.enable = true; # TEST which is better
     # fzf.enable = true; # Fuzzy search
+  };
+
+  xdg = {
+    enable = true; # TEST relevance
+    mime = {
+      enable = true;
+    };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/plain" = "nvim.desktop";
+        "text/x-shellscript" = "nvim.desktop";
+        "text/x-script.python" = "nvim.desktop";
+        "text/html" = "nvim.desktop";
+        "application/x-shellscript" = "nvim.desktop";
+        "application/toml" = "nvim.desktop";
+        "application/javascript" = "nvim.desktop";
+        "text/markdown" = "nvim.desktop";
+        "text/x-log" = "bat.desktop";
+        "application/pdf" = "org.pwmt.zathura.desktop";
+        "text/adasrc" = "nvim.desktop";
+        "text/x-adasrc" = "nvim.desktop";
+
+        "image/jpeg" = "swayimg.desktop";
+        "image/png" = "swayimg.desktop";
+        "image/bmp" = "swayimg.desktop";
+        "image/jpg" = "swayimg.desktop";
+        "image/avif" = "swayimg.desktop";
+        "image/webp" = "swayimg.desktop";
+        "image/ico" = "swayimg.desktop";
+
+        "audio/wav" = "mpv.desktop";
+        "audio/flac" = "mpv.desktop";
+        "audio/mp3" = "mpv.desktop";
+        "audio/ogg" = "mpv.desktop";
+        "video/mkv" = "mpv.desktop";
+        "video/mp4" = "mpv.desktop";
+        "video/avi" = "mpv.desktop";
+
+        "x-scheme-handler/webcal" = "brave-browser.desktop";
+        "x-scheme-handler/mailto" = "brave-browser.desktop";
+        "x-scheme-handler/https" = "brave-browser.desktop";
+        "x-scheme-handler/http" = "brave-browser.desktop";
+
+        "application/x-colpkg" = "anki.desktop";
+        "application/x-apkg" = "anki.desktop";
+        "application/x-ankiaddon" = "anki.desktop";
+      };
+      # associations.added = { };
+    };
   };
 }
