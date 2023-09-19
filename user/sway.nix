@@ -8,7 +8,8 @@
     wev # Evaluate inputs to wayland
     swaybg # Display a background
     autotiling # Simulate dwindle layout on sway and i3
-    albert # General purpose launcher FIXME
+    onagre # TEST which launcher is better
+    # albert # Previous general purpose launcher
     # swayidle # Perform actions if inactive
     # kanshi # TEST if relevant
     # pcmanfm # TEST if relevant, TODO display files previews in terminal
@@ -191,7 +192,7 @@
           "Control+XF86KbdBrightnessUp" = "exec light -A 1";
           "Control+XF86KbdBrightnessDown" = "exec light -U 1";
 
-          # Audio & media controls
+          # Audio & media controls FIXME
           "XF86AudioPause" = "exec playerctl play-pause";
           "Shift+XF86AudioPause" = "exec playerctl play-pause -p spotify";
           "XF86AudioPlay" = "exec playerctl play-pause";
@@ -464,5 +465,11 @@
       #   target = "sway-session.target";
       # };
     };
+  };
+  rofi = {
+    enable = true; # TEST which launcher is better
+  };
+  wofi = {
+    enable = true; # TEST which launcher is better
   };
 }

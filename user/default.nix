@@ -11,17 +11,17 @@
     # nyxt # Keyboard driven lightweight web browser
 
     # Theme & Style
-    libsForQt5.qt5ct # TEST if relevant
-    libsForQt5.qtstyleplugin-kvantum # TEST if relevant
-    libsForQt5.qt5.qtwayland # TEST if relevant
-    qt6Packages.qt6ct # TEST if relevant
-    qt6Packages.qtstyleplugin-kvantum # TEST if relevant
-    qt6.qtwayland # TEST if relevant
-    libsForQt5.systemsettings # TEST if relevant
-    adwaita-qt # TEST if relevant
+    # libsForQt5.qt5ct # TEST if relevant
+    # libsForQt5.qtstyleplugin-kvantum # TEST if relevant
+    # libsForQt5.qt5.qtwayland # TEST if relevant
+    # qt6Packages.qt6ct # TEST if relevant
+    # qt6Packages.qtstyleplugin-kvantum # TEST if relevant
+    # qt6.qtwayland # TEST if relevant
+    # libsForQt5.systemsettings # TEST if relevant
+    # adwaita-qt # TEST if relevant
 
     # Misc
-    # albert # General purpose launcher FIXME
+    # albert # Previous general purpose launcher
     # protonvpn-gui # Free VPN service
     # bleachbit
     # gnome.seahorse
@@ -151,10 +151,9 @@
   };
 
   gtk = {
-    enable = true;
+    enable = true; # TODO Apply it to every apps
     cursorTheme = {
-      # TEST relevance
-      package = pkgs.nordzy-cursor-theme;
+      package = pkgs.nordzy-cursor-theme; # TEST relevance
       name = "Nordzy-cursors";
       size = 22;
     };
@@ -174,9 +173,9 @@
   };
 
   qt = {
-    enable = true; # TEST if relevant
+    # enable = true; # TEST if relevant
     # platformTheme = "gtk"; # TEST if relevant
-    platformTheme = "qtct"; # TEST if relevant
+    # platformTheme = "qtct"; # TEST if relevant
     style = {
       # name = "gtk2";
       # name = "adwaita-dark";

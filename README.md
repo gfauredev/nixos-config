@@ -6,7 +6,7 @@ lang: en
 
 ## NixOS installation instructions
 
-### *0.* Build the installer image
+### _0._ Build the installer image
 
 Build a custom image with the [official method](https://nixos.org/manual/nixos/unstable/#sec-building-image). \
 (More convenient `nixos-generate -f iso -c installer.nix` might also work)
@@ -16,7 +16,7 @@ on the machine on which to install NixOS.
 
 Once booted, get this git repo with the command `clone`.
 
-### *1.* Partition, encrypt, format disks (according to partitioning/ templates)
+### _1._ Partition, encrypt, format disks (according to partitioning/ templates)
 
 Use the tools `fdisk` or `cfdisk` to partition and label disks properly.
 
@@ -30,7 +30,7 @@ Finaly, depending on the choosen(s) filesystem(s), continue formating with
 `mkfs.??? /etc/???` or create proper **subvolumes** with filesystem specific
 commands.
 
-### *2.* Handle hardware configuration
+### _2._ Handle hardware configuration
 
 Run the command `nixos-generate-config --root /mnt --dir .` to create a hardware
 config in this directory.
@@ -39,7 +39,7 @@ Then, compare with choosen system hardware configuration and fix it if needed.
 
 PS : UUIDs can be got with `lsblk -o NAME,SIZE,UUID,LABEL`.
 
-### *3.* Install from the Nix Flake
+### _3._ Install from the Nix Flake
 
 Use the command `nixos-install -v --root /mnt --flake '.#HOSTNAME'` to install
 NixOS from this flake (according you run this command from the same directory
@@ -64,6 +64,7 @@ and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch
 
 > Consider TODO, FIXME, TEST and WARNING tags already inside files
 
+- [ ] FIX audio controls
 - [ ] Add useful things from old config to dev shells
 - [ ] Study & configure Musnix & realtime audio & audio improvements
 - [ ] Study & configure Nixos-hardware & hardware improvements
