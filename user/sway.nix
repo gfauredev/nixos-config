@@ -40,15 +40,15 @@
         right = right;
         output = {
           "*" = {
-            bg = "$HOME/.bg1 fill";
+            bg = "$HOME/.wallpapers/island.jpg fill";
           };
           eDP-1 = {
-            bg = "$HOME/.bg2 fill";
+            bg = "$HOME/.wallpapers/island.jpg fill";
             scale = "1.5";
             resolution = "2256x1504";
           };
           DP-1 = {
-            bg = "$HOME/.bg2 fill";
+            bg = "$HOME/.wallpapers/island.jpg fill";
             scale = "1.5";
             # resolution = "3440x1440";
           };
@@ -105,7 +105,7 @@
           # Exit sway (logs out of Wayland session)
           "${mod}+Control+Shift+q" = "exec swaymsg exit";
           # Lock & Suspend
-          "${mod}+comma" = "exec swaylock -f -i $HOME/.bg0";
+          "${mod}+comma" = "exec swaylock -f -i $HOME/.wallpapers/desert.jpg";
           "${mod}+Shift+comma" = "exec systemctl suspend";
 
           # Launch

@@ -160,17 +160,9 @@
         # text = builtins.readFile ../XCompose;
         source = ../XCompose;
       };
-      bg0 = {
-        target = ".bg0";
-        source = ../bg0.jpg;
-      };
-      bg1 = {
-        target = ".bg1";
-        source = ../bg1.jpg;
-      };
-      bg2 = {
-        target = ".bg2";
-        source = ../bg2.jpg;
+      wallpapers = {
+        target = ".wallpapers";
+        source = ../wallpapers;
       };
     };
 
