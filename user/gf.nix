@@ -22,8 +22,8 @@
       # XDG_CONFIG_HOME = "$HOME/.config";
 
       BROWSER = "brave";
-      TERMINAL = "wezterm";
-      TERM = "wezterm"; # TEST pertinence
+      # TERMINAL = "wezterm"; # TEST relevance
+      # TERM = "wezterm"; # TEST pertinence
 
       # EDITOR = "nvim"; # TEST pertinence
       # VISUAL = "nvim"; # TEST pertinence
@@ -31,6 +31,8 @@
       # PNPM_HOME = "$HOME/.local/share/pnpm"; TEST pertinence
       # TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts";
       # TYPST_ROOT = "$HOME/.local/share/typst";
+
+      NIXOS_OZONE_WL = "1";
     };
 
     packages = with pkgs; [
