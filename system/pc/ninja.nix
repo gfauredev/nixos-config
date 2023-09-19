@@ -56,13 +56,13 @@
   };
 
   services = {
-    # fprintd = { # FIXME
-    #   enable = true; # Support for figerprint reader
-    #   tod = {
-    #     enable = true; # Support for figerprint reader
-    #     driver = pkgs.libfprint-2-tod1-goodix;
-    #   };
-    # };
+    fprintd = {
+      enable = true; # Support for figerprint reader # FIXME
+      tod = {
+        enable = true; # Support for figerprint reader
+        driver = pkgs.libfprint-2-tod1-goodix;
+      };
+    };
     # fstrim = { # TEST pertinence, should be set by hardware
     #   enable = true;
     # };
