@@ -465,11 +465,11 @@
       #   target = "sway-session.target";
       # };
     };
-  };
-  rofi = {
-    enable = true; # TEST which launcher is better
-  };
-  wofi = {
-    enable = true; # TEST which launcher is better
+    rofi = {
+      enable = true; # TEST which launcher is better
+    };
+    wofi = {
+      enable = true; # TEST which launcher is better
+    };
   };
 }
