@@ -469,7 +469,9 @@
       enable = true; # TEST which launcher is better
       package = pkgs.rofi-wayland;
       cycle = true;
-      extraConfig = { };
+      extraConfig = {
+        modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
+      };
       font = "FiraCode Nerd Font";
       location = "top";
       pass = {
