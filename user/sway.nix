@@ -8,6 +8,7 @@
     wev # Evaluate inputs to wayland
     swaybg # Display a background
     autotiling # Simulate dwindle layout on sway and i3
+    albert # General purpose launcher FIXME
     # swayidle # Perform actions if inactive
     # kanshi # TEST if relevant
     # pcmanfm # TEST if relevant, TODO display files previews in terminal

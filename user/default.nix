@@ -22,7 +22,7 @@
     adwaita-qt # TEST if relevant
 
     # Misc
-    albert # General purpose launcher FIXME
+    # albert # General purpose launcher FIXME
     # protonvpn-gui # Free VPN service
     # bleachbit
     # gnome.seahorse
