@@ -168,9 +168,10 @@
 
   qt = {
     enable = true; # TEST if relevant
-    # platformTheme = "gtk2";
-    # style = "gtk2";
-    # platformTheme = "qt5ct";
-    # style = "adwaita-dark";
+    platformTheme = "gtk";
+    style = {
+      name = "gtk2";
+      package = pkgs.libsForQt5.qtstyleplugins;
+    };
   };
 }
