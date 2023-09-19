@@ -25,7 +25,8 @@
       term = "${pkgs.wezterm}/bin/wezterm start --always-new-process"; # Exec
       term-exec = term;
       term-menu = "${term-exec} --class menu"; # Menu term
-      launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
+      # launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
+      launch = "rofi -show combi -combi-modes"; # Launcher # TODO absolute path
       mod = "Mod4"; # Keys used to work with SUPER
       left = "c";
       down = "t";
@@ -111,11 +112,11 @@
           "${mod}+Shift+comma" = "exec systemctl suspend";
 
           # Launch
-          "${mod}+space" = "exec ${launch}"; # General
-          "${mod}+Shift+space" = "exec ${launch}"; # TODO setings
-          "${mod}+Shift+m" = "exec ${launch}"; # TODO maths
-          "${mod}+o" = "exec ${launch}"; # TODO file opening
-          "${mod}+Shift+o" = "exec ${launch}"; # TODO advanced file opening
+          "${mod}+space" = "exec ${launch} 'drun,window'"; # General
+          "${mod}+Shift+space" = "exec ${launch} 'top'"; # TODO setings
+          "${mod}+Shift+m" = "exec ${launch} 'calc'"; # TODO maths
+          "${mod}+o" = "exec ${launch} 'filebrowser'"; # TODO file opening
+          "${mod}+Shift+o" = "exec ${launch} 'file-browser-extended'"; # TODO advanced file opening
           # Tools
           "${mod}+d" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
           "${mod}+Shift+d" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
@@ -470,7 +471,8 @@
       package = pkgs.rofi-wayland;
       cycle = true;
       extraConfig = {
-        modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
+        # modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
+        modi = "combi,drun,filebrowser,calc,emoji,top,window";
       };
       font = "FiraCode Nerd Font";
       location = "top";
