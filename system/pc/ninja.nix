@@ -51,7 +51,7 @@
     pam.services = {
       swaylock = { };
       # system-local-login.fprintAuth = true; # FIXME
-      # login.fprintAuth = true;
+      # login.fprintAuth = true; # FIXME
     };
   };
 
@@ -60,7 +60,7 @@
       enable = true; # Support for figerprint reader # FIXME
       tod = {
         enable = true; # Support for figerprint reader
-        driver = pkgs.libfprint-2-tod1-goodix;
+        driver = pkgs.libfprint-2-tod1-goodix; # FIXME
       };
     };
     # fstrim = { # TEST pertinence, should be set by hardware
