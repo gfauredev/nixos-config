@@ -182,11 +182,11 @@
       restore = "trash-restore";
       shred = "shred -vu";
       mv = "mv -uv";
-      mvi = "mv -iv";
+      # mvi = "mv -iv";
       cp = "cp -urv";
-      cpi = "cp -irv";
-      rs = "rsync -Prluvh";
-      rsa = "rsync -Pauvh";
+      # cpi = "cp -irv";
+      # rs = "rsync -Prluvh";
+      # rsa = "rsync -Pauvh";
       # mvdl = "mv $HOME/dl/*";
       # cpdl = "cp $HOME/dl/*";
 
@@ -316,25 +316,28 @@
       notamendam = "not commit --amend -am";
 
       # ONE LETTER ALIASES, difficult to live without
-      ## List
+      ## List & Search
       l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
-      g = "rga-fzf"; # search among all files contents
+      d = "z"; # quicker, better, smarter cd
+      f = "fd"; # quicker, better find
+      t = "term"; # smart terminal window opener
+      # g = "rga-fzf"; # search among all files contents
+
+      ## Open
+      a = "bat --color always"; # quicker, better cat
+      o = "open"; # quicker, better xdg-open
+      p = "$PAGER"; # quicker default pager
+
       ## Edit
       e = "$EDITOR"; # default text editor
       v = "vi"; # text editor
       h = "hx"; # text editor
       m = "mkdir -pv"; # quicker mkdir
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # better cp
-      ## Open
-      a = "bat --color always"; # quicker, better cat
-      o = "open"; # quicker, better xdg-open
-      p = "$PAGER"; # quicker default pager
-      ## Navigate
-      d = "z"; # quicker, better, smarter cd
-      f = "fd"; # quicker, better find
+      ## Multifunction
       b = "br"; # CLI files explorer
-      t = "term"; # smart terminal window opener
-      # x = "xplr"; # CLI files explorer
+      x = "xplr"; # CLI files explorer
+      n = "nnn"; # CLI files explorer
     };
     shellGlobalAliases = {
       AUD = "$HOME/aud";
