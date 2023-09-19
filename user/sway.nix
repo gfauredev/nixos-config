@@ -23,6 +23,7 @@
   wayland.windowManager.sway =
     let
       term = "${pkgs.wezterm}/bin/wezterm start --always-new-process"; # Exec
+      term-name = "wezterm"; # Name
       term-exec = term;
       term-menu = "${term-exec} --class menu"; # Menu term
       # launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
@@ -147,7 +148,7 @@
           "${mod}+eacute" = "workspace 󰵅; exec pgrep -i discord || discord ; exec pgrep -i signal || signal-desktop";
           # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
           # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
-          "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i $TERM_PROGRAM || ${term-exec}";
+          "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term-name} || ${term-exec}";
           "${mod}+p" = "workspace ; exec pgrep -i spotify || spotify";
           "${mod}+i" = "workspace 󰋼; exec pgrep -i btm || ${term-exec} --class btm btm";
           "${mod}+e" = "workspace  …";
