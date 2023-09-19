@@ -113,7 +113,7 @@
           # Launch
           "${mod}+space" = "exec ${launch}"; # General
           "${mod}+Shift+space" = "exec ${launch}"; # TODO setings
-          "${mod}+Shift+m" = "exec ${term-menu} eva";
+          "${mod}+Shift+m" = "exec ${launch}"; # TODO maths
           "${mod}+o" = "exec ${launch}"; # TODO file opening
           "${mod}+Shift+o" = "exec ${launch}"; # TODO advanced file opening
           # Tools
@@ -123,6 +123,7 @@
           "${mod}+Control+p" = "exec wl-color-picker";
           # Browsers
           "${mod}+Control+b" = "exec firefox";
+          "${mod}+Shift+Control+b" = "exec chromium";
           # Move focus around
           "${mod}+${left}" = "focus left";
           "${mod}+${down}" = "focus down";
@@ -145,7 +146,7 @@
           "${mod}+eacute" = "workspace 󰵅; exec pgrep -i discord || discord ; exec pgrep -i signal || signal-desktop";
           # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
           # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
-          "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
+          "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i $TERM_PROGRAM || ${term-exec}";
           "${mod}+p" = "workspace ; exec pgrep -i spotify || spotify";
           "${mod}+i" = "workspace 󰋼; exec pgrep -i btm || ${term-exec} --class btm btm";
           "${mod}+e" = "workspace  …";
