@@ -12,6 +12,14 @@
 
     # Theme & Style
     # nordzy-cursor-theme # TODO set with home manager
+    libsForQt5.qt5ct # TEST if relevant
+    pkgs.libsForQt5.qtstyleplugin-kvantum # TEST if relevant
+    libsForQt5.qt5.qtwayland # TEST if relevant
+    qt6Packages.qt6ct # TEST if relevant
+    pkgs.qt6Packages.qtstyleplugin-kvantum # TEST if relevant
+    qt6.qtwayland # TEST if relevant
+    libsForQt5.systemsettings # TEST if relevant
+    adwaita-qt # TEST if relevant
 
     # Misc
     albert # General purpose launcher FIXME
@@ -169,10 +177,11 @@
   qt = {
     enable = true; # TEST if relevant
     # platformTheme = "gtk"; # TEST if relevant
+    platformTheme = "qtct"; # TEST if relevant
     style = {
       # name = "gtk2";
       # name = "adwaita-dark";
-      name = "kvantum";
+      # name = "kvantum";
       # package = pkgs.libsForQt5.qtstyleplugins; # TEST pertinence
     };
   };
