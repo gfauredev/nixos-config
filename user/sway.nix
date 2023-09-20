@@ -195,7 +195,7 @@ in
         "Control+XF86KbdBrightnessUp" = "exec light -A 1";
         "Control+XF86KbdBrightnessDown" = "exec light -U 1";
 
-        # Audio & media controls FIXME
+        # Media controls
         "XF86AudioPause" = "exec playerctl play-pause";
         "Shift+XF86AudioPause" = "exec playerctl play-pause -p spotify";
         "XF86AudioPlay" = "exec playerctl play-pause";
@@ -204,22 +204,25 @@ in
         "Shift+XF86AudioNext" = "exec playerctl next -p spotify";
         "XF86AudioPrev" = "exec playerctl previous";
         "Shift+XF86AudioPrev" = "exec playerctl previous -p spotify";
-        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-        "Shift+XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -2%";
-        "Control+XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
-        "Control+Shift+XF86AudioLowerVolume" = "exec set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "Shift+XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +2%";
-        "Control+XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +1%";
-        "Control+Shift+XF86AudioRaiseVolume" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        "Shift+XF86AudioMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-        "Shift+XF86AudioMicMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        # Audio controls
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "Shift+XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        "Shift+XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+        "Control+XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+";
+        "Shift+XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+";
+        "Control+Shift+XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+";
+
+        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "Control+XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
+        "Shift+XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-";
+        "Control+Shift+XF86AudioLowerVolume" = "exec set-volume @DEFAULT_AUDIO_SINK@ 1%-";
 
         # Other controls
-        "XF86RFKill" = "exec rfkill toggle 0 1";
-        "XF86AudioMedia" = "exec ${term-menu} sh -c 'neofetch && zsh'";
+        "XF86RFKill" = "exec rfkill toggle 0 1"; # Disable two first interfaces
+        "XF86AudioMedia" = "exec ${term-menu} sh -c 'neofetch && zsh'"; # Misc action
       };
       bars = [
         {
