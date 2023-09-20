@@ -479,13 +479,13 @@ in
       package = pkgs.rofi-wayland;
       cycle = true;
       font = "FiraCode Nerd Font";
-      location = "top";
-      pass = {
-        enable = true;
-        # extraConfig = ''
-        # '';
-        # stores = [];
-      };
+      # location = "top";
+      # pass = { # TODO configure
+      #   enable = true;
+      #   extraConfig = ''
+      #   '';
+      #   stores = [];
+      # };
       plugins = with pkgs; [
         rofi-file-browser
         rofi-calc
@@ -497,8 +497,9 @@ in
       ];
       # shell = "${pkgs.dash}/bin/dash";
       terminal = "${term-exec}";
-      theme = "arthur";
+      theme = ../style/rounded-blue-dark.rasi;
       extraConfig = {
+        # TODO configure better
         # modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
         modi = "combi,drun,filebrowser,calc,emoji,top,window";
       };
