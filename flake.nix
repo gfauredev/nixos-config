@@ -36,6 +36,7 @@
           ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
+          ./system/virtualisation.nix
         ];
       };
       knight = nixpkgs.lib.nixosSystem {
@@ -107,7 +108,6 @@
           # ./user/photo.nix # Photo & Images creation
           ./user/media.nix # Media consuming
           ./user/social.nix # Social interaction
-          # ./user/virtualisation.nix
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -125,7 +125,6 @@
           ./user/social.nix # Social interaction
           ./user/media.nix # Media consuming
           ./user/game.nix # Video gaming
-          ./user/virtualisation.nix
         ];
       };
     };
