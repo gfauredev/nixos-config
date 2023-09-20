@@ -119,8 +119,8 @@ in
         "${mod}+o" = "exec ${launch} 'filebrowser'"; # TODO file opening
         "${mod}+Shift+o" = "exec ${launch} 'file-browser-extended'"; # TODO advanced file opening
         # Tools
-        "${mod}+d" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
-        "${mod}+Shift+d" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
+        "${mod}+Print" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
+        "${mod}+Shift+Print" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
         "${mod}+m" = "exec ${term-menu} pulsemixer";
         "${mod}+Control+p" = "exec wl-color-picker";
         # Browsers

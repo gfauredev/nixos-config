@@ -62,6 +62,8 @@
     };
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
+      audio.enable = true; # Enable modern audio system PipeWire
+      wireplumber.enable = true;
       alsa.enable = true; # Support kernel audio
       jack.enable = true; # Support advanced audio
       pulse.enable = true; # Support previous audio system
@@ -96,6 +98,7 @@
       tldr # short man pages
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
+      pulseaudio-ctl # Controle pulseaudio volumes
       sbctl # Secure Boot Control
       sbsigntool # Secure Boot Sign
       # Graphical TEST relevance
