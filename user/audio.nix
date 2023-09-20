@@ -8,7 +8,6 @@
     qpwgraph # TEST better PipeWire flux visualisation and control
     ardour # Full fledged digital audio workstation
     distrho # Repository of audio plugins
-    easyeffects # Realtime pipewire effects
     drumgizmo # High quality drums sampler
     # audacity # Simple audio editor
     # alsa-scarlett-gui

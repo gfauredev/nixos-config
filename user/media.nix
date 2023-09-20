@@ -29,6 +29,7 @@
 
     # Audio & Music
     playerctl # MPRIS media players control
+    easyeffects # Realtime pipewire effects
     spotify # PROPRIETARY music streaming
 
     # Image & Video # TODO find better image viewer

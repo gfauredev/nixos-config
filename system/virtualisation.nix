@@ -1,8 +1,4 @@
 { inputs, lib, config, pkgs, ... }: {
-  programs = {
-    dconf.enable = true; # Recommended by virtualization wiki
-  };
-
   environment.systemPackages = with pkgs; [
     # TODO use dedicated option when possible
     virt-manager # GUI frontend to libvirtd

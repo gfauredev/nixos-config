@@ -81,6 +81,7 @@
   location.provider = "geoclue2";
 
   programs = {
+    dconf.enable = true; # Recommended by virtualization wiki
     gnupg = {
       agent.enable = true;
       agent.pinentryFlavor = "curses";
