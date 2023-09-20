@@ -16,12 +16,13 @@ in
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
-    wl-color-picker # A color picker
+    hyprpicker # Better color picker
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs to wayland
     swaybg # Display a background
     autotiling # Simulate dwindle layout on sway and i3
+    # wl-color-picker # A color picker
     # onagre # TEST which launcher is better
     # albert # Previous general purpose launcher
     # swayidle # Perform actions if inactive
@@ -119,10 +120,6 @@ in
         "${mod}+o" = "exec ${launch} 'filebrowser'"; # TODO file opening
         "${mod}+Shift+o" = "exec ${launch} 'file-browser-extended'"; # TODO advanced file opening
         # Tools
-        "${mod}+Print" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
-        "${mod}+Shift+Print" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
-        "${mod}+m" = "exec ${term-menu} pulsemixer";
-        "${mod}+Control+p" = "exec wl-color-picker";
         # Browsers
         "${mod}+Control+b" = "exec firefox";
         "${mod}+Shift+Control+b" = "exec chromium";
@@ -149,7 +146,6 @@ in
         # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
         # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
         "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term-name} || ${term-exec}";
-        "${mod}+p" = "workspace ; exec pgrep -i spotify || spotify";
         "${mod}+i" = "workspace 󰋼; exec pgrep -i btm || ${term-exec} --class btm btm";
         "${mod}+e" = "workspace  …";
         "${mod}+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note' || exec ${term-exec} --cwd ~/note/ --class note $EDITOR";
@@ -163,7 +159,7 @@ in
         "${mod}+Shift+eacute" = "move container to workspace 󰵅";
         # "${mod}+Shift+u" = "move container to workspace ";
         "${mod}+Shift+u" = "move container to workspace ";
-        "${mod}+Shift+p" = "move container to workspace ";
+        # "${mod}+Shift+p" = "move container to workspace ";
         "${mod}+Shift+i" = "move container to workspace 󰋼";
         "${mod}+Shift+e" = "move container to workspace  …";
         "${mod}+Shift+n" = "move container to workspace ";
@@ -200,10 +196,22 @@ in
         "Shift+XF86AudioPause" = "exec playerctl play-pause -p spotify";
         "XF86AudioPlay" = "exec playerctl play-pause";
         "Shift+XF86AudioPlay" = "exec playerctl play-pause -p spotify";
+
         "XF86AudioNext" = "exec playerctl next";
         "Shift+XF86AudioNext" = "exec playerctl next -p spotify";
         "XF86AudioPrev" = "exec playerctl previous";
         "Shift+XF86AudioPrev" = "exec playerctl previous -p spotify";
+
+        "Print" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
+        "Shift+Print" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
+        "XF86AudioMedia" = "workspace ; exec pgrep -i spotify || spotify";
+        "${mod}+p" = "workspace ; exec pgrep -i spotify || spotify";
+        "Shift+XF86AudioMedia" = "exec ${term-menu} pulsemixer";
+        "${mod}+m" = "exec ${term-menu} pulsemixer";
+        "Super_L+p" = "exec hyprpicker";
+
+        "XF86RFKill" = "exec rfkill toggle 0 1"; # Disable two first interfaces
+
         # Audio controls
         "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         "Shift+XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
@@ -219,10 +227,6 @@ in
         "Control+XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
         "Shift+XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-";
         "Control+Shift+XF86AudioLowerVolume" = "exec set-volume @DEFAULT_AUDIO_SINK@ 1%-";
-
-        # Other controls
-        "XF86RFKill" = "exec rfkill toggle 0 1"; # Disable two first interfaces
-        "XF86AudioMedia" = "exec ${term-menu} sh -c 'neofetch && zsh'"; # Misc action
       };
       bars = [
         {
