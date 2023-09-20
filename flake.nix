@@ -5,19 +5,19 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05"; # NixOS 23.05
 
-    # lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
+    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
-
     musnix.url = "github:musnix/musnix"; # Realtime audio
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, musnix }@inputs: {
+  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       ninja = nixpkgs.lib.nixosSystem {
@@ -25,7 +25,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           nixos-hardware.nixosModules.framework-12th-gen-intel
-          # lanzaboote.nixosModules.lanzaboote
+          lanzaboote.nixosModules.lanzaboote
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless

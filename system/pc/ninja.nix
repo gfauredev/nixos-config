@@ -32,12 +32,12 @@
     # # Line below is used for Focusrite sound interfaces
     #   options snd_usb_audio vid=0x1235 pid=0x8210 device_setup=1
     # '';
-    # loader.systemd-boot.enable = false; # Disable for secureboot
     bootspec.enable = true;
-    # lanzaboote = {
-    #   enable = true;
-    #   pkiBundle = "/etc/secureboot";
-    # };
+    loader.systemd-boot.enable = false; # Disabled for secureboot
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
   };
 
   networking = {
