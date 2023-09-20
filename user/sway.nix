@@ -208,7 +208,7 @@ in
         "${mod}+Shift+p" = "workspace ; exec pgrep -i spotify || spotify";
         "Shift+XF86AudioMedia" = "exec ${term-menu} pulsemixer";
         "${mod}+m" = "exec ${term-menu} pulsemixer";
-        "${mod}+p" = "exec hyprpicker";
+        "${mod}+p" = "exec hyprpicker --autocopy";
 
         "XF86RFKill" = "exec rfkill toggle 0 1"; # Disable two first interfaces
 
