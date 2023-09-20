@@ -43,6 +43,7 @@
   services = {
     # TODO this may belong to home config
     fwupd.enable = lib.mkDefault true; # Update firmwares
+    thermald.enable = lib.mkDefault true; # Keep cool
     udisks2 = {
       enable = true; # Mount USB without privileges
       settings = { };

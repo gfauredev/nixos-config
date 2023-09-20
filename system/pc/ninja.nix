@@ -67,8 +67,7 @@
     # fstrim = { # TEST pertinence, should be set by hardware
     #   enable = true;
     # };
-    # tlp.enable = true; # To save some power
-    # thermald.enable = true; # Try to keep cool
+    # tlp.enable = true; # Useless, enabled by powerManagement
   };
 
   # system kind (needed for flakes)
