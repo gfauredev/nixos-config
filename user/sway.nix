@@ -340,7 +340,7 @@ in
           spacing = 3;
           exclusive = true;
           fixed-center = false;
-          passthrough = true;
+          # passthrough = true;
 
           battery = {
             states = {
