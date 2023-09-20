@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     # TODO use specific options when possible
     openscad
-    kicad
+    # kicad
     # fritzing
     # brlcad
     # freecad
