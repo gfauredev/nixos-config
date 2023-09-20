@@ -22,6 +22,7 @@ in
     wev # Evaluate inputs to wayland
     swaybg # Display a background
     autotiling # Simulate dwindle layout on sway and i3
+    libqalculate # Calculation library used by rofi
     # wl-color-picker # A color picker
     # onagre # TEST which launcher is better
     # albert # Previous general purpose launcher
@@ -114,7 +115,7 @@ in
         "${mod}+Shift+comma" = "exec systemctl suspend";
 
         # Launch
-        "${mod}+space" = "exec ${launch} 'drun,window'"; # General
+        "${mod}+space" = "exec ${launch} 'drun,window,calc'"; # General
         "${mod}+Shift+space" = "exec ${launch} 'top'"; # TODO setings
         "${mod}+Shift+m" = "exec ${launch} 'calc'"; # TODO maths
         "${mod}+o" = "exec ${launch} 'filebrowser'"; # TODO file opening
