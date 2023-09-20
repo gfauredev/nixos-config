@@ -5,6 +5,4 @@
       realtime = true; # WARNING needs to compile kernel ourselves
     };
   };
-
-  # security.rtkit.enable = true; # TEST relevance
 }
