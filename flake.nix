@@ -55,8 +55,9 @@
           ./system/realtime.nix
           ./system/wireless.nix
           ./system/pc/remap.nix
-          ./system/pc/xorg.nix
+          ./system/pc/xorg.nix # TEST might be useless
           ./system/print-scan.nix
+          ./system/gaming.nix
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {
@@ -65,7 +66,7 @@
         modules = [
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/headless/hydra.nix # Multi-purpose hypervisor : hydra
-          ./system/headless/hypervisor.nix
+          ./system/virtualisation.nix
         ];
       };
       scout = nixpkgs.lib.nixosSystem {
@@ -103,9 +104,9 @@
           ./user/zsh.nix # Shell config
           ./user/gf.nix # My main user
           ./user/sway.nix # sway window manager
-          # ./user/hard.nix # Hardware creation
+          ./user/hard.nix # Hardware creation
           ./user/audio.nix # Audio & Music creation
-          # ./user/photo.nix # Photo & Images creation
+          ./user/photo.nix # Photo & Images creation
           ./user/media.nix # Media consuming
           ./user/social.nix # Social interaction
         ];
@@ -124,7 +125,7 @@
           ./user/photo.nix # Photo & Images creation
           ./user/social.nix # Social interaction
           ./user/media.nix # Media consuming
-          ./user/game.nix # Video gaming
+          ./user/gaming.nix # Video gaming
         ];
       };
     };
