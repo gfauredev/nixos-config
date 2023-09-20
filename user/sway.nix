@@ -6,7 +6,7 @@ let
   term-menu = "${term-exec} --class menu"; # Menu term
   # launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
   launch = "rofi -show-icons -show"; # Launcher # TODO absolute path
-  launch-multi = launch + "combi -combi-modes"; # Launcher # TODO absolute path
+  launch-multi = launch + " combi -combi-modes"; # Launcher # TODO absolute path
   mod = "Mod4"; # Keys used to work with SUPER
   left = "c";
   down = "t";
