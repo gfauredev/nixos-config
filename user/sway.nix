@@ -205,10 +205,10 @@ in
         "Print" = "exec grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
         "Shift+Print" = "exec grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')";
         "XF86AudioMedia" = "workspace ; exec pgrep -i spotify || spotify";
-        "${mod}+p" = "workspace ; exec pgrep -i spotify || spotify";
+        "${mod}+Shift+p" = "workspace ; exec pgrep -i spotify || spotify";
         "Shift+XF86AudioMedia" = "exec ${term-menu} pulsemixer";
         "${mod}+m" = "exec ${term-menu} pulsemixer";
-        "Super_L+p" = "exec hyprpicker";
+        "${mod}+p" = "exec hyprpicker";
 
         "XF86RFKill" = "exec rfkill toggle 0 1"; # Disable two first interfaces
 
