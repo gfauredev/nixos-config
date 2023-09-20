@@ -214,7 +214,6 @@
       # cpdl = "cp $HOME/dl/*";
 
       # Edit, Open, Navigate
-      ex = "$HOME/.local/bin/extract";
       rg = "rg -S -C 2";
       ## Quick access to parent directories
       # "..." = "../../";
