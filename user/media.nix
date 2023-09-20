@@ -28,9 +28,9 @@
     # appflowy
 
     # Audio & Music
-    playerctl # MPRIS media players control
-    easyeffects # Realtime pipewire effects
     spotify # PROPRIETARY music streaming
+    # easyeffects # Realtime pipewire effects
+    # playerctl # MPRIS media players control
 
     # Image & Video # TODO find better image viewer
     swayimg # Image viewer that can integrate with terminals
@@ -53,7 +53,14 @@
 
   # fonts.fontconfig.enable = true; # TODO: test pertinence
 
-  services.mpris-proxy.enable = true;
+  services = {
+    playerctld.enable = true;
+    mpris-proxy.enable = true;
+    easyeffects = {
+      enable = true;
+      preset = lib.readFile ../philonmetal.easyeffects.json;
+    };
+  };
 
   programs = {
     mpv = {
