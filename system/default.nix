@@ -87,7 +87,6 @@
       # librsvg
       # openssl
       # age
-      # libsecret
     ];
   };
 }
