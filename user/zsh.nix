@@ -1,6 +1,27 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages =
     let
+      smart-terminal = pkgs.writeShellScriptBin "term" ''
+        CMD=$SHELL
+        if [ "$#" -eq 0 ]; then OPT="--cwd=$PWD"; fi
+        if [ "$#" -eq 1 ]; then OPT="--cwd=$1"; fi
+        if [ -n "$2" ]; then
+            CMD="$1"
+            OPT="--cwd=$2"
+            # special cases
+            if [[ "$2" == "menu" ]]; then OPT='--class menu'; fi
+        fi
+        wezterm start $OPT $SHELL -ic $CMD & disown
+      '';
+      # TODO make typst-env built into docu dev shell
+      typst-env = pkgs.writeShellScriptBin "typ" ''
+        TYPST_LIB="$HOME/.local/share/typst"
+        ln -s $TYPST_LIB lib.typ
+        term "watchexec -w $1 -w $TYPST_LIB typst compile $1; rm -fv lib.typ" .
+        pdf="$(echo $1|cut -d"." -f1).pdf"
+        echo "Oppening the file $pdf"
+        open $pdf
+      '';
       rsync-backup = pkgs.writeShellScriptBin "rsback" ''
         if [ -n "$1" ]; then
           readonly SOURCE_DIR="$(realpath "$1")"
@@ -109,6 +130,8 @@
       '';
     in
     [
+      smart-terminal # Open a terminal more smartly
+      typst-env # Setup typst writing env TODO move to dev shell
       extract # Extract any compressed file
       rsync-backup # Incremental backup with rsync
       fingerprints-enroll # Enroll fingers for finger print reader

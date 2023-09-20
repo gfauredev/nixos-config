@@ -24,33 +24,9 @@ open () {
   xdg-open "$@" & disown
 }
 
-# Make directory & cd into it
+# Make directory(ies) & cd into it (the first)
 md () {
   mkdir -p "$@" && cd "$1"
-}
-
-term () { # for wezterm
-    CMD=$SHELL
-    if [ "$#" -eq 0 ]; then OPT="--cwd=$PWD"; fi
-    if [ "$#" -eq 1 ]; then OPT="--cwd=$1"; fi
-    if [ -n "$2" ]; then
-        CMD="$1"
-        OPT="--cwd=$2"
-        # special cases
-        if [[ "$2" == "menu" ]]; then OPT='--class menu'; fi
-    fi
-    wezterm start $OPT $SHELL -ic $CMD & disown
-}
-
-# Link Typst lib, Launch Typst watch mode & open pdf file
-typ() {
-  TYPST_LIB="$HOME/.local/share/typst"
-  ln -s $TYPST_LIB lib.typ
-  term "watchexec -w $1 -w $TYPST_LIB typst compile $1; rm -fv lib.typ" .
-  pdf="$(echo $1|cut -d"." -f1).pdf"
-  echo "Oppening the file $pdf"
-  open $pdf
-  # $EDITOR $1
 }
 
 # Create dl dir in user temp dir # TODO this with Nix directly
