@@ -57,6 +57,9 @@
   };
 
   services = {
+    fwupd = {
+      extraRemotes = [ "lvfs-testing" ];
+    };
     fprintd = {
       enable = true; # Support for figerprint reader # FIXME
       tod = {
