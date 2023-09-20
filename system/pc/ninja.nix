@@ -67,7 +67,6 @@
     # fstrim = { # TEST pertinence, should be set by hardware
     #   enable = true;
     # };
-    # tlp.enable = true; # Useless, enabled by powerManagement
   };
 
   # system kind (needed for flakes)
