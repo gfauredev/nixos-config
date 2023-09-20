@@ -105,7 +105,7 @@
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
-      sbsigntool # Secure Boot Sign
+      # sbsigntool # Secure Boot Sign
       # libsecret # Used by apps to store secrets
       # Graphical TEST relevance
       # mesa
