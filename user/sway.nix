@@ -234,12 +234,11 @@ in
       bars = [
         {
           command = "waybar";
-          fonts = {
-            # names = [ "Fira Code" ];
-            names = [ "FiraCode Nerd Font" ];
-            style = "Light";
-            size = 10.0;
-          };
+          # fonts = {
+          #   names = [ "FiraCode Nerd Font" ];
+          #   style = "Light";
+          #   size = 10.0;
+          # };
         }
       ];
       startup = [
