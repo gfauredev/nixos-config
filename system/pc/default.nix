@@ -72,6 +72,7 @@
     udev.packages = [
       pkgs.android-udev-rules # Talk to Android devices
     ];
+    gnome.gnome-keyring.enable = true; # Manage secrets for apps
   };
 
   security.rtkit.enable = true; # TEST relevance
@@ -103,7 +104,7 @@
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
       sbsigntool # Secure Boot Sign
-      libsecret # Used by apps to store secrets
+      # libsecret # Used by apps to store secrets
       # Graphical TEST relevance
       # mesa
       # libsForQt5.breeze-gtk
