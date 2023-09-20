@@ -5,7 +5,8 @@ let
   term-exec = term;
   term-menu = "${term-exec} --class menu"; # Menu term
   # launch = "${pkgs.rofi-wayland}/bin/rofi"; # Launcher
-  launch = "rofi -show combi -show-icons -combi-modes"; # Launcher # TODO absolute path
+  launch = "rofi -show-icons -show"; # Launcher # TODO absolute path
+  launch-multi = launch + "combi -combi-modes"; # Launcher # TODO absolute path
   mod = "Mod4"; # Keys used to work with SUPER
   left = "c";
   down = "t";
@@ -115,11 +116,11 @@ in
         "${mod}+Shift+comma" = "exec systemctl suspend";
 
         # Launch
-        "${mod}+space" = "exec ${launch} 'drun,window,calc'"; # General
-        "${mod}+Shift+space" = "exec ${launch} 'top'"; # TODO setings
-        "${mod}+Shift+m" = "exec ${launch} 'calc'"; # TODO maths
-        "${mod}+o" = "exec ${launch} 'filebrowser'"; # TODO file opening
-        "${mod}+Shift+o" = "exec ${launch} 'file-browser-extended'"; # TODO advanced file opening
+        "${mod}+space" = "exec ${launch-multi} 'drun,window,emoji'"; # Default, general purpose
+        "${mod}+Shift+space" = "exec ${launch-multi} 'top,ssh,run'"; # TODO improve settings
+        "${mod}+m" = "exec ${launch} calc";
+        "${mod}+o" = "exec ${launch} file-browser-extended";
+        "${mod}+Shift+o" = "exec ${launch} file-browser-extended";
         # Tools
         # Browsers
         "${mod}+Control+b" = "exec firefox";
@@ -208,8 +209,9 @@ in
         "XF86AudioMedia" = "workspace ; exec pgrep -i spotify || spotify";
         "${mod}+Shift+p" = "workspace ; exec pgrep -i spotify || spotify";
         "Shift+XF86AudioMedia" = "exec ${term-menu} pulsemixer";
-        "${mod}+m" = "exec ${term-menu} pulsemixer";
+        "${mod}+Shift+m" = "exec ${term-menu} pulsemixer";
         "${mod}+p" = "exec hyprpicker --autocopy";
+        # FIXME try to use F9 on Framework Laptop
 
         "XF86RFKill" = "exec rfkill toggle 0 1"; # Disable two first interfaces
 
@@ -502,7 +504,7 @@ in
       extraConfig = {
         # TODO configure better
         # modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
-        modi = "combi,drun,filebrowser,calc,emoji,top,window";
+        modi = "combi,drun,run,window,file-browser-extended,calc,emoji,top";
       };
     };
     # wofi = {
