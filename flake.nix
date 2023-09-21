@@ -133,23 +133,20 @@
     # Used with `nix develop`
     devShells.x86_64-linux = {
       # doc = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
-      # lua = pkgs.mkShell {
-      #   modules = [ ./shells/lua.nix ];
-      # };
-      # web = pkgs.mkShell {
-      #   modules = [ ./shells/web.nix ];
-      # };
       # python = pkgs.mkShell {
       #   modules = [ ./shells/python.nix ];
       # };
-      # java = pkgs.mkShell {
-      #   modules = [ ./shells/java.nix ];
+      # web = pkgs.mkShell {
+      #   modules = [ ./shells/web.nix ];
       # };
       # rust = pkgs.mkShell {
       #   modules = [ ./shells/rust.nix ];
       # };
       # c = pkgs.mkShell {
       #   modules = [ ./shells/c.nix ];
+      # };
+      # java = pkgs.mkShell {
+      #   modules = [ ./shells/java.nix ];
       # };
       # query = pkgs.mkShell {
       #   modules = [ ./shells/query.nix ];

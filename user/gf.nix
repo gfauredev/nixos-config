@@ -116,6 +116,7 @@
       #################### Languages helpers ####################
       rnix-lsp # Nix LSP
       nodePackages_latest.bash-language-server # Bash LSP
+      lua-language-server # Lua
       ltex-ls # Grammar language server
       nodePackages_latest.prettier # General purpose formatter
       # nodePackages_latest.markdownlint-cli2
