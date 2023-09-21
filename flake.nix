@@ -15,6 +15,12 @@
     };
 
     musnix.url = "github:musnix/musnix"; # Realtime audio
+
+    # Shells
+    # fenix = {
+    #   url = "github:nix-community/fenix"; # Rust flake
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix }@inputs: {
@@ -133,27 +139,77 @@
 
     # Used with `nix develop`
     devShells.x86_64-linux = {
-      # doc = pkgs.mkShell { }; # Tools for documents, like pandoc, latex, typst
-      # python = pkgs.mkShell {
-      #   modules = [ ./shells/python.nix ];
-      # };
-      # web = pkgs.mkShell {
-      #   modules = [ ./shells/web.nix ];
-      # };
-      # rust = pkgs.mkShell {
-      #   modules = [ ./shells/rust.nix ];
-      # };
-      # c = pkgs.mkShell {
-      #   modules = [ ./shells/c.nix ];
-      # };
-      # java = pkgs.mkShell {
-      #   modules = [ ./shells/java.nix ];
-      # };
-      # query = pkgs.mkShell {
-      #   modules = [ ./shells/query.nix ];
-      # };
+      doc = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          typst
+          pandoc
+          tectonic
+        ];
+        shellHook = "exec zsh";
+      };
+      python = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          python
+        ];
+        shellHook = "exec zsh";
+      };
+      web = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          bun # even better JS runtime
+          # deno # better JS runtime
+          # nodejs # JS runtime
+          # php
+          # php82Packages.composer
+          nodePackages_latest.typescript # typescript compiler
+
+          # nodePackages_latest.npm # package manager
+          nodePackages_latest.pnpm # better package manager
+
+          nodePackages_latest.vscode-langservers-extracted # Web
+          nodePackages_latest.typescript-language-server # TS
+          # nodePackages_latest.vue-language-server # Vue LS
+          # nodePackages_latest.intelephense # PHP language server
+          sqls # SQL Language server
+
+          nodePackages_latest.html-minifier
+          # nodePackages_latest.prettier
+        ];
+        shellHook = "exec zsh";
+      };
+      rust = pkgs.mkShell {
+        RUST_BACKTRACE = 1;
+        nativeBuildInputs = with pkgs; [
+          cargo
+          rustc
+          rust-analyzer
+        ];
+        shellHook = "exec zsh";
+      };
+      c = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          zig
+          # clang
+          # gcc
+          gnumake
+          # cmake
+          # glib
+          # glibc
+        ];
+        shellHook = "exec zsh";
+      };
+      java = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          java
+        ];
+        shellHook = "exec zsh";
+      };
+      query = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          sqls # SQL Language server
+        ];
+        shellHook = "exec zsh";
+      };
       # pentest = pkgs.mkShell { };
-      # default = pkgs.mkShell { }; # TEST relevance
     };
   };
 }
