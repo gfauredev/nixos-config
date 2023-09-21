@@ -76,7 +76,7 @@ button {
 
 #workspaces button.urgent {
   background-color: #fdc;
-  animation-name: fgBlink;
+  animation-name: bgBlink;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
