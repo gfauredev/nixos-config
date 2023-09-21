@@ -73,12 +73,9 @@ and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch
 - [ ] FIX `ninja`’s fingerprint reader
 - [ ] `pkgs.runCommand` or another nix-way to run config commands
   - [ ] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
-  - [ ] `~/dl` → `/run/user/$UID/dl` (needs a mkdir)
-  - [ ] `~/usb` → `/run/media/$USER` (needs a mkdir)
 - [ ] Eventually `git pull --recurse-submodules --jobs=8` on this directory & password store at boot to update
 - [ ] Synchronize `.config/libreoffice/4/user/template/$USER` contents (eventually with syncthing)
 - [ ] Improve rofi menu (estethics, fuzzy, frecency …)
-- [x] Test if zoxide works correctly
 
 ## Optional packages
 
@@ -86,8 +83,8 @@ and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch
 > use ephemarally with `nix-shell -p $PACKAGE` or \
 > install with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
-- `chntpw` Edit an installed Windows registry
-- `veracrypt` Multiplatform encryption
+- `chntpw` # Edit an installed Windows registry
+- `veracrypt` # Multiplatform encryption
 
 ## Non-redistributable packages
 
