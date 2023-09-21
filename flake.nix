@@ -104,6 +104,7 @@
           ./user/zsh.nix # Shell config
           ./user/gf.nix # My main user
           ./user/sway.nix # sway window manager
+          # ./user/hyprland.nix # sway window manager
           ./user/hard.nix # Hardware creation
           ./user/audio.nix # Audio & Music creation
           ./user/photo.nix # Photo & Images creation
