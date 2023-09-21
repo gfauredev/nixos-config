@@ -75,7 +75,11 @@ button {
 }
 
 #workspaces button.urgent {
-  background-color: red;
+  background-color: #fdc;
+  animation-name: fgBlink;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #workspaces button.focused {
