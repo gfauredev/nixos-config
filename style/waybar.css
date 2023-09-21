@@ -3,18 +3,23 @@
   padding: 0;
   min-height: 0;
   min-width: 0;
-  background-color: transparent;
 }
 
-widget {
-  color: #def;
+window#waybar, menu label {
+  background-color: transparent;
+  color: #fdc;
   font-size: 16px;
   font-family: "FiraCode Nerd Font", monospace;
 }
 
-#tray, tooltip {
+label, #tray {
   padding: 1px 6px;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+menu {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 6px;
 }
 
 .modules-left label, #tray {
@@ -66,6 +71,7 @@ button, #window {
 button {
   margin-right: 5px;
   padding-right: 4px;
+  color: #fdc;
 }
 
 #workspaces button.urgent {
@@ -73,7 +79,15 @@ button {
 }
 
 #workspaces button.focused {
-  background-color: blue;
+  background-color: #fdc;
+  color: black;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  background: #976;
+  border-color: #976;
 }
 
 
