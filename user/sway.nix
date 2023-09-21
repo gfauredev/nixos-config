@@ -146,25 +146,19 @@ in
         "${mod}+b" = "workspace 󰖟; exec pgrep -i $BROWSER || $BROWSER";
         "${mod}+a" = "workspace ; exec pgrep -i ardour || ardour7";
         "${mod}+eacute" = "workspace 󰵅; exec pgrep -i discord || discord ; exec pgrep -i signal || signal-desktop";
-        # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
-        # "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term} || ${term-exec}";
-        "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term-name} || ${term-exec}";
-        "${mod}+i" = "workspace 󰋼; exec pgrep -i btm || ${term-exec} --class btm btm";
-        "${mod}+e" = "workspace  …";
+        # Other icons :  ,  # TODO real name, workspace manager
+        "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term-name} || ${term-exec}";
+        "${mod}+i" = "workspace 󱕍; exec pgrep -i btm || ${term-exec} --class btm btm";
+        "${mod}+e" = "workspace 󰵆";
         "${mod}+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note' || exec ${term-exec} --cwd ~/note/ --class note $EDITOR";
-        # "${mod}+n" = "workspace ";
-        # "${mod}+Control+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note-tomorrow' || exec ${term-exec} --cwd ~/note/ --class note-tomorrow note tomorrow";
-        # "${mod}+Shift+Control+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note-yesterday' || exec ${term-exec} --cwd ~/note/ --class note-yesterday note yesterday";
         "${mod}+l" = "workspace 󰑴; exec pgrep -i anki || anki";
         # Move focused container to workspaces
         "${mod}+Shift+b" = "move container to workspace 󰖟";
         "${mod}+Shift+a" = "move container to workspace ";
         "${mod}+Shift+eacute" = "move container to workspace 󰵅";
-        # "${mod}+Shift+u" = "move container to workspace ";
-        "${mod}+Shift+u" = "move container to workspace ";
-        # "${mod}+Shift+p" = "move container to workspace ";
-        "${mod}+Shift+i" = "move container to workspace 󰋼";
-        "${mod}+Shift+e" = "move container to workspace  …";
+        "${mod}+Shift+u" = "move container to workspace ";
+        "${mod}+Shift+i" = "move container to workspace 󱕍";
+        "${mod}+Shift+e" = "move container to workspace 󰵆";
         "${mod}+Shift+n" = "move container to workspace ";
         "${mod}+Shift+l" = "move container to workspace 󰑴";
 
@@ -307,9 +301,6 @@ in
       if [ -z "''${DISPLAY}" ]; then
         if [ "''${XDG_VTNR}" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/sway
-        fi
-        if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec startx $HOME/.nix-profile/bin/i3
         fi
       fi
     '';

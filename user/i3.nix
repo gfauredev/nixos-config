@@ -196,9 +196,6 @@
         if [ "''${XDG_VTNR}" -eq 1 ]; then
           exec startx $HOME/.nix-profile/bin/i3
         fi
-        if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec $HOME/.nix-profile/bin/sway
-        fi
       fi
     '';
     i3status-rust = {
