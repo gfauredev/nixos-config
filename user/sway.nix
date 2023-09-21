@@ -149,7 +149,7 @@ in
         # Other icons :  ,  # TODO real name, workspace manager
         "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term-name} || ${term-exec}";
         "${mod}+i" = "workspace 󱕍; exec pgrep -i btm || ${term-exec} --class btm btm";
-        "${mod}+e" = "workspace 󰵆";
+        "${mod}+e" = "workspace ";
         "${mod}+n" = "workspace ; exec swaymsg -t get_tree | grep -i 'app_id.*note' || exec ${term-exec} --cwd ~/note/ --class note $EDITOR";
         "${mod}+l" = "workspace 󰑴; exec pgrep -i anki || anki";
         # Move focused container to workspaces
@@ -158,7 +158,7 @@ in
         "${mod}+Shift+eacute" = "move container to workspace 󰵅";
         "${mod}+Shift+u" = "move container to workspace ";
         "${mod}+Shift+i" = "move container to workspace 󱕍";
-        "${mod}+Shift+e" = "move container to workspace 󰵆";
+        "${mod}+Shift+e" = "move container to workspace ";
         "${mod}+Shift+n" = "move container to workspace ";
         "${mod}+Shift+l" = "move container to workspace 󰑴";
 
