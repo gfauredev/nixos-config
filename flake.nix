@@ -139,22 +139,22 @@
 
     # Used with `nix develop`
     devShells.x86_64-linux = {
-      doc = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      doc = nixpkgs.mkShell {
+        nativeBuildInputs = with nixpkgs; [
           typst
           pandoc
           tectonic
         ];
         shellHook = "exec zsh";
       };
-      python = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      python = nixpkgs.mkShell {
+        nativeBuildInputs = with nixpkgs; [
           python
         ];
         shellHook = "exec zsh";
       };
-      web = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      web = nixpkgs.mkShell {
+        nativeBuildInputs = with nixpkgs; [
           bun # even better JS runtime
           # deno # better JS runtime
           # nodejs # JS runtime
@@ -176,17 +176,17 @@
         ];
         shellHook = "exec zsh";
       };
-      rust = pkgs.mkShell {
+      rust = nixpkgs.mkShell {
         RUST_BACKTRACE = 1;
-        nativeBuildInputs = with pkgs; [
+        nativeBuildInputs = with nixpkgs; [
           cargo
           rustc
           rust-analyzer
         ];
         shellHook = "exec zsh";
       };
-      c = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      c = nixpkgs.mkShell {
+        nativeBuildInputs = with nixpkgs; [
           zig
           # clang
           # gcc
@@ -197,19 +197,19 @@
         ];
         shellHook = "exec zsh";
       };
-      java = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      java = nixpkgs.mkShell {
+        nativeBuildInputs = with nixpkgs; [
           java
         ];
         shellHook = "exec zsh";
       };
-      query = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      query = nixpkgs.mkShell {
+        nativeBuildInputs = with nixpkgs; [
           sqls # SQL Language server
         ];
         shellHook = "exec zsh";
       };
-      # pentest = pkgs.mkShell { };
+      # pentest = nixpkgs.mkShell { };
     };
   };
 }
