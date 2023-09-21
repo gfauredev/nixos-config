@@ -1,13 +1,26 @@
 { inputs, lib, config, pkgs, ... }: {
+  # TODO create a wayland common config along with sway
+  home.packages = with pkgs; [
+    hyprpaper # Wallpaper engine
+    # swww # Dynamic wallpaper
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
     plugins = [ ];
-    settings = { };
-    systemdIntegration = true;
+    settings = {
+      "$mod" = "SUPER";
+
+      bind = [
+        "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start --always-new-process"
+        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes 'drun, window, run, emoji'"
+      ];
+    };
+    # systemdIntegration = true; # TEST relevance
     xwayland.enable = true;
-    extraConfig = ''
-    '';
+    # extraConfig = ''
+    # '';
   };
 
   programs = {
