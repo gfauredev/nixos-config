@@ -142,6 +142,7 @@
       libnotify # Notifications management
       watchexec # Run command when file changes
       hyperfine # benchmark
+      ollama # Run LLMs locally
       # eva # Evaluate math expression
       # dwfv
       # inetutils
