@@ -95,7 +95,7 @@ button {
 }
 
 
-#battery.warning, #cpu.warning, #memory.warning {
+#battery.warning:not(.charging), #cpu.warning, #memory.warning {
   color: red;
   animation-name: fgBlink;
   animation-duration: 0.5s;
@@ -103,7 +103,7 @@ button {
   animation-direction: alternate;
 }
 
-#battery.critical, #temperature.critical, #cpu.critical, #memory.critical {
+#battery.critical:not(.charging), #temperature.critical, #cpu.critical, #memory.critical {
   background-color: red;
   animation-name: bgBlink;
   animation-duration: 0.5s;
@@ -114,7 +114,7 @@ button {
 
 @keyframes fgBlink {
   to {
-    color: rgba(0, 0, 0, 0.8);
+    color: #fdc;
   }
 }
 

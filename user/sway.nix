@@ -345,9 +345,9 @@ in
 
           battery = {
             states = {
-              low = "30";
-              warning = "25";
-              critical = "15";
+              low = 30;
+              warning = 25;
+              critical = 15;
             };
             format = "{icon} {capacity}";
             format-charging = "󱐥 {capacity}";
@@ -369,8 +369,8 @@ in
 
           cpu = {
             states = {
-              warning = "60";
-              critical = "80";
+              warning = 60;
+              critical = 80;
             };
             format = "󰻠 {usage}";
             max-length = 6;
@@ -379,8 +379,8 @@ in
 
           memory = {
             states = {
-              warning = "60";
-              critical = "80";
+              warning = 60;
+              critical = 80;
             };
             format = " {percentage}";
             max-length = 6;
