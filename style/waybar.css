@@ -4,16 +4,15 @@
   min-height: 0;
   min-width: 0;
   background-color: transparent;
-  color: white;
 }
 
-window#waybar {
+widget {
   color: #def;
   font-size: 16px;
   font-family: "FiraCode Nerd Font", monospace;
 }
 
-label, #tray, #tray menu {
+#tray, tooltip {
   padding: 1px 6px;
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -24,6 +23,10 @@ label, #tray, #tray menu {
 
 #battery {
   min-width: 50px;
+}
+
+#battery.low {
+  color: red;
 }
 
 #pulseaudio.muted.source-muted {
@@ -66,29 +69,39 @@ button {
 }
 
 #workspaces button.urgent {
-  background-color: rgba(192, 96, 32, 0.8);
+  background-color: red;
 }
 
 #workspaces button.focused {
-  background-color: rgba(0, 96, 128, 0.8);
+  background-color: blue;
 }
 
-/* Attention required */
-.warning, .critical, #temperature.critical {
-  background-color: #fa8;
-}
 
-.critical {
-  animation-name: whiteBlink;
+#battery.warning, #cpu.warning, #memory.warning {
+  color: red;
+  animation-name: fgBlink;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-/* Animations */
-@keyframes whiteBlink {
+#battery.critical, #temperature.critical, #cpu.critical, #memory.critical {
+  background-color: red;
+  animation-name: bgBlink;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+@keyframes fgBlink {
   to {
-    background-color: #eee;
-    color: #000;
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes bgBlink {
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
   }
 }
