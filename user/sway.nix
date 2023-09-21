@@ -25,7 +25,8 @@ in
     autotiling # Simulate dwindle layout on sway and i3
     libqalculate # Calculation library used by rofi
     # wl-color-picker # A color picker
-    onagre # TEST if launcher is better
+    # pop-launcher # Needed for onagre
+    # onagre # TEST if launcher is better
     # albert # Previous general purpose launcher
     # swayidle # Perform actions if inactive
     # kanshi # TEST if relevant
