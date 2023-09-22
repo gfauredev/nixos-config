@@ -3,9 +3,12 @@
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
+    hyprpaper # Wallpaper engine
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs to wayland
+    # swww # Dynamic wallpaper
+    # eww # Widgets
   ];
 
   programs = {
@@ -16,11 +19,13 @@
         if [ "''${XDG_VTNR}" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/Hyprland
         fi
-        if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec $HOME/.nix-profile/bin/sway
-        fi
       fi
     '';
+    #     if [ "''${XDG_VTNR}" -eq 2 ]; then
+    #       exec $HOME/.nix-profile/bin/sway
+    #     fi
+    #   fi
+    # '';
     swaylock = {
       enable = true;
       settings = {

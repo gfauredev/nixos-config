@@ -95,7 +95,6 @@
           ./home/zsh.nix # Shell config
           ./home/gf.nix # My main user
           ./home/wayland.nix # wayland common
-          ./home/sway.nix # sway window manager
           ./home/hyprland.nix # sway window manager
           ./home/waybar.nix # wayland bar
           ./home/rofi.nix # wayland launcher
@@ -104,6 +103,7 @@
           ./home/photo.nix # Photo & Images creation
           ./home/media.nix # Media consuming
           ./home/social.nix # Social interaction
+          # ./home/sway.nix # sway window manager
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {

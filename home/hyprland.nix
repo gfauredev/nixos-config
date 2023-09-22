@@ -1,12 +1,4 @@
 { inputs, lib, config, pkgs, ... }: {
-  # TODO create a wayland common config along with sway
-  home.packages = with pkgs; [
-    hyprpaper # Wallpaper engine
-    hyprpicker # Wallpaper engine
-    # swww # Dynamic wallpaper
-    # eww # Widgets
-  ];
-
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
