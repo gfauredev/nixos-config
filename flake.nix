@@ -96,7 +96,7 @@
           ./home/gf.nix # My main user
           ./home/wayland.nix # wayland common
           ./home/sway.nix # sway window manager
-          # ./home/hyprland.nix # sway window manager
+          ./home/hyprland.nix # sway window manager
           ./home/waybar.nix # wayland bar
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation

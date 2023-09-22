@@ -6,6 +6,15 @@
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs to wayland
-    # eww
   ];
+
+  programs = {
+    swaylock = {
+      enable = true;
+      settings = {
+        indicator-idle-visible = true;
+      };
+    };
+    rofi.package = pkgs.rofi-wayland; # Set this for wayland
+  };
 }

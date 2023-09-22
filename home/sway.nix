@@ -249,10 +249,6 @@ in
   };
 
   services = {
-    clipman = {
-      enable = true;
-      systemdTarget = "sway-session.target";
-    };
     swayidle = {
       enable = true;
       events = [
@@ -285,12 +281,5 @@ in
         fi
       fi
     '';
-    swaylock = {
-      enable = true;
-      settings = {
-        indicator-idle-visible = true;
-      };
-    };
-    rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };
 }
