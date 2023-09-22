@@ -14,6 +14,5 @@
     # obs-studio
     # obs-studio-plugins.wlrobs
     # obs-wlrobs
-    # webtorrent_desktop
   ];
 }

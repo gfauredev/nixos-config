@@ -2,12 +2,12 @@
   home.packages = with pkgs; [
     # TODO use specific options when possible
     # Text & Document
-    masterpdfeditor4 # PDF editor
     libreoffice-fresh # Office suite
     # libreoffice-qt # Office suite
     # libreoffice # Office suite
     # libreoffice-fresh-unwrapped # Office suite
     # libreoffice-still # Office suite
+    masterpdfeditor4 # PDF editor
     # xournalpp
     # write_stylus
     # markdown-anki-decks
@@ -33,7 +33,6 @@
 
     # Image & Video # TODO find better image viewer
     swayimg # Image viewer that can integrate with terminals
-    # mpv # Video & Audio player
     # sxiv # Image viewer
     # imv # Image viewer
 

@@ -92,7 +92,6 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
-          ./home/zsh.nix # Shell config
           ./home/gf.nix # My main user
           ./home/wayland.nix # wayland common
           ./home/hyprland.nix # sway window manager
@@ -111,11 +110,10 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
-          ./home/zsh.nix # Shell config
           ./home/gf.nix # My main user
           ./home/wayland.nix # wayland common
           ./home/hyprland.nix # sway window manager
-          ./home/i3.nix # i3 window manager
+          ./home/waybar.nix # wayland bar
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
           ./home/video.nix # Video & Animation creation
@@ -123,6 +121,7 @@
           ./home/social.nix # Social interaction
           ./home/media.nix # Media consuming
           ./home/gaming.nix # Video gaming
+          # ./home/i3.nix # i3 window manager
         ];
       };
     };

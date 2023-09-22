@@ -1,10 +1,10 @@
 { inputs, lib, config, pkgs, ... }: {
   packages = with pkgs; [
-    feh # Background display
+    # feh # Background display
     i3lock # Screen locker
     # xclip # TEST pertinence
     # xsel # TEST pertinence
-    xorg.xev # Evaluate input
+    # xorg.xev # Evaluate input
     # xorg.xauth # TEST pertinence
     # xcompmgr
   ];
@@ -155,13 +155,8 @@
         };
         floating.modifier = mod;
         startup = [
-          # { command = "picom"; }
-          # { command = "xcompmgr"; }
-          # { command = "xbanish"; }
           { command = "autotiling --limit 4"; }
-          # { command = "gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'"; } # TEST pertinence
-          { command = "feh --bg-fill $HOME/.wallpaper"; }
-          { command = "albert"; }
+          # { command = "feh --bg-fill $HOME/.wallpaper"; }
           { command = "xset r rate 250 50"; } # TODO with a better way
         ];
         defaultWorkspace = "workspace 7:etc";
@@ -171,7 +166,6 @@
         bars = [
           {
             fonts = {
-              # names = [ "Fira Code" ];
               names = [ "FiraCode Nerd Font" ];
               style = "Light";
               size = 10.0;
@@ -188,16 +182,7 @@
       '';
     };
 
-  # WARNING things below may have to be set outside of home manager
   programs = {
-    zsh.loginExtra = ''
-      # Start window managers at login on firsts TTYs
-      if [ -z "''${DISPLAY}" ]; then
-        if [ "''${XDG_VTNR}" -eq 1 ]; then
-          exec startx $HOME/.nix-profile/bin/i3
-        fi
-      fi
-    '';
     i3status-rust = {
       enable = true;
       bars = {

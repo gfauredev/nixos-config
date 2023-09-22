@@ -8,7 +8,7 @@
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs to wayland
     # swww # Dynamic wallpaper
-    # eww # Widgets
+    # eww # Advanced widgets
   ];
 
   programs = {
@@ -20,6 +20,9 @@
           exec $HOME/.nix-profile/bin/Hyprland
         fi
         if [ "''${XDG_VTNR}" -eq 2 ]; then
+          exec $HOME/.nix-profile/bin/sway
+        fi
+        if [ "''${XDG_VTNR}" -eq 3 ]; then
           exec $HOME/.nix-profile/bin/i3
         fi
       fi

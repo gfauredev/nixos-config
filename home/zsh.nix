@@ -130,6 +130,9 @@
       '';
     in
     [
+      eza # ls replacement (exa fork)
+      # exa # unmaintained ls replacement
+      # Scripts
       smart-terminal # Open a terminal more smartly
       typst-env # Setup typst writing env TODO move to dev shell
       extract # Extract any compressed file
@@ -260,16 +263,12 @@
       clicmap = "klick --auto-connect --tempo-map";
       off = "systemctl poweroff";
       reboot = "systemctl reboot";
-      # off = "veracrypt -t -d && systemctl poweroff"; # WARNING Hacky, TODO do this properly
-      # reboot = "veracrypt -t -d && systemctl reboot"; # WARNING Hacky, TODO do this properly
       ## Tools & Documents
       # hu = "rm -frv public && hugo"; # TODO inside a specific shell
-      # hu = "hugo --cleanDestinationDir";
+      # hu = "hugo --cleanDestinationDir"; # TODO inside a specific shell
       # tec = "pandoc --pdf-engine=tectonic"; # TODO inside a specific shell
-      # wea = "pandoc --pdf-engine=weasyprint";
-      # img = "swayimg"; # TODO with default openner
+      # wea = "pandoc --pdf-engine=weasyprint"; # TODO inside a specific shell
       scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      # mail = "aerc";
 
       # Mounting
       mtp = "mkdir $HOME/mtp; jmtpfs $HOME/mtp";

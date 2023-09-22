@@ -1,6 +1,5 @@
 { inputs, lib, config, pkgs, ... }: {
   nixpkgs = {
-    # overlays = [ ];
     config = {
       allowUnfree = true;
       # Fixes https://github.com/nix-community/home-manager/issues/2942
@@ -19,20 +18,10 @@
       XDG_MUSIC_DIR = "$HOME/audio";
       XDG_PICTURES_DIR = "$HOME/img";
       XDG_VIDEOS_DIR = "$HOME/vid";
-      # XDG_CONFIG_HOME = "$HOME/.config";
 
-      BROWSER = "brave";
-      # TERMINAL = "wezterm"; # TEST relevance
-      # TERM = "wezterm"; # TEST pertinence
+      BROWSER = "brave"; # TODO this directly in nix
 
-      # EDITOR = "nvim"; # TEST pertinence
-      # VISUAL = "nvim"; # TEST pertinence
-
-      # PNPM_HOME = "$HOME/.local/share/pnpm"; TEST pertinence
-      # TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts";
-      # TYPST_ROOT = "$HOME/.local/share/typst";
-
-      NIXOS_OZONE_WL = "1";
+      NIXOS_OZONE_WL = "1"; # Enable wayland support
     };
 
     packages = with pkgs; [
@@ -66,8 +55,6 @@
 
       # TODO some packages below may suit better zsh.nix file
       #################### Monitoring ####################
-      eza # ls replacement (exa fork)
-      # exa # unmaintained ls replacement
       # ripgrep-all
       silver-searcher # better grep
       fd # better find

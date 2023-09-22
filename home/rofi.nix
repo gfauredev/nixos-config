@@ -6,10 +6,8 @@
   programs = {
     rofi = {
       enable = true; # TEST which launcher is better
-      # package = pkgs.rofi-wayland; # Set this for wayland
       cycle = true;
       font = "FiraCode Nerd Font";
-      # location = "top";
       # pass = { # TODO configure
       #   enable = true;
       #   extraConfig = ''
@@ -30,8 +28,6 @@
       terminal = "wezterm start --always-new-process";
       theme = ../style/rounded-blue-dark.rasi;
       extraConfig = {
-        # TODO configure better
-        # modi = "combi,drun,filebrowser,calc,emoji,top,file-browser-extended,keys,window,run,ssh";
         modi = "combi,drun,run,window,file-browser-extended,calc,emoji,top";
       };
     };

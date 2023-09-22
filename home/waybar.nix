@@ -6,8 +6,6 @@
         bottomBar = {
           layer = "top";
           position = "bottom";
-          # height = 0;
-          # width = 0;
 
           modules-left = [
             "battery"
@@ -33,7 +31,6 @@
           spacing = 3;
           exclusive = true;
           fixed-center = false;
-          # passthrough = true;
 
           battery = {
             states = {

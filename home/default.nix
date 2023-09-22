@@ -1,8 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
   imports = [
-    ./zsh.nix
-    ./neovim.nix
-    ./helix.nix
+    ./zsh.nix # Shell
+    ./neovim.nix # Main editor
+    ./helix.nix # Potential future editor
   ];
 
   home.packages = with pkgs; [
@@ -29,7 +29,7 @@
 
   services = {
     dunst = {
-      enable = true; # Notifications
+      enable = true; # Notifications daemon
       settings = {
         global = {
           width = 600;
@@ -42,17 +42,10 @@
           foreground = "#def";
           separator_color = "auto";
           font = "FiraCode Nerd Font";
-          timeout = "10s";
+          timeout = "6s";
         };
       };
     };
-    # kanshi = { # TEST relevance
-    #   enable = true;
-    #   profiles = {};
-    # };
-    # picom = {
-    #   enable = true;
-    # };
   };
 
   programs = {
@@ -111,8 +104,6 @@
 
         return cfg
       '';
-      # require "cfg" -- Global options
-      # require "key" -- Custom remaps
     };
     alacritty = {
       enable = true;
@@ -125,7 +116,6 @@
           };
         };
         font = {
-          # family = "Fira Code";
           family = "FiraCode Nerd Font";
           size = 14;
         };
@@ -138,16 +128,6 @@
       enable = true;
     };
     # browserpass.enable = true; # TEST relevance
-    # autorandr = { # TEST relevance
-    #   enable = true;
-    # };
-    # eww = {
-    #   enable = true;
-    #   configDir = ../eww;
-    # };
-    # eclipse = {
-    #   enable = true;
-    # };
   };
 
   gtk = {
@@ -173,7 +153,7 @@
   };
 
   qt = {
-    # enable = true; # TEST if relevant
+    # enable = true; # FIXME
     # platformTheme = "gtk"; # TEST if relevant
     # platformTheme = "qtct"; # TEST if relevant
     style = {
