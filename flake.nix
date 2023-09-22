@@ -129,6 +129,7 @@
           ./home/wayland.nix # wayland common
           ./home/hyprland.nix # sway window manager
           ./home/waybar.nix # wayland bar
+          ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
           ./home/video.nix # Video & Animation creation
