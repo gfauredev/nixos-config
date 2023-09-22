@@ -8,13 +8,17 @@ lang: en
 
 ### _0._ Build the installer image
 
-Build a custom image with the [official method](https://nixos.org/manual/nixos/unstable/#sec-building-image). \
-(More convenient `nixos-generate -f iso -c installer.nix` might also work)
+Build a custom image with the
+[official method](https://nixos.org/manual/nixos/unstable/#sec-building-image),
+or directly from this flake with
+`nix build .#nixosConfigurations.installer.config.system.build.isoImage`.
+
+(using nixos-generators `nixos-generate -f iso -c installer.nix` might also work)
 
 Place it in a bootable USB stick, for example made with Ventoy, then boot it
 on the machine on which to install NixOS.
 
-Once booted, get this git repo with the command `clone`.
+Once booted, get this git repo with the command `clone` (or `clone-ssh` via SSH).
 
 ### _1._ Partition, encrypt, format disks (according to partitioning/ templates)
 

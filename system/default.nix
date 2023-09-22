@@ -24,7 +24,7 @@
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
     kernel.sysctl = { "kernel.sysrq" = 176; }; # Enable great SysRq magic keys
-    swraid.enable = false; # FIX for some issue with mdadm
+    swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
   };
 
   console.font = "Lat2-Terminus16";
@@ -52,15 +52,15 @@
     nfs.server.enable = lib.mkDefault true;
   };
 
-  programs = {
-    # neovim = { # TEST relevance
-    #   enable = true;
-    #   defaultEditor = true;
-    #   viAlias = true;
-    #   vimAlias = true;
-    # };
-    # git.enable = true; # TEST relevance
-  };
+  # programs = {
+  #   neovim = { # TEST relevance
+  #     enable = true;
+  #     defaultEditor = true;
+  #     viAlias = true;
+  #     vimAlias = true;
+  #   };
+  #   git.enable = true; # TEST relevance
+  # };
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
