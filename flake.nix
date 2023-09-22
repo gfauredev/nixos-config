@@ -91,33 +91,33 @@
         extraSpecialArgs = { inherit inputs; };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
-          ./user # Default, like text editor # TODO auto import default.nix
-          ./user/zsh.nix # Shell config
-          ./user/gf.nix # My main user
-          ./user/sway.nix # sway window manager
-          # ./user/hyprland.nix # sway window manager
-          ./user/hard.nix # Hardware creation
-          ./user/audio.nix # Audio & Music creation
-          ./user/photo.nix # Photo & Images creation
-          ./user/media.nix # Media consuming
-          ./user/social.nix # Social interaction
+          ./home # Default, like text editor # TODO auto import default.nix
+          ./home/zsh.nix # Shell config
+          ./home/gf.nix # My main user
+          ./home/sway.nix # sway window manager
+          # ./home/hyprland.nix # sway window manager
+          ./home/hard.nix # Hardware creation
+          ./home/audio.nix # Audio & Music creation
+          ./home/photo.nix # Photo & Images creation
+          ./home/media.nix # Media consuming
+          ./home/social.nix # Social interaction
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = { inherit inputs; };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
-          ./user # Default, like text editor # TODO auto import default.nix
-          ./user/zsh.nix # Shell config
-          ./user/gf.nix # My main user
-          ./user/i3.nix # i3 window manager
-          ./user/hard.nix # Hardware creation
-          ./user/audio.nix # Audio & Music creation
-          ./user/video.nix # Video & Animation creation
-          ./user/photo.nix # Photo & Images creation
-          ./user/social.nix # Social interaction
-          ./user/media.nix # Media consuming
-          ./user/gaming.nix # Video gaming
+          ./home # Default, like text editor # TODO auto import default.nix
+          ./home/zsh.nix # Shell config
+          ./home/gf.nix # My main user
+          ./home/i3.nix # i3 window manager
+          ./home/hard.nix # Hardware creation
+          ./home/audio.nix # Audio & Music creation
+          ./home/video.nix # Video & Animation creation
+          ./home/photo.nix # Photo & Images creation
+          ./home/social.nix # Social interaction
+          ./home/media.nix # Media consuming
+          ./home/gaming.nix # Video gaming
         ];
       };
     };
