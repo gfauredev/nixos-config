@@ -109,7 +109,7 @@
       # nmap # TEST relevance with below
       rustscan # scan networks
       protonvpn-cli # Free VPN service
-      signal-cli # Secure messaging
+      # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
 

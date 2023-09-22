@@ -19,13 +19,11 @@
         if [ "''${XDG_VTNR}" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/Hyprland
         fi
+        if [ "''${XDG_VTNR}" -eq 2 ]; then
+          exec $HOME/.nix-profile/bin/i3
+        fi
       fi
     '';
-    #     if [ "''${XDG_VTNR}" -eq 2 ]; then
-    #       exec $HOME/.nix-profile/bin/sway
-    #     fi
-    #   fi
-    # '';
     swaylock = {
       enable = true;
       settings = {

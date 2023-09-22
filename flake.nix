@@ -55,7 +55,7 @@
           ./system/realtime.nix
           ./system/wireless.nix
           ./system/pc/remap.nix
-          ./system/pc/xorg.nix # TEST might be useless
+          ./system/pc/xorg.nix
           ./system/print-scan.nix
           ./system/gaming.nix
         ];
@@ -113,6 +113,8 @@
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/zsh.nix # Shell config
           ./home/gf.nix # My main user
+          ./home/wayland.nix # wayland common
+          ./home/hyprland.nix # sway window manager
           ./home/i3.nix # i3 window manager
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
