@@ -145,7 +145,7 @@ in
         # Switch to workspace
         "${mod}+b" = "workspace 󰖟; exec pgrep -i $BROWSER || $BROWSER";
         "${mod}+a" = "workspace ; exec pgrep -i ardour || ardour7";
-        "${mod}+eacute" = "workspace 󰵅; exec pgrep -i discord || discord ; exec pgrep -i element || element-desktop";
+        "${mod}+eacute" = "workspace 󰵅; exec pgrep -i discord || discord"; #; exec pgrep -afi element || element-desktop";
         # Other icons :  ,  # TODO real name, workspace manager
         "${mod}+u" = "workspace ; exec swaymsg -t get_tree | grep -i ${term-name} || ${term-exec}";
         "${mod}+i" = "workspace 󱕍; exec pgrep -i btm || ${term-exec} --class btm btm";
