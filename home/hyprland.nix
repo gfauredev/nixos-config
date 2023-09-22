@@ -7,6 +7,7 @@
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = [
         "eDP-1,2256x1504@60,0x0,1.4"
+        "DP-1,3440x1440@120,0x0,1.25"
         ",preferred,auto,auto"
       ];
 
@@ -22,7 +23,7 @@
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       workspace = [
         "name:cli,monitor:eDP-1,default:true"
-        "name:etc,monitor:DP-1,default:true"
+        "name:cli,monitor:DP-1,default:true"
         "name:etc,monitor:DP-2,default:true"
         "name:etc,monitor:HDMI-A-1,default:true"
         "name:etc,monitor:HDMI-A-2,default:true"
