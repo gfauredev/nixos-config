@@ -12,11 +12,17 @@
     plugins = [ ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
-      monitor = ",preferred,auto,auto";
+      monitor = [
+        "eDP-1,2256x1504@60,0x0,1.5"
+        ",preferred,auto,auto"
+      ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       env = "XCURSOR_SIZE,24";
-      # exec-once = hyprpaper & waybar # TEST relevance
+      exec-once = [
+        # "hyprpaper" TODO
+        "waybar"
+      ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
       input = {
@@ -51,7 +57,11 @@
         "$mod, t, movefocus, d" # Move down
         "$mod, s, movefocus, u" # Move up
         "$mod, r, movefocus, r" # Move right
-        # TODO move windows
+        # Resize windows
+        "$mod CONTROL, c, resizeactive, -10 0" # Move left
+        "$mod CONTROL, t, resizeactive, 0 10" # Move down
+        "$mod CONTROL, s, resizeactive, 0 -10" # Move up
+        "$mod CONTROL, r, resizeactive, 10 0" # Move right
         # Workspaces (Left)
         "$mod, b, workspace, web" # Browsing workspace
         # /!\ Cannot move to Browsing worspace
@@ -86,6 +96,9 @@
         "$mod CONTROL, b, exec, nyxt" # Firefox
         "$mod SHIFT, b, exec, firefox" # Nyxt
         "$mod CONTROL SHIFT, b, exec, chromium" # Chromium
+      ];
+      bindm = [
+        "$mod, mouse:272, movewindow"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
