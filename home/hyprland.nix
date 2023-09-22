@@ -74,9 +74,9 @@
         # Terminal
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start --always-new-process"
         # Launch
-        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes 'window, file-browser-extended, drun, emoji'"
+        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"
-        "$mod SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes 'top, ssh, run'"
+        "$mod SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes top,ssh,run"
         # Misc
         "$mod, q, killactive," # Close window
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
