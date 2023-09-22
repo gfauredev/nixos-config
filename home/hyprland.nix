@@ -9,7 +9,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
-    plugins = [ ];
+    # plugins = [ ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = [
@@ -18,12 +18,21 @@
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
-      env = "XCURSOR_SIZE,24";
       exec-once = [
         "hyprpaper"
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
         # "wezterm-mux-server" # TEST relevance
+      ];
+      env = "XCURSOR_SIZE,24";
+
+      # See https://wiki.hyprland.org/Configuring/Workspace-Rules
+      workspace = [
+        "name:cli,monitor:eDP-1,default:true"
+        "name:etc,monitor:DP-1,default:true"
+        "name:etc,monitor:DP-2,default:true"
+        "name:etc,monitor:HDMI-A-1,default:true"
+        "name:etc,monitor:HDMI-A-2,default:true"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
@@ -59,6 +68,11 @@
         "$mod, t, movefocus, d" # Move down
         "$mod, s, movefocus, u" # Move up
         "$mod, r, movefocus, r" # Move right
+        # Move window
+        "$mod, c, movewindow, l" # Move left
+        "$mod, t, movewindow, d" # Move down
+        "$mod, s, movewindow, u" # Move up
+        "$mod, r, movewindow, r" # Move right
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         # /!\ Cannot move to Browsing worspace
@@ -76,7 +90,7 @@
         "$mod, m, workspace, name:msg" # Messaging workspace
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Workspaces (Special)
-        "$mod, XF86AudioMedia, workspace, name:med" # Media ws
+        ", XF86AudioMedia, workspace, name:med" # Media ws
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
@@ -84,8 +98,11 @@
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"
         "$mod SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes top,ssh,run"
-        # Misc
+        # Manage windows
+        "$mod, f, togglefloating," # Float window
+        "$mod, w, fullscreen," # Fullscreen window
         "$mod, q, killactive," # Close window
+        # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
         "$mod, comma, exec, lock" # Lock screen TODO
         "$mod SHIFT, comma, exec, suspend" # Suspend TODO
@@ -93,6 +110,26 @@
         "$mod CONTROL, b, exec, nyxt" # Firefox
         "$mod SHIFT, b, exec, firefox" # Nyxt
         "$mod CONTROL SHIFT, b, exec, chromium" # Chromium
+        # Audio
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", Shift+XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", Shift+XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        # Media
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", Shift+XF86AudioPause, exec, playerctl play-pause -p spotify"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", Shift+XF86AudioPlay, exec, playerctl play-pause -p spotify"
+
+        ", XF86AudioNext, exec, playerctl next"
+        ", Shift+XF86AudioNext, exec, playerctl next -p spotify"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", Shift+XF86AudioPrev, exec, playerctl previous -p spotify"
+        # Misc
+        ", Print, exec, grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        ", Shift+Print, exec, grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        ", $mod+p, exec, hyprpicker --autocopy"
+        ", XF86RFKill, exec, rfkill toggle 0 1"
       ];
       bindr = [
         # Launch with Super
@@ -104,6 +141,23 @@
         "$mod CONTROL, t, resizeactive, 0 10" # Move down
         "$mod CONTROL, s, resizeactive, 0 -10" # Move up
         "$mod CONTROL, r, resizeactive, 10 0" # Move right
+        # Brightness
+        ",XF86MonBrightnessUp, exec, light -A 5"
+        ",XF86MonBrightnessDown, exec, light -U 5"
+        ",Shift+XF86MonBrightnessUp, exec, light -A 2"
+        ",Shift+XF86MonBrightnessDown, exec, light -U 2"
+        ",Control+XF86MonBrightnessUp, exec, light -A 1"
+        ",Control+XF86MonBrightnessDown, exec, light -U 1"
+        # Audio
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", Control+XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+        ", Shift+XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
+        ", Control+Shift+XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"
+
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", Control+XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+        ", Shift+XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
+        ", Control+Shift+XF86AudioLowerVolume, exec, set-volume @DEFAULT_AUDIO_SINK@ 1%-"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -158,10 +212,8 @@
         # disable_hypr_chan = true;
       };
     };
-    # systemdIntegration = true; # TEST relevance
+    systemdIntegration = true; # TEST relevance
     xwayland.enable = true;
-    # extraConfig = ''
-    # '';
   };
 
   xdg.configFile = {
