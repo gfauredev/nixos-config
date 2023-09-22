@@ -94,8 +94,11 @@
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/zsh.nix # Shell config
           ./home/gf.nix # My main user
+          ./home/wayland.nix # wayland common
           ./home/sway.nix # sway window manager
           # ./home/hyprland.nix # sway window manager
+          ./home/waybar.nix # wayland bar
+          ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
           ./home/photo.nix # Photo & Images creation
