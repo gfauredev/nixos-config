@@ -153,8 +153,13 @@
           shellHook = "exec zsh";
         };
         python = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            python
+          packages = [
+            pkgs.python3.withPackages
+            [
+              numpy
+              pandas
+              (matplotlib.override { enableQt = true; })
+            ]
           ];
           shellHook = "exec zsh";
         };
