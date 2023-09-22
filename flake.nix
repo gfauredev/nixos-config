@@ -57,7 +57,7 @@
           ./system/pc/remap.nix
           ./system/pc/xorg.nix
           ./system/print-scan.nix
-          ./system/gaming.nix
+          ./system/pc/gaming.nix
         ];
       };
       hydra = nixpkgs.lib.nixosSystem {

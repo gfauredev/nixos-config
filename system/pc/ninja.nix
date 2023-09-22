@@ -6,7 +6,7 @@
   hardware = {
     # cpu.intel.updateMicrocode = true; # TEST if set by hardware
     opengl = {
-      enable = true; # TEST relevance
+      enable = true;
       # driSupport = true; # TEST relevance
       # driSupport32Bit = true; # TEST relevance
       extraPackages = with pkgs; [
@@ -43,6 +43,7 @@
   networking = {
     hostName = "ninja";
     firewall = {
+      # Syncthing:22000,21027 / Vagrant:2049
       allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
     };
@@ -74,7 +75,6 @@
 
   # system kind (needed for flakes)
   # nixpkgs.hostPlatform = "x86_64-linux"; # TEST pertinence with flake system
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

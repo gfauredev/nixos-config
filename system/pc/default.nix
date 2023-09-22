@@ -1,23 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
-  nixpkgs = {
-    overlays = [
-      # use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # config = { # TEST pertinence
-    #   allowUnfree = true;
-    # };
-  };
+  # TODO place as much as possible in home configs
 
   i18n = {
-    # TODO place this in home config
     # Locales internatinalization properties
     supportedLocales = [
       "en_US.UTF-8/UTF-8"
@@ -76,7 +60,7 @@
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
   };
 
-  security.rtkit.enable = true; # TEST relevance
+  security.rtkit.enable = true;
 
   location.provider = "geoclue2";
 
@@ -97,7 +81,6 @@
 
   environment = {
     shells = with pkgs; [ zsh ];
-    # pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [
       exfat # fs tool
       ntfs3g # fs tool
@@ -105,70 +88,6 @@
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
-      # sbsigntool # Secure Boot Sign
-      # libsecret # Used by apps to store secrets
-      # Graphical TEST relevance
-      # mesa
-      # libsForQt5.breeze-gtk
-      # libsForQt5.breeze-qt5
-      # libsForQt5.breeze-icons
-      # libsForQt5.qt5.qtwayland
-      # qt6.qtwayland
-      # polkit_gnome
-      # swt
     ];
-    sessionVariables = {
-      # TEST relevance of each
-      # GTK_IM_MODULE = "ibus";
-      # XCURSOR_THEME = "Nordzy-cursors";
-      # WLR_DRM_NO_ATOMIC = "1";
-      # WLR_NO_HARDWARE_CURSORS = "1";
-      # GBM_BACKEND = "nvidia-drm";
-      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      # LIBVA_DRIVER_NAME = "nvidia";
-      # QT_QPA_PLATFORM = "wayland";
-      # QT_QPA_PLATFORM_PLUGIN_PATH = "/run/current-system/sw/lib";
-
-      # QT_IM_MODULE=xim;
-      # GTK_IM_MODULE=xim;
-      # XMODIFIERS="@im=none";
-
-      # SDL_VIDEODRIVER=wayland;
-
-      # GTK_THEME = "Breeze:dark";
-      # CALIBRE_USE_DARK_PALETTE = "1";
-      # ANKI_WAYLAND = "1";
-
-      # EGL_PLATFORM = "wayland";
-      # MOZ_DISABLE_RDD_SANDBOX = "1";
-    };
   };
-
-  # systemd = { # TEST relevance
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = [ "sway-session.target" ];
-  #     wants = [ "sway-session.target" ];
-  #     after = [ "sway-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
-
-  # xdg = { # TEST if relevant
-  #   portal = {
-  #     enable = true;
-  #     wlr.enable = true;
-  #     xdgOpenUsePortal = true;
-  #   };
-  #     mime = {
-  #       enable = true;
-  #     };
-  #     autostart.enable = true;
-  # };
 }

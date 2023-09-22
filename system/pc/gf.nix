@@ -5,7 +5,7 @@
     homeMode = "700";
     createHome = true;
     description = "Guilhem Fauré";
-    shell = pkgs.zsh; # TEST pertinence with home-manager
+    shell = pkgs.zsh;
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -21,8 +21,6 @@
       "adbusers"
       "vboxusers"
       "docker"
-      # "dialout"
-      # "smb"
     ];
   };
 

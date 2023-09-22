@@ -7,10 +7,8 @@
   };
 
   networking = {
-    # useDHCP = lib.mkDefault true; # TEST if needed with hm
     networkmanager = {
-      enable = lib.mkDefault true;
-      # dns = lib.mkDefault "default";
+      enable = lib.mkDefault true; # TODO append dns0
     };
   };
 }
