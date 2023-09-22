@@ -76,22 +76,30 @@
         "$mod SHIFT, r, movewindow, r" # Move right
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
+        "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
         # /!\ Cannot move to Browsing worspace
         "$mod, a, workspace, name:aud" # Audio workspace
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, i, workspace, name:top" # Informations / monItorIng
+        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || wezterm start --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         "$mod, e, workspace, name:etc" # Etc / Extra workspace
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
+        "$mod, l, exec, hyprctl clients | grep -i 'title: zsh' || wezterm start" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
+        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || wezterm start --cwd ~/note --class note $EDITOR" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
+        # "$mod, m, exec, hyprctl clients | grep -i 'title: element' || element-desktop" # Auto open messaging
+        "$mod, m, exec, hyprctl clients | grep -i 'title: discord' || discord" # Auto open main messaging
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
+        ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
+        # ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: easyeffects' || easyeffects" # Auto open main media tweaker
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
@@ -132,10 +140,6 @@
         "$mod, p, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle 0 1"
       ];
-      bindrt = [
-        # Launch with Super
-        "$mod, $mod, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
-      ];
       bindle = [
         # Resize windows
         "$mod CONTROL, c, resizeactive, -10 0" # Move left
@@ -152,7 +156,7 @@
         # Audio
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         "CONTROL, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
+        "SHIFT, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
         "CONTROL SHIFT, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"
 
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
