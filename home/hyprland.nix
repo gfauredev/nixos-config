@@ -104,8 +104,8 @@
         "$mod, q, killactive," # Close window
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
-        "$mod, comma, exec, lock" # Lock screen TODO
-        "$mod SHIFT, comma, exec, suspend" # Suspend TODO
+        "$mod, comma, exec, swaylock -f -i $HOME/.wallpapers/desert.jpg"
+        "$mod SHIFT, comma, exec, systemctl suspend"
         # Web
         "$mod CONTROL, b, exec, nyxt" # Firefox
         "$mod SHIFT, b, exec, firefox" # Nyxt
