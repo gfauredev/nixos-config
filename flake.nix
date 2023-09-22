@@ -190,15 +190,18 @@
           ];
           shellHook = "exec zsh";
         };
-        c = pkgs.mkShell {
+        c = pkgs.stdenv.mkDerivation {
+          name = "C";
           nativeBuildInputs = with pkgs; [
             clang
+            clang-tools
             gcc
+            zig
+            pkg-config
+            cmake
             gnumake
-            # zig
-            # cmake
-            # glib
-            # glibc
+            glib
+            glibc
           ];
           shellHook = "exec zsh";
         };
