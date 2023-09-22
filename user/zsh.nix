@@ -178,7 +178,7 @@
       share = true;
     };
     historySubstringSearch.enable = true;
-    initExtra = builtins.readFile ../zshrc.sh; # TODO this more cleanly
+    initExtra = builtins.readFile ../script+data/zshrc.sh; # TODO this more cleanly
     shellAliases = {
       # sudo
       # su = "sudo su ";

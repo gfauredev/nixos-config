@@ -105,9 +105,9 @@
       extraConfig = ''
         cfg = wezterm.config_builder() -- Base config
 
-        ${builtins.readFile ../wezterm/cfg.lua}
+        ${builtins.readFile ../script+data/wezterm/cfg.lua}
 
-        ${builtins.readFile ../wezterm/key.lua}
+        ${builtins.readFile ../script+data/wezterm/key.lua}
 
         return cfg
       '';

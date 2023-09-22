@@ -57,7 +57,7 @@
     mpris-proxy.enable = true;
     easyeffects = {
       enable = true;
-      preset = lib.readFile ../easyeffectsPreset.json;
+      # preset = lib.readFile ../easyeffectsPreset.json; FIXME
     };
   };
 

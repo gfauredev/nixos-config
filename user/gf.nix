@@ -160,11 +160,11 @@
         target = ".XCompose";
         # TODO find a cleaner way to write this file
         # text = builtins.readFile ../XCompose;
-        source = ../XCompose;
+        source = ../script+data/XCompose;
       };
       wallpapers = {
         target = ".wallpapers";
-        source = ../wallpapers;
+        source = ../script+data/wallpapers;
       };
     };
 
@@ -176,7 +176,7 @@
     pulsemixer = {
       target = "pulsemixer.cfg";
       # TODO find a cleaner way to write this TOML config file
-      source = ../pulsemixer.toml;
+      source = ../script+data/pulsemixer.toml;
     };
   };
 
