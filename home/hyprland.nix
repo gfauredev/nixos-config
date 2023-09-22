@@ -18,6 +18,18 @@
       env = "XCURSOR_SIZE,24";
       # exec-once = hyprpaper & waybar # TEST relevance
 
+      # See https://wiki.hyprland.org/Configuring/Variables
+      input = {
+        kb_layout = "fr,us,fr";
+        kb_variant = "bepo_afnor,,";
+        kb_options = "grp:ctrls_toggle";
+        repeat_delay = "250";
+        repeat_rate = "50";
+        follow_mouse = 1;
+        sensitivity = 0;
+        touchpad.natural_scroll = false;
+      };
+
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout
       dwindle = {
         pseudotile = true; # master switch for pseudotiling TEST
@@ -77,71 +89,51 @@
       ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
-      input = {
-        kb_layout = "fr,us,fr";
-        kb_variant = "bepo_afnor,,";
-        kb_options = "grp:ctrls_toggle";
-        repeat_delay = "250";
-        repeat_rate = "50";
-        follow_mouse = 1;
-        sensitivity = 0;
-        touchpad.natural_scroll = false;
-      };
-
       general = {
         gaps_in = 3;
         gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        col.active_border = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        col.inactive_border = "rgba(595959aa)";
+        # col.active_border = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        # col.inactive_border = "rgba(595959aa)";
       };
 
-      gestures = {
-        workspace_swipe = false;
-      };
+      # See https://wiki.hyprland.org/Configuring/Variables
+      # gestures = {
+      #   workspace_swipe = false;
+      # };
 
-      decoration = {
-        rounding = 10;
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-        };
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        col.shadow = "rgba(1a1a1aee)";
-      };
+      # decoration = {
+      #   rounding = 10;
+      #   blur = {
+      #     enabled = true;
+      #     size = 3;
+      #     passes = 1;
+      #   };
+      #   drop_shadow = true;
+      #   shadow_range = 4;
+      #   shadow_render_power = 3;
+      #   col.shadow = "rgba(1a1a1aee)";
+      # };
 
       # See https://wiki.hyprland.org/Configuring/Animations
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = "windows, 1, 7, myBezier";
-        animation = "windowsOut, 1, 7, default, popin 80%";
-        animation = "border, 1, 10, default";
-        animation = "borderangle, 1, 8, default";
-        animation = "fade, 1, 7, default";
-        animation = "workspaces, 1, 6, default";
-      };
+      # animations = {
+      #   enabled = true;
+      #   bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+      #   animation = [
+      #     "windows, 1, 7, myBezier"
+      #     "windowsOut, 1, 7, default, popin 80%"
+      #     "border, 1, 10, default"
+      #     "borderangle, 1, 8, default"
+      #     "fade, 1, 7, default"
+      #     "workspaces, 1, 6, default"
+      #   ];
+      # };
     };
     # systemdIntegration = true; # TEST relevance
     xwayland.enable = true;
     # extraConfig = ''
     # '';
-  };
-
-  programs = {
-    # TODO set with nix directly, or more cleanly
-    zsh.loginExtra = ''
-      # Start window managers at login on first TTYs
-      if [ -z "''${DISPLAY}" ]; then
-        if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec $HOME/.nix-profile/bin/Hyprland
-        fi
-      fi
-    '';
   };
 }

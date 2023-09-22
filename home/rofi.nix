@@ -26,7 +26,8 @@
         rofi-systemd
       ];
       # shell = "${pkgs.dash}/bin/dash";
-      terminal = "${term-exec}";
+      # terminal = "${term-exec}"; TODO global variables
+      terminal = "wezterm start --always-new-process";
       theme = ../style/rounded-blue-dark.rasi;
       extraConfig = {
         # TODO configure better
