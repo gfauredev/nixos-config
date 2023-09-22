@@ -2,6 +2,7 @@
   # TODO create a wayland common config along with sway
   home.packages = with pkgs; [
     hyprpaper # Wallpaper engine
+    hyprpicker # Wallpaper engine
     # swww # Dynamic wallpaper
     # eww # Widgets
   ];
@@ -133,7 +134,7 @@
       ];
       bindr = [
         # Launch with Super
-        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
+        ", $mod, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
       ];
       binde = [
         # Resize windows
