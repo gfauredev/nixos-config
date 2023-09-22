@@ -44,7 +44,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           nixos-hardware.nixosModules.common-cpu-amd # Hardware related
-          nixos-hardware.nixosModules.common-gpu-nvidia # Hardware related
+          nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
           nixos-hardware.nixosModules.common-pc # Hardware related
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
           musnix.nixosModules.musnix # System improvements for audio

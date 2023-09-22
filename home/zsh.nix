@@ -130,8 +130,8 @@
       '';
     in
     [
-      eza # ls replacement (exa fork)
-      # exa # unmaintained ls replacement
+      pkgs.eza # ls replacement (exa fork)
+      # pkgs.exa # unmaintained ls replacement
       # Scripts
       smart-terminal # Open a terminal more smartly
       typst-env # Setup typst writing env TODO move to dev shell
