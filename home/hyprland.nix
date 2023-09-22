@@ -20,7 +20,7 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       env = "XCURSOR_SIZE,24";
       exec-once = [
-        # "hyprpaper" TODO
+        "hyprpaper"
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
         # "wezterm-mux-server" # TEST relevance
@@ -152,5 +152,12 @@
     xwayland.enable = true;
     # extraConfig = ''
     # '';
+  };
+
+  xdg.configFile = {
+    hyprpaper = {
+      target = "hypr/hyprpaper.conf";
+      source = ../script+data/hyprpaper.conf;
+    };
   };
 }
