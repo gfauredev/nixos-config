@@ -48,6 +48,10 @@ as this current file).
 Then user homes can be installed with `home-manager switch --flake .#USER`,
 and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch`.
 
+### Develop !
+
+A dev environment can be initialised with `nix flake init --template templates#TECHNO`
+
 ## Documentation ressources :
 
 - [NixOS documentation](https://nixos.org/manual/nixos/stable/#sec-building-image)
@@ -64,10 +68,7 @@ and the system can be updated with `sudo nixos-rebuild --flake .#HOSTNAME switch
 
 > Consider TODO, FIXME, TEST and WARNING tags already inside files
 
-- [ ] FIX audio controls
-- [ ] Make Dev shells
-  - [ ] Add useful things from old config
-  - [ ] Port ruff config in dev shell
+- [ ] Installer ISO creation in flake.nix
 - [ ] Study & configure Musnix & realtime audio & audio improvements
 - [ ] hardware & Power consumption improvements
 - [ ] FIX `ninja`’s fingerprint reader

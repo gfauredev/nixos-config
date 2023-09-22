@@ -15,12 +15,6 @@
     };
 
     musnix.url = "github:musnix/musnix"; # Realtime audio
-
-    # Shells
-    # fenix = {
-    #   url = "github:nix-community/fenix"; # Rust flake
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix }@inputs: {
@@ -89,15 +83,6 @@
           ./system/print-scan.nix
         ];
       };
-      # installer = nixpkgs.lib.nixosSystem { # TODO this directly here
-      #   system = "x86_64-linux";
-      #   specialArgs = { inherit inputs; };
-      #   modules = [
-      #     ./system # TODO sub modules of defaults auto import default.nix
-      #     ./system/headless/installer.nix # NixOS installer, ideally through SSH
-      #     ./system/wireless.nix
-      #   ];
-      # };
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
@@ -136,93 +121,5 @@
         ];
       };
     };
-
-    # Used with `nix develop`
-    devShells.x86_64-linux =
-      let
-        system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        doc = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            typst
-            pandoc
-            tectonic
-          ];
-          shellHook = "exec zsh";
-        };
-        python = pkgs.mkShell {
-          packages = [
-            pkgs.python3.withPackages
-            [
-              numpy
-              pandas
-              (matplotlib.override { enableQt = true; })
-            ]
-          ];
-          shellHook = "exec zsh";
-        };
-        web = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            bun # even better JS runtime
-            # deno # better JS runtime
-            # nodejs # JS runtime
-            # php
-            # php82Packages.composer
-            nodePackages_latest.typescript # typescript compiler
-
-            # nodePackages_latest.npm # package manager
-            nodePackages_latest.pnpm # better package manager
-
-            nodePackages_latest.vscode-langservers-extracted # Web
-            nodePackages_latest.typescript-language-server # TS
-            # nodePackages_latest.vue-language-server # Vue LS
-            # nodePackages_latest.intelephense # PHP language server
-            sqls # SQL Language server
-
-            nodePackages_latest.html-minifier
-            # nodePackages_latest.prettier
-          ];
-          shellHook = "exec zsh";
-        };
-        rust = pkgs.mkShell {
-          RUST_BACKTRACE = 1;
-          nativeBuildInputs = with pkgs; [
-            cargo
-            rustc
-            rust-analyzer
-          ];
-          shellHook = "exec zsh";
-        };
-        c = pkgs.stdenv.mkDerivation {
-          name = "C";
-          nativeBuildInputs = with pkgs; [
-            clang
-            clang-tools
-            gcc
-            zig
-            pkg-config
-            cmake
-            gnumake
-            glib
-            glibc
-          ];
-          shellHook = "exec zsh";
-        };
-        java = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            java
-          ];
-          shellHook = "exec zsh";
-        };
-        query = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            sqls # SQL Language server
-          ];
-          shellHook = "exec zsh";
-        };
-        # pentest = pkgs.mkShell { };
-      };
   };
 }
