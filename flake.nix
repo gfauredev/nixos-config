@@ -68,7 +68,7 @@
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/knight.nix # Heavy & strong desktop : knight
           ./system/pc/gf.nix # Main user
-          ./system/realtime.nix
+          # ./system/realtime.nix # FIXME conflicts with Nvidia drivers
           ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/pc/xorg.nix
@@ -118,7 +118,6 @@
           ./home/photo.nix # Photo & Images creation
           ./home/media.nix # Media consuming
           ./home/social.nix # Social interaction
-          # ./home/sway.nix # sway window manager
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -137,7 +136,6 @@
           ./home/social.nix # Social interaction
           ./home/media.nix # Media consuming
           ./home/gaming.nix # Video gaming
-          # ./home/i3.nix # i3 window manager
         ];
       };
     };
