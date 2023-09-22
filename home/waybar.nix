@@ -18,6 +18,8 @@
             "pulseaudio"
           ];
           modules-center = [
+            "hyprland/workspaces"
+            "hyprland/window"
             "sway/workspaces"
             "sway/window"
           ];
@@ -107,18 +109,18 @@
             tooltip = false;
           };
 
-          window = {
-            format = "{title}";
-            max-length = 400;
-            icon = true;
-            tooltip = false;
-          };
-
           workspaces = {
             all-outputs = false;
             format = "{name}";
             disable-scroll = true; # TODO not working
             disable-click = true; # TODO not working
+          };
+
+          window = {
+            format = "{title}";
+            max-length = 400;
+            icon = true;
+            tooltip = false;
           };
 
           tray = {

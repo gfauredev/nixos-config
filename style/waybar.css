@@ -82,7 +82,7 @@ button {
   animation-direction: alternate;
 }
 
-#workspaces button.focused {
+#workspaces button.focused, #workspaces button.active {
   background-color: #fdc;
   color: black;
 }

@@ -13,7 +13,7 @@
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = [
-        "eDP-1,2256x1504@60,0x0,1.5"
+        "eDP-1,2256x1504@60,0x0,1.4"
         ",preferred,auto,auto"
       ];
 
@@ -21,7 +21,9 @@
       env = "XCURSOR_SIZE,24";
       exec-once = [
         # "hyprpaper" TODO
+        "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
+        # "wezterm-mux-server" # TEST relevance
       ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
@@ -57,32 +59,27 @@
         "$mod, t, movefocus, d" # Move down
         "$mod, s, movefocus, u" # Move up
         "$mod, r, movefocus, r" # Move right
-        # Resize windows
-        "$mod CONTROL, c, resizeactive, -10 0" # Move left
-        "$mod CONTROL, t, resizeactive, 0 10" # Move down
-        "$mod CONTROL, s, resizeactive, 0 -10" # Move up
-        "$mod CONTROL, r, resizeactive, 10 0" # Move right
         # Workspaces (Left)
-        "$mod, b, workspace, web" # Browsing workspace
+        "$mod, b, workspace, name:web" # Browsing workspace
         # /!\ Cannot move to Browsing worspace
-        "$mod, a, workspace, aud" # Audio workspace
-        "$mod SHIFT, a, movetoworkspace, aud" # Audio workspace
-        "$mod, i, workspace, top" # Informations / monItorIng
+        "$mod, a, workspace, name:aud" # Audio workspace
+        "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
+        "$mod, i, workspace, name:top" # Informations / monItorIng
         # /!\ Cannot move to Monitoring worspace
-        "$mod, e, workspace, etc" # Etc / Extra workspace
-        "$mod SHIFT, e, movetoworkspace, etc" # Etc / Extra
+        "$mod, e, workspace, name:etc" # Etc / Extra workspace
+        "$mod SHIFT, e, movetoworkspace, name:etc" # Etc / Extra
         # Workspaces (Right)
-        "$mod, l, workspace, cli" # cLi / terminaL workspace
-        "$mod SHIFT, l, movetoworkspace, cli" # cLi / terminaL
-        "$mod, n, workspace, not" # Notetaking workspace
-        "$mod SHIFT, n, movetoworkspace, not" # Notetaking
-        "$mod, m, workspace, msg" # Messaging workspace
-        "$mod SHIFT, m, movetoworkspace, msg" # Messaging
+        "$mod, l, workspace, name:cli" # cLi / terminaL workspace
+        "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
+        "$mod, n, workspace, name:not" # Notetaking workspace
+        "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
+        "$mod, m, workspace, name:msg" # Messaging workspace
+        "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Workspaces (Special)
-        "$mod, XF86AudioMedia, workspace, med" # Media workspace
+        "$mod, XF86AudioMedia, workspace, name:med" # Media ws
         # /!\ Cannot move to Media worspace
-        # Terminal
-        "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start --always-new-process"
+        # Terminal # TODO test multiplexing, features of wezterm
+        "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
         # Launch
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"
@@ -97,52 +94,59 @@
         "$mod SHIFT, b, exec, firefox" # Nyxt
         "$mod CONTROL SHIFT, b, exec, chromium" # Chromium
       ];
+      binde = [
+        # Resize windows
+        "$mod CONTROL, c, resizeactive, -10 0" # Move left
+        "$mod CONTROL, t, resizeactive, 0 10" # Move down
+        "$mod CONTROL, s, resizeactive, 0 -10" # Move up
+        "$mod CONTROL, r, resizeactive, 10 0" # Move right
+      ];
       bindm = [
         "$mod, mouse:272, movewindow"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
       general = {
-        gaps_in = 3;
-        gaps_out = 0;
+        gaps_in = 2;
+        gaps_out = 3;
         border_size = 2;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        # col.active_border = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        # col.inactive_border = "rgba(595959aa)";
+        "col.active_border" = "rgba(ffddccee) rgba(997766ee) 45deg";
+        "col.inactive_border" = "rgba(000000ee)";
       };
 
       # See https://wiki.hyprland.org/Configuring/Variables
-      # gestures = {
-      #   workspace_swipe = false;
-      # };
+      gestures = {
+        workspace_swipe = false;
+      };
 
-      # decoration = {
-      #   rounding = 10;
-      #   blur = {
-      #     enabled = true;
-      #     size = 3;
-      #     passes = 1;
-      #   };
-      #   drop_shadow = true;
-      #   shadow_range = 4;
-      #   shadow_render_power = 3;
-      #   col.shadow = "rgba(1a1a1aee)";
-      # };
+      decoration = {
+        rounding = 5;
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+        };
+        drop_shadow = true;
+        shadow_range = 4;
+        shadow_render_power = 3;
+        "col.shadow" = "rgba(1a1a1aee)";
+      };
 
       # See https://wiki.hyprland.org/Configuring/Animations
-      # animations = {
-      #   enabled = true;
-      #   bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-      #   animation = [
-      #     "windows, 1, 7, myBezier"
-      #     "windowsOut, 1, 7, default, popin 80%"
-      #     "border, 1, 10, default"
-      #     "borderangle, 1, 8, default"
-      #     "fade, 1, 7, default"
-      #     "workspaces, 1, 6, default"
-      #   ];
-      # };
+      animations = {
+        enabled = true;
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        animation = [
+          "windows, 1, 7, myBezier"
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+        ];
+      };
     };
     # systemdIntegration = true; # TEST relevance
     xwayland.enable = true;
