@@ -22,6 +22,7 @@
       BROWSER = "brave"; # TODO this directly in nix
 
       NIXOS_OZONE_WL = "1"; # Enable wayland support
+      WLR_NO_HARDWARE_CURSORS = "1"; # FIX for invisible cursor
     };
 
     packages = with pkgs; [
