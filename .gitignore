@@ -1,2 +1,4 @@
 *ignore*
+*.iso
+*.pdf
 # hardware-configuration.nix
