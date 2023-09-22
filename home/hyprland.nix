@@ -70,10 +70,10 @@
         "$mod, s, movefocus, u" # Move up
         "$mod, r, movefocus, r" # Move right
         # Move window
-        "$mod, c, movewindow, l" # Move left
-        "$mod, t, movewindow, d" # Move down
-        "$mod, s, movewindow, u" # Move up
-        "$mod, r, movewindow, r" # Move right
+        "$mod SHIFT, c, movewindow, l" # Move left
+        "$mod SHIFT, t, movewindow, d" # Move down
+        "$mod SHIFT, s, movewindow, u" # Move up
+        "$mod SHIFT, r, movewindow, r" # Move right
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         # /!\ Cannot move to Browsing worspace
@@ -113,30 +113,30 @@
         "$mod CONTROL SHIFT, b, exec, chromium" # Chromium
         # Audio
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", Shift+XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "SHIFT, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", Shift+XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "SHIFT, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         # Media
         ", XF86AudioPause, exec, playerctl play-pause"
-        ", Shift+XF86AudioPause, exec, playerctl play-pause -p spotify"
+        "SHIFT, XF86AudioPause, exec, playerctl play-pause -p spotify"
         ", XF86AudioPlay, exec, playerctl play-pause"
-        ", Shift+XF86AudioPlay, exec, playerctl play-pause -p spotify"
+        "SHIFT, XF86AudioPlay, exec, playerctl play-pause -p spotify"
 
         ", XF86AudioNext, exec, playerctl next"
-        ", Shift+XF86AudioNext, exec, playerctl next -p spotify"
+        "SHIFT, XF86AudioNext, exec, playerctl next -p spotify"
         ", XF86AudioPrev, exec, playerctl previous"
-        ", Shift+XF86AudioPrev, exec, playerctl previous -p spotify"
+        "SHIFT, XF86AudioPrev, exec, playerctl previous -p spotify"
         # Misc
         ", Print, exec, grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
-        ", Shift+Print, exec, grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
-        ", $mod+p, exec, hyprpicker --autocopy"
+        "SHIFT, Print, exec, grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        "$mod, p, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle 0 1"
       ];
-      bindr = [
+      bindrt = [
         # Launch with Super
-        ", $mod, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
+        "$mod, $mod, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
       ];
-      binde = [
+      bindle = [
         # Resize windows
         "$mod CONTROL, c, resizeactive, -10 0" # Move left
         "$mod CONTROL, t, resizeactive, 0 10" # Move down
@@ -145,20 +145,20 @@
         # Brightness
         ",XF86MonBrightnessUp, exec, light -A 5"
         ",XF86MonBrightnessDown, exec, light -U 5"
-        ",Shift+XF86MonBrightnessUp, exec, light -A 2"
-        ",Shift+XF86MonBrightnessDown, exec, light -U 2"
-        ",Control+XF86MonBrightnessUp, exec, light -A 1"
-        ",Control+XF86MonBrightnessDown, exec, light -U 1"
+        "SHIFT, XF86MonBrightnessUp, exec, light -A 2"
+        "SHIFT, XF86MonBrightnessDown, exec, light -U 2"
+        "CONTROL, XF86MonBrightnessUp, exec, light -A 1"
+        "CONTROL, XF86MonBrightnessDown, exec, light -U 1"
         # Audio
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", Control+XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
-        ", Shift+XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
-        ", Control+Shift+XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"
+        "CONTROL, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
+        "CONTROL SHIFT, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"
 
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", Control+XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
-        ", Shift+XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
-        ", Control+Shift+XF86AudioLowerVolume, exec, set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+        "CONTROL, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+        "SHIFT, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
+        "CONTROL SHIFT, XF86AudioLowerVolume, exec, set-volume @DEFAULT_AUDIO_SINK@ 1%-"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -177,7 +177,7 @@
 
       # See https://wiki.hyprland.org/Configuring/Variables
       gestures = {
-        workspace_swipe = false;
+        workspace_swipe = true;
       };
 
       decoration = {
