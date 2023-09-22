@@ -91,7 +91,10 @@
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
         ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
-        # ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: easyeffects' || easyeffects" # Auto open main media tweaker
+        "SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
+        "SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
+        "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
+        "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"

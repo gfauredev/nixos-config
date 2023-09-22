@@ -5,7 +5,7 @@
     # TODO use specific options when possible
     klick # Metronome
     helvum # TEST better PipeWire flux visualisation and control
-    qpwgraph # TEST better PipeWire flux visualisation and control
+    # qpwgraph # TEST better PipeWire flux visualisation and control
     ardour # Full fledged digital audio workstation
     distrho # Repository of audio plugins
     drumgizmo # High quality drums sampler
