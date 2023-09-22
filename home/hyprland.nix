@@ -6,8 +6,8 @@
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = [
-        "eDP-1,2256x1504@60,0x0,1.4"
-        "DP-1,3440x1440@120,0x0,1.25"
+        "eDP-1,2256x1504,0x0,1.4"
+        "DP-1,3440x1440,0x0,1.25"
         ",preferred,auto,auto"
       ];
 
