@@ -94,6 +94,10 @@
         "$mod SHIFT, b, exec, firefox" # Nyxt
         "$mod CONTROL SHIFT, b, exec, chromium" # Chromium
       ];
+      bindr = [
+        # Launch with Super
+        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
+      ];
       binde = [
         # Resize windows
         "$mod CONTROL, c, resizeactive, -10 0" # Move left
@@ -146,6 +150,12 @@
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
         ];
+      };
+
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        # disable_hypr_chan = true;
       };
     };
     # systemdIntegration = true; # TEST relevance
