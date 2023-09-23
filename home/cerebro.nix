@@ -10,5 +10,5 @@ let
   };
 in
 {
-  environment.systemPackages = [ cerebro ];
+  home.packages = [ cerebro ];
 }
