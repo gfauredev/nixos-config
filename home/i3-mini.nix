@@ -27,7 +27,7 @@
           # kill focused window
           "${mod}+q" = "kill";
           # Exit i3
-          "${mod}+Control+Shift+q" = "exec swaymsg exit";
+          "${mod}+Control+Shift+q" = "exec i3-msg exit";
           # Reload the configuration file
           "${mod}+Shift+q" = "reload";
           "${mod}+Control+q" = "reload";
