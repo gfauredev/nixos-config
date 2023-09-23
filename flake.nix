@@ -118,7 +118,7 @@
           ./home/photo.nix # Photo & Images creation
           ./home/media.nix # Media consuming
           ./home/social.nix # Social interaction
-          ./home/i3-mini.nix # XOrg compatibility wm
+          ./home/i3.nix # XOrg compatibility wm
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -138,7 +138,7 @@
           ./home/social.nix # Social interaction
           ./home/media.nix # Media consuming
           ./home/gaming.nix # Video gaming
-          ./home/i3-mini.nix # XOrg compatibility wm
+          ./home/i3.nix # XOrg compatibility wm
         ];
       };
     };
