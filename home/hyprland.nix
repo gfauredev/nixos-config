@@ -20,10 +20,10 @@
         # "wezterm-mux-server" # TEST relevance
       ];
       env = [
-        "XCURSOR_SIZE,24"
         "NIXOS_OZONE_WL,1" # Enable wayland support for some apps
         "WLR_NO_HARDWARE_CURSORS,1" # FIX for invisible cursor
-        "SDL_VIDEODRIVEVER,wayland" # Force some apps to use Wayland SDL
+        "XCURSOR_SIZE,24"
+        "SDL_VIDEODRIVEVER,wayland" # Force apps to use Wayland SDL
         # "SDL_VIDEODRIVEVER,x11" # Apply it to specific programs instead
       ];
 
