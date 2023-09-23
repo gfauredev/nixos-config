@@ -16,7 +16,7 @@
         "hyprpaper"
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
-        "Cerebro" # General purpose launcher
+        # "Cerebro" # General purpose launcher
         # "wezterm-mux-server" # TEST relevance
       ];
       env = [
@@ -113,7 +113,8 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
         # Launch
-        # Leave $mod + SPACE for Cerebro
+        # Leave $mod + SPACE for Cerebro TODO
+        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
         "$mod SHIFT, SPACE, exec, rofi -show calc"
         "$mod CONTROL SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes top,ssh,run"
