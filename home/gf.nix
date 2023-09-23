@@ -21,12 +21,7 @@
 
       BROWSER = "brave"; # TODO this directly in nix
 
-      NIXOS_OZONE_WL = "1"; # Enable wayland support
-      WLR_NO_HARDWARE_CURSORS = "1"; # FIX for invisible cursor
-
-      GDK_SCALE = "1.25"; # Only for knight
-      # SDL_VIDEODRIVEVER = "x11"; # TEST relevance
-      SDL_VIDEODRIVEVER = "wayland"; # TEST relevance
+      GDK_SCALE = "1.25"; # Only for knight # TEST relevance
     };
 
     packages = with pkgs; [

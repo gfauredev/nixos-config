@@ -17,6 +17,11 @@
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
         # "wezterm-mux-server" # TEST relevance
+        # Env variables (mostly Wayland compat)
+        "export NIXOS_OZONE_WL=1" # Enable wayland support for some apps
+        "export WLR_NO_HARDWARE_CURSORS=1" # FIX for invisible cursor
+        # "export SDL_VIDEODRIVEVER=x11" # Apply it to specific programs instead
+        "export SDL_VIDEODRIVEVER=wayland"
       ];
       env = "XCURSOR_SIZE,24";
 
