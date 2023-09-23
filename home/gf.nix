@@ -20,8 +20,6 @@
       XDG_VIDEOS_DIR = "$HOME/vid";
 
       BROWSER = "brave"; # TODO this directly in nix
-
-      GDK_SCALE = "1.25"; # Only for knight # TEST relevance
     };
 
     packages = with pkgs; [

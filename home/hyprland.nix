@@ -25,6 +25,7 @@
         "XCURSOR_SIZE,24"
         "SDL_VIDEODRIVEVER,wayland" # Force apps to use Wayland SDL
         # "SDL_VIDEODRIVEVER,x11" # Apply it to specific programs instead
+        "GDK_SCALE,1.25" # Scaling on Xwayland
       ];
 
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
@@ -35,6 +36,8 @@
         # "name:etc,monitor:HDMI-A-1,default:true"
         # "name:etc,monitor:HDMI-A-2,default:true"
       ];
+
+      xwayland.force_zero_scaling = true;
 
       # See https://wiki.hyprland.org/Configuring/Variables
       input = {
