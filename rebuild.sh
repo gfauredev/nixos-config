@@ -6,4 +6,4 @@ if [ "$1" != "os" ] || [ "$1" != "system" ]; then
   home-manager --flake .#${USER}@$(hostname) switch
 fi
 
-git push
+# git push
