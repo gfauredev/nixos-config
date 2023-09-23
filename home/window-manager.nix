@@ -13,16 +13,13 @@
 
   programs = {
     # TODO set with nix directly, or more cleanly
+    # Start window managers at login on first TTYs
     zsh.loginExtra = ''
-      # Start window managers at login on first TTYs
       if [ -z "''${DISPLAY}" ]; then
         if [ "''${XDG_VTNR}" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/Hyprland
         fi
         if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec $HOME/.nix-profile/bin/sway
-        fi
-        if [ "''${XDG_VTNR}" -eq 3 ]; then
           exec $HOME/.nix-profile/bin/i3
         fi
       fi

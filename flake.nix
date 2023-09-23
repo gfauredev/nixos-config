@@ -109,8 +109,8 @@
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/gf.nix # My main user
-          ./home/wayland.nix # wayland common
-          ./home/hyprland.nix # sway window manager
+          ./home/window-manager.nix # wayland common
+          ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
@@ -118,6 +118,7 @@
           ./home/photo.nix # Photo & Images creation
           ./home/media.nix # Media consuming
           ./home/social.nix # Social interaction
+          ./home/i3-mini.nix # XOrg compatibility wm
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -126,8 +127,8 @@
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/gf.nix # My main user
-          ./home/wayland.nix # wayland common
-          ./home/hyprland.nix # sway window manager
+          ./home/window-manager.nix # wayland common
+          ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
@@ -137,6 +138,7 @@
           ./home/social.nix # Social interaction
           ./home/media.nix # Media consuming
           ./home/gaming.nix # Video gaming
+          ./home/i3-mini.nix # XOrg compatibility wm
         ];
       };
     };
