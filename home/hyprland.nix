@@ -96,6 +96,12 @@
         "SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
+        ", XF86Tools, workspace, name:med" # Media ws
+        ", XF86Tools, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
+        "SHIFT, XF86Tools, workspace, name:med" # Media ws
+        "SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
+        "CONTROL, XF86Tools, workspace, name:med" # Media ws
+        "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
@@ -121,10 +127,10 @@
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         "SHIFT, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         # Media
-        ", XF86AudioPause, exec, playerctl play-pause"
-        "SHIFT, XF86AudioPause, exec, playerctl play-pause -p spotify"
         ", XF86AudioPlay, exec, playerctl play-pause"
         "SHIFT, XF86AudioPlay, exec, playerctl play-pause -p spotify"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        "SHIFT, XF86AudioPause, exec, playerctl play-pause -p spotify"
 
         ", XF86AudioNext, exec, playerctl next"
         "SHIFT, XF86AudioNext, exec, playerctl next -p spotify"
