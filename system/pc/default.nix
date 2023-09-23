@@ -41,7 +41,7 @@
       layout = "fr,us,fr";
       xkbVariant = "bepo_afnor,,";
       xkbOptions = "grp:ctrls_toggle";
-      dpi = 144; # TODO enable this without xserver
+      dpi = 144; # TODO better
       libinput.enable = true; # Enable touchpad support
       desktopManager.xterm.enable = false;
     };

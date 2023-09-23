@@ -23,6 +23,8 @@
 
       NIXOS_OZONE_WL = "1"; # Enable wayland support
       WLR_NO_HARDWARE_CURSORS = "1"; # FIX for invisible cursor
+
+      GDK_SCALE = "1.25"; # Only for knight
     };
 
     packages = with pkgs; [
