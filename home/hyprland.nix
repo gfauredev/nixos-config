@@ -17,21 +17,22 @@
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
         # "wezterm-mux-server" # TEST relevance
-        # Env variables (mostly Wayland compat)
-        "export NIXOS_OZONE_WL=1" # Enable wayland support for some apps
-        "export WLR_NO_HARDWARE_CURSORS=1" # FIX for invisible cursor
-        # "export SDL_VIDEODRIVEVER=x11" # Apply it to specific programs instead
-        "export SDL_VIDEODRIVEVER=wayland"
       ];
-      env = "XCURSOR_SIZE,24";
+      env = [
+        "XCURSOR_SIZE,24"
+        "NIXOS_OZONE_WL,1" # Enable wayland support for some apps
+        "WLR_NO_HARDWARE_CURSORS,1" # FIX for invisible cursor
+        "SDL_VIDEODRIVEVER,wayland" # Force some apps to use Wayland SDL
+        # "SDL_VIDEODRIVEVER,x11" # Apply it to specific programs instead
+      ];
 
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       workspace = [
         "name:cli,monitor:eDP-1,default:true"
-        "name:cli,monitor:DP-1,default:true"
-        "name:etc,monitor:DP-2,default:true"
-        "name:etc,monitor:HDMI-A-1,default:true"
-        "name:etc,monitor:HDMI-A-2,default:true"
+        "name:etc,monitor:DP-1,default:true"
+        # "name:etc,monitor:DP-2,default:true"
+        # "name:etc,monitor:HDMI-A-1,default:true"
+        # "name:etc,monitor:HDMI-A-2,default:true"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
