@@ -113,9 +113,10 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
         # Launch
-        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
-        "$mod CONTROL, SPACE, exec, rofi -show calc"
-        "$mod SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes top,ssh,run"
+        # Leave $mod + SPACE for Cerebro
+        "$mod CONTROL, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
+        "$mod SHIFT, SPACE, exec, rofi -show calc"
+        "$mod CONTROL SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes top,ssh,run"
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
