@@ -77,7 +77,7 @@ A dev environment can be initialised with `nix flake init --template templates#T
 - [ ] hardware & Power consumption improvements
 - [ ] FIX `ninja`’s fingerprint reader
 - [ ] `pkgs.runCommand` or another nix-way to run config commands
-  - [ ] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
+  - [x] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
 - [ ] Eventually `git pull --recurse-submodules --jobs=8` on this directory & password store at boot to update
 - [ ] Synchronize `.config/libreoffice/4/user/template/$USER` contents (eventually with syncthing)
 - [ ] Improve rofi menu (estethics, fuzzy, frecency …)
