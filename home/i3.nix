@@ -71,7 +71,7 @@
           "${mod}+g" = "layout toggle splith splitv"; # Vert/Hor
           # Toggle between tiling and floating
           "${mod}+f" = "floating toggle";
-          # "${mod}+dead_circumflex" = "focus mode_toggle"; TEST relevance
+          "${mod}+dead_circumflex" = "focus mode_toggle";
           # Move inside windows tree
           "${mod}+z" = "focus parent";
           "${mod}+j" = "focus child";
