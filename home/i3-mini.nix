@@ -20,6 +20,10 @@
         keybindings = {
           # Start a terminal
           "${mod}+Return" = "exec ${term}";
+          # Launch
+          "${mod} + Space" = "exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji";
+          "${mod} + Control + Space" = "exec, rofi -show calc";
+          "${mod} + Shift + Space" = "exec, rofi -show-icons -show combi -combi-modes top,ssh,run";
           # kill focused window
           "${mod}+q" = "kill";
           # Exit i3
