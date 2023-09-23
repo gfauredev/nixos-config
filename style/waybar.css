@@ -17,9 +17,12 @@ label, #tray {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+widget > label, widget > box > label, box > button {
+  border-radius: 10px;
+}
+
 menu {
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 6px;
 }
 
 .modules-left label, #tray {
@@ -65,7 +68,6 @@ menu {
 
 button, #window {
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
 }
 
 button {
