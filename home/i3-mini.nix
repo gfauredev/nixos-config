@@ -118,7 +118,7 @@
         };
         floating.modifier = mod;
         startup = [
-          { command = "autotiling --limit 4"; }
+          # { command = "autotiling --limit 4"; }
           { command = "xset r rate 250 50"; }
         ];
         defaultWorkspace = "workspace 1:a";
