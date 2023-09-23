@@ -160,10 +160,10 @@
   };
 
   xdg.configFile = {
-    cerebro = {
-      target = "Cerebro/config.json";
-      source = ../script+data/cerebro.json;
-    };
+    # cerebro = {
+    #   target = "Cerebro/config.json";
+    #   source = ../script+data/cerebro.json;
+    # };
     pulsemixer = {
       target = "pulsemixer.cfg";
       source = ../script+data/pulsemixer.toml;
