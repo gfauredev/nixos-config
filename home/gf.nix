@@ -160,9 +160,12 @@
   };
 
   xdg.configFile = {
+    cerebro = {
+      target = "Cerebro/config.json";
+      source = ../script+data/cerebro.json;
+    };
     pulsemixer = {
       target = "pulsemixer.cfg";
-      # TODO find a cleaner way to write this TOML config file
       source = ../script+data/pulsemixer.toml;
     };
   };

@@ -16,7 +16,7 @@
         "hyprpaper"
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
-        "cerebro" # General purpose launcher
+        "Cerebro" # General purpose launcher
         # "wezterm-mux-server" # TEST relevance
       ];
       env = [
