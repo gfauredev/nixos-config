@@ -108,7 +108,18 @@
 
           workspaces = {
             all-outputs = false;
-            format = "{name}";
+            # format = "{name}";
+            format = "{icon}";
+            format-icons = {
+              web = "󰖟";
+              aud = "";
+              top = "󱕍";
+              etc = "";
+              cli = "";
+              not = "";
+              msg = "󰵅";
+              med = "";
+            };
             disable-scroll = true; # TODO not working
             disable-click = true; # TODO not working
           };
