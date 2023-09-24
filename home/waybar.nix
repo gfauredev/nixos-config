@@ -119,6 +119,14 @@
               not = "";
               msg = "󰵅";
               med = "";
+              "name:web" = "󰖟";
+              "name:aud" = "";
+              "name:top" = "󱕍";
+              "name:etc" = "";
+              "name:cli" = "";
+              "name:not" = "";
+              "name:msg" = "󰵅";
+              "name:med" = "";
             };
             disable-scroll = true; # TODO not working
             disable-click = true; # TODO not working
