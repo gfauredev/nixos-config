@@ -202,10 +202,13 @@
         rounding = 5;
         blur = {
           enabled = true;
+          # enabled = false; # Save some power
           size = 3;
           passes = 1;
         };
+        blur_new_optimizations = true; # Save some power
         drop_shadow = true;
+        # drop_shadow = false; # Save some power
         shadow_range = 4;
         shadow_render_power = 3;
         "col.shadow" = "rgba(1a1a1aee)";
@@ -228,7 +231,7 @@
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
-        # disable_hypr_chan = true;
+        vfr = true; # Save power
       };
     };
     systemdIntegration = true; # TEST relevance
