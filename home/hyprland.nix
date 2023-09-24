@@ -206,7 +206,7 @@
           size = 3;
           passes = 1;
         };
-        blur_new_optimizations = true; # Save some power
+        # blur_new_optimizations = true; # Save some power
         drop_shadow = true;
         # drop_shadow = false; # Save some power
         shadow_range = 4;
