@@ -7,6 +7,8 @@
     # looking-glass-client
   ];
 
+  networking.firewall.enabled = lib.mkForce false; # FIXME for virt nets
+
   virtualisation = {
     libvirtd = {
       enable = true;
