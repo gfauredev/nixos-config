@@ -106,7 +106,7 @@
             tooltip = false;
           };
 
-          workspaces = {
+          "hyprland/workspaces" = {
             all-outputs = false;
             # format = "{name}";
             format = "{icon}";
@@ -120,8 +120,6 @@
               msg = "󰵅";
               med = "";
             };
-            disable-scroll = true; # TODO not working
-            disable-click = true; # TODO not working
           };
 
           window = {
