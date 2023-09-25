@@ -93,5 +93,6 @@
     extraPackages = with pkgs; [
       luajitPackages.magick
     ];
+    extraLuaPackages = ps: [ ps.magick ];
   };
 }
