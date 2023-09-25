@@ -78,39 +78,39 @@
         "$mod SHIFT, s, movewindow, u" # Move up
         "$mod SHIFT, r, movewindow, r" # Move right
         # Workspaces (Left)
-        "$mod, b, workspace, 1" # Browsing workspace
+        "$mod, b, workspace, name:web" # Browsing workspace
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
         # /!\ Cannot move to Browsing worspace
-        "$mod, a, workspace, 2" # Audio workspace
-        "$mod SHIFT, a, movetoworkspace, 2" # Audio workspace
-        "$mod, i, workspace, 3" # Informations / monItorIng
+        "$mod, a, workspace, name:aud" # Audio workspace
+        "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
+        "$mod, i, workspace, name:top" # Informations / monItorIng
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || wezterm start --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
-        "$mod, e, workspace, 4" # Etc / Extra workspace
-        "$mod SHIFT, e, movetoworkspace, 4" # Etc / Extra
+        "$mod, e, workspace, name:etc" # Etc / Extra workspace
+        "$mod SHIFT, e, movetoworkspace, name:etc" # Etc / Extra
         # Workspaces (Right)
-        "$mod, l, workspace, 5" # cLi / terminaL workspace
+        "$mod, l, workspace, name:cli" # cLi / terminaL workspace
         "$mod, l, exec, hyprctl clients | grep -i 'title: zsh' || wezterm start" # Auto open CLI if not running
-        "$mod SHIFT, l, movetoworkspace, 5" # cLi / terminaL
-        "$mod, n, workspace, 6" # Notetaking workspace
+        "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
+        "$mod, n, workspace, name:not" # Notetaking workspace
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || wezterm start --cwd ~/note --class note $EDITOR" # Auto open text editor
-        "$mod SHIFT, n, movetoworkspace, 6" # Notetaking
-        "$mod, m, workspace, 7" # Messaging workspace
+        "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
+        "$mod, m, workspace, name:msg" # Messaging workspace
         # "$mod, m, exec, hyprctl clients | grep -i 'title: element' || element-desktop" # Auto open messaging
         "$mod, m, exec, hyprctl clients | grep -i 'title: discord' || discord" # Auto open main messaging
-        "$mod SHIFT, m, movetoworkspace, 7" # Messaging
+        "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Workspaces (Special)
-        ", XF86AudioMedia, workspace, 8" # Media ws
+        ", XF86AudioMedia, workspace, name:med" # Media ws
         ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
-        "SHIFT, XF86AudioMedia, workspace, 8" # Media ws
+        "SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
         "SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
-        "CONTROL, XF86AudioMedia, workspace, 8" # Media ws
+        "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
-        ", XF86Tools, workspace, 8" # Media ws
+        ", XF86Tools, workspace, name:med" # Media ws
         ", XF86Tools, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
-        "SHIFT, XF86Tools, workspace, 8" # Media ws
+        "SHIFT, XF86Tools, workspace, name:med" # Media ws
         "SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
-        "CONTROL, XF86Tools, workspace, 8" # Media ws
+        "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
