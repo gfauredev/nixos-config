@@ -38,9 +38,9 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-    postBootCommands = ''
-      umount /boot
-    '';
+    # initrd.postMountCommands = '' 
+    #   umount /boot # FIXME
+    # '';
   };
 
   networking = {
