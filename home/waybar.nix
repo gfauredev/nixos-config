@@ -104,6 +104,7 @@
             };
             max-length = 20;
             tooltip = false;
+            ignored-sinki = [ "Easy Effects Sink" ];
           };
 
           "hyprland/workspaces" = {
