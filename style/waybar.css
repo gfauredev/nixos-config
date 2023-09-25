@@ -29,7 +29,8 @@ menu {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modules-left label, #tray {
+/* .modules-left label, #tray { */
+.modules-left label {
   min-width: 40px;
 }
 
