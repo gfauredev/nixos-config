@@ -1,6 +1,11 @@
 { inputs, lib, config, pkgs, ... }: {
+  nixpkgs.overlays = [
+    inputs.neovim-nightly-overlay.overlays.default
+  ];
+
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-nightly;
     defaultEditor = true;
     extraLuaConfig = ''
       require("tokyonight").setup({
@@ -90,9 +95,9 @@
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
-    extraPackages = with pkgs; [
-      luajitPackages.magick
-    ];
     extraLuaPackages = ps: [ ps.magick ];
+    # extraPackages = with pkgs; [
+    #   luajitPackages.magick
+    # ];
   };
 }

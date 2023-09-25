@@ -14,10 +14,12 @@
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     musnix.url = "github:musnix/musnix"; # Realtime audio
   };
 
-  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix }@inputs: {
+  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       # Laptops

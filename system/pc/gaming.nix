@@ -1,6 +1,5 @@
 { inputs, lib, config, pkgs, ... }: {
   nixpkgs = {
-    # overlays = [ ];
     config = {
       allowUnfree = true;
       # Fixes https://github.com/nix-community/home-manager/issues/2942
