@@ -13,4 +13,5 @@ cfg = {
     top = 2,
     bottom = 2,
   },
+  enable_kitty_graphics = true, -- Kitty graphics protocol
 }

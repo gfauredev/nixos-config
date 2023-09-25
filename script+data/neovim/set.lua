@@ -153,6 +153,6 @@ map("n", "<leader>dh", dapui.hover, opt)
 
 require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
 
-require "hologram".setup { -- Images inside Neovim
-  auto_display = true      -- automatic markdown image display
-}
+-- require "hologram".setup { -- Images inside Neovim
+--   auto_display = true      -- automatic markdown image display
+-- }

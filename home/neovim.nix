@@ -66,6 +66,7 @@
       # Quality of life & Search
       telescope-nvim # Fuzzy search & navigate files & code
       telescope-fzf-native-nvim # Fuzzy search & navigate
+      # telescope-media-files-nvim # Works with hacky ueberzug
       comment-nvim # Comment/Uncomment easily
       gitsigns-nvim # Displays git related indications
       leap-nvim # Navigate efficiently in code
@@ -74,7 +75,8 @@
       neorg # New oganization specific lightweight markup
       orgmode # Organization specific lightweight markup
       markdown-preview-nvim # Markdown previewing
-      hologram-nvim # Image viewer
+      # hologram-nvim # Image viewer
+      image-nvim # Image viewer
       dashboard-nvim # Better start screen
       # zk-nvim # zk integration
       # hop-nvim # Navigate efficiently in code
@@ -86,5 +88,8 @@
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
+    extraPackages = with pkgs; [
+      luajitPackages.magick
+    ];
   };
 }
