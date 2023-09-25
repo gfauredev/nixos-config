@@ -17,7 +17,11 @@ label, #tray {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-widget > label, widget > box > label, box > button {
+widget > label, box > button {
+  border-radius: 10px;
+}
+
+#tray, #window {
   border-radius: 10px;
 }
 
