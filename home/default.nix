@@ -153,9 +153,9 @@
   };
 
   qt = {
-    # enable = true; # FIXME
+    enable = true; # FIXME
     # platformTheme = "gtk"; # TEST if relevant
-    # platformTheme = "qtct"; # TEST if relevant
+    platformTheme = "qtct"; # TEST if relevant
     style = {
       # name = "gtk2";
       # name = "adwaita-dark";
