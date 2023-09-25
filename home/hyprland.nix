@@ -241,6 +241,27 @@
     xwayland.enable = true;
   };
 
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpapers/desertWithPlants.jpg"; }
+    ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = "hyprctl dispatch dpms off";
+        resumeCommand = "hyprctl dispatch dpms on";
+      }
+      {
+        timeout = 330;
+        command = "swaylock -f -i $HOME/.wallpapers/desertWithPlants.jpg";
+      }
+      { timeout = 600; command = "systemctl suspend"; }
+    ];
+    systemdTarget = "hyprland-session.target";
+  };
+
   xdg.configFile = {
     hyprpaper = {
       target = "hypr/hyprpaper.conf";
