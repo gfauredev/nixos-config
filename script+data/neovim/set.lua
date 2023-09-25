@@ -67,12 +67,12 @@ map("n", "<leader>l", "<cmd>TroubleToggle<cr>", opt)
 map("n", "k", "<Plug>(leap-forward-to)", opt)
 map("n", "K", "<Plug>(leap-backward-to)", opt)
 
-require "gitsigns".setup()    -- Gitsigns
+require "gitsigns".setup()   -- Gitsigns
 
-require "dashboard".setup {   -- Dashboard
-  theme = "hyper",            --  theme is doom and hyper default is hyper
-  disable_move = false,       --  default is false disable move keymap for hyper
-  shortcut_type = "letter",   --  shorcut type 'letter' or 'number'
+require "dashboard".setup {  -- Dashboard
+  theme = "hyper",           --  theme is doom and hyper default is hyper
+  disable_move = false,      --  default is false disable move keymap for hyper
+  shortcut_type = "letter",  --  shorcut type 'letter' or 'number'
   change_to_vcs_root = true, -- default is false,for open file in hyper mru. it will change to the root of vcs
   config = {
     week_header = {
@@ -153,6 +153,6 @@ map("n", "<leader>dh", dapui.hover, opt)
 
 require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
 
--- require "hologram".setup { -- Images inside Neovim
---   auto_display = true      -- automatic markdown image display
--- }
+require "hologram".setup { -- Images inside Neovim
+  auto_display = true      -- automatic markdown image display
+}
