@@ -104,7 +104,7 @@
             };
             max-length = 20;
             tooltip = false;
-            ignored-sinki = [ "Easy Effects Sink" ];
+            ignored-sinks = [ "Easy Effects Sink" ];
           };
 
           "hyprland/workspaces" = {
