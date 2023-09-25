@@ -77,6 +77,10 @@
         "$mod SHIFT, t, movewindow, d" # Move down
         "$mod SHIFT, s, movewindow, u" # Move up
         "$mod SHIFT, r, movewindow, r" # Move right
+        "$mod CONTROL SHIFT, c, moveintogroup, l" # Move left
+        "$mod CONTROL SHIFT, t, moveintogroup, d" # Move down
+        "$mod CONTROL SHIFT, s, moveintogroup, u" # Move up
+        "$mod CONTROL SHIFT, r, moveintogroup, r" # Move right
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
