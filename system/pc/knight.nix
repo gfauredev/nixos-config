@@ -39,9 +39,15 @@
     #   "udev.log_level=3"
     #   "nvme.noacpi=1"
     # ];
-    postBootCommands = ''
-      echo GPP0 > /proc/acpi/wakeup
-    '';
+    # postBootCommands = ''
+    #   echo GPP0 > /proc/acpi/wakeup
+    # '';
+  };
+
+  systemd.services.fix-suspend = {
+    description = "Send command to kernel to ignore strange input preventing suspend";
+    script = "echo GPP0 > /proc/acpi/wakeup";
+    wantedBy = [ "multi-user.target" ];
   };
 
   networking = {

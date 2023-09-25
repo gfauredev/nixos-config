@@ -24,6 +24,12 @@
     };
   };
 
+  systemd.services.unmount-boot = {
+    description = "Unmount /boot at boot as useless once booted";
+    script = "umount /boot";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   services = {
     # TODO this may belong to home config
     fwupd.enable = lib.mkDefault true; # Update firmwares
