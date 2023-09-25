@@ -189,11 +189,11 @@
       # See https://wiki.hyprland.org/Configuring/Variables
       general = {
         gaps_in = 1;
-        gaps_out = 3;
-        border_size = 3;
+        gaps_out = 2;
+        border_size = 2;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        "col.active_border" = "rgba(ffddccc5) rgba(997766c5) 45deg";
+        "col.active_border" = "rgba(ffddccc5)";
         "col.inactive_border" = "rgba(00000000)";
       };
 
@@ -211,11 +211,10 @@
           passes = 1;
         };
         # blur_new_optimizations = true; # Save some power
-        drop_shadow = true;
-        # drop_shadow = false; # Save some power
+        drop_shadow = false; # Save some power
         shadow_range = 4;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        "col.shadow" = "rgba(1f1d1ccc)";
       };
 
       # See https://wiki.hyprland.org/Configuring/Animations
