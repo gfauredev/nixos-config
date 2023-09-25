@@ -4,7 +4,7 @@ if [ "$1" = "os" ] || [ "$1" = "system" ] || [ "$1" = "all" ]; then
   sudo umount /boot # Use fstab
 fi
 
-if [ "$1" != "os" ] || [ "$1" != "system" ]; then
+if [ "$1" != "os" ] && [ "$1" != "system" ]; then
   home-manager --flake .#${USER}@$(hostname) switch
 fi
 
