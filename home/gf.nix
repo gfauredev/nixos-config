@@ -79,7 +79,7 @@
       # youtube-dl # download videos from internet
       yt-dlp # download videos from internet
       ventoy-full # create bootable keys
-      # udiskie # auto mount USB
+      udiskie # auto mount USB
       # jot # Notes-graph manager
       # zk # Zettelkasten
 
