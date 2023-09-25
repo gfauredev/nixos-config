@@ -8,7 +8,7 @@
           normal = "block";
           insert = "bar";
           select = "block";
-          replace = "underline";
+          # replace = "underline";
         };
       };
       keys.normal = {
