@@ -31,6 +31,8 @@
 
       # Treesitter (parsing), Colorscheme (theme), Highlighting
       nvim-treesitter.withAllGrammars
+      nvim-treesitter-parsers.markdown
+      nvim-treesitter-parsers.norg
       nvim-treesitter-textobjects
       nvim-treesitter-context
       tokyonight-nvim
