@@ -188,13 +188,13 @@
 
       # See https://wiki.hyprland.org/Configuring/Variables
       general = {
-        gaps_in = 2;
+        gaps_in = 1;
         gaps_out = 3;
-        border_size = 2;
+        border_size = 3;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        "col.active_border" = "rgba(ffddccee) rgba(997766ee) 45deg";
-        "col.inactive_border" = "rgba(000000ee)";
+        "col.active_border" = "rgba(ffddccc5) rgba(997766c5) 45deg";
+        "col.inactive_border" = "rgba(00000000)";
       };
 
       # See https://wiki.hyprland.org/Configuring/Variables
