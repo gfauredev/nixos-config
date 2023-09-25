@@ -18,11 +18,13 @@ label, #tray {
 }
 
 widget > label, box > button {
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  border-radius: 8px;
 }
 
 #tray, #window {
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  border-radius: 8px;
 }
 
 menu {

@@ -203,7 +203,7 @@
       };
 
       decoration = {
-        rounding = 5;
+        rounding = 8;
         blur = {
           enabled = true;
           # enabled = false; # Save some power
