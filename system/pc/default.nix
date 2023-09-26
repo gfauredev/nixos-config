@@ -88,6 +88,7 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      iw # Control network cards
       exfat # fs tool
       ntfs3g # fs tool
       tldr # short man pages
