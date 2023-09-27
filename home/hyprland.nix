@@ -106,6 +106,7 @@
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || wezterm start --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         "$mod, e, workspace, name:etc" # Etc / Extra workspace
+        "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
