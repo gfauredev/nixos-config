@@ -100,6 +100,7 @@
       # curl # Mythic HTTP client TEST xh only
 
       #################### Languages helpers ####################
+      typst # Document processor
       rnix-lsp # Nix LSP
       nodePackages_latest.bash-language-server # Bash LSP
       lua-language-server # Lua
