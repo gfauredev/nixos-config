@@ -29,6 +29,9 @@ md () {
   mkdir -p "$@" && cd "$1"
 }
 
+# Create temporary dirs
+[ -d /run/user/$UID/dl ] || mkdir -m 700 /run/user/$UID/dl
+[ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$UID/dl $XDG_DOWNLOAD_DIR
 # Delete some annoying dirs
 [ -d $HOME/Downloads ] && rmdir $HOME/Downloads
 [ -d $HOME/intelephense ] && rmdir $HOME/intelephense
