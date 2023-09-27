@@ -39,7 +39,7 @@
           ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
-          ./system/virtualisation.nix
+          ./system/virtualization.nix
         ];
       };
       scout = nixpkgs.lib.nixosSystem {
@@ -83,10 +83,10 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./system # TODO sub modules of defaults auto import default.nix
+          ./system
           ./system/headless # A server
-          ./system/headless/cerberus.nix # Multi-purpose hypervisor : cerberus
-          ./system/virtualisation.nix
+          ./system/headless/cerberus.nix # Multi-purpose : cerberus
+          ./system/virtualization.nix
         ];
       };
       # Misc
@@ -96,7 +96,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ./system # TODO sub modules of defaults auto import default.nix
+          ./system
           ./system/installer.nix # Bootable ISO used to install NixOS
           ./system/wireless.nix
         ];
