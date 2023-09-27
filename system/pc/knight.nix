@@ -44,10 +44,17 @@
     # '';
   };
 
-  systemd.services.fix-suspend = {
-    description = "Send command to kernel to ignore strange input preventing suspend";
-    script = "echo GPP0 > /proc/acpi/wakeup";
-    wantedBy = [ "multi-user.target" ];
+  systemd.services = {
+    fix-suspend = {
+      description = "Send command to kernel to ignore strange input preventing suspend";
+      script = "echo GPP0 > /proc/acpi/wakeup";
+      wantedBy = [ "multi-user.target" ];
+    };
+    wireless-WoL = {
+      description = "Enable wireless wake-on-lan";
+      script = "${pkgs.iw}/bin/iw phy0 wowlan enable magic-packet";
+      wantedBy = [ "multi-user.target" ];
+    };
   };
 
   networking = {

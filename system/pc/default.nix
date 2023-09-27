@@ -26,7 +26,7 @@
 
   systemd.services.unmount-boot = {
     description = "Unmount /boot at boot as useless once booted";
-    script = "umount /boot";
+    script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
     wantedBy = [ "multi-user.target" ];
   };
 
