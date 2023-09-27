@@ -49,7 +49,7 @@
     winetricks # Execute Window$ programs
   ];
 
-  # fonts.fontconfig.enable = true; # TODO: test pertinence
+  fonts.fontconfig.enable = true;
 
   services = {
     playerctld.enable = true;
