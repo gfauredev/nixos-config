@@ -77,10 +77,21 @@
         "$mod SHIFT, t, movewindow, d" # Move down
         "$mod SHIFT, s, movewindow, u" # Move up
         "$mod SHIFT, r, movewindow, r" # Move right
-        "$mod CONTROL SHIFT, c, moveintogroup, l" # Move left
-        "$mod CONTROL SHIFT, t, moveintogroup, d" # Move down
-        "$mod CONTROL SHIFT, s, moveintogroup, u" # Move up
-        "$mod CONTROL SHIFT, r, moveintogroup, r" # Move right
+        # "$mod SHIFT, c, movewindoworgroup, l" # Move left
+        # "$mod SHIFT, t, movewindoworgroup, d" # Move down
+        # "$mod SHIFT, s, movewindoworgroup, u" # Move up
+        # "$mod SHIFT, r, movewindoworgroup, r" # Move right
+        # "$mod CONTROL SHIFT, c, moveintogroup, l" # Move left
+        # "$mod CONTROL SHIFT, t, moveintogroup, d" # Move down
+        # "$mod CONTROL SHIFT, s, moveintogroup, u" # Move up
+        # "$mod CONTROL SHIFT, r, moveintogroup, r" # Move right
+        "$mod CONTROL SHIFT, c, swapwindow, l" # Move left
+        "$mod CONTROL SHIFT, t, swapwindow, d" # Move down
+        "$mod CONTROL SHIFT, s, swapwindow, u" # Move up
+        "$mod CONTROL SHIFT, r, swapwindow, r" # Move right
+        "$mod, g, togglegroup," # Toggle group
+        "$mod CONTROL, g, changegroupactive, f" # Toggle group
+        "$mod SHIFT, g, changegroupactive, b" # Toggle group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
