@@ -74,9 +74,13 @@
         "$mod, r, movefocus, r" # Move right
         # Move window
         "$mod SHIFT, c, movewindow, l" # Move left
+        "$mod SHIFT, c, moveactive, -10 0" # Move floating left
         "$mod SHIFT, t, movewindow, d" # Move down
+        "$mod SHIFT, t, moveactive, 0 10" # Move floating down
         "$mod SHIFT, s, movewindow, u" # Move up
+        "$mod SHIFT, s, moveactive, 0 -10" # Move floating up
         "$mod SHIFT, r, movewindow, r" # Move right
+        "$mod SHIFT, r, moveactive, 10 0" # Move floating right
         # "$mod SHIFT, c, movewindoworgroup, l" # Move left
         # "$mod SHIFT, t, movewindoworgroup, d" # Move down
         # "$mod SHIFT, s, movewindoworgroup, u" # Move up
@@ -105,7 +109,7 @@
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients | grep -i 'title: zsh' || wezterm start" # Auto open CLI if not running
+        "$mod, l, exec, hyprctl clients -j | jq '.[]|([.class,.workspace.name] == [\"org.wezfurlong.wezterm\",\"cli\"])' | grep true || wezterm start" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || wezterm start --cwd ~/note --class note $EDITOR" # Auto open text editor

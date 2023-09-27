@@ -52,6 +52,7 @@
       # noto-fonts-emoji # Emojies
 
       # TODO some packages below may suit better zsh.nix file
+      # TODO some packages below may suit better default.nix file
       #################### Monitoring ####################
       # ripgrep-all
       silver-searcher # better grep
@@ -128,6 +129,7 @@
       watchexec # Run command when file changes
       hyperfine # benchmark
       ollama # Run LLMs locally
+      jq # JSON filter
       # eva # Evaluate math expression
       # dwfv
       # inetutils
