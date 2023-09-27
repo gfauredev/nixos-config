@@ -66,7 +66,10 @@
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    # apparmor.enable = lib.mkDefault true; # TEST pertinence
+  };
 
   location.provider = "geoclue2";
 
@@ -81,7 +84,12 @@
     zsh.enable = true;
     firejail = {
       enable = true; # TEST pertinence
-      wrappedBinaries = { };
+      wrappedBinaries = {
+        brave = {
+          executable = "${pkgs.brave}/bin/brave";
+          profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
+        };
+      };
     };
   };
 
