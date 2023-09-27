@@ -206,6 +206,8 @@
         cursor_inactive_timeout = 1;
         "col.active_border" = "rgba(ffddccc5)";
         "col.inactive_border" = "rgba(00000000)";
+        "col.group_border_active" = "rgba(ffddccc5)";
+        "col.group_border" = "rgba(00000000)";
       };
 
       # See https://wiki.hyprland.org/Configuring/Variables
