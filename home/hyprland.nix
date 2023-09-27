@@ -6,9 +6,9 @@
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = [
-        "eDP-1,2256x1504,0x0,1.4"
-        "DP-1,3440x1440,0x0,1.25"
-        ",preferred,auto,auto"
+        "eDP-1,2256x1504,0x0,1.4" # ninja
+        "DP-1,3440x1440,0x0,1.25" # knight
+        ",preferred,auto,1,mirror,eDP-1" # External ninja
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords

@@ -11,28 +11,21 @@
     # eww # Advanced widgets
   ];
 
-  services = {
-    kanshi = {
-      enable = true;
-      profiles = {
-        # undocked = {
-        #   outputs = [
-        #     {
-        #       criteria = "eDP-1";
-        #     }
-        #   ];
-        # };
-        # docked = {
-        #   outputs = [
-        #     {
-        #       criteria = "eDP-1";
-        #     }
-        #   ];
-        # };
-      };
-      systemdTarget = "hyprland-session.target";
-    };
-  };
+  # services = {
+  #   kanshi = {
+  #     enable = true;
+  #     profiles = {
+  #       docked = {
+  #         outputs = [
+  #           {
+  #             criteria = "eDP-1";
+  #           }
+  #         ];
+  #       };
+  #     };
+  #     systemdTarget = "hyprland-session.target";
+  #   };
+  # };
 
   programs = {
     # TODO set with nix directly, or more cleanly
