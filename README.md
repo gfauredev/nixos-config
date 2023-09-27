@@ -91,6 +91,13 @@ A dev environment can be initialised with `nix flake init --template templates#T
 - `chntpw` # Edit an installed Windows registry
 - `veracrypt` # Multiplatform encryption
 
+# Optional flakes
+
+> These are packages I don’t want in my config but will eventually \
+> install with `nix profile install URL`
+
+- `github:Wazzaps/fingerpaint` # Use touchpad to draw
+
 ## Non-redistributable packages
 
 > These are packages that require downloading assets from various places \
