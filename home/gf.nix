@@ -26,9 +26,9 @@
 
     packages = with pkgs; [
       #################### Serif Fonts ####################
-      libre-baskerville # Great, stylish serif
       merriweather # Serif readable on low res screens
-      # vollkorn # Great serif font
+      vollkorn # Great serif font
+      libre-baskerville # Great, stylish serif
       # gelasio # Serif Georgia replacement
       # lmodern # Classic serif
       # noto-fonts-cjk-serif
