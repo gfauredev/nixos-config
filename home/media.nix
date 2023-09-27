@@ -26,6 +26,7 @@
     # logseq # Outliner note taking
     # rnote
     # appflowy
+    pdfpc # PDF Presentator Console
 
     # Audio & Music
     spotify # PROPRIETARY music streaming
