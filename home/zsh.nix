@@ -20,7 +20,7 @@
         term "watchexec -w $1 -w $TYPST_LIB typst compile $1; rm -fv lib.typ" .
         pdf="$(echo $1|cut -d"." -f1).pdf"
         echo "Oppening the file $pdf"
-        open $pdf
+        xdg-open $pdf
       '';
       rsync-backup = pkgs.writeShellScriptBin "rsback" ''
         if [ -n "$1" ]; then
