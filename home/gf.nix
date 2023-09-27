@@ -20,6 +20,8 @@
       XDG_VIDEOS_DIR = "$HOME/vid";
 
       BROWSER = "brave"; # TODO this directly in nix
+
+      TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
     };
 
     packages = with pkgs; [
