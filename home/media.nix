@@ -8,7 +8,7 @@
     # libreoffice-fresh-unwrapped # Office suite
     # libreoffice-still # Office suite
     masterpdfeditor4 # PDF editor
-    # xournalpp
+    xournalpp # Notetaking with draw
     # write_stylus
     # markdown-anki-decks
     # marktext # Markdown editor
