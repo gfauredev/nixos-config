@@ -7,6 +7,7 @@
     helvum # TEST better PipeWire flux visualisation and control
     # qpwgraph # TEST better PipeWire flux visualisation and control
     ardour # Full fledged digital audio workstation
+    reaper # PROPRIETARY digital audio workstation
     distrho # Repository of audio plugins
     drumgizmo # High quality drums sampler
     # audacity # Simple audio editor

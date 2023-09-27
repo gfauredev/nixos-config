@@ -89,6 +89,7 @@
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
       libsecret # Allow apps to use gnome-keyring
+      iw # Control network cards
       exfat # fs tool
       ntfs3g # fs tool
       tldr # short man pages
