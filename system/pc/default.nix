@@ -88,6 +88,7 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      libsecret # Allow apps to use gnome-keyring
       exfat # fs tool
       ntfs3g # fs tool
       tldr # short man pages
