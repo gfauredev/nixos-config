@@ -163,6 +163,18 @@
     stateVersion = "23.11";
   };
 
+  # TODO configure this privately
+  # accounts = {
+  #   calendar = { };
+  #   email.accounts = {
+  #     pro = {
+  #       himalaya = {
+  #         enable = true;
+  #       };
+  #     };
+  #   };
+  # };
+
   xdg.configFile = {
     # cerebro = {
     #   target = "Cerebro/config.json";
@@ -236,7 +248,7 @@
     broot.enable = true; # TEST which is better
     xplr.enable = true; # TEST which is better
     nnn.enable = true; # TEST which is better
-    # fzf.enable = true; # Fuzzy search
+    himalaya.enable = true; # Mail client
   };
 
   xdg = {
