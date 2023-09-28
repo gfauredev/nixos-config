@@ -27,6 +27,7 @@
     # rnote
     # appflowy
     pdfpc # PDF Presentator Console
+    weylus # Phone as graphic tablet
 
     # Audio & Music
     spotify # PROPRIETARY music streaming
