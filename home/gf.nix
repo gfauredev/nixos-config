@@ -133,6 +133,7 @@
       hyperfine # benchmark
       ollama # Run LLMs locally
       jq # JSON filter
+      rustdesk # Remote desktop
       # eva # Evaluate math expression
       # dwfv
       # inetutils

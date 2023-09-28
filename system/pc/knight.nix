@@ -73,6 +73,11 @@
     };
   };
 
+
+  systemPackages = with pkgs; [
+    rustdesk-server # Remote desktop
+  ];
+
   services = {
     openssh = {
       enable = true; # Enable the OpenSSH daemon
