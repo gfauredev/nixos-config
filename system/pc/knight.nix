@@ -61,9 +61,33 @@
     hostName = "knight";
     # Syncthing:22000,21027 / Vagrant:2049
     firewall = {
-      allowedTCPPorts = [ 22 443 22000 2049 ]; # Opened TCP ports firewall
+      allowedTCPPorts = [ 22 80 443 22000 2049 ]; # Opened TCP ports firewall
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports firewall
     };
+    interfaces = {
+      wlp6s0 = {
+        ipv4 = {
+          addresses = [
+            {
+              address = "192.168.1.21";
+              prefixLength = 24;
+            }
+          ];
+        };
+      };
+    };
+    defaultGateway = {
+      address = "192.168.1.1";
+      interface = "wlp6s0";
+    };
+    # TODO IPv6 config
+    nameservers = [
+      #dns0.eu
+      "193.110.81.0"
+      "2a0f:fc80::"
+      "185.253.5.0"
+      "2a0f:fc81::"
+    ];
   };
 
   security = {
