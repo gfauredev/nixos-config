@@ -64,11 +64,6 @@
       allowedTCPPorts = [ 22 80 443 22000 2049 ]; # Opened TCP ports firewall
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports firewall
     };
-    useDHCP = false;
-    networmanager.enable = false;
-    wireless = {
-      enable = true;
-    };
     interfaces = {
       wlp6s0 = {
         ipv4 = {
