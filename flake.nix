@@ -36,7 +36,6 @@
           ./system/pc/gf.nix # Main user
           ./system/pc/laptop.nix
           # ./system/realtime.nix # TODO adapt for laptops
-          ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
           ./system/virtualization.nix
@@ -51,7 +50,6 @@
           ./system/pc/scout.nix # Light laptop for travel : scout
           ./system/pc/gf.nix # Main user
           ./system/pc/laptop.nix
-          ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
         ];
@@ -71,7 +69,6 @@
           ./system/pc/knight.nix # Heavy & strong desktop : knight
           ./system/pc/gf.nix # Main user
           # ./system/realtime.nix # FIXME conflicts with Nvidia drivers
-          ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/pc/xorg.nix
           ./system/print-scan.nix
@@ -98,7 +95,6 @@
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./system
           ./system/installer.nix # Bootable ISO used to install NixOS
-          ./system/wireless.nix
         ];
       };
     };
