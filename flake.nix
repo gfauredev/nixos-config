@@ -125,7 +125,7 @@
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs; defaultMonitor = "DP-1"; };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix

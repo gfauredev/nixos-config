@@ -1,5 +1,5 @@
-# { inputs, lib, config, pkgs, defaultMonitor ? "DP-1", ... }: {
-{ inputs, lib, config, pkgs, defaultMonitor, ... }: {
+{ inputs, lib, config, pkgs, defaultMonitor ? "DP-1", ... }: {
+  # { inputs, lib, config, pkgs, defaultMonitor, ... }: { FIXME
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
