@@ -50,6 +50,7 @@
       allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
     };
+    wireguard.enable = true;
   };
 
   security = {
