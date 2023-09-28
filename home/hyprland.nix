@@ -8,7 +8,8 @@
       monitor = [
         "eDP-1,2256x1504,0x0,1.4" # ninja
         "DP-1,3440x1440,0x0,1.25" # knight
-        ",preferred,auto,1,mirror,eDP-1" # External ninja
+        ",preferred,auto,1" # External ninja
+        # ",preferred,auto,1,mirror,eDP-1" # External ninja
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
@@ -32,9 +33,9 @@
       workspace = [
         "name:cli,monitor:eDP-1,default:true"
         "name:etc,monitor:DP-1,default:true"
-        # "name:etc,monitor:DP-2,default:true"
-        # "name:etc,monitor:HDMI-A-1,default:true"
-        # "name:etc,monitor:HDMI-A-2,default:true"
+        "name:note,monitor:DP-2,default:true"
+        "name:aud,monitor:HDMI-A-1,default:true"
+        "name:top,monitor:HDMI-A-2,default:true"
       ];
 
       xwayland.force_zero_scaling = true;
