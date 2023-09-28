@@ -36,7 +36,6 @@
           ./system/pc/gf.nix # Main user
           ./system/pc/laptop.nix
           # ./system/realtime.nix # TODO adapt for laptops
-          ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
           ./system/virtualization.nix
@@ -51,7 +50,6 @@
           ./system/pc/scout.nix # Light laptop for travel : scout
           ./system/pc/gf.nix # Main user
           ./system/pc/laptop.nix
-          ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
         ];
@@ -65,13 +63,13 @@
           nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
           nixos-hardware.nixosModules.common-pc # Hardware related
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
+          lanzaboote.nixosModules.lanzaboote
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/knight.nix # Heavy & strong desktop : knight
           ./system/pc/gf.nix # Main user
           # ./system/realtime.nix # FIXME conflicts with Nvidia drivers
-          ./system/wireless.nix
           ./system/pc/remap.nix
           ./system/pc/xorg.nix
           ./system/print-scan.nix
@@ -98,7 +96,6 @@
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./system
           ./system/installer.nix # Bootable ISO used to install NixOS
-          ./system/wireless.nix
         ];
       };
     };
@@ -125,7 +122,7 @@
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs; defaultMonitor = "DP-1"; };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix

@@ -24,16 +24,15 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true; # Use the systemd-boot EFI boot loader
-      # systemd-boot.enable = false; # Let lanzaboote boot securely
+      systemd-boot.enable = false; # Let lanzaboote boot securely
       efi.canTouchEfiVariables = true; # Don’t touch if buggy UEFI
       efi.efiSysMountPoint = "/boot"; # Separate efi executable
     };
     bootspec.enable = true;
-    # lanzaboote = {
-    #   enable = true; # TODO secureboot
-    #   pkiBundle = "/etc/secureboot";
-    # };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
     # kernelParams = [ TEST relevance of each
     #   "quiet"
     #   "udev.log_level=3"
@@ -61,9 +60,37 @@
     hostName = "knight";
     # Syncthing:22000,21027 / Vagrant:2049
     firewall = {
-      allowedTCPPorts = [ 22 443 22000 2049 ]; # Opened TCP ports firewall
+      allowedTCPPorts = [ 22 80 443 22000 2049 ]; # Opened TCP ports firewall
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports firewall
     };
+    useDHCP = false;
+    # networkmanager.enable = false;
+    # wireless.iwd.enable = true;
+    wireless.enable = true;
+    interfaces = {
+      wlp6s0 = {
+        ipv4 = {
+          addresses = [
+            {
+              address = "192.168.1.21"; # FIXME
+              prefixLength = 24;
+            }
+          ];
+        };
+      };
+    };
+    defaultGateway = {
+      address = "192.168.1.1";
+      interface = "wlp6s0";
+    };
+    # TODO IPv6 config
+    nameservers = [
+      #dns0.eu
+      "193.110.81.0"
+      "2a0f:fc80::"
+      "185.253.5.0"
+      "2a0f:fc81::"
+    ];
   };
 
   security = {
@@ -74,7 +101,7 @@
   };
 
 
-  systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     rustdesk-server # Remote desktop
     sunshine # Game streaming server # TEST if better than rustdesk
   ];

@@ -38,6 +38,16 @@
   networking = {
     firewall.enable = lib.mkDefault true;
     wireguard.enable = lib.mkDefault true;
+    networkmanager = {
+      enable = lib.mkDefault true; # TODO append dns0
+    };
+  };
+
+  hardware = {
+    bluetooth = {
+      enable = lib.mkDefault true;
+      powerOnBoot = lib.mkDefault true;
+    };
   };
 
   security = {
