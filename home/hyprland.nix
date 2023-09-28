@@ -1,4 +1,5 @@
-{ inputs, lib, config, pkgs, defaultMonitor ? "DP-1", ... }: {
+# { inputs, lib, config, pkgs, defaultMonitor ? "DP-1", ... }: {
+{ inputs, lib, config, pkgs, defaultMonitor, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
@@ -7,7 +8,7 @@
       # See https://wiki.hyprland.org/Configuring/Monitors
       # ninja or knight (laptop or desktop)
       monitor =
-        if defaultMonitor == "eDP-1" then [
+        if defaultMonitor ? "" == "eDP-1" then [
           "eDP-1,2256x1504,0x0,1.4" # Ninja internal monitor
           ",preferred,auto,1" # Potential externals monitor
           # ",preferred,auto,1,mirror,eDP-1" # External ninja
@@ -36,7 +37,7 @@
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       # ninja or knight (laptop or desktop)
       workspace =
-        if defaultMonitor == "eDP-1" then [
+        if defaultMonitor ? "" == "eDP-1" then [
           "name:web,monitor:eDP-1,default:true"
           "name:monitorDP-1,monitor:DP-1,default:true"
           "name:monitorHDMI-A-1,monitor:HDMI-A-1,default:true"
