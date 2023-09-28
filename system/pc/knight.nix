@@ -76,6 +76,7 @@
 
   systemPackages = with pkgs; [
     rustdesk-server # Remote desktop
+    sunshine # Game streaming server # TEST if better than rustdesk
   ];
 
   services = {

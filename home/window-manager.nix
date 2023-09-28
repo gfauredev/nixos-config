@@ -7,6 +7,7 @@
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs to wayland
+    # wayvnc # Remote desktop
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
   ];
