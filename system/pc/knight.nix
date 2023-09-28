@@ -64,15 +64,15 @@
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports firewall
     };
     useDHCP = false;
-    networkmanager.enable = false;
-    wireless.enable = true;
+    # networkmanager.enable = false;
+    # wireless.enable = true;
     # wireless.iwd.enable = true;
     interfaces = {
       wlp6s0 = {
         ipv4 = {
           addresses = [
             {
-              address = "192.168.1.21";
+              address = "192.168.1.21"; # FIXME
               prefixLength = 24;
             }
           ];
