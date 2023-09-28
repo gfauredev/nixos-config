@@ -10,11 +10,11 @@
       # driSupport = true; # TEST relevance
       # driSupport32Bit = true; # TEST relevance
       extraPackages = with pkgs; [
-        # TEST relevance
         intel-media-driver
         vaapiIntel
         vaapiVdpau
         libvdpau-va-gl
+        wireguard-go # VPN
       ];
     };
     sensor.iio.enable = true;
@@ -50,7 +50,7 @@
       allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
     };
-    wireguard.enable = true;
+    # wireguard.enable = true;
   };
 
   security = {
