@@ -24,16 +24,15 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true; # Use the systemd-boot EFI boot loader
-      # systemd-boot.enable = false; # Let lanzaboote boot securely
+      systemd-boot.enable = false; # Let lanzaboote boot securely
       efi.canTouchEfiVariables = true; # Don’t touch if buggy UEFI
       efi.efiSysMountPoint = "/boot"; # Separate efi executable
     };
     bootspec.enable = true;
-    # lanzaboote = {
-    #   enable = true; # TODO secureboot
-    #   pkiBundle = "/etc/secureboot";
-    # };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
     # kernelParams = [ TEST relevance of each
     #   "quiet"
     #   "udev.log_level=3"
