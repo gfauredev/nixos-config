@@ -1,21 +1,20 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, defaultMonitor ? "DP-1", ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
     # plugins = [ ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
-      # ninja
-      monitor = [
-        "eDP-1,2256x1504,0x0,1.4"
-        ",preferred,auto,1" # External ninja
-        # ",preferred,auto,1,mirror,eDP-1" # External ninja
-      ];
-      # knight
-      # monitor = [
-      #   "DP-1,3440x1440,0x0,1.25"
-      #   ",preferred,auto,1" # External ninja
-      # ];
+      # ninja or knight (laptop or desktop)
+      monitor =
+        if defaultMonitor == "eDP-1" then [
+          "eDP-1,2256x1504,0x0,1.4" # Ninja internal monitor
+          ",preferred,auto,1" # Potential externals monitor
+          # ",preferred,auto,1,mirror,eDP-1" # External ninja
+        ] else [
+          "DP-1,3440x1440,0x0,1.25" # Knight main monitor
+          ",preferred,auto,1" # Potential others monitors
+        ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
@@ -35,21 +34,20 @@
       ];
 
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
-      # ninja
-      workspace = [
-        "name:cli,monitor:eDP-1,default:true"
-        "name:etc,monitor:DP-1,default:true"
-        "name:top,monitor:HDMI-A-1,default:true"
-        "name:aud,monitor:DP-2,default:true"
-        "name:note,monitor:HDMI-A-2,default:true"
-      ];
-      # knight
-      # workspace = [
-      #   "name:cli,monitor:DP-1,default:true"
-      #   "name:etc,monitor:HDMI-A-1,default:true"
-      #   "name:top,monitor:DP-2,default:true"
-      #   "name:aud,monitor:HDMI-A-2,default:true"
-      # ];
+      # ninja or knight (laptop or desktop)
+      workspace =
+        if defaultMonitor == "eDP-1" then [
+          "name:web,monitor:eDP-1,default:true"
+          "name:monitorDP-1,monitor:DP-1,default:true"
+          "name:monitorHDMI-A-1,monitor:HDMI-A-1,default:true"
+          "name:monitorDP-2,monitor:DP-2,default:true"
+          "name:monitorHDMI-A-2,monitor:HDMI-A-2,default:true"
+        ] else [
+          "name:web,monitor:DP-1,default:true"
+          "name:monitorHDMI-A-1,monitor:HDMI-A-1,default:true"
+          "name:monitorDP-2,monitor:DP-2,default:true"
+          "name:monitorHDMI-A-2,monitor:HDMI-A-2,default:true"
+        ];
 
       xwayland.force_zero_scaling = true;
 
@@ -146,6 +144,7 @@
         "SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
+        "$mod, u, workspace, name:ubi" # Ubiquitous workspace for external screens
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
