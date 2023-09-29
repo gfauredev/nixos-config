@@ -62,7 +62,7 @@
       duf # global disk usage
       du-dust # disk usage of a directory
       bottom # htop alternative
-      neofetch # system info
+      fastfetch # system info
       poppler_utils # Read PDF metadata
       mediainfo # info about audio or video
       hexyl # hex viever
