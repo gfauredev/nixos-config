@@ -18,6 +18,7 @@
       ];
     };
     sensor.iio.enable = true;
+    uinput.enable = true;
   };
 
   boot = {

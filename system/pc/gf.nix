@@ -21,6 +21,7 @@
       "adbusers"
       "vboxusers"
       "docker"
+      "uinput"
     ];
   };
 

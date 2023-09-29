@@ -254,7 +254,7 @@
   };
 
   xdg = {
-    enable = true; # TEST relevance
+    enable = true;
     mime = {
       enable = true;
     };
