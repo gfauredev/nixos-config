@@ -118,8 +118,8 @@
 
       #################### Miscelaneous ####################
       # TODO refile more precisely
-      poetry # Python project manager # TODO use nix instead
-      python3 # Python # TODO USE nix instead
+      # poetry # Python project manager # TODO use nix instead
+      # python3 # Python # TODO USE nix instead
       pulsemixer # TUI to manage sound
       # procs # better ps
       # pulseaudio # TEST relevance
