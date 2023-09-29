@@ -27,5 +27,6 @@
 
   users.groups = {
     mtp = { };
+    uinput = { };
   };
 }

@@ -60,9 +60,14 @@
       jack.enable = true; # Support advanced audio
       pulse.enable = true; # Support previous audio system
     };
-    udev.packages = [
-      pkgs.android-udev-rules # Talk to Android devices
-    ];
+    udev = {
+      packages = [
+        pkgs.android-udev-rules # Talk to Android devices
+      ];
+      extraRules = ''
+        KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+      '';
+    };
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
   };
 
