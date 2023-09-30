@@ -267,6 +267,7 @@
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         vfr = true; # Save power
+        render_titles_in_groupbar = false; # No titles in group bars
       };
     };
     systemdIntegration = true; # TEST relevance
