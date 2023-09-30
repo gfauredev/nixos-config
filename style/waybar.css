@@ -40,7 +40,7 @@ menu {
   min-width: 50px;
 }
 
-#battery.low {
+#battery.low:not(.charging) {
   color: red;
 }
 
