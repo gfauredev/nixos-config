@@ -2,7 +2,7 @@
   home.packages =
     let
       smart-terminal = pkgs.writeShellScriptBin "t" "${lib.readFile ../script+data/smart-terminal.sh}";
-      class-terminal = pkgs.writeShellScriptBin "classterm" "${lib.readFile ../script+data/class-terminal.sh}";
+      menu-terminal = pkgs.writeShellScriptBin "menu" "${lib.readFile ../script+data/class-terminal.sh}";
       typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ../script+data/typst-env.sh}";
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ../script+data/rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ../script+data/fingerprints-enroll.sh}";
@@ -14,7 +14,7 @@
       pkgs.eza # ls replacement (exa fork)
       # Custom scripts
       smart-terminal # Open a terminal more smartly
-      class-terminal # Open a terminal more smartly, with a class
+      menu-terminal # Open a terminal more smartly, with a menu class
       typst-env # Setup typst writing env TODO move to dev shell
       extract # Extract any compressed file
       rsync-backup # Incremental backup with rsync
