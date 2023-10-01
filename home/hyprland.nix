@@ -10,11 +10,11 @@
       monitor =
         if defaultMonitor == "eDP-1" then [
           "eDP-1,2256x1504,0x0,1.4" # Ninja internal monitor
-          ",preferred,auto,1" # Potential externals monitor
-          # ",preferred,auto,1,mirror,eDP-1" # External ninja
+          ",preferred,auto,1" # Externals monitor
+          # ",preferred,auto,1,mirror,eDP-1" # Mirrored external monitors
         ] else [
           "DP-1,3440x1440,0x0,1.25" # Knight main monitor
-          ",preferred,auto,1" # Potential others monitors
+          ",preferred,auto,1" # Others monitors
         ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
@@ -39,15 +39,14 @@
       workspace =
         if defaultMonitor == "eDP-1" then [
           "name:web,monitor:eDP-1,default:true"
-          "name:monitorDP-1,monitor:DP-1,default:true"
-          "name:monitorHDMI-A-1,monitor:HDMI-A-1,default:true"
-          "name:monitorDP-2,monitor:DP-2,default:true"
-          "name:monitorHDMI-A-2,monitor:HDMI-A-2,default:true"
+          "name:dpp,monitor:DP-1,default:true"
+          "name:hdm,monitor:HDMI-A-1,default:true"
+          "name:ext,monitor:DP-2,default:true"
         ] else [
           "name:web,monitor:DP-1,default:true"
-          "name:monitorHDMI-A-1,monitor:HDMI-A-1,default:true"
-          "name:monitorDP-2,monitor:DP-2,default:true"
-          "name:monitorHDMI-A-2,monitor:HDMI-A-2,default:true"
+          "name:hdm,monitor:HDMI-A-1,default:true"
+          "name:dpp,monitor:DP-2,default:true"
+          "name:ext,monitor:HDMI-A-2,default:true"
         ];
 
       xwayland.force_zero_scaling = true;
@@ -118,9 +117,15 @@
         "$mod, i, workspace, name:top" # Informations / monItorIng
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || wezterm start --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
-        "$mod, e, workspace, name:etc" # Etc / Extra workspace
+        # Additional workspaces (Left)
+        "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
         "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
-        "$mod SHIFT, e, movetoworkspace, name:etc" # Etc / Extra
+        "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
+        "$mod, x, workspace, name:etc" # Ext / Extra workspace
+        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
+        "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
+        "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
+        "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
         "$mod, l, exec, hyprctl clients -j | jq '.[]|([.class,.workspace.name] == [\"org.wezfurlong.wezterm\",\"cli\"])' | grep true || wezterm start" # Auto open CLI if not running
@@ -132,6 +137,11 @@
         # "$mod, m, exec, hyprctl clients | grep -i 'title: element' || element-desktop" # Auto open messaging
         "$mod, m, exec, hyprctl clients | grep -i 'title: discord' || discord" # Auto open main messaging
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
+        # Additional monitor workspaces (Right)
+        "$mod, d, workspace, name:dpp" # DisplayPort workspace
+        "$mod SHIFT, d, movetoworkspace, name:dpp" # DisplayPort
+        "$mod, h, workspace, name:hdm" # HDMI workspace
+        "$mod SHIFT, h, movetoworkspace, name:hdm" # HDMI
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
         ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
