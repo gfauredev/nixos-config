@@ -2,7 +2,7 @@
   home.packages =
     let
       smart-terminal = pkgs.writeShellScriptBin "t" "${lib.readFile ../script+data/smart-terminal.sh}";
-      typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ../script+data/typst-env.sh}"; # TODO make typst-env built into docu dev shell
+      typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ../script+data/typst-env.sh}";
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ../script+data/rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ../script+data/fingerprints-enroll.sh}";
       extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ../script+data/fingerprints-enroll.sh}";
@@ -18,6 +18,7 @@
       rsync-backup # Incremental backup with rsync
       fingerprints-enroll # Enroll fingers for finger print reader
       veracrypt-mount # Interactively mount veracrypt devices
+      present-pdf # Present a PDF with a presenter console
     ];
 
 
