@@ -247,10 +247,11 @@
     };
     ripgrep.enable = true; # Better grep
     # TODO set an explorer that can open & preview every file
-    broot.enable = true; # TEST which is better
-    xplr.enable = true; # TEST which is better
-    nnn.enable = true; # TEST which is better
-    himalaya.enable = true; # Mail client
+    xplr.enable = true; # TEST which explorer is better
+    lf.enable = true; # TEST which explorer is better
+    broot.enable = true; # TEST which explorer is better
+    nnn.enable = true; # TEST which explorer is better
+    himalaya.enable = true; # TEST CLI Mail client
   };
 
   xdg = {
