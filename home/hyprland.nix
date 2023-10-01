@@ -155,7 +155,6 @@
         "SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
-        "$mod, u, workspace, name:ubi" # Ubiquitous workspace for external screens
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
