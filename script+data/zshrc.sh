@@ -24,6 +24,13 @@ open () {
   xdg-open "$@" & disown
 }
 
+# Open with PDF presenter console
+present () {
+  [ -n "$2" ] && presentation="$2" || presentation="1"
+  [ -n "$3" ] && presenter="$3" || presenter="0"
+  pdfpc --presenter-screen=$presenter --presentation-screen=$presentation "$1" & disown
+}
+
 # Make directory(ies) & cd into it (the first)
 md () {
   mkdir -p "$@" && cd "$1"

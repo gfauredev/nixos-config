@@ -266,11 +266,11 @@
       off = "systemctl poweroff";
       reboot = "systemctl reboot";
       ## Tools & Documents
+      scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
       # hu = "rm -frv public && hugo"; # TODO inside a specific shell
       # hu = "hugo --cleanDestinationDir"; # TODO inside a specific shell
       # tec = "pandoc --pdf-engine=tectonic"; # TODO inside a specific shell
       # wea = "pandoc --pdf-engine=weasyprint"; # TODO inside a specific shell
-      scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
 
       # Mounting
       mtp = "mkdir $HOME/mtp; jmtpfs $HOME/mtp";
@@ -332,11 +332,11 @@
       # cfgcommita = "cfg commit -a";
       ## Notes management
       not = "git --git-dir=$HOME/.note/ --work-tree=$HOME/note/";
-      nots = "not status";
-      notcmt = "not commit -am";
-      notamend = "not commit --amend";
-      notamendm = "not commit --amend -m";
-      notamendam = "not commit --amend -am";
+      # nots = "not status";
+      # notcmt = "not commit -am";
+      # notamend = "not commit --amend";
+      # notamendm = "not commit --amend -m";
+      # notamendam = "not commit --amend -am";
 
       # ONE LETTER ALIASES, difficult to live without
       ## List & Search
