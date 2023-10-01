@@ -2,6 +2,7 @@
   home.packages =
     let
       smart-terminal = pkgs.writeShellScriptBin "t" "${lib.readFile ../script+data/smart-terminal.sh}";
+      class-terminal = pkgs.writeShellScriptBin "classterm" "${lib.readFile ../script+data/class-terminal.sh}";
       typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ../script+data/typst-env.sh}";
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ../script+data/rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ../script+data/fingerprints-enroll.sh}";
@@ -13,6 +14,7 @@
       pkgs.eza # ls replacement (exa fork)
       # Custom scripts
       smart-terminal # Open a terminal more smartly
+      class-terminal # Open a terminal more smartly, with a class
       typst-env # Setup typst writing env TODO move to dev shell
       extract # Extract any compressed file
       rsync-backup # Incremental backup with rsync
@@ -63,8 +65,6 @@
     historySubstringSearch.enable = true;
     initExtra = builtins.readFile ../script+data/zshrc.sh; # TODO this more cleanly
     shellAliases = {
-      # sudo
-      # su = "sudo su ";
       sudo = "sudo ";
       se = "sudoedit ";
 
@@ -74,36 +74,19 @@
       lsd = "eza --icons --git -l --no-permissions --sort=age";
       sld = "eza --icons --git -l --no-permissions --sort=age --reverse";
       lss = "eza --icons --git -l --no-permissions --time-style full-iso";
-      # ll = "eza --icons --git -l --group --extended";
       ll = "eza --icons --git -l --group";
-      # la = "eza --icons --git -l --group -all --extended";
       la = "eza --icons --git -l --group -all";
       al = "eza --icons --git -l --group -all --reverse";
       fd = "fd --color always";
 
       # Copy, Move, Delete
-      rm = "rm -irv";
+      rm = "echo 'Use ts to trash instead of removing'; rm -irv";
       ts = "trash -v";
       empty = "trash-empty -i";
       restore = "trash-restore";
       shred = "shred -vu";
       mv = "mv -uv";
-      # mvi = "mv -iv";
       cp = "cp -urv";
-      # cpi = "cp -irv";
-      # rs = "rsync -Prluvh";
-      # rsa = "rsync -Pauvh";
-      # mvdl = "mv $HOME/dl/*";
-      # cpdl = "cp $HOME/dl/*";
-
-      # Edit, Open, Navigate
-      rg = "rg -S -C 2";
-      ## Quick access to parent directories
-      # "..." = "../../";
-      # "...." = "../../../";
-      # "....." = "../../../../";
-      # "......" = "../../../../../";
-      # "......." = "../../../../../../";
 
       # System & Misc
       mix = "pulsemixer";
@@ -116,22 +99,14 @@
       wi = "nmcli device wifi";
       wid = "nmcli device disconnect";
       re = "exec zsh";
-      # py = "python3"; # TODO inside specific shells
-      # py = "python";
-      # pi = "ipython -i --ext=autoreload --ext=storemagic";
-      # pi = "python -i";
-      # ju = "term jupyter-notebook .";
+      menu = "classterm"; # Smart terminal window opener, with menu class
       wcp = "wl-copy";
       wpt = "wl-paste";
-      # neo = "neofetch";
       boot = "sudo bootctl";
-      # rebuild = "sudo nixos-rebuild -v"; # TODO for flake system
-      # update = "sudo nix-channel --update"; # TODO for flake system
       gc = "nix-collect-garbage";
       wx = "watchexec";
       ## Bluetooth & Network
       bt = "bluetoothctl";
-      # btc = "bluetoothctl connect";
       http = "xh";
       https = "xh --https";
       ## Media controls
@@ -145,23 +120,11 @@
       reboot = "systemctl reboot";
       ## Tools & Documents
       scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      # hu = "rm -frv public && hugo"; # TODO inside a specific shell
-      # hu = "hugo --cleanDestinationDir"; # TODO inside a specific shell
-      # tec = "pandoc --pdf-engine=tectonic"; # TODO inside a specific shell
-      # wea = "pandoc --pdf-engine=weasyprint"; # TODO inside a specific shell
 
       # Mounting
       mtp = "mkdir $HOME/mtp; jmtpfs $HOME/mtp";
-      mtpu = "fusermount -u $HOME/mtp && rmdir $HOME/mtp";
-      usbu = "udiskie-umount --all --eject";
-      # usbe = "udiskie-umount --all --eject";
-      # mtpm = "mkdir $HOME/mtp ; sudo aft-mtp-mount $HOME/mtp";
-      # udm = "udisksctl mount -b";
-      # udu = "udisksctl unmount -b";
-      # mnt = "sudo mount -o umask=027,uid=$(id -u),gid=$(id -g)";
-      # usba = "udiskie-mount --all";
-      # usbu = "udiskie-umount";
-      # usbe = "udiskie-umount --detach --eject";
+      mtpumount = "fusermount -u $HOME/mtp && rmdir $HOME/mtp";
+      usbumount = "udiskie-umount --all --eject";
 
       # Git
       status = "git status";
@@ -198,31 +161,16 @@
       untrack = "git rm -r --cached";
       giff = "git diff";
       logg = "git log --oneline";
-      ## Config files management
-      # cfg = "git --git-dir=$HOME/.bare/ --work-tree=$HOME";
-      # cfgs = "cfg status";
-      # cfgcmt = "cfg commit -am";
-      # cfgamend = "cfg commit --amend";
-      # cfgamendm = "cfg commit --amend -m";
-      # cfgamendam = "cfg commit --amend -am";
-      # cfgcommit = "cfg commit";
-      # cfgcommitm = "cfg commit -m";
-      # cfgcommita = "cfg commit -a";
       ## Notes management
-      not = "git --git-dir=$HOME/.note/ --work-tree=$HOME/note/";
-      # nots = "not status";
-      # notcmt = "not commit -am";
-      # notamend = "not commit --amend";
-      # notamendm = "not commit --amend -m";
-      # notamendam = "not commit --amend -am";
+      gitnote = "git --git-dir=$HOME/.note/ --work-tree=$HOME/note/";
+      gitnotecmt = "not commit -am";
 
       # ONE LETTER ALIASES, difficult to live without
       ## List & Search
       l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
       d = "z"; # quicker, better, smarter cd
       f = "fd"; # quicker, better find
-      # t = "term"; # smart terminal window opener
-      # g = "rga-fzf"; # search among all files contents
+      g = "rg -S -C 3"; # Search among files contents
 
       ## Open
       a = "bat --color always"; # quicker, better cat
@@ -230,15 +178,15 @@
       p = "$PAGER"; # quicker default pager
 
       ## Edit
-      e = "$EDITOR"; # default text editor
-      v = "vi"; # text editor
-      h = "hx"; # text editor
-      m = "mkdir -pv"; # quicker mkdir
+      e = "$EDITOR"; # Default text editor
+      v = "vi"; # Vi text editor
+      h = "hx"; # Helix text editor
+      m = "mkdir -pv"; # Quicker mkdir
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # better cp
-      ## Multifunction
-      b = "br"; # CLI files explorer
-      x = "xplr"; # CLI files explorer
-      n = "nnn"; # CLI files explorer
+      ## Multifunction (Explorers)
+      b = "br"; # CLI files explorer # TODO TEST
+      x = "xplr"; # CLI files explorer # TODO TEST
+      n = "nnn"; # CLI files explorer # TODO TEST
     };
     shellGlobalAliases = {
       AUD = "$HOME/aud";
