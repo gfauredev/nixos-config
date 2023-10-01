@@ -1,140 +1,17 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages =
     let
-      smart-terminal = pkgs.writeShellScriptBin "term" ''
-        CMD=$SHELL
-        if [ "$#" -eq 0 ]; then OPT="--cwd=$PWD"; fi
-        if [ "$#" -eq 1 ]; then OPT="--cwd=$1"; fi
-        if [ -n "$2" ]; then
-            CMD="$1"
-            OPT="--cwd=$2"
-            # special cases
-            if [[ "$2" == "menu" ]]; then OPT='--class menu'; fi
-        fi
-        wezterm start $OPT $SHELL -ic $CMD & disown
-      '';
-      # TODO make typst-env built into docu dev shell
-      typst-env = pkgs.writeShellScriptBin "typ" ''
-        TYPST_LIB="$HOME/.local/share/typst-templates"
-
-        ln -s $TYPST_LIB lib.typ
-        # term "watchexec -w $1 -w $TYPST_LIB typst compile $1; rm -fv lib.typ" .
-        term "typst watch $1; rm -fv lib.typ" .
-        pdf="$(echo $1|cut -d"." -f1).pdf"
-        echo "Oppening the file $pdf"
-        xdg-open $pdf
-      '';
-      rsync-backup = pkgs.writeShellScriptBin "rsback" ''
-        if [ -n "$1" ]; then
-          readonly SOURCE_DIR="$(realpath "$1")"
-        else
-          readonly SOURCE_DIR="$HOME/.data"
-        fi
-        echo "Backup $SOURCE_DIR"
-
-        if [ -n "$2" ]; then
-          readonly BACKUPS_DIR="$(realpath "$2")"
-        else
-          readonly BACKUPS_DIR="$HOME/.backup"
-        fi
-        echo "Into $BACKUPS_DIR"
-
-        readonly DATE="$(date '+%Y-%m-%d_%H:%M:%S')"
-        readonly THIS_BACKUP_DIR="$BACKUPS_DIR/$DATE"
-        readonly LATEST_LINK="$BACKUPS_DIR/latest-backup"
-
-        echo "Creating new backup at $THIS_BACKUP_DIR"
-        mkdir -p $THIS_BACKUP_DIR
-
-        echo "Beginning transfer"
-        rsync -vah --progress --delete \
-          "$SOURCE_DIR/" \
-          --link-dest "$LATEST_LINK" \
-          "$THIS_BACKUP_DIR"
-
-        echo "Delete previous link & create new"
-        rm -fr "$LATEST_LINK"
-        ln -fs "$THIS_BACKUP_DIR" "$LATEST_LINK"
-      '';
-      fingerprints-enroll = pkgs.writeShellScriptBin "fingers" ''
-        for finger in {left-middle-finger,left-index-finger,right-thumb,right-index-finger,right-middle-finger}; do
-          echo "PREPARE YOUR $finger, ENROLL IS COMING …"
-          sleep 2
-          sudo fprintd-enroll -f "$finger" gf
-        done
-      '';
-      extract = pkgs.writeShellScriptBin "ex" ''
-        if [ -z "$1" ]; then
-            # display usage if no parameters given
-            echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-            echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
-        else
-            for n in "$@"
-            do
-              if [ -f "$n" ] ; then
-                  case "''${n%,}" in
-                    *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                                            tar xvf "$n"       ;;
-                    *.lzma)                 unlzma ./"$n"      ;;
-                    *.bz2)                  bunzip2 ./"$n"     ;;
-                    *.cbr|*.rar)            unrar x -ad ./"$n" ;;
-                    *.gz)                   gunzip ./"$n"      ;;
-                    *.cbz|*.epub|*.zip)     unzip ./"$n"       ;;
-                    *.z)                    uncompress ./"$n"  ;;
-                    *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                                            7z x ./"$n"        ;;
-                    *.xz)                   unxz ./"$n"        ;;
-                    *.exe)                  cabextract ./"$n"  ;;
-                    *.cpio)                 cpio -id < ./"$n"  ;;
-                    *.cba|*.ace)            unace x ./"$n"     ;;
-                    *)
-                                            echo "extract: '$n' - unknown archive method"
-                                            return 1 ;;
-                  esac
-              else
-                  echo "'$n' - file does not exist"
-                  return 1
-              fi
-            done
-        fi
-      '';
-      veracrypt-mount = pkgs.writeShellScriptBin "veramount" ''
-        lsblk -o PATH,SIZE,TYPE,LABEL
-        read -p "Device to decrypt (auto mount all) /dev/" device
-
-        if [ -n "$device" ]; then
-          # Decrypt the single device the user requested
-          veracrypt -t --filesystem=none "/dev/$device"
-        else
-          # Decrypt all veracrypt devices
-          veracrypt -t --auto-mount=devices --filesystem=none
-        fi
-
-        defaultDecrypt="veracrypt1"
-        defaultPoint=".data"
-
-        lsblk -o PATH,SIZE,TYPE,LABEL
-        # Ask the user for a decrypted device to mount, defaults to loop0
-        read -p "Decrypted device to mount ($defaultDecrypt) /dev/mapper/" decrypt
-        # read -p "Mount point (leave not mounted) : " point
-        read -p "Mount point (.data) : " point
-
-        # Mount a device for the user
-        if [ "$decrypt" == "" ]; then
-          decrypt="$defaultDecrypt"
-        fi
-
-        if [ -n "$point" ]; then
-            sudo mount -o uid=$(id -u),gid=$(id -g),umask=027 /dev/mapper/$decrypt $point
-          else
-            sudo mount -o uid=$(id -u),gid=$(id -g),umask=027 /dev/mapper/$decrypt $defaultPoint
-        fi
-      '';
+      smart-terminal = pkgs.writeShellScriptBin "t" "${lib.readFile ../script+data/smart-terminal.sh}";
+      typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ../script+data/typst-env.sh}"; # TODO make typst-env built into docu dev shell
+      rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ../script+data/rsync-backup.sh}";
+      fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ../script+data/fingerprints-enroll.sh}";
+      extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ../script+data/fingerprints-enroll.sh}";
+      veracrypt-mount = pkgs.writeShellScriptBin "veramount" "${lib.readFile ../script+data/veracrypt-mount.sh}";
+      present-pdf = pkgs.writeShellScriptBin "present" "${lib.readFile ../script+data/present-pdf.sh}";
     in
     [
       pkgs.eza # ls replacement (exa fork)
-      # pkgs.exa # unmaintained ls replacement
-      # Scripts
+      # Custom scripts
       smart-terminal # Open a terminal more smartly
       typst-env # Setup typst writing env TODO move to dev shell
       extract # Extract any compressed file
@@ -343,7 +220,7 @@
       l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
       d = "z"; # quicker, better, smarter cd
       f = "fd"; # quicker, better find
-      t = "term"; # smart terminal window opener
+      # t = "term"; # smart terminal window opener
       # g = "rga-fzf"; # search among all files contents
 
       ## Open

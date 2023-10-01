@@ -1,3 +1,4 @@
+########## Often used, small functions ##########
 empty_cr () { # Clear screen & give info on empty line CR
   if [[ -z $BUFFER ]]; then
     clear
@@ -15,26 +16,20 @@ empty_cr () { # Clear screen & give info on empty line CR
   fi
   zle accept-line
 }
-# Use this function when entering in an empty line
-zle -N empty_cr
-bindkey '^M' empty_cr
 
 # Open with default MIME handler & detach from term
 open () {
   xdg-open "$@" & disown
 }
 
-# Open with PDF presenter console
-present () {
-  [ -n "$2" ] && presentation="$2" || presentation="1"
-  [ -n "$3" ] && presenter="$3" || presenter="0"
-  pdfpc --presenter-screen=$presenter --presentation-screen=$presentation "$1" & disown
-}
-
 # Make directory(ies) & cd into it (the first)
 md () {
-  mkdir -p "$@" && cd "$1"
+  mkdir -pv "$@" && cd "$1"
 }
+
+########## Define function ran on empty carriage return ##########
+zle -N empty_cr
+bindkey '^M' empty_cr
 
 # Create temporary dirs
 [ -d /run/user/$UID/dl ] || mkdir -m 700 /run/user/$UID/dl
