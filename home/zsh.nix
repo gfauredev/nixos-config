@@ -99,7 +99,6 @@
       wi = "nmcli device wifi";
       wid = "nmcli device disconnect";
       re = "exec zsh";
-      menu = "classterm"; # Smart terminal window opener, with menu class
       wcp = "wl-copy";
       wpt = "wl-paste";
       boot = "sudo bootctl";
