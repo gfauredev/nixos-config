@@ -34,8 +34,8 @@
     playerctl # MPRIS media players control
 
     # Image & Video # TODO find better image viewer
-    swayimg # Image viewer that can integrate with terminals
     imv # Image viewer
+    swayimg # Image viewer that can integrate with terminals
     # sxiv # Image viewer
 
     # Utilities & Software # TODO refile more precisely
@@ -56,10 +56,10 @@
   services = {
     playerctld.enable = true;
     mpris-proxy.enable = true;
-    easyeffects = {
-      enable = true;
-      # preset = lib.readFile ../easyeffectsPreset.json; FIXME
-    };
+    # easyeffects = {
+    #   enable = true;
+    #   # preset = lib.readFile ../easyeffectsPreset.json; FIXME
+    # };
   };
 
   programs = {
