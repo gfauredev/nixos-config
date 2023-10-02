@@ -248,7 +248,12 @@
     };
     ripgrep.enable = true; # Better grep
     # TODO set an explorer that can open & preview every file
-    xplr.enable = true; # TEST which explorer is better
+    xplr = {
+      enable = true; # TEST which explorer is better
+      extraConfig = ''
+        ${builtins.readFile ../script+data/xplr.lua}
+      '';
+    };
     lf.enable = true; # TEST which explorer is better
     broot.enable = true; # TEST which explorer is better
     nnn.enable = true; # TEST which explorer is better
