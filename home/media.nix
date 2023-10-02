@@ -35,8 +35,8 @@
 
     # Image & Video # TODO find better image viewer
     swayimg # Image viewer that can integrate with terminals
+    imv # Image viewer
     # sxiv # Image viewer
-    # imv # Image viewer
 
     # Utilities & Software # TODO refile more precisely
     qbittorrent-nox # CLI Bittorrent client
