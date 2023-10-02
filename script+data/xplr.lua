@@ -5,7 +5,7 @@ local xplr = xplr -- The globally exposed configuration to be overridden.
 xplr.config.general.show_hidden = false
 
 -- BÉPO remaps for default mode
-xplr.config.modes.builtin.default.key_bindings.on_key["j"] = {
+xplr.config.modes.builtin.default.key_bindings.on_key.j = {
   help = "rename",
   messages = {
     "PopMode",
@@ -18,18 +18,40 @@ xplr.config.modes.builtin.default.key_bindings.on_key["j"] = {
     },
   },
 }
-xplr.config.modes.builtin.default.key_bindings.on_key["o"] = {
+xplr.config.modes.builtin.default.key_bindings.on_key.o = {
   help = "sort",
   messages = {
     "PopMode",
     { SwitchModeBuiltin = "sort" },
   },
 }
-xplr.config.modes.builtin.default.key_bindings.on_key["c"] =
-    xplr.config.modes.builtin.default.key_bindings.on_key["left"]
-xplr.config.modes.builtin.default.key_bindings.on_key["t"] =
-    xplr.config.modes.builtin.default.key_bindings.on_key["down"]
-xplr.config.modes.builtin.default.key_bindings.on_key["s"] =
-    xplr.config.modes.builtin.default.key_bindings.on_key["up"]
-xplr.config.modes.builtin.default.key_bindings.on_key["r"] =
-    xplr.config.modes.builtin.default.key_bindings.on_key["right"]
+xplr.config.modes.builtin.default.key_bindings.on_key.c =
+    xplr.config.modes.builtin.default.key_bindings.on_key.left
+xplr.config.modes.builtin.default.key_bindings.on_key.t =
+    xplr.config.modes.builtin.default.key_bindings.on_key.down
+xplr.config.modes.builtin.default.key_bindings.on_key.s =
+    xplr.config.modes.builtin.default.key_bindings.on_key.up
+xplr.config.modes.builtin.default.key_bindings.on_key.r =
+    xplr.config.modes.builtin.default.key_bindings.on_key.right
+
+-- Image preview
+xplr.config.modes.builtin.default.key_bindings.on_key.P = {
+  help = "preview",
+  messages = {
+    {
+      BashExecSilently0 = [===[
+        FIFO_PATH="/tmp/xplr.fifo"
+
+        if [ -e "$FIFO_PATH" ]; then
+          "$XPLR" -m StopFifo
+          rm -f -- "$FIFO_PATH"
+        else
+          mkfifo "$FIFO_PATH"
+          echo "$FIFO_PATH" "$XPLR_FOCUS_PATH" >> ~/xplrImagePreview
+          swayimg "$FIFO_PATH" "$XPLR_FOCUS_PATH" &
+          "$XPLR" -m 'StartFifo: %q' "$FIFO_PATH"
+        fi
+      ]===],
+    },
+  },
+}
