@@ -103,7 +103,11 @@
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations = {
       "gf@ninja" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; defaultMonitor = "eDP-1"; };
+        extraSpecialArgs = {
+          inherit inputs;
+          defaultMonitor = "eDP-1";
+          hwmon = "2/temp3_input";
+        };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
@@ -122,7 +126,11 @@
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; defaultMonitor = "DP-1"; };
+        extraSpecialArgs = {
+          inherit inputs;
+          defaultMonitor = "DP-1";
+          hwmon = "2/temp3_input";
+        };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
