@@ -40,17 +40,7 @@ xplr.config.modes.builtin.default.key_bindings.on_key.P = {
   messages = {
     {
       BashExecSilently0 = [===[
-        FIFO_PATH="/tmp/xplr.fifo"
-
-        if [ -e "$FIFO_PATH" ]; then
-          "$XPLR" -m StopFifo
-          rm -f -- "$FIFO_PATH"
-        else
-          mkfifo "$FIFO_PATH"
-          echo "$FIFO_PATH" "$XPLR_FOCUS_PATH" >> ~/xplrImagePreview
-          swayimg "$FIFO_PATH" "$XPLR_FOCUS_PATH" &
-          "$XPLR" -m 'StartFifo: %q' "$FIFO_PATH"
-        fi
+        swayimg "$XPLR_FOCUS_PATH" &
       ]===],
     },
   },
