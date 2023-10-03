@@ -31,8 +31,5 @@
         modi = "combi,drun,run,window,file-browser-extended,calc,emoji,top";
       };
     };
-    # wofi = {
-    #   enable = true; # TEST if better than rofi
-    # };
   };
 }

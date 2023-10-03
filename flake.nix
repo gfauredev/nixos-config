@@ -115,7 +115,6 @@
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar
-          # ./home/cerebro.nix # Multipurpose launcher
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
@@ -138,7 +137,7 @@
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar
-          # ./home/cerebro.nix # Multipurpose launcher
+          ./home/onagre.nix # wayland launcher
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
