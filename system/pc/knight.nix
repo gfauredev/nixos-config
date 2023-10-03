@@ -66,7 +66,7 @@
     useDHCP = false;
     # networkmanager.enable = false;
     # wireless.iwd.enable = true;
-    wireless.enable = true;
+    # wireless.enable = true;
     interfaces = {
       wlp6s0 = {
         ipv4 = {
