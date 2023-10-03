@@ -179,9 +179,13 @@
   # };
 
   xdg.configFile = {
-    # cerebro = {
-    #   target = "Cerebro/config.json";
-    #   source = ../script+data/cerebro.json;
+    onagre-theme = {
+      target = "onagre/theme.scss";
+      source = ../style/onagre.scss;
+    };
+    # onagre-config = {
+    #   target = "onagre/onagre.conf";
+    #   source = ../script+data/onagre.conf;
     # };
     pulsemixer = {
       target = "pulsemixer.cfg";
