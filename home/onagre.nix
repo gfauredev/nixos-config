@@ -3,5 +3,6 @@
     pop-launcher # Modular desktop launcher
     onagre # Desktop general purpose launcher
     libqalculate # Calculation library used by rofi
+    papirus-icon-theme # Icon theme
   ];
 }
