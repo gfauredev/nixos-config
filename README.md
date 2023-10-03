@@ -91,6 +91,7 @@ A dev environment can be initialised with `nix flake init --template templates#T
 - `chntpw` # Edit an installed Windows registry
 - `veracrypt` # Multiplatform encryption
 - `gns3-gui` # Advanced network simulation
+- `gns3-server` # Advanced network simulation (server)
 
 # Optional flakes
 
