@@ -25,6 +25,7 @@
     # protonvpn-gui # Free VPN service
     # bleachbit
     # gnome.seahorse
+    nixpkgs-review # Review pull requests to nixpkgs
   ];
 
   services = {
