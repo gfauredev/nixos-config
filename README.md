@@ -90,6 +90,8 @@ A dev environment can be initialised with `nix flake init --template templates#T
 
 - `chntpw` # Edit an installed Windows registry
 - `veracrypt` # Multiplatform encryption
+- `gns3-gui` # Advanced network simulation
+- `gns3-server` # Advanced network simulation (server)
 
 # Optional flakes
 
@@ -105,7 +107,7 @@ A dev environment can be initialised with `nix flake init --template templates#T
 > before being ephemarally used with `nix-shell -p $PACKAGE` or \
 > being installed with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
-- `ciscoPacketTracer8` # Advanced network simulation
+- `ciscoPacketTracer8` # Network simulation
 - `sqldeveloper` # Oracle SQL IDE
 - `sqlcl` # Oracle SQL CLI
 - `burpsuite` # Pentesting suite
