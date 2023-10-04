@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05"; # NixOS 23.05
+
+    agenix.url = "github:ryantm/agenix"; # Store secrets encrypted
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
@@ -19,7 +20,7 @@
     musnix.url = "github:musnix/musnix"; # Realtime audio
   };
 
-  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
+  outputs = { self, nixpkgs, agenix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       # Laptops
@@ -27,8 +28,9 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          agenix.nixosModules.default # Secrets storage
+          lanzaboote.nixosModules.lanzaboote # Secure boot
           nixos-hardware.nixosModules.framework-12th-gen-intel
-          lanzaboote.nixosModules.lanzaboote
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
@@ -45,6 +47,11 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          agenix.nixosModules.default # Secrets storage
+          lanzaboote.nixosModules.lanzaboote # Secure boot
+          nixos-hardware.nixosModules.common-cpu-intel # Hardware related
+          nixos-hardware.nixosModules.common-pc # Hardware related
+          nixos-hardware.nixosModules.common-pc-ssd # Hardware related
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/scout.nix # Light laptop for travel : scout
@@ -59,11 +66,12 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          agenix.nixosModules.default # Secrets storage
+          lanzaboote.nixosModules.lanzaboote # Secure boot
           nixos-hardware.nixosModules.common-cpu-amd # Hardware related
           nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
           nixos-hardware.nixosModules.common-pc # Hardware related
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
-          lanzaboote.nixosModules.lanzaboote
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
           ./system/pc # It’s a personal computer, not headless
@@ -81,6 +89,10 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          agenix.nixosModules.default # Secrets storage
+          lanzaboote.nixosModules.lanzaboote # Secure boot
+          nixos-hardware.nixosModules.common-cpu-intel # Hardware related
+          nixos-hardware.nixosModules.common-pc # Hardware related
           ./system
           ./system/headless # A server
           ./system/headless/cerberus.nix # Multi-purpose : cerberus
@@ -93,6 +105,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
+          agenix.nixosModules.default # Secrets storage
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./system
           ./system/installer.nix # Bootable ISO used to install NixOS

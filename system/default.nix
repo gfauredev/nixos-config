@@ -92,11 +92,7 @@
       pciutils # lspci
       lm_sensors # get temps
       wakelan # send magick packet to wake WoL devices
-      # TEST relevance of below
-      # bzip3
-      # librsvg
-      # openssl
-      # age
+      age # Modern encryption
     ];
   };
 }
