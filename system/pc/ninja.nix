@@ -57,8 +57,6 @@
   security = {
     pam.services = {
       swaylock = { };
-      # system-local-login.fprintAuth = true; # FIXME
-      # login.fprintAuth = true; # FIXME
     };
   };
 
@@ -67,11 +65,7 @@
       # extraRemotes = [ "lvfs-testing" ];
     };
     fprintd = {
-      enable = true; # Support for figerprint reader # FIXME
-      # tod = {
-      #   enable = true; # Support for figerprint reader
-      #   driver = pkgs.libfprint-2-tod1-goodix; # FIXME
-      # };
+      enable = true; # Support figerprint reader
     };
     # fstrim = { # TEST pertinence, should be set by hardware
     #   enable = true;
