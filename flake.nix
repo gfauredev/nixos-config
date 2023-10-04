@@ -106,7 +106,7 @@
         extraSpecialArgs = {
           inherit inputs;
           defaultMonitor = "eDP-1";
-          hwmon = "2/temp3_input";
+          hwmon = "4/temp3_input";
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
