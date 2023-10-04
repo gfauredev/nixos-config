@@ -107,6 +107,9 @@
   ];
 
   services = {
+    fwupd = {
+      # extraRemotes = [ "lvfs-testing" ];
+    };
     openssh = {
       enable = true; # Enable the OpenSSH daemon
       settings = {
