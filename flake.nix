@@ -28,8 +28,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          agenix.nixosModules.default # Secrets storage
           lanzaboote.nixosModules.lanzaboote # Secure boot
+          agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
@@ -47,8 +47,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          agenix.nixosModules.default # Secrets storage
           lanzaboote.nixosModules.lanzaboote # Secure boot
+          agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
@@ -66,8 +66,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          agenix.nixosModules.default # Secrets storage
           lanzaboote.nixosModules.lanzaboote # Secure boot
+          agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-amd # Hardware related
           nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
           nixos-hardware.nixosModules.common-pc # Hardware related
@@ -89,8 +89,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          agenix.nixosModules.default # Secrets storage
           lanzaboote.nixosModules.lanzaboote # Secure boot
+          agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
           ./system
@@ -124,7 +124,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
-          ./home/gf.nix # My main user
+          ./home/gf # My main user
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar
@@ -146,7 +146,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
-          ./home/gf.nix # My main user
+          ./home/gf # My main user
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar

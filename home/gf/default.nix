@@ -166,13 +166,25 @@
     stateVersion = "23.11";
   };
 
-  # TODO configure this privately
+  # age.secrets = {
+  #   pro-email = {
+  #     file = ./secret1;
+  #     owner = "gf";
+  #     group = "users";
+  #     mode = "440";
+  #   };
+  # };
+
+  # TODO configure this
   # accounts = {
   #   calendar = { };
   #   email.accounts = {
   #     pro = {
   #       himalaya = {
   #         enable = true;
+  #         settings = {
+  #           email = config.age.secrets.pro-email.path;
+  #         };
   #       };
   #     };
   #   };
@@ -262,7 +274,7 @@
     broot.enable = true; # TEST which explorer is better
     nnn.enable = true; # TEST which explorer is better
     himalaya = {
-      enable = true; # TEST CLI Mail client
+      # enable = true; # TEST CLI Mail client
       settings = {
         signature = "Guilhem Fauré";
         downloads-dir = "~/dl";
