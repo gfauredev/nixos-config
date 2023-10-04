@@ -123,10 +123,10 @@
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
-        "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
+        "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:etc" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
+        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
@@ -163,10 +163,9 @@
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
         # Launch
         # Leave $mod + SPACE for Cerebro TODO
-        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
-        "$mod CONTROL, SPACE, exec, rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun,emoji"
+        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji"
         "$mod SHIFT, SPACE, exec, rofi -show calc"
-        "$mod CONTROL SHIFT, SPACE, exec, rofi -show-icons -show combi -combi-modes top,ssh,run"
+        "$mod CONTROL, SPACE, exec, rofi -show-icons -show combi -combi-modes top"
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
