@@ -267,7 +267,7 @@
       enableZshIntegration = true;
       settings = {
         # modal = true;
-        default_flags = "dgs";
+        default_flags = "dgps";
       };
     };
     # himalaya = {

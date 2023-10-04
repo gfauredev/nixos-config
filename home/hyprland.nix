@@ -114,18 +114,20 @@
         # /!\ Cannot move to Browsing worspace
         "$mod, a, workspace, name:aud" # Audio workspace
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
+        "$mod, o, workspace, name:opn" # Open (a file)
+        "$mod, o, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"opn\"' | grep true || wezterm start broot" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || wezterm start --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         # Additional workspaces (Left)
+        "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
+        "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
         "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:etc" # Ext / Extra workspace
         "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,file-browser-extended,drun" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
-        "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
-        "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
         "$mod, l, exec, hyprctl clients -j | jq '.[]|([.class,.workspace.name] == [\"org.wezfurlong.wezterm\",\"cli\"])' | grep true || wezterm start" # Auto open CLI if not running
