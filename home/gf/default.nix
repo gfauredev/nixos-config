@@ -166,29 +166,21 @@
     stateVersion = "23.11";
   };
 
-  # age.secrets = {
-  #   pro-email = {
-  #     file = ./secret1;
-  #     owner = "gf";
-  #     group = "users";
-  #     mode = "440";
-  #   };
-  # };
-
   # TODO configure this
-  # accounts = {
-  #   calendar = { };
-  #   email.accounts = {
-  #     pro = {
-  #       himalaya = {
-  #         enable = true;
-  #         settings = {
-  #           email = config.age.secrets.pro-email.path;
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
+  accounts = {
+    calendar = { };
+    email.accounts = {
+      pro = {
+        primary = true;
+        himalaya = {
+          enable = true;
+          settings = {
+            email = config.age.secrets.pro-email.path;
+          };
+        };
+      };
+    };
+  };
 
   xdg.configFile = {
     onagre-theme = {
@@ -197,7 +189,7 @@
     };
     # onagre-config = {
     #   target = "onagre/onagre.conf";
-    #   source = ../script+data/onagre.conf;
+    #   source = script+data/onagre.conf;
     # };
     pulsemixer = {
       target = "pulsemixer.cfg";

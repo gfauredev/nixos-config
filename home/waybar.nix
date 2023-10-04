@@ -168,7 +168,7 @@
           };
         };
       };
-      style = pkgs.lib.readFile ../style/waybar.css;
+      style = pkgs.lib.readFile style/waybar.css;
       # systemd = { # TEST relevance
       #   enable = true;
       #   target = "sway-session.target";

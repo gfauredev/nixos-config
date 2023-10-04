@@ -26,7 +26,7 @@
       # shell = "${pkgs.dash}/bin/dash";
       # terminal = "${term-exec}"; TODO global variables
       terminal = "wezterm start --always-new-process";
-      theme = ../style/rounded-blue-dark.rasi;
+      theme = style/rounded-blue-dark.rasi;
       extraConfig = {
         modi = "combi,drun,run,window,file-browser-extended,calc,emoji,top";
       };
