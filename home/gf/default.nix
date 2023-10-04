@@ -167,20 +167,20 @@
   };
 
   # TODO configure this
-  accounts = {
-    calendar = { };
-    email.accounts = {
-      pro = {
-        primary = true;
-        himalaya = {
-          enable = true;
-          settings = {
-            email = lib.readFile /run/agenix/pro-email;
-          };
-        };
-      };
-    };
-  };
+  # accounts = {
+  #   calendar = { };
+  #   email.accounts = {
+  #     pro = {
+  #       primary = true;
+  #       himalaya = {
+  #         enable = true;
+  #         settings = {
+  #           email = lib.readFile /run/agenix/pro-email;
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 
   xdg.configFile = {
     onagre-theme = {
@@ -268,8 +268,8 @@
     himalaya = {
       enable = true; # TEST CLI Mail client
       settings = {
-        signature = "Guilhem Fauré";
-        downloads-dir = "~/dl";
+        # signature = "Guilhem Fauré";
+        # downloads-dir = "~/dl";
       };
     };
   };
