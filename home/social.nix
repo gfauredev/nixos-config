@@ -4,7 +4,7 @@
     element-desktop # Matrix messaging
     signal-desktop # Secure messaging
     # element-web # Matrix messaging
-    mailspring # Email client
+    # mailspring # Email client WARNING security issue
     discord # PROPRIETARY messaging and general communication
     # discord-canary # PROPRIETARY messaging and general communication
     # teams-for-linux # PROPRIETARY services messaging and work
