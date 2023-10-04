@@ -175,7 +175,7 @@
         himalaya = {
           enable = true;
           settings = {
-            email = config.age.secrets.pro-email.path;
+            email = lib.readFile /run/agenix/pro-email;
           };
         };
       };
@@ -266,7 +266,7 @@
     broot.enable = true; # TEST which explorer is better
     nnn.enable = true; # TEST which explorer is better
     himalaya = {
-      # enable = true; # TEST CLI Mail client
+      enable = true; # TEST CLI Mail client
       settings = {
         signature = "Guilhem Fauré";
         downloads-dir = "~/dl";
