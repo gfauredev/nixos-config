@@ -183,9 +183,8 @@
       m = "mkdir -pv"; # Quicker mkdir
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # better cp
       ## Multifunction (Explorers)
-      b = "br"; # CLI files explorer # TODO TEST
-      x = "xplr"; # CLI files explorer # TODO TEST
-      n = "nnn"; # CLI files explorer # TODO TEST
+      b = "br --sort-by-date"; # CLI files explorer
+      x = "xplr"; # CLI files explorer
     };
     shellGlobalAliases = {
       AUD = "$HOME/aud";

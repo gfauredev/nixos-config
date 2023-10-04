@@ -262,7 +262,14 @@
         ${builtins.readFile ../script+data/xplr.lua}
       '';
     };
-    broot.enable = true; # TEST which explorer is better
+    broot = {
+      enable = true; # TEST which explorer is better
+      enableZshIntegration = true;
+      settings = {
+        # modal = true;
+        default_flags = "dgs";
+      };
+    };
     # himalaya = {
     #   enable = true; # TODO CLI Mail client
     #   settings = {
