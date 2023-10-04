@@ -22,7 +22,7 @@
           # Start a terminal
           "${mod}+Return" = "exec ${term}";
           # Launch
-          "${mod}+space" = "exec 'rofi -show-icons -show combi -combi-modes window,drun,run,emoji'";
+          "${mod}+space" = "exec \"rofi -show-icons -show combi -combi-modes window,drun,run,emoji\"";
           # kill focused window
           "${mod}+q" = "kill";
           # Exit i3
