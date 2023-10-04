@@ -1,6 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
-    # TODO use specific options when possible
+    himalaya # CLI mail client # TODO add via home manager module
     element-desktop # Matrix messaging
     signal-desktop # Secure messaging
     # element-web # Matrix messaging

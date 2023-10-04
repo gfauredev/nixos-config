@@ -265,13 +265,13 @@
     lf.enable = true; # TEST which explorer is better
     broot.enable = true; # TEST which explorer is better
     nnn.enable = true; # TEST which explorer is better
-    himalaya = {
-      enable = true; # TEST CLI Mail client
-      settings = {
-        # signature = "Guilhem Fauré";
-        # downloads-dir = "~/dl";
-      };
-    };
+    # himalaya = {
+    #   enable = true; # TEST CLI Mail client
+    #   settings = {
+    #     signature = "Guilhem Fauré";
+    #     downloads-dir = "~/dl";
+    #   };
+    # };
   };
 
   xdg = {
