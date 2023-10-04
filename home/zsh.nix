@@ -77,7 +77,11 @@
       ll = "eza --icons --git -l --group";
       la = "eza --icons --git -l --group -all";
       al = "eza --icons --git -l --group -all --reverse";
+      # Explore
       fd = "fd --color always";
+      bd = "br --sort-by-date";
+      bs = "br --sort-by-size";
+      bc = "br --sort-by-count";
 
       # Copy, Move, Delete
       rm = "echo 'Use ts to trash instead of removing'; rm -irv";
@@ -183,7 +187,7 @@
       m = "mkdir -pv"; # Quicker mkdir
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # better cp
       ## Multifunction (Explorers)
-      b = "br --sort-by-date"; # CLI files explorer
+      b = "br"; # CLI files explorer
       x = "xplr"; # CLI files explorer
     };
     shellGlobalAliases = {
