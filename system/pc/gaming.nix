@@ -10,10 +10,15 @@
   programs = {
     steam = {
       enable = true;
+      gamescopeSession.enable = true;
       # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play TEST
       # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server TEST
     };
     gamemode.enable = true;
+    gamescope = {
+      enable = true;
+      # gamescopeSession.enable = true; # TEST relevance
+    };
   };
 
   environment.systemPackages = with pkgs; [
