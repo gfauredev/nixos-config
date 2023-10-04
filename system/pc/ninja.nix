@@ -64,14 +64,14 @@
 
   services = {
     fwupd = {
-      extraRemotes = [ "lvfs-testing" ];
+      # extraRemotes = [ "lvfs-testing" ];
     };
     fprintd = {
       enable = true; # Support for figerprint reader # FIXME
-      tod = {
-        enable = true; # Support for figerprint reader
-        driver = pkgs.libfprint-2-tod1-goodix; # FIXME
-      };
+      # tod = {
+      #   enable = true; # Support for figerprint reader
+      #   driver = pkgs.libfprint-2-tod1-goodix; # FIXME
+      # };
     };
     # fstrim = { # TEST pertinence, should be set by hardware
     #   enable = true;
