@@ -94,8 +94,8 @@
       # veracrypt # multiplatform encryption
       # cryptsetup # TEST relevance
       # wireguard-tools # TEST relevance
-      # nmap # TEST relevance with below
       rustscan # scan networks
+      nmap # scan ports
       protonvpn-cli # Free VPN service
       # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
