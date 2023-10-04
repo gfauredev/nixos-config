@@ -11,17 +11,16 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
-      # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play TEST
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play TEST
       # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server TEST
     };
     gamemode.enable = true;
     gamescope = {
       enable = true;
-      # gamescopeSession.enable = true; # TEST relevance
     };
   };
 
   environment.systemPackages = with pkgs; [
-    steam-run
+    steam-run # Run program with a steam like environment
   ];
 }
