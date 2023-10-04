@@ -257,16 +257,14 @@
     ripgrep.enable = true; # Better grep
     # TODO set an explorer that can open & preview every file
     xplr = {
-      enable = true; # TEST which explorer is better
+      enable = true; # CLI file explorer
       extraConfig = ''
         ${builtins.readFile ../script+data/xplr.lua}
       '';
     };
-    lf.enable = true; # TEST which explorer is better
     broot.enable = true; # TEST which explorer is better
-    nnn.enable = true; # TEST which explorer is better
     # himalaya = {
-    #   enable = true; # TEST CLI Mail client
+    #   enable = true; # TODO CLI Mail client
     #   settings = {
     #     signature = "Guilhem Fauré";
     #     downloads-dir = "~/dl";
