@@ -38,7 +38,7 @@
           ./system/pc/ninja.nix # Light & quick laptop : ninja
           ./system/pc/gf.nix # Main user
           ./system/pc/laptop.nix
-          # ./system/realtime.nix # TODO adapt for laptops with NixOS specilisation
+          ./system/realtime.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
           ./system/virtualization.nix
