@@ -109,6 +109,7 @@
       gc = "nix-collect-garbage";
       wx = "watchexec";
       steamos = "gamescope --steam -- steam -tenfoot -steamos"; # Lauches a gaming compositor with Steam
+      bigsteam = "gamescope --steam -- steam -tenfoot"; # Lauches a gaming compositor with Steam
       ## Bluetooth & Network
       bt = "bluetoothctl";
       http = "xh";
