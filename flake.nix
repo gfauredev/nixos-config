@@ -20,7 +20,8 @@
     musnix.url = "github:musnix/musnix"; # Realtime audio
   };
 
-  outputs = { self, nixpkgs, agenix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
+  # outputs = { self, nixpkgs, agenix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
+  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       # Laptops
@@ -150,7 +151,7 @@
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
           ./home/waybar.nix # wayland bar
-          ./home/onagre.nix # wayland launcher
+          # ./home/onagre.nix # wayland launcher
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation

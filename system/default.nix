@@ -93,7 +93,7 @@
       lm_sensors # get temps
       wakelan # send magick packet to wake WoL devices
       age # Modern encryption
-      inputs.agenix.packages.x86_64-linux.default
+      # inputs.agenix.packages.x86_64-linux.default
     ];
   };
 }
