@@ -38,7 +38,7 @@
       # "quiet"
       # "udev.log_level=3"
       # "nvme.noacpi=1"
-      # "nvdia-drm.modeset=1" TEST
+      "nvdia-drm.modeset=1"
     ];
     # postBootCommands = ''
     #   echo GPP0 > /proc/acpi/wakeup
