@@ -15,7 +15,7 @@
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
       # forceFullCompositionPipeline = true; TEST relevance
       # nvidiaPersistenced = true; TEST relevance
@@ -33,11 +33,13 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-    # kernelParams = [ TEST relevance of each
-    #   "quiet"
-    #   "udev.log_level=3"
-    #   "nvme.noacpi=1"
-    # ];
+    kernelParams = [
+      # TEST relevance of each
+      # "quiet"
+      # "udev.log_level=3"
+      # "nvme.noacpi=1"
+      # "nvdia-drm.modeset=1" TEST
+    ];
     # postBootCommands = ''
     #   echo GPP0 > /proc/acpi/wakeup
     # '';
@@ -102,11 +104,15 @@
 
 
   environment.systemPackages = with pkgs; [
-    rustdesk-server # Remote desktop
-    sunshine # Game streaming server # TEST if better than rustdesk
+    # rustdesk-server # Remote desktop # TEST if better than steam streaming
+    # sunshine # Game streaming server # TEST if better than rustdesk
+    mesa
   ];
 
   services = {
+    # fwupd = {
+    #   extraRemotes = [ "lvfs-testing" ];
+    # };
     openssh = {
       enable = true; # Enable the OpenSSH daemon
       settings = {

@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
 
-    agenix.url = "github:ryantm/agenix"; # Store secrets encrypted
+    # agenix.url = "github:ryantm/agenix"; # Store secrets encrypted
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
@@ -29,7 +29,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          agenix.nixosModules.default # Secrets storage
+          # agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
@@ -48,7 +48,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          agenix.nixosModules.default # Secrets storage
+          # agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
@@ -67,7 +67,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          agenix.nixosModules.default # Secrets storage
+          # agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-amd # Hardware related
           nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
           nixos-hardware.nixosModules.common-pc # Hardware related
@@ -90,7 +90,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          agenix.nixosModules.default # Secrets storage
+          # agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
           ./system
@@ -105,7 +105,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          agenix.nixosModules.default # Secrets storage
+          # agenix.nixosModules.default # Secrets storage
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./system
           ./system/installer.nix # Bootable ISO used to install NixOS

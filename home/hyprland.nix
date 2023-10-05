@@ -125,8 +125,8 @@
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
         "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
-        "$mod, x, workspace, name:etc" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
+        "$mod, x, workspace, name:ext" # Ext / Extra workspace
+        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"ext\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace

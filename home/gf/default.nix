@@ -119,6 +119,8 @@
 
       #################### Miscelaneous ####################
       # TODO refile more precisely
+      # appimage-run # Run appimages directly
+      # steam-run # Run in isolated FHS
       # poetry # Python project manager # TODO use nix instead
       # python3 # Python # TODO USE nix instead
       pulsemixer # TUI to manage sound

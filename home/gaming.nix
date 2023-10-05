@@ -3,11 +3,6 @@
     heroic # gog and epic games launcher
     gogdl # gog module for heroic launcher
     legendary-gl # Epic games launcher alternative
-    moonlight-qt # Game streaming client # TEST if better than rustdesk
-    # TEST relevance of all
-    # gamescope # steamos compositing manager
-    # appimage-run # Run appimages directly
-    # steam # PROPRIETARY video games store and launcher
-    # steam-run # Run in isolated FHS
+    # moonlight-qt # Game streaming client # TEST if better than rustdesk
   ];
 }
