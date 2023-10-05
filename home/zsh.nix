@@ -108,6 +108,7 @@
       boot = "sudo bootctl";
       gc = "nix-collect-garbage";
       wx = "watchexec";
+      game = "gamescope --steam -- steam -tenfoot -steamos"; # Lauches a gaming compositor
       ## Bluetooth & Network
       bt = "bluetoothctl";
       http = "xh";
