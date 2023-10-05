@@ -176,7 +176,7 @@
       g = "rg -S -C 3"; # Search among files contents
 
       ## Open
-      a = "bat --color always"; # quicker, better cat
+      a = "bat --force-colorization --paging never"; # better cat
       o = "open"; # quicker, better xdg-open
       p = "$PAGER"; # quicker default pager
 
