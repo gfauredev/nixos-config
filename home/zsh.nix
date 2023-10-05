@@ -123,6 +123,7 @@
       reboot = "systemctl reboot";
       ## Tools & Documents
       scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
+      hi = "himalaya"; # CLI mail client
 
       # Mounting
       mtp = "mkdir $HOME/mtp; jmtpfs $HOME/mtp";
