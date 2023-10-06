@@ -81,11 +81,9 @@
       bind = [
         # Move focus
         "$mod, c, movefocus, l" # Move left
-        "$mod, c, changegroupactive, b" # Toggle group
         "$mod, t, movefocus, d" # Move down
         "$mod, s, movefocus, u" # Move up
         "$mod, r, movefocus, r" # Move right
-        "$mod, r, changegroupactive, f" # Toggle group
         # Move window
         # "$mod SHIFT, c, movewindow, l" # Move left
         # "$mod SHIFT, t, movewindow, d" # Move down
