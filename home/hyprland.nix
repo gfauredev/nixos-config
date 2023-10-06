@@ -99,6 +99,7 @@
         "$mod CONTROL SHIFT, r, swapwindow, r" # Move right
         "$mod, g, exec, hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup" # Smart group control
         "$mod CONTROL, g, togglegroup," # Toggle group
+        "$mod SHIFT, g, changegroupactive, f" # Toggle focus in group
         "$mod CONTROL SHIFT, g, changegroupactive, b" # Toggle focus in group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
