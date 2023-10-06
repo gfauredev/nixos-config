@@ -86,13 +86,6 @@
       interface = "wlp6s0";
     };
     # TODO IPv6 config
-    nameservers = [
-      #dns0.eu
-      "193.110.81.0"
-      "2a0f:fc80::"
-      "185.253.5.0"
-      "2a0f:fc81::"
-    ];
   };
 
   security = {

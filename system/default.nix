@@ -35,13 +35,25 @@
     hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Windows
   };
 
-  networking = {
-    firewall.enable = lib.mkDefault true;
-    wireguard.enable = lib.mkDefault true;
-    networkmanager = {
-      enable = lib.mkDefault true; # TODO append dns0
+  networking =
+    let
+      dns = [
+        #dns0.eu
+        "193.110.81.0"
+        "2a0f:fc80::"
+        "185.253.5.0"
+        "2a0f:fc81::"
+      ];
+    in
+    {
+      firewall.enable = lib.mkDefault true;
+      wireguard.enable = lib.mkDefault true;
+      networkmanager = {
+        enable = lib.mkDefault true;
+        appendNameservers = dns;
+      };
+      nameservers = dns;
     };
-  };
 
   hardware = {
     bluetooth = {
