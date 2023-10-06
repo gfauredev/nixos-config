@@ -5,7 +5,6 @@
 
   hardware = {
     opengl = {
-      enable = true;
       driSupport = true;
       driSupport32Bit = true;
     };
@@ -30,10 +29,6 @@
         powerManagement.enable = false;
         powerManagement.finegrained = false;
         nvidiaSettings = true;
-        # package = config.boot.kernelPackages.nvidiaPackages.stable;
-        # package = config.boot.kernelPackages.nvidiaPackages.beta;
-        # forceFullCompositionPipeline = true; TEST relevance
-        # nvidiaPersistenced = true; TEST relevance
       };
     };
   };
@@ -126,8 +121,6 @@
     xserver.videoDrivers = [ "nvidia" ];
   };
 
-  # Set your system kind (needed for flakes)
-  # nixpkgs.hostPlatform = "x86_64-linux";
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

@@ -1,5 +1,16 @@
 { inputs, lib, config, pkgs, ... }: {
-  # TODO place as much as possible in home configs
+  hardware = {
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver # Intel HD
+        vaapiIntel # i965
+        vaapiVdpau # Nvidia
+        libvdpau-va-gl # Nvidia
+      ];
+    };
+    uinput.enable = true;
+  };
 
   i18n = {
     # Locales internatinalization properties
