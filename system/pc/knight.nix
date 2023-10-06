@@ -22,6 +22,22 @@
     };
   };
 
+  specialisation.closed-nvidia.configuration = {
+    hardware = {
+      nvidia = {
+        open = lib.mkForce false;
+        modesetting.enable = true;
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
+        nvidiaSettings = true;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # forceFullCompositionPipeline = true; TEST relevance
+        # nvidiaPersistenced = true; TEST relevance
+      };
+    };
+  };
+
   boot = {
     loader = {
       systemd-boot.enable = false; # Let lanzaboote boot securely
@@ -33,16 +49,6 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-    kernelParams = [
-      # TEST relevance of each
-      # "quiet"
-      # "udev.log_level=3"
-      # "nvme.noacpi=1"
-      # "nvdia-drm.modeset=1" TEST
-    ];
-    # postBootCommands = ''
-    #   echo GPP0 > /proc/acpi/wakeup
-    # '';
   };
 
   systemd.services = {

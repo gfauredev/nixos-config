@@ -1,8 +1,10 @@
 { inputs, lib, config, pkgs, ... }: {
-  musnix = {
-    enable = true; # WARNING increases power consumption
-    kernel = {
-      realtime = true; # WARNING needs to compile kernel ourselves
+  specialisation.realtime.configuration = {
+    musnix = {
+      enable = true;
+      kernel = {
+        realtime = false; # WARNING if true we need to recompile kernel
+      };
     };
   };
 }
