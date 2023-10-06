@@ -97,9 +97,9 @@
         "$mod CONTROL SHIFT, t, swapwindow, d" # Move down
         "$mod CONTROL SHIFT, s, swapwindow, u" # Move up
         "$mod CONTROL SHIFT, r, swapwindow, r" # Move right
+        "$mod, g, exec, hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup" # Smart group control
         "$mod CONTROL, g, togglegroup," # Toggle group
-        "$mod, g, changegroupactive, f" # Toggle focus in group
-        "$mod SHIFT, g, changegroupactive, b" # Toggle focus in group
+        "$mod CONTROL SHIFT, g, changegroupactive, b" # Toggle focus in group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
