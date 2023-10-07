@@ -287,14 +287,14 @@
     timeouts = [
       {
         timeout = 300;
-        command = "hyprctl dispatch dpms off";
-        resumeCommand = "hyprctl dispatch dpms on";
+        command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
       }
       {
         timeout = 330;
-        command = "swaylock -f -i $HOME/.wallpapers/desertWithPlants.jpg";
+        command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpapers/desertWithPlants.jpg";
       }
-      { timeout = 600; command = "systemctl suspend"; }
+      { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
     systemdTarget = "hyprland-session.target";
   };
