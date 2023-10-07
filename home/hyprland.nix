@@ -131,6 +131,7 @@
         # Launch
         # Leave $mod + SPACE for Cerebro TODO
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji"
+        "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # TODO Use this better (F9 on Framework Laptop)
         "$mod SHIFT, SPACE, exec, rofi -show calc"
         "$mod CONTROL, SPACE, exec, rofi -show-icons -show combi -combi-modes top"
         # Manage windows
