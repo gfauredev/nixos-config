@@ -41,12 +41,12 @@
           "name:web,monitor:eDP-1,default:true"
           "name:dpp,monitor:DP-1,default:true"
           "name:hdm,monitor:HDMI-A-1,default:true"
-          "name:ext,monitor:DP-2,default:true"
+          "name:sup,monitor:DP-2,default:true"
         ] else [
           "name:web,monitor:DP-1,default:true"
           "name:hdm,monitor:HDMI-A-1,default:true"
           "name:dpp,monitor:DP-2,default:true"
-          "name:ext,monitor:HDMI-A-2,default:true"
+          "name:sup,monitor:HDMI-A-2,default:true"
         ];
 
       xwayland.force_zero_scaling = true;
