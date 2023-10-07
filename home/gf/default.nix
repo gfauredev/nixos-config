@@ -56,7 +56,7 @@
       # TODO some packages below may suit better zsh.nix file
       # TODO some packages below may suit better default.nix file
       #################### Monitoring ####################
-      # ripgrep-all
+      # ripgrep-all # Grep inside PDF, OpenDoc …
       silver-searcher # better grep
       fd # better find
       duf # global disk usage
@@ -117,27 +117,26 @@
       hunspellDicts.en_GB-ise # For english
       hunspellDicts.es_ES # For spanish
 
-      #################### Miscelaneous ####################
-      # TODO refile more precisely
-      # appimage-run # Run appimages directly
-      # steam-run # Run in isolated FHS
-      # poetry # Python project manager # TODO use nix instead
-      # python3 # Python # TODO USE nix instead
+      ############### Miscelaneous / TODO refile ###############
       pulsemixer # TUI to manage sound
-      # procs # better ps
-      # pulseaudio # TEST relevance
-      # cachix # TEST relevance
       jmtpfs # Media transfer protocol with Android devices
-      # android-file-transfer
-      # android-tools # ADB & Fastboot
-      # android-udev-rules
-      # interception-tools # TEST relevance
-      # bluetooth_battery # TEST relevance
       libnotify # Notifications management
       watchexec # Run command when file changes
       hyperfine # benchmark
       ollama # Run LLMs locally
       jq # JSON filter
+      # appimage-run # Run appimages directly
+      # steam-run # Run in isolated FHS
+      # poetry # Python project manager # TODO use nix instead
+      # python3 # Python # TODO USE nix instead
+      # procs # better ps
+      # pulseaudio # TEST relevance
+      # cachix # TEST relevance
+      # android-file-transfer
+      # android-tools # ADB & Fastboot
+      # android-udev-rules
+      # interception-tools # TEST relevance
+      # bluetooth_battery # TEST relevance
       # rustdesk # Remote desktop
       # eva # Evaluate math expression
       # dwfv

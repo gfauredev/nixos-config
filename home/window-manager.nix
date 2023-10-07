@@ -6,8 +6,9 @@
     hyprpaper # Wallpaper engine
     grim # Take screenshots
     slurp # Select a screen zone with mouse
-    wev # Evaluate inputs to wayland
-    # wayvnc # Remote desktop
+    waypipe # Send a wayland window through SSH
+    wayvnc # Wayland remote desktop
+    # wev # Evaluate inputs sent to wayland
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
   ];
@@ -29,8 +30,7 @@
   # };
 
   programs = {
-    # TODO set with nix directly, or more cleanly
-    # Start window managers at login on first TTYs
+    # Start window managers at login on firsts TTYs
     zsh.loginExtra = ''
       if [ -z "''${DISPLAY}" ]; then
         if [ "''${XDG_VTNR}" -eq 1 ]; then
