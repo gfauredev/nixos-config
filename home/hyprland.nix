@@ -1,21 +1,10 @@
-{ inputs, lib, config, pkgs, defaultMonitor ? "DP-1", ... }: {
-  # { inputs, lib, config, pkgs, defaultMonitor, ... }: { FIXME
+{ inputs, lib, config, pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     # plugins = [ ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
-      # ninja or knight (laptop or desktop)
-      monitor =
-        if defaultMonitor == "eDP-1" then [
-          "eDP-1,2256x1504,0x0,1.4" # Ninja internal monitor
-          ",preferred,auto,1" # Externals monitor
-          # ",preferred,auto,1,mirror,eDP-1" # Mirrored external monitors
-        ] else [
-          "DP-1,3440x1440,0x0,1.25" # Knight main monitor
-          ",preferred,auto,1" # Others monitors
-        ];
+      monitor = lib.mkDefault ",preferred,auto,1"; # Auto
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
@@ -33,21 +22,6 @@
         # "SDL_VIDEODRIVEVER,x11" # Apply it to specific programs instead
         "GDK_SCALE,1.25" # Scaling on Xwayland
       ];
-
-      # See https://wiki.hyprland.org/Configuring/Workspace-Rules
-      # ninja or knight (laptop or desktop)
-      workspace =
-        if defaultMonitor == "eDP-1" then [
-          "name:web,monitor:eDP-1,default:true"
-          "name:dpp,monitor:DP-1,default:true"
-          "name:hdm,monitor:HDMI-A-1,default:true"
-          "name:sup,monitor:DP-2,default:true"
-        ] else [
-          "name:web,monitor:DP-1,default:true"
-          "name:hdm,monitor:HDMI-A-1,default:true"
-          "name:dpp,monitor:DP-2,default:true"
-          "name:sup,monitor:HDMI-A-2,default:true"
-        ];
 
       xwayland.force_zero_scaling = true;
 

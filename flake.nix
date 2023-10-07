@@ -119,7 +119,6 @@
       "gf@ninja" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {
           inherit inputs;
-          defaultMonitor = "eDP-1";
           hwmon = "4/temp3_input";
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -128,6 +127,7 @@
           ./home/gf # My main user
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
+          ./home/hyprland-ninja.nix # Ninjay specific hyprland config
           ./home/waybar.nix # wayland bar
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
@@ -141,7 +141,6 @@
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {
           inherit inputs;
-          defaultMonitor = "DP-1";
           hwmon = "2/temp3_input";
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -150,6 +149,7 @@
           ./home/gf # My main user
           ./home/window-manager.nix # wayland common
           ./home/hyprland.nix # Hyprland window manager
+          ./home/hyprland-knight.nix # Ninjay specific hyprland config
           ./home/waybar.nix # wayland bar
           # ./home/onagre.nix # wayland launcher
           ./home/rofi.nix # wayland launcher
