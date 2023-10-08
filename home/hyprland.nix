@@ -83,7 +83,7 @@
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
         # /!\ Cannot move to Browsing worspace
         "$mod, a, workspace, name:aud" # Audio workspace
-        "$mod, a, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"aud\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
+        "$mod, a, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"aud\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"opn\"' | grep true || wezterm start broot" # Start a term with explorer
@@ -94,10 +94,10 @@
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
-        "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
+        "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"ext\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
+        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"ext\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
@@ -107,8 +107,7 @@
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || wezterm start --cwd ~/note --class note $EDITOR" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
-        # "$mod, m, exec, hyprctl clients | grep -i 'title: element' || element-desktop" # Auto open messaging
-        "$mod, m, exec, hyprctl clients | grep -i 'title: discord' || discord" # Auto open main messaging
+        "$mod, m, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"msg\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Additional monitor workspaces (Right)
         "$mod, d, workspace, name:dpp" # DisplayPort workspace
@@ -134,11 +133,16 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
         # Launch
-        # Leave $mod + SPACE for Cerebro TODO
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji"
-        "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # TODO Use this better (F9 on Framework Laptop)
-        "$mod SHIFT, SPACE, exec, rofi -show calc"
-        "$mod CONTROL, SPACE, exec, rofi -show-icons -show combi -combi-modes top"
+        "$mod CONTROL, SPACE, exec, rofi -show calc"
+        "$mod SHIFT, SPACE, exec, rofi -show-icons -show top"
+        # Launch with special media keys TODO use them better
+        ", Menu, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Menu special key
+        "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # F9 on Framework Laptop
+        ", XF86Mail, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Mail media key
+        ", XF86HomePage, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Home media key
+        ", XF86Calculator, exec, rofi -show calc" # Calculator media key
+        ", XF86Search, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Search media key
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
