@@ -126,9 +126,9 @@
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/gf # My main user
           ./home/window-manager.nix # wayland common
-          ./home/hyprland.nix # Hyprland window manager
-          ./home/hyprland-ninja.nix # Ninjay specific hyprland config
-          ./home/waybar.nix # wayland bar
+          ./home/hyprland # Hyprland window manager
+          ./home/hyprland/ninja.nix # ninja’s specific Hyprland
+          ./home/waybar # wayland bar
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
@@ -148,9 +148,10 @@
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/gf # My main user
           ./home/window-manager.nix # wayland common
-          ./home/hyprland.nix # Hyprland window manager
-          ./home/hyprland-knight.nix # Ninjay specific hyprland config
-          ./home/waybar.nix # wayland bar
+          ./home/hyprland # Hyprland window manager
+          ./home/hyprland/knight.nix # knight’s specific Hyprland
+          ./home/waybar # wayland bar
+          ./home/waybar/widescreen.nix # wayland bar for wide screens
           # ./home/onagre.nix # wayland launcher
           ./home/rofi.nix # wayland launcher
           ./home/hard.nix # Hardware creation

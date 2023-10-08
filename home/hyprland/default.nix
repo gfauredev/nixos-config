@@ -286,7 +286,7 @@
   xdg.configFile = {
     hyprpaper = {
       target = "hypr/hyprpaper.conf";
-      source = script+data/hyprpaper.conf;
+      source = ../script+data/hyprpaper.conf;
     };
   };
 }

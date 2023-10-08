@@ -132,7 +132,7 @@
 
           window = {
             format = "{title}";
-            max-length = 400;
+            max-length = lib.mkDefault 400;
             icon = true;
             tooltip = false;
           };
@@ -142,8 +142,7 @@
           };
 
           mpris = {
-            # format = "{status_icon} {dynamic} {player_icon}";
-            format = "{player_icon} {status_icon}";
+            format = lib.mkDefault "{player_icon} {status_icon}";
             player-icons = {
               default = "";
               spotify = "";
@@ -151,7 +150,6 @@
               mpv = "";
               brave = "";
               chromium = "";
-              chrome = "";
               firefox = "";
             };
             status-icons = {
@@ -169,7 +167,7 @@
           };
         };
       };
-      style = pkgs.lib.readFile style/waybar.css;
+      style = pkgs.lib.readFile ../style/waybar.css;
       # systemd = { # TEST relevance
       #   enable = true;
       #   target = "sway-session.target";
