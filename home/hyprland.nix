@@ -133,16 +133,16 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
         # Launch
-        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji"
+        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"
         "$mod SHIFT, SPACE, exec, rofi -show-icons -show top"
         # Launch with special media keys TODO use them better
-        ", Menu, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Menu special key
-        "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # F9 on Framework Laptop
-        ", XF86Mail, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Mail media key
-        ", XF86HomePage, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Home media key
+        ", Menu, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Menu special key
+        "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # F9 on Framework Laptop
+        ", XF86Mail, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Mail media key
+        ", XF86HomePage, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Home media key
         ", XF86Calculator, exec, rofi -show calc" # Calculator media key
-        ", XF86Search, exec, rofi -show-icons -show combi -combi-modes window,drun,run,ssh,emoji" # Search media key
+        ", XF86Search, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Search media key
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
