@@ -62,10 +62,6 @@
         "$mod, s, movefocus, u" # Move up
         "$mod, r, movefocus, r" # Move right
         # Move window
-        "$mod SHIFT, c, moveactive, -10 0" # Move floating left
-        "$mod SHIFT, t, moveactive, 0 10" # Move floating down
-        "$mod SHIFT, s, moveactive, 0 -10" # Move floating up
-        "$mod SHIFT, r, moveactive, 10 0" # Move floating right
         "$mod SHIFT, c, movewindoworgroup, l" # Move left
         "$mod SHIFT, t, movewindoworgroup, d" # Move down
         "$mod SHIFT, s, movewindoworgroup, u" # Move up
@@ -176,12 +172,19 @@
         "$mod, p, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle 0 1"
       ];
-      bindle = [
+      binde = [
+        # Move windows
+        "$mod SHIFT, c, moveactive, -10 0" # Move floating left
+        "$mod SHIFT, t, moveactive, 0 10" # Move floating down
+        "$mod SHIFT, s, moveactive, 0 -10" # Move floating up
+        "$mod SHIFT, r, moveactive, 10 0" # Move floating right
         # Resize windows
         "$mod CONTROL, c, resizeactive, -10 0" # Move left
         "$mod CONTROL, t, resizeactive, 0 10" # Move down
         "$mod CONTROL, s, resizeactive, 0 -10" # Move up
         "$mod CONTROL, r, resizeactive, 10 0" # Move right
+      ];
+      bindle = [
         # Brightness
         ",XF86MonBrightnessUp, exec, light -A 5"
         ",XF86MonBrightnessDown, exec, light -U 5"
