@@ -48,7 +48,10 @@
       };
 
       # See https://wiki.hyprland.org/Configuring/Window-Rules
-      # examplerule = float,class:^(term)$,title:^(term)$
+      windowrule = [
+        "float,menu"
+        "size 888 420,menu"
+      ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
@@ -121,10 +124,11 @@
         "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         ", XF86Tools, workspace, name:med" # Media ws
         ", XF86Tools, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
-        "SHIFT, XF86Tools, workspace, name:med" # Media ws
-        "SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
+        "SHIFT, XF86Tools, exec, menu ~ pulsemixer" # Open audio mixer
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
+        "CONTROL SHIFT, XF86Tools, workspace, name:med" # Media ws
+        "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${pkgs.wezterm}/bin/wezterm start"
