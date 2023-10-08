@@ -83,6 +83,7 @@
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
         # /!\ Cannot move to Browsing worspace
         "$mod, a, workspace, name:aud" # Audio workspace
+        "$mod, a, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"aud\"' | grep true || rofi -show-icons -show combi -combi-modes window,drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"opn\"' | grep true || wezterm start broot" # Start a term with explorer
