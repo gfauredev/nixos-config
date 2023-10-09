@@ -65,7 +65,7 @@ menu {
 }
 
 .modules-center label {
-  padding: 1px 8px;
+  padding: 1px 6px;
   min-width: 8px;
 }
 
@@ -78,7 +78,7 @@ button, #window {
 }
 
 button {
-  margin-right: 5px;
+  margin-right: 3px;
   padding-right: 4px;
   color: #fdc;
 }
