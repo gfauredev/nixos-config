@@ -129,7 +129,7 @@
           ./home/hyprland # Hyprland window manager
           ./home/hyprland/ninja.nix # ninja’s specific Hyprland
           ./home/waybar # wayland bar
-          ./home/rofi.nix # wayland launcher
+          ./home/rofi # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
           ./home/photo.nix # Photo & Images creation
@@ -153,7 +153,7 @@
           ./home/waybar # wayland bar
           ./home/waybar/widescreen.nix # wayland bar for wide screens
           # ./home/onagre.nix # wayland launcher
-          ./home/rofi.nix # wayland launcher
+          ./home/rofi # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
           ./home/video.nix # Video & Animation creation

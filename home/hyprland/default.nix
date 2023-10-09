@@ -145,7 +145,7 @@
         "$mod, q, killactive," # Close window
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
-        "$mod, comma, exec, swaylock -f -i $HOME/.wallpapers/desert.jpg"
+        "$mod, comma, exec, swaylock -f -i $HOME/.wallpaper/desert.jpg"
         "$mod SHIFT, comma, exec, systemctl suspend"
         # Web
         "$mod CONTROL, b, exec, nyxt" # Firefox
@@ -269,7 +269,7 @@
     enable = true;
     events = [
       { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpapers/desertWithPlants.jpg"; }
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpaper/desertWithPlants.jpg"; }
     ];
     timeouts = [
       {
@@ -279,7 +279,7 @@
       }
       {
         timeout = 330;
-        command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpapers/desertWithPlants.jpg";
+        command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpaper/desertWithPlants.jpg";
       }
       { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];
@@ -289,7 +289,7 @@
   xdg.configFile = {
     hyprpaper = {
       target = "hypr/hyprpaper.conf";
-      source = ../script+data/hyprpaper.conf;
+      source = ./hyprpaper.conf;
     };
   };
 }

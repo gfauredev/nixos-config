@@ -156,11 +156,11 @@
         target = ".XCompose";
         # TODO find a cleaner way to write this file
         # text = builtins.readFile ../XCompose;
-        source = ../script+data/XCompose;
+        source = ../misc/XCompose;
       };
-      wallpapers = {
-        target = ".wallpapers";
-        source = ../script+data/wallpapers;
+      wallpaper = {
+        target = ".wallpaper";
+        source = ./wallpaper;
       };
     };
 
@@ -185,17 +185,13 @@
   # };
 
   xdg.configFile = {
-    onagre-theme = {
-      target = "onagre/theme.scss";
-      source = ../style/onagre.scss;
-    };
-    # onagre-config = {
-    #   target = "onagre/onagre.conf";
-    #   source = script+data/onagre.conf;
+    # onagre-theme = {
+    #   target = "onagre/theme.scss";
+    #   source = ../onagre/style.scss;
     # };
     pulsemixer = {
       target = "pulsemixer.cfg";
-      source = ../script+data/pulsemixer.toml;
+      source = ../misc/pulsemixer.toml;
     };
   };
 
@@ -261,7 +257,7 @@
     xplr = {
       enable = true; # CLI file explorer
       extraConfig = ''
-        ${builtins.readFile ../script+data/xplr.lua}
+        ${builtins.readFile ../misc/xplr.lua}
       '';
     };
     broot = {

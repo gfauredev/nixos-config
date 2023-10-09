@@ -1,14 +1,14 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages =
     let
-      smart-terminal = pkgs.writeShellScriptBin "t" "${lib.readFile script+data/smart-terminal.sh}";
-      menu-terminal = pkgs.writeShellScriptBin "menu" "${lib.readFile script+data/class-terminal.sh}";
-      typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile script+data/typst-env.sh}";
-      rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile script+data/rsync-backup.sh}";
-      fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile script+data/fingerprints-enroll.sh}";
-      extract = pkgs.writeShellScriptBin "ex" "${lib.readFile script+data/fingerprints-enroll.sh}";
-      veracrypt-mount = pkgs.writeShellScriptBin "veramount" "${lib.readFile script+data/veracrypt-mount.sh}";
-      present-pdf = pkgs.writeShellScriptBin "present" "${lib.readFile script+data/present-pdf.sh}";
+      smart-terminal = pkgs.writeShellScriptBin "t" "${lib.readFile ./smart-terminal.sh}";
+      menu-terminal = pkgs.writeShellScriptBin "menu" "${lib.readFile ./class-terminal.sh}";
+      typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ./typst-env.sh}";
+      rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
+      fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ./fingerprints-enroll.sh}";
+      extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./fingerprints-enroll.sh}";
+      veracrypt-mount = pkgs.writeShellScriptBin "veramount" "${lib.readFile ./veracrypt-mount.sh}";
+      present-pdf = pkgs.writeShellScriptBin "present" "${lib.readFile ./present-pdf.sh}";
     in
     [
       pkgs.eza # ls replacement (exa fork)
@@ -63,7 +63,7 @@
       share = true;
     };
     historySubstringSearch.enable = true;
-    initExtra = builtins.readFile script+data/zshrc.sh; # TODO this more cleanly
+    initExtra = builtins.readFile ./zshrc.sh; # TODO this more cleanly
     shellAliases = {
       sudo = "sudo ";
       se = "sudoedit ";

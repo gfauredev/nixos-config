@@ -1,8 +1,8 @@
 { inputs, lib, config, pkgs, ... }: {
   imports = [
-    ./zsh.nix # Shell
-    ./neovim.nix # Main editor
-    ./helix.nix # Potential future editor
+    ./zsh # Shell
+    ./neovim # Main editor
+    ./helix # Potential future editor
   ];
 
   home.packages = with pkgs; [
@@ -99,9 +99,9 @@
       extraConfig = ''
         cfg = wezterm.config_builder() -- Base config
 
-        ${builtins.readFile script+data/wezterm/cfg.lua}
+        ${builtins.readFile wezterm/cfg.lua}
 
-        ${builtins.readFile script+data/wezterm/key.lua}
+        ${builtins.readFile wezterm/key.lua}
 
         return cfg
       '';
