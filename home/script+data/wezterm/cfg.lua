@@ -14,4 +14,5 @@ cfg = {
     bottom = 2,
   },
   enable_kitty_graphics = true, -- Kitty graphics protocol
+  colors = { selection_bg = "#ffddcc" },
 }
