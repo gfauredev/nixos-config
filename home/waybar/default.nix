@@ -161,8 +161,10 @@
 
           clock = {
             timezone = "Europe/Paris";
-            format = "{: %H:%M  %a %d %b}";
-            max-length = 30;
+            # format = "{: %H:%M  %a %d %b}";
+            format = "{:%H:%M  %a %d %b}";
+            # max-length = 30;
+            max-length = 28;
             tooltip = false;
           };
         };
