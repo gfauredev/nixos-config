@@ -98,20 +98,21 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
-    firejail = {
-      enable = true; # TEST pertinence
-      wrappedBinaries = {
-        brave = {
-          executable = "${pkgs.brave}/bin/brave";
-          profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
-        };
-      };
-    };
+    # firejail = {
+    #   enable = true; # TEST pertinence
+    #   wrappedBinaries = {
+    #     brave = {
+    #       executable = "${pkgs.brave}/bin/brave";
+    #       profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
+    #     };
+    #   };
+    # };
   };
 
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      bubblewrap # Applications sandboxer
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
       exfat # fs tool
