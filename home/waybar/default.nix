@@ -42,7 +42,7 @@
             format-charging = "󱐥 {capacity}";
             # format-time = "{H}:{M}";
             format-icons = [ " " " " " " " " " " ];
-            max-length = 8;
+            # max-length = 8;
             tooltip = false;
           };
 
@@ -52,7 +52,7 @@
             critical-threshold = "75";
             format = "{icon} {temperatureC}";
             format-icons = [ "" "" "" "" "" ];
-            max-length = 6;
+            # max-length = 6;
             tooltip = false;
           };
 
@@ -62,7 +62,7 @@
               critical = 80;
             };
             format = "󰻠 {usage}";
-            max-length = 6;
+            # max-length = 6;
             tooltip = false;
           };
 
@@ -72,7 +72,7 @@
               critical = 80;
             };
             format = " {percentage}";
-            max-length = 6;
+            # max-length = 6;
             tooltip = false;
           };
 
@@ -82,7 +82,7 @@
             format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
             format-ethernet = "󰈀 {ipaddr}/{cidr}";
             format-disconnected = "󰤮 {ifname}";
-            max-length = 20;
+            # max-length = 20;
             tooltip = false;
           };
 
@@ -102,7 +102,7 @@
               car = " ";
               default = [ "" "" " " ];
             };
-            max-length = 20;
+            # max-length = 20;
             tooltip = false;
             ignored-sinks = [ "Easy Effects Sink" ];
           };
@@ -132,7 +132,7 @@
 
           window = {
             format = "{title}";
-            max-length = lib.mkDefault 400;
+            # max-length = lib.mkDefault 400;
             icon = true;
             tooltip = false;
           };
@@ -164,7 +164,6 @@
             # format = "{: %H:%M  %a %d %b}";
             format = "{:%H:%M  %a %d %b}";
             # max-length = 30;
-            max-length = 28;
             tooltip = false;
           };
         };
