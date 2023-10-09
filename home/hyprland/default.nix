@@ -170,7 +170,7 @@
         ", Print, exec, grim -g \"$(slurp)\" $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "SHIFT, Print, exec, grim $HOME/img/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "$mod, p, exec, hyprpicker --autocopy"
-        ", XF86RFKill, exec, rfkill toggle 0 1"
+        ", XF86RFKill, exec, rfkill toggle all"
       ];
       binde = [
         # Move windows
