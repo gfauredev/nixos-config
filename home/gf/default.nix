@@ -125,6 +125,7 @@
       hyperfine # benchmark
       ollama # Run LLMs locally
       jq # JSON filter
+      anytype # General productivity app
       # appimage-run # Run appimages directly
       # steam-run # Run in isolated FHS
       # poetry # Python project manager # TODO use nix instead
