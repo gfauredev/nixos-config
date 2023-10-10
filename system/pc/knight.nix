@@ -72,14 +72,18 @@
     # wireless.enable = true;
     interfaces = {
       wlp6s0 = {
-        ipv4 = {
-          addresses = [
-            {
-              address = "192.168.1.21"; # FIXME
-              prefixLength = 24;
-            }
-          ];
-        };
+        ipv6.addresses = [
+          {
+            address = "2a01:e0a:517:3571::1"; # WARNING Access point dependent
+            prefixLength = 64;
+          }
+        ];
+        # ipv4.addresses = [
+        #   {
+        #     address = "192.168.1.21"; # FIXME
+        #     prefixLength = 24;
+        #   }
+        # ];
       };
     };
     defaultGateway = {
