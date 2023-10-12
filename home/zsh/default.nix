@@ -128,9 +128,10 @@
       hi = "himalaya"; # CLI mail client
 
       # Mounting
-      mtp = "mkdir $HOME/mtp; jmtpfs $HOME/mtp";
+      mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
       mtpumount = "fusermount -u $HOME/mtp && rmdir $HOME/mtp";
-      usbumount = "udiskie-umount --all --eject";
+      usb = "udiskie-mount --all; [ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb";
+      usbumount = "udiskie-umount --all --eject && rmdir $HOME/usb";
 
       # Git
       status = "git status";

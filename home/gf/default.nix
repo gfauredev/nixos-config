@@ -199,12 +199,12 @@
   systemd.user.startServices = "sd-switch";
 
   services = {
-    udiskie = {
-      enable = true;
-      automount = true;
-      notify = true;
-      tray = "never";
-    };
+    # udiskie = {
+    #   enable = true;
+    #   automount = true;
+    #   notify = true;
+    #   tray = "never";
+    # };
     syncthing = {
       enable = true;
       extraOptions = [
