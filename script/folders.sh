@@ -13,8 +13,11 @@ echo "  Knowledge & data that are useful for the project"
 if [ ! -d $HOME/project ]; then
   echo "\nCreating project directory and subdirectories …"
   mkdir -m 700 -v $HOME/project/
+  echo "#include stignore" > $HOME/project/.stignore
+  echo "Project" > $HOME/project/.ventoyignore
   echo "\nCreating large project directory to avoid on devices with fewer storage space …"
   mkdir -m 700 -v $HOME/project.large/
+  echo "#include stignore" > $HOME/project.large/.stignore
 fi
 echo
 
@@ -24,6 +27,8 @@ echo "  Tasks that needs to be done regularly and not ending projects"
 if [ ! -d $HOME/life ]; then
   echo "\nCreating life directory and subdirectories …"
   mkdir -m 700 -v $HOME/life/
+  echo "#include stignore" > $HOME/life/.stignore
+  echo "Life" > $HOME/data/.ventoyignore
   mkdir -m 700 -v $HOME/life/health/
   mkdir -m 700 -v $HOME/life/identity/
   mkdir -m 700 -v $HOME/life/relation/
@@ -31,6 +36,7 @@ if [ ! -d $HOME/life ]; then
   mkdir -m 700 -v $HOME/life/degree+certification/
   echo "\nCreating large life directory to avoid on devices with fewer storage space …"
   mkdir -m 700 -v $HOME/life.large/
+  echo "#include stignore" > $HOME/life.large/.stignore
 fi
 echo
 
@@ -40,6 +46,8 @@ echo "  Interesting knowledge that might be worth or fun to learn"
 if [ ! -d $HOME/data ]; then
   echo "\nCreating data directory and subdirectories …"
   mkdir -m 700 -v $HOME/data/
+  echo "#include stignore" > $HOME/data/.stignore
+  echo "Data" > $HOME/data/.ventoyignore
   mkdir -m 700 -v $HOME/data/document/
   mkdir -m 700 -v $HOME/data/document.text/
   mkdir -m 700 -v $HOME/data/audio/
@@ -52,6 +60,7 @@ if [ ! -d $HOME/data ]; then
   mkdir -m 700 -v $HOME/data/video/movie.entertain/
   echo "\nCreating large data directory to avoid on devices with fewer storage space …"
   mkdir -m 700 -v $HOME/data.large/
+  echo "#include stignore" > $HOME/data.large/.stignore
   mkdir -m 700 -v $HOME/data.large/code/
   mkdir -m 700 -v $HOME/data.large/audio/
   mkdir -m 700 -v $HOME/data.large/audio/record/
@@ -70,6 +79,7 @@ echo "  Definitely used or learned knowledge"
 if [ ! -d $HOME/archive ]; then
   echo "\nCreating archive directory and subdirectories …"
   mkdir -m 700 -v $HOME/archive/
+  echo "#include stignore" > $HOME/archive/.stignore
   mkdir -m 700 -v $HOME/archive/project/
   mkdir -m 700 -v $HOME/archive/life/
   mkdir -m 700 -v $HOME/archive/data/
