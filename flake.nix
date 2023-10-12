@@ -42,6 +42,7 @@
           ./system/pc/remap.nix
           ./system/print-scan.nix
           ./system/virtualization.nix
+          ./system/pc/xorg.nix # For compatibility
         ];
       };
       scout = nixpkgs.lib.nixosSystem {
@@ -80,9 +81,9 @@
           ./system/pc/gf.nix # Main user
           # ./system/realtime.nix # FIXME conflicts with Nvidia drivers
           ./system/pc/remap.nix
-          ./system/pc/xorg.nix
           ./system/print-scan.nix
           ./system/pc/gaming.nix
+          ./system/pc/xorg.nix # For compatibility
         ];
       };
       # Servers
