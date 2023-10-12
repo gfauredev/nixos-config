@@ -1,26 +1,30 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
-    yabridge # use VSTs with wine
-    yabridgectl # use VSTs with wine
-    # TODO use specific options when possible
+    # Tools
     klick # Metronome
-    helvum # TEST better PipeWire flux visualisation and control
-    # qpwgraph # TEST better PipeWire flux visualisation and control
+    giada # Live electronic music platform
+    carla # VST Host & audio router
+    # helvum # TEST PipeWire router
+    # qpwgraph # TEST PipeWire router
+    # DAW & Editors
+    zrythm # Modern digital audio workstation
     ardour # Full fledged digital audio workstation
     reaper # PROPRIETARY digital audio workstation
-    distrho # Repository of audio plugins
-    drumgizmo # High quality drums sampler
     # audacity # Simple audio editor
-    # alsa-scarlett-gui
-    # geonkick
-    # surge-XT
-    # lsp-plugins
-    # fluidsynth
-    # linuxsampler
-    # qsampler
-    # helm
-    # drumkv1
-    # samplv1
+    # ingen # Modular audio environment
+    # VST
+    distrho # Collection of audio plugins, contains Vitalium
+    # helm # Ancestor of Vital
+    # lsp-plugins # Collection of audio plugins
+    calf # Collection of audio plugins
+    # infamousPlugins # Collection of audio plugins
+    surge-XT # Great hybrid substractive synth
     # surge
+    drumgizmo # High quality drums sampler
+    # Misc
+    yabridge # Use Windows VSTs with wine
+    yabridgectl # Use Windows VSTs with wine
+    # Drivers & Adapters
+    # alsa-scarlett-gui
   ];
 }
