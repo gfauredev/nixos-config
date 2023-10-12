@@ -4,8 +4,8 @@
     klick # Metronome
     giada # Live electronic music platform
     carla # VST Host & audio router
-    # helvum # TEST PipeWire router
-    # qpwgraph # TEST PipeWire router
+    # helvum # PipeWire router
+    # qpwgraph # PipeWire router
     # DAW & Editors
     zrythm # Modern digital audio workstation
     ardour # Full fledged digital audio workstation
