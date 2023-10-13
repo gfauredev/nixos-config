@@ -7,13 +7,13 @@
 # - Names are always singular, never plural
 # - Names are kept short, while still be totally clear and non-ambiguous on their nature
 
-echo "== Org == Textual organisation files =="
-if [ ! -d $HOME/org ]; then
-  echo "\nCreating org directory …"
-  mkdir -m 700 -v $HOME/org/
+echo "== Todo == Textual organisation files =="
+if [ ! -d $HOME/todo ]; then
+  echo "\nCreating Todo directory …"
+  mkdir -m 700 -v $HOME/todo/
 fi
-echo "#include stignore" > $HOME/org/.stignore
-echo "Organization" > $HOME/org/.ventoyignore
+echo "#include stignore" > $HOME/todo/.stignore
+echo "Organization" > $HOME/todo/.ventoyignore
 echo
 
 echo "== Project == Projects (containing sub-projects) =="
