@@ -6,7 +6,7 @@
       typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ./typst-env.sh}";
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ./fingerprints-enroll.sh}";
-      extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./fingerprints-enroll.sh}";
+      extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
       veracrypt-mount = pkgs.writeShellScriptBin "veramount" "${lib.readFile ./veracrypt-mount.sh}";
       present-pdf = pkgs.writeShellScriptBin "present" "${lib.readFile ./present-pdf.sh}";
     in
