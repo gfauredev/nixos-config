@@ -9,8 +9,8 @@ t . sh -c "typst watch $1; \rm -f $(dirname $1)/lib.typ"
 
 # Open generated PDF in PDF viewer
 PDF="$(echo $1 | sd "typ" "pdf")"
-echo "Openning PDF $pdf"
-xdg-open $pdf
+echo "Openning PDF $PDF"
+xdg-open $PDF
 
 # Open Typst file in text editor
 # $EDITOR $1
