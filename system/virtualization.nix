@@ -1,10 +1,10 @@
 { inputs, lib, config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    # TODO use dedicated option when possible
-    virt-manager # GUI frontend to libvirtd
     vagrant # VM orchestrator
-    kubernetes # Container orchestrator
+    # virt-manager # GUI frontend to libvirtd
     # looking-glass-client
+    # Containers
+    kubernetes # Container orchestrator
   ];
 
   networking.firewall.enable = lib.mkForce false; # FIXME for virt nets

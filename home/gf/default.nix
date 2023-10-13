@@ -12,12 +12,12 @@
     homeDirectory = "/home/gf";
 
     sessionVariables = {
-      XDG_DESKTOP_DIR = "$HOME";
-      XDG_DOCUMENTS_DIR = "$HOME/doc";
-      XDG_DOWNLOAD_DIR = "$HOME/dl";
-      XDG_MUSIC_DIR = "$HOME/audio";
-      XDG_PICTURES_DIR = "$HOME/img";
-      XDG_VIDEOS_DIR = "$HOME/vid";
+      XDG_DESKTOP_DIR = "$HOME/data";
+      XDG_DOCUMENTS_DIR = "$HOME/data/document";
+      XDG_DOWNLOAD_DIR = "$HOME/data";
+      XDG_MUSIC_DIR = "$HOME/data/audio";
+      XDG_PICTURES_DIR = "$HOME/data/image";
+      XDG_VIDEOS_DIR = "$HOME/data/video";
 
       BROWSER = "brave"; # TODO this directly in nix
 
@@ -123,9 +123,9 @@
       libnotify # Notifications management
       watchexec # Run command when file changes
       hyperfine # benchmark
-      ollama # Run LLMs locally
       jq # JSON filter
-      anytype # General productivity app
+      # ollama # Run LLMs locally
+      # anytype # General productivity app
       # appimage-run # Run appimages directly
       # steam-run # Run in isolated FHS
       # poetry # Python project manager # TODO use nix instead
