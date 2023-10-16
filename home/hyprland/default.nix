@@ -77,7 +77,7 @@
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
-        # /!\ Cannot move to Browsing worspace
+        "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
         "$mod, a, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"aud\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
@@ -148,9 +148,9 @@
         "$mod, comma, exec, swaylock -f -i $HOME/.wallpaper/desert.jpg"
         "$mod SHIFT, comma, exec, systemctl suspend"
         # Web
-        "$mod CONTROL, b, exec, nyxt" # Firefox
-        "$mod SHIFT, b, exec, firefox" # Nyxt
-        "$mod CONTROL SHIFT, b, exec, chromium" # Chromium
+        "$mod CONTROL, b, exec, nyxt" # Alternative browser
+        # "$mod SHIFT, b, exec, chromium" # Alternative browser
+        "$mod CONTROL SHIFT, b, exec, firefox" # Alternative browser
         # Audio
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SHIFT, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
