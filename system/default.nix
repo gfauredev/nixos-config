@@ -23,7 +23,8 @@
     loader.systemd-boot.enable = lib.mkDefault true; # Light EFI boot loader
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
-    kernel.sysctl = { "kernel.sysrq" = 176; }; # Enable great SysRq magic keys
+    # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
+    kernel.sysctl = { "kernel.sysrq" = 212; };
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
   };
 
