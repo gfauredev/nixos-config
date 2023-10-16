@@ -34,6 +34,8 @@ bindkey '^M' empty_cr
 # Create temporary downloads dir
 # [ -d /run/user/$UID/dl ] || mkdir -m 700 /run/user/$UID/dl
 # [ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$UID/dl $XDG_DOWNLOAD_DIR
-# Delete some annoying dirs
-[ -d $HOME/Downloads ] && rmdir $HOME/Downloads
-[ -d $HOME/intelephense ] && rmdir $HOME/intelephense
+# Delete some annoying autocreated things
+[ -d $HOME/Downloads ] && rmdir $HOME/Downloads # Default downloads dir
+[ -d $HOME/intelephense ] && rmdir $HOME/intelephense # PHP LSP
+[ -d $HOME/pt ] && \rm -fr $HOME/pt # Cisco Packet Tracer
+# [ -d $HOME/.bash_history ] && \rm $HOME/.bash_history # Bash history
