@@ -27,7 +27,7 @@
             "clock"
           ];
 
-          margin = "1 4 3 4";
+          margin = "4";
           spacing = 3;
           exclusive = true;
           fixed-center = false;
