@@ -7,7 +7,7 @@
     description = "Guilhem Fauré";
     shell = pkgs.zsh;
     extraGroups = [
-      "wheel"
+      "wheel" # Sudo
       "networkmanager"
       "video"
       "audio"
@@ -15,10 +15,11 @@
       "lp"
       "scanner"
       "fuse"
-      "uucp"
+      "uucp" # Connect to serial ports
+      "dialout" # Connect to serial ports
       "mtp"
       "libvirtd"
-      "adbusers"
+      "adbusers" # Connect to Android devices
       "vboxusers"
       "docker"
       "uinput"
