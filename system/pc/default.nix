@@ -112,6 +112,7 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      cpulimit # Limit CPU usage of processes
       bubblewrap # Applications sandboxer
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
