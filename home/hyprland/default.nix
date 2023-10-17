@@ -41,7 +41,7 @@
       dwindle = {
         pseudotile = true; # master switch for pseudotiling TEST
         preserve_split = true; # you probably want this
-        no_gaps_when_only = 1; # Disable gaps & borders for lone window
+        # no_gaps_when_only = 1; # Disable gaps & borders for lone window
       };
       # See https://wiki.hyprland.org/Configuring/Master-Layout
       master = {
