@@ -125,6 +125,14 @@
     xserver.videoDrivers = [ "nvidia" ];
   };
 
+  # Music production, mainly for realtime
+  musnix = {
+    enable = true;
+    kernel = {
+      realtime = true; # WARNING needs to compile kernel
+    };
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

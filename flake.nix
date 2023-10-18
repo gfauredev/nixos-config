@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
 
-    # agenix.url = "github:ryantm/agenix"; # Store secrets encrypted
+    # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
@@ -17,7 +17,7 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    musnix.url = "github:musnix/musnix"; # Realtime audio
+    musnix.url = "github:musnix/musnix"; # Music production & realtime audio
   };
 
   # outputs = { self, nixpkgs, agenix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
@@ -38,7 +38,6 @@
           ./system/pc/ninja.nix # Light & quick laptop : ninja
           ./system/pc/gf.nix # Main user
           ./system/pc/laptop.nix
-          ./system/realtime.nix
           ./system/pc/remap.nix
           ./system/print-scan.nix
           ./system/virtualization.nix
@@ -79,7 +78,6 @@
           ./system/pc # It’s a personal computer, not headless
           ./system/pc/knight.nix # Heavy & strong desktop : knight
           ./system/pc/gf.nix # Main user
-          # ./system/realtime.nix # FIXME conflicts with Nvidia drivers
           ./system/pc/remap.nix
           ./system/print-scan.nix
           ./system/pc/gaming.nix
@@ -153,7 +151,6 @@
           ./home/hyprland/knight.nix # knight’s specific Hyprland
           ./home/waybar # wayland bar
           ./home/waybar/widescreen.nix # wayland bar for wide screens
-          # ./home/onagre.nix # wayland launcher
           ./home/rofi # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
