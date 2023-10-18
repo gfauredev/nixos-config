@@ -128,7 +128,7 @@
   musnix = {
     enable = true;
     kernel = {
-      realtime = true; # WARNING needs to compile kernel
+      # realtime = true; # WARNING needs to compile kernel FIXME incompatible with nvidia open
     };
   };
 
