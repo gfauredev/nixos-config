@@ -73,14 +73,7 @@ A dev environment can be initialised with `nix flake init --template templates#T
 > Consider TODO, FIXME, TEST and WARNING tags already inside files
 
 - [ ] Installer ISO creation in flake.nix
-- [ ] Study & configure Musnix & realtime audio & audio improvements
-- [ ] hardware & Power consumption improvements
-- [ ] FIX `ninja`’s fingerprint reader
-- [ ] `pkgs.runCommand` or another nix-way to run config commands
-  - [x] Execute `# echo GPP0 > /proc/acpi/wakeup` on `knight`’s boot to fix suspend
-- [ ] Eventually `git pull --recurse-submodules --jobs=8` on this directory & password store at boot to update
-- [ ] Synchronize `.config/libreoffice/4/user/template/$USER` contents (eventually with syncthing)
-- [ ] Improve rofi menu (estethics, fuzzy, frecency …)
+- [ ] Improve rofi menu (frecency sorting, fuzzy matching …)
 
 ## Optional packages
 
@@ -93,7 +86,7 @@ A dev environment can be initialised with `nix flake init --template templates#T
 - `gns3-gui` # Advanced network simulation
 - `gns3-server` # Advanced network simulation (server)
 
-# Optional flakes
+## Optional flakes
 
 > These are packages I don’t want in my config but will eventually \
 > install with `nix profile install URL`
