@@ -21,17 +21,17 @@
     };
   };
 
-  # specialisation.closed-nvidia.configuration = {
-  #   hardware = {
-  #     nvidia = {
-  #       open = lib.mkForce false;
-  #       modesetting.enable = true;
-  #       powerManagement.enable = false;
-  #       powerManagement.finegrained = false;
-  #       nvidiaSettings = true;
-  #     };
-  #   };
-  # };
+  specialisation.closed-nvidia.configuration = {
+    hardware = {
+      nvidia = {
+        open = lib.mkForce false;
+        modesetting.enable = true;
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
+        nvidiaSettings = true;
+      };
+    };
+  };
 
   boot = {
     loader = {
