@@ -60,7 +60,7 @@
       luasnip # Snippet engine
       cmp_luasnip # LuaSnip as cmp source
       friendly-snippets # Snippets collection
-      null-ls-nvim # Use non-lsp code tools as ls within Neovim
+      # null-ls-nvim # FIXME deprecated
       nvim-cmp # Autocompletion for neovim
       lsp-zero-nvim # Easier lsp config for neovim
       trouble-nvim # Better presentation of messages
