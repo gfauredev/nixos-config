@@ -262,7 +262,7 @@
         render_titles_in_groupbar = false; # No titles in group bars
       };
     };
-    systemdIntegration = true; # TEST relevance
+    systemd.enable = true; # TEST relevance
     xwayland.enable = true;
   };
 
