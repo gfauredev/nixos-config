@@ -15,7 +15,7 @@
       powerManagement.finegrained = false;
       nvidiaSettings = true;
       # package = config.boot.kernelPackages.nvidiaPackages.stable;
-      package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.beta;
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
       # forceFullCompositionPipeline = true; TEST relevance
       # nvidiaPersistenced = true; TEST relevance
     };
@@ -30,7 +30,7 @@
         powerManagement.finegrained = false;
         nvidiaSettings = true;
         # package = config.boot.kernelPackages.nvidiaPackages.stable;
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        # package = config.boot.kernelPackages.nvidiaPackages.beta;
       };
     };
   };
