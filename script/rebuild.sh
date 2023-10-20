@@ -14,4 +14,10 @@ if [ "$1" != "os" ] && [ "$1" != "system" ]; then
   home-manager --flake .#${USER}@$(hostname) switch
 fi
 
-# git push
+[ "$2" = "push" ] && git push
+[ "$2" = "commit" ] && git commit -am "Unnamed update" && git push
+
+[ "$3" = "off" ] && systemctl poweroff
+[ "$3" = "poweroff" ] && systemctl poweroff
+
+[ "$3" = "reboot" ] && systemctl reboot
