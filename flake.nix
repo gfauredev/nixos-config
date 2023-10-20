@@ -80,7 +80,7 @@
           ./system/pc/gf.nix # Main user
           ./system/pc/remap.nix
           ./system/print-scan.nix
-          ./system/pc/gaming.nix
+          # ./system/pc/gaming.nix
           ./system/pc/xorg.nix # For compatibility
         ];
       };
@@ -158,7 +158,7 @@
           ./home/photo.nix # Photo & Images creation
           ./home/social.nix # Social interaction
           ./home/media.nix # Media consuming
-          ./home/gaming.nix # Video gaming
+          # ./home/gaming.nix # Video gaming
           ./home/i3.nix # XOrg compatibility wm
         ];
       };

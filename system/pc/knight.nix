@@ -21,20 +21,6 @@
     };
   };
 
-  # specialisation.closed-nvidia.configuration = {
-  #   hardware = {
-  #     nvidia = {
-  #       open = lib.mkForce false;
-  #       modesetting.enable = true;
-  #       powerManagement.enable = false;
-  #       powerManagement.finegrained = false;
-  #       nvidiaSettings = true;
-  #       # package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #       # package = config.boot.kernelPackages.nvidiaPackages.beta;
-  #     };
-  #   };
-  # };
-
   boot = {
     loader = {
       systemd-boot.enable = false; # Let lanzaboote boot securely
