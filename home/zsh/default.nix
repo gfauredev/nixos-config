@@ -110,7 +110,7 @@
       wx = "watchexec";
       run = "rofi -show-icons -show run";
       steamos = "gamescope --steam -- steam -tenfoot"; # Steam gaming compositor
-      governor = "cpupower frequency-set --governor"; # Set CPU frequency governor
+      governor = "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
       ## Bluetooth & Network
       bt = "bluetoothctl";
       http = "xh";
