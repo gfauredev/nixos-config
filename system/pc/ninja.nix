@@ -45,8 +45,9 @@
     };
   };
 
-  # Music production specialisation, mainly for realtime
+  # Music production specialisation, mainly for realtime & music related improvements
   specialisation.realtime.configuration = {
+    system.nixos.tags = [ "musnix" ];
     musnix = {
       enable = true;
       kernel = {
