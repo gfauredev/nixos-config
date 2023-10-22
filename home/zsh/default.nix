@@ -110,6 +110,7 @@
       wx = "watchexec";
       run = "rofi -show-icons -show run";
       steamos = "gamescope --steam -- steam -tenfoot"; # Steam gaming compositor
+      governor = "cpupower frequency-set --governor"; # Set CPU frequency governor
       ## Bluetooth & Network
       bt = "bluetoothctl";
       http = "xh";
@@ -125,7 +126,7 @@
       reboot = "systemctl reboot";
       ## Tools & Documents
       scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      hi = "himalaya"; # CLI mail client
+      mail = "himalaya"; # CLI mail client
 
       # Mounting
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";

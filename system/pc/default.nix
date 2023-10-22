@@ -113,7 +113,6 @@
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
       cpulimit # Limit CPU usage of processes
-      bubblewrap # Applications sandboxer
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
       exfat # fs tool
@@ -122,6 +121,25 @@
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
+      # bubblewrap # Applications sandboxer TEST if better than firejail
     ];
   };
+
+  # Realtime & music production related improvements
+  musnix = {
+    enable = true;
+  };
+
+  # Specialisation with RT kernel & performance governor by default
+  # specialisation.realtime.configuration = {
+  #   system.nixos.tags = [ "musnix" ];
+  #   musnix = {
+  #     kernel = {
+  #       realtime = true; # WARNING requires a kernel recompile
+  #       # TEST if below can be used without above
+  #       packages = pkgs.linuxPackages_rt; # Stable RT kernel
+  #       # packages = pkgs.linuxPackages_latest_rt; # Latest RT kernel
+  #     };
+  #   };
+  # };
 }

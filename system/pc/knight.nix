@@ -89,8 +89,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # rustdesk-server # Remote desktop # TEST if better than steam streaming
-    # sunshine # Game streaming server # TEST if better than rustdesk
+    # rustdesk-server # Remote desktop # TEST against steam streaming
+    # sunshine # Game streaming server # TEST against rustdesk
     mesa
   ];
 
@@ -110,14 +110,6 @@
       enable = true;
     };
     xserver.videoDrivers = [ "nvidia" ];
-  };
-
-  # Music production, mainly for realtime
-  musnix = {
-    enable = true;
-    kernel = {
-      # realtime = true; # WARNING needs to compile kernel FIXME incompatible with nvidia open
-    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

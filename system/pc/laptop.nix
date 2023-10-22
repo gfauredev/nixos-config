@@ -25,7 +25,7 @@
       settings = {
         PCIE_ASPM_ON_BAT = "powersupersave"; # Might be only for ninja
         # START_CHARGE_THRESH_BAT0 = 75; # Don’t start charging above
-        # STOP_CHARGE_THRESH_BAT0 = 80; # Don’t charge above
+        # STOP_CHARGE_THRESH_BAT0 = 80; # Don’t charge above # FIXME
         # START_CHARGE_THRESH_BAT1 = 75; # Don’t start charging above
         # STOP_CHARGE_THRESH_BAT1 = 80; # Don’t charge above # FIXME
       };
@@ -34,8 +34,8 @@
 
   powerManagement = {
     enable = true;
-    powertop.enable = true; # TEST relevance
-    cpuFreqGovernor = lib.mkDefault "powersave"; # TEST relevance
+    powertop.enable = true; # TEST relevance along powertop package
+    cpuFreqGovernor = lib.mkForce "powersave";
   };
 
   programs = {
