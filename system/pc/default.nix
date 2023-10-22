@@ -98,15 +98,16 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
-    # firejail = {
-    #   enable = true; # TEST pertinence
-    #   wrappedBinaries = {
-    #     brave = {
-    #       executable = "${pkgs.brave}/bin/brave";
-    #       profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
-    #     };
-    #   };
-    # };
+    firejail = {
+      enable = true; # TEST pertinence
+      wrappedBinaries = {
+        # TODO wrap binaries properly, may need home-manager tweaks to apply to desktop apps
+        # brave = {
+        #   executable = "${pkgs.brave}/bin/brave";
+        #   profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
+        # };
+      };
+    };
   };
 
   environment = {
@@ -117,7 +118,7 @@
       iw # Control network cards
       exfat # fs tool
       ntfs3g # fs tool
-      tldr # short man pages
+      tldr # short, examples man pages
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
@@ -132,7 +133,7 @@
 
   # Specialisation with RT kernel & performance governor by default
   # specialisation.realtime.configuration = {
-  #   system.nixos.tags = [ "musnix" ];
+  #   system.nixos.tags = [ "realtime" ];
   #   musnix = {
   #     kernel = {
   #       realtime = true; # WARNING requires a kernel recompile
