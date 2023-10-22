@@ -129,9 +129,9 @@
 
       # Mounting
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
-      mtpumount = "fusermount -u $HOME/mtp && rmdir $HOME/mtp";
-      usb = "udiskie-mount --all; [ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb";
-      usbumount = "udiskie-umount --all --eject && \\rm $HOME/usb";
+      unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
+      usb = "[ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb; udiskie-mount --all";
+      unusb = "udiskie-umount --all --eject; \\rm $HOME/usb";
 
       # Git
       status = "git status";
