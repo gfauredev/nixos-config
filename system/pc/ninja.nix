@@ -45,16 +45,6 @@
     };
   };
 
-  # Music production specialisation, mainly for realtime
-  specialisation.realtime.configuration = {
-    musnix = {
-      enable = true;
-      kernel = {
-        realtime = false; # WARNING if true we need to recompile kernel
-      };
-    };
-  };
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

@@ -110,6 +110,7 @@
       wx = "watchexec";
       run = "rofi -show-icons -show run";
       steamos = "gamescope --steam -- steam -tenfoot"; # Steam gaming compositor
+      governor = "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
       ## Bluetooth & Network
       bt = "bluetoothctl";
       http = "xh";
@@ -125,13 +126,13 @@
       reboot = "systemctl reboot";
       ## Tools & Documents
       scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      hi = "himalaya"; # CLI mail client
+      mail = "himalaya"; # CLI mail client
 
       # Mounting
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
-      mtpumount = "fusermount -u $HOME/mtp && rmdir $HOME/mtp";
-      usb = "udiskie-mount --all; [ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb";
-      usbumount = "udiskie-umount --all --eject && \\rm $HOME/usb";
+      unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
+      usb = "[ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb; udiskie-mount --all";
+      unusb = "udiskie-umount --all --eject; \\rm $HOME/usb";
 
       # Git
       status = "git status";

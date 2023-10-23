@@ -98,30 +98,49 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
-    # firejail = {
-    #   enable = true; # TEST pertinence
-    #   wrappedBinaries = {
-    #     brave = {
-    #       executable = "${pkgs.brave}/bin/brave";
-    #       profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
-    #     };
-    #   };
-    # };
+    firejail = {
+      enable = true; # TEST pertinence
+      wrappedBinaries = {
+        # TODO wrap binaries properly, may need home-manager tweaks to apply to desktop apps
+        # brave = {
+        #   executable = "${pkgs.brave}/bin/brave";
+        #   profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
+        # };
+      };
+    };
   };
 
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
       cpulimit # Limit CPU usage of processes
-      bubblewrap # Applications sandboxer
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
       exfat # fs tool
       ntfs3g # fs tool
-      tldr # short man pages
+      tldr # short, examples man pages
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
+      # bubblewrap # Applications sandboxer TEST if better than firejail
     ];
   };
+
+  # Realtime & music production related improvements
+  musnix = {
+    enable = true;
+  };
+
+  # Specialisation with RT kernel & performance governor by default
+  # specialisation.realtime.configuration = {
+  #   system.nixos.tags = [ "realtime" ];
+  #   musnix = {
+  #     kernel = {
+  #       realtime = true; # WARNING requires a kernel recompile
+  #       # TEST if below can be used without above
+  #       packages = pkgs.linuxPackages_rt; # Stable RT kernel
+  #       # packages = pkgs.linuxPackages_latest_rt; # Latest RT kernel
+  #     };
+  #   };
+  # };
 }
