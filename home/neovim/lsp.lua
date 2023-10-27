@@ -13,7 +13,7 @@ lsp.setup_servers({
   "cssls",
   -- "html",
   "jsonls",
-  "intelephense",
+  -- "intelephense",
   -- Low level
   "rust_analyzer",
   "arduino_language_server",
@@ -22,7 +22,7 @@ lsp.setup_servers({
   -- Misc
   -- "typst_lsp",
   -- "ltex",
-  "sqlls",
+  -- "sqlls",
   -- "sqls",
   -- "marksman",
 })
@@ -34,7 +34,7 @@ lsp.setup({
     { name = "fuzzy_path",             keyword_length = 2 },
     { name = "fuzzy_buffer",           keyword_length = 3 },
     { name = "nvim_lsp_signature_help" },
-    { name = "cmp_git",                keyword_length = 2 },
+    -- { name = "cmp_git",                keyword_length = 2 },
     -- { name = "cmp_tabnine" },
     -- { name = "orgmode" },
     -- { name = "zsh" },
@@ -49,6 +49,7 @@ conf.html.setup({
     provideFormatter = false
   }
 })
+
 conf.typst_lsp.setup({
   settings = {
     -- exportPdf = "onType",
@@ -56,6 +57,7 @@ conf.typst_lsp.setup({
     exportPdf = "never",
   },
 })
+
 conf.ltex.setup({
   settings = {
     ltex = {

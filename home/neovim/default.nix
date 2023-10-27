@@ -54,16 +54,16 @@
       cmp-git # Git commits messages as cmp source
       cmp-nvim-lsp-signature-help
       cmp-zsh # ZSH completions in Neovim
-      nvim-dap # Debugger protocol
-      nvim-dap-python # Use dap with debugpy
-      cmp-dap # Debugging messages as cmp source
+      # nvim-dap # Debugger protocol
+      # nvim-dap-python # Use dap with debugpy
+      # cmp-dap # Debugging messages as cmp source
       luasnip # Snippet engine
       cmp_luasnip # LuaSnip as cmp source
       friendly-snippets # Snippets collection
-      # null-ls-nvim # FIXME deprecated
+      # null-ls-nvim FIXME deprecated
       nvim-cmp # Autocompletion for neovim
       lsp-zero-nvim # Easier lsp config for neovim
-      trouble-nvim # Better presentation of messages
+      # trouble-nvim # Better presentation of messages
       # cmp-tabnine # AI code completion
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
@@ -77,13 +77,13 @@
       comment-nvim # Comment/Uncomment easily
       gitsigns-nvim # Displays git related indications
       leap-nvim # Navigate efficiently in code
-      which-key-nvim # Indications on current keys
-      sniprun # Run snippets of code from neovim
+      # which-key-nvim # Indications on current keys
+      # sniprun # Run snippets of code from neovim
       neorg # New oganization specific lightweight markup
       orgmode # Organization specific lightweight markup
-      markdown-preview-nvim # Markdown previewing
+      # markdown-preview-nvim # Markdown previewing
       # hologram-nvim # Image viewer
-      image-nvim # Image viewer
+      # image-nvim # Image viewer
       dashboard-nvim # Better start screen
       # zk-nvim # zk integration
       # hop-nvim # Navigate efficiently in code

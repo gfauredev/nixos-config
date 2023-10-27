@@ -60,8 +60,8 @@ map("n", "<leader>fh", telescope.help_tags, {})
 map("n", "<leader>fx", telescope.quickfix, {})
 
 -- Trouble, better LSP messages
-require "trouble".setup()
-map("n", "<leader>l", "<cmd>TroubleToggle<cr>", opt)
+-- require "trouble".setup()
+-- map("n", "<leader>l", "<cmd>TroubleToggle<cr>", opt)
 
 -- Leap, better moving
 map("n", "k", "<Plug>(leap-forward-to)", opt)
@@ -107,7 +107,7 @@ require "orgmode".setup({
   org_agenda_files = { "~/note/*.org" }, -- ISO date
   org_default_notes_file = "~/note/in.org",
   mappings = {
-    -- disable_all = true,
+    disable_all = true,
     global = {
       org_agenda = { '<Leader>oa' },
       org_capture = { '<Leader>oc' },
@@ -135,50 +135,49 @@ require "orgmode".setup({
 -- })
 
 -- Markdown preview
-map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<CR>", opt)
+-- map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<CR>", opt)
 
 -- Debuggers
-local dap = require "dap"
-local dapui = require "dap.ui.widgets"
-map("n", "<leader>c", dap.continue, opt)
-map("n", "<leader>C", dap.step_into, opt)
-map("n", "<leader>b", dap.toggle_breakpoint, opt)
-map("n", "<leader>o", dap.step_over, opt)
-map("n", "<leader>O", dap.step_out, opt)
-map("n", "<leader>dl", dap.run_last, opt)
-map("n", "<leader>dr", dap.repl.toggle, opt)
-map("n", "<leader>dt", dap.terminate, opt)
+-- local dap = require "dap"
+-- local dapui = require "dap.ui.widgets"
+-- map("n", "<leader>c", dap.continue, opt)
+-- map("n", "<leader>C", dap.step_into, opt)
+-- map("n", "<leader>b", dap.toggle_breakpoint, opt)
+-- map("n", "<leader>o", dap.step_over, opt)
+-- map("n", "<leader>O", dap.step_out, opt)
+-- map("n", "<leader>dl", dap.run_last, opt)
+-- map("n", "<leader>dr", dap.repl.toggle, opt)
+-- map("n", "<leader>dt", dap.terminate, opt)
+-- map("n", "<leader>dh", dapui.hover, opt)
 
-map("n", "<leader>dh", dapui.hover, opt)
-
-require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
+-- require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
 
 -- require "hologram".setup { -- Images inside Neovim
 --   auto_display = true      -- automatic markdown image display
 -- }
 
-require("image").setup({
-  backend = "kitty",
-  integrations = {
-    markdown = {
-      enabled = true,
-      clear_in_insert_mode = false,
-      download_remote_images = true,
-      only_render_image_at_cursor = false,
-      filetypes = { "markdown", "vimwiki" }, -- markdown extensions
-    },
-    neorg = {
-      enabled = true,
-      clear_in_insert_mode = false,
-      download_remote_images = true,
-      only_render_image_at_cursor = false,
-      filetypes = { "norg" },
-    },
-  },
-  max_width = nil,
-  max_height = nil,
-  max_width_window_percentage = nil,
-  max_height_window_percentage = 50,
-  window_overlap_clear_enabled = false, -- toggles when overlap
-  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-})
+-- require("image").setup({
+--   backend = "kitty",
+--   integrations = {
+--     markdown = {
+--       enabled = true,
+--       clear_in_insert_mode = false,
+--       download_remote_images = true,
+--       only_render_image_at_cursor = false,
+--       filetypes = { "markdown", "vimwiki" }, -- markdown extensions
+--     },
+--     neorg = {
+--       enabled = true,
+--       clear_in_insert_mode = false,
+--       download_remote_images = true,
+--       only_render_image_at_cursor = false,
+--       filetypes = { "norg" },
+--     },
+--   },
+--   max_width = nil,
+--   max_height = nil,
+--   max_width_window_percentage = nil,
+--   max_height_window_percentage = 50,
+--   window_overlap_clear_enabled = false, -- toggles when overlap
+--   window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+-- })
