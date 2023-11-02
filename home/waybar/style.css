@@ -50,11 +50,11 @@ menu {
 }
 
 #pulseaudio.muted, #pulseaudio.source-muted {
-  min-width: 80px;
+  min-width: 75px;
 }
 
 #pulseaudio {
-  min-width: 120px;
+  min-width: 110px;
 }
 
 #clock {
