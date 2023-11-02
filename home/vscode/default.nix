@@ -7,22 +7,22 @@
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
     ];
-    userSettings = {
-      # JSON
-      vim.enableNeovim = true;
-      vim.neovimUseConfigFile = true;
-    };
-    userTasks = {
-      # JSON
-    };
-    keybindings = [
-      # List of JSON modules
-    ];
-    globalSnippets = {
-      # JSON
-    };
-    languageSnippets = {
-      # JSON
-    };
+    # userSettings = {
+    #   # JSON
+    #   vim.enableNeovim = true;
+    #   vim.neovimUseConfigFile = true;
+    # };
+    # userTasks = {
+    #   # JSON
+    # };
+    # keybindings = [
+    #   # List of JSON modules
+    # ];
+    # globalSnippets = {
+    #   # JSON
+    # };
+    # languageSnippets = {
+    #   # JSON
+    # };
   };
 }

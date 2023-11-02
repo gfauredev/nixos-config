@@ -134,6 +134,7 @@
           ./home/hyprland # Hyprland window manager
           ./home/hyprland/ninja.nix # ninja’s specific Hyprland
           ./home/waybar # wayland bar
+          ./home/vscode # Graphical text editor
           ./home/rofi # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
@@ -161,6 +162,7 @@
           ./home/hyprland/knight.nix # knight’s specific Hyprland
           ./home/waybar # wayland bar
           ./home/waybar/widescreen.nix # wayland bar for wide screens
+          ./home/vscode # Graphical text editor
           ./home/rofi # wayland launcher
           ./home/hard.nix # Hardware creation
           ./home/audio.nix # Audio & Music creation
