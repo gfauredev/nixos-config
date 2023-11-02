@@ -20,6 +20,7 @@
     musnix.url = "github:musnix/musnix"; # Music production & realtime audio
   };
 
+  # TODO test if using @inputs is necessary
   # outputs = { self, nixpkgs, agenix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
   outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
@@ -120,7 +121,7 @@
           inherit inputs;
           hwmon = "4/temp3_input";
           # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
-          term = "${pkgs.wezterm}/bin/wezterm start";
+          term = "wezterm start"; # TODO cleaner this
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
@@ -143,7 +144,7 @@
         extraSpecialArgs = {
           inherit inputs;
           hwmon = "2/temp3_input";
-          term = "${pkgs.alacritty}/bin/alacritty";
+          term = "alacritty"; # TODO cleaner this
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
