@@ -121,7 +121,10 @@
           inherit inputs;
           hwmon = "4/temp3_input";
           # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
-          term = "wezterm start"; # TODO cleaner this
+          term = {
+            cmd = "wezterm start"; # TODO cleaner this
+            exec = "wezterm start"; # TODO cleaner this
+          };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
@@ -144,7 +147,10 @@
         extraSpecialArgs = {
           inherit inputs;
           hwmon = "2/temp3_input";
-          term = "alacritty"; # TODO cleaner this
+          term = {
+            cmd = "alacritty"; # TODO cleaner this
+            exec = "alacritty -e"; # TODO cleaner this
+          };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [

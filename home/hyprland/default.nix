@@ -83,9 +83,9 @@
         "$mod, a, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"aud\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, o, workspace, name:opn" # Open (a file)
-        "$mod, o, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"opn\"' | grep true || ${term} zsh -ic 'br;zsh'" # Start a term with explorer
+        "$mod, o, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"opn\"' | grep true || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
-        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term} --class monitoring btm" # Auto open bottom if not running
+        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.exec} btm --class monitoring" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         # Additional workspaces (Left)
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
@@ -98,10 +98,10 @@
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients -j | jq '.[]|([.class,.workspace.name] == [\"org.wezfurlong.wezterm\",\"cli\"])' | grep true || ${term}" # Auto open CLI if not running
+        "$mod, l, exec, hyprctl clients -j | jq -e '.[]|if .workspace.name == \"cli\" then .class | test(\"${term.cmd}\";\"i\") else false end' || ${term.cmd}" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
-        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term} --cwd ~/note --class note $EDITOR" # Auto open text editor
+        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.exec} $EDITOR --cwd ~/note --class note" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
         "$mod, m, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"msg\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
@@ -128,7 +128,7 @@
         "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
-        "$mod, RETURN, exec, ${term}"
+        "$mod, RETURN, exec, ${term.cmd}"
         # Launch
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"
