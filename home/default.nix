@@ -120,6 +120,12 @@
           family = "FiraCode Nerd Font";
           size = 14;
         };
+        colors = {
+          primary = {
+            background = "#000000";
+            # foreground = "#000000";
+          };
+        };
       };
     };
     firefox = {

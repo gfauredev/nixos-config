@@ -119,6 +119,8 @@
         extraSpecialArgs = {
           inherit inputs;
           hwmon = "4/temp3_input";
+          # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
+          term = "${pkgs.wezterm}/bin/wezterm start";
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
@@ -141,6 +143,7 @@
         extraSpecialArgs = {
           inherit inputs;
           hwmon = "2/temp3_input";
+          term = "${pkgs.alacritty}/bin/alacritty";
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
