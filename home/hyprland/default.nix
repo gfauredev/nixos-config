@@ -98,7 +98,7 @@
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients -j | jq -e '.[]|if .workspace.name == \"cli\" then .class | test(\"${term.cmd}\";\"i\") else false end' || ${term.cmd}" # Auto open CLI if not running
+        "$mod, l, exec, hyprctl clients -j | jq -e '.[]|if .workspace.name == \"cli\" then .class | test(\"${term.name}\";\"i\") else false end' || ${term.name}" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.exec} $EDITOR --cwd ~/note --class note" # Auto open text editor
@@ -128,7 +128,7 @@
         "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
-        "$mod, RETURN, exec, ${term.cmd}"
+        "$mod, RETURN, exec, ${term.name}"
         # Launch
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"

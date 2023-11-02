@@ -122,7 +122,7 @@
           hwmon = "4/temp3_input";
           # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
           term = {
-            cmd = "wezterm start"; # TODO cleaner this
+            name = "wezterm"; # TODO cleaner this
             exec = "wezterm start"; # TODO cleaner this
           };
         };
@@ -149,7 +149,7 @@
           inherit inputs;
           hwmon = "2/temp3_input";
           term = {
-            cmd = "alacritty"; # TODO cleaner this
+            name = "alacritty"; # TODO cleaner this
             exec = "alacritty -e"; # TODO cleaner this
           };
         };
