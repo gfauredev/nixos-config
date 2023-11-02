@@ -6,7 +6,7 @@ require "orgmode".setup_ts_grammar()      -- Org mode grammars
 require "nvim-treesitter.configs".setup { -- Treesitter
   highlight = {
     enable = true,
-    -- disable = { "html" },
+    disable = { "nix" },
     -- additional_vim_regex_highlighting = { "org" },
   },
   incremental_selection = {
