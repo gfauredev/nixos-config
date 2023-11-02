@@ -221,13 +221,15 @@
         cursor_inactive_timeout = 1;
         "col.active_border" = "rgba(ffddccc5)";
         "col.inactive_border" = "rgba(00000000)";
-        "col.group_border_active" = "rgba(ffddccc5)";
-        "col.group_border" = "rgba(00000000)";
       };
 
 
-      group.groupbar = {
-        render_titles = false; # No titles in group bars
+      group = {
+        "col.border_active" = "rgba(ffddccc5)";
+        "col.border_inactive" = "rgba(00000000)";
+        groupbar = {
+          render_titles = false; # No titles in group bars
+        };
       };
 
       # See https://wiki.hyprland.org/Configuring/Variables
@@ -245,9 +247,9 @@
         };
         # blur_new_optimizations = true; # Save some power
         drop_shadow = false; # Save some power
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1f1d1ccc)";
+        # shadow_range = 4;
+        # shadow_render_power = 3;
+        # "col.shadow" = "rgba(1f1d1ccc)";
       };
 
       # See https://wiki.hyprland.org/Configuring/Animations
