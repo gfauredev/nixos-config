@@ -7,6 +7,10 @@
     };
   };
 
+  imports = [
+    ../vscode # Potential future editor
+  ];
+
   home = {
     username = "gf";
     homeDirectory = "/home/gf";
