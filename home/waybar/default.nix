@@ -163,7 +163,7 @@
           clock = {
             timezone = "Europe/Paris";
             # format = "{: %H:%M  %a %d %b}";
-            format = "{:%H:%M  %a %d %b}";
+            format = "{:%H:%M %a %d %b}";
             # max-length = 30;
             tooltip = false;
           };
