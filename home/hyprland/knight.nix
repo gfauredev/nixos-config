@@ -21,4 +21,23 @@
       ];
     };
   };
+
+  services.swayidle = {
+    events = [
+      { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
+      # { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpaper/desertWithPlants.jpg"; } # FIXME Knight’s suspends crashes Hyprland
+    ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+      }
+      {
+        timeout = 330;
+        command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpaper/desertWithPlants.jpg";
+      }
+      # { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; } # FIXME Knight’s suspends crashes Hyprland
+    ];
+  };
 }
