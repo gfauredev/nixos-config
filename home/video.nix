@@ -9,7 +9,7 @@
     # davinci-resolve # PROPRIETARY video editor
     # glaxnimate # video editing library
     # flowblade # non linear video editor
-    # olive-editor # non linear video editor
+    olive-editor # non linear video editor
     # natron # non linear video editor
 
     # obs-studio
