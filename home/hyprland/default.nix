@@ -98,7 +98,7 @@
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients -j | jq -e '.[]|if .workspace.name == \"cli\" then .class | test(\"${term.name}\";\"i\") else false end' || ${term.name}" # Auto open CLI if not running
+        "$mod, l, exec, hyprctl clients -j | jq -e '.[]|if .workspace.name == \"cli\" then .class | test(\"${term.name}\";\"i\") else empty end' || ${term.name}" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.exec} $EDITOR --cwd ~/note --class note" # Auto open text editor
