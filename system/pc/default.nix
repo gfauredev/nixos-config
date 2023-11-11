@@ -128,6 +128,7 @@
       # samba # Share files with other OSes
       samba4Full # Share files with other OSes
       # cifs-utils # Share files with other Oses
+      inetutils # Things like FTP commend
     ];
   };
 
