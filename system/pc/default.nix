@@ -80,6 +80,7 @@
       '';
     };
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
+    gvfs.enable = true; # Samba client
   };
 
   security = {
@@ -124,6 +125,9 @@
       sbctl # Secure Boot Control
       tcpdump # Dump network packets
       # bubblewrap # Applications sandboxer TEST if better than firejail
+      # samba # Share files with other OSes
+      samba4Full # Share files with other OSes
+      # cifs-utils # Share files with other Oses
     ];
   };
 

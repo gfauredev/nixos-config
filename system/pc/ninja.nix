@@ -23,10 +23,13 @@
   networking = {
     hostName = "ninja";
     firewall = {
-      enable = false;
+      # enable = false;
       # Syncthing:22000,21027 / Vagrant:2049
       allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
+      extraCommands = ''
+        iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns
+      '';
     };
     wireguard.enable = true;
   };
