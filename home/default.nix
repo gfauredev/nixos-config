@@ -26,6 +26,7 @@
     # bleachbit
     # gnome.seahorse
     nixpkgs-review # Review pull requests to nixpkgs
+    samba # Share files with other OSes
   ];
 
   services = {
