@@ -122,6 +122,7 @@
           hwmon = "4/temp3_input";
           # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
           term = {
+            # TODO create nix functions & modules to do that cleaner
             name = "wezterm"; # TODO cleaner this
             exec = "wezterm start"; # TODO cleaner this
           };
@@ -149,6 +150,7 @@
           inherit inputs;
           hwmon = "2/temp3_input";
           term = {
+            # TODO create nix functions & modules to do that cleaner
             name = "alacritty"; # TODO cleaner this
             exec = "alacritty -e"; # TODO cleaner this
           };
