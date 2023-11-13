@@ -124,6 +124,7 @@
       watchexec # Run command when file changes
       hyperfine # benchmark
       jq # JSON filter
+      kismet # Wireless network sniffer
       # ollama # Run LLMs locally
       # anytype # General productivity app
       # appimage-run # Run appimages directly
