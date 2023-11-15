@@ -113,14 +113,14 @@
         "$mod SHIFT, h, movetoworkspace, name:hdm" # HDMI
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
-        ", XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"spotify\")' || spotify" # Auto open main media player
+        ", XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
         "SHIFT, XF86AudioMedia, exec, menu ~ pulsemixer" # Open audio mixer
         "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         ", XF86Tools, workspace, name:med" # Media ws
-        ", XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"spotify\")' || spotify" # Auto open main media player
+        ", XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
         "SHIFT, XF86Tools, exec, menu ~ pulsemixer" # Open audio mixer
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
