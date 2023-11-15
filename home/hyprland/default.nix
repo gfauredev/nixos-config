@@ -80,10 +80,10 @@
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
-        "$mod, a, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"aud\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\") || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, o, workspace, name:opn" # Open (a file)
-        "$mod, o, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"opn\"' | grep true || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
+        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\") || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.exec} --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
@@ -91,20 +91,20 @@
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
-        "$mod, e, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"etc\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"etc\") || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"ext\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"ext\") || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients -j | jq -e '.[]|if .workspace.name == \"cli\" then .class | test(\"${term.name}\";\"i\") else empty end' || ${term.name}" # Auto open CLI if not running
+        "$mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"cli\" and (.class | test(\"${term.name}\";\"i\")))' || ${term.name}" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.exec} $EDITOR --cwd ~/note --class note" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
-        "$mod, m, exec, hyprctl clients -j | jq '.[]|.workspace.name == \"msg\"' | grep true || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\") || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Additional monitor workspaces (Right)
         "$mod, d, workspace, name:dpp" # DisplayPort workspace
@@ -113,14 +113,14 @@
         "$mod SHIFT, h, movetoworkspace, name:hdm" # HDMI
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
-        ", XF86AudioMedia, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
+        ", XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"spotify\")' || spotify" # Auto open main media player
         "SHIFT, XF86AudioMedia, exec, menu ~ pulsemixer" # Open audio mixer
         "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         ", XF86Tools, workspace, name:med" # Media ws
-        ", XF86Tools, exec, hyprctl clients | grep -i 'title: spotify' || spotify" # Auto open main media player
+        ", XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"spotify\")' || spotify" # Auto open main media player
         "SHIFT, XF86Tools, exec, menu ~ pulsemixer" # Open audio mixer
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
