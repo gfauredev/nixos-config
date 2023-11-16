@@ -77,15 +77,16 @@
     nfs.server.enable = lib.mkDefault true;
   };
 
-  # programs = {
-  #   neovim = { # TEST relevance
-  #     enable = true;
-  #     defaultEditor = true;
-  #     viAlias = true;
-  #     vimAlias = true;
-  #   };
-  #   git.enable = true; # TEST relevance
-  # };
+  programs = {
+    openvpn3.enable = lib.mkDefault true;
+    #   neovim = { # TEST relevance
+    #     enable = true;
+    #     defaultEditor = true;
+    #     viAlias = true;
+    #     vimAlias = true;
+    #   };
+    #   git.enable = true; # TEST relevance
+  };
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
