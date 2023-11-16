@@ -80,10 +80,10 @@
         "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
-        "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\") || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\")' || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, o, workspace, name:opn" # Open (a file)
-        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\") || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
+        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.exec} --class monitoring btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
@@ -91,10 +91,10 @@
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
-        "$mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"etc\") || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"etc\")' || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"ext\") || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"ext\")' || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
@@ -104,7 +104,7 @@
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.exec} $EDITOR --cwd ~/note --class note" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
-        "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\") || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         # Additional monitor workspaces (Right)
         "$mod, d, workspace, name:dpp" # DisplayPort workspace
