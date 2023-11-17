@@ -126,6 +126,7 @@
       jq # JSON filter
       kismet # Wireless network sniffer
       rpi-imager # Raspberry Pi OS generator
+      cmatrix # Simulate falling text as in matrix
       # ollama # Run LLMs locally
       # anytype # General productivity app
       # appimage-run # Run appimages directly
