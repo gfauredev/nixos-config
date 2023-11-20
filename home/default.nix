@@ -118,7 +118,8 @@
         };
         font = {
           family = "FiraCode Nerd Font";
-          size = 14;
+          # size = 14;
+          size = 11;
         };
         colors = {
           primary = {

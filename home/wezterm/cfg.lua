@@ -4,6 +4,7 @@ cfg = {
   enable_wayland = true,
   -- front_end = "Software", -- Disable hardware acceleration for nvidia GPU
   font = wezterm.font "FiraCode Nerd Font",
+  font_size = 11,
   enable_tab_bar = false,
   window_background_opacity = 0.8,
   window_close_confirmation = "NeverPrompt",
