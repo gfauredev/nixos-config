@@ -12,4 +12,54 @@
     # teams-for-linux # PROPRIETARY services messaging and work
     # zoom         # PROPRIETARY messaging and work
   ];
+
+  # TODO configure this
+  # accounts = {
+  #   calendar = { };
+  #   email.accounts = {
+  #     pro = {
+  #       primary = true;
+  #       himalaya = {
+  #         enable = true;
+  #         settings = {
+  #           email = lib.readFile /run/agenix/pro-email;
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
+
+
+  services = {
+    himalaya-notify = {
+      enable = true;
+      environment = {
+        "PASSWORD_STORE_DIR" = "~/.password-store";
+      };
+      settings = {
+        # account = "pro";
+        # keepalive = 10;
+      };
+    };
+    himalaya-watch = {
+      enable = true;
+      environment = {
+        "PASSWORD_STORE_DIR" = "~/.password-store";
+      };
+      settings = {
+        # account = "pro";
+        # keepalive = 10;
+      };
+    };
+  };
+
+  programs = {
+    # himalaya = {
+    #   enable = true; # TODO CLI Mail client
+    #   settings = {
+    #     signature = "Guilhem Fauré";
+    #     downloads-dir = "~/dl";
+    #   };
+    # };
+  };
 }

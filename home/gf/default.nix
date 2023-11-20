@@ -171,22 +171,6 @@
     stateVersion = "23.11";
   };
 
-  # TODO configure this
-  # accounts = {
-  #   calendar = { };
-  #   email.accounts = {
-  #     pro = {
-  #       primary = true;
-  #       himalaya = {
-  #         enable = true;
-  #         settings = {
-  #           email = lib.readFile /run/agenix/pro-email;
-  #         };
-  #       };
-  #     };
-  #   };
-  # };
-
   xdg.configFile = {
     # onagre-theme = {
     #   target = "onagre/theme.scss";
@@ -271,13 +255,6 @@
         default_flags = "dgps";
       };
     };
-    # himalaya = {
-    #   enable = true; # TODO CLI Mail client
-    #   settings = {
-    #     signature = "Guilhem Fauré";
-    #     downloads-dir = "~/dl";
-    #   };
-    # };
   };
 
   xdg = {
