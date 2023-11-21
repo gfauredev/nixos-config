@@ -19,11 +19,15 @@
     # qt6.qtwayland # TEST if relevant
     # libsForQt5.systemsettings # TEST if relevant
     # adwaita-qt # TEST if relevant
+    glib # GTK Tools
+    # gsettitngs-qt # GTK Settings
 
     # Misc
     # albert # Previous general purpose launcher
     # protonvpn-gui # Free VPN service
-    # bleachbit
+    # bleachbit # Good old cleaner
+    czkawka # Modern cleaner
+    stacer # Modern cleaner & monitoring
     # gnome.seahorse
     nixpkgs-review # Review pull requests to nixpkgs
   ];
