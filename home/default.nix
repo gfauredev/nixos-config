@@ -26,8 +26,8 @@
     # albert # Previous general purpose launcher
     # protonvpn-gui # Free VPN service
     # bleachbit # Good old cleaner
-    czkawka # Modern cleaner
-    stacer # Modern cleaner & monitoring
+    # czkawka # Modern cleaner
+    # stacer # Modern cleaner & monitoring
     # gnome.seahorse
     nixpkgs-review # Review pull requests to nixpkgs
   ];
