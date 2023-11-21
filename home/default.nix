@@ -19,7 +19,7 @@
     # qt6.qtwayland # TEST if relevant
     # libsForQt5.systemsettings # TEST if relevant
     # adwaita-qt # TEST if relevant
-    glib # GTK Tools
+    # glib # GTK Tools
     # gsettitngs-qt # GTK Settings
 
     # Misc
@@ -149,11 +149,11 @@
       name = "Nordzy-cursors";
       size = 22;
     };
-    # font = { # TODO configure
-    # package = pkgs.;
-    # name = "";
-    # size = 20;
-    # };
+    font = {
+      package = pkgs.fira-go;
+      name = "FiraGO";
+      size = 12;
+    };
     # theme = { # TODO configure
     # package = pkgs.;
     # name = "";
@@ -162,6 +162,18 @@
     # package = pkgs.;
     # name = "";
     # };
+    gtk2 = {
+      configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
+      # extraConfig = ''
+      # '';
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+      # color-scheme = "prefer-dark";
+    };
   };
 
   qt = {
