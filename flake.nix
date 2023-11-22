@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
 
     # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
+    sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
@@ -21,8 +22,7 @@
   };
 
   # TODO test if using @inputs is necessary
-  # outputs = { self, nixpkgs, agenix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
-  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
+  outputs = { self, nixpkgs, sops-nix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       # Laptops
@@ -32,6 +32,7 @@
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
           # agenix.nixosModules.default # Secrets storage
+          sops-nix.nixosModules.sops # Secrets storage
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
