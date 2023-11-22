@@ -1,4 +1,8 @@
 { inputs, lib, config, pkgs, term, ... }: {
+  home.packages = with pkgs; [
+    wl-mirror # Mirror wayland output
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     # plugins = [ ];
