@@ -96,6 +96,7 @@
         "*.doc"
         "*.docx"
         "*.pptx"
+        ".venv/"
       ];
     };
     wezterm = {
