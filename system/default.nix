@@ -110,6 +110,7 @@
       wakelan # send magick packet to wake WoL devices
       age # Modern encryption
       openvpn # Largely used VPN
+      sysstat # Monitoring CLI tools
       # inputs.agenix.packages.x86_64-linux.default
     ];
   };
