@@ -32,7 +32,7 @@
 
   services = {
     himalaya-notify = {
-      enable = true;
+      # enable = true;
       environment = {
         "PASSWORD_STORE_DIR" = "~/.password-store";
       };
@@ -42,7 +42,7 @@
       };
     };
     himalaya-watch = {
-      enable = true;
+      # enable = true;
       environment = {
         "PASSWORD_STORE_DIR" = "~/.password-store";
       };
