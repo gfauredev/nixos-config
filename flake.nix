@@ -127,7 +127,8 @@
             # name = "wezterm"; # TODO cleaner this
             # exec = "wezterm start"; # TODO cleaner this
             name = "alacritty"; # TODO cleaner this
-            exec = "alacritty -e"; # TODO cleaner this
+            exec = "--command"; # TODO cleaner this
+            class = "--class"; # TODO cleaner this
           };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -155,7 +156,8 @@
           term = {
             # TODO create nix functions & modules to do that cleaner
             name = "alacritty"; # TODO cleaner this
-            exec = "alacritty -e"; # TODO cleaner this
+            exec = "--command"; # TODO cleaner this
+            class = "--class"; # TODO cleaner this
           };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
