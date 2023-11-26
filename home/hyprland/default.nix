@@ -89,7 +89,7 @@
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
-        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term} ${term.class} monitoring ${term.exec} btm" # Auto open bottom if not running
+        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.name} ${term.class} monitoring ${term.exec} btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         # Additional workspaces (Left)
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
