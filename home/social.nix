@@ -55,10 +55,10 @@
 
   programs = {
     himalaya = {
-      enable = true; # TODO CLI Mail client
+      # enable = true; # CLI Mail client # TODO Config as a secret with sops
       # settings = {
       #   signature = "Guilhem Fauré";
-      #   downloads-dir = "~/dl";
+      #   downloads-dir = "";
       # };
     };
   };
