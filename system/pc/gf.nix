@@ -23,6 +23,7 @@
       "vboxusers"
       "docker"
       "uinput"
+      "wireshark" # Use wireshark without root
     ];
   };
 
