@@ -103,6 +103,7 @@
       # termshark # Wireshark TUI
       tshark # Wireshark CLI
       wireshark # Wireshark GUI
+      hping # Network monitoring tool
 
       #################### Languages helpers ####################
       typst # Document processor TODO documents Nix dev shell
