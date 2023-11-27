@@ -14,6 +14,7 @@
     # marktext # Markdown editor
     # calibre # Ebook management
     # zathura # Minimalist PDF reader
+    mupdf # Minimalist PDF reader
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
 
