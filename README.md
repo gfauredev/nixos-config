@@ -104,3 +104,4 @@ A dev environment can be initialised with `nix flake init --template templates#T
 - `sqldeveloper` # Oracle SQL IDE
 - `sqlcl` # Oracle SQL CLI
 - `burpsuite` # Pentesting suite
+- `minecraft` # Mythic sandbox game
