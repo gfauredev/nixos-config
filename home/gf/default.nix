@@ -102,7 +102,7 @@
       # curl # Mythic HTTP client TEST xh only
       # termshark # Wireshark TUI
       tshark # Wireshark CLI
-      wireshark # Wireshark GUI
+      # wireshark # Wireshark GUI
       hping # Network monitoring tool
 
       #################### Languages helpers ####################
