@@ -131,6 +131,8 @@
       inetutils # Things like FTP commend
       ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
       bridge-utils # Network interface bridging
+      # dig # DNS analyzer
+      ssh-to-age # Converter between SSH keys and age
     ];
   };
 

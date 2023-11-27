@@ -112,6 +112,7 @@
       openvpn # Largely used VPN
       sysstat # Monitoring CLI tools
       # inputs.agenix.packages.x86_64-linux.default
+      # sops # Nix secret management
     ];
   };
 }
