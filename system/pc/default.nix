@@ -130,6 +130,7 @@
       # cifs-utils # Share files with other Oses
       inetutils # Things like FTP commend
       ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
+      bridge-utils # Network interface bridging
     ];
   };
 
