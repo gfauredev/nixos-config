@@ -102,6 +102,7 @@
       # curl # Mythic HTTP client TEST xh only
       # termshark # Wireshark TUI
       tshark # Wireshark CLI
+      wireshark # Wireshark GUI
 
       #################### Languages helpers ####################
       typst # Document processor TODO documents Nix dev shell
