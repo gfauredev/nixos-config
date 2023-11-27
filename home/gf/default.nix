@@ -100,6 +100,8 @@
       # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
+      # termshark # Wireshark TUI
+      tshark # Wireshark CLI
 
       #################### Languages helpers ####################
       typst # Document processor TODO documents Nix dev shell
