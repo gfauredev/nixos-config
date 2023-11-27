@@ -9,7 +9,7 @@
     # DAW & Editors
     zrythm # Modern digital audio workstation
     ardour # Full fledged digital audio workstation
-    reaper # PROPRIETARY digital audio workstation
+    # reaper # PROPRIETARY digital audio workstation
     # audacity # Simple audio editor
     # ingen # Modular audio environment
     # VST
