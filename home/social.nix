@@ -1,6 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
-    # himalaya # CLI mail client # Configure via home manager module
+    himalaya # CLI mail client # Configure via home manager module
     element-desktop # Matrix messaging
     signal-desktop # Secure messaging
     # element-web # Matrix messaging
