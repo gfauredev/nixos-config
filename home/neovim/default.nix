@@ -47,15 +47,15 @@
       gitsigns-nvim # Displays git related indications
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
-      gruvbox-nvim # Old fashioned theme
       dashboard-nvim # Better start screen
       sniprun # Run snippets of code from neovim TODO
       indent-blankline-nvim # Auto indentation TODO
+      tokyonight-nvim # Blue-ish theme
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # image-nvim # Image viewer
       # hologram-nvim # Image viewer
-      # tokyonight-nvim # Blue-ish theme
       # catppuccin-nvim # Pastel themes
+      # gruvbox-nvim # Old fashioned theme
 
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
