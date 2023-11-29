@@ -9,6 +9,7 @@
     defaultEditor = true;
     extraLuaConfig = ''
       ${builtins.readFile ./key.native.lua}
+      ${builtins.readFile ./nvchad.lua}
     '';
     #     require("tokyonight").setup({
     #       style = "storm",
