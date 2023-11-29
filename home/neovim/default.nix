@@ -39,7 +39,7 @@
       nvterm # Nice terminal
       nvim-colorizer-lua # Manage colors
       nvim-web-devicons # Icons
-      indent-blankline-nvim # Auto indentation
+      # indent-blankline-nvim # Auto indentation
       gitsigns-nvim # Displays git related indications
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
