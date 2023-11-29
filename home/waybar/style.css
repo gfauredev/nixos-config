@@ -14,20 +14,24 @@ window#waybar, menu label {
 
 label, #tray {
   padding: 1px 6px;
-  background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: rgba(0, 0, 0, 0.8); */
 }
 
-widget > label, box > button {
+/* widget > label, box > button { */
+/*   border-radius: 8px; */
+/* } */
+
+/* #tray, #window { */
+/*   border-radius: 8px; */
+/* } */
+
+#tray, #workspaces > button {
   border-radius: 8px;
 }
 
-#tray, #window {
-  border-radius: 8px;
-}
-
-menu {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+/* menu { */
+/*   background-color: rgba(0, 0, 0, 0.8); */
+/* } */
 
 .modules-left {
   margin-right: 3px;
@@ -70,9 +74,9 @@ menu {
   background-color: transparent;
 }
 
-button, #window {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+/* button, #window { */
+/*   background-color: rgba(0, 0, 0, 0.8); */
+/* } */
 
 box > button {
   margin-right: 3px;

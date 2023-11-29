@@ -52,13 +52,13 @@
       dashboard-nvim # Better start screen
       sniprun # Run snippets of code from neovim TODO
       indent-blankline-nvim # Indentation lines TODO
-      tokyonight-nvim # Blue-ish theme
+      # tokyonight-nvim # Blue-ish theme
+      gruvbox-nvim # Old fashioned, red-ish theme
       # nvim-notify # Notifications
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # image-nvim # Image viewer
       # hologram-nvim # Image viewer
       # catppuccin-nvim # Pastel themes
-      # gruvbox-nvim # Old fashioned theme
 
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers

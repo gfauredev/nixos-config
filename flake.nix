@@ -130,6 +130,7 @@
             exec = "--command"; # TODO cleaner this
             class = "--class"; # TODO cleaner this
             cd = "--working-directory"; # TODO cleaner this
+            transparent = "--option window.opacity=0.7"; # TODO cleaner this
           };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -160,6 +161,7 @@
             exec = "--command"; # TODO cleaner this
             class = "--class"; # TODO cleaner this
             cd = "--working-directory"; # TODO cleaner this
+            transparent = "--option window.opacity=0.7"; # TODO cleaner this
           };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
