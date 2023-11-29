@@ -16,6 +16,7 @@
       ${builtins.readFile ./opt.lua}
       ${builtins.readFile ./key.lua}
       ${builtins.readFile ./lsp.lua}
+      ${builtins.readFile ./dap.lua}
       ${builtins.readFile ./set.lua}
     '';
     plugins = with pkgs.vimPlugins; [

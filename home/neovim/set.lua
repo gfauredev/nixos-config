@@ -1,6 +1,3 @@
-local opt = { noremap = true, silent = true }
-local map = vim.keymap.set
-
 require "orgmode".setup_ts_grammar()      -- Org mode grammars
 
 require "nvim-treesitter.configs".setup { -- Treesitter
@@ -52,20 +49,6 @@ require "telescope".setup {
     layout_config = { width = .95, height = .95 },
   }
 }
-local telescope = require "telescope.builtin"
-map("n", "<leader>ff", telescope.find_files, {})
-map("n", "<leader>fg", telescope.live_grep, {})
-map("n", "<leader>fb", telescope.buffers, {})
-map("n", "<leader>fh", telescope.help_tags, {})
-map("n", "<leader>fx", telescope.quickfix, {})
-
--- Trouble, better LSP messages
--- require "trouble".setup()
--- map("n", "<leader>l", "<cmd>TroubleToggle<cr>", opt)
-
--- Leap, better moving
-map("n", "k", "<Plug>(leap-forward-to)", opt)
-map("n", "K", "<Plug>(leap-backward-to)", opt)
 
 require "gitsigns".setup()   -- Gitsigns
 
@@ -136,21 +119,6 @@ require "orgmode".setup({
 
 -- Markdown preview
 -- map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<CR>", opt)
-
--- Debuggers
-local dap = require "dap"
-local dapui = require "dap.ui.widgets"
-map("n", "<leader>dc", dap.continue, opt)
-map("n", "<leader>dC", dap.step_into, opt)
-map("n", "<leader>db", dap.toggle_breakpoint, opt)
-map("n", "<leader>do", dap.step_over, opt)
-map("n", "<leader>dO", dap.step_out, opt)
-map("n", "<leader>dl", dap.run_last, opt)
-map("n", "<leader>dr", dap.repl.toggle, opt)
-map("n", "<leader>dt", dap.terminate, opt)
-map("n", "<leader>dh", dapui.hover, opt)
-
--- require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
 
 -- require "hologram".setup { -- Images inside Neovim
 --   auto_display = true      -- automatic markdown image display
