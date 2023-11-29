@@ -9,22 +9,26 @@
     defaultEditor = true;
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
-      ${builtins.readFile ./tokyonight.lua}
+      ${builtins.readFile ./opt.lua}
+      ${builtins.readFile ./autocmd.lua}
+      ${builtins.readFile ./filetype.lua}
+      ${builtins.readFile ./theme.lua}
+      ${builtins.readFile ./plugin/telescope.lua}
+      ${builtins.readFile ./plugin/comment.lua}
+      ${builtins.readFile ./plugin/neorg.lua}
+      ${builtins.readFile ./plugin/orgmode.lua}
+      ${builtins.readFile ./plugin/treesitter.lua}
+      ${builtins.readFile ./plugin/gitsigns.lua}
+      ${builtins.readFile ./plugin/lsp.lua}
+      ${builtins.readFile ./plugin/cmp.lua}
       ${builtins.readFile ./plugin/dap.lua}
       ${builtins.readFile ./plugin/gdb.lua}
-      ${builtins.readFile ./plugin/gitsigns.lua}
-      ${builtins.readFile ./plugin/cmp.lua}
-      ${builtins.readFile ./plugin/comment.lua}
-      ${builtins.readFile ./plugin/telescope.lua}
-      ${builtins.readFile ./plugin/treesitter.lua}
-      ${builtins.readFile ./filetype.lua}
-      ${builtins.readFile ./autocmd.lua}
-      ${builtins.readFile ./opt.lua}
+      ${builtins.readFile ./plugin/leap.lua}
+      ${builtins.readFile ./plugin/trouble.lua}
+      ${builtins.readFile ./plugin/dashboard.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
-      # nvchad # Full-blown, IDE like config (don’t work really well with NixOS)
-      lazy-nvim # Lazy loading plugins
       plenary-nvim # Library
       # fuzzy-nvim # Library
 
@@ -38,18 +42,15 @@
       nvim-treesitter-context # Parsing & text highlighting
 
       ##### UI & Misc #####
-      # base46 # NvChad themes TODO
-      tokyonight-nvim # Theme TODO replace with above
-      # nvchad-ui # Beautiful UI TODO
-      # nvterm # Nice terminal TODO
-      # nvim-colorizer-lua # Manage colors TODO
       nvim-web-devicons # Icons
-      # indent-blankline-nvim # Auto indentation TODO
       gitsigns-nvim # Displays git related indications
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
+      gruvbox-nvim # Old fashioned theme
+      dashboard-nvim # Better start screen
+      # indent-blankline-nvim # Auto indentation TODO
+      # tokyonight-nvim # Blue-ish theme
       # which-key-nvim # Indications on current keys and shortcuts TODO
-      # dashboard-nvim # Better start screen
       # hologram-nvim # Image viewer
       # image-nvim # Image viewer
       # sniprun # Run snippets of code from neovim
@@ -66,24 +67,24 @@
       cmp-buffer # Buffer content as cmp source
       cmp-path # FS path as cmp source
       nvim-dap # Debugger protocol
+      cmp-git # Git commits messages as cmp source
+      trouble-nvim # Better presentation of messages
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-cmdline # Nvim commands line mode completion source
-      # cmp-git # Git commits messages as cmp source
       # cmp-nvim-lsp-signature-help
       # cmp-zsh # ZSH completions in Neovim
       # nvim-dap-python # Use dap with debugpy
       # cmp-dap # Debugging messages as cmp source
-      # none-ls-nvim # Reload
+      # none-ls-nvim # Reload of a deprecated plugin
       # lsp-zero-nvim # Easier lsp config for neovim
-      # trouble-nvim # Better presentation of messages
 
       ##### Search & Move #####
       telescope-nvim # Fuzzy search & navigate files & code
+      leap-nvim # Navigate efficiently in code
       # telescope-fzf-native-nvim # Fuzzy search & navigate
       # telescope-media-files-nvim # Works with hacky ueberzug
-      # leap-nvim # Navigate efficiently in code TODO
-      # hop-nvim # Navigate efficiently in code TODO
+      # hop-nvim # Navigate efficiently in code
 
       ##### Techno & Language Specifics #####
       neorg # New oganization specific lightweight markup

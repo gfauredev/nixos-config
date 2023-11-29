@@ -1,4 +1,7 @@
 -- Telescope (fuzzy finder)
+local map = vim.keymap.set
+-- local mapopt = { noremap = true, silent = true }
+
 require "telescope".setup {
   defaults = {
     layout_strategy = "vertical",

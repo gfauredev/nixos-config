@@ -1,68 +1,72 @@
 -- -- -- -- -- Language servers -- -- -- -- --
--- TODO switch to bare lspconfigs
-local lsp = require "lsp-zero".preset("recommended")
+local lsp = require "lspconfig"
+-- Set up completion
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-lsp.setup_servers({
-  -- Script
-  "bashls",
-  "rnix",
-  "lua_ls",
-  "pyright",
-  "ruff_lsp",
-  -- Web
-  "tsserver",
-  "eslint",
-  "cssls",
-  -- "html",
-  "jsonls",
-  -- "intelephense",
-  -- Low level
-  "rust_analyzer",
-  "arduino_language_server",
-  "clangd",
-  -- "ccls",
-  -- Misc
-  -- "typst_lsp",
-  -- "ltex",
-  -- "sqlls",
-  -- "sqls",
-  -- "marksman",
-})
+-- Script
+lsp.bashls.setup {
+  capabilities = capabilities
+}
+lsp.rnix.setup {
+  capabilities = capabilities
+}
+lsp.lua_ls.setup {
+  capabilities = capabilities
+}
+lsp.pyright.setup {
+  capabilities = capabilities
+}
+lsp.ruff_lsp.setup {
+  capabilities = capabilities
+}
 
-lsp.setup({
-  sources = {
-    { name = "nvim_lsp",               keyword_length = 2 },
-    { name = "luasnip",                keyword_length = 2 },
-    -- { name = "fuzzy_path",             keyword_length = 2 },
-    { name = "path",             keyword_length = 2 },
-    -- { name = "fuzzy_buffer",           keyword_length = 3 },
-    { name = "buffer",           keyword_length = 3 },
-    -- { name = "nvim_lsp_signature_help" },
-    -- { name = "cmp_git",                keyword_length = 2 },
-    -- { name = "cmp_tabnine" },
-    -- { name = "orgmode" },
-    -- { name = "zsh" },
-  }
-})
-
-local conf = require "lspconfig"
-
-conf.html.setup({
+-- Web
+lsp.tsserver.setup {
+  capabilities = capabilities
+}
+lsp.eslint.setup {
+  capabilities = capabilities
+}
+lsp.cssls.setup {
+  capabilities = capabilities
+}
+lsp.html.setup({
+  capabilities = capabilities,
   filetypes = { "html", "gohtmltmpl", "htmldjango" },
   init_options = {
     provideFormatter = false
   }
 })
+lsp.jsonls.setup {
+  capabilities = capabilities
+}
+-- lsp.intelephense.setup{}
 
-conf.typst_lsp.setup({
+-- Low level
+lsp.rust_analyzer.setup {
+  capabilities = capabilities
+}
+lsp.arduino_language_server.setup {
+  capabilities = capabilities
+}
+lsp.clangd.setup {
+  capabilities = capabilities
+}
+-- lsp.ccls.setup{
+--   capabilities = capabilities
+-- }
+
+-- Misc
+lsp.typst_lsp.setup({
+  capabilities = capabilities,
   settings = {
     -- exportPdf = "onType",
     -- exportPdf = "onSave",
     exportPdf = "never",
   },
 })
-
-conf.ltex.setup({
+lsp.ltex.setup({
+  capabilities = capabilities,
   settings = {
     ltex = {
       language = "fr",
@@ -70,3 +74,6 @@ conf.ltex.setup({
   },
   filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
 })
+-- lsp.sqlls.setup{}
+-- lsp.sqls.setup{}
+-- lsp.marksman.setup{}

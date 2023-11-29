@@ -1,5 +1,5 @@
 -- -- -- -- -- Native remaps -- -- -- -- --
-local opt = { noremap = true, silent = true }
+local mapopt = { noremap = true, silent = true }
 local map = vim.keymap.set
 
 -- normal mode       = n
@@ -12,64 +12,64 @@ local map = vim.keymap.set
 -- n+v+o = default   = ""
 
 -- space as leader key
-map("", "<Space>", "<Nop>", opt)
+map("", "<Space>", "<Nop>", mapopt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- movement
-map("", "c", "h", opt)
-map("", "t", "j", opt)
-map("", "s", "k", opt)
-map("", "r", "l", opt)
-map("n", "t", "gj", opt)
-map("n", "s", "gk", opt)
+map("", "c", "h", mapopt)
+map("", "t", "j", mapopt)
+map("", "s", "k", mapopt)
+map("", "r", "l", mapopt)
+map("n", "t", "gj", mapopt)
+map("n", "s", "gk", mapopt)
 -- go to current context
--- map("n", "[c", function() require("treesitter-context").go_to_context() end, opt)
+-- map("n", "[c", function() require("treesitter-context").go_to_context() end, mapopt)
 
 -- MAJ move for fast move
-map("", "C", "0", opt)
-map("", "T", "<C-d>", opt)
-map("", "S", "<C-u>", opt)
-map("", "R", "$", opt)
+map("", "C", "0", mapopt)
+map("", "T", "<C-d>", mapopt)
+map("", "S", "<C-u>", mapopt)
+map("", "R", "$", mapopt)
 
 -- words moving
-map("", "é", "w", opt)
-map("", "É", "W", opt)
+map("", "é", "w", mapopt)
+map("", "É", "W", mapopt)
 -- till with h
-map("", "h", "t", opt)
-map("", "H", "T", opt)
+map("", "h", "t", mapopt)
+map("", "H", "T", mapopt)
 -- find & till, forward and backward
-map("", ";", ",", opt)
-map("", ",", ";", opt)
+map("", ";", ",", mapopt)
+map("", ",", ";", mapopt)
 -- Navigate buffers
-map("n", "<a-r>", "<cmd>bnext<CR>", opt)
-map("n", "<a-c>", "<cmd>bprevious<CR>", opt)
+map("n", "<a-r>", "<cmd>bnext<CR>", mapopt)
+map("n", "<a-c>", "<cmd>bprevious<CR>", mapopt)
 
 -- replace
-map("", "j", "r", opt)
-map("", "J", "R", opt)
-map("", "l", "c", opt)
-map("", "L", "C", opt)
+map("", "j", "r", mapopt)
+map("", "J", "R", mapopt)
+map("", "l", "c", mapopt)
+map("", "L", "C", mapopt)
 
 -- go to cmd line mode easier in bépo
-map("n", "’", ":", opt)
-map("n", "'", ":", opt)
+map("n", "’", ":", mapopt)
+map("n", "'", ":", mapopt)
 
 -- changing vim window
-map("n", "w", "<C-w>", opt)
-map("n", "W", "<C-w><C-w>", opt)
+map("n", "w", "<C-w>", mapopt)
+map("n", "W", "<C-w><C-w>", mapopt)
 
 -- indent easier with bépo
-map("", "»", ">", opt)
-map("", "«", "<", opt)
-map("", "<S-»>", ">>", opt)
-map("", "<S-«>", "<<", opt)
+map("", "»", ">", mapopt)
+map("", "«", "<", mapopt)
+map("", "<S-»>", ">>", mapopt)
+map("", "<S-«>", "<<", mapopt)
 
 -- redo
-map("n", "gr", "<C-r>", opt)
+map("n", "gr", "<C-r>", mapopt)
 
 -- paste that don’t copy what you are replacing
-map("v", "p", '"_dP', opt)
+map("v", "p", '"_dP', mapopt)
 
 -- Netrw
 vim.api.nvim_create_autocmd("FileType", {
@@ -90,20 +90,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     -- Buffer local mappings.
-    -- local opt = { buffer = ev.buf }
-    map("n", "gR", vim.lsp.buf.references, opt)
-    map("n", "gd", vim.lsp.buf.definition, opt)
-    map("n", "gD", vim.lsp.buf.declaration, opt)
-    map("n", "gt", vim.lsp.buf.type_definition, opt)
-    map("n", "gi", vim.lsp.buf.implementation, opt)
-    map("n", "<leader>h", vim.lsp.buf.hover, opt)
-    map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opt)
-    map("n", "<leader>n", vim.lsp.buf.rename, opt)
-    map("n", "<leader>s", vim.lsp.buf.signature_help, opt)
-    map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opt)
-    map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opt)
+    -- local mapopt = { buffer = ev.buf }
+    map("n", "gR", vim.lsp.buf.references, mapopt)
+    map("n", "gd", vim.lsp.buf.definition, mapopt)
+    map("n", "gD", vim.lsp.buf.declaration, mapopt)
+    map("n", "gt", vim.lsp.buf.type_definition, mapopt)
+    map("n", "gi", vim.lsp.buf.implementation, mapopt)
+    map("n", "<leader>h", vim.lsp.buf.hover, mapopt)
+    map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, mapopt)
+    map("n", "<leader>n", vim.lsp.buf.rename, mapopt)
+    map("n", "<leader>s", vim.lsp.buf.signature_help, mapopt)
+    map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, mapopt)
+    map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, mapopt)
     map("n", "<leader>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opt)
+    end, mapopt)
   end,
 })

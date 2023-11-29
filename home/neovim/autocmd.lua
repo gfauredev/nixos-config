@@ -1,3 +1,6 @@
+-- -- -- -- -- Autocommands -- -- -- -- --
+local opt = vim.opt
+
 -- Relative number only when focused in normal mode
 vim.api.nvim_create_autocmd({ "FocusLost", "InsertEnter" }, {
   callback = function() opt.relativenumber = false end
