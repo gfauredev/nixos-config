@@ -28,6 +28,7 @@
       ${builtins.readFile ./plugin/dashboard.lua}
       ${builtins.readFile ./plugin/autopair.lua}
       ${builtins.readFile ./plugin/indentline.lua}
+      ${builtins.readFile ./plugin/copilot.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -77,6 +78,7 @@
       cmp-nvim-lsp-signature-help
       cmp-zsh # ZSH completions in Neovim
       copilot-lua # GitHub copilot TODO https://github.com/zbirenbaum/copilot.lua
+      copilot-cmp # GitHub copilot completions
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-dap # Debugging messages as cmp source
