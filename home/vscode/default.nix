@@ -3,11 +3,9 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    # package = pkgs.vscode-with-extensions;
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
-      # Quality of life
-      vscodevim.vim
+      # vscodevim.vim # (Neo)Vim mode & keybindings
       # Nix
       jnoortheen.nix-ide
       # Lua

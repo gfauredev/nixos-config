@@ -1,8 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   imports = [
-    ./zsh # Shell
-    ./neovim # Main editor
-    ./helix # Potential future editor
+    ./zsh # Interactive POSIX shell
+    ./neovim # CLI text editor
   ];
 
   home.packages = with pkgs; [
