@@ -37,11 +37,12 @@
       enable = true; # Notifications daemon
       settings = {
         global = {
-          width = 600;
-          height = 28 * 3; # Triple of status bar height
+          width = 400;
+          height = 100; # About the triple of status bar height
           corner_radius = 15;
           frame_width = 0;
-          origin = "bottom-center";
+          # origin = "bottom-center";
+          origin = "bottom-right";
           offset = "0x-28"; # Lowered to align with status bar
           background = "#000000cc"; # As transparent as status
           foreground = "#def";
