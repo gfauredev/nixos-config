@@ -6,6 +6,9 @@
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
+      # ms-python.pyright
+      ms-python.vscode-pylance
+      ms-python.python
     ];
     # userSettings = {
     #   # JSON
