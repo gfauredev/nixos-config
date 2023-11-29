@@ -12,7 +12,7 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
-        "hyprpaper"
+        # "hyprpaper" # No wallpaper by default
         "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
         # "Cerebro" # General purpose launcher
