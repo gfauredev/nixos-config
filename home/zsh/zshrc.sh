@@ -1,7 +1,7 @@
 ########## Often used, small functions ##########
 empty_cr () { # Clear screen & give info on empty line CR
   if [[ -z $BUFFER ]]; then
-    clear
+    clear -x
     echo $(date)
     # echo "Why I am doing what I do ?"
     if [ $(hostnamectl chassis) = "laptop" ]; then
