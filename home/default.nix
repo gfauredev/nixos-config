@@ -30,6 +30,7 @@
     # stacer # Modern cleaner & monitoring
     # gnome.seahorse
     nixpkgs-review # Review pull requests to nixpkgs
+    asciiquarium-transparent # Best screensaver ever
   ];
 
   services = {
