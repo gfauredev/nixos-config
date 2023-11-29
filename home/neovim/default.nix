@@ -26,6 +26,7 @@
       ${builtins.readFile ./plugin/leap.lua}
       ${builtins.readFile ./plugin/trouble.lua}
       ${builtins.readFile ./plugin/dashboard.lua}
+      ${builtins.readFile ./plugin/autopair.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
