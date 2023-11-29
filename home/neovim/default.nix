@@ -8,6 +8,7 @@
     # package = pkgs.neovim-nightly;
     defaultEditor = true;
     extraLuaConfig = ''
+      ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./tokyonight.lua}
       ${builtins.readFile ./plugin/dap.lua}
       ${builtins.readFile ./plugin/gdb.lua}
@@ -19,7 +20,6 @@
       ${builtins.readFile ./filetype.lua}
       ${builtins.readFile ./autocmd.lua}
       ${builtins.readFile ./opt.lua}
-      ${builtins.readFile ./remap.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -65,13 +65,13 @@
       cmp-nvim-lsp # Use ls as cmp source
       cmp-buffer # Buffer content as cmp source
       cmp-path # FS path as cmp source
+      nvim-dap # Debugger protocol
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-cmdline # Nvim commands line mode completion source
       # cmp-git # Git commits messages as cmp source
       # cmp-nvim-lsp-signature-help
       # cmp-zsh # ZSH completions in Neovim
-      # nvim-dap # Debugger protocol
       # nvim-dap-python # Use dap with debugpy
       # cmp-dap # Debugging messages as cmp source
       # none-ls-nvim # Reload
