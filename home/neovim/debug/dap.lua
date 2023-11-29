@@ -12,24 +12,4 @@ map("n", "<leader>dr", dap.repl.toggle, opt)
 map("n", "<leader>dt", dap.terminate, opt)
 map("n", "<leader>dh", dapui.hover, opt)
 
-local dap = require("dap")
-dap.adapters.gdb = {
-  type = "executable",
-  command = "gdb",
-  args = { "-i", "dap" }
-}
-
-local dap = require("dap")
-dap.configurations.c = {
-  {
-    name = "Launch",
-    type = "gdb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = "${workspaceFolder}",
-  },
-}
-
 -- require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")

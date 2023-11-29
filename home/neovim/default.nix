@@ -8,21 +8,15 @@
     # package = pkgs.neovim-nightly;
     defaultEditor = true;
     extraLuaConfig = ''
-      ${builtins.readFile ./key.native.lua}
+      ${builtins.readFile ./remap.lua}
+      ${builtins.readFile ./filetype.lua}
       ${builtins.readFile ./nvchad.lua}
     '';
-    #     require("tokyonight").setup({
-    #       style = "storm",
-    #       transparent = true
-    #     })
-    #     vim.cmd [[colorscheme tokyonight]]
-    #   '';
-    #   ${builtins.readFile ./opt.lua}
-    #   ${builtins.readFile ./key.plugins.lua}
-    #   ${builtins.readFile ./lsp.lua}
-    #   ${builtins.readFile ./dap.lua}
-    #   ${builtins.readFile ./set.lua}
-    # '';
+    #  require("tokyonight").setup({
+    #    style = "storm",
+    #    transparent = true
+    #  })
+    #  vim.cmd [[colorscheme tokyonight]]
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
       nvchad # Full-blown, IDE like config
@@ -84,8 +78,8 @@
       telescope-nvim # Fuzzy search & navigate files & code
       # telescope-fzf-native-nvim # Fuzzy search & navigate
       # telescope-media-files-nvim # Works with hacky ueberzug
-      # leap-nvim # Navigate efficiently in code
-      # hop-nvim # Navigate efficiently in code
+      # leap-nvim # Navigate efficiently in code TODO
+      # hop-nvim # Navigate efficiently in code TODO
 
       ##### Techno & Language Specifics #####
       neorg # New oganization specific lightweight markup

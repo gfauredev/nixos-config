@@ -24,7 +24,7 @@ map("", "r", "l", opt)
 map("n", "t", "gj", opt)
 map("n", "s", "gk", opt)
 -- go to current context
-map("n", "[c", function() require("treesitter-context").go_to_context() end, opt)
+-- map("n", "[c", function() require("treesitter-context").go_to_context() end, opt)
 
 -- MAJ move for fast move
 map("", "C", "0", opt)
@@ -84,8 +84,8 @@ vim.api.nvim_create_autocmd("FileType", {
 map("n", "<leader>e", vim.diagnostic.open_float)
 map("n", "ge", vim.diagnostic.goto_next)
 map("n", "gE", vim.diagnostic.goto_prev)
--- map("n", "<leader>q", vim.diagnostic.setloclist) -- Replaced by trouble
--- map after the language server attaches to the current buffer
+map("n", "<leader>q", vim.diagnostic.setloclist) -- Replaced by trouble
+-- Below maps after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
