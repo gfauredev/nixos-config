@@ -129,6 +129,7 @@
             name = "alacritty"; # TODO cleaner this
             exec = "--command"; # TODO cleaner this
             class = "--class"; # TODO cleaner this
+            cd = "--working-directory"; # TODO cleaner this
           };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -158,6 +159,7 @@
             name = "alacritty"; # TODO cleaner this
             exec = "--command"; # TODO cleaner this
             class = "--class"; # TODO cleaner this
+            cd = "--working-directory"; # TODO cleaner this
           };
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
