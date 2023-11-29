@@ -1,11 +1,11 @@
 { inputs, lib, config, pkgs, ... }: {
-  nixpkgs.overlays = [
-    inputs.neovim-nightly-overlay.overlays.default
-  ];
+  # nixpkgs.overlays = [
+  #   inputs.neovim-nightly-overlay.overlays.default
+  # ];
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
     defaultEditor = true;
     extraLuaConfig = ''
       require("tokyonight").setup({
@@ -13,22 +13,11 @@
         transparent = true
       })
       vim.cmd [[colorscheme tokyonight]]
-
       ${builtins.readFile ./opt.lua}
-
       ${builtins.readFile ./key.lua}
-
       ${builtins.readFile ./lsp.lua}
-
       ${builtins.readFile ./set.lua}
     '';
-    # require "opt" -- (Neo)Vim options
-    # require "key" -- Custom remaps
-    # require "lsp" -- LSP Zero, completion
-    # require "set" -- Plugins setups
-    # require "dap" -- Debugging
-    # require "cmp" -- Autocompletion
-    # require "lsp" -- Language servers
     plugins = with pkgs.vimPlugins; [
       # Libraries
       plenary-nvim
@@ -54,13 +43,13 @@
       cmp-git # Git commits messages as cmp source
       cmp-nvim-lsp-signature-help
       cmp-zsh # ZSH completions in Neovim
-      # nvim-dap # Debugger protocol
+      nvim-dap # Debugger protocol
       # nvim-dap-python # Use dap with debugpy
       # cmp-dap # Debugging messages as cmp source
       luasnip # Snippet engine
       cmp_luasnip # LuaSnip as cmp source
       friendly-snippets # Snippets collection
-      # null-ls-nvim FIXME deprecated
+      none-ls-nvim # Reload
       nvim-cmp # Autocompletion for neovim
       lsp-zero-nvim # Easier lsp config for neovim
       # trouble-nvim # Better presentation of messages
