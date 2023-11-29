@@ -1,11 +1,4 @@
-local opt = { noremap = true, silent = true }
-local map = vim.keymap.set
-
--- space as leader key
-map("", "<Space>", "<Nop>", opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+-- -- -- -- -- Remaps -- -- -- -- --
 -- normal mode       = n
 -- insert mode       = i
 -- visual mode       = v
@@ -14,6 +7,11 @@ vim.g.maplocalleader = " "
 -- command mode      = c
 -- operator pending  = o
 -- n+v+o = default   = ""
+
+-- space as leader key
+map("", "<Space>", "<Nop>", opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- movement
 map("", "c", "h", opt)
@@ -88,8 +86,8 @@ map("n", "<leader>fh", telescope.help_tags, {})
 map("n", "<leader>fx", telescope.quickfix, {})
 
 -- Trouble, better LSP messages
--- require "trouble".setup()
--- map("n", "<leader>l", "<cmd>TroubleToggle<cr>", opt)
+require "trouble".setup()
+map("n", "<leader>l", "<cmd>TroubleToggle<cr>", opt)
 
 -- Leap, better moving
 map("n", "k", "<Plug>(leap-forward-to)", opt)

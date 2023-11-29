@@ -1,3 +1,4 @@
+-- -- -- -- -- Options -- -- -- -- --
 local opt = vim.opt
 
 -- Files & OS

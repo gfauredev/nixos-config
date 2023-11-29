@@ -1,7 +1,4 @@
-local opt = { noremap = true, silent = true }
-local map = vim.keymap.set
-
--- Debuggers
+-- -- -- -- -- Debugging -- -- -- -- --
 local dap = require "dap"
 local dapui = require "dap.ui.widgets"
 

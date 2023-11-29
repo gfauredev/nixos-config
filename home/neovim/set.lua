@@ -1,3 +1,4 @@
+-- -- -- -- -- Misc settings -- -- -- -- --
 require "orgmode".setup_ts_grammar()      -- Org mode grammars
 
 require "nvim-treesitter.configs".setup { -- Treesitter
@@ -85,6 +86,13 @@ require "dashboard".setup {  -- Dashboard
   },
 }
 
+-- Neorg
+require "neorg".setup {
+  load = {
+    ["core.defaults"] = {},
+  }
+}
+
 -- Org mode
 require "orgmode".setup({
   org_agenda_files = { "~/note/*.org" }, -- ISO date
@@ -105,13 +113,6 @@ require "orgmode".setup({
     }
   }
 })
-
--- Neorg
--- require "neorg".setup {
---   load = {
---     ["core.defaults"] = {},
---   }
--- }
 
 -- require "zk".setup({ -- Zettelkasten
 --   picker = "telescope",

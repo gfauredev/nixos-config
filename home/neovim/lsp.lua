@@ -1,3 +1,4 @@
+-- -- -- -- -- Language servers -- -- -- -- --
 local lsp = require "lsp-zero".preset("recommended")
 
 lsp.setup_servers({

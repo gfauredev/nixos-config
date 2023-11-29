@@ -13,6 +13,8 @@
         transparent = true
       })
       vim.cmd [[colorscheme tokyonight]]
+      local opt = { noremap = true, silent = true }
+      local map = vim.keymap.set
       ${builtins.readFile ./opt.lua}
       ${builtins.readFile ./key.lua}
       ${builtins.readFile ./lsp.lua}
@@ -46,14 +48,14 @@
       cmp-zsh # ZSH completions in Neovim
       nvim-dap # Debugger protocol
       # nvim-dap-python # Use dap with debugpy
-      # cmp-dap # Debugging messages as cmp source
+      cmp-dap # Debugging messages as cmp source
       luasnip # Snippet engine
       cmp_luasnip # LuaSnip as cmp source
       friendly-snippets # Snippets collection
       none-ls-nvim # Reload
       nvim-cmp # Autocompletion for neovim
       lsp-zero-nvim # Easier lsp config for neovim
-      # trouble-nvim # Better presentation of messages
+      trouble-nvim # Better presentation of messages
       # cmp-tabnine # AI code completion
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
