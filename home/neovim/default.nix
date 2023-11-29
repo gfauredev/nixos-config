@@ -40,7 +40,7 @@
       nvim-treesitter-textobjects # Parsing & text highlighting
       nvim-treesitter-textsubjects # Parsing & text highlighting
       nvim-treesitter-refactor # Parsing & text highlighting
-      nvim-treesitter-context # Parsing & text highlighting
+      nvim-treesitter-context # Typically displays the function signature you’re in
 
       ##### UI & Misc #####
       nvim-web-devicons # Icons
@@ -49,20 +49,21 @@
       nvim-tree-lua # Tree file explorer
       gruvbox-nvim # Old fashioned theme
       dashboard-nvim # Better start screen
-      # indent-blankline-nvim # Auto indentation TODO
-      # tokyonight-nvim # Blue-ish theme
+      sniprun # Run snippets of code from neovim TODO
+      indent-blankline-nvim # Auto indentation TODO
       # which-key-nvim # Indications on current keys and shortcuts TODO
-      # hologram-nvim # Image viewer
       # image-nvim # Image viewer
-      # sniprun # Run snippets of code from neovim
+      # hologram-nvim # Image viewer
+      # tokyonight-nvim # Blue-ish theme
+      # catppuccin-nvim # Pastel themes
 
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
-      nvim-cmp # Autocompletion for neovim
-      friendly-snippets # Snippets collection TODO
-      luasnip # Snippet engine TODO
-      nvim-autopairs # Handle pairs like parentheses TODO
-      cmp_luasnip # LuaSnip as cmp source TODO
+      nvim-cmp # Autocompletion for neovim TODO configure better
+      friendly-snippets # Snippets collection
+      luasnip # Snippet engine
+      nvim-autopairs # Handle pairs like parentheses
+      cmp_luasnip # LuaSnip as cmp source
       cmp-nvim-lua # Use ls as cmp source
       cmp-nvim-lsp # Use ls as cmp source
       cmp-buffer # Buffer content as cmp source
@@ -70,15 +71,12 @@
       nvim-dap # Debugger protocol
       cmp-git # Git commits messages as cmp source
       trouble-nvim # Better presentation of messages
+      cmp-cmdline # Nvim commands line mode completion source
+      cmp-nvim-lsp-signature-help
+      cmp-zsh # ZSH completions in Neovim
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
-      # cmp-cmdline # Nvim commands line mode completion source
-      # cmp-nvim-lsp-signature-help
-      # cmp-zsh # ZSH completions in Neovim
-      # nvim-dap-python # Use dap with debugpy
       # cmp-dap # Debugging messages as cmp source
-      # none-ls-nvim # Reload of a deprecated plugin
-      # lsp-zero-nvim # Easier lsp config for neovim
 
       ##### Search & Move #####
       telescope-nvim # Fuzzy search & navigate files & code
@@ -98,6 +96,11 @@
       # grammar-guard-nvim
       # zk-nvim # zk integration
       # markdown-preview-nvim # Markdown previewing
+      # nvim-dap-python # Use dap with debugpy
+
+      ##### Deprecated #####
+      # none-ls-nvim # Reload of a deprecated plugin
+      # lsp-zero-nvim # Easier lsp config for neovim
     ];
     viAlias = true;
     vimAlias = true;
