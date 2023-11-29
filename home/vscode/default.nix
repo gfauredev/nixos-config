@@ -8,6 +8,7 @@
       # vscodevim.vim # (Neo)Vim mode & keybindings
       # Nix
       jnoortheen.nix-ide
+      arrterian.nix-env-selector
       # Lua
       sumneko.lua
       # Python
