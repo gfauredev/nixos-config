@@ -8,18 +8,22 @@
     # package = pkgs.neovim-nightly;
     defaultEditor = true;
     extraLuaConfig = ''
+      ${builtins.readFile ./tokyonight.lua}
+      ${builtins.readFile ./plugin/dap.lua}
+      ${builtins.readFile ./plugin/gdb.lua}
+      ${builtins.readFile ./plugin/gitsigns.lua}
+      ${builtins.readFile ./plugin/cmp.lua}
+      ${builtins.readFile ./plugin/comment.lua}
+      ${builtins.readFile ./plugin/telescope.lua}
+      ${builtins.readFile ./plugin/treesitter.lua}
       ${builtins.readFile ./filetype.lua}
-      ${builtins.readFile ./nvchad.lua}
+      ${builtins.readFile ./autocmd.lua}
+      ${builtins.readFile ./opt.lua}
       ${builtins.readFile ./remap.lua}
     '';
-    #  require("tokyonight").setup({
-    #    style = "storm",
-    #    transparent = true
-    #  })
-    #  vim.cmd [[colorscheme tokyonight]]
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
-      nvchad # Full-blown, IDE like config
+      # nvchad # Full-blown, IDE like config (don’t work really well with NixOS)
       lazy-nvim # Lazy loading plugins
       plenary-nvim # Library
       # fuzzy-nvim # Library
@@ -34,17 +38,17 @@
       nvim-treesitter-context # Parsing & text highlighting
 
       ##### UI & Misc #####
-      base46 # NvChad themes
-      nvchad-ui # Beautiful UI
-      nvterm # Nice terminal
-      nvim-colorizer-lua # Manage colors
+      base46 # NvChad themes TODO
+      tokyonight-nvim # Theme TODO replace with above
+      nvchad-ui # Beautiful UI TODO
+      nvterm # Nice terminal TODO
+      nvim-colorizer-lua # Manage colors TODO
       nvim-web-devicons # Icons
-      # indent-blankline-nvim # Auto indentation
+      indent-blankline-nvim # Auto indentation
       gitsigns-nvim # Displays git related indications
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
-      which-key-nvim # Indications on current keys
-      # tokyonight-nvim # Theme
+      which-key-nvim # Indications on current keys and shortcuts
       # dashboard-nvim # Better start screen
       # hologram-nvim # Image viewer
       # image-nvim # Image viewer
