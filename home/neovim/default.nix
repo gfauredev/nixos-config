@@ -38,17 +38,17 @@
       nvim-treesitter-context # Parsing & text highlighting
 
       ##### UI & Misc #####
-      base46 # NvChad themes TODO
+      # base46 # NvChad themes TODO
       tokyonight-nvim # Theme TODO replace with above
-      nvchad-ui # Beautiful UI TODO
-      nvterm # Nice terminal TODO
-      nvim-colorizer-lua # Manage colors TODO
+      # nvchad-ui # Beautiful UI TODO
+      # nvterm # Nice terminal TODO
+      # nvim-colorizer-lua # Manage colors TODO
       nvim-web-devicons # Icons
-      indent-blankline-nvim # Auto indentation
+      # indent-blankline-nvim # Auto indentation TODO
       gitsigns-nvim # Displays git related indications
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
-      which-key-nvim # Indications on current keys and shortcuts
+      # which-key-nvim # Indications on current keys and shortcuts TODO
       # dashboard-nvim # Better start screen
       # hologram-nvim # Image viewer
       # image-nvim # Image viewer
@@ -57,10 +57,10 @@
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
       nvim-cmp # Autocompletion for neovim
-      friendly-snippets # Snippets collection
-      luasnip # Snippet engine
-      nvim-autopairs # Handle pairs like parentheses
-      cmp_luasnip # LuaSnip as cmp source
+      friendly-snippets # Snippets collection TODO
+      luasnip # Snippet engine TODO
+      nvim-autopairs # Handle pairs like parentheses TODO
+      cmp_luasnip # LuaSnip as cmp source TODO
       cmp-nvim-lua # Use ls as cmp source
       cmp-nvim-lsp # Use ls as cmp source
       cmp-buffer # Buffer content as cmp source
