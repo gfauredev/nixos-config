@@ -27,6 +27,7 @@
       ${builtins.readFile ./plugin/trouble.lua}
       ${builtins.readFile ./plugin/dashboard.lua}
       ${builtins.readFile ./plugin/autopair.lua}
+      ${builtins.readFile ./plugin/indentline.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -49,8 +50,9 @@
       nvim-tree-lua # Tree file explorer
       dashboard-nvim # Better start screen
       sniprun # Run snippets of code from neovim TODO
-      indent-blankline-nvim # Auto indentation TODO
+      indent-blankline-nvim # Indentation lines TODO
       tokyonight-nvim # Blue-ish theme
+      # nvim-notify # Notifications
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # image-nvim # Image viewer
       # hologram-nvim # Image viewer
@@ -74,6 +76,7 @@
       cmp-cmdline # Nvim commands line mode completion source
       cmp-nvim-lsp-signature-help
       cmp-zsh # ZSH completions in Neovim
+      copilot-lua # GitHub copilot TODO https://github.com/zbirenbaum/copilot.lua
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-dap # Debugging messages as cmp source
