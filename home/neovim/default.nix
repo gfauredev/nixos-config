@@ -8,9 +8,9 @@
     # package = pkgs.neovim-nightly;
     defaultEditor = true;
     extraLuaConfig = ''
-      ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./filetype.lua}
       ${builtins.readFile ./nvchad.lua}
+      ${builtins.readFile ./remap.lua}
     '';
     #  require("tokyonight").setup({
     #    style = "storm",
