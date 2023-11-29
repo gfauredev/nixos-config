@@ -17,8 +17,8 @@ lsp.setup_servers({
   -- Low level
   "rust_analyzer",
   "arduino_language_server",
-  "ccls",
-  -- "clangd",
+  "clangd",
+  -- "ccls",
   -- Misc
   -- "typst_lsp",
   -- "ltex",

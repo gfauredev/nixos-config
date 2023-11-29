@@ -6,7 +6,7 @@ require "orgmode".setup_ts_grammar()      -- Org mode grammars
 require "nvim-treesitter.configs".setup { -- Treesitter
   highlight = {
     enable = true,
-    disable = { "nix" },
+    disable = { "nix" }, -- Too ressource intensive
     -- additional_vim_regex_highlighting = { "org" },
   },
   incremental_selection = {
@@ -138,17 +138,17 @@ require "orgmode".setup({
 -- map("n", "<leader>m", "<cmd>MarkdownPreviewToggle<CR>", opt)
 
 -- Debuggers
--- local dap = require "dap"
--- local dapui = require "dap.ui.widgets"
--- map("n", "<leader>c", dap.continue, opt)
--- map("n", "<leader>C", dap.step_into, opt)
--- map("n", "<leader>b", dap.toggle_breakpoint, opt)
--- map("n", "<leader>o", dap.step_over, opt)
--- map("n", "<leader>O", dap.step_out, opt)
--- map("n", "<leader>dl", dap.run_last, opt)
--- map("n", "<leader>dr", dap.repl.toggle, opt)
--- map("n", "<leader>dt", dap.terminate, opt)
--- map("n", "<leader>dh", dapui.hover, opt)
+local dap = require "dap"
+local dapui = require "dap.ui.widgets"
+map("n", "<leader>dc", dap.continue, opt)
+map("n", "<leader>dC", dap.step_into, opt)
+map("n", "<leader>db", dap.toggle_breakpoint, opt)
+map("n", "<leader>do", dap.step_over, opt)
+map("n", "<leader>dO", dap.step_out, opt)
+map("n", "<leader>dl", dap.run_last, opt)
+map("n", "<leader>dr", dap.repl.toggle, opt)
+map("n", "<leader>dt", dap.terminate, opt)
+map("n", "<leader>dh", dapui.hover, opt)
 
 -- require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
 
