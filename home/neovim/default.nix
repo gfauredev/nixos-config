@@ -29,6 +29,7 @@
       ${builtins.readFile ./plugin/autopair.lua}
       ${builtins.readFile ./plugin/indentline.lua}
       ${builtins.readFile ./plugin/copilot.lua}
+      ${builtins.readFile ./plugin/lint.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
