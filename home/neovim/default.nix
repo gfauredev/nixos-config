@@ -79,6 +79,7 @@
       cmp-zsh # ZSH completions in Neovim
       copilot-lua # GitHub copilot TODO https://github.com/zbirenbaum/copilot.lua
       copilot-cmp # GitHub copilot completions
+      nvim-lint # Linters adapter
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-dap # Debugging messages as cmp source
