@@ -5,15 +5,19 @@ window, box, widget, label, button {
   min-width: 0;
 }
 
-window#waybar, menu label {
+window#waybar {
   background-color: transparent;
+}
+
+window#waybar, menu label {
   color: #fdc;
   font-size: 16px;
   font-family: "FiraCode Nerd Font", monospace;
 }
 
 label, #tray {
-  padding: 1px 6px;
+  /* padding: 1px 6px; */
+  padding: 1px 3px;
   /* background-color: rgba(0, 0, 0, 0.8); */
 }
 
@@ -66,7 +70,8 @@ label, #tray {
 }
 
 .modules-center label {
-  padding: 1px 6px;
+  padding: 1px 3px;
+  /* padding: 1px 6px; */
   min-width: 8px;
 }
 
