@@ -117,28 +117,28 @@
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
-    homeConfigurations = {
+    homeConfigurations = let
+      alacritty = {
+        # TODO create nix functions & modules to do that cleaner
+        name = "alacritty"; # Name of the terminal
+        cmd = "alacritty"; # Command to launch terminal
+        exec = "--command"; # Option to execute a command in place of shell
+        class = "--class"; # Option to define a class for the window
+        cd = "--working-directory"; # Option to launch terminal in a directory
+        transparent = "--option window.opacity=0.7"; # Option to transparent
+      };
+    in {
       "gf@ninja" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {
           inherit inputs;
           hwmon = "4/temp3_input";
           # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
-          term = {
-            # TODO create nix functions & modules to do that cleaner
-            # name = "wezterm"; # TODO cleaner this
-            # exec = "wezterm start"; # TODO cleaner this
-            name = "alacritty"; # TODO cleaner this
-            exec = "--command"; # TODO cleaner this
-            class = "--class"; # TODO cleaner this
-            cd = "--working-directory"; # TODO cleaner this
-            transparent = "--option window.opacity=0.7"; # TODO cleaner this
-          };
+          term = alacritty;
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/gf # My main user
-          ./home/window-manager.nix # wayland common
           ./home/hyprland # Hyprland window manager
           ./home/hyprland/ninja.nix # ninja’s specific Hyprland
           ./home/waybar # wayland bar
@@ -149,26 +149,19 @@
           ./home/media.nix # Media consuming
           ./home/social.nix # Social interaction
           ./home/i3.nix # XOrg compatibility wm
+          # ./home/window-manager.nix # wayland common # Included by WM
         ];
       };
       "gf@knight" = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = {
           inherit inputs;
           hwmon = "2/temp3_input";
-          term = {
-            # TODO create nix functions & modules to do that cleaner
-            name = "alacritty"; # TODO cleaner this
-            exec = "--command"; # TODO cleaner this
-            class = "--class"; # TODO cleaner this
-            cd = "--working-directory"; # TODO cleaner this
-            transparent = "--option window.opacity=0.7"; # TODO cleaner this
-          };
+          term = alacritty;
         };
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home # Default, like text editor # TODO auto import default.nix
           ./home/gf # My main user
-          ./home/window-manager.nix # wayland common
           ./home/hyprland # Hyprland window manager
           ./home/hyprland/knight.nix # knight’s specific Hyprland
           ./home/waybar # wayland bar
@@ -182,6 +175,7 @@
           ./home/media.nix # Media consuming
           # ./home/gaming.nix # Video gaming
           ./home/i3.nix # XOrg compatibility wm
+          # ./home/window-manager.nix # wayland common # Included in WM
         ];
       };
     };

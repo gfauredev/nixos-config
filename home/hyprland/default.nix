@@ -1,4 +1,8 @@
-{ inputs, lib, config, pkgs, term, ... }: {
+{ lib, pkgs, term, ... }: {
+  imports = [
+    ../window-manager.nix
+  ];
+
   home.packages = with pkgs; [
     wl-mirror # Mirror wayland output
   ];

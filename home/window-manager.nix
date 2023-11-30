@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
