@@ -6,7 +6,7 @@ window, box, widget, label, button {
 }
 
 window#waybar, menu label {
-  background-color: transparent;
+  /* background-color: transparent; */
   color: #fdc;
   font-size: 16px;
   font-family: "FiraCode Nerd Font", monospace;
@@ -70,9 +70,9 @@ label, #tray {
   min-width: 8px;
 }
 
-#workspaces label {
-  background-color: transparent;
-}
+/* #workspaces label { */
+/*   background-color: transparent; */
+/* } */
 
 /* button, #window { */
 /*   background-color: rgba(0, 0, 0, 0.8); */
