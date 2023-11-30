@@ -1,19 +1,16 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
-    # TODO use specific options when possible
-    # TEST which is better
-    blender # 3D, animation & video editor
-    # losslesscut-bin # Basic lossless video edditing using ffmpeg
-    libsForQt5.kdenlive # video editor
+    libsForQt5.kdenlive # simple video editor (works on nvidia)
+    glaxnimate # video editing library used by kdenlive
     # shotcut # video editor
-    # davinci-resolve # PROPRIETARY video editor
-    # glaxnimate # video editing library
     # flowblade # non linear video editor
     # olive-editor # non linear video editor
-    # natron # non linear video editor
+    # losslesscut-bin # Basic lossless video edditing using ffmpeg
 
     # obs-studio
     # obs-studio-plugins.wlrobs
     # obs-wlrobs
+
+    # davinci-resolve # PROPRIETARY video editor
   ];
 }

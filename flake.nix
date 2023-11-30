@@ -156,6 +156,7 @@
             ./home/rofi # wayland launcher
             ./home/hard.nix # Hardware creation
             ./home/audio.nix # Audio & Music creation
+            ./home/video.nix # Video & Animation creation
             ./home/photo.nix # Photo & Images creation
             ./home/media.nix # Media consuming
             ./home/social.nix # Social interaction
@@ -180,7 +181,8 @@
             ./home/rofi # wayland launcher
             ./home/hard.nix # Hardware creation
             ./home/audio.nix # Audio & Music creation
-            ./home/video.nix # Video & Animation creation
+            ./home/video.nix # Video & Animation editing
+            ./home/compositing.nix # 3D and special effects
             ./home/photo.nix # Photo & Images creation
             ./home/social.nix # Social interaction
             ./home/media.nix # Media consuming
