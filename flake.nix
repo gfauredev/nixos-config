@@ -82,6 +82,7 @@
           ./system/pc/gf.nix # Main user
           ./system/pc/remap.nix
           ./system/print-scan.nix
+          ./system/virtualization.nix
           # ./system/pc/gaming.nix
           ./system/pc/xorg.nix # For compatibility
         ];
