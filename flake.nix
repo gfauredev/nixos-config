@@ -117,67 +117,78 @@
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
-    homeConfigurations = let
-      alacritty = {
-        # TODO create nix functions & modules to do that cleaner
-        name = "alacritty"; # Name of the terminal
-        cmd = "alacritty"; # Command to launch terminal
-        exec = "--command"; # Option to execute a command in place of shell
-        class = "--class"; # Option to define a class for the window
-        cd = "--working-directory"; # Option to launch terminal in a directory
-        transparent = "--option window.opacity=0.7"; # Option to transparent
-      };
-    in {
-      "gf@ninja" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {
-          inherit inputs;
-          hwmon = "4/temp3_input";
-          # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
-          term = alacritty;
+    homeConfigurations =
+      let
+        alacritty = {
+          # TODO create nix functions & modules to do that cleaner
+          name = "alacritty"; # Name of the terminal
+          cmd = "alacritty"; # Command to launch terminal
+          exec = "--command"; # Option to execute a command in place of shell
+          class = "--class"; # Option to define a class for the window
+          cd = "--working-directory"; # Option to launch terminal in a directory
+          transparent = "--option window.opacity=0.7"; # Option to transparent
         };
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          ./home # Default, like text editor # TODO auto import default.nix
-          ./home/gf # My main user
-          ./home/hyprland # Hyprland window manager
-          ./home/hyprland/ninja.nix # ninja’s specific Hyprland
-          ./home/waybar # wayland bar
-          ./home/rofi # wayland launcher
-          ./home/hard.nix # Hardware creation
-          ./home/audio.nix # Audio & Music creation
-          ./home/photo.nix # Photo & Images creation
-          ./home/media.nix # Media consuming
-          ./home/social.nix # Social interaction
-          ./home/i3.nix # XOrg compatibility wm
-          # ./home/window-manager.nix # wayland common # Included by WM
-        ];
-      };
-      "gf@knight" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {
-          inherit inputs;
-          hwmon = "2/temp3_input";
-          term = alacritty;
+        wezterm = {
+          # TODO create nix functions & modules to do that cleaner
+          name = "wezterm"; # Name of the terminal
+          cmd = "wezterm start"; # Command to launch terminal
+          exec = ""; # Option to execute a command in place of shell
+          class = "--class"; # Option to define a class for the window
+          cd = "--cwd"; # Option to launch terminal in a directory
+          transparent = "--config window.opacity=0.7"; # Option to transparent
         };
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          ./home # Default, like text editor # TODO auto import default.nix
-          ./home/gf # My main user
-          ./home/hyprland # Hyprland window manager
-          ./home/hyprland/knight.nix # knight’s specific Hyprland
-          ./home/waybar # wayland bar
-          ./home/waybar/widescreen.nix # wayland bar for wide screens
-          ./home/rofi # wayland launcher
-          ./home/hard.nix # Hardware creation
-          ./home/audio.nix # Audio & Music creation
-          ./home/video.nix # Video & Animation creation
-          ./home/photo.nix # Photo & Images creation
-          ./home/social.nix # Social interaction
-          ./home/media.nix # Media consuming
-          # ./home/gaming.nix # Video gaming
-          ./home/i3.nix # XOrg compatibility wm
-          # ./home/window-manager.nix # wayland common # Included in WM
-        ];
+      in
+      {
+        "gf@ninja" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = {
+            inherit inputs;
+            hwmon = "4/temp3_input";
+            # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
+            term = alacritty;
+          };
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./home # Default, like text editor # TODO auto import default.nix
+            ./home/gf # My main user
+            ./home/hyprland # Hyprland window manager
+            ./home/hyprland/ninja.nix # ninja’s specific Hyprland
+            ./home/waybar # wayland bar
+            ./home/rofi # wayland launcher
+            ./home/hard.nix # Hardware creation
+            ./home/audio.nix # Audio & Music creation
+            ./home/photo.nix # Photo & Images creation
+            ./home/media.nix # Media consuming
+            ./home/social.nix # Social interaction
+            ./home/i3.nix # XOrg compatibility wm
+            # ./home/window-manager.nix # wayland common # Included by WM
+          ];
+        };
+        "gf@knight" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = {
+            inherit inputs;
+            hwmon = "2/temp3_input";
+            term = alacritty;
+          };
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./home # Default, like text editor # TODO auto import default.nix
+            ./home/gf # My main user
+            ./home/hyprland # Hyprland window manager
+            ./home/hyprland/knight.nix # knight’s specific Hyprland
+            ./home/waybar # wayland bar
+            ./home/waybar/widescreen.nix # wayland bar for wide screens
+            ./home/rofi # wayland launcher
+            ./home/hard.nix # Hardware creation
+            ./home/audio.nix # Audio & Music creation
+            ./home/video.nix # Video & Animation creation
+            ./home/photo.nix # Photo & Images creation
+            ./home/social.nix # Social interaction
+            ./home/media.nix # Media consuming
+            # ./home/gaming.nix # Video gaming
+            ./home/i3.nix # XOrg compatibility wm
+            # ./home/window-manager.nix # wayland common # Included in WM
+          ];
+        };
       };
-    };
   };
 }
