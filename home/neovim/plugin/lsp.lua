@@ -7,9 +7,12 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lsp.bashls.setup {
   capabilities = capabilities
 }
-lsp.rnix.setup {
+lsp.nil_ls.setup {
   capabilities = capabilities
 }
+-- lsp.rnix.setup {
+--   capabilities = capabilities
+-- }
 lsp.lua_ls.setup {
   capabilities = capabilities
 }
@@ -74,6 +77,8 @@ lsp.ltex.setup({
   },
   filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
 })
+lsp.marksman.setup {
+  capabilities = capabilities,
+}
 -- lsp.sqlls.setup{}
 -- lsp.sqls.setup{}
--- lsp.marksman.setup{}

@@ -106,20 +106,21 @@
       hping # Network monitoring tool
 
       #################### Languages helpers ####################
-      typst # Document processor TODO documents Nix dev shell
-      typst-lsp # Document processor LSP TODO documents Nix dev shell
-      rnix-lsp # Nix LSP
-      nodePackages_latest.bash-language-server # Bash LSP
-      lua-language-server # Lua
       ltex-ls # Grammar language server
-      nodePackages_latest.prettier # General purpose formatter
-      # nodePackages_latest.markdownlint-cli2
-      # marksman # Markdown
       hunspell # Natural language spell checker
       hunspellDicts.fr-any # For french
       hunspellDicts.en_US # For english
       hunspellDicts.en_GB-ise # For english
       hunspellDicts.es_ES # For spanish
+      typst # Document processor
+      typst-lsp # Document processor LSP
+      typstfmt # Typst formatter
+      marksman # Markdown
+      nil # Nix LSP
+      rnix-lsp # Nix LSP
+      nodePackages_latest.bash-language-server # Bash LSP
+      lua-language-server # Lua
+      nodePackages_latest.prettier # General purpose formatter
 
       ############### Miscelaneous / TODO refile ###############
       pulsemixer # TUI to manage sound
