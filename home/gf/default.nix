@@ -104,6 +104,7 @@
       tshark # Wireshark CLI
       # wireshark # Wireshark GUI
       hping # Network monitoring tool
+      thc-hydra # Pentesting tool
 
       #################### Languages helpers ####################
       ltex-ls # Grammar language server
