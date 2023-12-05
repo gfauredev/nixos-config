@@ -61,5 +61,8 @@
       #   downloads-dir = "";
       # };
     };
+    thunderbird = {
+      enable = true;
+    };
   };
 }
