@@ -1,5 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
+    thunderbird # Popular email and calendar client
     himalaya # CLI mail client # Configure via home manager module
     element-desktop # Matrix messaging
     signal-desktop # Secure messaging
@@ -62,7 +63,7 @@
       # };
     };
     thunderbird = {
-      enable = true;
+      # enable = true;
     };
   };
 }
