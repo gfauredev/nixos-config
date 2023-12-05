@@ -162,6 +162,7 @@
             ./home/social.nix # Social interaction
             ./home/i3.nix # XOrg compatibility wm
             # ./home/window-manager.nix # wayland common # Included by WM
+            ./home/retrogaming.nix # Video gaming
           ];
         };
         "gf@knight" = home-manager.lib.homeManagerConfiguration {
