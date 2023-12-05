@@ -4,6 +4,7 @@
       cores = with libretro; [
         snes9x
         genesis-plus-gx
+        mame
       ];
     })
   ];
