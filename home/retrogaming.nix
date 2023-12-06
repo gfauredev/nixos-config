@@ -1,10 +1,11 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     (retroarch.override {
       cores = with libretro; [
-        snes9x
-        genesis-plus-gx
-        mame
+        beetle-gba # Gamebox Advance
+        snes9x # Super Nintendo
+        genesis-plus-gx # Sega Genesis
+        mame # Arcade machines
       ];
     })
   ];
