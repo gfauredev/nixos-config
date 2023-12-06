@@ -7,6 +7,7 @@ window, box, widget, label, button {
 
 window#waybar {
   background-color: transparent;
+  padding-top: 4px;
 }
 
 window#waybar, menu label {

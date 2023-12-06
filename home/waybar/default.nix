@@ -28,7 +28,7 @@
           ];
 
           # margin = "4";
-          margin = "2 2 0 2";
+          margin = "0";
           spacing = 3;
           exclusive = true;
           fixed-center = false;
