@@ -7,6 +7,8 @@
         genesis-plus-gx # Sega Genesis
         fbneo # Arcade machines
         mame # Arcade machines
+        mame2003-plus # Arcade machines
+        mame2010 # Arcade machines
       ];
     })
   ];
