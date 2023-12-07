@@ -1,10 +1,10 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ lib, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     vagrant # VM orchestrator
     # virt-manager # GUI frontend to libvirtd
     # looking-glass-client
     # Containers
-    kubernetes # Container orchestrator
+    # kubernetes # Container orchestrator
   ];
 
   networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
@@ -20,11 +20,11 @@
       ];
     };
     virtualbox.host = {
-      enable = true;
-      # enableExtensionPack = true; # WARNING needs a lot of compilation
+      enable = false;
+      enableExtensionPack = false; # WARNING needs a lot of compilation
     };
-    # vmware.host = {
-    #   enable = true; # PROPRIETARY
-    # };
+    vmware.host = {
+      enable = false; # PROPRIETARY
+    };
   };
 }
