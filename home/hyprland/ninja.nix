@@ -24,7 +24,7 @@
   services.swayidle = {
     events = [
       { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpaper/desertWithPlants.jpg"; }
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; }
     ];
     timeouts = [
       {
@@ -34,7 +34,7 @@
       }
       {
         timeout = 330;
-        command = "${pkgs.swaylock}/bin/swaylock -f -i $HOME/.wallpaper/desertWithPlants.jpg";
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
       }
       { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; }
     ];

@@ -3,11 +3,11 @@
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
-    hyprpaper # Wallpaper engine
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     waypipe # Send a wayland window through SSH
     wayvnc # Wayland remote desktop
+    # hyprpaper # Wallpaper engine
     # wev # Evaluate inputs sent to wayland
     # swww # Dynamic wallpaper
     # eww # Advanced widgets

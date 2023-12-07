@@ -154,7 +154,7 @@
         "$mod, q, killactive," # Close window
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
-        "$mod, comma, exec, swaylock -f -i $HOME/.wallpaper/desert.jpg"
+        "$mod, comma, exec, swaylock -f -c 000000" # Black screen lock
         "$mod SHIFT, comma, exec, systemctl suspend"
         # Web
         "$mod CONTROL, b, exec, nyxt" # Alternative browser
