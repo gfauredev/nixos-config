@@ -155,6 +155,7 @@
             ./home/waybar # wayland bar
             ./home/rofi # wayland launcher
             ./home/hard.nix # Hardware creation
+            ./home/virtualization.nix # Virtualization TODO use a more "dev" file
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation creation
             ./home/photo.nix # Photo & Images creation
@@ -181,6 +182,7 @@
             ./home/waybar/widescreen.nix # wayland bar for wide screens
             ./home/rofi # wayland launcher
             ./home/hard.nix # Hardware creation
+            ./home/virtualization.nix # Virtualization TODO use a more "dev" file
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation editing
             ./home/compositing.nix # 3D and special effects

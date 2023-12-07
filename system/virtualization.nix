@@ -1,12 +1,4 @@
 { lib, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    # vagrant # VM orchestrator
-    # virt-manager # GUI frontend to libvirtd
-    # looking-glass-client
-    # Containers
-    # kubernetes # Container orchestrator
-  ];
-
   networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
 
   virtualisation = {
