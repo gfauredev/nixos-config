@@ -286,10 +286,10 @@
     systemdTarget = "hyprland-session.target";
   };
 
-  xdg.configFile = {
-    hyprpaper = {
-      target = "hypr/hyprpaper.conf";
-      source = ./hyprpaper.conf;
-    };
-  };
+  # xdg.configFile = {
+  #   hyprpaper = {
+  #     target = "hypr/hyprpaper.conf";
+  #     source = ./hyprpaper.conf;
+  #   };
+  # };
 }

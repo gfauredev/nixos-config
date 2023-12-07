@@ -167,10 +167,10 @@
         # text = builtins.readFile ../XCompose;
         source = ../misc/XCompose;
       };
-      wallpaper = {
-        target = ".wallpaper";
-        source = ./wallpaper;
-      };
+      # wallpaper = {
+      #   target = ".wallpaper";
+      #   source = ./wallpaper;
+      # };
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

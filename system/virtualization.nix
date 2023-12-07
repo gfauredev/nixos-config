@@ -1,6 +1,6 @@
 { lib, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    vagrant # VM orchestrator
+    # vagrant # VM orchestrator
     # virt-manager # GUI frontend to libvirtd
     # looking-glass-client
     # Containers
