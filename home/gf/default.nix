@@ -96,7 +96,8 @@
       # wireguard-tools # TEST relevance
       rustscan # scan networks
       nmap # scan ports
-      protonvpn-cli # Free VPN service
+      # protonvpn-cli # Free VPN service
+      protonvpn-cli_2 # Free VPN service (Python rewrite)
       # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
