@@ -37,7 +37,7 @@
 
     # Image & Video # TODO find better image viewer
     imv # Image viewer
-    swayimg # Image viewer that can integrate with terminals
+    # swayimg # Image viewer that can integrate with terminals
     # sxiv # Image viewer
 
     # Utilities & Software # TODO refile more precisely

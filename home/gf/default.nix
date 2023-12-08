@@ -285,13 +285,13 @@
         "text/adasrc" = "nvim.desktop";
         "text/x-adasrc" = "nvim.desktop";
 
-        "image/jpeg" = "swayimg.desktop";
-        "image/png" = "swayimg.desktop";
-        "image/bmp" = "swayimg.desktop";
-        "image/jpg" = "swayimg.desktop";
-        "image/avif" = "swayimg.desktop";
-        "image/webp" = "swayimg.desktop";
-        "image/ico" = "swayimg.desktop";
+        "image/jpeg" = "imv.desktop";
+        "image/png" = "imv.desktop";
+        "image/bmp" = "imv.desktop";
+        "image/jpg" = "imv.desktop";
+        "image/avif" = "imv.desktop";
+        "image/webp" = "imv.desktop";
+        "image/ico" = "imv.desktop";
 
         "audio/wav" = "mpv.desktop";
         "audio/flac" = "mpv.desktop";
