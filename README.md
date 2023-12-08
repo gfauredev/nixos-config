@@ -106,3 +106,4 @@ A dev environment can be initialised with `nix flake init --template templates#T
 - `burpsuite` # Pentesting suite
 - `minecraft` # Mythic sandbox game
   - `fabric-installer` # Minecraft modding toolchain
+- `protonvpn-gui` # Partly free VPN
