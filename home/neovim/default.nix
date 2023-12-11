@@ -41,6 +41,7 @@
       nvim-treesitter.withAllGrammars # Parsing & text highlighting
       nvim-treesitter-parsers.markdown # Parsing & text highlighting
       nvim-treesitter-parsers.norg # Parsing & text highlighting
+      nvim-treesitter-parsers.arduino # Parsing & text highlighting
       nvim-treesitter-textobjects # Parsing & text highlighting
       nvim-treesitter-textsubjects # Parsing & text highlighting
       nvim-treesitter-refactor # Parsing & text highlighting
