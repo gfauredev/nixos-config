@@ -30,6 +30,7 @@
       ${builtins.readFile ./plugin/indentline.lua}
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/lint.lua}
+      ${builtins.readFile ./plugin/quarto.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -95,6 +96,7 @@
       ##### Techno & Language Specifics #####
       neorg # New oganization specific lightweight markup
       orgmode # Organization specific lightweight markup
+      quarto-nvim # Publishing system
       # cmp-tabnine # AI code completion
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
