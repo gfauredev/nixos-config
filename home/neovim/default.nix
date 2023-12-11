@@ -53,6 +53,7 @@
       nvim-tree-lua # Tree file explorer
       dashboard-nvim # Better start screen
       sniprun # Run snippets of code from neovim TODO
+      otter-nvim # LSP & features for embedded languages
       indent-blankline-nvim # Indentation lines TODO
       # tokyonight-nvim # Blue-ish theme
       gruvbox-nvim # Old fashioned, red-ish theme

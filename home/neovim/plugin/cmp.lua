@@ -62,6 +62,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'copilot' },
     { name = 'buffer' },
+    { name = 'otter' }, -- Quarto
   })
 })
 
