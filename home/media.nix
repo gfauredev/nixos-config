@@ -30,6 +30,7 @@
     # appflowy
     pdfpc # PDF Presentator Console
     weylus # Phone as graphic tablet
+    quarto # Scientific and technical publishing system
 
     # Audio & Music
     spotify # PROPRIETARY music streaming
