@@ -18,6 +18,7 @@
       "uucp" # Connect to serial ports
       "dialout" # Connect to serial ports
       "mtp"
+      "libvirt"
       "libvirtd"
       "adbusers" # Connect to Android devices
       "vboxusers"
