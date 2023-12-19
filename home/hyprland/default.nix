@@ -109,7 +109,7 @@
         "$mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"cli\" and (.class | test(\"${term.name}\";\"i\")))' || ${term.name}" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
-        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.exec} $EDITOR --cwd ~/note --class note" # Auto open text editor
+        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.name} ${term.class} note ${term.cd} $HOME/data/text/ ${term.exec} $EDITOR" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
         "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || rofi -show-icons -show drun" # Auto open laucher
