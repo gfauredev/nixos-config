@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   # nixpkgs.overlays = [
   #   inputs.neovim-nightly-overlay.overlays.default
   # ];
@@ -7,6 +7,7 @@
     enable = true;
     # package = pkgs.neovim-nightly;
     defaultEditor = true;
+    # Generate a big init file with every module
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./opt.lua}
@@ -15,7 +16,6 @@
       ${builtins.readFile ./theme.lua}
       ${builtins.readFile ./plugin/telescope.lua}
       ${builtins.readFile ./plugin/comment.lua}
-      ${builtins.readFile ./plugin/neorg.lua}
       ${builtins.readFile ./plugin/orgmode.lua}
       ${builtins.readFile ./plugin/treesitter.lua}
       ${builtins.readFile ./plugin/gitsigns.lua}
@@ -31,6 +31,7 @@
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/lint.lua}
       ${builtins.readFile ./plugin/quarto.lua}
+      ${builtins.readFile ./plugin/headlines.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -55,8 +56,10 @@
       sniprun # Run snippets of code from neovim TODO
       otter-nvim # LSP & features for embedded languages
       indent-blankline-nvim # Indentation lines TODO
-      # tokyonight-nvim # Blue-ish theme
       gruvbox-nvim # Old fashioned, red-ish theme
+      headlines-nvim # Highlights for titles, code blocks …
+      vim-table-mode # Display tables
+      # tokyonight-nvim # Blue-ish theme
       # nvim-notify # Notifications
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # image-nvim # Image viewer
@@ -95,8 +98,8 @@
       # hop-nvim # Navigate efficiently in code
 
       ##### Techno & Language Specifics #####
-      neorg # New oganization specific lightweight markup
-      orgmode # Organization specific lightweight markup
+      # neorg # Modern oganization markup # Currently lacks a mobile app
+      orgmode # Organization markup # Has Orgzly mobile app
       quarto-nvim # Publishing system
       # cmp-tabnine # AI code completion
       # nvim-jdtls # Java (Eclipse)
