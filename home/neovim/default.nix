@@ -31,7 +31,6 @@
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/lint.lua}
       ${builtins.readFile ./plugin/quarto.lua}
-      ${builtins.readFile ./plugin/headlines.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
