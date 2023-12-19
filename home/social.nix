@@ -1,6 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   home.packages = with pkgs; [
-    thunderbird # Popular email and calendar client
+    thunderbird # Popular desktop email and calendar client
+    # evolution # Popular desktop email and calendar client
     himalaya # CLI mail client # Configure via home manager module
     element-desktop # Matrix messaging
     signal-desktop # Secure messaging
@@ -31,39 +32,36 @@
   # };
 
 
-  services = {
-    himalaya-notify = {
-      # enable = true;
-      environment = {
-        "PASSWORD_STORE_DIR" = "~/.password-store";
-      };
-      settings = {
-        # account = "pro";
-        # keepalive = 10;
-      };
-    };
-    himalaya-watch = {
-      # enable = true;
-      environment = {
-        "PASSWORD_STORE_DIR" = "~/.password-store";
-      };
-      settings = {
-        # account = "pro";
-        # keepalive = 10;
-      };
-    };
-  };
+  # services = {
+  #   himalaya-notify = {
+  #     environment = {
+  #       "PASSWORD_STORE_DIR" = "~/.password-store";
+  #     };
+  #     settings = {
+  #       account = "pro";
+  #     };
+  #   };
+  #   himalaya-watch = {
+  #     enable = true;
+  #     environment = {
+  #       "PASSWORD_STORE_DIR" = "~/.password-store";
+  #     };
+  #     settings = {
+  #       account = "pro";
+  #     };
+  #   };
+  # };
 
   programs = {
-    himalaya = {
-      # enable = true; # CLI Mail client # TODO Config as a secret with sops
-      # settings = {
-      #   signature = "Guilhem Fauré";
-      #   downloads-dir = "";
-      # };
-    };
-    thunderbird = {
-      # enable = true;
-    };
+    # himalaya = {
+    #   enable = true; # CLI Mail client # TODO config with sops secrets
+    #   settings = {
+    #     signature = "Guilhem Fauré";
+    #     downloads-dir = "";
+    #   };
+    # };
+    # thunderbird = { # TODO config with sops secrets
+    #   enable = true;
+    # };
   };
 }
