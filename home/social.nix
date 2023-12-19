@@ -3,7 +3,7 @@
     thunderbird # Popular desktop email and calendar client
     # evolution # Popular desktop email and calendar client
     himalaya # CLI mail client # Configure via home manager module
-    element-desktop # Matrix messaging
+    # element-desktop # Matrix messaging
     signal-desktop # Secure messaging
     # element-web # Matrix messaging
     # mailspring # Email client WARNING security issue
