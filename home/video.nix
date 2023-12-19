@@ -7,8 +7,8 @@
     # olive-editor # non linear video editor
     # losslesscut-bin # Basic lossless video edditing using ffmpeg
 
-    # obs-studio
-    # obs-studio-plugins.wlrobs
+    obs-studio
+    obs-studio-plugins.wlrobs
     # obs-wlrobs
 
     # davinci-resolve # PROPRIETARY video editor

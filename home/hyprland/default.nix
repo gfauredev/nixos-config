@@ -176,7 +176,8 @@
         ", XF86AudioPrev, exec, playerctl previous"
         "SHIFT, XF86AudioPrev, exec, playerctl previous -p spotify"
         # Misc
-        ", Print, exec, grim -g \"$(slurp)\" $HOME/data.large/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        ", Print, exec, grim -g \"$(slurp)\" $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        "CONTROL, Print, exec, grim -g \"$(slurp)\" - | wl-copy"
         "SHIFT, Print, exec, grim $HOME/data.large/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "$mod, p, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle all"
