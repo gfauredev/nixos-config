@@ -115,6 +115,7 @@
             format-icons = {
               web = "󰖟";
               aud = "";
+              pim = "󰸍";
               opn = "󰥨";
               top = "󱕍";
               etc = "";
