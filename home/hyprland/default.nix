@@ -90,6 +90,8 @@
         "$mod, a, workspace, name:aud" # Audio workspace
         "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\")' || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
+        "$mod, p, workspace, name:pim" # Personal information management workspace
+        "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || thunderbird" # Auto open personal information management apps
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.name} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
@@ -179,7 +181,7 @@
         ", Print, exec, grim -g \"$(slurp)\" $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "CONTROL, Print, exec, grim -g \"$(slurp)\" - | wl-copy"
         "SHIFT, Print, exec, grim $HOME/data.large/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
-        "$mod, p, exec, hyprpicker --autocopy"
+        "$mod, k, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle all"
       ];
       binde = [
