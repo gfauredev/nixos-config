@@ -31,6 +31,7 @@
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/lint.lua}
       ${builtins.readFile ./plugin/quarto.lua}
+      ${builtins.readFile ./plugin/notify.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -59,8 +60,8 @@
       gruvbox-nvim # Old fashioned, red-ish theme
       headlines-nvim # Highlights for titles, code blocks …
       vim-table-mode # Display tables
+      nvim-notify # Notifications
       # tokyonight-nvim # Blue-ish theme
-      # nvim-notify # Notifications
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # image-nvim # Image viewer
       # hologram-nvim # Image viewer
