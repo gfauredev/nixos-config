@@ -32,6 +32,7 @@
       ${builtins.readFile ./plugin/lint.lua}
       ${builtins.readFile ./plugin/quarto.lua}
       ${builtins.readFile ./plugin/notify.lua}
+      ${builtins.readFile ./plugin/image.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -61,9 +62,9 @@
       headlines-nvim # Highlights for titles, code blocks …
       vim-table-mode # Display tables
       nvim-notify # Notifications
+      image-nvim # Image viewer
       # tokyonight-nvim # Blue-ish theme
       # which-key-nvim # Indications on current keys and shortcuts TODO
-      # image-nvim # Image viewer
       # hologram-nvim # Image viewer
       # catppuccin-nvim # Pastel themes
 
