@@ -3,8 +3,10 @@
     let
       smart-terminal = pkgs.writeShellScriptBin "t" ''
         [ -n "$1" ] && WD="$1" || WD="$PWD"
+        shift
+        [ -n "$1" ] && EXEC="${term.exec} $@"
 
-        ${term.cmd} ${term.cd} $WD "''${@:2}" & disown
+        ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
       typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ./typst-env.sh}";
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
