@@ -9,28 +9,24 @@
         ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
       typst-env = pkgs.writeShellScriptBin "typ" ''
-        # Get the Typst file directory
+        # Get the Typst file directory path
         DIR="$(dirname $1)"
 
-        # Link the Typst library to use inside Typst file
-        TYPST_LIB="$HOME/.local/share/typst-templates"
-        # TODO enhance this with proper Typst imports
-        [ -h "$DIR/lib.typ" ] || ln -s $TYPST_LIB $DIR/lib.typ
-
-        # Recompile the Typst file continuously
+        # Recompile the Typst file continuously in another terminal
         ${term.cmd} ${term.cd} $DIR ${term.exec} typst watch $1 & disown
 
         # Open generated PDF in PDF viewer
         PDF="$(echo $1 | sd "typ" "pdf")"
-        echo "Openning PDF $PDF"
+        echo "Openning PDF $PDF in default viewer"
         xdg-open $PDF & disown
 
         # Open Typst file in text editor
+        echo "Openning file $1 in default text editor $EDITOR"
         $EDITOR $1
 
         # Clean up after edditing
+        echo "Killing typst process $(pgrep typst)"
         kill $(pgrep typst)
-        rm -fv $DIR/lib.typ
       '';
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ./fingerprints-enroll.sh}";
