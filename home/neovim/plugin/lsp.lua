@@ -63,9 +63,9 @@ lsp.clangd.setup {
 lsp.typst_lsp.setup({
   capabilities = capabilities,
   settings = {
-    -- exportPdf = "onType",
+    exportPdf = "onType",
     -- exportPdf = "onSave",
-    exportPdf = "never",
+    -- exportPdf = "never",
   },
 })
 lsp.ltex.setup({
