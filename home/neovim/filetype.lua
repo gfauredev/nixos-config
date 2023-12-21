@@ -1,5 +1,8 @@
 -- Additional filetypes
+
+-- Typst
 vim.filetype.add({ extension = { typ = "typst" } }) -- Add typst filetype
+
 -- Add gohtmltmpl filetype
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.html" },
