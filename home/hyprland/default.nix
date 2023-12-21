@@ -221,19 +221,19 @@
 
       # See https://wiki.hyprland.org/Configuring/Variables
       general = {
-        gaps_in = 1;
-        gaps_out = 2;
+        gaps_in = 0;
+        gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        "col.active_border" = "rgba(ffddccc5)";
-        "col.inactive_border" = "rgba(00000000)";
+        "col.active_border" = "rgb(ffddcc)";
+        "col.inactive_border" = "rgb(000000)";
       };
 
 
       group = {
-        "col.border_active" = "rgba(ffddccc5)";
-        "col.border_inactive" = "rgba(00000000)";
+        "col.border_active" = "rgb(ffddcc)";
+        "col.border_inactive" = "rgb(000000)";
         groupbar = {
           render_titles = false; # No titles in group bars
         };

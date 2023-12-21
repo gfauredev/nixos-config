@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, hwmon ? "2/temp3_input", ... }: {
+{ lib, pkgs, hwmon ? "2/temp3_input", ... }: {
   programs = {
     waybar = {
       enable = true;
@@ -28,10 +28,10 @@
           ];
 
           # margin = "4";
-          margin = "0";
-          spacing = 3;
-          exclusive = true;
-          fixed-center = false;
+          margin = "2 0 0 0";
+          # spacing = 3;
+          exclusive = true; # No drawing on top or underneath
+          # fixed-center = false; # Fixed position of center module
 
           battery = {
             states = {
