@@ -36,6 +36,7 @@
       ${builtins.readFile ./plugin/quarto.lua}
       ${builtins.readFile ./plugin/notify.lua}
       ${builtins.readFile ./plugin/image.lua}
+      ${builtins.readFile ./plugin/maths.lua}
     '';
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
@@ -106,6 +107,7 @@
       ##### Techno & Language Specifics #####
       # neorg # Modern oganization markup # Currently lacks a mobile app
       # orgmode # Organization markup # Has Orgzly mobile app
+      nabla-nvim # Render maths formulas
       quarto-nvim # Publishing system
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
