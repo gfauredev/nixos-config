@@ -8,9 +8,6 @@
 
         ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
-      typst-env = pkgs.writeShellScriptBin "typ" ''
-        echo "Just open $EDITOR # TODO configure auto-open of PDF inside editor"
-      '';
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ./fingerprints-enroll.sh}";
       extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
@@ -21,7 +18,6 @@
       pkgs.eza # ls replacement (exa fork)
       # Custom scripts
       smart-terminal # Open a terminal quickly with first parameter always cd
-      typst-env # Setup typst writing env TODO move to dev shell
       extract # Extract any compressed file
       rsync-backup # Incremental backup with rsync
       fingerprints-enroll # Enroll fingers for finger print reader
