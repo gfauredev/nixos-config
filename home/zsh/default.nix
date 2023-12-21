@@ -3,10 +3,31 @@
     let
       smart-terminal = pkgs.writeShellScriptBin "t" ''
         [ -n "$1" ] && WD="$1" || WD="$PWD"
+        shift
+        [ -n "$1" ] && EXEC="${term.exec} $@"
 
-        ${term.cmd} ${term.cd} $WD "''${@:2}" & disown
+        ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
-      typst-env = pkgs.writeShellScriptBin "typ" "${lib.readFile ./typst-env.sh}";
+      typst-env = pkgs.writeShellScriptBin "typ" ''
+        # Get the Typst file directory path
+        DIR="$(dirname $1)"
+
+        # Recompile the Typst file continuously in another terminal
+        ${term.cmd} ${term.cd} $DIR ${term.exec} typst watch $1 & disown
+
+        # Open generated PDF in PDF viewer
+        PDF="$(echo $1 | sd "typ" "pdf")"
+        echo "Openning PDF $PDF in default viewer"
+        xdg-open $PDF & disown
+
+        # Open Typst file in text editor
+        echo "Openning file $1 in default text editor $EDITOR"
+        $EDITOR $1
+
+        # Clean up after edditing
+        echo "Killing typst process $(pgrep typst)"
+        kill $(pgrep typst)
+      '';
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
       fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ./fingerprints-enroll.sh}";
       extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
