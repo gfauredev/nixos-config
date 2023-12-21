@@ -110,7 +110,7 @@
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
       # vim-go # Go (Vimscript)
-      # typst-vim # Typst
+      typst-vim # Typst
       # grammar-guard-nvim
       # zk-nvim # zk integration
       # markdown-preview-nvim # Markdown previewing

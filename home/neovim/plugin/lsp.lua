@@ -60,8 +60,11 @@ lsp.clangd.setup {
 -- }
 
 -- Misc
+-- Needs a .git/ to find working directory TODO change that
 lsp.typst_lsp.setup({
   capabilities = capabilities,
+  -- cmd = { "typst-lsp" },
+  -- filetypes = { "typst" },
   settings = {
     exportPdf = "onType",
     -- exportPdf = "onSave",
