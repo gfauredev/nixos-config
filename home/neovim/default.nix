@@ -16,7 +16,6 @@
       ${builtins.readFile ./theme.lua}
       ${builtins.readFile ./plugin/telescope.lua}
       ${builtins.readFile ./plugin/comment.lua}
-      ${builtins.readFile ./plugin/orgmode.lua}
       ${builtins.readFile ./plugin/treesitter.lua}
       ${builtins.readFile ./plugin/gitsigns.lua}
       ${builtins.readFile ./plugin/lsp.lua}
@@ -42,7 +41,7 @@
       ##### Parsing #####
       nvim-treesitter.withAllGrammars # Parsing & text highlighting
       nvim-treesitter-parsers.markdown # Parsing & text highlighting
-      nvim-treesitter-parsers.norg # Parsing & text highlighting
+      # nvim-treesitter-parsers.norg # Parsing & text highlighting
       nvim-treesitter-parsers.arduino # Parsing & text highlighting
       nvim-treesitter-textobjects # Parsing & text highlighting
       nvim-treesitter-textsubjects # Parsing & text highlighting
@@ -88,6 +87,7 @@
       copilot-lua # GitHub copilot TODO https://github.com/zbirenbaum/copilot.lua
       copilot-cmp # GitHub copilot completions
       nvim-lint # Linters adapter
+      # cmp-tabnine # AI code completion
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-dap # Debugging messages as cmp source
@@ -101,9 +101,8 @@
 
       ##### Techno & Language Specifics #####
       # neorg # Modern oganization markup # Currently lacks a mobile app
-      orgmode # Organization markup # Has Orgzly mobile app
+      # orgmode # Organization markup # Has Orgzly mobile app
       quarto-nvim # Publishing system
-      # cmp-tabnine # AI code completion
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
       # vim-go # Go (Vimscript)
