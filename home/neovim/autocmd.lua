@@ -21,11 +21,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Auto open PDF Typst
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.typ",
   callback = function()
     if vim.bo.filetype ~= "typst" then
       local file_path = vim.fn.expand('%:p')
       local pdf_file = string.gsub(file_path, "%.typ$", ".pdf")
-      vim.fn.system(string.format("zathura %s", pdf_file))
+      vim.fn.system(string.format("zathura %s & disown", pdf_file))
     end
   end
 })
