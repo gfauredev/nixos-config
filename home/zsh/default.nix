@@ -80,7 +80,6 @@
       la = "eza --icons --git -l --group -all";
       al = "eza --icons --git -l --group -all --reverse";
       # Explore
-      fd = "fd --color always";
       bd = "br --sort-by-date";
       bs = "br --sort-by-size";
       bc = "br --sort-by-count";
@@ -92,7 +91,7 @@
       restore = "trash-restore";
       shred = "shred -vu";
       mv = "mv -uv";
-      cp = "cp -urv";
+      cp = "echo You might prefer using custom command 'c';cp -urv"; # Reminder
 
       # System & Misc
       mix = "pulsemixer";
@@ -179,8 +178,10 @@
       ## List & Search
       l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
       d = "z"; # quicker, better, smarter cd
-      f = "fd"; # quicker, better find
-      g = "rg -S -C 3"; # Search among files contents
+      fd = "echo You might prefer using custom command 'f';rg"; # reminder
+      f = "fd --color always"; # quicker, better find
+      rg = "echo You might prefer using custom command 'g';rg"; # reminder
+      g = "rg -S -C 3"; # search among files contents
 
       ## Open
       a = "bat --force-colorization --paging never"; # better cat
