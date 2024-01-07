@@ -1,6 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   wayland.windowManager.hyprland = {
-    enableNvidiaPatches = true;
+    # enableNvidiaPatches = true;
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       # knight (ultrawide desktop) monitors
