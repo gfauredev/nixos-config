@@ -13,7 +13,7 @@
     avahi = {
       # Discover printers & scanners on network
       enable = lib.mkDefault true;
-      nssmdns = true;
+      nssmdns4 = true;
     };
     ipp-usb.enable = lib.mkDefault true; # USB printers
   };
