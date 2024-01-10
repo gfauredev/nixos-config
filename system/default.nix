@@ -68,7 +68,6 @@
 
   security = {
     sudo.enable = lib.mkDefault true;
-    polkit.enable = lib.mkDefault true; # TEST pertinence
     # apparmor.enable = lib.mkDefault true; # TEST pertinence
   };
 

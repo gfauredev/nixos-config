@@ -84,7 +84,8 @@
   };
 
   security = {
-    rtkit.enable = true;
+    polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
+    rtkit.enable = true; # Tools for realtime (preemption)
     # apparmor.enable = lib.mkDefault true; # TEST pertinence
   };
 
@@ -114,6 +115,7 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      polkit_gnome # Allow GUI apps to get privileges
       cpulimit # Limit CPU usage of processes
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
