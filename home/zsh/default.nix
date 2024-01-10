@@ -178,10 +178,10 @@
       ## List & Search
       l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
       d = "z"; # quicker, better, smarter cd
+      f = "\\fd --color always"; # quicker, better find
       fd = "echo You might prefer using custom command 'f';fd"; # reminder
-      f = "fd --color always"; # quicker, better find
+      g = "\\rg -S -C 3"; # search among files contents
       rg = "echo You might prefer using custom command 'g';rg"; # reminder
-      g = "rg -S -C 3"; # search among files contents
 
       ## Open
       a = "bat --force-colorization --paging never"; # better cat
