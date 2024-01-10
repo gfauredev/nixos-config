@@ -178,7 +178,7 @@
       ## List & Search
       l = "eza --icons --git -l --no-permissions --no-user"; # quicker, beter ls
       d = "z"; # quicker, better, smarter cd
-      fd = "echo You might prefer using custom command 'f';rg"; # reminder
+      fd = "echo You might prefer using custom command 'f';fd"; # reminder
       f = "fd --color always"; # quicker, better find
       rg = "echo You might prefer using custom command 'g';rg"; # reminder
       g = "rg -S -C 3"; # search among files contents
