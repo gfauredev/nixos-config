@@ -67,8 +67,8 @@ lsp.typst_lsp.setup({
   -- filetypes = { "typst" },
   single_file_support = true,
   settings = {
-    exportPdf = "onType",
-    -- exportPdf = "onSave",
+    -- exportPdf = "onType",
+    exportPdf = "onSave",
     -- exportPdf = "never",
   },
 })
