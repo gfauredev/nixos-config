@@ -10,5 +10,6 @@
 
     # freecad # Popular parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
+    # solvespace # Parametric 3D CAD
   ];
 }
