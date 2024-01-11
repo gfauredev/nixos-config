@@ -154,11 +154,11 @@
             ./home/hyprland/ninja.nix # ninja’s specific Hyprland
             ./home/waybar # wayland bar
             ./home/rofi # wayland launcher
-            ./home/hard.nix # Hardware creation
             ./home/virtualization.nix # Virtualization TODO use a more "dev" file
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation creation
             ./home/photo.nix # Photo & Images creation
+            ./home/model.nix # 3D and schematics modeling and hardware creation
             ./home/media.nix # Media consuming
             ./home/social.nix # Social interaction
             ./home/i3.nix # XOrg compatibility wm
@@ -181,12 +181,12 @@
             ./home/waybar # wayland bar
             ./home/waybar/widescreen.nix # wayland bar for wide screens
             ./home/rofi # wayland launcher
-            ./home/hard.nix # Hardware creation
             ./home/virtualization.nix # Virtualization TODO use a more "dev" file
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation editing
             ./home/compositing.nix # 3D and special effects
             ./home/photo.nix # Photo & Images creation
+            ./home/model.nix # 3D and schematics modeling and hardware creation
             ./home/social.nix # Social interaction
             ./home/media.nix # Media consuming
             # ./home/gaming.nix # Video gaming
