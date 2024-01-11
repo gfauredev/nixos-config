@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ./zsh # Interactive POSIX shell
     ./neovim # CLI text editor

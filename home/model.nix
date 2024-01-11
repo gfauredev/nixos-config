@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    blender # Most popular 3D, animation & video editor
+    # blender # Most popular 3D, animation & video editor
 
     fritzing # Elecronics design
     # kicad # Elecronics design
@@ -11,5 +11,9 @@
     # freecad # Popular parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
     # solvespace # Parametric 3D CAD
+  ];
+
+  imports = [
+    ./pkgs/blender.nix
   ];
 }
