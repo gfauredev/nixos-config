@@ -1,12 +1,12 @@
 local wezterm = require "wezterm"
 -- General options
 cfg = {
-  enable_wayland = true,
+  enable_wayland = false,
   -- front_end = "Software", -- Disable hardware acceleration for nvidia GPU
   font = wezterm.font "FiraCode Nerd Font",
-  font_size = 11,
+  font_size = 14,
   enable_tab_bar = false,
-  window_background_opacity = 0.8,
+  -- window_background_opacity = 0.8,
   window_close_confirmation = "NeverPrompt",
   scrollback_lines = 5000,
   window_padding = {
