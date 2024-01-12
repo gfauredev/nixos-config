@@ -8,9 +8,9 @@
     # openscad # Parametric, programmatic (code only) 3D CAD
     # Use Python library CadQuery instead
 
-    # freecad # Popular parametric 3D CAD
+    freecad # Popular parametric 3D CAD
+    solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
-    # solvespace # Parametric 3D CAD
   ];
 
   imports = [
