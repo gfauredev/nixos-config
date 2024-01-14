@@ -143,7 +143,7 @@
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "4/temp3_input";
-            term = wezterm;
+            term = alacritty;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
@@ -169,7 +169,7 @@
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "2/temp3_input";
-            term = wezterm;
+            term = alacritty;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
