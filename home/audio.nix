@@ -2,12 +2,12 @@
   home.packages = with pkgs; [
     # Tools
     klick # Metronome
-    giada # Live electronic music platform
+    # giada # Live electronic music platform
     carla # VST Host & audio router
     # helvum # PipeWire router
     # qpwgraph # PipeWire router
     # DAW & Editors
-    zrythm # Modern digital audio workstation
+    # zrythm # Modern digital audio workstation
     ardour # Full fledged digital audio workstation
     # reaper # PROPRIETARY digital audio workstation
     # audacity # Simple audio editor
