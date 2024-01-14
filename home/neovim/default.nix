@@ -35,9 +35,9 @@
       ${builtins.readFile ./plugin/lint.lua}
       ${builtins.readFile ./plugin/quarto.lua}
       ${builtins.readFile ./plugin/notify.lua}
-      ${builtins.readFile ./plugin/image.lua}
       ${builtins.readFile ./plugin/maths.lua}
     '';
+    # ${builtins.readFile ./plugin/image.lua}
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
       plenary-nvim # Library
@@ -66,7 +66,7 @@
       headlines-nvim # Highlights for titles, code blocks …
       vim-table-mode # Display tables
       nvim-notify # Notifications
-      image-nvim # Image viewer
+      # image-nvim # Image viewer
       # tokyonight-nvim # Blue-ish theme
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # hologram-nvim # Image viewer
@@ -128,7 +128,7 @@
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
-    extraLuaPackages = ps: [ ps.magick ];
+    # extraLuaPackages = ps: [ ps.magick ];
     # extraPackages = with pkgs; [
     #   luajitPackages.magick
     # ];

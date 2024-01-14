@@ -142,7 +142,7 @@
       tcpdump # Dump network packets
       # bubblewrap # Applications sandboxer TEST if better than firejail
       # samba # Share files with other OSes
-      samba4Full # Share files with other OSes
+      # samba4Full # Share files with other OSes
       # cifs-utils # Share files with other Oses
       inetutils # Things like FTP commend
       ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
