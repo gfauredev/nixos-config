@@ -93,9 +93,9 @@
         "$mod, p, workspace, name:pim" # Personal information management workspace
         "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || thunderbird" # Auto open personal information management apps
         "$mod, o, workspace, name:opn" # Open (a file)
-        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.name} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
+        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
-        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.name} ${term.class} monitoring ${term.exec} btm" # Auto open bottom if not running
+        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.cmd} ${term.exec} btm ${term.class} monitoring" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         # Additional workspaces (Left)
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
@@ -108,10 +108,10 @@
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"cli\" and (.class | test(\"${term.name}\";\"i\")))' || ${term.name}" # Auto open CLI if not running
+        "$mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"cli\" and (.class | test(\"${term.name}\";\"i\")))' || ${term.cmd}" # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
-        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.name} ${term.class} note ${term.cd} $HOME/data/text/ ${term.exec} $EDITOR" # Auto open text editor
+        "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.cmd} ${term.exec} $EDITOR ${term.class} note ${term.cd} $HOME/data/text/" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
         "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || rofi -show-icons -show drun" # Auto open laucher
@@ -124,21 +124,21 @@
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
         ", XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
-        "SHIFT, XF86AudioMedia, exec, ${term.name} ${term.class} menu ${term.cd} ~ ${term.transparent} ${term.exec} pulsemixer" # Open audio mixer
+        "SHIFT, XF86AudioMedia, exec, ${term.cmd} ${term.transparent} ${term.exec} pulsemixer ${term.class} menu ${term.cd} ~" # Open audio mixer
         "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         ", XF86Tools, workspace, name:med" # Media ws
         ", XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
-        "SHIFT, XF86Tools, exec, ${term.name} ${term.class} menu ${term.cd} ~ ${term.transparent} ${term.exec} pulsemixer" # Open audio mixer
+        "SHIFT, XF86Tools, exec, ${term.cmd} ${term.transparent} ${term.exec} pulsemixer ${term.class} menu ${term.cd} ~" # Open audio mixer
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86Tools, workspace, name:med" # Media ws
         "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
-        "$mod, RETURN, exec, ${term.name}"
+        "$mod, RETURN, exec, ${term.cmd}"
         # Launch
         "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji"
         "$mod CONTROL, SPACE, exec, rofi -show calc"

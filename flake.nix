@@ -123,19 +123,19 @@
           # TODO create nix functions & modules to do that cleaner
           name = "alacritty"; # Name of the terminal
           cmd = "alacritty"; # Command to launch terminal
+          transparent = "--option window.opacity=0.7"; # Option to transparent
           exec = "--command"; # Option to execute a command in place of shell
           class = "--class"; # Option to define a class for the window
           cd = "--working-directory"; # Option to launch terminal in a directory
-          transparent = "--option window.opacity=0.7"; # Option to transparent
         };
         wezterm = {
           # TODO create nix functions & modules to do that cleaner
           name = "wezterm"; # Name of the terminal
-          cmd = "wezterm start"; # Command to launch terminal
-          exec = ""; # Option to execute a command in place of shell
+          cmd = "wezterm"; # Command to launch terminal
+          transparent = "--config window_background_opacity=0.7"; # Option to transparent
+          exec = "start"; # Option to execute a command in place of shell
           class = "--class"; # Option to define a class for the window
           cd = "--cwd"; # Option to launch terminal in a directory
-          transparent = "--config window_background_opacity=0.7"; # Option to transparent
         };
       in
       {
