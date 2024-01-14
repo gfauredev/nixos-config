@@ -123,8 +123,7 @@
           };
         };
         font = {
-          family = "FiraCode Nerd Font";
-          # size = 14;
+          # family = "FiraCode Nerd Font";
           size = 11;
         };
         colors = {

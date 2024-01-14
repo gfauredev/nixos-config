@@ -135,7 +135,7 @@
           exec = ""; # Option to execute a command in place of shell
           class = "--class"; # Option to define a class for the window
           cd = "--cwd"; # Option to launch terminal in a directory
-          transparent = "--config window.opacity=0.7"; # Option to transparent
+          transparent = "--config window_background_opacity=0.7"; # Option to transparent
         };
       in
       {
@@ -143,8 +143,7 @@
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "4/temp3_input";
-            # term = "${pkgs.wezterm}/bin/wezterm start --always-new-process";
-            term = alacritty;
+            term = wezterm;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
@@ -170,7 +169,7 @@
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "2/temp3_input";
-            term = alacritty;
+            term = wezterm;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
