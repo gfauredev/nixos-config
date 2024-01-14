@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     # Web
     brave # Blink based secure and private web browser
-    nyxt # Keyboard driven lightweight web browser
+    # nyxt # Keyboard driven lightweight web browser
 
     # Theme & Style
     # libsForQt5.qt5ct # TEST if relevant
