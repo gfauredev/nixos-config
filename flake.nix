@@ -184,7 +184,7 @@
             ./home/virtualization.nix # Virtualization TODO use a more "dev" file
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation editing
-            ./home/compositing.nix # 3D and special effects
+            # ./home/compositing.nix # 3D and special effects
             ./home/photo.nix # Photo & Images creation
             ./home/model.nix # 3D and schematics modeling and hardware creation
             ./home/social.nix # Social interaction
