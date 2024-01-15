@@ -1,4 +1,4 @@
--- -- -- -- -- Debugging -- -- -- -- --
+-- -- Debugging -- --
 local map = vim.keymap.set
 local mapopt = { noremap = true, silent = true }
 local dap = require "dap"
@@ -14,4 +14,25 @@ map("n", "<leader>dr", dap.repl.toggle, mapopt)
 map("n", "<leader>dt", dap.terminate, mapopt)
 map("n", "<leader>dh", dapui.hover, mapopt)
 
+
+-- -- Debuggers -- --
+
 -- require("dap-python").setup("~/.local/share/virtualenvs/debugpy/bin/python")
+
+dap.adapters.gdb = {
+  type = "executable",
+  command = "gdb",
+  args = { "-i", "dap" }
+}
+
+dap.configurations.c = {
+  {
+    name = "Launch",
+    type = "gdb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = "${workspaceFolder}",
+  },
+}

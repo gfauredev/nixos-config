@@ -25,8 +25,6 @@
       ${builtins.readFile ./plugin/gitsigns.lua}
       ${builtins.readFile ./plugin/lsp.lua}
       ${builtins.readFile ./plugin/cmp.lua}
-      ${builtins.readFile ./plugin/dap.lua}
-      ${builtins.readFile ./plugin/gdb.lua}
       ${builtins.readFile ./plugin/leap.lua}
       ${builtins.readFile ./plugin/trouble.lua}
       ${builtins.readFile ./plugin/dashboard.lua}
@@ -34,10 +32,11 @@
       ${builtins.readFile ./plugin/indentline.lua}
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/lint.lua}
-      ${builtins.readFile ./plugin/quarto.lua}
-      ${builtins.readFile ./plugin/notify.lua}
       ${builtins.readFile ./plugin/maths.lua}
     '';
+    # ${builtins.readFile ./plugin/dap.lua}
+    # ${builtins.readFile ./plugin/quarto.lua}
+    # ${builtins.readFile ./plugin/notify.lua}
     # ${builtins.readFile ./plugin/image.lua}
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
