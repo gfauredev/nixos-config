@@ -140,7 +140,9 @@
       rsync # cp through network & with superpowers
       sbctl # Secure Boot Control
       tcpdump # Dump network packets
-      dhcpcd # DHCP client
+      # dhcpcd # DHCP client
+      dhcping # DHCP debugging
+      dhcpdump # DHCP debugging
       # bubblewrap # Applications sandboxer TEST if better than firejail
       # samba # Share files with other OSes
       # samba4Full # Share files with other OSes
