@@ -4,7 +4,7 @@
       # See https://wiki.hyprland.org/Configuring/Monitors
       # ninja (Framework Laptop 13) monitors
       monitor = [
-        "eDP-1,2256x1504,0x0,1.6" # ninja’s internal monitor
+        "eDP-1,2256x1504,0x0,1.333" # ninja’s internal monitor
         ",preferred,auto,1" # Externals monitor
         # ",preferred,auto,1,mirror,eDP-1" # Mirrored external monitors
       ];
