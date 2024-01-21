@@ -11,6 +11,9 @@
     freecad # Popular parametric 3D CAD
     solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
+
+    super-slicer # Popular 3D printer slicer, fork of prusa-slicer
+    cura # Popular 3D printer slicer
   ];
 
   imports = [
