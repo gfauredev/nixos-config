@@ -13,7 +13,7 @@
     # brlcad # Combinatorial solid modeling system
 
     super-slicer # Popular 3D printer slicer, fork of prusa-slicer
-    cura # Popular 3D printer slicer
+    # cura # Popular 3D printer slicer
   ];
 
   imports = [
