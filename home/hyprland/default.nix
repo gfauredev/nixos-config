@@ -92,6 +92,7 @@
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, p, workspace, name:pim" # Personal information management workspace
         "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || thunderbird" # Auto open personal information management apps
+        "$mod SHIFT, p, movetoworkspace, name:pim" # Personal information management workspace
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
