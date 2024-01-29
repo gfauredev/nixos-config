@@ -136,6 +136,7 @@
       kismet # Wireless network sniffer
       rpi-imager # Raspberry Pi OS generator
       cmatrix # Simulate falling text as in matrix
+      valent # kdeconnect protocol (bilateral Android remote control)
       # ollama # Run LLMs locally
       # anytype # General productivity app
       # appimage-run # Run appimages directly
