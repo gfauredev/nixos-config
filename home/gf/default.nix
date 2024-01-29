@@ -96,6 +96,8 @@
       # wireguard-tools # TEST relevance
       rustscan # scan networks
       nmap # scan ports
+      calyx-vpn # Free VPN service with bitmask client
+      riseup-vpn # Free VPN service with bitmask client
       # protonvpn-cli # Free VPN service
       protonvpn-cli_2 # Free VPN service (Python rewrite)
       # signal-cli # Secure messaging
