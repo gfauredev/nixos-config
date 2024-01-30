@@ -9,7 +9,6 @@
         ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
       rsync-backup = pkgs.writeShellScriptBin "rsback" "${lib.readFile ./rsync-backup.sh}";
-      fingerprints-enroll = pkgs.writeShellScriptBin "fingers" "${lib.readFile ./fingerprints-enroll.sh}";
       extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
       veracrypt-mount = pkgs.writeShellScriptBin "veramount" "${lib.readFile ./veracrypt-mount.sh}";
       present-pdf = pkgs.writeShellScriptBin "present" "${lib.readFile ./present-pdf.sh}";
@@ -20,7 +19,6 @@
       smart-terminal # Open a terminal quickly with first parameter always cd
       extract # Extract any compressed file
       rsync-backup # Incremental backup with rsync
-      fingerprints-enroll # Enroll fingers for finger print reader
       veracrypt-mount # Interactively mount veracrypt devices
       present-pdf # Present a PDF with a presenter console
     ];
