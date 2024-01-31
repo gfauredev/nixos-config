@@ -109,7 +109,8 @@
         specialArgs = { inherit inputs; };
         modules = [
           # agenix.nixosModules.default # Secrets storage
-          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
           ./system
           ./system/installer.nix # Bootable ISO used to install NixOS
         ];
