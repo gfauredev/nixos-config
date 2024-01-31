@@ -45,7 +45,7 @@
 
       ##### Parsing #####
       nvim-treesitter.withAllGrammars # Parsing & text highlighting
-      nvim-treesitter-parsers.markdown # Parsing & text highlighting
+      # nvim-treesitter-parsers.markdown # Parsing & text highlighting
       # nvim-treesitter-parsers.norg # Parsing & text highlighting
       nvim-treesitter-parsers.arduino # Parsing & text highlighting
       nvim-treesitter-textobjects # Parsing & text highlighting
@@ -59,12 +59,12 @@
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
       dashboard-nvim # Better start screen
-      sniprun # Run snippets of code from neovim TODO
+      sniprun # Run snippets of code from neovim
       otter-nvim # LSP & features for embedded languages
-      indent-blankline-nvim # Indentation lines TODO
+      indent-blankline-nvim # Indentation lines
       gruvbox-nvim # Old fashioned, red-ish theme
-      headlines-nvim # Highlights for titles, code blocks …
-      vim-table-mode # Display tables
+      # headlines-nvim # Highlights for titles, code blocks …
+      # vim-table-mode # Display tables
       nvim-notify # Notifications
       # image-nvim # Image viewer
       # tokyonight-nvim # Blue-ish theme
@@ -74,7 +74,7 @@
 
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
-      nvim-cmp # Autocompletion for neovim TODO configure better
+      nvim-cmp # Autocompletion for neovim
       friendly-snippets # Snippets collection
       luasnip # Snippet engine
       nvim-autopairs # Handle pairs like parentheses
@@ -89,7 +89,7 @@
       cmp-cmdline # Nvim commands line mode completion source
       cmp-nvim-lsp-signature-help
       cmp-zsh # ZSH completions in Neovim
-      copilot-lua # GitHub copilot TODO https://github.com/zbirenbaum/copilot.lua
+      copilot-lua # GitHub copilot
       copilot-cmp # GitHub copilot completions
       nvim-lint # Linters adapter
       # cmp-tabnine # AI code completion

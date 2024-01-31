@@ -2,7 +2,7 @@
 require "nvim-treesitter.configs".setup { -- Treesitter
   highlight = {
     enable = true,
-    disable = { "nix" }, -- Too ressource intensive
+    disable = { "nix", "markdown" }, -- Too ressource intensive
     -- additional_vim_regex_highlighting = { "org" },
   },
   incremental_selection = {
