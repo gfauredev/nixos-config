@@ -28,7 +28,7 @@
     # kernelPackages = pkgs.linuxPackages; # Stable Linux kernel
     kernelPackages = pkgs.linuxPackages_latest; # Latest Linux kernel
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
-    # supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
+    supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
   };
 
   console.font = "Lat2-Terminus16";
