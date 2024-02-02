@@ -58,8 +58,10 @@
 
       # See https://wiki.hyprland.org/Configuring/Window-Rules
       windowrule = [
-        "float,menu"
-        "size 888 420,menu"
+        "float,menu" # Menu centered window
+        "size 888 420,menu" # Menu centered window
+        "float,initialTitle:^Calendar Reminders$" # Reminder right bottom window
+        "size 666 420,initialTitle:^Calendar Reminders$" # Reminder right bottom window
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
