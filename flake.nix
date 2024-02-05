@@ -149,13 +149,13 @@
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./home # Default, like text editor # TODO auto import default.nix
+            ./home # Default, like text editor
             ./home/gf # My main user
             ./home/hyprland # Hyprland window manager
             ./home/hyprland/ninja.nix # ninja’s specific Hyprland
             ./home/waybar # wayland bar
             ./home/rofi # wayland launcher
-            ./home/virtualization.nix # Virtualization TODO use a more "dev" file
+            ./home/virtualization.nix # Virtualization
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation creation
             ./home/photo.nix # Photo & Images creation
@@ -164,7 +164,7 @@
             ./home/social.nix # Social interaction
             ./home/i3.nix # XOrg compatibility wm
             # ./home/window-manager.nix # wayland common # Included by WM
-            ./home/retrogaming.nix # Video gaming
+            # ./home/retrogaming.nix # Video gaming
           ];
         };
         "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -175,14 +175,14 @@
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./home # Default, like text editor # TODO auto import default.nix
+            ./home # Default, like text editor
             ./home/gf # My main user
             ./home/hyprland # Hyprland window manager
             ./home/hyprland/knight.nix # knight’s specific Hyprland
             ./home/waybar # wayland bar
             ./home/waybar/widescreen.nix # wayland bar for wide screens
             ./home/rofi # wayland launcher
-            ./home/virtualization.nix # Virtualization TODO use a more "dev" file
+            ./home/virtualization.nix # Virtualization
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation editing
             # ./home/compositing.nix # 3D and special effects
