@@ -9,7 +9,7 @@
       driSupport32Bit = true;
     };
     nvidia = {
-      # open = true;
+      open = true;
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
