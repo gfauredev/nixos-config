@@ -98,6 +98,7 @@
         "*.docx"
         "*.pptx"
         ".venv/"
+        ".vagrant/"
       ];
     };
     wezterm = {
