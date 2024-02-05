@@ -110,6 +110,10 @@
       enable = true;
     };
     xserver.videoDrivers = [ "nvidia" ];
+    nix-serve = {
+      enable = true; # Enable distribution of nix build cache
+      secretKeyFile = "/var/cache-priv-key.pem";
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
