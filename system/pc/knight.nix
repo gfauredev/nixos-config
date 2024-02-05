@@ -9,7 +9,7 @@
       driSupport32Bit = true;
     };
     nvidia = {
-      open = true;
+      open = false;
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
@@ -27,6 +27,7 @@
       efi.canTouchEfiVariables = true; # Don’t touch if buggy UEFI
       efi.efiSysMountPoint = "/boot"; # Separate efi executable
     };
+    # kernelPackages = pkgs.linuxPackages; # Stable Linux kernel
     bootspec.enable = true;
     lanzaboote = {
       enable = true;
