@@ -5,7 +5,7 @@
     kicad # Elecronics design
     # fritzing # Elecronics design
 
-    cq-editor # GUI for Python library CadQuery
+    # cq-editor # GUI for Python library CadQuery
     # openscad # Parametric, programmatic (code only) 3D CAD
 
     freecad # Popular parametric 3D CAD
