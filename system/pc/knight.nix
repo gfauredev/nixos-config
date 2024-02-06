@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ./knight-hardware.nix # Hardware specific conf
   ];
