@@ -50,10 +50,11 @@
 
   networking = {
     hostName = "knight";
-    # Syncthing:22000,21027 / Vagrant:2049
     firewall = {
-      allowedTCPPorts = [ 22 80 443 22000 2049 ]; # Opened TCP ports firewall
-      allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports firewall
+      enable = true;
+      # Syncthing:22000,21027 | Vagrant:2049 | nix-serve:5000
+      allowedTCPPorts = [ 22 80 443 2049 5000 22000 ]; # Opened TCP ports firewall
+      allowedUDPPorts = [ 2049 21027 22000 ]; # Open UDP ports firewall
     };
     useDHCP = false;
     # networkmanager.enable = false;
