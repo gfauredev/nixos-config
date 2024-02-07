@@ -9,7 +9,7 @@
         "http://192.168.1.4:5000" # knight as local binary cache
       ];
       trusted-public-keys = [
-        "192.168.1.4:J5VSLwk9wb1x2eTEIcfvRyWcYuXu4WhuTc6g5QavjkY="
+        "192.168.1.4:M2RK6BgauXFtWIrs9y6Kvw8ptFLUyOmW0PsSjOvKuks="
       ];
     };
   };
