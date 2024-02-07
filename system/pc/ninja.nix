@@ -6,10 +6,10 @@
   nix = {
     settings = {
       substituters = [
-        "http://admin.gfaure.eu:5000" # knight as binary cache
+        "http://192.168.1.4:5000" # knight as local binary cache
       ];
       trusted-public-keys = [
-        "admin.gfaure.eu:J5VSLwk9wb1x2eTEIcfvRyWcYuXu4WhuTc6g5QavjkY="
+        "192.168.1.4:J5VSLwk9wb1x2eTEIcfvRyWcYuXu4WhuTc6g5QavjkY="
       ];
     };
   };
