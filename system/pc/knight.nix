@@ -53,7 +53,7 @@
     firewall = {
       enable = true;
       # Syncthing:22000,21027 | Vagrant:2049 | nix-serve:5000
-      allowedTCPPorts = [ 22 80 443 2049 5000 22000 ]; # Opened TCP ports firewall
+      allowedTCPPorts = [ 22 80 443 2049 22000 ]; # Opened TCP ports firewall
       allowedUDPPorts = [ 2049 21027 22000 ]; # Open UDP ports firewall
     };
     useDHCP = false;
@@ -114,6 +114,7 @@
     xserver.videoDrivers = [ "nvidia" ];
     nix-serve = {
       enable = true; # Enable distribution of nix build cache
+      openFirewall = true;
       secretKeyFile = "/var/cache-priv-key.pem";
     };
   };
