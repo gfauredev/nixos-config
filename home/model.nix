@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     # blender # Most popular 3D, animation & video editor
 
-    kicad # Elecronics design
+    # kicad # Elecronics design
     # fritzing # Elecronics design
 
     # cq-editor # GUI for Python library CadQuery
