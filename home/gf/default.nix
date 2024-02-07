@@ -144,6 +144,7 @@
       # steam-run # Run in isolated FHS
       # poetry # Python project manager # TODO use nix instead
       # python3 # Python # TODO USE nix instead
+      conda # Python package manager
       # procs # better ps
       # pulseaudio # TEST relevance
       # cachix # TEST relevance
