@@ -3,9 +3,20 @@
     ../window-manager.nix
   ];
 
-  home.packages = with pkgs; [
-    wl-mirror # Mirror wayland output
-  ];
+  home.packages =
+    let
+      wl-mirror-function = pkgs.writeShellScriptBin "mirror" ''
+        if [ -n "$1" ]; then
+          wl-mirror $1 & disown && exit
+        else
+          wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) & disown && exit
+        fi
+      '';
+    in
+    [
+      pkgs.wl-mirror # Mirror wayland output
+      wl-mirror-function # Quicker usage of wl-mirror
+    ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -120,6 +131,7 @@
         "$mod, m, workspace, name:msg" # Messaging workspace
         "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || rofi -show-icons -show drun" # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
+        "$mod CONTROL, m, exec, zsh -ic 'mirror'" # Messaging
         # Additional monitor workspaces (Right)
         "$mod, d, workspace, name:dpp" # DisplayPort workspace
         "$mod SHIFT, d, movetoworkspace, name:dpp" # DisplayPort
