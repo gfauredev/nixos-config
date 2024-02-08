@@ -7,9 +7,9 @@
     let
       wl-mirror-function = pkgs.writeShellScriptBin "mirror" ''
         if [ -n "$1" ]; then
-          wl-mirror $1 & disown && exit
+          wl-mirror $1 &
         else
-          wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) & disown && exit
+          wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) &
         fi
       '';
     in
