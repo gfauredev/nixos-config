@@ -37,7 +37,7 @@ lsp.html.setup({
   capabilities = capabilities,
   filetypes = { "html", "gohtmltmpl", "htmldjango" },
   init_options = {
-    provideFormatter = false
+    provideFormatter = true
   }
 })
 lsp.jsonls.setup {
