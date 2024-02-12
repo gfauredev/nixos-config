@@ -16,8 +16,8 @@
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./opt.lua}
-      ${builtins.readFile ./autocmd.lua}
       ${builtins.readFile ./filetype.lua}
+      ${builtins.readFile ./autocmd.lua}
       ${builtins.readFile ./theme.lua}
       ${builtins.readFile ./plugin/telescope.lua}
       ${builtins.readFile ./plugin/comment.lua}

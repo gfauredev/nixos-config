@@ -18,12 +18,11 @@ local autoFormatId = vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function() vim.lsp.buf.format() end
 })
-
--- Add Tera HTML files as htmldjango filetype
+-- … but not if on a Tera file (the generic HTML formatter messes these up)
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.html" },
   callback = function()
-    if vim.fn.search("{{.\\{-}}}") > 0 or vim.fn.search("{%.\\{-}%}") > 0 then
+    if vim.fn.search("{{.*}}") > 0 or vim.fn.search("{%.*%}") > 0 then
       vim.api.nvim_del_autocmd(autoFormatId)
     end
   end
