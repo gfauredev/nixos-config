@@ -35,7 +35,7 @@ lsp.cssls.setup {
 }
 lsp.html.setup({
   capabilities = capabilities,
-  filetypes = { "html", "gohtmltmpl", "htmldjango" },
+  filetypes = { "html", "htmldjango", "gohtmltmpl" },
   init_options = {
     provideFormatter = true
   }
