@@ -138,7 +138,7 @@
       cmatrix # Simulate falling text as in matrix
       valent # kdeconnect protocol (bilateral Android remote control)
       ollama # Run LLMs locally
-      open-interpreter # Interpret LLM code in terminal directly
+      # open-interpreter # Interpret LLM code in terminal directly
       # anytype # General productivity app
       # appimage-run # Run appimages directly
       # steam-run # Run in isolated FHS
