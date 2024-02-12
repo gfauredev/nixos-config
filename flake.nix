@@ -26,6 +26,7 @@
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       # Laptops
+      # Dragon, a powerful and flying creature
       ninja = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
@@ -46,7 +47,8 @@
           ./system/pc/xorg.nix # For compatibility
         ];
       };
-      scout = nixpkgs.lib.nixosSystem {
+      # Wyvern, a flying creature
+      wyvern = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -65,6 +67,7 @@
         ];
       };
       # Desktops
+      # Kraken, a very powerful creature
       knight = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
@@ -88,6 +91,7 @@
         ];
       };
       # Servers
+      # Cerberus, a powerful creature with multiple heads (hypervisor and orchestrator)
       cerberus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
@@ -102,8 +106,9 @@
           ./system/virtualization.nix
         ];
       };
-      # Misc
-      installer = nixpkgs.lib.nixosSystem {
+      # NixOS live ISO image, suitable for installation
+      # Prometheus, a creator titan
+      prometheus = nixpkgs.lib.nixosSystem {
         # Built with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
