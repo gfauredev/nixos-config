@@ -15,12 +15,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave" }, {
 
 -- Auto format on save
 local autoFormatId = vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
+  buffer = 0,
   callback = function() vim.lsp.buf.format() end
 })
 -- … but not if on a Tera file (the generic HTML formatter messes these up)
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.html" },
+  buffer = 0,
   callback = function()
     if vim.fn.search("{{.*}}") > 0 or vim.fn.search("{%.*%}") > 0 then
       vim.api.nvim_del_autocmd(autoFormatId)
