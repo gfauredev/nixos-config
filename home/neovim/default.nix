@@ -92,6 +92,7 @@
       copilot-lua # GitHub copilot
       copilot-cmp # GitHub copilot completions
       nvim-lint # Linters adapter
+      nvim-ts-autotag # Auto close tags
       # cmp-tabnine # AI code completion
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source

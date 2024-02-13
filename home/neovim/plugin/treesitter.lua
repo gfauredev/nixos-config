@@ -5,6 +5,7 @@ require "nvim-treesitter.configs".setup { -- Treesitter
     disable = { "nix", "markdown" }, -- Too ressource intensive
     -- additional_vim_regex_highlighting = { "org" },
   },
+  autotag = { enable = true },
   incremental_selection = {
     enable = false,
     keymaps = {
