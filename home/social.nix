@@ -9,7 +9,7 @@
     # mailspring # Email client WARNING security issue
     # UNFREE #
     discord # PROPRIETARY messaging and general communication
-    whatsapp-for-linux # PROPRIETARY messaging and general communication
+    # whatsapp-for-linux # PROPRIETARY messaging and general communication
     # discord-canary # PROPRIETARY messaging and general communication
     # teams-for-linux # PROPRIETARY services messaging and work
     # zoom         # PROPRIETARY messaging and work
