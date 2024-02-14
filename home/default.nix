@@ -2,6 +2,7 @@
   imports = [
     ./zsh # Interactive POSIX shell
     ./neovim # CLI text editor
+    ./lapce # New GUI text editor
   ];
 
   home.packages = with pkgs; [
