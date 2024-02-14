@@ -252,6 +252,7 @@
         "col.border_inactive" = "rgb(000000)";
         groupbar = {
           render_titles = false; # No titles in group bars
+          height = 1; # Small, just to show there are tabs
         };
       };
 
