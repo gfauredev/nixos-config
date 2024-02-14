@@ -125,7 +125,6 @@
       nodePackages_latest.bash-language-server # Bash LSP
       lua-language-server # Lua
       nodePackages_latest.prettier # General purpose formatter
-      djhtml # Django HTML formatter (and Tera)
 
       ############### Miscelaneous / TODO refile ###############
       pulsemixer # TUI to manage sound
