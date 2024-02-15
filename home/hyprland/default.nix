@@ -242,17 +242,16 @@
         border_size = 2;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        "col.active_border" = "rgb(ffddcc)";
+        "col.active_border" = "rgb(e6d4c2)";
         "col.inactive_border" = "rgb(000000)";
       };
 
 
       group = {
-        "col.border_active" = "rgb(ffddcc)";
+        "col.border_active" = "rgb(ffd4c2)";
         "col.border_inactive" = "rgb(000000)";
         groupbar = {
-          render_titles = false; # No titles in group bars
-          height = 1; # Small, just to show there are tabs
+          enabled = false; # Don’t eat my screen space
         };
       };
 
