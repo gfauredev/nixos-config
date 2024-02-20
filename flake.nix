@@ -21,13 +21,12 @@
     musnix.url = "github:musnix/musnix"; # Music production & realtime audio
   };
 
-  # TODO test if using @inputs is necessary
   outputs = { self, nixpkgs, sops-nix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
-      # Laptops
-      # Dragon, a powerful and flying creature
-      ninja = nixpkgs.lib.nixosSystem {
+      ##### Laptops #####
+      # Griffin, a powerful and flying creature
+      griffin = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -37,18 +36,17 @@
           nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
-          ./system/pc # It’s a personal computer, not headless
-          ./system/pc/ninja.nix # Light & quick laptop : ninja
-          ./system/pc/gf.nix # Main user
+          ./system/pc # A personal computer, not headless
+          ./system/pc/ninja.nix # Griffin, a powerful and flying creature TODO rename
+          ./system/pc/gf.nix # Myself
           ./system/pc/laptop.nix
-          ./system/pc/remap.nix
-          ./system/print-scan.nix
           ./system/virtualization.nix
-          ./system/pc/xorg.nix # For compatibility
+          ./system/pc/remap.nix # TODO in pc config
+          ./system/print-scan.nix # TODO in pc config
         ];
       };
-      # Wyvern, a flying creature
-      wyvern = nixpkgs.lib.nixosSystem {
+      # Chimera, a flying creature
+      chimera = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -57,17 +55,13 @@
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
-          ./system # TODO sub modules of defaults auto import default.nix
-          ./system/pc # It’s a personal computer, not headless
-          ./system/pc/scout.nix # Light laptop for travel : scout
-          ./system/pc/gf.nix # Main user
+          ./system/pc/chimera.nix # Chimera, a flying creature
+          ./system/pc/gf.nix # Myself
           ./system/pc/laptop.nix
-          ./system/pc/remap.nix
-          ./system/print-scan.nix
         ];
       };
-      # Desktops
-      # Kraken, a very powerful creature
+      ##### Desktops #####
+      # Typhon, the most powerful creature
       knight = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
@@ -80,17 +74,13 @@
           nixos-hardware.nixosModules.common-pc-ssd # Hardware related
           musnix.nixosModules.musnix # System improvements for audio
           ./system # TODO sub modules of defaults auto import default.nix
-          ./system/pc # It’s a personal computer, not headless
-          ./system/pc/knight.nix # Heavy & strong desktop : knight
-          ./system/pc/gf.nix # Main user
-          ./system/pc/remap.nix
-          ./system/print-scan.nix
+          ./system/pc # A personal computer, not headless
+          ./system/pc/knight.nix # Typhon, the most powerful creature TODO rename
+          ./system/pc/gf.nix # Myself
           ./system/virtualization.nix
-          # ./system/pc/gaming.nix
-          ./system/pc/xorg.nix # For compatibility
         ];
       };
-      # Servers
+      ##### Servers #####
       # Cerberus, a powerful creature with multiple heads (hypervisor and orchestrator)
       cerberus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -100,23 +90,22 @@
           # agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
-          ./system
-          ./system/headless # A server
-          ./system/headless/cerberus.nix # Multi-purpose : cerberus
+          ./system # TODO sub modules of defaults auto import default.nix
+          ./system/headless # A server, not intended for direct use
+          ./system/headless/cerberus.nix # Cerberus, a powerful creature with multiple heads
           ./system/virtualization.nix
         ];
       };
-      # NixOS live ISO image, suitable for installation
-      # Prometheus, a creator titan
-      prometheus = nixpkgs.lib.nixosSystem {
-        # Built with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
+      ##### NixOS live ISO image, suitable for installation #####
+      installer = nixpkgs.lib.nixosSystem {
+        # Build with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           # agenix.nixosModules.default # Secrets storage
           # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-          ./system
+          ./system # TODO sub modules of defaults auto import default.nix
           ./system/installer.nix # Bootable ISO used to install NixOS
         ];
       };
@@ -154,7 +143,7 @@
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./home # Default, like text editor
+            ./home # TODO users auto import this
             ./home/gf # My main user
             ./home/hyprland # Hyprland window manager
             ./home/hyprland/ninja.nix # ninja’s specific Hyprland
@@ -167,9 +156,6 @@
             ./home/model.nix # 3D and schematics modeling and hardware creation
             ./home/media.nix # Media consuming
             ./home/social.nix # Social interaction
-            ./home/i3.nix # XOrg compatibility wm
-            # ./home/window-manager.nix # wayland common # Included by WM
-            # ./home/retrogaming.nix # Video gaming
           ];
         };
         "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -180,7 +166,7 @@
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./home # Default, like text editor
+            ./home # TODO users auto import this
             ./home/gf # My main user
             ./home/hyprland # Hyprland window manager
             ./home/hyprland/knight.nix # knight’s specific Hyprland
@@ -195,9 +181,6 @@
             ./home/model.nix # 3D and schematics modeling and hardware creation
             ./home/social.nix # Social interaction
             ./home/media.nix # Media consuming
-            # ./home/gaming.nix # Video gaming
-            ./home/i3.nix # XOrg compatibility wm
-            # ./home/window-manager.nix # wayland common # Included in WM
           ];
         };
       };
