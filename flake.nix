@@ -41,8 +41,6 @@
           ./system/pc/gf.nix # Myself
           ./system/pc/laptop.nix
           ./system/virtualization.nix
-          ./system/pc/remap.nix # TODO in pc config
-          ./system/print-scan.nix # TODO in pc config
         ];
       };
       # Chimera, a flying creature
@@ -144,18 +142,18 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home # TODO users auto import this
-            ./home/gf # My main user
+            ./home/gf # Myself’s home
             ./home/hyprland # Hyprland window manager
-            ./home/hyprland/ninja.nix # ninja’s specific Hyprland
-            ./home/waybar # wayland bar
-            ./home/rofi # wayland launcher
+            ./home/hyprland/ninja.nix # Griffin’s specific Hyprland
+            ./home/waybar # Wayland Bar
+            ./home/rofi # Wayland launcher
             ./home/virtualization.nix # Virtualization
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation creation
             ./home/photo.nix # Photo & Images creation
             ./home/model.nix # 3D and schematics modeling and hardware creation
-            ./home/media.nix # Media consuming
             ./home/social.nix # Social interaction
+            ./home/media.nix # Media consuming
           ];
         };
         "gf@knight" = home-manager.lib.homeManagerConfiguration {
@@ -167,20 +165,20 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home # TODO users auto import this
-            ./home/gf # My main user
+            ./home/gf # Myself’s home
             ./home/hyprland # Hyprland window manager
-            ./home/hyprland/knight.nix # knight’s specific Hyprland
-            ./home/waybar # wayland bar
-            ./home/waybar/widescreen.nix # wayland bar for wide screens
-            ./home/rofi # wayland launcher
+            ./home/hyprland/knight.nix # Typhon’s specific Hyprland
+            ./home/waybar # Wayland Bar
+            ./home/waybar/widescreen.nix # Wayland Bar for wide screens TODO auto import wayland bar
+            ./home/rofi # Wayland launcher
             ./home/virtualization.nix # Virtualization
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation editing
-            # ./home/compositing.nix # 3D and special effects
             ./home/photo.nix # Photo & Images creation
             ./home/model.nix # 3D and schematics modeling and hardware creation
             ./home/social.nix # Social interaction
             ./home/media.nix # Media consuming
+            # ./home/compositing.nix # 3D and special effects
           ];
         };
       };

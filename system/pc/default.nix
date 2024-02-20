@@ -1,4 +1,9 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ lib, pkgs, ... }: {
+  imports = [
+    ../print-scan.nix # Printing & scanning service
+    ./remap.nix # Remaps for PC usability
+  ];
+
   hardware = {
     opengl = {
       enable = true;
