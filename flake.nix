@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
 
     # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
-    sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
+    # sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
@@ -21,7 +21,7 @@
     musnix.url = "github:musnix/musnix"; # Music production & realtime audio
   };
 
-  outputs = { self, nixpkgs, sops-nix, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
+  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix, ... }@inputs: {
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       ##### Laptops #####
