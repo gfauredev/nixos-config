@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
-    ./knight-hardware.nix # Hardware specific conf
+    ./hardware.nix
+    ../default.nix
   ];
 
   hardware = {
@@ -49,7 +50,7 @@
   };
 
   networking = {
-    hostName = "knight";
+    hostName = "typhon";
     firewall = {
       enable = true;
       # Syncthing:22000,21027 | Vagrant:2049 | nix-serve:5000

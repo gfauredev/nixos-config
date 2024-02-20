@@ -1,9 +1,9 @@
 # Btrfs partitioning TEMPLATE
 # Use `nixos-generate-config --root /mnt` during install,
 # then correct the resulting `/mnt/etc/nixos/hardware-config.nix`
-# to match this template.
+# to match this template (notably replace UUIDs)
 
-{ config, lib, pkgs, ... }: {
+{ ... }: {
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/UUID";

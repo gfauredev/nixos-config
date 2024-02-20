@@ -25,21 +25,17 @@
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
       ##### Laptops #####
-      # Griffin, a powerful and flying creature
       griffin = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          # agenix.nixosModules.default # Secrets storage
-          sops-nix.nixosModules.sops # Secrets storage
           nixos-hardware.nixosModules.framework-12th-gen-intel
+          # agenix.nixosModules.default # Secrets storage TODO for all systems
+          # sops-nix.nixosModules.sops # Secrets storage TODO for all systems
           musnix.nixosModules.musnix # System improvements for audio
-          ./system # TODO sub modules of defaults auto import default.nix
-          ./system/pc # A personal computer, not headless
-          ./system/pc/ninja.nix # Griffin, a powerful and flying creature TODO rename
-          ./system/pc/gf.nix # Myself
-          ./system/pc/laptop.nix
+          ./system/laptop/griffin # Griffin, a powerful and flying creature
+          ./system/user/gf.nix # Myself
           ./system/virtualization.nix
         ];
       };
@@ -48,49 +44,40 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          lanzaboote.nixosModules.lanzaboote # Secure boot
-          # agenix.nixosModules.default # Secrets storage
-          nixos-hardware.nixosModules.common-cpu-intel # Hardware related
-          nixos-hardware.nixosModules.common-pc # Hardware related
-          nixos-hardware.nixosModules.common-pc-ssd # Hardware related
-          ./system/pc/chimera.nix # Chimera, a flying creature
-          ./system/pc/gf.nix # Myself
-          ./system/pc/laptop.nix
+          # lanzaboote.nixosModules.lanzaboote # Secure boot TEST
+          nixos-hardware.nixosModules.common-cpu-intel # Hardware
+          nixos-hardware.nixosModules.common-pc # Hardware
+          nixos-hardware.nixosModules.common-pc-ssd # Hardware
+          musnix.nixosModules.musnix # System improvements for audio
+          ./system/laptop/chimera # Chimera, a flying creature
+          ./system/user/gf.nix # Myself
         ];
       };
       ##### Desktops #####
-      # Typhon, the most powerful creature
-      knight = nixpkgs.lib.nixosSystem {
+      typhon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          # agenix.nixosModules.default # Secrets storage
-          nixos-hardware.nixosModules.common-cpu-amd # Hardware related
+          nixos-hardware.nixosModules.common-cpu-amd # Hardware
           nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-          nixos-hardware.nixosModules.common-pc # Hardware related
-          nixos-hardware.nixosModules.common-pc-ssd # Hardware related
+          nixos-hardware.nixosModules.common-pc # Hardware
+          nixos-hardware.nixosModules.common-pc-ssd # Hardware
           musnix.nixosModules.musnix # System improvements for audio
-          ./system # TODO sub modules of defaults auto import default.nix
-          ./system/pc # A personal computer, not headless
-          ./system/pc/knight.nix # Typhon, the most powerful creature TODO rename
-          ./system/pc/gf.nix # Myself
+          ./system/desktop/typhon # Typhon, the most powerful creature
+          ./system/user/gf.nix # Myself
           ./system/virtualization.nix
         ];
       };
       ##### Servers #####
-      # Cerberus, a powerful creature with multiple heads (hypervisor and orchestrator)
       cerberus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           lanzaboote.nixosModules.lanzaboote # Secure boot
-          # agenix.nixosModules.default # Secrets storage
           nixos-hardware.nixosModules.common-cpu-intel # Hardware related
           nixos-hardware.nixosModules.common-pc # Hardware related
-          ./system # TODO sub modules of defaults auto import default.nix
-          ./system/headless # A server, not intended for direct use
-          ./system/headless/cerberus.nix # Cerberus, a powerful creature with multiple heads
+          ./system/server/cerberus # Cerberus, a powerful creature with multiple heads
           ./system/virtualization.nix
         ];
       };
@@ -100,10 +87,8 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          # agenix.nixosModules.default # Secrets storage
           # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-          ./system # TODO sub modules of defaults auto import default.nix
           ./system/installer.nix # Bootable ISO used to install NixOS
         ];
       };

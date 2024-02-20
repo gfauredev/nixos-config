@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   users.users.gf = {
     isNormalUser = true;
     home = "/home/gf";
@@ -7,23 +7,23 @@
     description = "Guilhem Fauré";
     shell = pkgs.zsh;
     extraGroups = [
-      "wheel" # Sudo
-      "networkmanager"
+      "wheel" # sudo
+      "networkmanager" # Manage networks
       "video"
       "audio"
       "realtime"
-      "lp"
-      "scanner"
+      "lp" # Manage printing & scanning
+      "scanner" # Manage scanning
       "fuse"
       "uucp" # Connect to serial ports
       "dialout" # Connect to serial ports
-      "mtp"
-      "libvirt"
-      "libvirtd"
+      "mtp" # Transfer files with Android devices
       "adbusers" # Connect to Android devices
-      "vboxusers"
-      "docker"
       "uinput"
+      "libvirt" # Use KVM hypervisor
+      "libvirtd" # Use KVM hypervisor
+      "vboxusers" # Use VirtualBox hypervisor
+      "docker" # Use Docker container manager
       "wireshark" # Use wireshark without root
     ];
   };

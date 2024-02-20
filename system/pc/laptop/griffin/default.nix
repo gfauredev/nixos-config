@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
-    ./ninja-hardware.nix # Hardware specific conf
+    ./hardware.nix
+    ../default.nix
   ];
 
   nix = {
@@ -36,7 +37,7 @@
   };
 
   networking = {
-    hostName = "ninja";
+    hostName = "griffin";
     firewall = {
       enable = true;
       # Syncthing:22000,21027 | Vagrant:2049

@@ -1,7 +1,8 @@
 { lib, pkgs, ... }: {
   imports = [
-    ../print-scan.nix # Printing & scanning service
     ./remap.nix # Remaps for PC usability
+    ../print-scan.nix # Printing & scanning service
+    ../default.nix # Always import the previous default
   ];
 
   hardware = {

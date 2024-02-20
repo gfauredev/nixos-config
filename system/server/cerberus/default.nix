@@ -1,8 +1,7 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ ... }: {
   imports = [
-    ./cerberus-hardware.nix # Hardware specific conf
+    ./hardware.nix
   ];
-
 
   boot = {
     loader = {
