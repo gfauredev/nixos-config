@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     thunderbird # Popular desktop email and calendar client
     # evolution # Popular desktop email and calendar client

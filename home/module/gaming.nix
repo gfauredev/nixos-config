@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     heroic # gog and epic games launcher
     gogdl # gog module for heroic launcher

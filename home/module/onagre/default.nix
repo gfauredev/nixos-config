@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     pop-launcher # Modular desktop launcher
     onagre # Desktop general purpose launcher

@@ -64,7 +64,7 @@
           nixos-hardware.nixosModules.common-pc # Hardware
           nixos-hardware.nixosModules.common-pc-ssd # Hardware
           musnix.nixosModules.musnix # System improvements for audio
-          ./system/desktop/typhon # Typhon, the most powerful creature
+          ./system/pc/typhon # Typhon, the most powerful creature
           ./system/user/gf.nix # Myself
           ./system/virtualization.nix
         ];
@@ -127,15 +127,16 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home/gf # Myself’s home
-            ./home/hyprland/griffin.nix # Griffin’s specific Hyprland
-            ./home/waybar # Wayland Bar
-            ./home/virtualization.nix # Virtualization
-            ./home/audio.nix # Audio & Music creation
-            ./home/video.nix # Video & Animation creation
-            ./home/photo.nix # Photo & Images creation
-            ./home/model.nix # 3D and schematics modeling and hardware creation
-            ./home/social.nix # Social interaction
-            ./home/media.nix # Media consuming
+            ./home/module/hyprland/griffin.nix # Griffin’s specific Hyprland
+            ./home/module/waybar # Wayland Bar
+            ./home/module/virtualization.nix # Virtualization
+            ./home/module/audio.nix # Audio & Music creation
+            ./home/module/video.nix # Video & Animation creation
+            ./home/module/photo.nix # Photo & Images creation
+            ./home/module/model.nix # 3D and schematics modeling and hardware creation
+            ./home/module/social.nix # Social interaction
+            ./home/module/media.nix # Media consuming
+            ./home/module/lapce # New text editor to test
           ];
         };
         "gf@typhon" = home-manager.lib.homeManagerConfiguration {
@@ -147,16 +148,17 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home/gf # Myself’s home
-            ./home/hyprland/typhon.nix # Typhon’s specific Hyprland
-            ./home/waybar/widescreen.nix # Wayland Bar for wide screens
-            ./home/virtualization.nix # Virtualization
-            ./home/audio.nix # Audio & Music creation
-            ./home/video.nix # Video & Animation editing
-            ./home/photo.nix # Photo & Images creation
-            ./home/model.nix # 3D and schematics modeling and hardware creation
-            ./home/social.nix # Social interaction
-            ./home/media.nix # Media consuming
-            # ./home/compositing.nix # 3D and special effects
+            ./home/module/hyprland/typhon.nix # Typhon’s specific Hyprland
+            ./home/module/waybar/widescreen.nix # Wayland Bar for wide screens
+            ./home/module/virtualization.nix # Virtualization
+            ./home/module/audio.nix # Audio & Music creation
+            ./home/module/video.nix # Video & Animation editing
+            ./home/module/photo.nix # Photo & Images creation
+            ./home/module/model.nix # 3D and schematics modeling and hardware creation
+            ./home/module/social.nix # Social interaction
+            ./home/module/media.nix # Media consuming
+            # ./home/module/compositing.nix # 3D and special effects
+            ./home/module/lapce # New text editor to test
           ];
         };
       };

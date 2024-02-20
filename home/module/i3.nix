@@ -1,9 +1,9 @@
 # Minimal i3 config to work with legacy programs
-{ inputs, lib, config, pkgs, ... }: {
-  home.packages = with pkgs; [
-    # i3lock # Screen locker
-    # autotiling # Simulate dwindle layout on sway and i3
-  ];
+{ pkgs, ... }: {
+  # home.packages = with pkgs; [
+  #   i3lock # Screen locker
+  #   autotiling # Simulate dwindle layout on sway and i3
+  # ];
 
   xsession.windowManager.i3 =
     let

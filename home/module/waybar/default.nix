@@ -1,4 +1,4 @@
-{ lib, pkgs, hwmon ? "2/temp3_input", ... }: {
+{ lib, pkgs, hwmon, ... }: {
   programs = {
     waybar = {
       enable = true;
