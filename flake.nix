@@ -34,7 +34,7 @@
           # agenix.nixosModules.default # Secrets storage TODO for all systems
           # sops-nix.nixosModules.sops # Secrets storage TODO for all systems
           musnix.nixosModules.musnix # System improvements for audio
-          ./system/laptop/griffin # Griffin, a powerful and flying creature
+          ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
           ./system/user/gf.nix # Myself
           ./system/virtualization.nix
         ];
@@ -49,7 +49,7 @@
           nixos-hardware.nixosModules.common-pc # Hardware
           nixos-hardware.nixosModules.common-pc-ssd # Hardware
           musnix.nixosModules.musnix # System improvements for audio
-          ./system/laptop/chimera # Chimera, a flying creature
+          ./system/pc/laptop/chimera # Chimera, a flying creature
           ./system/user/gf.nix # Myself
         ];
       };
