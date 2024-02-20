@@ -2,12 +2,13 @@
   imports = [
     ./module/zsh # Interactive POSIX shell
     ./module/neovim # CLI text editor
+    ./module/wezterm # Modern terminal emulator
   ];
 
   home.packages = with pkgs; [
-    # Web
+    # Web browsing
     brave # Blink based secure and private web browser
-    # nyxt # Keyboard driven lightweight web browser
+    nyxt # Keyboard driven lightweight web browser
 
     # Theme & Style
     # libsForQt5.qt5ct # TEST if relevant
@@ -20,16 +21,14 @@
     # adwaita-qt # TEST if relevant
     # glib # GTK Tools
     # gsettitngs-qt # GTK Settings
+    asciiquarium-transparent # Best screensaver ever
 
-    # Misc
-    # albert # Previous general purpose launcher
-    # protonvpn-gui # Free VPN service
+    # Cleaning & Desktop monitoring
     # bleachbit # Good old cleaner
     # czkawka # Modern cleaner
     # stacer # Modern cleaner & monitoring
-    # gnome.seahorse
+
     nixpkgs-review # Review pull requests to nixpkgs
-    asciiquarium-transparent # Best screensaver ever
   ];
 
   services = {
@@ -89,8 +88,8 @@
         "*.jpg"
         "*.jpeg"
         "*.png"
-        "*.avif"
         "*.webp"
+        "*.avif"
         "*.odt"
         "*.odf"
         "*.odp"
@@ -99,22 +98,13 @@
         "*.pptx"
         ".venv/"
         ".vagrant/"
+        "build/"
+        "public/"
+        "*ignore*"
       ];
     };
-    wezterm = {
-      enable = true;
-      extraConfig = ''
-        cfg = wezterm.config_builder() -- Base config
-
-        ${builtins.readFile wezterm/cfg.lua}
-
-        ${builtins.readFile wezterm/key.lua}
-
-        return cfg
-      '';
-    };
     alacritty = {
-      enable = true;
+      enable = true; # Fast terminal emulator
       settings = {
         window = {
           # opacity = 0.8;
@@ -136,10 +126,10 @@
       };
     };
     firefox = {
-      enable = true;
+      enable = true; # Web browser
     };
     chromium = {
-      enable = true;
+      enable = true; # Web browser
     };
     # browserpass.enable = true; # TEST relevance
   };

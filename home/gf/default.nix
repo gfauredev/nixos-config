@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   imports = [
     ../default.nix
+    ../module/pulsemixer
+    ../module/xplr
   ];
 
   nixpkgs = {
@@ -131,7 +133,6 @@
       nodePackages_latest.prettier # General purpose formatter
 
       ############### Miscelaneous / TODO refile ###############
-      pulsemixer # TUI to manage sound
       jmtpfs # Media transfer protocol with Android devices
       libnotify # Notifications management
       watchexec # Run command when file changes
@@ -171,31 +172,14 @@
     ];
 
     file = {
-      xcompose = {
+      xcompose = { # TODO cleaner
         target = ".XCompose";
-        # TODO find a cleaner way to write this file
-        # text = builtins.readFile ../XCompose;
-        source = ../misc/XCompose;
+        source = ../XCompose;
       };
-      # wallpaper = {
-      #   target = ".wallpaper";
-      #   source = ./wallpaper;
-      # };
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.11";
-  };
-
-  xdg.configFile = {
-    # onagre-theme = {
-    #   target = "onagre/theme.scss";
-    #   source = ../onagre/style.scss;
-    # };
-    pulsemixer = {
-      target = "pulsemixer.cfg";
-      source = ../misc/pulsemixer.toml;
-    };
   };
 
   # Nicely reload system units when changing configs
@@ -257,12 +241,6 @@
     };
     ripgrep.enable = true; # Better grep
     # TODO set an explorer that can open & preview every file
-    xplr = {
-      enable = true; # CLI file explorer
-      extraConfig = ''
-        ${builtins.readFile ../misc/xplr.lua}
-      '';
-    };
     broot = {
       enable = true; # TEST which explorer is better
       enableZshIntegration = true;
