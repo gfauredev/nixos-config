@@ -1,4 +1,8 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ pkgs, ... }: {
+  imports = [
+    ../default.nix
+  ];
+
   nixpkgs = {
     config = {
       allowUnfree = true;

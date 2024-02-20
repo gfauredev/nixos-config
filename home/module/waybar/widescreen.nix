@@ -1,4 +1,8 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ ... }: {
+  imports = [
+    ./default.nix
+  ];
+
   programs = {
     waybar = {
       settings = {

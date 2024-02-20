@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+  imports = [
+    ./rofi
+  ];
+
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI

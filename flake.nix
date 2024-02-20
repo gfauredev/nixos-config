@@ -118,7 +118,7 @@
         };
       in
       {
-        "gf@ninja" = home-manager.lib.homeManagerConfiguration {
+        "gf@griffin" = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "4/temp3_input";
@@ -126,12 +126,9 @@
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./home # TODO users auto import this
             ./home/gf # Myself’s home
-            ./home/hyprland # Hyprland window manager
-            ./home/hyprland/ninja.nix # Griffin’s specific Hyprland
+            ./home/hyprland/griffin.nix # Griffin’s specific Hyprland
             ./home/waybar # Wayland Bar
-            ./home/rofi # Wayland launcher
             ./home/virtualization.nix # Virtualization
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation creation
@@ -141,7 +138,7 @@
             ./home/media.nix # Media consuming
           ];
         };
-        "gf@knight" = home-manager.lib.homeManagerConfiguration {
+        "gf@typhon" = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "2/temp3_input";
@@ -149,13 +146,9 @@
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./home # TODO users auto import this
             ./home/gf # Myself’s home
-            ./home/hyprland # Hyprland window manager
-            ./home/hyprland/knight.nix # Typhon’s specific Hyprland
-            ./home/waybar # Wayland Bar
-            ./home/waybar/widescreen.nix # Wayland Bar for wide screens TODO auto import wayland bar
-            ./home/rofi # Wayland launcher
+            ./home/hyprland/typhon.nix # Typhon’s specific Hyprland
+            ./home/waybar/widescreen.nix # Wayland Bar for wide screens
             ./home/virtualization.nix # Virtualization
             ./home/audio.nix # Audio & Music creation
             ./home/video.nix # Video & Animation editing

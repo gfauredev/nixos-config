@@ -1,8 +1,8 @@
 { config, pkgs, ... }: {
   imports = [
-    ./zsh # Interactive POSIX shell
-    ./neovim # CLI text editor
-    ./lapce # New GUI text editor
+    ./module/zsh # Interactive POSIX shell
+    ./module/neovim # CLI text editor
+    ./module/lapce # New GUI text editor
   ];
 
   home.packages = with pkgs; [
