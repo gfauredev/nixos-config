@@ -7,15 +7,15 @@
     # enableNvidiaPatches = true;
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
-      # knight (ultrawide desktop) monitors
+      # Typhon (ultrawide desktop) monitors
       monitor = [
-        "DP-1,3440x1440,0x0,1.25" # knight’s main monitor
+        "DP-1,3440x1440,0x0,1.25" # Typhon’s main monitor
         ",preferred,auto,1" # Externals monitor
         # ",preferred,auto,1,mirror,eDP-1" # Mirrored external monitors
       ];
 
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
-      # knight (ultrawide desktop) workspaces
+      # Typhon (ultrawide desktop) workspaces
       workspace = [
         "name:web,monitor:DP-1,default:true"
         "name:dpp,monitor:DP-2,default:true"
@@ -29,7 +29,7 @@
   services.swayidle = {
     events = [
       { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; } # FIXME Knight’s suspends crashes Hyprland
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; } # FIXME Typhon’s suspends crashes Hyprland
     ];
     timeouts = [
       {
@@ -41,7 +41,7 @@
         timeout = 330;
         command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
       }
-      # { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; } # FIXME Knight’s suspends crashes Hyprland
+      # { timeout = 600; command = "${pkgs.systemd}/bin/systemctl suspend"; } # FIXME Typhon’s suspends crashes Hyprland
     ];
   };
 }

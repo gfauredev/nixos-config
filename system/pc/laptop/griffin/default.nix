@@ -10,7 +10,7 @@
         "https://cache.nixos.org/"
       ];
       trusted-substituters = [
-        "http://192.168.1.4:5000" # knight as local binary cache
+        "http://192.168.1.4:5000" # Desktop as local binary cache
       ];
       trusted-public-keys = [
         "192.168.1.4:M2RK6BgauXFtWIrs9y6Kvw8ptFLUyOmW0PsSjOvKuks="

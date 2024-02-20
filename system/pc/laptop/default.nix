@@ -27,7 +27,7 @@
     tlp = {
       # enable = true; # Useless, enabled by powerManagement
       settings = {
-        PCIE_ASPM_ON_BAT = "powersupersave"; # Might be only for ninja
+        PCIE_ASPM_ON_BAT = "powersupersave";
         # START_CHARGE_THRESH_BAT0 = 75; # Don’t start charging above
         # STOP_CHARGE_THRESH_BAT0 = 80; # Don’t charge above
         # START_CHARGE_THRESH_BAT1 = 75; # Don’t start charging above

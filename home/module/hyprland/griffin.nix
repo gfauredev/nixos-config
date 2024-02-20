@@ -6,15 +6,15 @@
   wayland.windowManager.hyprland = {
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
-      # ninja (Framework Laptop 13) monitors
+      # Griffin (Framework Laptop 13) monitors
       monitor = [
-        "eDP-1,2256x1504,0x0,1.333" # ninja’s internal monitor
+        "eDP-1,2256x1504,0x0,1.333" # Griffin’s internal monitor
         ",preferred,auto,1" # Externals monitor
         # ",preferred,auto,1,mirror,eDP-1" # Mirrored external monitors
       ];
 
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
-      # ninja (Framework Laptop 13) workspaces
+      # Griffin (Framework Laptop 13) workspaces
       workspace = [
         "name:web,monitor:eDP-1,default:true"
         "name:dpp,monitor:DP-1,default:true"
