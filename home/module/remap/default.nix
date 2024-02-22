@@ -1,6 +1,6 @@
 { ... }: {
   xdg.configFile = {
-    input-remapper-2 = {
+    input-remapper-2-nix = {
       source = ./input-remapper-2;
     };
   };
