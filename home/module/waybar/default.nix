@@ -144,7 +144,8 @@
           };
 
           mpris = {
-            format = lib.mkDefault "{player_icon} {status_icon}";
+            format = lib.mkDefault "{player_icon} {status_icon} {dynamic}";
+            dynamic-len = lib.mkDefault 20;
             player-icons = {
               default = "";
               spotify = "";

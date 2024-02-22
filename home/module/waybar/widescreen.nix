@@ -8,7 +8,7 @@
       settings = {
         bottomBar = {
           window.max-length = 600;
-          mpris.format = "{player_icon} {status_icon} {dynamic}";
+          mpris.dynamic-len = 120;
         };
       };
     };

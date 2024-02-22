@@ -5,9 +5,31 @@ window, box, widget, label, button {
   min-width: 0;
 }
 
+box > button {
+  margin-right: 3px;
+  padding-right: 4px;
+  color: #fdc;
+}
+
+box > button:last-child {
+  margin: 0;
+}
+
+.modules-left {
+  margin-right: 3px;
+}
+
+.modules-left label {
+  min-width: 40px;
+}
+
+.modules-center label {
+  padding: 1px 3px;
+  min-width: 8px;
+}
+
 window#waybar {
   background-color: transparent;
-  /* padding-top: 4px; */
 }
 
 window#waybar, menu label {
@@ -17,33 +39,11 @@ window#waybar, menu label {
 }
 
 label, #tray {
-  /* padding: 1px 6px; */
   padding: 1px 3px;
-  /* background-color: rgba(0, 0, 0, 0.8); */
 }
-
-/* widget > label, box > button { */
-/*   border-radius: 8px; */
-/* } */
-
-/* #tray, #window { */
-/*   border-radius: 8px; */
-/* } */
 
 #tray, #workspaces > button {
   border-radius: 8px;
-}
-
-/* menu { */
-/*   background-color: rgba(0, 0, 0, 0.8); */
-/* } */
-
-.modules-left {
-  margin-right: 3px;
-}
-
-.modules-left label {
-  min-width: 40px;
 }
 
 #battery {
@@ -68,30 +68,6 @@ label, #tray {
 
 #clock {
   min-width: 175px;
-}
-
-.modules-center label {
-  padding: 1px 3px;
-  /* padding: 1px 6px; */
-  min-width: 8px;
-}
-
-/* #workspaces label { */
-/*   background-color: transparent; */
-/* } */
-
-/* button, #window { */
-/*   background-color: rgba(0, 0, 0, 0.8); */
-/* } */
-
-box > button {
-  margin-right: 3px;
-  padding-right: 4px;
-  color: #fdc;
-}
-
-box > button:last-child {
-  margin: 0;
 }
 
 #workspaces button.urgent {
@@ -130,7 +106,6 @@ box > button:last-child {
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-
 
 @keyframes fgBlink {
   to {
