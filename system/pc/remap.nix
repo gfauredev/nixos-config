@@ -1,12 +1,29 @@
 { pkgs, ... }: {
-  # environment.systemPackages = with pkgs; [
-  #   keymapper # Context-aware key remapper
-  #   autokey # Desktop automation utility for Linux and X11
-  # ];
+  environment.systemPackages = with pkgs; [
+    keyd # Access commands and man pages
+    # keymapper # Context-aware key remapper
+    # autokey # Desktop automation utility for Linux and X11
+  ];
 
   services = {
+    keyd = {
+      enable = true; # A key remapping daemon for linux (C)
+      keyboards = {
+        default = {
+          ids = [ "*" ];
+          settings = {
+            main = {
+              capslock = "overload(control, esc)";
+            };
+          };
+        };
+      };
+    };
+    input-remapper = {
+      enable = true; # Easy tool to change mapping of input device buttons (Python)
+    };
     interception-tools = {
-      enable = true;
+      enable = false;
       plugins = with pkgs; [
         interception-tools-plugins.caps2esc
       ];
@@ -27,14 +44,8 @@
         #    LINK: /dev/input/by-path/platform-i8042-serio-1-event-mouse
       '';
     };
-    input-remapper = {
-      enable = true; # Easy tool to change mapping of input device buttons
-    };
-    keyd = {
-      enable = false; # A key remapping daemon for linux
-    };
     evdevremapkeys = {
-      enable = false; # Daemon to remap events on linux input devices
+      enable = false; # Daemon to remap events on linux input devices (Python)
     };
   };
 }

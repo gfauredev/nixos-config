@@ -25,6 +25,7 @@
       "vboxusers" # Use VirtualBox hypervisor
       "docker" # Use Docker container manager
       "wireshark" # Use wireshark without root
+      "keyd" # Use app-specific keyd remaps
     ];
   };
 
