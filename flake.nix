@@ -127,6 +127,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home/gf # Myself’s home
+            ./home/module/remap # XCompose & Inputs remaps
             ./home/module/hyprland/griffin.nix # Griffin’s specific Hyprland
             ./home/module/waybar # Wayland Bar
             ./home/module/virtualization.nix # Virtualization
@@ -148,6 +149,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home/gf # Myself’s home
+            ./home/module/remap # XCompose & Inputs remaps
             ./home/module/hyprland/typhon.nix # Typhon’s specific Hyprland
             ./home/module/waybar/widescreen.nix # Wayland Bar for wide screens
             ./home/module/virtualization.nix # Virtualization
