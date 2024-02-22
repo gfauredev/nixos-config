@@ -14,13 +14,22 @@
           settings = {
             main = {
               capslock = "overload(control, esc)";
+              space = "overloadt(spacemode, space, 200)";
+            };
+            spacemode = {
+              h = "left";
+              j = "down";
+              k = "up";
+              l = "right";
+              f = "C-left";
+              q = "C-right";
             };
           };
         };
       };
     };
     input-remapper = {
-      enable = true; # Easy tool to change mapping of input device buttons (Python)
+      enable = false; # Easy tool to change mapping of input device buttons (Python)
     };
     interception-tools = {
       enable = false;
