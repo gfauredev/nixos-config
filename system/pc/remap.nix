@@ -1,4 +1,10 @@
 { pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    input-remapper # Easy tool to change mapping of input device buttons
+    # keymapper # Context-aware key remapper
+    # autokey # Desktop automation utility for Linux and X11
+  ];
+
   services = {
     interception-tools = {
       enable = true;
@@ -21,6 +27,12 @@
         #  DEVICE:
         #    LINK: /dev/input/by-path/platform-i8042-serio-1-event-mouse
       '';
+    };
+    keyd = {
+      enable = false; # A key remapping daemon for linux
+    };
+    evdevremapkeys = {
+      enable = false; # Daemon to remap events on linux input devices
     };
   };
 }
