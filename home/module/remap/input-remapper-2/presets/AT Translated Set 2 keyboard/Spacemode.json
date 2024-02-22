@@ -26,7 +26,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Left),\n)",
+        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Left),\n\tkey(space)\n)",
         "name": "Left",
         "mapping_type": "key_macro"
     },
@@ -44,7 +44,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Down),\n)",
+        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Down),\n\tkey(space)\n)",
         "name": "Down",
         "mapping_type": "key_macro"
     },
@@ -62,7 +62,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Right),\n)",
+        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Right),\n\tkey(space)\n)",
         "name": "Right",
         "mapping_type": "key_macro"
     },
@@ -80,7 +80,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Up),\n)",
+        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Up),\n\tkey(space)\n)",
         "name": "Up",
         "mapping_type": "key_macro"
     },
@@ -98,7 +98,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Control_L, Left),\n)",
+        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Control_L, Left),\n\tkey(space)\n)",
         "name": "PreviousWord",
         "mapping_type": "key_macro"
     },
@@ -116,7 +116,7 @@
             }
         ],
         "target_uinput": "keyboard",
-        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Control_L, Right),\n)",
+        "output_symbol": "if_eq(\n\t$spacemode,\n\t1,\n\thold_keys(Control_L, Right),\n\tkey(space)\n)",
         "name": "NextWord",
         "mapping_type": "key_macro"
     }
