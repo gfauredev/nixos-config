@@ -19,10 +19,16 @@
             spacemode = {
               h = "left";
               j = "down";
+              m = "pagedown";
               k = "up";
+              i = "pageup";
               l = "right";
-              f = "C-left";
-              q = "C-right";
+              b = "C-left";
+              w = "C-right";
+              "0" = "home";
+              "4" = "end";
+              enter = "menu";
+              # enter = "media";
             };
           };
         };

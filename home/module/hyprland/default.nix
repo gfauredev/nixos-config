@@ -161,6 +161,7 @@
         "$mod SHIFT, SPACE, exec, rofi -show-icons -show top"
         # Launch with special media keys TODO use them better
         ", Menu, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Menu special key
+        ", XF86MenuKB, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Menu special key
         "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # F9 on Framework Laptop
         ", XF86Mail, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Mail media key
         ", XF86HomePage, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Home media key
