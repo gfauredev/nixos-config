@@ -28,7 +28,7 @@
               "0" = "home";
               "4" = "end";
               enter = "menu";
-              # enter = "media";
+              shift = "oneshot(shift)";
             };
           };
         };
