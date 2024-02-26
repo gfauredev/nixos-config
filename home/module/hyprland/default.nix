@@ -243,13 +243,13 @@
         border_size = 2;
         layout = "dwindle";
         cursor_inactive_timeout = 1;
-        "col.active_border" = "rgb(e6d4c2)";
+        "col.active_border" = "rgb(b6a482)";
         "col.inactive_border" = "rgb(000000)";
       };
 
 
       group = {
-        "col.border_active" = "rgb(ffd4c2)";
+        "col.border_active" = "rgb(e6d4c2)";
         "col.border_inactive" = "rgb(000000)";
         groupbar = {
           enabled = false; # Don’t eat my screen space
