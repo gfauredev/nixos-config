@@ -5,6 +5,14 @@
     ./module/wezterm # Modern terminal emulator
   ];
 
+  manual = {
+    html.enable = true;
+    json.enable = true;
+    manpages.enable = true;
+  };
+
+  news.display = "show";
+
   home.packages = with pkgs; [
     # Web browsing
     brave # Blink based secure and private web browser
@@ -29,6 +37,7 @@
     # stacer # Modern cleaner & monitoring
 
     nixpkgs-review # Review pull requests to nixpkgs
+    manix # Nix documentation CLI
   ];
 
   services = {
