@@ -1,0 +1,9 @@
+[core]
+modal = true
+custom-titlebar = true
+color-theme = "Gruvbox Dark"
+
+[editor]
+hover-delay = 222
+format-on-save = true
+highlight-scope-lines = true
