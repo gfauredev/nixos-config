@@ -197,7 +197,7 @@
         # Misc
         ", Print, exec, grim -g \"$(slurp)\" $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "CONTROL, Print, exec, grim -g \"$(slurp)\" - | wl-copy"
-        "SHIFT, Print, exec, grim $HOME/data.large/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        "SHIFT, Print, exec, grim $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "$mod, k, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle all"
       ];
