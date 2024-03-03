@@ -182,14 +182,14 @@
       rg = "echo You might prefer using custom command 'g';rg"; # reminder
 
       ## Open
-      a = "bat --force-colorization --paging never"; # better cat
-      o = "open"; # quicker, better xdg-open
-      p = "$PAGER"; # quicker default pager
+      a = "bat --force-colorization --paging never"; # Better cat
+      o = "open"; # Better xdg-open (disowns)
+      p = "$PAGER"; # Default pager
 
       ## Edit
-      e = "$EDITOR"; # Default text editor
+      e = "$EDITOR"; # Default text Editor
+      u = "lapce"; # gUi text editor
       v = "vi"; # Vi text editor
-      h = "hx"; # Helix text editor
       m = "mkdir -pv"; # Quicker mkdir
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # better cp
       ## Multifunction (Explorers)
