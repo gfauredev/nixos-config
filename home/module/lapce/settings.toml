@@ -1,5 +1,5 @@
 [core]
-modal = true
+modal = false
 custom-titlebar = true
 color-theme = "Gruvbox Dark"
 
@@ -7,3 +7,6 @@ color-theme = "Gruvbox Dark"
 hover-delay = 222
 format-on-save = true
 highlight-scope-lines = true
+
+[lapce-rust]
+"diagnostics.experimental.enable" = true
