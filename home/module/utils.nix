@@ -24,7 +24,7 @@
     nil # Nix LSP
     rnix-lsp # Nix LSP
     nodePackages_latest.bash-language-server # Bash LSP
-    lua-language-server # Lua
+    lua-language-server # Lua LSP
     nodePackages_latest.prettier # General purpose formatter
 
     # AI Tools
@@ -32,10 +32,10 @@
     # open-interpreter # Interpret LLM code in terminal directly
 
     # Misc
-    testdisk # file recuperation
-    ventoy-full # create bootable keys
     udiskie # auto mount USB
-    # restic # Efficient backup
+    restic # Efficient backup tool
+    ventoy-full # create bootable keys
+    testdisk # file recuperation
     # dcfldd # more powerful dd
     watchexec # Run command when file changes
     hyperfine # Benchmark commands

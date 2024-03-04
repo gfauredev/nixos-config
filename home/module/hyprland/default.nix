@@ -107,7 +107,7 @@
         "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || thunderbird" # Auto open personal information management apps
         "$mod SHIFT, p, movetoworkspace, name:pim" # Personal information management workspace
         "$mod, o, workspace, name:opn" # Open (a file)
-        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
+        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
         "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.monitoring} btm" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace

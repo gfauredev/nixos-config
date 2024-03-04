@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, term, ... }: {
   home.packages = with pkgs; [
     libqalculate # Calculation library used by rofi
   ];
@@ -23,9 +23,7 @@
         rofi-pulse-select
         rofi-systemd
       ];
-      # shell = "${pkgs.dash}/bin/dash";
-      # terminal = "${term-exec}"; TODO global variables
-      terminal = "wezterm start --always-new-process";
+      terminal = "${term.cmd} ${term.exec}";
       theme = ./rounded-blue-dark.rasi;
       extraConfig = {
         modi = "combi,drun,run,window,file-browser-extended,calc,emoji,top";

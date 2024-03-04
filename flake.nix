@@ -95,24 +95,24 @@
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations =
-      # TODO cleaner terminal commands
+      # TODO cleaner terminal commands (nix functions)
       let
         alacritty = {
           name = "alacritty"; # Name of the terminal
           cmd = "alacritty"; # Launch terminal
-          exec = "alacritty --command"; # Terminal with a command in place of shell
+          exec = "alacritty --command"; # Option to execute a command in place of shell
           cd = "--working-directory"; # Option to launch terminal in a directory
-          # Classed terminals
+          # Classed terminals (executes a command)
           monitoring = "alacritty --class monitoring --command"; # Monitoring terminal
           note = "alacritty --class note --command"; # Monitoring terminal
           menu = "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
         };
         wezterm = {
           name = "wezterm"; # Name of the terminal
-          cmd = "wezterm"; # Launch terminal
-          exec = "wezterm start"; # Terminal with a command in place of shell
+          cmd = "wezterm start --always-new-process"; # Launch terminal
+          exec = ""; # Option to execute a command in place of shell
           cd = "--cwd"; # Option to launch terminal in a directory
-          # Classed terminals
+          # Classed terminals (executes a command)
           monitoring = "wezterm start --class monitoring"; # Monitoring
           note = "wezterm start --class note"; # Note
           menu = "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
