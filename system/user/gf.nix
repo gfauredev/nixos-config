@@ -32,6 +32,7 @@
   users.groups = {
     mtp = { };
     uinput = { };
+    wireshark = { };
   };
 
   # TODO place these in user config
