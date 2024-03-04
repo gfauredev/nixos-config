@@ -13,13 +13,26 @@
       veracrypt-mount = pkgs.writeShellScriptBin "veramount" "${lib.readFile ./veracrypt-mount.sh}";
       present-pdf = pkgs.writeShellScriptBin "present" "${lib.readFile ./present-pdf.sh}";
     in
-    [
+    with pkgs; [
       # Custom scripts
       smart-terminal # Open a terminal quickly with first parameter always cd
       extract # Extract any compressed file
       rsync-backup # Incremental backup with rsync
       veracrypt-mount # Interactively mount veracrypt devices
       present-pdf # Present a PDF with a presenter console
+      # TODO Place below in a shell/default.nix
+      # Monitoring
+      silver-searcher # Better grep
+      fd # better find
+      duf # global disk usage
+      du-dust # disk usage of a directory
+      bottom # htop alternative
+      fastfetch # system info
+      hexyl # hex viever
+      # Files management
+      trash-cli # Manage a trash from CLI
+      sd # find & replace
+      # nomino # Batch rename
     ];
 
 

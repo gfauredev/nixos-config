@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # TODO use specific options when possible
     # Text & Document
     libreoffice-fresh # Office suite
     # libreoffice-qt # Office suite
@@ -13,11 +12,11 @@
     # markdown-anki-decks
     # marktext # Markdown editor
     # calibre # Ebook management
-    # zathura # Minimalist PDF reader
-    mupdf # Minimalist PDF reader
-    sioyek # Minimalist PDF reader
+    # mupdf # Minimalist PDF reader
+    # sioyek # Minimalist PDF reader
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
+    poppler_utils # Read PDF metadata
 
     # Note & Organization
     anki-bin # Memorisation
@@ -40,9 +39,17 @@
     imv # Image viewer
     # swayimg # Image viewer that can integrate with terminals
     # sxiv # Image viewer
+    imagemagick # CLI image edition
+    ffmpeg # media conversion
+    mediainfo # info about audio or video
+    yt-dlp # download videos from internet
+    # youtube-dl # download videos from internet
 
-    # Utilities & Software # TODO refile more precisely
-    qbittorrent-nox # CLI Bittorrent client
+    # Emulation
+    wine # Execute Window$ programs
+    winetricks # Execute Window$ programs
+
+    # Misc
     # fontforge # Font editor
     # languagetool # Grammar checking, now using the LSP version
     # qbittorrent # Bittorrent client
@@ -50,8 +57,8 @@
     # filezilla # FTP client
     # xdg-utils # Mime type based file oppening # TEST if relevant
     # handlr # Default app launcher # TEST if relevant
-    wine # Execute Window$ programs
-    winetricks # Execute Window$ programs
+    # jot # Notes-graph manager
+    # zk # Zettelkasten
   ];
 
   fonts.fontconfig.enable = true;

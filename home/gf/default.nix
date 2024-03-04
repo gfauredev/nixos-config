@@ -31,66 +31,6 @@
     };
 
     packages = with pkgs; [
-      #################### Serif Fonts ####################
-      libre-baskerville # Great, stylish serif
-      vollkorn # Great serif font
-      # merriweather # Serif readable on low res screens
-      # gelasio # Serif Georgia replacement
-      # lmodern # Classic serif
-      # noto-fonts-cjk-serif
-      #################### Sans Fonts ####################
-      fira-go # Great sans with icons
-      nacelle # Helvetica replacement
-      # inter # Interesting sans font
-      # carlito # Calibri replacement
-      # merriweather-sans # Sans font readable on low res
-      # libre-franklin
-      # noto-fonts-cjk-sans
-      #################### Mono Fonts ####################
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-      # fira-code # Great mono with ligatures & icons
-      #################### Fonts Packages ####################
-      # liberation_ttf # Times New Roman, Arial, Courier New
-      # nerdfonts # Mono fonts with lots of icons
-      # noto-fonts
-      #################### Symbols Fonts ####################
-      lmmath # Classic font with math support
-      # emojione # Emoticons
-      # font-awesome # A lot of icons
-      # noto-fonts-emoji # Emojies
-
-      # TODO some packages below may suit better zsh.nix file
-      # TODO some packages below may suit better default.nix file
-      #################### Monitoring ####################
-      silver-searcher # Better grep
-      fd # better find
-      duf # global disk usage
-      du-dust # disk usage of a directory
-      bottom # htop alternative
-      fastfetch # system info
-      poppler_utils # Read PDF metadata
-      mediainfo # info about audio or video
-      hexyl # hex viever
-      # tree
-
-      #################### Files management ####################
-      trash-cli # Manage a trash from CLI
-      sd # find & replace
-      # nomino # Batch rename
-      # dcfldd # more powerful dd
-      testdisk # file recuperation
-      restic # Efficient backup
-      # fuse # TEST relevance
-      exfatprogs # Tools for exfat fs
-      ffmpeg # media conversion
-      imagemagick # CLI image edition
-      # youtube-dl # download videos from internet
-      yt-dlp # download videos from internet
-      ventoy-full # create bootable keys
-      udiskie # auto mount USB
-      # jot # Notes-graph manager
-      # zk # Zettelkasten
-
       #################### Encryption & Network ####################
       # git-secrets # Encrypted storage in public git repo
       pass # CLI password manager
@@ -101,10 +41,6 @@
       # wireguard-tools # TEST relevance
       rustscan # scan networks
       nmap # scan ports
-      calyx-vpn # Free VPN service with bitmask client
-      riseup-vpn # Free VPN service with bitmask client
-      # protonvpn-cli # Free VPN service
-      protonvpn-cli_2 # Free VPN service (Python rewrite)
       # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
