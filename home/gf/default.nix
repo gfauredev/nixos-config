@@ -110,8 +110,9 @@
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
       # termshark # Wireshark TUI
-      tshark # Wireshark CLI
-      # wireshark # Wireshark GUI
+      # tshark # Wireshark CLI
+      wireshark # Wireshark GUI
+      iperf # IP bandwidth measuring
       hping # Network monitoring tool
       thc-hydra # Pentesting tool
 
