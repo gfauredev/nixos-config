@@ -112,9 +112,9 @@
       # hping # Network monitoring tool
       thc-hydra # Pentesting tool
       # tshark # Wireshark CLI
-      # wireshark # Wireshark GUI
+      wireshark # Wireshark GUI
       # termshark # Wireshark TUI
-      # iperf # IP bandwidth measuring
+      iperf # IP bandwidth measuring
 
       #################### Languages helpers ####################
       ltex-ls # Grammar language server
