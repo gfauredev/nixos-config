@@ -20,18 +20,17 @@
       rsync-backup # Incremental backup with rsync
       veracrypt-mount # Interactively mount veracrypt devices
       present-pdf # Present a PDF with a presenter console
-      # TODO Place below in a shell/default.nix
-      # Monitoring
-      silver-searcher # Better grep
+      # TODO Eventually place below in a shell/default.nix
+      trash-cli # Manage a trash from CLI
+      ripgrep-all # ripgrep for non-text files
+      # silver-searcher # Better grep
       fd # better find
       duf # global disk usage
-      du-dust # disk usage of a directory
+      du-dust # detailed disk usage of a directory
       bottom # htop alternative
       fastfetch # system info
       hexyl # hex viever
-      # Files management
-      trash-cli # Manage a trash from CLI
-      sd # find & replace
+      # sd # find & replace (partially replaced by ripgrep)
       # nomino # Batch rename
     ];
 
@@ -258,7 +257,6 @@
     };
     ripgrep = {
       enable = true; # Better grep
-      package = pkgs.ripgrep-all; # Search inside a lot of different file types
     };
   };
 }
