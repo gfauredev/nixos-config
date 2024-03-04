@@ -194,8 +194,9 @@
         d = "z"; # Smart (frecent) cd
         f = "\\fd --color always"; # Better find
         fd = "echo You might prefer using custom command 'f';fd"; # Reminder
-        g = "\\rg -S -C 3"; # Better grep
+        g = "\\rga --smart-case --color=always"; # Better grep
         rg = "echo You might prefer using custom command 'g';rg"; # Reminder
+        rga = "echo You might prefer using custom command 'g';rga"; # Reminder
         ## Open
         a = "bat --force-colorization --paging never"; # Better cat
         o = "open"; # xdg-open + disown
@@ -210,14 +211,6 @@
         b = "br"; # CLI fast files searcher
         x = "xplr"; # CLI files explorer
       };
-    shellGlobalAliases = {
-      ARCHIVE = "$HOME/archive/";
-      DATA = "$HOME/data/";
-      LIFE = "$HOME/life/";
-      PROJECT = "$HOME/project/";
-      USB = "$HOME/usb/";
-      TMP = "$HOME/data.local/tmp/";
-    };
   };
 
   programs = {

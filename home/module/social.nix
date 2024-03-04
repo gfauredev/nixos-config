@@ -2,12 +2,13 @@
   home.packages = with pkgs; [
     thunderbird # Popular desktop email and calendar client
     # evolution # Popular desktop email and calendar client
-    himalaya # CLI mail client # Configure via home manager module
+    # himalaya # CLI mail client # Configure via home manager module
     # element-desktop # Matrix messaging
     signal-desktop # Secure messaging
+    # signal-cli # Secure messaging
     # element-web # Matrix messaging
     # mailspring # Email client WARNING security issue
-    # UNFREE #
+    # UNFREE
     discord # PROPRIETARY messaging and general communication
     # whatsapp-for-linux # PROPRIETARY messaging and general communication
     # discord-canary # PROPRIETARY messaging and general communication

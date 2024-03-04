@@ -1,6 +1,6 @@
 # Fonts I like and use
 { pkgs, ... }: {
-  packages = with pkgs; [
+  home.packages = with pkgs; [
     #################### Serif Fonts ####################
     libre-baskerville # Great, stylish serif
     vollkorn # Great serif font

@@ -8,6 +8,8 @@
     # libreoffice-still # Office suite
     masterpdfeditor4 # PDF editor
     xournalpp # Notetaking with draw
+    poppler_utils # Read PDF metadata
+    qpdf # PDF manipulation
     # write_stylus
     # markdown-anki-decks
     # marktext # Markdown editor
@@ -16,7 +18,7 @@
     # sioyek # Minimalist PDF reader
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
-    poppler_utils # Read PDF metadata
+    # anytype # General productivity app
 
     # Note & Organization
     anki-bin # Memorisation
@@ -34,6 +36,7 @@
     # Audio & Music
     spotify # PROPRIETARY music streaming
     playerctl # MPRIS media players control
+    # spotify-tui
 
     # Image & Video # TODO find better image viewer
     imv # Image viewer
@@ -48,6 +51,18 @@
     # Emulation
     wine # Execute Window$ programs
     winetricks # Execute Window$ programs
+
+    # Languages
+    ltex-ls # Grammar language server
+    hunspell # Natural language spell checker
+    hunspellDicts.fr-any # For french
+    hunspellDicts.en_US # For english
+    hunspellDicts.en_GB-ise # For english
+    hunspellDicts.es_ES # For spanish
+    typst # Document processor
+    typst-lsp # Document processor LSP
+    typstfmt # Typst formatter
+    marksman # Markdown
 
     # Misc
     # fontforge # Font editor

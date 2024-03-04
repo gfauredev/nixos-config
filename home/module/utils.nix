@@ -12,18 +12,57 @@
     # adwaita-qt # TEST if relevant
     # glib # GTK Tools
     # gsettitngs-qt # GTK Settings
-    asciiquarium-transparent # Best screensaver ever
+    # asciiquarium-transparent # Best screensaver ever
+    # cmatrix # Simulate falling text as in matrix
 
     # Cleaning & Desktop monitoring
     # bleachbit # Good old cleaner
     # czkawka # Modern cleaner
     # stacer # Modern cleaner & monitoring
 
+    # LSP & Formatter
+    nil # Nix LSP
+    rnix-lsp # Nix LSP
+    nodePackages_latest.bash-language-server # Bash LSP
+    lua-language-server # Lua
+    nodePackages_latest.prettier # General purpose formatter
+
+    # AI Tools
+    ollama # Run LLMs locally
+    # open-interpreter # Interpret LLM code in terminal directly
+
     # Misc
     testdisk # file recuperation
-    restic # Efficient backup
     ventoy-full # create bootable keys
     udiskie # auto mount USB
+    # restic # Efficient backup
     # dcfldd # more powerful dd
+    watchexec # Run command when file changes
+    hyperfine # Benchmark commands
+    jq # JSON filter
+    # rpi-imager # Raspberry Pi OS generator
+    valent # kdeconnect protocol (bilateral Android remote control)
+
+    # Miscelaneous
+    # poetry # Python project manager # TODO use nix instead
+    # python3 # Python # TODO USE nix instead
+    # conda # Python package manager TODO flake shell
+    # procs # better ps
+    # cachix # TEST relevance
+    # android-file-transfer
+    # android-tools # ADB & Fastboot
+    # android-udev-rules
+    # interception-tools # TEST relevance
+    # bluetooth_battery # TEST relevance
+    # rustdesk # Remote desktop
+    # eva # Evaluate math expression
+    # dwfv
+    # inetutils
+    # khal # Calendar compatible with WebCal
+    # entr # Run command when file changes
+    # cpulimit
+    # undervolt
+    # cpufrequtils
+    # pcscliteWithPolkit
   ];
 }

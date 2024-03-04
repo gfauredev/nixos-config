@@ -20,6 +20,16 @@
     nixpkgs-review # Review pull requests to nixpkgs
     manix # Nix documentation CLI
     exfatprogs # Tools for exfat fs
+    dislocker # decrypt bitlocker disks
+    # veracrypt # multiplatform encryption
+    jmtpfs # Media transfer protocol with Android devices
+    pass # CLI standard password manager
+    # git-secrets # Encrypted storage in public git repo
+    # GUI specific
+    pinentry # enter passwords
+    libnotify # Notifications management
+    # appimage-run # Run appimages directly
+    # steam-run # Run in isolated FHS
   ];
 
   services = {
@@ -116,13 +126,6 @@
         };
       };
     };
-    firefox = {
-      enable = true; # Web browser
-    };
-    chromium = {
-      enable = true; # Web browser
-    };
-    # browserpass.enable = true; # TEST relevance
   };
 
   gtk = {
