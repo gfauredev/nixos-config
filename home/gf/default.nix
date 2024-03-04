@@ -32,9 +32,9 @@
 
     packages = with pkgs; [
       #################### Serif Fonts ####################
-      merriweather # Serif readable on low res screens
-      vollkorn # Great serif font
       libre-baskerville # Great, stylish serif
+      vollkorn # Great serif font
+      # merriweather # Serif readable on low res screens
       # gelasio # Serif Georgia replacement
       # lmodern # Classic serif
       # noto-fonts-cjk-serif
@@ -47,8 +47,8 @@
       # libre-franklin
       # noto-fonts-cjk-sans
       #################### Mono Fonts ####################
-      # fira-code # Great mono with ligatures & icons
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
+      # fira-code # Great mono with ligatures & icons
       #################### Fonts Packages ####################
       # liberation_ttf # Times New Roman, Arial, Courier New
       # nerdfonts # Mono fonts with lots of icons
@@ -62,8 +62,7 @@
       # TODO some packages below may suit better zsh.nix file
       # TODO some packages below may suit better default.nix file
       #################### Monitoring ####################
-      # ripgrep-all # Grep inside PDF, OpenDoc …
-      silver-searcher # better grep
+      silver-searcher # Better grep
       fd # better find
       duf # global disk usage
       du-dust # disk usage of a directory
@@ -75,7 +74,7 @@
       # tree
 
       #################### Files management ####################
-      trash-cli
+      trash-cli # Manage a trash from CLI
       sd # find & replace
       # nomino # Batch rename
       # dcfldd # more powerful dd
@@ -233,7 +232,6 @@
     gpg = {
       enable = true;
     };
-    ripgrep.enable = true; # Better grep
     # TODO set an explorer that can open & preview every file
     broot = {
       enable = true; # TEST which explorer is better
