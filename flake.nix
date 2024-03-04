@@ -29,17 +29,16 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          lanzaboote.nixosModules.lanzaboote # Secure boot
-          nixos-hardware.nixosModules.framework-12th-gen-intel
           # agenix.nixosModules.default # Secrets storage TODO for all systems
           # sops-nix.nixosModules.sops # Secrets storage TODO for all systems
+          lanzaboote.nixosModules.lanzaboote # Secure boot
+          nixos-hardware.nixosModules.framework-12th-gen-intel
           musnix.nixosModules.musnix # System improvements for audio
           ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
           ./system/user/gf.nix # Myself
           ./system/virtualization.nix
         ];
       };
-      # Chimera, a flying creature
       chimera = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
@@ -96,25 +95,27 @@
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations =
+      # TODO cleaner terminal commands
       let
         alacritty = {
-          # TODO create nix functions & modules to do that cleaner
           name = "alacritty"; # Name of the terminal
-          cmd = "alacritty"; # Command to launch terminal
-          exec = "alacritty --command"; # Option to execute a command in place of shell
+          cmd = "alacritty"; # Launch terminal
+          exec = "alacritty --command"; # Terminal with a command in place of shell
+          cd = "--working-directory"; # Option to launch terminal in a directory
+          # Classed terminals
           monitoring = "alacritty --class monitoring --command"; # Monitoring terminal
           note = "alacritty --class note --command"; # Monitoring terminal
           menu = "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
-          cd = "--working-directory"; # Option to launch terminal in a directory
         };
         wezterm = {
-          # TODO create nix functions & modules to do that cleaner
           name = "wezterm"; # Name of the terminal
-          cmd = "wezterm"; # Command to launch terminal
-          transparent = "--config window_background_opacity=0.7"; # Option to transparent
-          exec = "start"; # Option to execute a command in place of shell
-          class = "--class"; # Option to define a class for the window
+          cmd = "wezterm"; # Launch terminal
+          exec = "wezterm start"; # Terminal with a command in place of shell
           cd = "--cwd"; # Option to launch terminal in a directory
+          # Classed terminals
+          monitoring = "wezterm start --class monitoring"; # Monitoring
+          note = "wezterm start --class note"; # Note
+          menu = "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
         };
       in
       {
@@ -122,7 +123,7 @@
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "4/temp3_input";
-            term = alacritty;
+            term = wezterm;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
@@ -144,7 +145,7 @@
           extraSpecialArgs = {
             inherit inputs;
             hwmon = "2/temp3_input";
-            term = alacritty;
+            term = wezterm;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
