@@ -32,19 +32,5 @@
   users.groups = {
     mtp = { };
     uinput = { };
-    wireshark = { };
   };
-
-  # TODO place these in user config
-  # age = {
-  #   identityPaths = [ /home/gf/.ssh/id_ed25519 ];
-  #   secrets = {
-  #     pro-email = {
-  #       file = ../../secrets/secret1.age;
-  #       owner = "gf";
-  #       group = "users";
-  #       mode = "440";
-  #     };
-  #   };
-  # };
 }

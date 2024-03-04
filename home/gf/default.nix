@@ -100,21 +100,21 @@
       # veracrypt # multiplatform encryption
       # cryptsetup # TEST relevance
       # wireguard-tools # TEST relevance
-      rustscan # scan networks
+      # rustscan # scan networks
       nmap # scan ports
-      calyx-vpn # Free VPN service with bitmask client
-      riseup-vpn # Free VPN service with bitmask client
+      # calyx-vpn # Free VPN service with bitmask client
+      # riseup-vpn # Free VPN service with bitmask client
       # protonvpn-cli # Free VPN service
       protonvpn-cli_2 # Free VPN service (Python rewrite)
       # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
-      # termshark # Wireshark TUI
-      # tshark # Wireshark CLI
-      wireshark # Wireshark GUI
-      iperf # IP bandwidth measuring
-      hping # Network monitoring tool
+      # hping # Network monitoring tool
       thc-hydra # Pentesting tool
+      # tshark # Wireshark CLI
+      # wireshark # Wireshark GUI
+      # termshark # Wireshark TUI
+      # iperf # IP bandwidth measuring
 
       #################### Languages helpers ####################
       ltex-ls # Grammar language server

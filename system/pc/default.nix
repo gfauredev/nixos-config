@@ -62,7 +62,7 @@
   };
 
   services = {
-    # TODO this may belong to home config
+    # TODO some may belong to home config
     fwupd.enable = lib.mkDefault true; # Update firmwares
     thermald.enable = lib.mkDefault true; # Keep cool
     udisks2 = {
@@ -101,6 +101,7 @@
     };
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
+    iperf3.enable = true; # Network testing
   };
 
   security = {
@@ -130,6 +131,7 @@
         # };
       };
     };
+    wireshark.enable = true; # Network analysis
   };
 
   environment = {
