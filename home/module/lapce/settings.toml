@@ -1,0 +1,12 @@
+[core]
+modal = false
+custom-titlebar = true
+color-theme = "Gruvbox Dark"
+
+[editor]
+hover-delay = 222
+format-on-save = true
+highlight-scope-lines = true
+
+[lapce-rust]
+"diagnostics.experimental.enable" = true

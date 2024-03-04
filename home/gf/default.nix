@@ -39,16 +39,17 @@
       # veracrypt # multiplatform encryption
       # cryptsetup # TEST relevance
       # wireguard-tools # TEST relevance
-      rustscan # scan networks
+      # rustscan # scan networks
       nmap # scan ports
       # signal-cli # Secure messaging
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client TEST xh only
-      # termshark # Wireshark TUI
-      tshark # Wireshark CLI
-      # wireshark # Wireshark GUI
-      hping # Network monitoring tool
+      # hping # Network monitoring tool
       thc-hydra # Pentesting tool
+      # tshark # Wireshark CLI
+      wireshark # Wireshark GUI
+      # termshark # Wireshark TUI
+      iperf # IP bandwidth measuring
 
       #################### Languages helpers ####################
       ltex-ls # Grammar language server

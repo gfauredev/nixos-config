@@ -203,7 +203,7 @@
         ## Edit
         e = "$EDITOR"; # Default text editor
         v = "vi"; # Vi(m) text editor
-        h = "hx"; # Helix text editor
+        u = "lapce"; # gUi text editor
         m = "mkdir -pv"; # mkdir (parents)
         c = "rsync -v --recursive --update --mkpath --perms -h -P"; # Better cp
         ## Multifunction (Explorers)

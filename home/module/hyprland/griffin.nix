@@ -16,7 +16,7 @@
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       # Griffin (Framework Laptop 13) workspaces
       workspace = [
-        "name:web,monitor:eDP-1,default:true"
+        "name:opn,monitor:eDP-1,default:true"
         "name:dpp,monitor:DP-1,default:true"
         "name:hdm,monitor:DP-2,default:true"
         "name:sup,monitor:DP-3,default:true"

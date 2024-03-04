@@ -16,7 +16,7 @@
               capslock = "overload(control, esc)";
               space = "overloadt(spacemode, space, 200)";
             };
-            spacemode = {
+            "spacemode:C" = {
               h = "left";
               j = "down";
               m = "pagedown";
