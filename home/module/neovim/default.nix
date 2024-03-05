@@ -136,4 +136,11 @@
     #   luajitPackages.magick
     # ];
   };
+
+  home.file = {
+    dprint-config = {
+      target = ".dprint.json";
+      source = ./plugin/dprint.json;
+    };
+  };
 }
