@@ -112,46 +112,39 @@
       enable = true;
       defaultApplications = {
         # Text & Code
-        "text/plain" = "nvim.desktop";
-        "text/x-shellscript" = "nvim.desktop";
-        "text/x-script.python" = "nvim.desktop";
-        "text/html" = "nvim.desktop";
-        "application/x-shellscript" = "nvim.desktop";
-        "application/toml" = "nvim.desktop";
-        "application/javascript" = "nvim.desktop";
-        "text/markdown" = "nvim.desktop";
-        "text/x-log" = "bat.desktop";
-        "application/pdf" = "org.pwmt.zathura.desktop";
-        "text/adasrc" = "nvim.desktop";
-        "text/x-adasrc" = "nvim.desktop";
+        "text/plain" = "lapce.desktop";
+        "text/code" = "lapce.desktop";
+        "inode/directory" = "lapce.desktop"; # Workspace
         # Image
-        "image/jpeg" = "imv.desktop";
         "image/png" = "imv.desktop";
-        "image/bmp" = "imv.desktop";
         "image/jpg" = "imv.desktop";
+        "image/jpeg" = "imv.desktop";
+        "image/bmp" = "imv.desktop";
         "image/avif" = "imv.desktop";
         "image/webp" = "imv.desktop";
         "image/ico" = "imv.desktop";
         # Audio & Video
-        "audio/wav" = "mpv.desktop";
         "audio/flac" = "mpv.desktop";
-        "audio/mp3" = "mpv.desktop";
         "audio/ogg" = "mpv.desktop";
+        "audio/wav" = "mpv.desktop";
+        "audio/mp3" = "mpv.desktop";
         "video/mkv" = "mpv.desktop";
         "video/mp4" = "mpv.desktop";
         "video/avi" = "mpv.desktop";
-        # Internet
-        "x-scheme-handler/webcal" = "brave-browser.desktop";
-        "x-scheme-handler/mailto" = "brave-browser.desktop";
+        # Web
         "x-scheme-handler/https" = "brave-browser.desktop";
         "x-scheme-handler/http" = "brave-browser.desktop";
-        "x-scheme-handler/mailspring" = "Mailspring.desktop";
-        # Documents
+        # Email & Calendar
+        "x-scheme-handler/mailto" = "thunderbird.desktop";
+        "x-scheme-handler/webcal" = "thunderbird.desktop";
+        # Document
+        "application/pdf" = "org.pwmt.zathura.desktop";
         "application/x-colpkg" = "anki.desktop";
         "application/x-apkg" = "anki.desktop";
         "application/x-ankiaddon" = "anki.desktop";
+        # Application
+        "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
       };
-      # associations.added = { };
     };
   };
 }
