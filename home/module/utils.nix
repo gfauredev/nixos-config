@@ -25,7 +25,7 @@
     rnix-lsp # Nix LSP
     nodePackages_latest.bash-language-server # Bash LSP
     lua-language-server # Lua LSP
-    nodePackages_latest.prettier # General purpose formatter
+    dprint # Pluggable code formatting platform
 
     # AI Tools
     ollama # Run LLMs locally

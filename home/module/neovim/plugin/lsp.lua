@@ -1,9 +1,9 @@
--- -- -- -- -- Language servers -- -- -- -- --
+-- Language servers configurations
 local lsp = require "lspconfig"
 -- Set up completion
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Script
+-- Scripting & Configuration
 lsp.bashls.setup {
   capabilities = capabilities
 }
@@ -23,7 +23,7 @@ lsp.ruff_lsp.setup {
   capabilities = capabilities
 }
 
--- Web
+-- Web development
 lsp.tsserver.setup {
   capabilities = capabilities
 }
@@ -43,9 +43,8 @@ lsp.html.setup({
 lsp.jsonls.setup {
   capabilities = capabilities
 }
--- lsp.intelephense.setup{}
 
--- Low level
+-- Low level development
 lsp.rust_analyzer.setup {
   capabilities = capabilities
 }
@@ -55,23 +54,8 @@ lsp.arduino_language_server.setup {
 lsp.clangd.setup {
   capabilities = capabilities
 }
--- lsp.ccls.setup{
---   capabilities = capabilities
--- }
 
--- Misc
--- Needs a .git/ to find working directory TODO change that
-lsp.typst_lsp.setup({
-  capabilities = capabilities,
-  -- cmd = { "typst-lsp" },
-  -- filetypes = { "typst" },
-  single_file_support = true,
-  settings = {
-    -- exportPdf = "onType",
-    exportPdf = "onSave",
-    -- exportPdf = "never",
-  },
-})
+-- Writing & Notetaking
 lsp.ltex.setup({
   capabilities = capabilities,
   settings = {
@@ -84,5 +68,19 @@ lsp.ltex.setup({
 lsp.marksman.setup {
   capabilities = capabilities,
 }
--- lsp.sqlls.setup{}
--- lsp.sqls.setup{}
+lsp.typst_lsp.setup({
+  capabilities = capabilities,
+  -- cmd = { "typst-lsp" },
+  -- filetypes = { "typst" },
+  single_file_support = true, -- TODO fix need for a .git/ to find working directory
+  settings = {
+    -- exportPdf = "onType",
+    exportPdf = "onSave",
+    -- exportPdf = "never",
+  },
+})
+
+-- Formatting
+lsp.dprint.setup {
+  capabilities = capabilities
+}

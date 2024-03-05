@@ -29,12 +29,12 @@
       ${builtins.readFile ./plugin/trouble.lua}
       ${builtins.readFile ./plugin/autopair.lua}
       ${builtins.readFile ./plugin/indentline.lua}
-      ${builtins.readFile ./plugin/format.lua}
-      ${builtins.readFile ./plugin/lint.lua}
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/maths.lua}
     '';
     # ${builtins.readFile ./plugin/dap.lua}
+    # ${builtins.readFile ./plugin/lint.lua}
+    # ${builtins.readFile ./plugin/format.lua}
     # ${builtins.readFile ./plugin/quarto.lua}
     # ${builtins.readFile ./plugin/notify.lua}
     # ${builtins.readFile ./plugin/image.lua}
@@ -93,8 +93,8 @@
       copilot-lua # GitHub copilot
       copilot-cmp # GitHub copilot completions
       nvim-ts-autotag # Auto close tags
-      conform-nvim # Formatters adapter
-      nvim-lint # Linters adapter
+      # nvim-lint # Linters adapter
+      # conform-nvim # Formatters adapter
       # cmp-tabnine # AI code completion
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
