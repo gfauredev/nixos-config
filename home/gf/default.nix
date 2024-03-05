@@ -1,8 +1,9 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
     ../default.nix
     ../module/pulsemixer
-    ../module/xplr
+    ../module/knowledge
+    # ../module/xplr
   ];
 
   nixpkgs = {
