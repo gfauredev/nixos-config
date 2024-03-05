@@ -27,7 +27,6 @@
       ${builtins.readFile ./plugin/cmp.lua}
       ${builtins.readFile ./plugin/leap.lua}
       ${builtins.readFile ./plugin/trouble.lua}
-      ${builtins.readFile ./plugin/dashboard.lua}
       ${builtins.readFile ./plugin/autopair.lua}
       ${builtins.readFile ./plugin/indentline.lua}
       ${builtins.readFile ./plugin/format.lua}
@@ -39,6 +38,7 @@
     # ${builtins.readFile ./plugin/quarto.lua}
     # ${builtins.readFile ./plugin/notify.lua}
     # ${builtins.readFile ./plugin/image.lua}
+    # ${builtins.readFile ./plugin/dashboard.lua}
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
       plenary-nvim # Library
@@ -59,7 +59,6 @@
       gitsigns-nvim # Displays git related indications
       comment-nvim # Comment/Uncomment easily
       nvim-tree-lua # Tree file explorer
-      dashboard-nvim # Better start screen
       sniprun # Run snippets of code from neovim
       otter-nvim # LSP & features for embedded languages
       indent-blankline-nvim # Indentation lines
@@ -72,6 +71,7 @@
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # hologram-nvim # Image viewer
       # catppuccin-nvim # Pastel themes
+      # dashboard-nvim # Better start screen
 
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
