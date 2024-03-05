@@ -30,8 +30,9 @@
       ${builtins.readFile ./plugin/dashboard.lua}
       ${builtins.readFile ./plugin/autopair.lua}
       ${builtins.readFile ./plugin/indentline.lua}
-      ${builtins.readFile ./plugin/copilot.lua}
+      ${builtins.readFile ./plugin/format.lua}
       ${builtins.readFile ./plugin/lint.lua}
+      ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/maths.lua}
     '';
     # ${builtins.readFile ./plugin/dap.lua}
@@ -62,12 +63,12 @@
       sniprun # Run snippets of code from neovim
       otter-nvim # LSP & features for embedded languages
       indent-blankline-nvim # Indentation lines
+      tokyonight-nvim # Blue-ish theme
       gruvbox-nvim # Old fashioned, red-ish theme
       # headlines-nvim # Highlights for titles, code blocks …
+      # nvim-notify # Notifications
       # vim-table-mode # Display tables
-      nvim-notify # Notifications
       # image-nvim # Image viewer
-      # tokyonight-nvim # Blue-ish theme
       # which-key-nvim # Indications on current keys and shortcuts TODO
       # hologram-nvim # Image viewer
       # catppuccin-nvim # Pastel themes
@@ -91,8 +92,9 @@
       cmp-zsh # ZSH completions in Neovim
       copilot-lua # GitHub copilot
       copilot-cmp # GitHub copilot completions
-      nvim-lint # Linters adapter
       nvim-ts-autotag # Auto close tags
+      conform-nvim # Formatters adapter
+      nvim-lint # Linters adapter
       # cmp-tabnine # AI code completion
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
@@ -106,14 +108,14 @@
       # hop-nvim # Navigate efficiently in code
 
       ##### Techno & Language Specifics #####
+      typst-vim # Typst
+      nabla-nvim # Render maths formulas
       # neorg # Modern oganization markup # Currently lacks a mobile app
       # orgmode # Organization markup # Has Orgzly mobile app
-      nabla-nvim # Render maths formulas
-      quarto-nvim # Publishing system
+      # quarto-nvim # Publishing system
       # nvim-jdtls # Java (Eclipse)
       # go-nvim # Go
       # vim-go # Go (Vimscript)
-      typst-vim # Typst
       # grammar-guard-nvim
       # zk-nvim # zk integration
       # markdown-preview-nvim # Markdown previewing
