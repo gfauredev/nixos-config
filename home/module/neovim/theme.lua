@@ -1,5 +1,3 @@
--- vim.o.background = "dark"
-
 -- require("tokyonight").setup({
 --   -- your configuration comes here
 --   -- or leave it empty to use the default settings
@@ -35,7 +33,6 @@
 --   ---@param colors ColorScheme
 --   -- on_highlights = function(highlights, colors) end,
 -- })
--- vim.cmd("colorscheme tokyonight")
 
 -- require("catppuccin").setup({
 --   flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -82,7 +79,6 @@
 --     },
 --   },
 -- })
--- vim.cmd.colorscheme "catppuccin"
 
 require("gruvbox").setup({
   terminal_colors = true, -- add neovim terminal colors
@@ -106,6 +102,9 @@ require("gruvbox").setup({
   palette_overrides = {},
   overrides = {},
   dim_inactive = false,
-  -- transparent_mode = true,
+  transparent_mode = true,
 })
-vim.cmd("colorscheme gruvbox")
+
+-- Actual colorscheme setting --
+vim.cmd.colorscheme "gruvbox"
+-- vim.o.background = "dark"
