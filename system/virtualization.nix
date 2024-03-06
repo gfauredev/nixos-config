@@ -12,7 +12,7 @@
       ];
     };
     virtualbox.host = {
-      enable = false;
+      enable = true;
       enableExtensionPack = false; # WARNING needs a lot of compilation
     };
     vmware.host = {
