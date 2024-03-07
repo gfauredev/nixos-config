@@ -1,6 +1,8 @@
-CONFIG_DIR="$HOME/life.large/configuration.git/" # WARNING hardcoded config directory
+# WARNING hardcoded config directory
+# CONFIG_DIR="$HOME/.configuration.flake/"
+CONFIG_DIR="$HOME/life.large/configuration.git/"
 
-system_update() {
+system_rebuild() {
   printf "\nMounting /boot before system update\n"
   sudo mount /boot || return # Use fstab
 
@@ -11,7 +13,12 @@ system_update() {
   sudo umount /boot # Unmount for security
 }
 
-home_update() {
+system() {
+  $EDITOR system && git commit system
+  system_rebuild || return
+}
+
+home_rebuild() {
   printf "\nRemoving .config/mimeapps.list\n"
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
 
@@ -19,22 +26,52 @@ home_update() {
   home-manager --flake ".#${USER}@$(hostname)" switch || return
 }
 
+home() {
+  $EDITOR home && git commit home "$@"
+  home_rebuild || return
+}
+
 cd "$CONFIG_DIR" || exit # Change to the config directory
 
 # Go through each parameters and act accordingly
+case "$1" in
+  "rebuild")
+    case "$2" in
+      "system")
+        system_rebuild
+        ;;
+      "all")
+        system_rebuild && home_rebuild
+        ;;
+      "*")
+        home_rebuild
+        ;;
+    esac
+      exit
+    ;;
+  "system")
+      system || exit
+    ;;
+  "home")
+      home || exit
+    ;;
+  "all")
+      system && home || exit
+    ;;
+  "*") # If parameters are a message, update home with this commit message and exit
+    home -m "$@"
+    exit
+    ;;
+esac
+
+if [ "$#" -eq 0 ]; then
+  home
+  exit
+fi
+
+shift
 for param in "$@"; do
-  case "$param" in
-    "rebuild")
-      rebuild=true # Rebuild without modification
-      ;;
-    "system")
-      [ "$rebuild" ] || $EDITOR system/ && git commit -am "System : $2" && rebuild=true 
-      [ "$rebuild" ] && system_update || exit
-      ;;
-    "all")
-      [ "$rebuild" ] || $EDITOR . && git commit -am "System & Home : $2" && rebuild=true
-      [ "$rebuild" ] && system_update && home_update || exit
-      ;;
+  case $param in
     "push")
       git push
       ;;
@@ -47,11 +84,5 @@ for param in "$@"; do
     "reboot")
       systemctl reboot
       ;;
-    *)
-      [ "$rebuild" ] || $EDITOR home/ && git commit -am "Home : $2" && rebuild=true
-      [ "$rebuild" ] && home_update || exit
-      ;;
   esac
 done
-
-# cd - || exit # Return to the starting directory
