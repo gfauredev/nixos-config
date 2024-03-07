@@ -1,8 +1,8 @@
-# WARNING hardcoded config directory
-# CONFIG_DIR="$HOME/.configuration.flake/"
-CONFIG_DIR="$HOME/life.large/configuration.git/"
+CONFIG_DIR="$HOME/life.large/configuration.git/" # hardcoded configuration location
 
-system_rebuild() {
+DEFAULT_CONFIG_DIR="$XDG_CONFIG_HOME/flake/"
+
+system() {
   printf "\nMounting /boot before system update\n"
   sudo mount /boot || return # Use fstab
 
@@ -13,11 +13,7 @@ system_rebuild() {
   sudo umount /boot # Unmount for security
 }
 
-system() {
-  $EDITOR system && git commit system && system_rebuild || return
-}
-
-home_rebuild() {
+home() {
   printf "\nRemoving .config/mimeapps.list\n"
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
 
@@ -25,50 +21,51 @@ home_rebuild() {
   home-manager --flake ".#${USER}@$(hostname)" switch || return
 }
 
-home() {
-  $EDITOR home && git commit home "$@" && home_rebuild || return
+edit() {
+  $EDITOR . && git commit . "$@" || return
 }
 
-cd "$CONFIG_DIR" || exit # Change to the config directory
+cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
 
 # Go through each parameters and act accordingly
 case "$1" in
   "rebuild")
-    [ "$2" ] && home_rebuild && exit
+    [ "$2" ] && home && exit
     case "$2" in
       "system")
-        system_rebuild || exit
+        system || exit
         ;;
       "all")
-        system_rebuild && home_rebuild || exit
+        system && home || exit
         ;;
       *)
-        home_rebuild || exit
+        home || exit
         ;;
     esac
       shift 2
     ;;
   "system")
-      system || exit
+      cd system || exit
+      edit && system || exit
       shift
     ;;
   "home")
-      home || exit
+      cd home || exit
+      edit && home || exit
       shift
     ;;
   "all")
-      system && home || exit
+      edit && system && home || exit
       shift
     ;;
   *) # If parameters are a message, update home with this commit message and exit
-    home -m "$@"
-    exit
+    edit -m "$@" && home ; exit
     ;;
 esac
 
 if [ "$#" -eq 0 ]; then
-  home
-  exit
+  cd home || exit
+  edit && home ; exit
 fi
 
 for param in "$@"; do
