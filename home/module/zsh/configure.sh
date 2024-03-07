@@ -30,7 +30,7 @@ cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config dire
 # Go through each parameters and act accordingly
 case "$1" in
   "rebuild")
-    [ "$2" ] && home && exit
+    [ "$2" ] || home && exit
     case "$2" in
       "system")
         system || exit
