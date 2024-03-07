@@ -22,7 +22,7 @@ home() {
 }
 
 edit() {
-  $EDITOR . && git commit . "$@" || return
+  $EDITOR . && git add . && git commit "$@" || return
 }
 
 cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
