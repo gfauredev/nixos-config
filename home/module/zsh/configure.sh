@@ -58,6 +58,10 @@ case "$1" in
       edit && system && home || exit
       shift
     ;;
+  "push")
+    git push || exit
+    shift
+    ;;
   *) # If parameters are a message, update home with this commit message and exit
     edit -m "$@" && home ; exit
     ;;
