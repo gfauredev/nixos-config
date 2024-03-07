@@ -1,5 +1,19 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    # Languages
+    languagetool # Advanced spell checking
+    ltex-ls # LSP between languagetool and pure text
+    hunspell # Standard spell checker
+    hunspellDicts.fr-any # French
+    hunspellDicts.en_US # American
+    # hunspellDicts.en_GB-ise # British
+    hunspellDicts.es_ES # Spanish
+    typst # Advanced document processor
+    typst-lsp # Typst LSP
+    typstfmt # Typst formatter
+    marksman # Smart Markdown links
+    # quarto # Scientific and technical publishing system
+
     # Text & Document
     libreoffice-fresh # Office suite
     # libreoffice-qt # Office suite
@@ -10,33 +24,14 @@
     xournalpp # Notetaking with draw
     poppler_utils # Read PDF metadata
     qpdf # PDF manipulation
-    # write_stylus
-    # markdown-anki-decks
-    # marktext # Markdown editor
-    # calibre # Ebook management
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
-    # anytype # General productivity app
-
-    # Note & Organization
-    anki-bin # Memorisation
-    plantuml-c4 # UML diagrams from text
-    # emacsPackages.org-roam-ui
-    # hovercraft # impress.js presentations
-    # emanote # Structured view text notes
-    # logseq # Outliner note taking
-    # rnote
-    # appflowy
-    pdfpc # PDF Presentator Console
-    weylus # Phone as graphic tablet
-    quarto # Scientific and technical publishing system
 
     # Audio & Music
     spotify # PROPRIETARY music streaming
     playerctl # MPRIS media players control
-    # spotify-tui
 
     # Image & Video # TODO find better image viewer
     imv # Image viewer
@@ -51,29 +46,6 @@
     # Emulation
     wine # Execute Window$ programs
     winetricks # Execute Window$ programs
-
-    # Languages
-    ltex-ls # Grammar language server
-    hunspell # Natural language spell checker
-    hunspellDicts.fr-any # For french
-    hunspellDicts.en_US # For english
-    hunspellDicts.en_GB-ise # For english
-    hunspellDicts.es_ES # For spanish
-    typst # Document processor
-    typst-lsp # Document processor LSP
-    typstfmt # Typst formatter
-    marksman # Markdown
-
-    # Misc
-    # fontforge # Font editor
-    # languagetool # Grammar checking, now using the LSP version
-    # qbittorrent # Bittorrent client
-    # transmission-qt # Bittorrent client
-    # filezilla # FTP client
-    # xdg-utils # Mime type based file oppening # TEST if relevant
-    # handlr # Default app launcher # TEST if relevant
-    # jot # Notes-graph manager
-    # zk # Zettelkasten
   ];
 
   fonts.fontconfig.enable = true;

@@ -137,7 +137,7 @@
             ./home/module/photo.nix # Photo & Images creation
             ./home/module/model.nix # 3D and schematics modeling and hardware creation
             ./home/module/social.nix # Social interaction
-            ./home/module/media.nix # Media consuming
+            ./home/module/media # Media consuming and editing
             ./home/module/lapce # New text editor to test
           ];
         };
@@ -159,7 +159,7 @@
             ./home/module/photo.nix # Photo & Images creation
             ./home/module/model.nix # 3D and schematics modeling and hardware creation
             ./home/module/social.nix # Social interaction
-            ./home/module/media.nix # Media consuming
+            ./home/module/media # Media consuming and editing
             # ./home/module/compositing.nix # 3D and special effects
             ./home/module/lapce # New text editor to test
           ];

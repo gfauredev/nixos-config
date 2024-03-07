@@ -2,7 +2,7 @@
   imports = [
     ../default.nix
     ../module/pulsemixer
-    ../module/knowledge
+    ../module/organization
     # ../module/xplr
   ];
 
