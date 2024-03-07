@@ -35,7 +35,10 @@ fi
 # Go through each parameters and act accordingly
 case "$1" in
   "rebuild")
-    [ "$2" ] || home && exit
+    if ! [ "$2" ]; then
+      home
+      exit
+    fi
     case "$2" in
       "system")
         system || exit
