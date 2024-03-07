@@ -27,6 +27,11 @@ edit() {
 
 cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
 
+if [ "$#" -eq 0 ]; then
+  cd home || exit
+  edit && home ; exit
+fi
+
 # Go through each parameters and act accordingly
 case "$1" in
   "rebuild")
@@ -66,11 +71,6 @@ case "$1" in
     edit -m "$@" && home ; exit
     ;;
 esac
-
-if [ "$#" -eq 0 ]; then
-  cd home || exit
-  edit && home ; exit
-fi
 
 for param in "$@"; do
   case $param in
