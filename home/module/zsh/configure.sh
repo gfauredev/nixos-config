@@ -14,8 +14,7 @@ system_rebuild() {
 }
 
 system() {
-  $EDITOR system && git commit system
-  system_rebuild || return
+  $EDITOR system && git commit system && system_rebuild || return
 }
 
 home_rebuild() {
@@ -27,8 +26,7 @@ home_rebuild() {
 }
 
 home() {
-  $EDITOR home && git commit home "$@"
-  home_rebuild || return
+  $EDITOR home && git commit home "$@" && home_rebuild || return
 }
 
 cd "$CONFIG_DIR" || exit # Change to the config directory
