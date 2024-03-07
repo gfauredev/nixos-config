@@ -62,7 +62,6 @@
   };
 
   services = {
-    # TODO some may belong to home config
     fwupd.enable = lib.mkDefault true; # Update firmwares
     thermald.enable = lib.mkDefault true; # Keep cool
     udisks2 = {
@@ -98,6 +97,10 @@
       extraRules = ''
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
+    };
+    languagetool = {
+      enable = true; # Advanced spell checking server
+      public = false;
     };
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
