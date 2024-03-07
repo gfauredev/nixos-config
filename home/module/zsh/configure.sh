@@ -36,29 +36,33 @@ cd "$CONFIG_DIR" || exit # Change to the config directory
 # Go through each parameters and act accordingly
 case "$1" in
   "rebuild")
+    [ "$2" ] && home_rebuild && exit
     case "$2" in
       "system")
-        system_rebuild
+        system_rebuild || exit
         ;;
       "all")
-        system_rebuild && home_rebuild
+        system_rebuild && home_rebuild || exit
         ;;
-      "*")
-        home_rebuild
+      *)
+        home_rebuild || exit
         ;;
     esac
-      exit
+      shift 2
     ;;
   "system")
       system || exit
+      shift
     ;;
   "home")
       home || exit
+      shift
     ;;
   "all")
       system && home || exit
+      shift
     ;;
-  "*") # If parameters are a message, update home with this commit message and exit
+  *) # If parameters are a message, update home with this commit message and exit
     home -m "$@"
     exit
     ;;
@@ -69,7 +73,6 @@ if [ "$#" -eq 0 ]; then
   exit
 fi
 
-shift
 for param in "$@"; do
   case $param in
     "push")
