@@ -9,11 +9,13 @@
         ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
       extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
+      configure = pkgs.writeShellScriptBin "cfg" "${lib.readFile ./configure.sh}";
     in
     with pkgs; [
       # Custom scripts
       smart-terminal # Open a terminal quickly with first parameter always cd
       extract # Extract any compressed file
+      configure # Configure this flake config
       # TODO Eventually place below in a shell/default.nix
       trash-cli # Manage a trash from CLI
       ripgrep-all # ripgrep for non-text files
