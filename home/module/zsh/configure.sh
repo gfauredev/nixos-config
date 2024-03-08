@@ -75,6 +75,7 @@ case "$1" in
     shift
     ;;
   *) # If parameters are a message, update home with this commit message and exit
+    cd home || exit
     edit -m "$*" && home ; exit
     ;;
 esac

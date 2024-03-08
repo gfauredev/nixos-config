@@ -22,7 +22,7 @@ Once booted, get this git repo with the command `clone` (or `clone-ssh` via SSH)
 
 ### _1._ Partition, encrypt, format disks (according to partitioning/ templates)
 
-Use the tools `fdisk` or `cfdisk` to partition and label disks properly.
+Use a tool like `fdisk` or `cfdisk` to partition and label disks properly.
 
 Then use `cryptsetup …` to encrypt the root partition if the choosen
 filesystem doesn’t support its own encryption.
