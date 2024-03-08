@@ -34,5 +34,7 @@ md () {
 # Delete some annoying autocreated directories in user home
 UNWANTED=("Downloads" "intelephense" "pt")
 for dir in "${UNWANTED[@]}"; do
-  rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
+  if [ -d "${HOME:?}/$dir" ]; then
+    rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
+  fi
 done
