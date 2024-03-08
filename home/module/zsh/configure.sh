@@ -70,8 +70,12 @@ case "$1" in
     git push || exit
     shift
     ;;
+  "pull")
+    git pull || exit
+    shift
+    ;;
   *) # If parameters are a message, update home with this commit message and exit
-    edit -m "$@" && home ; exit
+    edit -m "$*" && home ; exit
     ;;
 esac
 
