@@ -3,7 +3,7 @@
 empty_cr () {
   if [[ -z $BUFFER ]]; then
     clear -x
-    date; echo
+    date; echo -n
     # echo "Why I am doing what I do ?"
     if [ "$(hostnamectl chassis)" = "laptop" ]; then
       acpi -b
