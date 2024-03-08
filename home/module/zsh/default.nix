@@ -1,4 +1,4 @@
-{ lib, pkgs, term, ... }: {
+{ lib, pkgs, term, location, ... }: {
   home.packages =
     let
       smart-terminal = pkgs.writeShellScriptBin "t" ''
@@ -9,7 +9,10 @@
         ${term.cmd} ${term.cd} $WD $EXEC & disown
       '';
       extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
-      configure = pkgs.writeShellScriptBin "cfg" "${lib.readFile ./configure.sh}";
+      configure = pkgs.writeShellScriptBin "cfg" ''
+        CONFIG_DIR="${location}"
+        ${lib.readFile ./configure.sh}
+      '';
     in
     with pkgs; [
       # Custom scripts

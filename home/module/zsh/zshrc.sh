@@ -1,10 +1,11 @@
 ########## Often used, small functions ##########
-empty_cr () { # Clear screen & give info on empty line CR
+# Clear screen & give info on empty line CR
+empty_cr () {
   if [[ -z $BUFFER ]]; then
     clear -x
-    echo $(date)
+    date; echo
     # echo "Why I am doing what I do ?"
-    if [ $(hostnamectl chassis) = "laptop" ]; then
+    if [ "$(hostnamectl chassis)" = "laptop" ]; then
       acpi -b
     fi
     echo
@@ -16,6 +17,9 @@ empty_cr () { # Clear screen & give info on empty line CR
   fi
   zle accept-line
 }
+# Define function ran on empty carriage return
+zle -N empty_cr
+bindkey '^M' empty_cr
 
 # Open with default MIME handler & detach from term
 open () {
@@ -24,18 +28,11 @@ open () {
 
 # Make directory(ies) & cd into it (the first)
 md () {
-  mkdir -pv "$@" && cd "$1"
+  mkdir -pv "$@" && cd "$1" || return
 }
 
-########## Define function ran on empty carriage return ##########
-zle -N empty_cr
-bindkey '^M' empty_cr
-
-# Create temporary downloads dir
-# [ -d /run/user/$UID/dl ] || mkdir -m 700 /run/user/$UID/dl
-# [ -h $XDG_DOWNLOAD_DIR ] || ln -s /run/user/$UID/dl $XDG_DOWNLOAD_DIR
-# Delete some annoying autocreated things
-[ -d $HOME/Downloads ] && rmdir $HOME/Downloads # Default downloads dir
-[ -d $HOME/intelephense ] && rmdir $HOME/intelephense # PHP LSP
-# [ -d $HOME/pt ] && \rm -fr $HOME/pt # Cisco Packet Tracer
-# [ -d $HOME/.bash_history ] && \rm $HOME/.bash_history # Bash history
+# Delete some annoying autocreated directories in user home
+UNWANTED=("Downloads" "intelephense" "pt")
+for dir in "${UNWANTED[@]}"; do
+  rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
+done

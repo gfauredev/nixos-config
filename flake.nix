@@ -128,6 +128,7 @@
           note = "wezterm start --class note"; # Note
           menu = "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
         };
+        location = "$HOME/.config/flake"; # This flake location
       in
       {
         "gf@griffin" = home-manager.lib.homeManagerConfiguration {
@@ -135,6 +136,7 @@
             inherit inputs;
             hwmon = "4/temp3_input";
             term = wezterm;
+            location = location;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
@@ -157,6 +159,7 @@
             inherit inputs;
             hwmon = "2/temp3_input";
             term = wezterm;
+            location = location;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
@@ -180,6 +183,7 @@
             inherit inputs;
             hwmon = "2/temp3_input"; # TEST
             term = wezterm;
+            location = location;
           };
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [

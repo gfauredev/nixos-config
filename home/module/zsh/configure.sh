@@ -1,5 +1,3 @@
-CONFIG_DIR="$HOME/life.large/configuration.git/" # hardcoded configuration location
-
 DEFAULT_CONFIG_DIR="$XDG_CONFIG_HOME/flake/"
 
 system() {
