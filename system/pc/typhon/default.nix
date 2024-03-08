@@ -87,7 +87,6 @@
   security = {
     pam.services = {
       swaylock = { };
-      i3lock = { };
     };
   };
 

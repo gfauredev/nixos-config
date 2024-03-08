@@ -68,6 +68,17 @@
           ./system/virtualization.nix
         ];
       };
+      work = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          lanzaboote.nixosModules.lanzaboote # Secure boot
+          nixos-hardware.nixosModules.common-pc # Hardware
+          ./system/pc/work # PC used at work
+          ./system/user/gf.nix # Myself
+          ./system/virtualization.nix
+        ];
+      };
       ##### Servers #####
       cerberus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -161,6 +172,22 @@
             ./home/module/social.nix # Social interaction
             ./home/module/media # Media consuming and editing
             # ./home/module/compositing.nix # 3D and special effects
+            ./home/module/lapce # New text editor to test
+          ];
+        };
+        "gf@work" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = {
+            inherit inputs;
+            hwmon = "2/temp3_input"; # TEST
+            term = wezterm;
+          };
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./home/gf # Myself’s home
+            ./home/module/remap # XCompose & Inputs remaps
+            ./home/module/hyprland # WM
+            ./home/module/virtualization.nix # Virtualization
+            ./home/module/media # Media consuming and editing
             ./home/module/lapce # New text editor to test
           ];
         };
