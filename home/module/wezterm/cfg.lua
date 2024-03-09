@@ -6,6 +6,7 @@ cfg = {
   font = wezterm.font "FiraCode Nerd Font",
   font_size = 14,
   enable_tab_bar = false,
+  audible_bell = "Disabled",
   -- window_background_opacity = 0.8,
   window_close_confirmation = "NeverPrompt",
   scrollback_lines = 5000,
