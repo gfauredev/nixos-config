@@ -10,9 +10,6 @@ lsp.bashls.setup {
 lsp.nil_ls.setup {
   capabilities = capabilities
 }
-lsp.rnix.setup {
-  capabilities = capabilities
-}
 lsp.lua_ls.setup {
   capabilities = capabilities
 }
