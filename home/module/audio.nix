@@ -18,7 +18,7 @@
     # lsp-plugins # Collection of audio plugins
     calf # Collection of audio plugins
     # infamousPlugins # Collection of audio plugins
-    surge-XT # Great hybrid substractive synth
+    # surge-XT # Great hybrid substractive synth
     # surge # Great hybrid substractive synth (old version)
     drumgizmo # High quality drums sampler
     # Misc
