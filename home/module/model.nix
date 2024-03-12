@@ -12,7 +12,7 @@
     # solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
 
-    super-slicer # Popular 3D printer slicer, fork of prusa-slicer
+    # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
     # cura # Popular 3D printer slicer
   ];
 
