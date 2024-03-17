@@ -31,7 +31,4 @@ let
       };
     };
   blenderWithPySlvs = pkgs.blender.withPackages (p: [ (py-slvs p) ]);
-in
-{
-  home.packages = [ blenderWithPySlvs ];
-}
+in { home.packages = [ blenderWithPySlvs ]; }

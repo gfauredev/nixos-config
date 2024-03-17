@@ -1,8 +1,9 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    tree-sitter-grammars.tree-sitter-typst
-    # tree-sitter-grammars.tree-sitter-latex
-  ];
+  home.packages = with pkgs;
+    [
+      tree-sitter-grammars.tree-sitter-typst
+      # tree-sitter-grammars.tree-sitter-latex
+    ];
 
   # nixpkgs.overlays = [
   #   inputs.neovim-nightly-overlay.overlays.default

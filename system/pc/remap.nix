@@ -1,9 +1,10 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    keyd # Access commands and man pages
-    # keymapper # Context-aware key remapper
-    # autokey # Desktop automation utility for Linux and X11
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      keyd # Access commands and man pages
+      # keymapper # Context-aware key remapper
+      # autokey # Desktop automation utility for Linux and X11
+    ];
 
   services = {
     keyd = {
@@ -35,13 +36,12 @@
       };
     };
     input-remapper = {
-      enable = false; # Easy tool to change mapping of input device buttons (Python)
+      enable =
+        false; # Easy tool to change mapping of input device buttons (Python)
     };
     interception-tools = {
       enable = false;
-      plugins = with pkgs; [
-        interception-tools-plugins.caps2esc
-      ];
+      plugins = with pkgs; [ interception-tools-plugins.caps2esc ];
       udevmonConfig = ''
         - JOB: ${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE
           DEVICE:

@@ -1,7 +1,5 @@
 { ... }: {
-  imports = [
-    ./default.nix
-  ];
+  imports = [ ./default.nix ];
 
   programs = {
     waybar = {

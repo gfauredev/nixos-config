@@ -1,7 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [
-    ../default.nix
-  ];
+  imports = [ ../default.nix ];
 
   services = {
     # upower = { # TEST revelance, taking below udev rules into account
@@ -42,11 +40,7 @@
     cpuFreqGovernor = lib.mkForce "powersave";
   };
 
-  programs = {
-    light.enable = true;
-  };
+  programs = { light.enable = true; };
 
-  environment.systemPackages = with pkgs; [
-    powertop
-  ];
+  environment.systemPackages = with pkgs; [ powertop ];
 }

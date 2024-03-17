@@ -4,16 +4,13 @@
 # to match this template (notably replace UUIDs)
 
 { ... }: {
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/UUID";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" "noatime" ];
-    };
-
-  boot.initrd.luks.devices = {
-    "cryptroot".device = "/dev/disk/by-uuid/UUID";
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/UUID";
+    fsType = "btrfs";
+    options = [ "subvol=root" "compress=zstd" "noatime" ];
   };
+
+  boot.initrd.luks.devices = { "cryptroot".device = "/dev/disk/by-uuid/UUID"; };
 
   fileSystems = {
     "/boot" = {

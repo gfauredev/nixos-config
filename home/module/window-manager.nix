@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./launcher
-  ];
+  imports = [ ./launcher ];
 
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
@@ -47,9 +45,7 @@
     '';
     swaylock = {
       enable = true;
-      settings = {
-        indicator-idle-visible = true;
-      };
+      settings = { indicator-idle-visible = true; };
     };
     rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };

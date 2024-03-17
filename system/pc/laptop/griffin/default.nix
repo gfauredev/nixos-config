@@ -1,14 +1,9 @@
 { ... }: {
-  imports = [
-    ./hardware.nix
-    ../default.nix
-  ];
+  imports = [ ./hardware.nix ../default.nix ];
 
   nix = {
     settings = {
-      substituters = [
-        "https://cache.nixos.org/"
-      ];
+      substituters = [ "https://cache.nixos.org/" ];
       trusted-substituters = [
         "http://192.168.1.4:5000" # Desktop as local binary cache
       ];
@@ -19,9 +14,7 @@
     };
   };
 
-  hardware = {
-    sensor.iio.enable = true;
-  };
+  hardware = { sensor.iio.enable = true; };
 
   boot = {
     # extraModprobeConfig = ''
@@ -50,11 +43,7 @@
     wireguard.enable = true;
   };
 
-  security = {
-    pam.services = {
-      swaylock = { };
-    };
-  };
+  security = { pam.services = { swaylock = { }; }; };
 
   services = {
     fwupd = {

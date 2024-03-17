@@ -20,10 +20,7 @@
 
   i18n = {
     # Locales internatinalization properties
-    supportedLocales = [
-      "en_US.UTF-8/UTF-8"
-      "fr_FR.UTF-8/UTF-8"
-    ];
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" ];
     defaultLocale = "en_US.UTF-8"; # Set localization settings
     extraLocaleSettings = {
       LC_NUMERIC = "fr_FR.UTF-8";
@@ -43,7 +40,8 @@
 
   systemd.services.unmount-boot = {
     description = "Unmount /boot at boot as useless once booted";
-    script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
+    script =
+      "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
     wantedBy = [ "multi-user.target" ];
   };
 
@@ -54,7 +52,8 @@
     after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      ExecStart =
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
@@ -117,9 +116,7 @@
 
   programs = {
     dconf.enable = true; # Recommended by virtualization wiki
-    gnupg = {
-      agent.enable = true;
-    };
+    gnupg = { agent.enable = true; };
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
@@ -167,9 +164,7 @@
   };
 
   # Realtime & music production related improvements
-  musnix = {
-    enable = true;
-  };
+  musnix = { enable = true; };
 
   # Specialisation with RT kernel & performance governor by default
   # specialisation.realtime.configuration = {

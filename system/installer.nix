@@ -34,8 +34,10 @@
 
   environment = {
     shellAliases = {
-      clone = "git clone https://gitlab.com/gfauredev/nixos-config.git"; # Easilly clone this repo
-      clone-ssh = "git clone git@gitlab.com:gfauredev/nixos-config.git"; # Easilly clone this repo with SSH
+      clone =
+        "git clone https://gitlab.com/gfauredev/nixos-config.git"; # Easilly clone this repo
+      clone-ssh =
+        "git clone git@gitlab.com:gfauredev/nixos-config.git"; # Easilly clone this repo with SSH
     };
   };
 

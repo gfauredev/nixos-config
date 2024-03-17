@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./default.nix
-  ];
+  imports = [ ./default.nix ];
 
   wayland.windowManager.hyprland = {
     # enableNvidiaPatches = true;
@@ -28,8 +26,14 @@
 
   services.swayidle = {
     events = [
-      { event = "before-sleep"; command = "${pkgs.playerctl}/bin/playerctl pause"; }
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 000000"; } # FIXME Typhon’s suspends crashes Hyprland
+      {
+        event = "before-sleep";
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+      } # FIXME Typhon’s suspends crashes Hyprland
     ];
     timeouts = [
       {

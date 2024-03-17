@@ -60,9 +60,7 @@
   };
 
   programs = {
-    mpv = {
-      enable = true;
-    };
+    mpv = { enable = true; };
     zathura = {
       enable = true;
       extraConfig = ''

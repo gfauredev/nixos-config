@@ -28,7 +28,8 @@
 
       BROWSER = "brave"; # TODO this directly in nix
 
-      TYPST_FONT_PATHS = "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
+      TYPST_FONT_PATHS =
+        "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -41,9 +42,7 @@
   services = {
     syncthing = {
       enable = true;
-      extraOptions = [
-        "--no-default-folder"
-      ];
+      extraOptions = [ "--no-default-folder" ];
     };
     # System-wide text expander # FIXME
     # espanso = {
@@ -89,9 +88,7 @@
       userName = "Guilhem Fauré";
       userEmail = "pro@gfaure.eu";
     };
-    gpg = {
-      enable = true;
-    };
+    gpg = { enable = true; };
     # TODO set an explorer that can open & preview every file
     broot = {
       enable = true; # TEST which explorer is better
@@ -105,9 +102,7 @@
 
   xdg = {
     enable = true;
-    mime = {
-      enable = true;
-    };
+    mime = { enable = true; };
     mimeApps = {
       enable = true;
       defaultApplications = {

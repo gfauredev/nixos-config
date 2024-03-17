@@ -1,22 +1,18 @@
 { lib, pkgs, term, ... }: {
-  imports = [
-    ../window-manager.nix
-  ];
+  imports = [ ../window-manager.nix ];
 
-  home.packages =
-    let
-      wl-mirror-function = pkgs.writeShellScriptBin "mirror" ''
-        if [ -n "$1" ]; then
-          wl-mirror $1 &
-        else
-          wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) &
-        fi
-      '';
-    in
-    [
-      pkgs.wl-mirror # Mirror wayland output
-      wl-mirror-function # Quicker usage of wl-mirror
-    ];
+  home.packages = let
+    wl-mirror-function = pkgs.writeShellScriptBin "mirror" ''
+      if [ -n "$1" ]; then
+        wl-mirror $1 &
+      else
+        wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) &
+      fi
+    '';
+  in [
+    pkgs.wl-mirror # Mirror wayland output
+    wl-mirror-function # Quicker usage of wl-mirror
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -86,7 +82,7 @@
         browser-3 = "firefox";
         pim = "thunderbird";
         monitor = "btm";
-        in [
+      in [
         # Move focus
         "$mod, c, movefocus, l" # Move left
         "$mod, t, movefocus, d" # Move down
@@ -110,10 +106,12 @@
         "$mod, b, exec, hyprctl clients | grep -i 'class: browser' || ${browser-1}" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
-        "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\")' || ${launch}" # Auto open laucher
+        ''
+          $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch}'' # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, p, workspace, name:pim" # Personal information management workspace
-        "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || ${pim}" # Auto open personal information management apps
+        ''
+          $mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}'' # Auto open personal information management apps
         "$mod SHIFT, p, movetoworkspace, name:pim" # Personal information management workspace
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
@@ -124,21 +122,25 @@
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
-        "$mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"etc\")' || ${launch}" # Auto open laucher
+        ''
+          $mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch}'' # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"ext\")' || ${launch}" # Auto open laucher
+        ''
+          $mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch}'' # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
-        "$mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"cli\" and (.class | test(\"${term.name}\";\"i\")))' || ${term.cmd}" # Auto open CLI if not running
+        ''
+          $mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${term.name}";"i")))' || ${term.cmd}'' # Auto open CLI if not running
         "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
         "$mod, n, workspace, name:not" # Notetaking workspace
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.note} zsh -ic 'br;zsh'" # Start a term with explorer
         # "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.note} $EDITOR" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
-        "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || ${launch}" # Auto open laucher
+        ''
+          $mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch}'' # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         "$mod CONTROL, m, exec, zsh -ic 'mirror'" # Messaging
         # Additional monitor workspaces (Right)
@@ -148,14 +150,16 @@
         "$mod SHIFT, h, movetoworkspace, name:hdm" # HDMI
         # Workspaces (Special)
         ", XF86AudioMedia, workspace, name:med" # Media ws
-        ", XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
+        ''
+          , XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "Spotify")' || spotify'' # Auto open main media player
         "SHIFT, XF86AudioMedia, exec, ${term.menu} pulsemixer" # Open audio mixer
         "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
         # "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         ", XF86Tools, workspace, name:med" # Media ws
-        ", XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
+        ''
+          , XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "Spotify")' || spotify'' # Auto open main media player
         "SHIFT, XF86Tools, exec, ${term.menu} pulsemixer" # Open audio mixer
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
@@ -203,8 +207,9 @@
         ", XF86AudioPrev, exec, playerctl previous"
         "SHIFT, XF86AudioPrev, exec, playerctl previous -p spotify"
         # Misc
-        ", Print, exec, grim -g \"$(slurp)\" $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
-        "CONTROL, Print, exec, grim -g \"$(slurp)\" - | wl-copy"
+        ''
+          , Print, exec, grim -g "$(slurp)" $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')''
+        ''CONTROL, Print, exec, grim -g "$(slurp)" - | wl-copy''
         "SHIFT, Print, exec, grim $HOME/data/image/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
         "$mod, k, exec, hyprpicker --autocopy"
         ", XF86RFKill, exec, rfkill toggle all"
@@ -240,9 +245,7 @@
         "SHIFT, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
         "CONTROL SHIFT, XF86AudioLowerVolume, exec, set-volume @DEFAULT_AUDIO_SINK@ 1%-"
       ];
-      bindm = [
-        "$mod, mouse:272, movewindow"
-      ];
+      bindm = [ "$mod, mouse:272, movewindow" ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
       general = {
@@ -255,7 +258,6 @@
         "col.inactive_border" = "rgb(000000)";
       };
 
-
       group = {
         "col.border_active" = "rgb(e6d4c2)";
         "col.border_inactive" = "rgb(000000)";
@@ -265,9 +267,7 @@
       };
 
       # See https://wiki.hyprland.org/Configuring/Variables
-      gestures = {
-        workspace_swipe = true;
-      };
+      gestures = { workspace_swipe = true; };
 
       decoration = {
         rounding = 8;

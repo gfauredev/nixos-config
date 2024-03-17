@@ -1,5 +1,5 @@
 { ... }: {
-# TODO set an explorer that can open & preview every file
+  # TODO set an explorer that can open & preview every file
   programs = {
     xplr = {
       enable = true; # CLI file explorer

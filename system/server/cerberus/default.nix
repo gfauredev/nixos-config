@@ -1,7 +1,5 @@
 { ... }: {
-  imports = [
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   boot = {
     loader = {
@@ -33,9 +31,7 @@
         PasswordAuthentication = false;
       };
     };
-    fail2ban = {
-      enable = true;
-    };
+    fail2ban = { enable = true; };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

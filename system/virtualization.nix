@@ -2,14 +2,10 @@
   networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
 
   virtualisation = {
-    libvirtd = {
-      enable = true;
-    };
+    libvirtd = { enable = true; };
     docker = {
       enable = true;
-      extraPackages = with pkgs; [
-        docker-compose
-      ];
+      extraPackages = with pkgs; [ docker-compose ];
     };
     virtualbox.host = {
       enable = false;

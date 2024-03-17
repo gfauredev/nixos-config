@@ -5,10 +5,11 @@
     printing = {
       enable = true; # Enable CUPS to print documents
       cups-pdf.enable = true; # Printing to PDF
-      drivers = with pkgs; [
-        # hplip
-        hplipWithPlugin
-      ];
+      drivers = with pkgs;
+        [
+          # hplip
+          hplipWithPlugin
+        ];
     };
     avahi = {
       # Discover printers & scanners on network
@@ -21,7 +22,7 @@
   hardware = {
     sane = {
       enable = lib.mkDefault true;
-      extraBackends = with pkgs;[
+      extraBackends = with pkgs; [
         sane-airscan
         hplipWithPlugin
         # sane-backends

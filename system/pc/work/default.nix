@@ -1,9 +1,6 @@
 # Work PC
 { pkgs, ... }: {
-  imports = [
-    ./hardware.nix
-    ../default.nix
-  ];
+  imports = [ ./hardware.nix ../default.nix ];
 
   boot = {
     loader = {
@@ -54,11 +51,7 @@
     # TODO IPv6 config
   };
 
-  security = {
-    pam.services = {
-      swaylock = { };
-    };
-  };
+  security = { pam.services = { swaylock = { }; }; };
 
   services = {
     openssh = {
@@ -69,9 +62,7 @@
         PasswordAuthentication = true;
       };
     };
-    fail2ban = {
-      enable = true;
-    };
+    fail2ban = { enable = true; };
     # xserver.videoDrivers = [ "nvidia" ];
   };
 

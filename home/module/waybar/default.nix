@@ -7,25 +7,15 @@
           layer = "top";
           position = "bottom";
 
-          modules-left = [
-            "battery"
-            "temperature"
-            "cpu"
-            "memory"
-            "network"
-            "pulseaudio"
-          ];
+          modules-left =
+            [ "battery" "temperature" "cpu" "memory" "network" "pulseaudio" ];
           modules-center = [
             "hyprland/workspaces"
             "hyprland/window"
             "sway/workspaces"
             "sway/window"
           ];
-          modules-right = [
-            "tray"
-            "mpris"
-            "clock"
-          ];
+          modules-right = [ "tray" "mpris" "clock" ];
 
           # margin = "4";
           margin = "2 0 0 0";
@@ -139,9 +129,7 @@
             tooltip = false;
           };
 
-          tray = {
-            spacing = 3;
-          };
+          tray = { spacing = 3; };
 
           mpris = {
             format = lib.mkDefault "{player_icon} {status_icon} {dynamic}";

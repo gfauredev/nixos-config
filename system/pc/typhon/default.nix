@@ -1,8 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [
-    ./hardware.nix
-    ../default.nix
-  ];
+  imports = [ ./hardware.nix ../default.nix ];
 
   hardware = {
     opengl = {
@@ -38,7 +35,8 @@
 
   systemd.services = {
     fix-suspend = {
-      description = "Send command to kernel to ignore strange input preventing suspend";
+      description =
+        "Send command to kernel to ignore strange input preventing suspend";
       script = "echo GPP0 > /proc/acpi/wakeup";
       wantedBy = [ "multi-user.target" ];
     };
@@ -63,12 +61,10 @@
     # wireless.enable = true;
     interfaces = {
       wlp6s0 = {
-        ipv6.addresses = [
-          {
-            address = "2a01:e0a:517:3571::1"; # WARNING Access point dependent
-            prefixLength = 64;
-          }
-        ];
+        ipv6.addresses = [{
+          address = "2a01:e0a:517:3571::1"; # WARNING Access point dependent
+          prefixLength = 64;
+        }];
         # ipv4.addresses = [
         #   {
         #     address = "192.168.1.21"; # FIXME
@@ -84,17 +80,14 @@
     # TODO IPv6 config
   };
 
-  security = {
-    pam.services = {
-      swaylock = { };
-    };
-  };
+  security = { pam.services = { swaylock = { }; }; };
 
-  environment.systemPackages = with pkgs; [
-    # rustdesk-server # Remote desktop # TEST against steam streaming
-    # sunshine # Game streaming server # TEST against rustdesk
-    mesa
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      # rustdesk-server # Remote desktop # TEST against steam streaming
+      # sunshine # Game streaming server # TEST against rustdesk
+      mesa
+    ];
 
   services = {
     # fwupd = {
@@ -108,9 +101,7 @@
         PasswordAuthentication = false;
       };
     };
-    fail2ban = {
-      enable = true;
-    };
+    fail2ban = { enable = true; };
     xserver.videoDrivers = [ "nvidia" ];
     nix-serve = {
       enable = true; # Enable distribution of nix build cache

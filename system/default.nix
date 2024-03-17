@@ -5,7 +5,8 @@
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     # add inputs to the system's legacy channels
     # Making legacy nix commands consistent as well
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
+      config.nix.registry;
 
     gc = {
       automatic = lib.mkDefault true;
@@ -36,28 +37,27 @@
 
   time = {
     timeZone = lib.mkDefault "Europe/Paris";
-    hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Windows
+    hardwareClockInLocalTime =
+      lib.mkDefault false; # True for compatibility with Windows
   };
 
-  networking =
-    let
-      dns = [
-        #dns0.eu
-        "193.110.81.0"
-        "2a0f:fc80::"
-        "185.253.5.0"
-        "2a0f:fc81::"
-      ];
-    in
-    {
-      firewall.enable = lib.mkDefault true;
-      wireguard.enable = lib.mkDefault true;
-      networkmanager = {
-        enable = lib.mkDefault true;
-        appendNameservers = dns;
-      };
-      nameservers = dns;
+  networking = let
+    dns = [
+      #dns0.eu
+      "193.110.81.0"
+      "2a0f:fc80::"
+      "185.253.5.0"
+      "2a0f:fc81::"
+    ];
+  in {
+    firewall.enable = lib.mkDefault true;
+    wireguard.enable = lib.mkDefault true;
+    networkmanager = {
+      enable = lib.mkDefault true;
+      appendNameservers = dns;
     };
+    nameservers = dns;
+  };
 
   hardware = {
     bluetooth = {
@@ -73,9 +73,7 @@
 
   users.mutableUsers = lib.mkDefault true; # Set passwords imperatively
 
-  services = {
-    nfs.server.enable = lib.mkDefault true;
-  };
+  services = { nfs.server.enable = lib.mkDefault true; };
 
   programs = {
     openvpn3.enable = lib.mkDefault true;

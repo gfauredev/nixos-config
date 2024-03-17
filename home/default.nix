@@ -61,15 +61,9 @@
       lfs.enable = true;
       delta.enable = true;
       extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-        pull = {
-          rebase = false;
-        };
-        lfs = {
-          locksverify = true;
-        };
+        init = { defaultBranch = "main"; };
+        pull = { rebase = false; };
+        lfs = { locksverify = true; };
         filter.lfs = {
           required = true;
           clean = "git-lfs clean -- %f";
@@ -80,9 +74,7 @@
           recurse = true;
           fetchjobs = 8;
         };
-        credential = {
-          helper = "store";
-        };
+        credential = { helper = "store"; };
       };
       ignores = [
         "*.pdf"
@@ -153,9 +145,7 @@
       # extraConfig = ''
       # '';
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-    };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
       # color-scheme = "prefer-dark";
