@@ -103,7 +103,7 @@
         "$mod CONTROL SHIFT, g, changegroupactive, b" # Toggle focus in group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
-        "$mod, b, exec, hyprctl clients | grep -i 'class: browser' || ${browser-1}" # Auto open browser if not running
+        "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser-1}" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
         ''
