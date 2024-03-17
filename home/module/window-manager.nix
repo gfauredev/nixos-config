@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ./rofi
+    ./launcher
   ];
 
   home.packages = with pkgs; [

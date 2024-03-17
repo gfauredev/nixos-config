@@ -77,7 +77,16 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
-      bind = [
+      bind = let
+        launch = "rofi -show drun";
+        launch-full = "rofi -show combi -combi-modes";
+        launch-calc = "rofi -show calc";
+        browser-1 = "brave";
+        browser-2 = "nyxt";
+        browser-3 = "firefox";
+        pim = "thunderbird";
+        monitor = "btm";
+        in [
         # Move focus
         "$mod, c, movefocus, l" # Move left
         "$mod, t, movefocus, d" # Move down
@@ -98,27 +107,27 @@
         "$mod CONTROL SHIFT, g, changegroupactive, b" # Toggle focus in group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
-        "$mod, b, exec, hyprctl clients | grep -i 'class: brave-browser' || brave" # Auto open browser if not running
+        "$mod, b, exec, hyprctl clients | grep -i 'class: browser' || ${browser-1}" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
-        "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\")' || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"aud\")' || ${launch}" # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, p, workspace, name:pim" # Personal information management workspace
-        "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || thunderbird" # Auto open personal information management apps
+        "$mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"pim\")' || ${pim}" # Auto open personal information management apps
         "$mod SHIFT, p, movetoworkspace, name:pim" # Personal information management workspace
         "$mod, o, workspace, name:opn" # Open (a file)
         "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
         "$mod, i, workspace, name:top" # Informations / monItorIng
-        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.monitoring} btm" # Auto open bottom if not running
+        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${term.monitoring} ${monitor}" # Auto open bottom if not running
         # /!\ Cannot move to Monitoring worspace
         # Additional workspaces (Left)
         "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
-        "$mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"etc\")' || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"etc\")' || ${launch}" # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
-        "$mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"ext\")' || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"ext\")' || ${launch}" # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
@@ -129,7 +138,7 @@
         # "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.note} $EDITOR" # Auto open text editor
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
-        "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || rofi -show-icons -show drun" # Auto open laucher
+        "$mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"msg\")' || ${launch}" # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         "$mod CONTROL, m, exec, zsh -ic 'mirror'" # Messaging
         # Additional monitor workspaces (Right)
@@ -144,29 +153,29 @@
         "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
         "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
-        "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
+        # "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         ", XF86Tools, workspace, name:med" # Media ws
         ", XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == \"Spotify\")' || spotify" # Auto open main media player
         "SHIFT, XF86Tools, exec, ${term.menu} pulsemixer" # Open audio mixer
         "CONTROL, XF86Tools, workspace, name:med" # Media ws
         "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
         "CONTROL SHIFT, XF86Tools, workspace, name:med" # Media ws
-        "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
+        # "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${term.cmd}"
         # Launch
-        "$mod, SPACE, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji"
-        "$mod CONTROL, SPACE, exec, rofi -show calc"
-        "$mod SHIFT, SPACE, exec, rofi -show-icons -show top"
-        # Launch with special media keys TODO use them better
-        ", Menu, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Menu special key
-        ", XF86MenuKB, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Menu special key
-        "SUPER, j, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # F9 on Framework Laptop
-        ", XF86Mail, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Mail media key
-        ", XF86HomePage, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Home media key
-        ", XF86Calculator, exec, rofi -show calc" # Calculator media key
-        ", XF86Search, exec, rofi -show-icons -show combi -combi-modes window,drun,ssh,emoji" # Search media key
+        "$mod, SPACE, exec, ${launch-full}"
+        "$mod CONTROL, SPACE, exec, ${launch-calc}"
+        "$mod SHIFT, SPACE, exec, ${launch-calc}"
+        # Launch with special media keys
+        ", Menu, exec, ${launch-full}" # Menu special key
+        ", XF86MenuKB, exec, ${launch-full}" # Menu special key
+        "SUPER, j, exec, ${launch-full}" # F9 on Framework Laptop
+        ", XF86Mail, exec, ${launch-full}" # Mail media key
+        ", XF86HomePage, exec, ${launch-full}" # Home media key
+        ", XF86Calculator, exec, ${launch-calc}" # Calculator media key
+        ", XF86Search, exec, ${launch-full}" # Search media key
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
@@ -176,9 +185,8 @@
         "$mod, comma, exec, swaylock -f -c 000000" # Black screen lock
         "$mod SHIFT, comma, exec, systemctl suspend"
         # Web
-        "$mod CONTROL, b, exec, nyxt" # Alternative browser
-        # "$mod SHIFT, b, exec, chromium" # Alternative browser
-        "$mod CONTROL SHIFT, b, exec, firefox" # Alternative browser
+        "$mod CONTROL, b, exec, ${browser-2}" # Alternative browser
+        "$mod CONTROL SHIFT, b, exec, ${browser-3}" # Alternative browser
         # Audio
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SHIFT, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
