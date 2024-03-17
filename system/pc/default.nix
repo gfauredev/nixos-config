@@ -119,7 +119,6 @@
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg = {
       agent.enable = true;
-      agent.pinentryFlavor = "curses";
     };
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
