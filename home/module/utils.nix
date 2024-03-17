@@ -22,6 +22,7 @@
 
     # LSP & Formatter
     nil # Nix LSP
+    nixfmt # Nix formatter
     nodePackages_latest.bash-language-server # Bash LSP
     lua-language-server # Lua LSP
     dprint # Pluggable code formatting platform
