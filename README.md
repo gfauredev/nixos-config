@@ -61,12 +61,14 @@ A dev environment for a specific tech stack can be initialised with
 
 ## Other configuration repositories
 
-Some other git repositories constitute configuration elements, but are not directly included
-in this flake:
+Some other git repositories constitute configuration elements, but are not
+directly included in this flake:
 
 - My personal [Typst library](https://gitlab.com/gfauredev/typst-lib)
-   - Cloned at `$XDG_DATA_HOME/typst/packages/local`
+  - Cloned at `$XDG_DATA_HOME/typst/packages/local`
 - My Vital(ium) [presets collection](https://gitlab.com/gfauredev/vital)
+  - Cloned at `$XDG_DATA_HOME/Vital`
+  - Symlinkedd at `$XDG_DATA_HOME/Vitalium`
 
 ## Documentation ressources :
 
