@@ -1,5 +1,5 @@
-{ pkgs, term, inputs, ... }: {
-  imports = [ inputs.anyrun.homeManagerModules.default ];
+{ pkgs, term, ... }: {
+  # imports = [ inputs.anyrun.homeManagerModules.default ];
 
   home.packages = with pkgs;
     [
@@ -27,30 +27,30 @@
         show-icons = true;
       };
     };
-    anyrun = {
-      # DOC: https://github.com/Kirottu/anyrun
-      enable = true;
-      config = {
-        plugins = with inputs.anyrun.packages.${pkgs.system}; [
-          applications
-          dictionary
-          kidex
-          randr
-          rink
-          shell
-          # stdin
-          symbols
-          translate
-          websearch
-        ];
-        hideIcons = false;
-        ignoreExclusiveZones = false;
-        layer = "overlay";
-        hidePluginInfo = false;
-        closeOnClick = false;
-        showResultsImmediately = false;
-        maxEntries = 12;
-      };
-    };
+    # anyrun = {
+    #   # DOC: https://github.com/Kirottu/anyrun
+    #   enable = true;
+    #   config = {
+    #     plugins = with inputs.anyrun.packages.${pkgs.system}; [
+    #       applications
+    #       dictionary
+    #       kidex
+    #       randr
+    #       rink
+    #       shell
+    #       # stdin
+    #       symbols
+    #       translate
+    #       websearch
+    #     ];
+    #     hideIcons = false;
+    #     ignoreExclusiveZones = false;
+    #     layer = "overlay";
+    #     hidePluginInfo = false;
+    #     closeOnClick = false;
+    #     showResultsImmediately = false;
+    #     maxEntries = 12;
+    #   };
+    # };
   };
 }
