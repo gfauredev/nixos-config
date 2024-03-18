@@ -85,10 +85,19 @@
     };
   };
 
+  # My Typst packages
   xdg.dataFile = {
-    typst-lib = {
-      target = "typst/packages/local";
-      source = ../../misc/typst-lib;
+    lib = {
+      target = "typst/packages/local/lib";
+      source = ../../misc/typst-lib/gfaure-lib;
     };
+    report = {
+      target = "typst/packages/local/report";
+      source = ../../misc/typst-lib/gfaure-templates;
+    };
+    # letter = {
+    #   target = "typst/packages/local/letter";
+    #   source = ../../misc/typst-lib/letter;
+    # };
   };
 }

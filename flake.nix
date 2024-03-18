@@ -139,7 +139,7 @@
           "gf@griffin" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs;
-              hwmon = "4/temp3_input";
+              hwmon = "3/temp1_input";
               term = wezterm;
               location = location;
             };
