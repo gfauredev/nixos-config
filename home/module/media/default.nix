@@ -84,4 +84,11 @@
       '';
     };
   };
+
+  xdg.dataFile = {
+    typst-lib = {
+      target = "typst/packages/local";
+      source = ../../misc/typst-lib;
+    };
+  };
 }
