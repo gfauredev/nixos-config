@@ -1,4 +1,6 @@
-{ pkgs, term, ... }: {
+{ pkgs, term, inputs, ... }: {
+  imports = [ inputs.anyrun.homeManagerModules.default ];
+
   home.packages = with pkgs;
     [
       libqalculate # Calculation library used by rofi
@@ -23,6 +25,31 @@
         combi-modes = "window,drun,ssh"; # ,emoji";
         sorting-method = "fzf";
         show-icons = true;
+      };
+    };
+    anyrun = {
+      # DOC: https://github.com/Kirottu/anyrun
+      enable = true;
+      config = {
+        plugins = with inputs.anyrun.packages.${pkgs.system}; [
+          applications
+          dictionary
+          kidex
+          randr
+          rink
+          shell
+          # stdin
+          symbols
+          translate
+          websearch
+        ];
+        hideIcons = false;
+        ignoreExclusiveZones = false;
+        layer = "overlay";
+        hidePluginInfo = false;
+        closeOnClick = false;
+        showResultsImmediately = false;
+        maxEntries = 12;
       };
     };
   };

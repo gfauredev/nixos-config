@@ -16,13 +16,18 @@
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     musnix.url = "github:musnix/musnix"; # Music production & realtime audio
+
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix
-    , ... }@inputs: {
+    , anyrun, ... }@inputs: {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
         ##### Laptops #####
