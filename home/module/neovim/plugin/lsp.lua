@@ -79,5 +79,6 @@ lsp.typst_lsp.setup({
 
 -- Formatting
 lsp.dprint.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "markdown", "python", "toml", "rust", "roslyn", "nix", "typst" }
 }

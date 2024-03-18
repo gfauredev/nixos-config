@@ -19,10 +19,12 @@
   "exec": {
     "commands": [{
       "command": "nixfmt {{file_path}}",
-      "exts": ["nix"]
+      "exts": ["nix"],
+      "stdin": false
     }, {
       "command": "typstfmt {{file_path}}",
-      "exts": ["typ", "typst"]
+      "exts": ["typ", "typst"],
+      "stdin": false
     }]
   },
   "excludes": [
