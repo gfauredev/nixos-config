@@ -59,6 +59,15 @@ A dev environment for a specific tech stack can be initialised with
 `nix flake init --template templates#STACK` and then activated with
 `nix develop`.
 
+## Other configuration repositories
+
+Some other git repositories constitute configuration elements, but are not directly included
+in this flake:
+
+- My personal [Typst library](https://gitlab.com/gfauredev/typst-lib)
+   - Cloned at `$XDG_DATA_HOME/typst/packages/local`
+- My Vital(ium) [presets collection](https://gitlab.com/gfauredev/vital)
+
 ## Documentation ressources :
 
 - [NixOS documentation](https://nixos.org/manual/nixos/unstable)
