@@ -1,15 +1,15 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ lib, pkgs, ... }: {
   nixpkgs.config.allowUnfree = true; # for printers plugins
 
   services = {
     printing = {
       enable = true; # Enable CUPS to print documents
       cups-pdf.enable = true; # Printing to PDF
-      drivers = with pkgs;
-        [
-          # hplip
-          hplipWithPlugin
-        ];
+      # drivers = with pkgs;
+      #   [
+      #     # hplip
+      #     hplipWithPlugin
+      #   ];
     };
     avahi = {
       # Discover printers & scanners on network
