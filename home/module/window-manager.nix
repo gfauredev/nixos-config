@@ -3,12 +3,13 @@
 
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
+    nwg-displays # Arrange displays
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
     grim # Take screenshots
     slurp # Select a screen zone with mouse
-    waypipe # Send a wayland window through SSH
     wayvnc # Wayland remote desktop
+    # waypipe # Send a wayland window through SSH
     # hyprpaper # Wallpaper engine
     # wev # Evaluate inputs sent to wayland
     # swww # Dynamic wallpaper
