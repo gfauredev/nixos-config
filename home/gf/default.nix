@@ -112,7 +112,7 @@
         video = "mpv";
         web = "brave-browser";
         pim = "thunderbird";
-        pdf = "zathura";
+        pdf = "org.pwmt.zathura";
       in {
         # Text & Code
         "text/plain" = "${text}.desktop";
