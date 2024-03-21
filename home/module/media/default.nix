@@ -62,27 +62,27 @@
 
   programs = {
     mpv = { enable = true; };
-    # zathura = {
-    #   enable = true;
-    #   extraConfig = ''
-    #     set sandbox none
-    #     set selection-clipboard clipboard
-    #
-    #     set scroll-step 50
-    #     set scroll-hstep 10
-    #
-    #     map t scroll down
-    #     map s scroll up
-    #     map T navigate next
-    #     map S navigate previous
-    #     map c scroll left
-    #     map r scroll right
-    #
-    #     map R rotate rotate-cw
-    #     map C rotate rotate-ccw
-    #
-    #     map b recolor
-    #   '';
-    # };
+    zathura = {
+      enable = true;
+      extraConfig = ''
+        set sandbox none
+        set selection-clipboard clipboard
+
+        set scroll-step 50
+        set scroll-hstep 10
+
+        map t scroll down
+        map s scroll up
+        map T navigate next
+        map S navigate previous
+        map c scroll left
+        map r scroll right
+
+        map R rotate rotate-cw
+        map C rotate rotate-ccw
+
+        map b recolor
+      '';
+    };
   };
 }

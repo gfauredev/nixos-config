@@ -112,6 +112,7 @@
         video = "mpv";
         web = "brave-browser";
         pim = "thunderbird";
+        pdf = "zathura";
       in {
         # Text & Code
         "text/plain" = "${text}.desktop";
@@ -142,6 +143,7 @@
         "x-scheme-handler/mailto" = "${pim}.desktop";
         "x-scheme-handler/webcal" = "${pim}.desktop";
         # Application specific
+        "application/pdf" = "${pdf}.desktop";
         # "application/x-colpkg" = "anki.desktop";
         # "application/x-apkg" = "anki.desktop";
         # "application/x-ankiaddon" = "anki.desktop";
