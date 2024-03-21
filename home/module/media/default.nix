@@ -15,7 +15,8 @@
     # quarto # Scientific and technical publishing system
 
     # Text & Document
-    libreoffice-fresh # Office suite
+    onlyoffice-bin # Full office suite
+    # libreoffice-fresh # Office suite
     # libreoffice-qt # Office suite
     # libreoffice # Office suite
     # libreoffice-fresh-unwrapped # Office suite
