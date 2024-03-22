@@ -95,6 +95,7 @@
       copilot-cmp # GitHub copilot completions
       nvim-ts-autotag # Auto close tags
       conform-nvim # Autoformatter
+      nvim-surround # Surround text with symbols
       # nvim-lint # Linters adapter
       # conform-nvim # Formatters adapter
       # cmp-tabnine # AI code completion
