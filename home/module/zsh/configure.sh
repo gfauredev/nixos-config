@@ -68,6 +68,10 @@ case "$1" in
     git push || exit
     shift
     ;;
+  "rebase")
+    git rebase -i || exit
+    shift
+    ;;
   "pull")
     git pull || exit
     shift
