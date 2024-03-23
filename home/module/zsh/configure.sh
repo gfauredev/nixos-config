@@ -76,6 +76,10 @@ case "$1" in
     git pull || exit
     shift
     ;;
+  "log")
+    git log --oneline || exit
+    shift
+    ;;
   "update")
     git pull || exit
     nix flake update --commit-lock-file || exit
