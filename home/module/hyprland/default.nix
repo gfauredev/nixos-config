@@ -64,11 +64,15 @@
       };
 
       # See https://wiki.hyprland.org/Configuring/Window-Rules
-      windowrule = [
-        "float,menu" # Menu centered window
-        "size 888 420,menu" # Menu centered window
-        "float,title:(\\d+) *(Reminders)" # Reminder right bottom window
-        "size 666 420,title:(\\d+) *(Reminders)" # Reminder right bottom window
+      windowrulev2 = [
+        # Menu windows (like mixer)
+        "float, class:menu" # Float (not tiled)
+        "size 888 420, class:menu" # Small rectangle
+        "center, class:menu" # Center
+        # Thunderbird
+        "float, title:Reminders" # Reminder right bottom
+        "size 666 420, title:Reminders" # Right bottom
+        "move 100%-666 100%-420, title:Reminders"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
