@@ -51,7 +51,7 @@
       # extraRemotes = [ "lvfs-testing" ];
     };
     fprintd = {
-      enable = false; # Support figerprint reader
+      enable = true; # Support figerprint reader
     };
   };
 
