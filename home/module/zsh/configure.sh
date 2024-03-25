@@ -76,6 +76,10 @@ case "$1" in
     git pull || exit
     shift
     ;;
+  "status")
+    git status || exit
+    shift
+    ;;
   "log")
     git log --oneline || exit
     shift
