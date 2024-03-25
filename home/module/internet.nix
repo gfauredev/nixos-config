@@ -4,7 +4,8 @@
     brave # Blink based secure and private web browser
     nyxt # Keyboard driven lightweight web browser
 
-    # P2P & VPN
+    # P2P & VPN & Web3
+    nym # A new mixnet, anonymous routing protocol
     qbittorrent-nox # Bittorrent client (web interface)
     calyx-vpn # Free VPN service with bitmask client
     riseup-vpn # Free VPN service with bitmask client
