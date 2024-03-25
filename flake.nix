@@ -145,7 +145,7 @@
             extraSpecialArgs = {
               inherit inputs;
               hwmon = "3/temp1_input";
-              term = wezterm;
+              term = alacritty;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
