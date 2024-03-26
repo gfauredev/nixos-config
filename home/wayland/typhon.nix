@@ -14,11 +14,11 @@
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       # Typhon (ultrawide desktop) workspaces
       workspace = [
-        "name:opn, monitor:DP-1, default:true"
+        "name:sup, monitor:DP-1, default:true"
         "name:dpp, monitor:DP-2, default:true"
         "name:hdm, monitor:HDMI-A-1, default:true"
-        "name:sup, monitor:DP-3, default:true"
-        "name:ext, monitor:DP-4, default:true"
+        # "name:etc, monitor:DP-3, default:true"
+        # "name:ext, monitor:DP-4, default:true"
       ];
     };
   };

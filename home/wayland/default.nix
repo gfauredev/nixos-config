@@ -3,7 +3,6 @@
 
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
-    nwg-displays # Arrange displays
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
     grim # Take screenshots
@@ -14,6 +13,7 @@
     # wev # Evaluate inputs sent to wayland
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
+    # nwg-displays # Displays arrangement GUI
     niri # Innovative WM infinity horizontal scroll
   ];
 
