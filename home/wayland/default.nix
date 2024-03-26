@@ -41,7 +41,7 @@
           exec $HOME/.nix-profile/bin/Hyprland
         fi
         if [ "''${XDG_VTNR}" -eq 2 ]; then
-          exec startx $HOME/.nix-profile/bin/i3
+          exec $HOME/.nix-profile/bin/niri --session
         fi
       fi
     '';
