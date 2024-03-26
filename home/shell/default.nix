@@ -135,7 +135,8 @@
       ## Tools & Documents
       scanpdf =
         "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      mail = "himalaya"; # CLI mail client
+      typ = "typst compile *.typ"; # Quickly compile Typst files
+      # mail = "himalaya"; # CLI mail client
 
       # Mounting
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
@@ -179,9 +180,6 @@
       untrack = "git rm -r --cached";
       giff = "git diff";
       logg = "git log --oneline";
-      ## Notes management
-      # gitnote = "git --git-dir=$HOME/.note/ --work-tree=$HOME/note/";
-      # gitnotecmt = "not commit -am";
 
       # ONE LETTER ALIASES, difficult to live without
       ## List & Search
