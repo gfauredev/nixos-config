@@ -152,8 +152,7 @@
             modules = [
               ./home/gf # Myself’s home
               ./home/module/remap # XCompose & Inputs remaps
-              ./home/module/hyprland/griffin.nix # Griffin’s specific Hyprland
-              ./home/module/waybar # Wayland Bar
+              ./home/module/wayland/griffin.nix # Griffin’s GUI
               ./home/module/virtualization.nix # Virtualization
               ./home/module/audio.nix # Audio & Music creation
               ./home/module/video.nix # Video & Animation creation
@@ -175,8 +174,7 @@
             modules = [
               ./home/gf # Myself’s home
               ./home/module/remap # XCompose & Inputs remaps
-              ./home/module/hyprland/typhon.nix # Typhon’s specific Hyprland
-              ./home/module/waybar/widescreen.nix # Wayland Bar for wide screens
+              ./home/module/wayland/typhon.nix # Typhon’s GUI
               ./home/module/virtualization.nix # Virtualization
               ./home/module/audio.nix # Audio & Music creation
               ./home/module/video.nix # Video & Animation editing
@@ -199,10 +197,8 @@
             modules = [
               ./home/gf # Myself’s home
               ./home/module/remap # XCompose & Inputs remaps
-              ./home/module/hyprland # WM
-              ./home/module/virtualization.nix # Virtualization
+              ./home/module/wayland # Wayland WM & related
               ./home/module/media # Media consuming and editing
-              ./home/module/lapce # New text editor to test
             ];
           };
         };

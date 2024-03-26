@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./launcher ];
+  imports = [ ./hyprland ./waybar ./launcher ];
 
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
@@ -14,6 +14,7 @@
     # wev # Evaluate inputs sent to wayland
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
+    niri # Innovative WM infinity horizontal scroll
   ];
 
   # services = {

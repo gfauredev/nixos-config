@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./default.nix ];
+  imports = [ ./default.nix ./waybar/widescreen.nix ];
 
   wayland.windowManager.hyprland = {
     # enableNvidiaPatches = true;
