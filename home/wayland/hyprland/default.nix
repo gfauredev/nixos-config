@@ -77,6 +77,7 @@
       "$mod" = "SUPER";
       bind = let
         launch = "rofi -show drun";
+        launch-alt = "fuzzel";
         launch-full = "rofi -show combi -combi-modes";
         launch-calc = "rofi -show calc";
         browser-1 = "brave";
@@ -171,9 +172,9 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${term.cmd}"
         # Launch
-        "$mod, SPACE, exec, ${launch-full}"
-        "$mod CONTROL, SPACE, exec, ${launch-calc}"
-        "$mod SHIFT, SPACE, exec, ${launch-calc}"
+        "$mod, SPACE, exec, ${launch-full}" # Launcher with additional modes
+        "$mod CONTROL, SPACE, exec, ${launch-calc}" # Calculator
+        "$mod SHIFT, SPACE, exec, ${launch-alt}" # Alternative launcher
         # Launch with special media keys
         ", Menu, exec, ${launch-full}" # Menu special key
         ", XF86MenuKB, exec, ${launch-full}" # Menu special key

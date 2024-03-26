@@ -27,6 +27,7 @@ cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config dire
 
 printf "Pulling latest changes\n"
 git pull || printf '\nUnable to pull from %s\n' "$(git remote)"
+echo
 
 if [ "$#" -eq 0 ]; then
   cd home || exit

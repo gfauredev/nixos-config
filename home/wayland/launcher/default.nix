@@ -27,7 +27,11 @@
         show-icons = true;
       };
     };
-    # anyrun = {
+    fuzzel = {
+      enable = true;
+      # settings = {};
+    };
+    # anyrun = { # FIXME
     #   # DOC: https://github.com/Kirottu/anyrun
     #   enable = true;
     #   config = {
