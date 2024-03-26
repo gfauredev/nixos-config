@@ -34,17 +34,13 @@
     jan # Run LLMs locally
     # open-interpreter # Interpret LLM code in terminal directly
 
-    # Misc
+    # Storage & Backup
     udiskie # auto mount USB
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
     # dcfldd # more powerful dd
-    watchexec # Run command when file changes
-    hyperfine # Benchmark commands
-    jq # JSON filter
     # rpi-imager # Raspberry Pi OS generator
-    valent # kdeconnect protocol (bilateral Android remote control)
 
     # Virtualization
     vagrant # VM auto provisionner
@@ -52,7 +48,12 @@
     # looking-glass-client
     # kubernetes # Container orchestrator
 
-    # Miscelaneous
+    # Miscellaneous
+    eva # Evaluate math expression
+    watchexec # Run command when file changes
+    hyperfine # Benchmark commands
+    jq # JSON parsing and request tool
+    valent # kdeconnect protocol (bilateral Android remote control)
     # poetry # Python project manager # TODO use nix instead
     # python3 # Python # TODO USE nix instead
     # conda # Python package manager TODO flake shell
@@ -64,7 +65,6 @@
     # interception-tools # TEST relevance
     # bluetooth_battery # TEST relevance
     # rustdesk # Remote desktop
-    # eva # Evaluate math expression
     # dwfv
     # inetutils
     # khal # Calendar compatible with WebCal
