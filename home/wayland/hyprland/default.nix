@@ -17,7 +17,7 @@
     # plugins = [ ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
-      monitor = lib.mkDefault ",preferred,auto,1"; # Auto
+      monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
