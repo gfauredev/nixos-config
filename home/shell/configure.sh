@@ -19,15 +19,17 @@ home() {
   home-manager --flake ".#${USER}@$(hostname)" switch || return
 }
 
+cfg-pull() {
+  printf "Pulling latest changes\n"
+  git pull || printf '\nUnable to pull from %s\n' "$(git remote)"
+  echo
+}
+
 edit() {
   $EDITOR . && git add . && git commit "$@" || return
 }
 
 cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
-
-printf "Pulling latest changes\n"
-git pull || printf '\nUnable to pull from %s\n' "$(git remote)"
-echo
 
 if [ "$#" -eq 0 ]; then
   cd home || exit
@@ -55,20 +57,24 @@ case "$1" in
       shift 2
     ;;
   "system")
-      cd system || exit
-      edit && system || exit
-      shift
+    cfg-pull
+    cd system || exit
+    edit && system || exit
+    shift
     ;;
   "home")
-      cd home || exit
-      edit && home || exit
-      shift
+    cfg-pull
+    cd home || exit
+    edit && home || exit
+    shift
     ;;
   "all")
-      edit && system && home || exit
-      shift
+    cfg-pull
+    edit && system && home || exit
+    shift
     ;;
   "update")
+    cfg-pull
     nix flake update --commit-lock-file || exit
     shift
     ;;
@@ -79,6 +85,7 @@ case "$1" in
     ;;
   "log")
     git log --oneline || exit
+    echo
     git status || exit
     shift
     ;;
@@ -86,6 +93,7 @@ case "$1" in
     exec $SHELL
     ;;
   *) # If parameters are a message, update home with this commit message and exit
+    cfg-pull
     cd home || exit
     edit -m "$*" && home ; exit
     ;;
