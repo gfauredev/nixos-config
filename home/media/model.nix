@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 let
   py-slvs = pythonPkgs:
     pythonPkgs.buildPythonPackage {
@@ -31,4 +30,22 @@ let
       };
     };
   blenderWithPySlvs = pkgs.blender.withPackages (p: [ (py-slvs p) ]);
-in { home.packages = [ blenderWithPySlvs ]; }
+in {
+  home.packages = with pkgs; [
+    # blender # Most popular 3D, animation & video editor
+    blenderWithPySlvs # Patched popular 3D, animation & video editor
+
+    # kicad # Elecronics design
+    # fritzing # Elecronics design
+
+    # cq-editor # GUI for Python library CadQuery
+    # openscad # Parametric, programmatic (code only) 3D CAD
+
+    freecad # Popular parametric 3D CAD
+    # solvespace # Simple parametric 3D CAD
+    # brlcad # Combinatorial solid modeling system
+
+    # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
+    # cura # Popular 3D printer slicer
+  ];
+}

@@ -1,11 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
-    ./module/zsh # Interactive POSIX shell
-    ./module/neovim # CLI text editor
-    ./module/wezterm # Modern terminal emulator
-    ./module/font.nix # Great fonts
-    ./module/internet.nix # Internet related packages
-    ./module/utils.nix # Useful packages
+    ./shell # Interactive POSIX shell
+    ./lib/font.nix # My favorite fonts
   ];
 
   manual = {
@@ -56,6 +52,7 @@
 
   programs = {
     home-manager.enable = true; # MANDATORY
+    gpg.enable = true; # Useful cryptography tool
     git = {
       enable = true; # MANDATORY
       lfs.enable = true;
@@ -96,28 +93,12 @@
         "*ignore*"
       ];
     };
-    alacritty = {
-      enable = true; # Fast terminal emulator
-      settings = {
-        window = {
-          # opacity = 0.8;
-          padding = {
-            x = 2;
-            y = 2;
-          };
-        };
-        font = {
-          # family = "FiraCode Nerd Font";
-          size = 11;
-        };
-        colors = {
-          primary = {
-            background = "#000000";
-            # foreground = "#000000";
-          };
-        };
-      };
-    };
+  };
+
+  xdg = {
+    enable = true;
+    mime.enable = true;
+    mimeApps.enable = true;
   };
 
   gtk = {

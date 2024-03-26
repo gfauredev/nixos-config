@@ -1,6 +1,4 @@
 { lib, pkgs, term, ... }: {
-  imports = [ ../window-manager.nix ];
-
   home.packages = let
     wl-mirror-function = pkgs.writeShellScriptBin "mirror" ''
       if [ -n "$1" ]; then

@@ -1,5 +1,7 @@
-# Useful programs
+# Useful programs TODO organize better
 { pkgs, ... }: {
+  imports = [ ./wezterm ./alacritty ./neovim ./pulsemixer ];
+
   home.packages = with pkgs; [
     # Theme & Style
     # libsForQt5.qt5ct # TEST if relevant
@@ -43,6 +45,12 @@
     # rpi-imager # Raspberry Pi OS generator
     valent # kdeconnect protocol (bilateral Android remote control)
 
+    # Virtualization
+    vagrant # VM auto provisionner
+    virt-manager # GUI frontend to libvirtd
+    # looking-glass-client
+    # kubernetes # Container orchestrator
+
     # Miscelaneous
     # poetry # Python project manager # TODO use nix instead
     # python3 # Python # TODO USE nix instead
@@ -65,4 +73,22 @@
     # cpufrequtils
     # pcscliteWithPolkit
   ];
+
+  services = {
+    syncthing = {
+      enable = true;
+      extraOptions = [ "--no-default-folder" ];
+    };
+  };
+
+  programs = {
+    broot = {
+      enable = true; # Quick fuzzy file finder
+      enableZshIntegration = true;
+      settings = {
+        # modal = true;
+        default_flags = "dgps";
+      };
+    };
+  };
 }

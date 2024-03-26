@@ -150,17 +150,10 @@
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
-              ./home/gf # Myself’s home
-              ./home/module/remap # XCompose & Inputs remaps
-              ./home/module/wayland/griffin.nix # Griffin’s GUI
-              ./home/module/virtualization.nix # Virtualization
-              ./home/module/audio.nix # Audio & Music creation
-              ./home/module/video.nix # Video & Animation creation
-              ./home/module/photo.nix # Photo & Images creation
-              ./home/module/model.nix # 3D and schematics modeling and hardware creation
-              ./home/module/social.nix # Social interaction
-              ./home/module/media # Media consuming and editing
-              ./home/module/lapce # New text editor to test
+              ./home/gf.nix # Myself’s home
+              ./home/wayland/griffin.nix # Griffin’s GUI
+              ./home/tool # Tooling, mostly technical
+              ./home/media # Media consuming and editing
             ];
           };
           "gf@typhon" = home-manager.lib.homeManagerConfiguration {
@@ -172,18 +165,10 @@
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
-              ./home/gf # Myself’s home
-              ./home/module/remap # XCompose & Inputs remaps
-              ./home/module/wayland/typhon.nix # Typhon’s GUI
-              ./home/module/virtualization.nix # Virtualization
-              ./home/module/audio.nix # Audio & Music creation
-              ./home/module/video.nix # Video & Animation editing
-              ./home/module/photo.nix # Photo & Images creation
-              ./home/module/model.nix # 3D and schematics modeling and hardware creation
-              ./home/module/social.nix # Social interaction
-              ./home/module/media # Media consuming and editing
-              # ./home/module/compositing.nix # 3D and special effects
-              ./home/module/lapce # New text editor to test
+              ./home/gf.nix # Myself’s home
+              ./home/wayland/typhon.nix # Typhon’s GUI
+              ./home/tool # Tooling, mostly technical
+              ./home/media # Media consuming and editing
             ];
           };
           "gf@work" = home-manager.lib.homeManagerConfiguration {
@@ -195,10 +180,10 @@
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
-              ./home/gf # Myself’s home
-              ./home/module/remap # XCompose & Inputs remaps
-              ./home/module/wayland # Wayland WM & related
-              ./home/module/media # Media consuming and editing
+              ./home/gf.nix # Myself’s home
+              ./home/wayland # Wayland WM & related
+              ./home/tool # Tooling, mostly technical
+              ./home/media # Media consuming and editing
             ];
           };
         };

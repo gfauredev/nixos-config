@@ -1,4 +1,13 @@
 { pkgs, ... }: {
+  imports = [
+    ./internet.nix
+    ./organization.nix
+    ./audio.nix
+    ./photo.nix
+    ./video.nix
+    ./social.nix
+  ];
+
   home.packages = with pkgs; [
     # Languages
     languagetool # Advanced spell checking
@@ -61,7 +70,7 @@
   };
 
   programs = {
-    mpv = { enable = true; };
+    mpv.enable = true;
     zathura = {
       enable = true;
       extraConfig = ''

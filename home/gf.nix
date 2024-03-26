@@ -1,10 +1,5 @@
 { ... }: {
-  imports = [
-    ../default.nix
-    ../module/pulsemixer
-    ../module/organization
-    # ../module/xplr
-  ];
+  imports = [ ./default.nix ];
 
   nixpkgs = {
     config = {
@@ -21,12 +16,12 @@
     sessionVariables = {
       XDG_DESKTOP_DIR = "$HOME/data";
       XDG_DOCUMENTS_DIR = "$HOME/data/document";
-      XDG_DOWNLOAD_DIR = "$HOME/data";
+      XDG_DOWNLOAD_DIR = "$HOME/data.local/tmp";
       XDG_MUSIC_DIR = "$HOME/data/audio";
       XDG_PICTURES_DIR = "$HOME/data/image";
       XDG_VIDEOS_DIR = "$HOME/data/video";
 
-      BROWSER = "brave"; # TODO this directly in nix
+      BROWSER = "brave"; # TODO this directly in Nix
 
       TYPST_FONT_PATHS =
         "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
@@ -39,72 +34,15 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  services = {
-    syncthing = {
-      enable = true;
-      extraOptions = [ "--no-default-folder" ];
-    };
-    # System-wide text expander # FIXME
-    # espanso = {
-    #   enable = true;
-    #   configs.matches = [
-    #     {
-    #       # Text replacement
-    #       trigger = ":name";
-    #       replace = "Guilhem Fauré";
-    #     }
-    #     {
-    #       # Date
-    #       trigger = ":date";
-    #       replace = "{{date}}";
-    #       vars = [{
-    #         name = "date";
-    #         type = "date";
-    #         params = { format = "%d/%m/%Y"; };
-    #       }];
-    #     }
-    #     {
-    #       # Shell command
-    #       trigger = ":host";
-    #       replace = "{{hostname}}";
-    #       vars = [{
-    #         name = "hostname";
-    #         type = "shell";
-    #         params = { cmd = "hostname"; };
-    #       }];
-    #     }
-    #   ];
-    # };
-    # udiskie = {
-    #   enable = true;
-    #   automount = true;
-    #   notify = true;
-    #   tray = "never";
-    # };
-  };
-
   programs = {
     git = {
       userName = "Guilhem Fauré";
       userEmail = "pro@gfaure.eu";
     };
-    gpg = { enable = true; };
-    # TODO set an explorer that can open & preview every file
-    broot = {
-      enable = true; # TEST which explorer is better
-      enableZshIntegration = true;
-      settings = {
-        # modal = true;
-        default_flags = "dgps";
-      };
-    };
   };
 
   xdg = {
-    enable = true;
-    mime = { enable = true; };
     mimeApps = {
-      enable = true;
       defaultApplications = let
         text = "lapce";
         image = "imv";

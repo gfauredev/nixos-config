@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./hyprland ./waybar ./launcher ];
+  imports = [ ./hyprland ./waybar ./launcher ./remap ];
 
   home.packages = with pkgs; [
     wlr-randr # Edit display settings for wayland
