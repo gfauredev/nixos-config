@@ -31,6 +31,7 @@
 
     # AI Tools
     ollama # Run LLMs locally
+    jan # Run LLMs locally
     # open-interpreter # Interpret LLM code in terminal directly
 
     # Misc
