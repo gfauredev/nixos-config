@@ -25,6 +25,9 @@ edit() {
 
 cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
 
+printf "Pulling latest changes\n"
+git pull || printf '\nUnable to pull from %s\n' "$(git remote)"
+
 if [ "$#" -eq 0 ]; then
   cd home || exit
   edit && home ; exit
@@ -64,30 +67,22 @@ case "$1" in
       edit && system && home || exit
       shift
     ;;
+  "update")
+    nix flake update --commit-lock-file || exit
+    shift
+    ;;
   "push")
-    git push || exit
-    shift
-    ;;
-  "rebase")
     git rebase -i || exit
-    shift
-    ;;
-  "pull")
-    git pull || exit
-    shift
-    ;;
-  "status")
-    git status || exit
+    git push || exit
     shift
     ;;
   "log")
     git log --oneline || exit
+    git status || exit
     shift
     ;;
-  "update")
-    git pull || exit
-    nix flake update --commit-lock-file || exit
-    shift
+  "cd")
+    exec $SHELL
     ;;
   *) # If parameters are a message, update home with this commit message and exit
     cd home || exit
@@ -105,6 +100,9 @@ for param in "$@"; do
       ;;
     "poweroff")
       systemctl poweroff
+      ;;
+    "boot")
+      systemctl reboot
       ;;
     "reboot")
       systemctl reboot
