@@ -36,6 +36,7 @@ edit() {
 cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
 
 if [ "$#" -eq 0 ]; then
+  cfg-pull
   cd home || exit
   edit && home ; exit
 fi
@@ -76,6 +77,8 @@ case "$1" in
     cfg-pull
     if edit; then
       system ; home || exit
+    else
+      exit
     fi
     shift
     ;;
