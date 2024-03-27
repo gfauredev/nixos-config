@@ -5,10 +5,14 @@ system() {
   sudo mount /boot || return # Use fstab
 
   printf "\nPerforming system update\n"
-  sudo nixos-rebuild --flake . switch || return
-
-  printf "\nUnmounting /boot after update\n"
-  sudo umount /boot # Unmount for security
+  if sudo nixos-rebuild --flake . switch; then
+    printf "\nUnmounting /boot after update\n"
+    sudo umount /boot # Unmount for security
+  else
+    printf "\nFailed update, unmounting /boot\n"
+    sudo umount /boot # Unmount for security
+    return 1 # Failed update status
+  fi
 }
 
 home() {
@@ -48,7 +52,7 @@ case "$1" in
         system || exit
         ;;
       "all")
-        system && home || exit
+        system ; home || exit
         ;;
       *)
         home || exit
@@ -70,7 +74,9 @@ case "$1" in
     ;;
   "all")
     cfg-pull
-    edit && system && home || exit
+    if edit; then
+      system ; home || exit
+    fi
     shift
     ;;
   "update")
