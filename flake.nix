@@ -115,10 +115,9 @@
         # TODO cleaner terminal commands (nix functions)
         let
           alacritty = {
-            name = "alacritty"; # Name of the terminal
+            name = "alacritty"; # Name of the terminal (for matching)
             cmd = "alacritty"; # Launch terminal
-            exec =
-              "alacritty --command"; # Option to execute a command in place of shell
+            exec = "--command"; # Option to execute a command in place of shell
             cd =
               "--working-directory"; # Option to launch terminal in a directory
             # Classed terminals (executes a command)
@@ -129,7 +128,7 @@
               "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
           };
           wezterm = {
-            name = "wezterm"; # Name of the terminal
+            name = "wezterm"; # Name of the terminal (for matching)
             cmd = "wezterm start --always-new-process"; # Launch terminal
             exec = ""; # Option to execute a command in place of shell
             cd = "--cwd"; # Option to launch terminal in a directory
@@ -145,7 +144,7 @@
             extraSpecialArgs = {
               inherit inputs;
               hwmon = "3/temp1_input";
-              term = alacritty;
+              term = wezterm;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
