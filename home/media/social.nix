@@ -1,14 +1,16 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    # Email
     thunderbird # Popular desktop email and calendar client
     # evolution # Popular desktop email and calendar client
     # himalaya # CLI mail client # Configure via home manager module
-    # element-desktop # Matrix messaging
+    # mailspring # Email client WARNING security issue
+    # Messaging, Calls, Video
     signal-desktop # Secure messaging
     # signal-cli # Secure messaging
-    # element-web # Matrix messaging
-    # mailspring # Email client WARNING security issue
-    # UNFREE
+    element-desktop # Secure group messaging and calls
+    # element-web # Secure messaging and calls
+    # UNFREE Messaging, Calls, Video
     discord # PROPRIETARY messaging and general communication
     # whatsapp-for-linux # PROPRIETARY messaging and general communication
     # discord-canary # PROPRIETARY messaging and general communication
