@@ -15,6 +15,12 @@
         libvdpau-va-gl # Nvidia
       ];
     };
+    # fancontrol = {
+    #   enable = true;
+    #   config = ''
+    #     # Configuration file for fancontrol
+    #   '';
+    # };
     uinput.enable = true;
   };
 
