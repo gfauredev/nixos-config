@@ -12,8 +12,8 @@
           modules-center = [
             "hyprland/workspaces"
             "hyprland/window"
-            "sway/workspaces"
-            "sway/window"
+            # "sway/workspaces"
+            # "sway/window"
           ];
           modules-right = [ "tray" "mpris" "clock" ];
 
