@@ -45,7 +45,7 @@
     mimeApps = {
       defaultApplications = let
         text = "lapce";
-        # image = "";
+        image = "oculante";
         audio = "mpv";
         video = "mpv";
         web = "brave-browser";
@@ -57,14 +57,14 @@
         "text/code" = "${text}.desktop";
         "inode/directory" = "${text}.desktop"; # Workspace
         # Image
-        # "image/avif" = "${image}.desktop";
-        # "image/webp" = "${image}.desktop";
-        # "image/png" = "${image}.desktop";
-        # "image/jpg" = "${image}.desktop";
-        # "image/jpeg" = "${image}.desktop";
-        # "image/bmp" = "${image}.desktop";
-        # "image/ico" = "${image}.desktop";
-        # "image/gif" = "${image}.desktop";
+        "image/avif" = "${image}.desktop";
+        "image/webp" = "${image}.desktop";
+        "image/png" = "${image}.desktop";
+        "image/jpg" = "${image}.desktop";
+        "image/jpeg" = "${image}.desktop";
+        "image/bmp" = "${image}.desktop";
+        "image/ico" = "${image}.desktop";
+        "image/gif" = "${image}.desktop";
         # Audio
         "audio/flac" = "${audio}.desktop";
         "audio/ogg" = "${audio}.desktop";

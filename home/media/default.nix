@@ -46,7 +46,7 @@
 
     # Image & Video
     viu # CLI image viewer
-    oculante # Cross-platform image viewer
+    oculante # Fast image viewer with some advanced features
     imagemagick # CLI image edition
     ffmpeg # media conversion
     mediainfo # info about audio or video
@@ -93,8 +93,8 @@
       '';
     };
     mpv.enable = true; # Audio and video player
-    pqiv.enable = true; # Light image viewer
-    # feh.enable = true; # Light image viewer
+    # pqiv.enable = true; # Light image viewer
     # imv.enable = true; # BUG Minimal image viewer
+    # feh.enable = true; # Light X11 image viewer
   };
 }

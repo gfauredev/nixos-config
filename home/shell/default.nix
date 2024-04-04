@@ -207,7 +207,7 @@
   };
 
   programs = {
-    # command-not-found.enable = true;
+    command-not-found.enable = true;
     eza = {
       enable = true; # Better ls
     };
