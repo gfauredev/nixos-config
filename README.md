@@ -99,6 +99,8 @@ directly included in this flake:
 > ephemerally with `nix-shell -p $PACKAGE` or install with
 > `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
+- `pdf4qt` # Open source PDF editor
+- `masterpdfeditor` # Closed source PDF editor
 - `veracrypt` # Multiplatform encryption
 - `chntpw` # Edit an installed Windows registry
 - `gns3-gui` # Advanced network simulation
