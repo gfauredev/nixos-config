@@ -90,6 +90,12 @@
         map C rotate rotate-ccw
 
         map b recolor
+
+        map D set "first-page-column 1"
+        map <A-d> set "first-page-column 2"
+
+        map [fullscreen] D set "first-page-column 1"
+        map [fullscreen] <A-d> set "first-page-column 2"
       '';
     };
     mpv.enable = true; # Audio and video player
