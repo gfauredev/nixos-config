@@ -45,7 +45,7 @@
     mimeApps = {
       defaultApplications = let
         text = "lapce";
-        image = "imv";
+        image = "oculante";
         audio = "mpv";
         video = "mpv";
         web = "brave-browser";

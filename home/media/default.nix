@@ -9,7 +9,7 @@
   ];
 
   home.packages = with pkgs; [
-    # Languages
+    # Text & Language
     languagetool # Advanced spell checking
     ltex-ls # LSP between languagetool and pure text
     # hunspell # Standard spell checker
@@ -21,9 +21,8 @@
     typst-lsp # Typst LSP
     typstfmt # Typst formatter
     marksman # Smart Markdown links
-    # quarto # Scientific and technical publishing system
 
-    # Text & Document
+    # Document & Spreadsheet & Presentation & Note
     # onlyoffice-bin # Full office suite
     onlyoffice-bin_latest # Full office suite
     # libreoffice-fresh # Office suite
@@ -31,12 +30,16 @@
     # libreoffice # Office suite
     # libreoffice-fresh-unwrapped # Office suite
     # libreoffice-still # Office suite
-    # masterpdfeditor4 # PDF editor
+    # quarto # Scientific and technical publishing system
     # xournalpp # Notetaking with draw
-    poppler_utils # Read PDF metadata
-    qpdf # PDF manipulation
+
+    # PDF reading & editing
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
+    poppler_utils # PDF metadata reading
+    qpdf # PDF manipulation
+    pdf4qt # PDF edition
+    # masterpdfeditor4 # CLOSED SOURCE PDF edition
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
 
@@ -45,8 +48,8 @@
     playerctl # MPRIS media players control
 
     # Image & Video
-    imv # Image viewer WARNING may become deprecated
-    # nsxiv # New Suckless X Image Viewer
+    viu # CLI image viewer
+    oculante # Fast image viewer with some advanced features
     imagemagick # CLI image edition
     ffmpeg # media conversion
     mediainfo # info about audio or video
@@ -70,9 +73,8 @@
   };
 
   programs = {
-    mpv.enable = true;
     zathura = {
-      enable = true;
+      enable = true; # Minimal PDF reader
       extraConfig = ''
         set sandbox none
         set selection-clipboard clipboard
@@ -91,7 +93,17 @@
         map C rotate rotate-ccw
 
         map b recolor
+
+        map D set "first-page-column 1"
+        map <A-d> set "first-page-column 2"
+
+        map [fullscreen] D set "first-page-column 1"
+        map [fullscreen] <A-d> set "first-page-column 2"
       '';
     };
+    mpv.enable = true; # Audio and video player
+    # pqiv.enable = true; # Light image viewer
+    # imv.enable = true; # BUG Minimal image viewer
+    # feh.enable = true; # Light X11 image viewer
   };
 }
