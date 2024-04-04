@@ -53,7 +53,7 @@
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
     jq # JSON parsing and request tool
-    valent # kdeconnect protocol (bilateral Android remote control)
+    # valent # kdeconnect protocol (bilateral Android remote control)
     # poetry # Python project manager # TODO use nix instead
     # python3 # Python # TODO USE nix instead
     # conda # Python package manager TODO flake shell
