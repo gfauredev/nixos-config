@@ -44,6 +44,7 @@ fi
 # Go through each parameters and act accordingly
 case "$1" in
   "rebuild")
+    cfg-pull
     if ! [ "$2" ]; then
       home
       exit
@@ -110,6 +111,15 @@ esac
 
 for param in "$@"; do
   case $param in
+    "home")
+      home
+      ;;
+    "system")
+      system
+      ;;
+    "all")
+      system ; home
+      ;;
     "push")
       git push
       ;;
