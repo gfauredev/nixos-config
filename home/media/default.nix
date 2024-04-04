@@ -38,8 +38,8 @@
     # sioyek # Minimalist PDF reader
     poppler_utils # PDF metadata reading
     qpdf # PDF manipulation
-    pdf4qt # PDF edition
-    # masterpdfeditor4 # CLOSED SOURCE PDF edition
+    # pdf4qt # PDF edition
+    masterpdfeditor4 # CLOSED SOURCE PDF edition
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
 
