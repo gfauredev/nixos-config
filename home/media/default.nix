@@ -45,8 +45,8 @@
     playerctl # MPRIS media players control
 
     # Image & Video
-    imv # Image viewer WARNING may become deprecated
-    # nsxiv # New Suckless X Image Viewer
+    viu # CLI image viewer
+    oculante # Cross-platform image viewer
     imagemagick # CLI image edition
     ffmpeg # media conversion
     mediainfo # info about audio or video
@@ -70,9 +70,8 @@
   };
 
   programs = {
-    mpv.enable = true;
     zathura = {
-      enable = true;
+      enable = true; # Minimal PDF reader
       extraConfig = ''
         set sandbox none
         set selection-clipboard clipboard
@@ -93,5 +92,9 @@
         map b recolor
       '';
     };
+    mpv.enable = true; # Audio and video player
+    pqiv.enable = true; # Light image viewer
+    # feh.enable = true; # Light image viewer
+    # imv.enable = true; # BUG Minimal image viewer
   };
 }
