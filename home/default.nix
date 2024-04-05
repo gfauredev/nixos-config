@@ -15,7 +15,6 @@
   home.packages = with pkgs; [
     nixpkgs-review # Review pull requests to nixpkgs
     manix # Nix documentation CLI
-    nox # Make nix easier to use
     comma # Run command without installing
     exfatprogs # Tools for exfat fs
     dislocker # decrypt bitlocker disks
