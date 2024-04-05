@@ -69,8 +69,9 @@
         "center, class:menu" # Center
         # Thunderbird
         "float, title:Reminders" # Reminder right bottom
-        "size 666 420, title:Reminders" # Right bottom
-        "move 100%-666 100%-420, title:Reminders"
+        "size 555 333, title:Reminders" # Small rectangle
+        "move 100%-557 100%-360, title:Reminders" # Right bottom
+        "opacity 0.7, title:Reminders" # Transparent
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
