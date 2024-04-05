@@ -15,11 +15,13 @@
   home.packages = with pkgs; [
     nixpkgs-review # Review pull requests to nixpkgs
     manix # Nix documentation CLI
+    nox # Make nix easier to use
+    comma # Run command without installing
     exfatprogs # Tools for exfat fs
     dislocker # decrypt bitlocker disks
     # veracrypt # multiplatform encryption
     jmtpfs # Media transfer protocol with Android devices
-    pass # CLI standard password manager
+    # pass # CLI standard password manager
     # git-secrets # Encrypted storage in public git repo
     # GUI specific
     pinentry # enter passwords
@@ -50,9 +52,9 @@
     };
   };
 
+  programs.home-manager.enable = true; # MANDATORY
+
   programs = {
-    home-manager.enable = true; # MANDATORY
-    gpg.enable = true; # Useful cryptography tool
     git = {
       enable = true; # MANDATORY
       lfs.enable = true;
@@ -93,6 +95,8 @@
         "*ignore*"
       ];
     };
+    gpg.enable = true; # Useful cryptography tool
+    password-store.enable = true; # CLI standard password manager
   };
 
   xdg = {
