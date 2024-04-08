@@ -5,7 +5,7 @@ system() {
   sudo mount /boot || return # Use fstab
 
   printf "\nPerforming system update\n"
-  if sudo nixos-rebuild --flake . switch; then
+  if systemd-inhibit sudo nixos-rebuild --flake . switch; then
     printf "\nUnmounting /boot after update\n"
     sudo umount /boot # Unmount for security
   else
@@ -20,7 +20,7 @@ home() {
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
 
   printf "\nPerforming profile update\n"
-  home-manager --flake ".#${USER}@$(hostname)" switch || return
+  systemd-inhibit home-manager --flake ".#${USER}@$(hostname)" switch || return
 }
 
 cfg-pull() {
