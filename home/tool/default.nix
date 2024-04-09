@@ -39,6 +39,7 @@
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
+    tmsu # File tagging with virtual FS
     # dcfldd # more powerful dd
     # rpi-imager # Raspberry Pi OS generator
 
