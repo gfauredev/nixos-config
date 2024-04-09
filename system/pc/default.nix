@@ -103,10 +103,10 @@
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
     };
-    languagetool = {
-      enable = true; # Advanced spell checking server
-      public = false;
-    };
+    # languagetool = {
+    #   enable = true; # Advanced spell checking server
+    #   public = false;
+    # };
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
     iperf3.enable = true; # Network testing

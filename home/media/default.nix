@@ -10,7 +10,7 @@
 
   home.packages = with pkgs; [
     # Text & Language
-    languagetool # Advanced spell checking
+    # languagetool # Advanced spell checking
     ltex-ls # LSP between languagetool and pure text
     # hunspell # Standard spell checker
     # hunspellDicts.fr-any # French
