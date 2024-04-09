@@ -4,9 +4,9 @@
   nix = {
     settings = {
       substituters = [ "https://cache.nixos.org" ];
-      extra-substituters = [
-        "http://192.168.1.4:5000" # Desktop as local binary cache
-      ];
+      # extra-substituters = [ # Use --option
+      #   "http://192.168.1.4:5000" # Desktop as local binary cache
+      # ];
       trusted-substituters = [
         "http://192.168.1.4:5000" # Desktop as local binary cache
       ];
