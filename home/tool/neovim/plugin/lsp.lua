@@ -58,6 +58,13 @@ lsp.ltex.setup({
   settings = {
     ltex = {
       language = "fr",
+      dictionary = {
+        fr = { "mdr" },
+      },
+      additionalRules = {
+        enablePickyRules = true,
+        motherTongue = "fr",
+      },
     },
   },
   filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "typst" },
