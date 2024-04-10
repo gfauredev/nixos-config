@@ -14,7 +14,7 @@
       terminal = "${term.cmd} ${term.exec}";
       font = "FiraCode Nerd Font";
       theme = ./rounded-blue-dark.rasi;
-      # plugins = with pkgs; [ rofi-calc rofi-emoji ]; # TODO reenable
+      plugins = with pkgs; [ rofi-calc rofi-emoji ];
       pass = {
         enable = true;
         extraConfig = "";
