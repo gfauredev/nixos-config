@@ -40,6 +40,8 @@
     ventoy-full # create bootable keys
     testdisk # file recuperation
     tmsu # File tagging with virtual FS
+    iroh # Efficient IPFS, p2p file sharing
+    sendme # send files and directories p2p
     # dcfldd # more powerful dd
     # rpi-imager # Raspberry Pi OS generator
 
