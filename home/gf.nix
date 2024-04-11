@@ -44,7 +44,7 @@
   xdg = {
     mimeApps = {
       defaultApplications = let
-        text = "lapce";
+        text = "nvim";
         image = "oculante";
         audio = "mpv";
         video = "mpv";
@@ -54,6 +54,7 @@
       in {
         # Text & Code
         "text/plain" = "${text}.desktop";
+        "text/markdown" = "${text}.desktop";
         "text/code" = "${text}.desktop";
         "inode/directory" = "${text}.desktop"; # Workspace
         # Image
