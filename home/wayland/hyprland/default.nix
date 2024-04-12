@@ -11,7 +11,7 @@
     wl-mirror # Mirror wayland output
     wl-mirror-function # Quicker usage of wl-mirror
     hyprcursor # Modern cursor engine
-    xcur2png # Convert X cursor to PNG, needed for hyprcursor
+    # xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
 
   home.sessionVariables = {

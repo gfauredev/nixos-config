@@ -16,11 +16,10 @@
     niri # Innovative WM infinity horizontal scroll
   ];
 
-  xdg.dataFile."icons/Bibata-Modern-Ice".source =
-    ./Bibata-Modern-Ice.hyprcursor;
+  xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
 
   home.sessionVariables = {
-    HYPRCURSOR_THEME = "Bibata-Modern-Ice"; # Modern cursor theme
+    HYPRCURSOR_THEME = "Bibata-Hypr-Ice"; # Modern cursor theme
     HYPRCURSOR_SIZE = "22";
   };
 
