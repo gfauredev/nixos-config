@@ -106,40 +106,26 @@
 
   gtk = {
     enable = true; # TODO Apply it to every apps
-    cursorTheme = {
-      package = pkgs.nordzy-cursor-theme; # TEST relevance
-      name = "Nordzy-cursors";
-      size = 22;
-    };
-    font = {
-      package = pkgs.fira-go;
-      name = "FiraGO";
-      size = 12;
-    };
-    # theme = { # TODO configure
-    # package = pkgs.;
-    # name = "";
+    # cursorTheme = {
+    #   package = pkgs.nordzy-cursor-theme;
+    #   package = pkgs.bibata-cursors;
+    #   name = "Nordzy-cursors";
+    #   size = 22;
     # };
-    # iconTheme = { # TODO configure
-    # package = pkgs.;
-    # name = "";
+    # font = {
+    #   package = pkgs.fira-go;
+    #   name = "FiraGO";
+    #   size = 12;
     # };
-    gtk2 = {
-      configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
-      # extraConfig = ''
-      # '';
-    };
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
-      # color-scheme = "prefer-dark";
-    };
+    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
+    # gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+    # gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
 
   qt = {
     enable = true; # FIXME
     # platformTheme = "gtk"; # TEST if relevant
-    platformTheme = "qtct"; # TEST if relevant
+    # platformTheme = "qtct"; # TEST if relevant
     # style.name = "kvantum"; # TEST relevance
   };
 }

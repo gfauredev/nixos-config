@@ -7,8 +7,9 @@
         wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) &
       fi
     '';
-  in [
-    pkgs.wl-mirror # Mirror wayland output
+  in with pkgs; [
+    wl-mirror # Mirror wayland output
+    hyprcursor # Modern cursor engine
     wl-mirror-function # Quicker usage of wl-mirror
   ];
 
@@ -21,19 +22,17 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
-        # "hyprpaper" # No wallpaper by default
-        "hyprctl setcursor Nordzy-cursors 24"
         "waybar"
+        # "hyprctl setcursor Nordzy-cursors 24"
         # "Cerebro" # General purpose launcher
         # "wezterm-mux-server" # TEST relevance
       ];
       env = [
         "NIXOS_OZONE_WL,1" # Enable wayland support for some apps
-        "WLR_NO_HARDWARE_CURSORS,1" # FIX for invisible cursor
-        "XCURSOR_SIZE,24"
-        "SDL_VIDEODRIVEVER,wayland" # Force apps to use Wayland SDL
-        # "SDL_VIDEODRIVEVER,x11" # Apply it to specific programs instead
         "GDK_SCALE,1.25" # Scaling on Xwayland
+        "SDL_VIDEODRIVEVER,wayland" # Force apps to use Wayland SDL
+        # "WLR_NO_HARDWARE_CURSORS,1" # FIX for invisible cursor
+        # "XCURSOR_SIZE,24"
       ];
 
       xwayland.force_zero_scaling = true;
