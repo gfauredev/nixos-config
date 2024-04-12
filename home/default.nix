@@ -112,8 +112,8 @@
       package = pkgs.bibata-cursors;
       # package = pkgs.nordzy-cursor-theme;
       gtk.enable = true;
-      name = "Bibata-Modern-Amber";
-      size = 18;
+      name = "Bibata-Modern-Ice";
+      size = 22;
     };
     preferXdgDirectories = true;
   };
