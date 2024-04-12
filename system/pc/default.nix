@@ -69,13 +69,8 @@
   services = {
     fwupd.enable = lib.mkDefault true; # Update firmwares
     thermald.enable = lib.mkDefault true; # Keep cool
-    udisks2 = {
-      enable = true; # Mount USB without privileges
-      settings = { };
-    };
-    geoclue2 = {
-      enable = true; # Location provider
-    };
+    udisks2.enable = true; # Mount USB without privileges
+    geoclue2.enable = true; # Location provider
     xserver = {
       enable = true;
       autorun = false;
@@ -122,7 +117,7 @@
 
   programs = {
     dconf.enable = true; # Recommended by virtualization wiki
-    gnupg = { agent.enable = true; };
+    gnupg.agent.enable = true;
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
@@ -142,7 +137,6 @@
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
-      polkit_gnome # Allow GUI apps to get privileges
       cpulimit # Limit CPU usage of processes
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
@@ -151,26 +145,28 @@
       tldr # short, examples man pages
       sshfs # browser ssh as directory
       rsync # cp through network & with superpowers
-      sbctl # Secure Boot Control
       tcpdump # Dump network packets
-      # dhcpcd # DHCP client
-      dhcping # DHCP debugging
       dhcpdump # DHCP debugging
-      # bubblewrap # Applications sandboxer TEST if better than firejail
-      # samba # Share files with other OSes
-      # samba4Full # Share files with other OSes
-      # cifs-utils # Share files with other Oses
-      inetutils # Things like FTP commend
-      ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
+      inetutils # Things like FTP command
       bridge-utils # Network interface bridging
       dig # DNS analyzer
       nix-du # Determine which gc-roots take space
       ssh-to-age # Converter between SSH keys and age
+      powertop # Power usage analyzer
+      # polkit_gnome # Allow GUI apps to get privileges
+      # sbctl # Secure Boot Control
+      # dhcping # DHCP debugging
+      # dhcpcd # DHCP client
+      # bubblewrap # Applications sandboxer TEST if better than firejail
+      # samba # Share files with other OSes
+      # samba4Full # Share files with other OSes
+      # cifs-utils # Share files with other Oses
+      # ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
     ];
   };
 
   # Realtime & music production related improvements
-  musnix = { enable = true; };
+  musnix.enable = true;
 
   # Specialisation with RT kernel & performance governor by default
   # specialisation.realtime.configuration = {
