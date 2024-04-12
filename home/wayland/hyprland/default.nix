@@ -10,7 +10,8 @@
   in with pkgs; [
     wl-mirror # Mirror wayland output
     wl-mirror-function # Quicker usage of wl-mirror
-    # hyprcursor # Modern cursor engine
+    hyprcursor # Modern cursor engine
+    xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
 
   home.sessionVariables = {
@@ -28,7 +29,6 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
         "waybar"
-        # "hyprctl setcursor Nordzy-cursors 24"
         # "Cerebro" # General purpose launcher
         # "wezterm-mux-server" # TEST relevance
       ];

@@ -2,6 +2,7 @@
   imports = [ ./hyprland ./waybar ./launcher ./remap ];
 
   home.packages = with pkgs; [
+    wev # Evaluate inputs sent to wayland to debug
     wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
@@ -10,44 +11,34 @@
     wayvnc # Wayland remote desktop
     # waypipe # Send a wayland window through SSH
     # hyprpaper # Wallpaper engine
-    # wev # Evaluate inputs sent to wayland
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
-    # nwg-displays # Displays arrangement GUI
     niri # Innovative WM infinity horizontal scroll
   ];
 
-  # services = {
-  #   kanshi = {
-  #     enable = true;
-  #     profiles = {
-  #       docked = {
-  #         outputs = [
-  #           {
-  #             criteria = "eDP-1";
-  #           }
-  #         ];
-  #       };
-  #     };
-  #     systemdTarget = "hyprland-session.target";
-  #   };
-  # };
+  xdg.dataFile."icons/Bibata-Modern-Ice".source =
+    ./Bibata-Modern-Ice.hyprcursor;
+
+  home.sessionVariables = {
+    HYPRCURSOR_THEME = "Bibata-Modern-Ice"; # Modern cursor theme
+    HYPRCURSOR_SIZE = "22";
+  };
 
   programs = {
     # Start window managers at login on firsts TTYs
     zsh.loginExtra = ''
-      if [ -z "''${DISPLAY}" ]; then
-        if [ "''${XDG_VTNR}" -eq 1 ]; then
+      if [ -z "$DISPLAY" ]; then
+        if [ "$XDG_VTNR" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/Hyprland
         fi
-        if [ "''${XDG_VTNR}" -eq 2 ]; then
+        if [ "$XDG_VTNR" -eq 3 ]; then
           exec $HOME/.nix-profile/bin/niri --session
         fi
       fi
     '';
     swaylock = {
       enable = true;
-      settings = { indicator-idle-visible = true; };
+      settings.indicator-idle-visible = true;
     };
     rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };
