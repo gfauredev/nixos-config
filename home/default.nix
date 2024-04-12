@@ -1,4 +1,6 @@
 { config, pkgs, ... }: {
+  programs.home-manager.enable = true; # MANDATORY
+
   imports = [
     ./shell # Interactive POSIX shell
     ./lib/font.nix # My favorite fonts
@@ -51,8 +53,6 @@
     };
   };
 
-  programs.home-manager.enable = true; # MANDATORY
-
   programs = {
     git = {
       enable = true; # MANDATORY
@@ -104,28 +104,28 @@
     mimeApps.enable = true;
   };
 
+  home = {
+    pointerCursor = {
+      package = pkgs.bibata-cursors;
+      # package = pkgs.nordzy-cursor-theme;
+      gtk.enable = true;
+      name = "Bibata-Modern-Ice";
+      size = 22;
+      # x11.enable = true; # TEST relevance
+    };
+    preferXdgDirectories = true;
+  };
+
   gtk = {
-    enable = true; # TODO Apply it to every apps
-    # cursorTheme = {
-    #   package = pkgs.nordzy-cursor-theme;
-    #   package = pkgs.bibata-cursors;
-    #   name = "Nordzy-cursors";
-    #   size = 22;
-    # };
-    # font = {
-    #   package = pkgs.fira-go;
-    #   name = "FiraGO";
-    #   size = 12;
-    # };
-    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
-    # gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-    # gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
+    enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
+    gtk2.extraConfig = "gtk-application-prefer-dark-theme = 1";
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
 
   qt = {
-    enable = true; # FIXME
-    # platformTheme = "gtk"; # TEST if relevant
-    # platformTheme = "qtct"; # TEST if relevant
-    # style.name = "kvantum"; # TEST relevance
+    enable = true;
+    # platformTheme = "gtk"; # TEST relevance
   };
 }

@@ -13,6 +13,11 @@
     wl-mirror-function # Quicker usage of wl-mirror
   ];
 
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1"; # Force wayland support for some apps
+    GDK_SCALE = "1.25"; # Scaling on Xwayland
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     # plugins = [ ];
@@ -27,13 +32,7 @@
         # "Cerebro" # General purpose launcher
         # "wezterm-mux-server" # TEST relevance
       ];
-      env = [
-        "NIXOS_OZONE_WL,1" # Enable wayland support for some apps
-        "GDK_SCALE,1.25" # Scaling on Xwayland
-        "SDL_VIDEODRIVEVER,wayland" # Force apps to use Wayland SDL
-        # "WLR_NO_HARDWARE_CURSORS,1" # FIX for invisible cursor
-        # "XCURSOR_SIZE,24"
-      ];
+      # env = [ ];
 
       xwayland.force_zero_scaling = true;
 
