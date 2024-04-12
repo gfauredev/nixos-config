@@ -9,8 +9,8 @@
     '';
   in with pkgs; [
     wl-mirror # Mirror wayland output
-    hyprcursor # Modern cursor engine
     wl-mirror-function # Quicker usage of wl-mirror
+    # hyprcursor # Modern cursor engine
   ];
 
   home.sessionVariables = {

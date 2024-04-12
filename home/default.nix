@@ -17,21 +17,24 @@
   home.packages = with pkgs; [
     nixpkgs-review # Review pull requests to nixpkgs
     manix # Nix documentation CLI
-    comma # Run command without installing
     exfatprogs # Tools for exfat fs
     dislocker # decrypt bitlocker disks
-    # veracrypt # multiplatform encryption
     jmtpfs # Media transfer protocol with Android devices
-    # pass # CLI standard password manager
-    # git-secrets # Encrypted storage in public git repo
+    git-secrets # Prevent secrets leaking with Git
+    # veracrypt # multiplatform encryption
     # GUI specific
-    pinentry # enter passwords
+    pinentry # Enter password when needed
     libnotify # Notifications management
+    # Runing
+    # comma # Run command without installing
     # appimage-run # Run appimages directly
     # steam-run # Run in isolated FHS
   ];
 
   services = {
+    # pass-secret-service = {
+    #   enable = true; # TEST relevence
+    # };
     dunst = {
       enable = true; # Notifications daemon
       settings = {
@@ -59,9 +62,9 @@
       lfs.enable = true;
       delta.enable = true;
       extraConfig = {
-        init = { defaultBranch = "main"; };
-        pull = { rebase = false; };
-        lfs = { locksverify = true; };
+        init.defaultBranch = "main";
+        pull.rebase = false;
+        lfs.locksverify = true;
         filter.lfs = {
           required = true;
           clean = "git-lfs clean -- %f";
@@ -72,7 +75,7 @@
           recurse = true;
           fetchjobs = 8;
         };
-        credential = { helper = "store"; };
+        credential.helper = "cache 36000"; # Cache for 10 hours
       };
       ignores = [
         "*.pdf"
@@ -109,16 +112,17 @@
       package = pkgs.bibata-cursors;
       # package = pkgs.nordzy-cursor-theme;
       gtk.enable = true;
-      name = "Bibata-Modern-Ice";
-      size = 22;
-      # x11.enable = true; # TEST relevance
+      name = "Bibata-Modern-Amber";
+      size = 18;
     };
     preferXdgDirectories = true;
   };
 
   gtk = {
     enable = true;
+    # Remove this from $HOME
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
+    # Dark theme everywhere
     gtk2.extraConfig = "gtk-application-prefer-dark-theme = 1";
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
