@@ -7,9 +7,10 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/UUID";
     fsType = "bcachefs";
-    # options = [ "subvol=root" "compress=zstd" "noatime" ];
+    options = [ "compression=zstd" ];
   };
 
+  # TODO use bcachefs’s encryption : bcachefs format --encrypted /dev/????
   # boot.initrd.luks.devices = { "cryptroot".device = "/dev/disk/by-uuid/UUID"; };
 
   fileSystems = {
@@ -20,12 +21,12 @@
     "/nix" = {
       device = "/dev/disk/by-uuid/UUID";
       fsType = "bcachefs";
-      # options = [ "subvol=nix" "compress=zstd" "noatime" ];
+      options = [ "compression=zstd" ];
     };
     "/home" = {
       device = "/dev/disk/by-uuid/UUID";
       fsType = "bcachefs";
-      # options = [ "subvol=home" "compress=zstd" "noatime" ];
+      options = [ "compression=zstd" ];
     };
   };
 }
