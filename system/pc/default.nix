@@ -112,6 +112,11 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
+    nh = {
+      enable = true; # Nix multipurpose helper
+      flake = /config;
+      # clean.enable = true;
+    };
     firejail = {
       enable = true; # TEST pertinence
       wrappedBinaries = {
