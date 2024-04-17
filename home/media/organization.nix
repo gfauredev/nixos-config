@@ -12,7 +12,7 @@
     # calibre # Ebook management
 
     # Rendering & Presentation
-    pdfpc # PDF Presentator Console
+    # pdfpc # PDF Presentator Console
     plantuml-c4 # UML diagrams from text
     # hovercraft # impress.js presentations
   ];
