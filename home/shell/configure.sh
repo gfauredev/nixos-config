@@ -1,5 +1,3 @@
-DEFAULT_CONFIG_DIR='/config'
-
 system() {
   printf "\nMounting /boot before system update\n"
   sudo mount /boot || return # Use fstab
@@ -33,7 +31,7 @@ edit() {
   $EDITOR . && git add . && git commit "$@" || return
 }
 
-cd "$CONFIG_DIR" || cd "$DEFAULT_CONFIG_DIR" || exit # Go inside the config directory
+cd "$CONFIG_DIR" || cd /etc/nixos || exit # Go inside the config directory
 
 if [ "$#" -eq 0 ]; then
   cfg-pull

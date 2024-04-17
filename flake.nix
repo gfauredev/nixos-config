@@ -138,11 +138,11 @@
             menu =
               "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
           };
-          location = "$HOME/.config/flake"; # This flake location
+          location = "/config"; # This Flake location
         in {
           "gf@griffin" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs; # TODO use this to prevent 3 below lines
               hwmon = "3/temp1_input";
               term = wezterm;
               location = location;
