@@ -26,10 +26,12 @@
       "docker" # Use Docker container manager
       "wireshark" # Use wireshark without root
       "keyd" # Use app-specific keyd remaps
+      "config" # Configure system in /config
     ];
   };
 
   users.groups = {
+    config = { }; # RWX in /config
     mtp = { };
     uinput = { };
   };
