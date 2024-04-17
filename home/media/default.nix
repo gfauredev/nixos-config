@@ -57,8 +57,8 @@
     # youtube-dl # download videos from internet
 
     # Emulation
-    wine # Execute Window$ programs
-    winetricks # Execute Window$ programs
+    # wine # Execute Window$ programs TODO reenable
+    # winetricks # Execute Window$ programs TODO reenable
   ];
 
   fonts.fontconfig.enable = true;

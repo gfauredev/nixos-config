@@ -22,8 +22,8 @@
     # surge # Great hybrid substractive synth (old version)
     drumgizmo # High quality drums sampler
     # Misc
-    yabridge # Use Windows VSTs with wine
-    yabridgectl # Use Windows VSTs with wine
+    # yabridge # Use Windows VSTs with wine TODO reenable
+    # yabridgectl # Use Windows VSTs with wine TODO reenable
     # Drivers & Adapters
     # alsa-scarlett-gui
   ];
