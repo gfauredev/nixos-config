@@ -1,4 +1,4 @@
-DEFAULT_CONFIG_DIR="$XDG_CONFIG_HOME/flake/"
+DEFAULT_CONFIG_DIR='/config'
 
 system() {
   printf "\nMounting /boot before system update\n"
