@@ -62,20 +62,21 @@
       lfs.enable = true;
       delta.enable = true;
       extraConfig = {
+        safe.directory = "/config"; # Flake configuration
         init.defaultBranch = "main";
         pull.rebase = false;
         lfs.locksverify = true;
+        submodule = {
+          recurse = true;
+          fetchjobs = 8;
+        };
+        credential.helper = "cache 36000"; # Cache for 10 hours
         filter.lfs = {
           required = true;
           clean = "git-lfs clean -- %f";
           smudge = "git-lfs smudge -- %f";
           process = "git-lfs filter-process";
         };
-        submodule = {
-          recurse = true;
-          fetchjobs = 8;
-        };
-        credential.helper = "cache 36000"; # Cache for 10 hours
       };
       ignores = [
         "*.pdf"
