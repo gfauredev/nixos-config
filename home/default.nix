@@ -22,6 +22,7 @@
     jmtpfs # Media transfer protocol with Android devices
     git-secrets # Prevent secrets leaking with Git
     # veracrypt # multiplatform encryption
+    moreutils # Additional Unix utilities
     # GUI specific
     pinentry # Enter password when needed
     libnotify # Notifications management
