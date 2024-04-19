@@ -13,22 +13,15 @@
       ${lib.readFile ./configure.sh}
     '';
   in with pkgs; [
-    # Custom scripts
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
     configure # Configure this flake config
-    # TODO Eventually place below in a shell/default.nix
     trash-cli # Manage a trash from CLI
     ripgrep-all # ripgrep for non-text files
-    # silver-searcher # Better grep
-    fd # better find
     duf # global disk usage
     du-dust # detailed disk usage of a directory
-    bottom # htop alternative
     fastfetch # system info
     hexyl # hex viever
-    # sd # find & replace (partially replaced by ripgrep)
-    # nomino # Batch rename
   ];
 
   programs.zsh = {
@@ -58,7 +51,8 @@
       bindkey -M vicmd 'r' vi-forward-char
     '';
     defaultKeymap = "viins";
-    # dotDir = "${config.home-manager.users.gf.home.sessionVariables.XDG_CONFIG_HOME}/zsh"; # FIXME
+    # FIXME
+    # dotDir = "${config.home-manager.users.gf.home.sessionVariables.XDG_CONFIG_HOME}/zsh";
     dotDir = ".config/zsh";
     history = {
       expireDuplicatesFirst = true;
@@ -70,7 +64,7 @@
       share = true;
     };
     historySubstringSearch.enable = true;
-    initExtra = builtins.readFile ./zshrc.sh; # TODO this more cleanly
+    initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
     shellAliases = let ls = "eza --icons --git";
     in {
       sudo = "sudo ";
@@ -208,9 +202,10 @@
 
   programs = {
     # command-not-found.enable = true;
-    eza = {
-      enable = true; # Better ls
-    };
+    eza.enable = true; # Better ls
+    fd.enable = true; # Better find
+    ripgrep.enable = true; # Better grep
+    bottom.enable = true; # Better top
     zoxide = {
       enable = true; # Smart cd
       enableZshIntegration = true;
@@ -246,9 +241,6 @@
     fzf = {
       enable = true; # Fuzzy searcher
       enableZshIntegration = true;
-    };
-    ripgrep = {
-      enable = true; # Better grep
     };
   };
 }
