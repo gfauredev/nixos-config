@@ -16,17 +16,6 @@
   },
   "jupyter": {
   },
-  "exec": {
-    "commands": [{
-      "command": "nixfmt {{file_path}}",
-      "exts": ["nix"],
-      "stdin": false
-    }, {
-      "command": "typstfmt {{file_path}}",
-      "exts": ["typ", "typst"],
-      "stdin": false
-    }]
-  },
   "excludes": [
     "**/node_modules",
     "**/*-lock.json"
@@ -40,6 +29,5 @@
     "https://plugins.dprint.dev/biome-0.3.2.wasm",
     "https://plugins.dprint.dev/ruff-0.2.0.wasm",
     "https://plugins.dprint.dev/jupyter-0.1.3.wasm",
-    "https://plugins.dprint.dev/exec-0.4.4.json@c207bf9b9a4ee1f0ecb75c594f774924baf62e8e53a2ce9d873816a408cecbf7"
   ]
 }
