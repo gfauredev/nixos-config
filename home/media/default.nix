@@ -32,6 +32,7 @@
     # libreoffice-still # Office suite
     # quarto # Scientific and technical publishing system
     # xournalpp # Notetaking with draw
+    mermaid-cli # Markdown-like diagrams
 
     # PDF reading & editing
     # mupdf # Minimalist PDF reader
