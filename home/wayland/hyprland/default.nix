@@ -1,15 +1,6 @@
 { lib, pkgs, term, ... }: {
-  home.packages = let
-    wl-mirror-function = pkgs.writeShellScriptBin "mirror" ''
-      if [ -n "$1" ]; then
-        wl-mirror $1 &
-      else
-        wl-mirror $(wlr-randr --json | jq ".[0].name" --raw-output) &
-      fi
-    '';
-  in with pkgs; [
+  home.packages = with pkgs; [
     wl-mirror # Mirror wayland output
-    wl-mirror-function # Quicker usage of wl-mirror
     hyprcursor # Modern cursor engine
     # xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
