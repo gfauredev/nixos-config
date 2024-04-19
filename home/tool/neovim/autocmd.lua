@@ -15,8 +15,8 @@ vim.api.nvim_create_autocmd({ "FocusGained", "InsertLeave" }, {
 local autoFormatId = vim.api.nvim_create_autocmd("BufWritePre", {
   buffer = 0,
   callback = function(args)
-    vim.lsp.buf.format()
-    require("conform").format({ bufnr = args.buf })
+    pcall(vim.lsp.buf.format())
+    pcall(require("conform").format({ bufnr = args.buf }))
   end
 })
 -- … but not if on a Tera file (the generic HTML formatter messes these up)
