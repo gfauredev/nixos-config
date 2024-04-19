@@ -84,6 +84,9 @@
         browser-3 = "firefox";
         pim = "thunderbird";
         monitor = "btm";
+        mirror = "wl-present mirror";
+        mirror-output = "wl-present set-output";
+        mirror-region = "wl-present set-region";
       in [
         # Move focus
         "$mod, c, movefocus, l" # Move left
@@ -177,7 +180,6 @@
         # Launch with special media keys
         ", Menu, exec, ${launch-full}" # Menu special key
         ", XF86MenuKB, exec, ${launch-full}" # Menu special key
-        "SUPER, j, exec, ${launch-full}" # F9 on Framework Laptop
         ", XF86Mail, exec, ${launch-full}" # Mail media key
         ", XF86HomePage, exec, ${launch-full}" # Home media key
         ", XF86Calculator, exec, ${launch-calc}" # Calculator media key
@@ -190,6 +192,9 @@
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
         "$mod, comma, exec, swaylock -f -c 000000" # Black screen lock
         "$mod SHIFT, comma, exec, systemctl suspend"
+        "SUPER, j, exec, ${mirror}" # Mirror output (F9 on Framework Laptop)
+        "SUPER CONTROL, j, exec, ${mirror-output}" # Change mirrored output
+        "SUPER SHIFT, j, exec, ${mirror-region}" # Change mirrored region
         # Web
         "$mod CONTROL, b, exec, ${browser-2}" # Alternative browser
         "$mod CONTROL SHIFT, b, exec, ${browser-3}" # Alternative browser

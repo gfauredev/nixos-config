@@ -23,6 +23,7 @@
     git-secrets # Prevent secrets leaking with Git
     # veracrypt # multiplatform encryption
     moreutils # Additional Unix utilities
+    pipectl # Named pipes management
     # GUI specific
     pinentry # Enter password when needed
     libnotify # Notifications management
