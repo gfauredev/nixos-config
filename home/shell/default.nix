@@ -180,7 +180,8 @@
       l = "${ls} -l --no-permissions --no-user"; # Better ls
       d = "z"; # Smart (frecent) cd
       f = "\\fd --color always"; # Better find
-      fd = "echo You might prefer using custom command 'f';fd"; # Reminder
+      fd = lib.mkForce
+        "echo You might prefer using custom command 'f';fd"; # Reminder
       g = "\\rga --smart-case --color=always"; # Better grep
       rg = "echo You might prefer using custom command 'g';rg"; # Reminder
       rga = "echo You might prefer using custom command 'g';rga"; # Reminder
