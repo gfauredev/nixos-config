@@ -15,5 +15,8 @@
     # pdfpc # PDF Presentator Console
     plantuml-c4 # UML diagrams from text
     # hovercraft # impress.js presentations
+
+    # Misc
+    gpxsee # GPS track viewer
   ];
 }
