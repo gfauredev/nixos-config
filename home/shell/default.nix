@@ -79,6 +79,7 @@
       ll = "${ls} -l --group";
       la = "${ls} -l --group -all";
       al = "${ls} -l --group -all --reverse";
+      lt = "${ls} -l --tree";
       # Explore
       bd = "br --sort-by-date";
       bs = "br --sort-by-size";
