@@ -1,11 +1,18 @@
 { lib, pkgs, term, location, ... }: {
   home.packages = let
     smart-terminal = pkgs.writeShellScriptBin "t" ''
-      [ -n "$1" ] && WD="$1" || WD="$PWD"
-      shift
-      [ -n "$1" ] && EXEC="${term.exec} $@"
-
-      ${term.cmd} ${term.cd} $WD $EXEC & disown
+      wd=$PWD
+      cmd=""
+      if $SHELL -ic "which \"$1\""; then
+        cmd="${term.exec} $SHELL -ic \"$@\""
+      elif [ -d "$1" ]; then
+        wd="$1"
+        shift
+        cmd="${term.exec} $SHELL -ic \"$@\""
+      fi
+      echo "Running: ${term.cmd} ${term.cd} $wd $cmd & disown"
+      ${term.cmd} ${term.cd} $wd $cmd & disown
+      sleep 0.5
     '';
     extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
     configure = pkgs.writeShellScriptBin "cfg" ''
