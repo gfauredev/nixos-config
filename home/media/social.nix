@@ -10,6 +10,7 @@
     # signal-cli # Secure messaging
     element-desktop # Secure group messaging and calls
     # element-web # Secure messaging and calls
+    olvid # French secure messaging
     # UNFREE Messaging, Calls, Video
     discord # PROPRIETARY messaging and general communication
     # whatsapp-for-linux # PROPRIETARY messaging and general communication
