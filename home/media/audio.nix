@@ -1,10 +1,11 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # Tools
     klick # Metronome
-    giada # Live electronic music platform
+    # Plugins hosts & Routers
     carla # VST Host & audio router
+    cardinal # Plugin VCV Rack
     ingen # Modular audio environment
+    # giada # Live electronic music platform
     # helvum # PipeWire router
     # qpwgraph # PipeWire router
     # DAW & Editors
@@ -12,20 +13,23 @@
     ardour # Full fledged digital audio workstation
     # reaper # PROPRIETARY digital audio workstation
     # audacity # Simple audio editor
-    # VST
+    # VST Collections
     distrho # Collection of audio plugins, contains Vitalium
-    cardinal # Plugin VCV Rack
-    # helm # Ancestor of Vital
-    # lsp-plugins # Collection of audio plugins
     calf # Collection of audio plugins
+    # lsp-plugins # Collection of audio plugins
+    # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
+    # VST
+    vital # UNFREE Spectral warping wavetable synth
+    # helm # Ancestor of Vital
     # surge-XT # Great hybrid substractive synth
     # surge # Great hybrid substractive synth (old version)
+    bespokesynth-with-vst2 # Software modular synth with controllers support
     drumgizmo # High quality drums sampler
-    # Misc
+    # Bridges & Drivers & Adapters
+    # airwave # WINE-based VST bridge for Linux VST hosts
     # yabridge # Use Windows VSTs with wine TODO reenable
     # yabridgectl # Use Windows VSTs with wine TODO reenable
-    # Drivers & Adapters
     # alsa-scarlett-gui
   ];
 }
