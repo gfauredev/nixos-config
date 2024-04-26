@@ -14,6 +14,7 @@
     # audacity # Simple audio editor
     # VST
     distrho # Collection of audio plugins, contains Vitalium
+    cardinal # Plugin VCV Rack
     # helm # Ancestor of Vital
     # lsp-plugins # Collection of audio plugins
     calf # Collection of audio plugins
