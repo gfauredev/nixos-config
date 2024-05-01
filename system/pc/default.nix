@@ -71,7 +71,7 @@
     thermald.enable = lib.mkDefault true; # Keep cool
     udisks2.enable = true; # Mount USB without privileges
     geoclue2.enable = true; # Location provider
-    xserver.libinput.enable = true; # Enable touchpad support
+    libinput.enable = true; # Enable touchpad support
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
       # audio.enable = true; # Enable modern audio system PipeWire
