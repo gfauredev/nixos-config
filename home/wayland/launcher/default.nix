@@ -21,8 +21,8 @@
         stores = [ "$HOME/.password-store/" ];
       };
       extraConfig = {
-        modes = "combi,drun,window,ssh"; # ,calc,emoji";
-        combi-modes = "window,drun,ssh"; # ,emoji";
+        modes = "combi,drun,window,ssh,calc,emoji";
+        combi-modes = "window,drun,ssh,emoji";
         sorting-method = "fzf";
         show-icons = true;
       };
