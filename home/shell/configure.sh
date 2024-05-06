@@ -39,7 +39,7 @@ edit() {
 cd "$CONFIG_DIR" || cd /etc/nixos || exit # Go inside the config directory
 
 # Use local substituter if local net
-if ip addr | grep $local_network; then
+if ip addr | grep "$local_network"; then
   printf "\nUsing local substituter\n"
   nixos_rebuild_options="$nixos_rebuild_options --extra-substituters $local_substituter"
   home_manager_options="$home_manager_options --option extra-substituters $local_substituter"
