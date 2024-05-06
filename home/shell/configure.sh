@@ -1,3 +1,8 @@
+nixos_rebuild_options=''
+home_manager_options=''
+local_substituter='http://192.168.1.4:5000'
+local_network='inet 192.168.1.5/24.*wlp166s0' # ip addr regexp
+
 system() {
   printf "\nMounting /boot before system update\n"
   sudo mount /boot || return # Use fstab
@@ -32,6 +37,13 @@ edit() {
 }
 
 cd "$CONFIG_DIR" || cd /etc/nixos || exit # Go inside the config directory
+
+# Use local substituter if local net
+if ip addr | grep $local_network; then
+  printf "\nUsing local substituter\n"
+  nixos_rebuild_options="$nixos_rebuild_options --extra-substituters $local_substituter"
+  home_manager_options="$home_manager_options --option extra-substituters $local_substituter"
+fi
 
 if [ "$#" -eq 0 ]; then
   cfg-pull
