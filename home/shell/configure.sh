@@ -8,8 +8,8 @@ printf "\nShould we use local substituter\n"
 if ip addr | grep "$local_network"; then
   nixos_rebuild_options="$nixos_rebuild_options --extra-substituters $local_substituter"
   home_manager_options="$home_manager_options --option extra-substituters $local_substituter"
-  printf "\nPassing %s to nixos-rebuild\n" nixos_rebuild_options
-  printf "\nPassing %s to home-manager\n" home_manager_options
+  printf "\nPassing %s to nixos-rebuild\n" "$nixos_rebuild_options"
+  printf "\nPassing %s to home-manager\n" "$home_manager_options"
 fi
 
 system() {
