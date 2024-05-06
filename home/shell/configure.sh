@@ -6,7 +6,6 @@ local_network='inet 192.168.1.5/24.*wlp166s0' # ip addr regexp
 # Use local substituter if local net
 printf "\nShould we use local substituter\n"
 if ip addr | grep "$local_network"; then
-  nixos_rebuild_options="${nixos_rebuild_options}--extra-substituters $local_substituter"
   home_manager_options="${home_manager_options}--option extra-substituters $local_substituter"
   printf "Passing %s to nixos-rebuild\n" "$nixos_rebuild_options"
   printf "Passing %s to home-manager\n\n" "$home_manager_options"
