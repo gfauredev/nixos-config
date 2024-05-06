@@ -3,12 +3,21 @@ home_manager_options=''
 local_substituter='http://192.168.1.4:5000'
 local_network='inet 192.168.1.5/24.*wlp166s0' # ip addr regexp
 
+# Use local substituter if local net
+printf "\nShould we use local substituter\n"
+if ip addr | grep "$local_network"; then
+  nixos_rebuild_options="$nixos_rebuild_options --extra-substituters $local_substituter"
+  home_manager_options="$home_manager_options --option extra-substituters $local_substituter"
+  printf "\nPassing %s to nixos-rebuild\n" nixos_rebuild_options
+  printf "\nPassing %s to home-manager\n" home_manager_options
+fi
+
 system() {
   printf "\nMounting /boot before system update\n"
   sudo mount /boot || return # Use fstab
 
   printf "\nPerforming system update\n"
-  if systemd-inhibit sudo nixos-rebuild --flake . switch; then
+  if systemd-inhibit sudo nixos-rebuild "$nixos_rebuild_options" --flake . switch; then
     printf "\nUnmounting /boot after update\n"
     sudo umount /boot # Unmount for security
   else
@@ -23,7 +32,7 @@ home() {
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
 
   printf "\nPerforming profile update\n"
-  systemd-inhibit home-manager --flake ".#${USER}@$(hostname)" switch || return
+  systemd-inhibit home-manager "$home_manager_options" --flake ".#${USER}@$(hostname)" switch || return
 }
 
 cfg-pull() {
@@ -37,13 +46,6 @@ edit() {
 }
 
 cd "$CONFIG_DIR" || cd /etc/nixos || exit # Go inside the config directory
-
-# Use local substituter if local net
-if ip addr | grep "$local_network"; then
-  printf "\nUsing local substituter\n"
-  nixos_rebuild_options="$nixos_rebuild_options --extra-substituters $local_substituter"
-  home_manager_options="$home_manager_options --option extra-substituters $local_substituter"
-fi
 
 if [ "$#" -eq 0 ]; then
   cfg-pull
