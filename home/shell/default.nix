@@ -29,7 +29,6 @@
     ripgrep-all # ripgrep for non-text files
     duf # global disk usage
     du-dust # detailed disk usage of a directory
-    fastfetch # system info
     hexyl # hex viever
   ];
 
@@ -217,6 +216,7 @@
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
     bottom.enable = true; # Better top
+    fastfetch.enable = true; # Quick system info
     zoxide = {
       enable = true; # Smart cd
       enableZshIntegration = true;

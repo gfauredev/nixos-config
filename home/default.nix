@@ -12,7 +12,7 @@
     manpages.enable = true;
   };
 
-  news.display = "show";
+  news.display = "notify"; # Notify for new home manager options
 
   home.packages = with pkgs; [
     nixpkgs-review # Review pull requests to nixpkgs
