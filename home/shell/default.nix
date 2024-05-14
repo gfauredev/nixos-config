@@ -78,7 +78,15 @@
       sudo = "sudo ";
       se = "sudoedit ";
 
-      # List
+      # Files
+      cp = "echo You might prefer using custom command 'c';cp -urv"; # Reminder
+      mv = "mv -uv";
+      ts = "trash -v";
+      rm = "echo 'Use ts to trash instead of removing'; rm -irv";
+      restore = "trash-restore";
+      empty = "trash-empty -i";
+      shred = "shred -vu";
+      ## List
       ls = "${ls}";
       sl = "${ls} --reverse";
       lsd = "${ls} -l --no-permissions --sort=age";
@@ -88,60 +96,54 @@
       la = "${ls} -l --group -all";
       al = "${ls} -l --group -all --reverse";
       lt = "${ls} -l --tree";
-      # Explore
       bd = "br --sort-by-date";
       bs = "br --sort-by-size";
       bc = "br --sort-by-count";
 
-      # Copy, Move, Delete
-      rm = "echo 'Use ts to trash instead of removing'; rm -irv";
-      ts = "trash -v";
-      empty = "trash-empty -i";
-      restore = "trash-restore";
-      shred = "shred -vu";
-      mv = "mv -uv";
-      cp = "echo You might prefer using custom command 'c';cp -urv"; # Reminder
+      # System
+      boot = "sudo bootctl";
+      reboot = "systemctl reboot";
+      off = "systemctl poweroff";
+      sys = "systemctl";
+      jo = "sudo journalctl -xfe";
+      re = "exec zsh";
+      gc = "nix-collect-garbage";
+      governor =
+        "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
+      news =
+        "home-manager --flake ${location}#$USER@$(hostname) news"; # See home manager news
 
-      # System & Misc
-      mix = "pulsemixer";
+      # Tools
       du = "dust";
       df = "duf -hide special";
       dfa = "duf -all";
-      sys = "systemctl";
-      jo = "sudo journalctl -xfe";
       hist = "$EDITOR $ZDOTDIR/history";
-      wi = "nmcli device wifi";
-      wid = "nmcli device disconnect";
-      re = "exec zsh";
       wcp = "wl-copy";
       wpt = "wl-paste";
-      boot = "sudo bootctl";
-      governor =
-        "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
-      gc = "nix-collect-garbage";
-      # wx = "watchexec";
-      # run = "rofi -show-icons -show run";
-      # steamos = "gamescope --steam -- steam -tenfoot"; # Steam gaming compositor
-      ## Bluetooth & Network
-      bt = "bluetoothctl";
       http = "xh";
       https = "xh --https";
-      ## Media controls
+      wx = "watchexec";
+
+      # Bluetooth & Network
+      bt = "bluetoothctl";
+      wi = "nmcli device wifi";
+      wid = "nmcli device disconnect";
+
+      # Media
       pp = "playerctl play-pause";
       next = "playerctl next";
       prev = "playerctl previous";
       inhib = "systemd-inhibit sleep";
       clic = "klick --auto-connect --interactive";
       clicmap = "klick --auto-connect --tempo-map";
-      off = "systemctl poweroff";
-      reboot = "systemctl reboot";
-      ## Tools & Documents
+      mix = "pulsemixer";
+
+      # Documents
       scanpdf =
         "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
       typ = "typst compile *.typ"; # Quickly compile Typst files
-      # mail = "himalaya"; # CLI mail client
 
-      # Mounting
+      # Mounts
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
       unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
       usb =
