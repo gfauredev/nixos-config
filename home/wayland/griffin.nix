@@ -31,8 +31,8 @@
       }
       {
         event = "before-sleep";
-        # command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-        command = "${pkgs.hyprlock}/bin/hyprlock -q";
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+        # command = "${pkgs.hyprlock}/bin/hyprlock -q";
       }
     ];
     timeouts = [
@@ -43,8 +43,8 @@
       }
       {
         timeout = 330;
-        # command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-        command = "${pkgs.hyprlock}/bin/hyprlock -q";
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+        # command = "${pkgs.hyprlock}/bin/hyprlock -q";
       }
       {
         timeout = 600;
