@@ -39,6 +39,10 @@
       enable = true;
       settings.indicator-idle-visible = true;
     };
+    hyprlock = {
+      enable = true;
+      # settings = { }; # file:///nix/store/f7s6b3c7n2b83sdm70gxf4jq4kbh99qn-home-manager-manual/share/doc/home-manager/options.xhtml#opt-programs.hyprlock.settings
+    };
     rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };
 }
