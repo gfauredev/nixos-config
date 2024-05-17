@@ -33,7 +33,7 @@ md () {
 
 # Replace occurences of $1 by $2 in $3
 replace () {
-  \rg --passthrough --multiline "$1" -r "$2" "$3"
+  \rg --passthrough --multiline "$1" -r "${@:2}"
 }
 
 # Delete some annoying autocreated directories in user home
