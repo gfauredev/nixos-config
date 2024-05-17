@@ -312,6 +312,11 @@
     systemdTarget = "hyprland-session.target";
   };
 
+  services.hypridle = {
+    enable = false; # TODO use this
+    # settings = { }; # file:///nix/store/f7s6b3c7n2b83sdm70gxf4jq4kbh99qn-home-manager-manual/share/doc/home-manager/options.xhtml#opt-services.hypridle.settings
+  };
+
   # xdg.configFile = {
   #   hyprpaper = {
   #     target = "hypr/hyprpaper.conf";
