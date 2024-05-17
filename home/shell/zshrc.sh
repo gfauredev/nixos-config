@@ -31,6 +31,11 @@ md () {
   mkdir -pv "$@" && cd "$1" || return
 }
 
+# Replace occurences of $1 by $2 in $3
+replace () {
+  \rg --passthrough --multiline "$1" -r "$2" "$3" | sponge "$3"
+}
+
 # Delete some annoying autocreated directories in user home
 UNWANTED=("Downloads" "intelephense" "pt")
 for dir in "${UNWANTED[@]}"; do

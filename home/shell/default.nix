@@ -123,6 +123,7 @@
       http = "xh";
       https = "xh --https";
       wx = "watchexec";
+      rp = "replace"; # Replace function based on ripgrep
 
       # Bluetooth & Network
       bt = "bluetoothctl";
