@@ -41,7 +41,42 @@
     };
     hyprlock = {
       enable = true;
-      # settings = { }; # file:///nix/store/f7s6b3c7n2b83sdm70gxf4jq4kbh99qn-home-manager-manual/share/doc/home-manager/options.xhtml#opt-programs.hyprlock.settings
+      settings = {
+        background = [{
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 3;
+        }];
+        input-field = [{
+          monitor = "";
+          size = "250, 50";
+          outline_thickness = 3;
+          dots_size = 0.35;
+          dots_spacing = 0.15;
+          dots_center = true;
+          dots_rounding = -1;
+          outer_color = "rgb(000000)";
+          inner_color = "rgb(000000)";
+          font_color = "rgb(ffddcc)";
+          fade_on_empty = true;
+          fade_timeout = 2000;
+          placeholder_text = "$PROMPT";
+          hide_input = false;
+          # rounding = 0;
+          check_color = "rgb(204, 136, 34)";
+          fail_color = "rgb(204, 34, 34)";
+          fail_text = "$FAIL ($ATTEMPTS)";
+          fail_transition = 300;
+          capslock_color = -1;
+          numlock_color = -1;
+          bothlock_color = -1;
+          invert_numlock = false;
+          swap_font_color = false;
+          position = "0, 0";
+          halign = "center";
+          valign = "center";
+        }];
+      };
     };
     rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };
