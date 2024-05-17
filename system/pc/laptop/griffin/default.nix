@@ -47,8 +47,6 @@
     wireguard.enable = true;
   };
 
-  security = { pam.services = { swaylock = { }; }; };
-
   services = {
     fwupd = {
       # extraRemotes = [ "lvfs-testing" ];

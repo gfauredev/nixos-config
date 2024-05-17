@@ -51,8 +51,6 @@
     # TODO IPv6 config
   };
 
-  security = { pam.services = { swaylock = { }; }; };
-
   services = {
     openssh = {
       enable = true; # Enable the OpenSSH daemon

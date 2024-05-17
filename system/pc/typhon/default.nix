@@ -92,8 +92,6 @@
     # TODO IPv6 config
   };
 
-  security = { pam.services = { swaylock = { }; }; };
-
   environment.systemPackages = with pkgs;
     [
       # rustdesk-server # Remote desktop # TEST against steam streaming
