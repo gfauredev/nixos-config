@@ -182,7 +182,8 @@
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
         "$mod, comma, exec, swaylock -f -c 000000" # Black screen lock
-        "$mod SHIFT, comma, exec, systemctl suspend"
+        "$mod CONTROL, comma, exec, hyprlock" # Blur screen lock
+        "$mod SHIFT, comma, exec, systemctl suspend" # Suspend
         "SUPER, j, exec, ${mirror}" # Mirror output (F9 on Framework Laptop)
         "SUPER CONTROL, j, exec, ${mirror-output}" # Change mirrored output
         "SUPER SHIFT, j, exec, ${mirror-region}" # Change mirrored region
@@ -192,6 +193,7 @@
         # Audio
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SHIFT, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "CONTROL, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         "SHIFT, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         # Media
