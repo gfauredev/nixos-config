@@ -113,6 +113,11 @@
 
   xdg = {
     enable = true;
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+      config.common.default = "*";
+    };
     mime.enable = true;
     mimeApps.enable = true;
   };
