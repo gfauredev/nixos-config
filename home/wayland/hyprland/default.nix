@@ -273,9 +273,8 @@
         rounding = 8;
         blur = {
           enabled = true;
-          # enabled = false; # Save some power
           size = 3;
-          passes = 1;
+          passes = 2;
         };
         # blur_new_optimizations = true; # Save some power
         drop_shadow = false; # Save some power
