@@ -252,9 +252,16 @@
         gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
-        # cursor_inactive_timeout = 1;
         "col.active_border" = "rgb(b6a482)";
         "col.inactive_border" = "rgb(000000)";
+      };
+
+      cursor = {
+        no_hardware_cursor = false;
+        inactive_timeout = 1;
+        enable_hyprcursor = true;
+        hide_on_key_press = true;
+        hide_on_touch = true;
       };
 
       group = {
