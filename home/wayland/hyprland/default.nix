@@ -257,7 +257,7 @@
       };
 
       cursor = {
-        no_hardware_cursor = false;
+        no_hardware_cursors = false;
         inactive_timeout = 1;
         enable_hyprcursor = true;
         hide_on_key_press = true;
