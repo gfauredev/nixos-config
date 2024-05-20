@@ -252,7 +252,7 @@
         gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
-        cursor_inactive_timeout = 1;
+        # cursor_inactive_timeout = 1;
         "col.active_border" = "rgb(b6a482)";
         "col.inactive_border" = "rgb(000000)";
       };
