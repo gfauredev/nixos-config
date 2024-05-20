@@ -24,7 +24,7 @@
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
       # forceFullCompositionPipeline = true; TEST relevance
       # nvidiaPersistenced = true; TEST relevance
@@ -112,7 +112,7 @@
       };
     };
     fail2ban = { enable = true; };
-    xserver.videoDrivers = [ "nvidia" ];
+    # xserver.videoDrivers = [ "nvidia" ];
     nix-serve = {
       enable = true; # Enable distribution of nix build cache
       openFirewall = true;

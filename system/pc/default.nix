@@ -8,12 +8,12 @@
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver # Intel HD
-        vaapiIntel # i965
-        vaapiVdpau # Nvidia
-        libvdpau-va-gl # Nvidia
-      ];
+      # extraPackages = with pkgs; [ # TODO REMOVE
+      #   intel-media-driver # Intel HD
+      #   vaapiIntel # i965
+      #   vaapiVdpau # Nvidia
+      #   libvdpau-va-gl # Nvidia
+      # ];
     };
     # fancontrol = {
     #   enable = true;

@@ -60,7 +60,10 @@
         PasswordAuthentication = true;
       };
     };
-    fail2ban = { enable = true; };
+    fail2ban = {
+      # TODO configure me
+      enable = true;
+    };
     # xserver.videoDrivers = [ "nvidia" ];
   };
 

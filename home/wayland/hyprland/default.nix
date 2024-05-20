@@ -23,7 +23,6 @@
         # "Cerebro" # General purpose launcher
         # "wezterm-mux-server" # TEST relevance
       ];
-      # env = [ ];
 
       xwayland.force_zero_scaling = true;
 

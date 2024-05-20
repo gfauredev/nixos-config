@@ -1,15 +1,13 @@
 { pkgs, ... }: {
   imports = [ ./default.nix ./waybar/widescreen.nix ];
 
-  home.sessionVariables = {
-    # GDK_SCALE = "1.25"; # Scaling on Xwayland
-    WLR_NO_HARDWARE_CURSORS = "1"; # FIX for invisible cursor on nvidia
-    # SDL_VIDEODRIVER = "wayland"; # Force apps to use Wayland SDL
-  };
+  # home.sessionVariables = {
+  #   GDK_SCALE = "1.25"; # Scaling on Xwayland
+  #   WLR_NO_HARDWARE_CURSORS = "1"; # FIX for invisible cursor on nvidia
+  #   SDL_VIDEODRIVER = "wayland"; # Force apps to use Wayland SDL
+  # };
 
   wayland.windowManager.hyprland = {
-    # enableNvidiaPatches = true;
-
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       # Typhon (ultrawide desktop) monitors
@@ -27,7 +25,14 @@
         # "name:ext, monitor:DP-4, default:true"
       ];
 
-      # env = [ ]; # TEST if sessionVariables replace it
+      env = [ # TEST pertinence of each
+        "LIBVA_DRIVER_NAME,nvidia"
+        "XDG_SESSION_TYPE,wayland"
+        "GBM_BACKEND,nvidia-drm"
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "NVD_BACKEND,direct"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+      ];
     };
   };
 
