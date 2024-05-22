@@ -5,53 +5,60 @@ window, box, widget, label, button {
   min-width: 0;
 }
 
-box > button {
-  margin-right: 3px;
-  padding-right: 4px;
-  color: #fdc;
-}
-
-box > button:last-child {
-  margin: 0;
-}
-
-.modules-left {
-  margin-right: 3px;
+label, box {
+  padding: 0 1px;
 }
 
 .modules-left label {
-  min-width: 40px;
+  margin-left: 0;
+  margin-right: 8px;
 }
 
-.modules-center label {
-  padding: 1px 3px;
-  min-width: 8px;
-}
-
-window#waybar {
-  background-color: transparent;
-}
-
-window#waybar, menu label {
+#waybar {
   color: #fdc;
   font-size: 14px;
   font-family: "FiraCode Nerd Font", monospace;
-}
-
-label, #tray {
-  padding: 1px 3px;
-}
-
-#tray, #workspaces > button {
-  border-radius: 8px;
+  background-color: transparent;
 }
 
 #battery {
   min-width: 50px;
 }
 
+@keyframes fgBlink {
+  to {
+    color: #fdc;
+  }
+}
+
+@keyframes bgBlink {
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
 #battery.low:not(.charging) {
   color: red;
+}
+
+#battery.warning:not(.charging), #cpu.warning, #memory.warning {
+  color: red;
+  animation-name: fgBlink;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.critical:not(.charging), #temperature.critical, #cpu.critical, #memory.critical {
+  background-color: red;
+  animation-name: bgBlink;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#pulseaudio {
+  min-width: 100px;
 }
 
 #pulseaudio.muted.source-muted {
@@ -62,12 +69,19 @@ label, #tray {
   min-width: 75px;
 }
 
-#pulseaudio {
-  min-width: 110px;
+#workspaces button {
+  padding-right: 3px;
+  margin-right: 3px;
+  border-radius: 8px;
 }
 
-#clock {
-  min-width: 175px;
+#workspaces {
+  margin-top: 2px;
+  margin-bottom: 1px;
+}
+
+#workspaces button:last-child {
+  margin: 0;
 }
 
 #workspaces button.urgent {
@@ -90,31 +104,11 @@ label, #tray {
   border-color: #876;
 }
 
-
-#battery.warning:not(.charging), #cpu.warning, #memory.warning {
-  color: red;
-  animation-name: fgBlink;
-  animation-duration: 0.5s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#tray {
+  border-radius: 8px;
 }
 
-#battery.critical:not(.charging), #temperature.critical, #cpu.critical, #memory.critical {
-  background-color: red;
-  animation-name: bgBlink;
-  animation-duration: 0.5s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes fgBlink {
-  to {
-    color: #fdc;
-  }
-}
-
-@keyframes bgBlink {
-  to {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+#clock {
+  min-width: 160px;
+  padding: 0 1px;
 }
