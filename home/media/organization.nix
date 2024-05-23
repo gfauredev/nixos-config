@@ -18,5 +18,6 @@
 
     # Misc
     gpxsee # GPS track viewer
+    # archi # Archimate modeling tool
   ];
 }
