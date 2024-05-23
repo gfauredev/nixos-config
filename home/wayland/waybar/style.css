@@ -1,8 +1,11 @@
 window, box, widget, label, button {
+  color: inherit;
+  font-size: inherit;
   margin: 0;
   padding: 0;
   min-height: 0;
   min-width: 0;
+  background-color: transparent;
 }
 
 label, box {
@@ -18,7 +21,6 @@ label, box {
   color: #fdc;
   font-size: 14px;
   font-family: "FiraCode Nerd Font", monospace;
-  background-color: transparent;
 }
 
 #battery {
