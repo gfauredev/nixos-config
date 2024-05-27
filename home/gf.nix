@@ -45,7 +45,7 @@
     mimeApps = {
       defaultApplications = let
         text = "nvim";
-        image = "oculante";
+        image = "imv";
         audio = "mpv";
         video = "mpv";
         web = "brave-browser";
