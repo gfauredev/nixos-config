@@ -50,7 +50,6 @@
 
     # Image & Video
     viu # CLI image viewer
-    imv # Light imave viewer
     vpv # Advanced light image viewer
     oculante # Image viewer with some advanced features
     imagemagick # CLI image edition
@@ -105,8 +104,8 @@
       '';
     };
     mpv.enable = true; # Audio and video player
+    imv.enable = true; # BUG Minimal image viewer
     # pqiv.enable = true; # Light image viewer
-    # imv.enable = true; # BUG Minimal image viewer
     # feh.enable = true; # Light X11 image viewer
   };
 }
