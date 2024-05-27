@@ -52,7 +52,7 @@ if [ "$#" -eq 0 ]; then
   edit && home ; exit
 fi
 
-# Go through each parameters and act accordingly
+# Main action according to first parameter
 case "$1" in
   "rebuild")
     cfg-pull
@@ -60,18 +60,8 @@ case "$1" in
       home
       exit
     fi
-    case "$2" in
-      "system")
-        system || exit
-        ;;
-      "all")
-        system ; home || exit
-        ;;
-      *)
-        home || exit
-        ;;
-    esac
-      shift 2
+    # Further "home", "system" or "all" argument to rebuild
+    shift
     ;;
   "system")
     cfg-pull
@@ -120,6 +110,7 @@ case "$1" in
     ;;
 esac
 
+# Go through each following parameters and act accordingly
 for param in "$@"; do
   case $param in
     "home")
