@@ -41,6 +41,7 @@
     qpdf # PDF manipulation
     # pdf4qt # PDF edition
     masterpdfeditor4 # CLOSED SOURCE PDF edition
+    naps2 # Scan PDFs
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
 
