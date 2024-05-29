@@ -13,6 +13,7 @@
     # protonvpn-cli # Free VPN service
 
     # Monitoring & Analysis
+    sherlock # Search social media accounts
     nmap # scan ports
     # rustscan # scan networks
     xh # User-friendly HTTP client similar to HTTPie
