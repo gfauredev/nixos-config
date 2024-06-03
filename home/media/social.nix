@@ -17,6 +17,7 @@
     # discord-canary # PROPRIETARY messaging and general communication
     # teams-for-linux # PROPRIETARY services messaging and work
     # zoom         # PROPRIETARY messaging and work
+    keybase-gui # Identity and public key cryptography
   ];
 
   # TODO configure thunderbird with nix
