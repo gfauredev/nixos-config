@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # Email
-    thunderbird # Popular desktop email and calendar client
-    # evolution # Popular desktop email and calendar client
+    thunderbird # Popular desktop email and calendar client TODO configure it
+    # evolution # Desktop email and calendar client
     # himalaya # CLI mail client # Configure via home manager module
     # mailspring # Email client WARNING security issue
     # Messaging, Calls, Video
@@ -19,7 +19,7 @@
     # zoom         # PROPRIETARY messaging and work
   ];
 
-  # TODO configure this
+  # TODO configure thunderbird with nix
   # accounts = {
   #   calendar = { };
   #   email.accounts = {
@@ -54,6 +54,11 @@
   #     };
   #   };
   # };
+
+  services = {
+    keybase.enable = true; # Identity and public key cryptography
+    # kbfs.enable = true; # Keybase Filesystem
+  };
 
   programs = {
     # himalaya = {
