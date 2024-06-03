@@ -256,13 +256,13 @@
         "col.inactive_border" = "rgb(000000)";
       };
 
-      cursor = {
-        no_hardware_cursors = false;
-        inactive_timeout = 1;
-        enable_hyprcursor = true;
-        hide_on_key_press = true;
-        hide_on_touch = true;
-      };
+      # cursor = {
+      #   no_hardware_cursors = false;
+      #   inactive_timeout = 1;
+      #   enable_hyprcursor = true;
+      #   hide_on_key_press = true;
+      #   hide_on_touch = true;
+      # };
 
       group = {
         "col.border_active" = "rgb(e6d4c2)";
