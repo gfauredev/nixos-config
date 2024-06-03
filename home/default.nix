@@ -108,7 +108,11 @@
       ];
     };
     gpg.enable = true; # Useful cryptography tool
-    password-store.enable = true; # CLI standard password manager
+    password-store = {
+      enable = true; # CLI standard password manager
+      package =
+        pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
+    };
   };
 
   xdg = {
