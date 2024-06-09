@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     # Web browsing
     brave # Blink based secure and private web browser
-    nyxt # Keyboard driven lightweight web browser
+    # nyxt # Keyboard driven lightweight web browser
 
     # P2P & VPN & Web3
     nym # A new mixnet, anonymous routing protocol
