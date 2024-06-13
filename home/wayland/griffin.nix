@@ -8,6 +8,7 @@
       monitor = [
         "eDP-1, 2256x1504, 0x0, 1.333" # Griffin’s internal monitor
         "desc:AOC 24G2W1G4 ATNL61A140044, 1920x1080, -114x-1080, 1"
+        "desc:NEC Corporation EA231WU 98102093NB, 1920x1080, -114x-1080, 1"
         ", preferred, auto, 1" # Externals monitor
       ];
 
