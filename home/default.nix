@@ -24,6 +24,7 @@
     # veracrypt # multiplatform encryption
     moreutils # Additional Unix utilities
     pipectl # Named pipes management
+    cdrkit # ISO tools and misc
     # GUI specific
     pinentry # Enter password when needed
     libnotify # Notifications management
