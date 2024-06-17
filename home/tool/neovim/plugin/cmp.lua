@@ -58,11 +58,11 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, -- For luasnip users.
-    -- }, { --- Why this ?
     { name = 'path' },
+  }, {
     { name = 'copilot' },
     { name = 'buffer' },
-    { name = 'otter' }, -- Quarto
+    -- { name = 'otter' }, -- Quarto
   })
 })
 
