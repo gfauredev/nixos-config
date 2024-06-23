@@ -6,7 +6,7 @@
   ];
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
       # extraPackages = with pkgs; [ # TODO REMOVE
       #   intel-media-driver # Intel HD
