@@ -14,10 +14,10 @@
   };
 
   hardware = {
-    opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
-    };
+    # opengl = { # TODO remove deprecated
+    #   driSupport = true;
+    #   driSupport32Bit = true;
+    # };
     nvidia = {
       open = false;
       modesetting.enable = true;
@@ -37,7 +37,7 @@
       efi.canTouchEfiVariables = true; # Don’t touch if buggy UEFI
       efi.efiSysMountPoint = "/boot"; # Separate efi executable
     };
-    kernelPackages = pkgs.linuxPackages; # Default Linux kernel
+    # kernelPackages = pkgs.linuxPackages; # Default Linux kernel
     # kernelPackages = pkgs.linuxPackages_6_8; # Stable Linux kernel
     bootspec.enable = true;
     lanzaboote = {
