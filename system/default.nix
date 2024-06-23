@@ -26,7 +26,8 @@
     consoleLogLevel = 0; # Don’t clutter screen at boot
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = { "kernel.sysrq" = 212; };
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # Latest kernel
+    kernelPackages = lib.mkOverride 1001
+      pkgs.linuxPackages_latest; # Latest Linux kernel by default
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
   };
