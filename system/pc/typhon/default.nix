@@ -37,8 +37,8 @@
       efi.canTouchEfiVariables = true; # Don’t touch if buggy UEFI
       efi.efiSysMountPoint = "/boot"; # Separate efi executable
     };
-    # kernelPackages = pkgs.linuxPackages; # Default Linux kernel
-    kernelPackages = pkgs.linuxPackages_6_8; # Stable Linux kernel
+    kernelPackages = pkgs.linuxPackages; # Default Linux kernel
+    # kernelPackages = pkgs.linuxPackages_6_8; # Stable Linux kernel
     bootspec.enable = true;
     lanzaboote = {
       enable = true;
