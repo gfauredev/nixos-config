@@ -4,7 +4,6 @@ conform.setup({
   formatters = {
     typstyle = {
       command = "typstyle",
-      args = { "-i", "$FILENAME" }
     }
   },
   formatters_by_ft = {
