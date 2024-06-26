@@ -19,7 +19,8 @@
     # hunspellDicts.es_ES # Spanish
     typst # Advanced document processor
     typst-lsp # Typst LSP
-    typstfmt # Typst formatter
+    typstyle # Typst formatter
+    # typstfmt # Typst formatter
     marksman # Smart Markdown links
 
     # Document & Spreadsheet & Presentation & Note
