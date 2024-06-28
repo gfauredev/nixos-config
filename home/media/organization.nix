@@ -13,7 +13,7 @@
     # calibre # Ebook management
 
     # Rendering & Presentation
-    # pdfpc # PDF Presentator Console
+    pdfpc # PDF Presentator Console
     mermaid-cli # Markdown-like diagrams
     plantuml-c4 # UML diagrams from text
     # quarto # Scientific and technical publishing system
