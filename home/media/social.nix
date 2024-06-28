@@ -12,7 +12,7 @@
     # element-web # Secure messaging and calls
     olvid # French secure messaging
     # UNFREE Messaging, Calls, Video
-    discord # PROPRIETARY messaging and general communication
+    # discord # PROPRIETARY messaging and general communication
     # whatsapp-for-linux # PROPRIETARY messaging and general communication
     # discord-canary # PROPRIETARY messaging and general communication
     # teams-for-linux # PROPRIETARY services messaging and work
