@@ -36,6 +36,10 @@ replace () {
   \rg --passthrough --multiline "$1" -r "${@:2}"
 }
 
+present () {
+  pdfpc "$@" & disown
+}
+
 # Delete some annoying autocreated directories in user home
 UNWANTED=("Downloads" "intelephense" "pt")
 for dir in "${UNWANTED[@]}"; do
