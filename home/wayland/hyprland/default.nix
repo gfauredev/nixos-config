@@ -254,16 +254,16 @@
         layout = "dwindle";
         "col.active_border" = "rgb(b6a482)";
         "col.inactive_border" = "rgb(000000)";
-        cursor_inactive_timeout = 1;
+        # cursor_inactive_timeout = 1;
       };
 
-      # cursor = {
-      #   no_hardware_cursors = false;
-      #   inactive_timeout = 1;
-      #   enable_hyprcursor = true;
-      #   hide_on_key_press = true;
-      #   hide_on_touch = true;
-      # };
+      cursor = {
+        no_hardware_cursors = false;
+        inactive_timeout = 1;
+        enable_hyprcursor = true;
+        hide_on_key_press = true;
+        hide_on_touch = true;
+      };
 
       group = {
         "col.border_active" = "rgb(e6d4c2)";
@@ -309,8 +309,8 @@
         background_color = "0x000000";
         disable_splash_rendering = true;
         vfr = true; # Save power
-        enable_hyprcursor = true;
-        hide_cursor_on_key_press = true;
+        # enable_hyprcursor = true;
+        # hide_cursor_on_key_press = true;
       };
     };
     systemd.enable = true; # TEST relevance
