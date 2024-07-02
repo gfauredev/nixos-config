@@ -17,6 +17,7 @@
       sleep 0.5
     '';
     extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
+    backup = pkgs.writeShellScriptBin "back" "${lib.readFile ./back.sh}";
     configure = pkgs.writeShellScriptBin "cfg" ''
       CONFIG_DIR="${location}"
       ${lib.readFile ./configure.sh}
@@ -24,6 +25,7 @@
   in with pkgs; [
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
+    backup # Backup with restic or rsync
     configure # Configure this flake config
     trash-cli # Manage a trash from CLI
     ripgrep-all # ripgrep for non-text files
