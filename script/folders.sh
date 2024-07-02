@@ -1,22 +1,12 @@
 # This script explains the root of my personal organization (based on PARA)
 # and creates the associated directories in my home directory
-# (although being not limited to directories)
-#
-# Remarks :
-# - Names are choosen to sort alphabetically from the least to most actionable
-# - Names are always singular, never plural
-# - Names are kept short, while still be totally clear and non-ambiguous on their nature
 
-# TODO MAKE THIS INDEMPOTENT
+# Directories names should :
+# - Sort alphabetically from the least to most actionable
+# - Be always singular, never plural
+# - Be kept short, while still being totally clear, non-ambiguous on their nature
 
-# echo "== Todo == Textual organisation files =="
-# if [ ! -d $HOME/todo ]; then
-#   echo "\nCreating Todo directory …"
-#   mkdir -m 700 -v $HOME/todo/
-# fi
-# echo "#include stignore" > $HOME/todo/.stignore
-# echo "Organization" > $HOME/todo/.ventoyignore
-# echo
+# TODO make this idempotent
 
 echo "== Project == Projects (containing sub-projects) =="
 echo "  Tasks required to progress toward goal or next milestone"

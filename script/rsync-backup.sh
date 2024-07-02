@@ -1,14 +1,14 @@
 if [ -n "$1" ]; then
   readonly SOURCE_DIR="$(realpath "$1")"
 else
-  readonly SOURCE_DIR="$HOME/.data"
+  readonly SOURCE_DIR="$HOME/data"
 fi
 echo "Backup $SOURCE_DIR"
 
 if [ -n "$2" ]; then
   readonly BACKUPS_DIR="$(realpath "$2")"
 else
-  readonly BACKUPS_DIR="$HOME/.backup"
+  readonly BACKUPS_DIR="$HOME/usb/gf-back/"
 fi
 echo "Into $BACKUPS_DIR"
 
