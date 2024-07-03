@@ -6,6 +6,7 @@
   ];
 
   hardware = {
+    uinput.enable = true;
     graphics = {
       enable = true;
       # extraPackages = with pkgs; [ # TODO REMOVE
@@ -21,7 +22,6 @@
     #     # Configuration file for fancontrol
     #   '';
     # };
-    uinput.enable = true;
   };
 
   i18n = {
@@ -72,6 +72,7 @@
     udisks2.enable = true; # Mount USB without privileges
     geoclue2.enable = true; # Location provider
     libinput.enable = true; # Enable touchpad support
+    hardware.bolt.enable = true; # Thunderbolt device manager
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
       # audio.enable = true; # Enable modern audio system PipeWire
@@ -89,10 +90,6 @@
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
     };
-    # languagetool = {
-    #   enable = true; # Advanced spell checking server
-    #   public = false;
-    # };
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
     iperf3.enable = true; # Network testing
@@ -153,6 +150,7 @@
       nix-du # Determine which gc-roots take space
       ssh-to-age # Converter between SSH keys and age
       powertop # Power usage analyzer
+      # bolt # Thunderbolt device manager
       # polkit_gnome # Allow GUI apps to get privileges
       # sbctl # Secure Boot Control
       # dhcping # DHCP debugging
