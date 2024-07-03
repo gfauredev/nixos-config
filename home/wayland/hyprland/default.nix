@@ -226,13 +226,20 @@
         "$mod CONTROL, r, resizeactive, 10 0" # Move right
       ];
       bindle = [
-        # Brightness
-        ",XF86MonBrightnessUp, exec, light -A 5"
-        ",XF86MonBrightnessDown, exec, light -U 5"
-        "SHIFT, XF86MonBrightnessUp, exec, light -A 2"
-        "SHIFT, XF86MonBrightnessDown, exec, light -U 2"
-        "CONTROL, XF86MonBrightnessUp, exec, light -A 1"
-        "CONTROL, XF86MonBrightnessDown, exec, light -U 1"
+        # Brightness (light)
+        # ",XF86MonBrightnessUp, exec, light -A 5"
+        # ",XF86MonBrightnessDown, exec, light -U 5"
+        # "SHIFT, XF86MonBrightnessUp, exec, light -A 2"
+        # "SHIFT, XF86MonBrightnessDown, exec, light -U 2"
+        # "CONTROL, XF86MonBrightnessUp, exec, light -A 1"
+        # "CONTROL, XF86MonBrightnessDown, exec, light -U 1"
+        # Brightness (brightnessctl)
+        ",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        "SHIFT, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
+        "SHIFT, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
+        "CONTROL, XF86MonBrightnessUp, exec, brightnessctl set 1%+"
+        "CONTROL, XF86MonBrightnessDown, exec, brightnessctl set 1%-"
         # Audio
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
         "CONTROL, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"

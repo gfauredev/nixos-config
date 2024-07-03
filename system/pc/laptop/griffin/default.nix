@@ -19,7 +19,6 @@
   };
 
   hardware = {
-    sensor.iio.enable = true;
     nvidia = {
       open = false;
       modesetting.enable = true;

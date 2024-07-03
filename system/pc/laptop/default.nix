@@ -1,5 +1,10 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   imports = [ ../default.nix ];
+
+  hardware = {
+    sensor.iio.enable = lib.mkDefault true; # Auto brightness & orientation
+    # brillo.enable = true; # Keyboard brightness control
+  };
 
   services = {
     logind = {
@@ -16,5 +21,10 @@
     cpuFreqGovernor = lib.mkForce "powersave";
   };
 
-  programs.light.enable = true;
+  # programs.light.enable = true; # DEPRECATED
+
+  environment.systemPackages = with pkgs;
+    [
+      brightnessctl # Keyboard brightness control
+    ];
 }
