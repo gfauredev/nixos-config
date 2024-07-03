@@ -44,6 +44,7 @@
             ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
             ./system/user/gf.nix # Myself
             ./system/virtualization.nix
+            ./system/pc/gaming.nix
           ];
         };
         chimera = nixpkgs.lib.nixosSystem {

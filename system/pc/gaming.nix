@@ -1,9 +1,16 @@
-{ pkgs, ... }: {
+{ lib, ... }: {
   nixpkgs = {
     config = {
-      allowUnfree = true;
+      # allowUnfree = true;
       # Fixes https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      # allowUnfreePredicate = (_: true);
+      # More fine-grain control
+      allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          "steam"
+          "steam-original"
+          "steam-run"
+        ];
     };
   };
 
@@ -11,16 +18,15 @@
     steam = {
       enable = true;
       # gamescopeSession.enable = true;
-      remotePlay.openFirewall =
-        true; # Open ports in the firewall for Steam Remote Play TEST
-      # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server TEST
+      remotePlay.openFirewall = lib.mkDefault false; # Open ports
+      dedicatedServer.openFirewall = lib.mkDefault false; # Open ports
     };
     gamemode.enable = true;
-    gamescope = { enable = true; };
+    # gamescope.enable = true;
   };
 
-  environment.systemPackages = with pkgs;
-    [
-      steam-run # Run program with a steam like environment
-    ];
+  # environment.systemPackages = with pkgs;
+  #   [
+  #     steam-run # Run program with a steam like environment
+  #   ];
 }

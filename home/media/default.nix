@@ -6,6 +6,7 @@
     ./photo.nix
     ./video.nix
     ./social.nix
+    ./gaming.nix
   ];
 
   home.packages = with pkgs; [
