@@ -112,7 +112,7 @@
         PasswordAuthentication = false;
       };
     };
-    fail2ban = { enable = true; };
+    fail2ban.enable = true;
     # xserver.videoDrivers = [ "nvidia" ];
     nix-serve = {
       enable = true; # Enable distribution of nix build cache

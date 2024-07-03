@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   imports = [ ./hardware.nix ../default.nix ];
 
   nix = {
@@ -18,7 +18,20 @@
     };
   };
 
-  hardware = { sensor.iio.enable = true; };
+  hardware = {
+    sensor.iio.enable = true;
+    nvidia = {
+      open = false;
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
+      # forceFullCompositionPipeline = true; TEST relevance
+      # nvidiaPersistenced = true; TEST relevance
+    };
+  };
 
   boot = {
     # extraModprobeConfig = ''
