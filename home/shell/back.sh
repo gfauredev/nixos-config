@@ -19,7 +19,7 @@ if [[ "$1" == *"back"* ]]; then
 elif [ $avail -gt $used ]; then
   # Store most important directories in drives or sticks (which label don’t contains "back")
   rsync --verbose --archive --delete --human-readable \
-    --exclude=".stversions/" --exclude=".stfolder/" --exclude=".venv/" --exclude=".vagrant/" \
+    --exclude=".stversions/" --exclude=".stfolder/" --exclude=".venv*/" --exclude=".vagrant/" \
     --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" \
     --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" \
     --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" --exclude="*thumbnails*" \
