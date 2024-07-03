@@ -9,7 +9,8 @@
         "eDP-1, 2256x1504, 0x0, 1.333" # Griffin’s internal monitor
         "desc:AOC 24G2W1G4 ATNL61A140044, 1920x1080, -114x-1080, 1"
         "desc:NEC Corporation EA231WU 98102093NB, 1920x1200, -114x-1200, 1"
-        "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440, -874x-1440, 1.25"
+        # "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440, -874x-1440, 1"
+        "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440, -587x-1200, 1.2"
         ", preferred, auto, 1" # Other monitors
       ];
 
