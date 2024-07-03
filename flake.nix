@@ -145,7 +145,6 @@
           "gf@griffin" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs; # TODO use this to prevent 3 below lines
-              hwmon = "3/temp1_input";
               term = wezterm;
               location = location;
             };
@@ -160,7 +159,6 @@
           "gf@typhon" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs;
-              hwmon = "2/temp3_input";
               term = wezterm;
               location = location;
             };
@@ -175,7 +173,6 @@
           "gf@work" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs;
-              hwmon = "2/temp3_input"; # TEST
               term = wezterm;
               location = location;
             };

@@ -1,4 +1,4 @@
-{ lib, pkgs, hwmon, ... }: {
+{ lib, pkgs, ... }: {
   programs = {
     waybar = {
       enable = true;
@@ -31,8 +31,8 @@
           };
 
           temperature = {
-            # thermal-zone = 0;
-            hwmon-path = "/sys/class/hwmon/hwmon" + hwmon;
+            thermal-zone = 0;
+            # hwmon-path = "/sys/class/hwmon/hwmon" + "3/temp1_input";
             critical-threshold = "75";
             format = "{icon} {temperatureC}";
             format-icons = [ "" "" "" "" "" ];
