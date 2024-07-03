@@ -1,11 +1,11 @@
 nixos_rebuild_options=''
 home_manager_options=''
-local_substituter='http://192.168.1.4:5000'
-local_network='inet 192.168.1.5/24.*wlp166s0' # ip addr regexp
+local_substituter='http://192.168.1.5:5000'
+local_network='inet 42.42.42.42/24.*wlp166s0' # ip addr regexp
 
 # Use local substituter if local net
 if ip addr | grep "$local_network"; then
-  home_manager_options="${home_manager_options}--option extra-substituters $local_substituter"
+  home_manager_options="${home_manager_options} --option extra-substituters $local_substituter"
   printf "Passing %s to nixos-rebuild\n" "$nixos_rebuild_options"
   printf "Passing %s to home-manager\n" "$home_manager_options"
 fi
