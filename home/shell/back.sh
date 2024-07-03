@@ -21,7 +21,7 @@ elif [ $avail -gt $used ]; then
   # Store most important directories in drives or sticks (which label don’t contains "back")
   echo "Backing up most important directories with rsync\n"
   rsync --verbose --archive --delete --human-readable --partial --progress \
-    --exclude=".stversions/" --exclude=".stfolder/" --exclude=".venv*/" --exclude=".vagrant/" \
+    --exclude=".stversions/" --exclude=".stfolder/" --exclude=".venv*/" --exclude=".vagrant/" --exclude=".git/" \
     --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" \
     --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" \
     --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" --exclude="*thumbnails*" \
@@ -31,7 +31,7 @@ else
   # Store less important directories in too small drives
   echo "Backing up life/ and project/ directories with rsync\n"
   rsync --verbose --archive --delete --human-readable --partial --progress \
-    --exclude=".stversions/" --exclude=".stfolder/" --exclude=".venv/" --exclude=".vagrant/" \
+    --exclude=".stversions/" --exclude=".stfolder/" --exclude=".venv/" --exclude=".vagrant/" --exclude=".git/" \
     --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" --exclude="*.webp" --exclude="*.avif" \
     --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" --exclude="*.WEBP" --exclude="*.AVIF" \
     --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" --exclude="*thumbnails*" \
