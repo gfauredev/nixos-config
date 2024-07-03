@@ -6,7 +6,7 @@
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = { "kernel.sysrq" = 212; };
     # kernelPackages = pkgs.linuxPackages; # Stable Linux kernel
-    kernelPackages = pkgs.linuxPackages_latest; # Latest Linux kernel
+    # kernelPackages = pkgs.linuxPackages_latest; # Latest Linux kernel (defined in default module)
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
   };
 
