@@ -28,9 +28,12 @@
 
       # See https://wiki.hyprland.org/Configuring/Variables
       input = {
-        kb_layout = "fr,us,fr";
-        kb_variant = "bepo_afnor,,";
-        kb_options = "grp:ctrls_toggle";
+        kb_layout = "fr,us";
+        kb_variant = "bepo_afnor,";
+        # kb_options = "grp:ctrls_toggle"; # Not working
+        # kb_options = "grp:alt_shift_toggle"; # Annoying
+        # kb_options = "grp:shifts_toggle"; # Not working
+        kb_options = "grp:alts_toggle";
         repeat_delay = "250";
         repeat_rate = "50";
         follow_mouse = 1;
@@ -281,7 +284,7 @@
       };
 
       # See https://wiki.hyprland.org/Configuring/Variables
-      gestures = { workspace_swipe = true; };
+      gestures.workspace_swipe = false;
 
       decoration = {
         rounding = 8;
