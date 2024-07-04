@@ -114,6 +114,7 @@
         "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
       news =
         "home-manager --flake ${location}#$USER@$(hostname) news"; # See home manager news
+      egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
 
       # Tools
       du = "dust";
