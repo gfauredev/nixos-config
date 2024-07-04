@@ -30,6 +30,16 @@
       # forceFullCompositionPipeline = true; TEST relevance
       # nvidiaPersistenced = true; TEST relevance
     };
+    nvidia.prime = {
+      allowExternalGpu = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      # sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:127:0:0";
+    };
   };
 
   boot = {
