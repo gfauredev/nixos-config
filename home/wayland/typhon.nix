@@ -24,7 +24,6 @@
         # "name:etc, monitor:DP-3, default:true"
         # "name:ext, monitor:DP-4, default:true"
       ];
-
       # env = [ # TEST pertinence of each
       #   "LIBVA_DRIVER_NAME,nvidia"
       #   "XDG_SESSION_TYPE,wayland"

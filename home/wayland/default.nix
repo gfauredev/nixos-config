@@ -2,8 +2,8 @@
   imports = [ ./hyprland ./waybar ./launcher ./remap ];
 
   home.packages = with pkgs; [
-    wev # Evaluate inputs sent to wayland to debug
-    wlr-randr # Edit display settings for wayland
+    # wev # Evaluate inputs sent to wayland to debug
+    # wlr-randr # Edit display settings for wayland
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
     grim # Take screenshots
@@ -13,7 +13,7 @@
     # hyprpaper # Wallpaper engine
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
-    niri # Innovative WM infinity horizontal scroll
+    # niri # Innovative WM infinity horizontal scroll
   ];
 
   xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
@@ -29,8 +29,6 @@
       if [ -z "$DISPLAY" ]; then
         if [ "$XDG_VTNR" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/Hyprland
-        elif [ "$XDG_VTNR" -eq 2 ]; then
-          WLR_DRM_DEVICES=$HOME/.config/hypr/egpu $HOME/.nix-profile/bin/Hyprland
         elif [ "$XDG_VTNR" -eq 9 ]; then
           exec $HOME/.nix-profile/bin/niri --session
         fi

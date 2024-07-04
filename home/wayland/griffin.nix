@@ -7,13 +7,12 @@
       # Griffin (Framework Laptop 13) monitors
       monitor = [
         "eDP-1, 2256x1504, 0x0, 1.333" # Griffin’s internal monitor
-        "desc:AOC 24G2W1G4 ATNL61A140044, 1920x1080, -114x-1080, 1"
-        "desc:NEC Corporation EA231WU 98102093NB, 1920x1200, -114x-1200, 1"
-        "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440, -874x-1440, 1"
-        # "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440, -767x-1350, 1.0666"
+        "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440@144, -874x-1440, 1"
+        # "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440@144, -767x-1350, 1.0666"
+        ", 1920x1080, -114x-1080, 1"
+        ", 1920x1200, -114x-1200, 1"
         ", preferred, auto, 1" # Other monitors
       ];
-
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       # Griffin (Framework Laptop 13) workspaces
       workspace = [
@@ -23,6 +22,13 @@
         "name:hdm, monitor:DP-2, default:true"
         "name:etc, monitor:DP-7, default:true"
         # "name:ext, monitor:DP-3, default:true"
+      ];
+      env = [
+        # Launch on eGPU if available, integrated one instead
+        # WARNING depends on stateful configurations :
+        ## ln -sf /dev/dri/by-path/pci-0000:00:02.0-card .config/hypr/igpu
+        ## ln -sf /dev/dri/by-path/pci-0000:7f:00.0-card .config/hypr/egpu
+        "WLR_DRM_DEVICES,$HOME/.config/hypr/egpu:$HOME/.config/hypr/igpu"
       ];
     };
   };
