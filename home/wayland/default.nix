@@ -29,8 +29,9 @@
       if [ -z "$DISPLAY" ]; then
         if [ "$XDG_VTNR" -eq 1 ]; then
           exec $HOME/.nix-profile/bin/Hyprland
-        fi
-        if [ "$XDG_VTNR" -eq 3 ]; then
+        elif [ "$XDG_VTNR" -eq 2 ]; then
+          WLR_DRM_DEVICES=$HOME/.config/hypr/egpu $HOME/.nix-profile/bin/Hyprland
+        elif [ "$XDG_VTNR" -eq 9 ]; then
           exec $HOME/.nix-profile/bin/niri --session
         fi
       fi
