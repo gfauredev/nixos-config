@@ -30,9 +30,12 @@
             tooltip = false;
           };
 
-          temperature = {
-            thermal-zone = 0;
-            # hwmon-path = "/sys/class/hwmon/hwmon" + "3/temp1_input";
+          temperature = let
+            hwmon = "4";
+            temp = "1";
+          in {
+            # thermal-zone = 0;
+            hwmon-path = "/sys/class/hwmon/hwmon${hwmon}/temp${temp}_input";
             critical-threshold = "75";
             format = "{icon} {temperatureC}";
             format-icons = [ "" "" "" "" "" ];
