@@ -33,7 +33,8 @@
         # kb_options = "grp:ctrls_toggle"; # Not working
         # kb_options = "grp:alt_shift_toggle"; # Annoying
         # kb_options = "grp:shifts_toggle"; # Not working
-        kb_options = "grp:alts_toggle";
+        # kb_options = "grp:alts_toggle"; # Breaks AltGr
+        kb_options = "grp:alt_altgr_toggle";
         repeat_delay = "250";
         repeat_rate = "50";
         follow_mouse = 1;
