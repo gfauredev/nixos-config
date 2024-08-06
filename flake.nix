@@ -55,7 +55,7 @@
             nixos-hardware.nixosModules.common-cpu-intel # Hardware
             nixos-hardware.nixosModules.common-pc # Hardware
             nixos-hardware.nixosModules.common-pc-ssd # Hardware
-            musnix.nixosModules.musnix # System improvements for audio
+            # musnix.nixosModules.musnix # System improvements for audio
             ./system/pc/laptop/chimera # Chimera, a flying creature
             ./system/user/gf.nix # Myself
           ];
@@ -145,7 +145,7 @@
           "gf@griffin" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs; # TODO use this to prevent 3 below lines
-              term = wezterm;
+              term = alacritty;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -156,10 +156,24 @@
               ./home/media # Media consuming and editing
             ];
           };
+          "gf@chimera" = home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = {
+              inherit inputs; # TODO use this to prevent 3 below lines
+              term = alacritty;
+              location = location;
+            };
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            modules = [
+              ./home/gf.nix # Myself’s home
+              ./home/wayland/griffin.nix # Griffin’s GUI
+              # ./home/tool # Tooling, mostly technical
+              # ./home/media # Media consuming and editing
+            ];
+          };
           "gf@typhon" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs;
-              term = wezterm;
+              term = alacritty;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -173,7 +187,7 @@
           "gf@work" = home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = {
               inherit inputs;
-              term = wezterm;
+              term = alacritty;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
