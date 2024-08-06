@@ -49,9 +49,9 @@
         # no_gaps_when_only = 1; # Disable gaps & borders for lone window
       };
       # See https://wiki.hyprland.org/Configuring/Master-Layout
-      master = {
-        new_is_master = false; # TEST
-      };
+      # master = {
+      #   new_is_master = false; # TEST
+      # };
 
       # See https://wiki.hyprland.org/Configuring/Window-Rules
       windowrulev2 = [
