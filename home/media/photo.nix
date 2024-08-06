@@ -4,6 +4,6 @@
     gimp # image editor
     inkscape # vector image editor
     # krita # image editor
-    gnome.cheese # Webcam capture
+    cheese # Webcam capture
   ];
 }
