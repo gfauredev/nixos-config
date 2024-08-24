@@ -58,10 +58,10 @@
 
   services = {
     keybase.enable = true; # Identity and public key cryptography
-    kbfs = {
-      enable = true; # Keybase Filesystem
-      mountPoint = "data.local/keybase";
-    };
+    # kbfs = {
+    #   enable = true; # Keybase Filesystem
+    #   mountPoint = "data.local/keybase";
+    # };
   };
 
   programs = {
