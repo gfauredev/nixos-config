@@ -19,7 +19,7 @@
     # hunspellDicts.en_GB-ise # British
     # hunspellDicts.es_ES # Spanish
     typst # Advanced document processor
-    typst-lsp # Typst LSP
+    # typst-lsp # Typst LSP
     typstyle # Typst formatter
     # typstfmt # Typst formatter
     marksman # Smart Markdown links
