@@ -1,11 +1,11 @@
 let
   pkgs = import <nixpkgs> { };
-  python = pkgs.python312;
-  pythonPackages = python.pkgs;
+  python = pkgs.python3Full;
+  # pyPkgs = with python.pkgs; [ venvShellHook ];
   lib-path = with pkgs; lib.makeLibraryPath [ libffi openssl stdenv.cc.cc ];
 in with pkgs;
 mkShell {
-  packages = [ pythonPackages.venvShellHook ];
+  packages = with python.pkgs; [ python venvShellHook ];
 
   buildInputs = [ readline libffi openssl git openssh rsync ];
 
@@ -14,15 +14,17 @@ mkShell {
     export "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${lib-path}"
     VENV=.venv
 
-    if test ! -d $VENV; then
-      python3.12 -m venv $VENV
+    if ! [ -d $VENV ]; then
+      python -m venv $VENV
     fi
     source ./$VENV/bin/activate
     export PYTHONPATH=`pwd`/$VENV/${python.sitePackages}/:$PYTHONPATH
-    pip install -r requirements.txt
+    if [ -f ./requirements.txt ]; then
+      pip install -r requirements.txt
+    fi
   '';
 
   postShellHook = ''
-    ln -sf ${python.sitePackages}/* ./.venv/lib/python3.12/site-packages
+    ln -sf ${python.sitePackages}/* ./.venv/lib/python3.*/site-packages
   '';
 }
