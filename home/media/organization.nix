@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     anki-bin # Memorisation
     appflowy # Notion alternative
-    affine # Next-gen knowledge base
+    # affine # Next-gen knowledge base
     anytype # General productivity app
     grocy # Household management
     # logseq # Outliner note taking
