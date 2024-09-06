@@ -1,16 +1,17 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    memos # Atomic memo hub
+    anki-bin # Memorisation
     appflowy # Notion alternative
     affine # Next-gen knowledge base
     anytype # General productivity app
-    anki-bin # Memorisation
+    grocy # Household management
     # logseq # Outliner note taking
     # emacsPackages.org-roam-ui
     # emanote # Structured view text notes
     # rnote # Note tool
     # markdown-anki-decks
     # calibre # Ebook management
+    # memos # Atomic memo hub
 
     # Rendering & Presentation
     pdfpc # PDF Presentator Console
