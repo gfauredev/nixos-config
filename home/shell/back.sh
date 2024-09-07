@@ -17,7 +17,7 @@ if [ $avail -gt $used ]; then
   if [[ "$1" == *"back"* ]]; then
     # Backup everything incrementally with restic in backup drives (which label contains "back")
     echo "Backing up everything with restic\n"
-    restic -r "$1" -v backup $HOME/{archive,data{,.large},life{,.large},project{,.large}}
+    restic -r "$1" -v backup $HOME/{archive,data{,.large},life{,.large},project{,.large}} --exclude ".stversions/" --exclude ".stfolder/" --exclude ".venv*/" --exclude ".vagrant/"
   else
     # Store most important directories in drives or sticks (which label don’t contains "back")
     echo "Backing up most important directories with rsync\n"
