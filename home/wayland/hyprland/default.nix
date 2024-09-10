@@ -184,8 +184,7 @@
         "$mod, q, killactive," # Close window
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
-        "$mod, comma, exec, swaylock -f -c 000000" # Black screen lock
-        "$mod CONTROL, comma, exec, hyprlock" # Blur screen lock
+        "$mod, comma, exec, loginctl lock-session" # Lock session (should dim and blur screen)
         "$mod SHIFT, comma, exec, systemctl suspend" # Suspend
         "SUPER, j, exec, ${mirror}" # Mirror output (F9 on Framework Laptop)
         "SUPER CONTROL, j, exec, ${mirror-output}" # Change mirrored output
@@ -328,15 +327,22 @@
     xwayland.enable = true;
   };
 
-  services.swayidle = {
+  services.hypridle = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    settings.general = {
+      lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+      unlock_cmd = "pkill -USR1 hyprlock";
+      before_sleep_cmd = "${pkgs.playerctl}/bin/playerctl pause";
+      after_sleep_cmd = "hyprctl dispatch dpms on";
+      ignore_dbus_inhibit = false;
+      ignore_systemd_inhibit = false;
+    };
   };
 
-  services.hypridle = {
-    enable = false; # TODO use this
-    # settings = { }; # file:///nix/store/f7s6b3c7n2b83sdm70gxf4jq4kbh99qn-home-manager-manual/share/doc/home-manager/options.xhtml#opt-services.hypridle.settings
-  };
+  # services.swayidle = {
+  #   enable = false;
+  #   systemdTarget = "hyprland-session.target";
+  # };
 
   # xdg.configFile = {
   #   hyprpaper = {

@@ -33,33 +33,48 @@
     };
   };
 
-  services.swayidle = {
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-      {
-        event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-        # command = "${pkgs.hyprlock}/bin/hyprlock -q";
-      }
-    ];
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-        resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-      }
-      {
-        timeout = 330;
-        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-        # command = "${pkgs.hyprlock}/bin/hyprlock -q";
-      }
-      {
-        timeout = 600;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
-  };
+  services.hypridle.settings.listener = [
+    {
+      timeout = 300; # Lock session, (blur and dim screen)
+      on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
+      # on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+    }
+    {
+      timeout = 300; # Dim screen
+      on-timeout = "brightnessctl set 1%";
+    }
+    {
+      timeout = 600; # Put the computer to sleep
+      on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+      # on-resume = "hyprctl dispatch dpms on";
+    }
+  ];
+
+  # services.swayidle = {
+  #   events = [
+  #     {
+  #       event = "before-sleep"; # Pause music before sleep
+  #       command = "${pkgs.playerctl}/bin/playerctl pause";
+  #     }
+  #     {
+  #       event = "before-sleep"; # Lock screen
+  #       command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+  #     }
+  #   ];
+  #   timeouts = [
+  #     {
+  #       timeout = 300; # Just turn off the screen
+  #       command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+  #       resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+  #     }
+  #     {
+  #       timeout = 330; # Lock screen
+  #       command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+  #     }
+  #     {
+  #       timeout = 600; # Put the computer to sleep
+  #       command = "${pkgs.systemd}/bin/systemctl suspend";
+  #     }
+  #   ];
+  # };
 }

@@ -36,22 +36,18 @@
         fi
       fi
     '';
-    swaylock = {
-      enable = true;
-      settings.indicator-idle-visible = true;
-    };
     hyprlock = {
       enable = true;
       settings = {
         background = [{
           path = "screenshot";
-          blur_passes = 3;
+          blur_passes = 2;
           blur_size = 3;
         }];
         input-field = [{
           monitor = "";
           size = "250, 50";
-          outline_thickness = 3;
+          outline_thickness = 2;
           dots_size = 0.35;
           dots_spacing = 0.15;
           dots_center = true;
@@ -63,22 +59,25 @@
           fade_timeout = 2000;
           placeholder_text = "$PROMPT";
           hide_input = false;
-          # rounding = 0;
-          check_color = "rgb(204, 136, 34)";
-          fail_color = "rgb(204, 34, 34)";
+          check_color = "rgb(b6a482)";
+          fail_color = "rgb(fe4321)";
           fail_text = "$FAIL ($ATTEMPTS)";
           fail_transition = 300;
           capslock_color = -1;
           numlock_color = -1;
           bothlock_color = -1;
-          invert_numlock = false;
-          swap_font_color = false;
           position = "0, 0";
           halign = "center";
           valign = "center";
+          # invert_numlock = false;
+          # swap_font_color = false;
         }];
       };
     };
+    # swaylock = {
+    #   enable = false;
+    #   settings.indicator-idle-visible = true;
+    # };
     rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };
 }
