@@ -332,10 +332,11 @@
     settings.general = {
       lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
       unlock_cmd = "pkill -USR1 hyprlock";
-      before_sleep_cmd = "${pkgs.playerctl}/bin/playerctl pause";
+      before_sleep_cmd =
+        "${pkgs.playerctl}/bin/playerctl pause;${pkgs.systemd}/bin/loginctl lock-session";
       after_sleep_cmd = "hyprctl dispatch dpms on";
-      ignore_dbus_inhibit = false;
-      ignore_systemd_inhibit = false;
+      # ignore_dbus_inhibit = false;
+      # ignore_systemd_inhibit = false;
     };
   };
 
