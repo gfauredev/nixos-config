@@ -39,10 +39,10 @@
       on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
       # on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
     }
-    {
-      timeout = 300; # Dim screen
-      on-timeout = "brightnessctl set 1%";
-    }
+    # {
+    #   timeout = 300; # Dim screen
+    #   on-timeout = "brightnessctl set 1%";
+    # }
     {
       timeout = 600; # Put the computer to sleep
       on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
