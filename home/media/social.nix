@@ -17,7 +17,7 @@
     # discord-canary # PROPRIETARY messaging and general communication
     # teams-for-linux # PROPRIETARY services messaging and work
     # zoom         # PROPRIETARY messaging and work
-    keybase-gui # Identity and public key cryptography
+    # keybase-gui # Identity and public key cryptography
   ];
 
   # TODO configure thunderbird with nix
@@ -56,13 +56,13 @@
   #   };
   # };
 
-  services = {
-    keybase.enable = true; # Identity and public key cryptography
-    # kbfs = {
-    #   enable = true; # Keybase Filesystem
-    #   mountPoint = "data.local/keybase";
-    # };
-  };
+  # services = { # TODO enable without annoying prompt at login
+  #   keybase.enable = true; # Identity and public key cryptography
+  #   kbfs = {
+  #     enable = true; # Keybase Filesystem
+  #     mountPoint = "data.local/keybase";
+  #   };
+  # };
 
   programs = {
     # himalaya = {
