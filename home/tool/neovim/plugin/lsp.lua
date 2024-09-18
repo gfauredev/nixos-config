@@ -21,7 +21,7 @@ lsp.ruff_lsp.setup {
 }
 
 -- Web development
-lsp.tsserver.setup {
+lsp.ts_ls.setup {
   capabilities = capabilities
 }
 lsp.eslint.setup {
