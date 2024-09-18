@@ -335,8 +335,8 @@
       before_sleep_cmd =
         "${pkgs.playerctl}/bin/playerctl pause;${pkgs.systemd}/bin/loginctl lock-session";
       after_sleep_cmd = "hyprctl dispatch dpms on";
-      # ignore_dbus_inhibit = false;
-      # ignore_systemd_inhibit = false;
+      ignore_dbus_inhibit = false;
+      ignore_systemd_inhibit = false;
     };
   };
 
