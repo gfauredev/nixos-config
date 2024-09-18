@@ -1,11 +1,14 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     anki-bin # Memorisation
-    appflowy # Notion alternative
-    # affine # Next-gen knowledge base
-    anytype # General productivity app
-    grocy # Household management
-    # logseq # Outliner note taking
+    siyuan # Modern knowledge management TEST
+    affine # Next-gen knowledge base TEST
+    anytype # General productivity app TEST
+    appflowy # Notion alternative TEST
+    logseq # Outliner note taking TEST
+    silverbullet # Knowledge management TEST
+    # mindforger # Outliner note taking
+    grocy # Household management TODO make it work
     # emacsPackages.org-roam-ui
     # emanote # Structured view text notes
     # rnote # Note tool
