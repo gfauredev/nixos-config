@@ -216,9 +216,20 @@
     };
   };
 
+  programs.nushell = {
+    enable = true;
+    # See https://www.nushell.sh/book/getting_started.html
+    # configFile.source = ./config.nu;
+    # envFile.source = ./env.nu;
+    # loginFile.source = ./login.nu;
+  };
+
   programs = {
     # command-not-found.enable = true;
-    eza.enable = true; # Better ls
+    eza = {
+      enable = true; # Better ls
+      enableNushellIntegration = true; # TODO for other programs
+    };
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
     bottom.enable = true; # Better top

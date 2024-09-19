@@ -89,6 +89,7 @@
     broot = {
       enable = true; # Quick fuzzy file finder
       enableZshIntegration = true;
+      enableNushellIntegration = true;
       settings = {
         # modal = true;
         default_flags = "dgps";
