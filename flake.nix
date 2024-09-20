@@ -39,7 +39,7 @@
             # sops-nix.nixosModules.sops # Secrets storage TODO for all systems
             lanzaboote.nixosModules.lanzaboote # Secure boot
             nixos-hardware.nixosModules.framework-12th-gen-intel
-            # nixos-hardware.nixosModules.common-gpu-nvidia-nonprime # eGPU
+            nixos-hardware.nixosModules.common-gpu-nvidia-nonprime # eGPU
             musnix.nixosModules.musnix # System improvements for audio
             ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
             ./system/user/gf.nix # Myself
