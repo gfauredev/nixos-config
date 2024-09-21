@@ -182,6 +182,7 @@
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
         "$mod, q, killactive," # Close window
+        "$mod CONTROL, q, exec, hyprctl kill," # Close window by clicking
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
         "$mod, comma, exec, loginctl lock-session" # Lock session (should dim and blur screen)
