@@ -6,7 +6,7 @@
 # 2. Sort alphabetically from the least to most actionable
 # 3. Be as short as possible while also as unambiguous as possible
 
-# Sub-directories corresponding to *.git or *.large
+# Sub-directories corresponding to *.git/** or *.large
 # should not be synced with lower capacity devices
 
 echo "# Project, projects and eventual nested sub-projects"
