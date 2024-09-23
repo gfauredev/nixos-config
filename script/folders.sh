@@ -13,7 +13,7 @@
 
 echo "# Project, projects and eventual nested sub-projects"
 echo "  A project directory contains files that might be required"\
-  " to progress towards a precise goal (or a next milestone)"
+  " to progress towards a final goal or a precise milestone"
 if [ ! -d $HOME/project ]; then
   mkdir -m 700 -v $HOME/project/
 fi
@@ -26,9 +26,9 @@ echo "# Life, life areas that recurrently requires precise files through lifetim
 echo "  A life directory contains files that might be required"\
   " at any time during lifetime for an important life area."
 if [ ! -d $HOME/life ]; then
-  mkdir -m 700 -p -v $HOME/life/history/health/
-  mkdir -m 700 -p -v $HOME/life/proof/{administration,academy,finance,insurance,law,state,old}
-  mkdir -m 700 -p -v $HOME/life/proof/identity/{french,online}
+  mkdir -m 700 -p -v $HOME/life/monitor/{health,consumable,house,vehicle,belonging,finance}
+  mkdir -m 700 -p -v $HOME/life/proof+formalInfo/{administration,academy,finance,insurance,law,state,old}
+  mkdir -m 700 -p -v $HOME/life/proof+formalInfo/identity/{french,online}
 fi
 echo "#include stignore" > $HOME/life/.stignore
 echo "# Life, life areas that recurrently requires precise files through lifetime"\
