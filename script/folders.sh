@@ -1,89 +1,71 @@
-# This script explains the root of my personal organization (based on PARA)
-# and creates the associated directories in my home directory
+# This script explains the root of my personal organization folders (based on PARA)
+# and creates the proper associated directories in my home directory
 
 # Directories names should :
-# - Sort alphabetically from the least to most actionable
-# - Be always singular, never plural
-# - Be kept short, while still being totally clear, non-ambiguous on their nature
+# 1. Use consistent syntax : always singular, camelCase, ASCII alphanumeric, mostly nouns
+# 2. Sort alphabetically from the least to most actionable
+# 3. Be as short as possible while also as unambiguous as possible
 
-# TODO make this idempotent
+# Sub-directories corresponding to *.git or *.large
+# should not be synced with lower capacity devices
 
-echo "== Project == Projects (containing sub-projects) =="
-echo "  Tasks required to progress toward goal or next milestone"
-echo "  Knowledge & data that are useful for the project"
+# TODO make this script idempotent
+
+echo "# Project, projects and eventual nested sub-projects"
+echo "  A project directory contains files that might be required"\
+  " to progress towards a precise goal (or a next milestone)"
 if [ ! -d $HOME/project ]; then
-  echo "\nCreating project directory and subdirectories …"
   mkdir -m 700 -v $HOME/project/
-  echo "\nCreating large project directory to avoid on devices with fewer storage space …"
-  mkdir -m 700 -v $HOME/project.large/
 fi
 echo "#include stignore" > $HOME/project/.stignore
-echo "Project" > $HOME/project/.ventoyignore
-echo "#include stignore" > $HOME/project.large/.stignore
+echo "# Project, projects and eventual nested sub-projects"\
+  > $HOME/project/.ventoyignore
 echo
 
-echo "== Life == Broad life areas =="
-echo "  Knowledge & data that are useful regularly in life"
-echo "  Tasks that needs to be done regularly and not ending projects"
+echo "# Life, life areas that recurrently requires precise files through lifetime"
+echo "  A life directory contains files that might be required"\
+  " at any time during lifetime for an important life area."
 if [ ! -d $HOME/life ]; then
-  echo "\nCreating life directory and subdirectories …"
-  mkdir -m 700 -v $HOME/life/
-  mkdir -m 700 -v $HOME/life/health/
-  mkdir -m 700 -v $HOME/life/identity/
-  mkdir -m 700 -v $HOME/life/relation/
-  mkdir -m 700 -v $HOME/life/finance+insurance/
-  mkdir -m 700 -v $HOME/life/degree+certification/
-  echo "\nCreating large life directory to avoid on devices with fewer storage space …"
-  mkdir -m 700 -v $HOME/life.large/
+  mkdir -m 700 -p -v $HOME/life/history/health/
+  mkdir -m 700 -p -v $HOME/life/proof/{administration,academy,finance,insurance,law,state,old}
+  mkdir -m 700 -p -v $HOME/life/proof/identity/{french,online}
 fi
 echo "#include stignore" > $HOME/life/.stignore
-echo "Life" > $HOME/data/.ventoyignore
-echo "#include stignore" > $HOME/life.large/.stignore
+echo "# Life, life areas that recurrently requires precise files through lifetime"\
+  > $HOME/data/.ventoyignore
 echo
 
-echo "== Data == Unsorted or type-sorted data =="
-echo "  Knowledge & data that might be useful in life or projects"
-echo "  Interesting knowledge that might be worth or fun to learn"
+echo "# Graph, a graph-like, non-hierarchical data store"
+echo "  Contains linked and non-hierarchical data related to"\
+  " projects, important life areas or anything that seems interesting, valuable or fun"
+echo "The graph data store is usually used through and managed by a"\
+  " dedicated knowledge-management app and synced with its own method"
+if [ ! -d $HOME/.graph ]; then
+  mkdir -m 700 -v $HOME/.graph/
+fi
+# echo "#include stignore" > $HOME/.graph/.stignore
+echo "# Graph, a graph-like, non-hierarchical data store"
+  > $HOME/.graph/.ventoyignore
+echo
+
+echo "# Data, unsorted or roughly sorted data that might be useful or interesting"
+echo "  A data directory contains files that might become useful"\
+  " in a life area or in a project, or just be interesting or fun."\
+  " Directories represents arbitrarily chosen grouping-criterions among many that might exist."
 if [ ! -d $HOME/data ]; then
-  echo "\nCreating data directory and subdirectories …"
-  mkdir -m 700 -v $HOME/data/
-  mkdir -m 700 -v $HOME/data/document/
-  mkdir -m 700 -v $HOME/data/document.text/
-  mkdir -m 700 -v $HOME/data/audio/
-  mkdir -m 700 -v $HOME/data/audio/record/
-  mkdir -m 700 -v $HOME/data/audio/music.entertain/
-  mkdir -m 700 -v $HOME/data/image/
-  mkdir -m 700 -v $HOME/data/image/screenshot/
-  mkdir -m 700 -v $HOME/data/video/
-  mkdir -m 700 -v $HOME/data/video/screenrecord/
-  mkdir -m 700 -v $HOME/data/video/movie.entertain/
-  echo "\nCreating large data directory to avoid on devices with fewer storage space …"
-  mkdir -m 700 -v $HOME/data.large/
-  mkdir -m 700 -v $HOME/data.large/code/
-  mkdir -m 700 -v $HOME/data.large/audio/
-  mkdir -m 700 -v $HOME/data.large/audio/record/
-  mkdir -m 700 -v $HOME/data.large/audio/music.entertain/
-  mkdir -m 700 -v $HOME/data.large/image/
-  mkdir -m 700 -v $HOME/data.large/image/screenshot/
-  mkdir -m 700 -v $HOME/data.large/video/
-  mkdir -m 700 -v $HOME/data.large/video/screenrecord/
-  mkdir -m 700 -v $HOME/data.large/video/movie.entertain/
+  mkdir -m 700 -p -v $HOME/data/{dcim,screenshot}
+  mkdir -m 700 -p -v $HOME/data/{learn,memory,misc}
 fi
 echo "#include stignore" > $HOME/data/.stignore
-echo "Data" > $HOME/data/.ventoyignore
-echo "#include stignore" > $HOME/data.large/.stignore
+echo "# Data, unsorted or roughly sorted data that might be useful or interesting"\
+  > $HOME/data/.ventoyignore
 echo
 
-echo "== Archive == Sorting kept as-is =="
-echo "  Definitely done or discontinued projects"
-echo "  Definitely used or learned knowledge"
+echo "Archive, definitively complete or discontinued project, expired or no longer useful files"
 if [ ! -d $HOME/archive ]; then
-  echo "\nCreating archive directory and subdirectories …"
-  mkdir -m 700 -v $HOME/archive/
-  mkdir -m 700 -v $HOME/archive/project/
-  mkdir -m 700 -v $HOME/archive/life/
-  mkdir -m 700 -v $HOME/archive/data/
+  mkdir -m 700 -p -v $HOME/archive/{project,life}
 fi
 echo "#include stignore" > $HOME/archive/.stignore
-echo "Archive" > $HOME/archive/.ventoyignore
+echo "Archive, definitively complete or discontinued project, expired or no longer useful files"\
+  > $HOME/archive/.ventoyignore
 echo

@@ -46,7 +46,7 @@
     # gnome.simple-scan # Document scanner
 
     # Audio & Music
-    # spotify # PROPRIETARY music streaming
+    spotify # PROPRIETARY music streaming
     playerctl # MPRIS media players control
 
     # Image & Video
