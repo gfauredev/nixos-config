@@ -1,11 +1,10 @@
 { pkgs, term, ... }: {
   # imports = [ inputs.anyrun.homeManagerModules.default ];
 
-  home.packages = with pkgs;
-    [
-      libqalculate # Calculation library used by rofi
-      # albert # Full-featured launcher
-    ];
+  home.packages = with pkgs; [
+    libqalculate # Calculation library used by rofi
+    albert # Full-featured launcher
+  ];
 
   programs = {
     rofi = {
@@ -21,19 +20,19 @@
         stores = [ "$HOME/.password-store/" ];
       };
       extraConfig = {
-        modes = "combi,drun,window,ssh"; # ,calc,emoji";
-        combi-modes = "window,drun,ssh"; # ,emoji";
+        modes = "combi,drun,window,ssh,calc,emoji";
+        combi-modes = "window,drun,ssh,emoji";
         sorting-method = "fzf";
         show-icons = true;
       };
     };
     fuzzel = {
-      enable = true;
+      enable = true; # TODO test
       # settings = {};
     };
     # anyrun = { # FIXME
     #   # DOC: https://github.com/Kirottu/anyrun
-    #   enable = true;
+    #   enable = true; # TODO add flake and test
     #   config = {
     #     plugins = with inputs.anyrun.packages.${pkgs.system}; [
     #       applications
