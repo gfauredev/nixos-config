@@ -13,15 +13,15 @@
       terminal = "${term.cmd} ${term.exec}";
       font = "FiraCode Nerd Font";
       theme = ./rounded-blue-dark.rasi;
-      plugins = with pkgs; [ rofi-calc rofi-emoji ];
+      # plugins = with pkgs; [ rofi-calc rofi-emoji ];
       pass = {
         enable = true;
         extraConfig = "";
         stores = [ "$HOME/.password-store/" ];
       };
       extraConfig = {
-        modes = "combi,drun,window,ssh,calc,emoji";
-        combi-modes = "window,drun,ssh,emoji";
+        modes = "combi,drun,window,ssh"; # ,calc,emoji";
+        combi-modes = "window,drun,ssh"; # ,emoji";
         sorting-method = "fzf";
         show-icons = true;
       };
