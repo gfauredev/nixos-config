@@ -52,7 +52,7 @@
     # kubernetes # Container orchestrator
 
     # Miscellaneous
-    eva # Evaluate math expression
+    kalker # Evaluate math expression
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
     jq # JSON parsing and request tool

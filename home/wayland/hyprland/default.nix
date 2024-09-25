@@ -73,7 +73,7 @@
           default = "rofi -show combi -combi-modes";
           alt = "fuzzel";
           app = "rofi -show drun";
-          calc = "${term.menu} eva";
+          calc = "${term.menu} kalker";
           pass = "rofi-pass";
         };
         browser = {
