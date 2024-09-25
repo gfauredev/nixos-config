@@ -164,6 +164,18 @@
     ];
   };
 
+  # TODO Find a better place to put this
+  services.grocy = {
+    enable = true;
+    hostName = "localhost";
+    nginx.enableSSL = false;
+    settings = {
+      currency = "EUR";
+      culture = "fr";
+      calendar.firstDayOfWeek = 1;
+    };
+  };
+
   # Realtime & music production related improvements
   musnix.enable = true;
 

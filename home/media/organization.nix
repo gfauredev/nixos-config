@@ -26,15 +26,4 @@
     gpxsee # GPS track viewer
     # archi # Archimate modeling tool
   ];
-
-  services.grocy = {
-    enable = true;
-    hostName = "localhost";
-    nginx.enableSSL = false;
-    settings = {
-      currency = "EUR";
-      culture = "fr";
-      calendar.firstDayOfWeek = 1;
-    };
-  };
 }
