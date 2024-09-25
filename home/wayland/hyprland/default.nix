@@ -69,18 +69,25 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
       bind = let
-        launch = "rofi -show drun";
-        launch-alt = "fuzzel";
-        launch-full = "rofi -show combi -combi-modes";
-        launch-calc = "rofi -show calc";
-        browser-1 = "brave";
-        browser-2 = "nyxt";
-        browser-3 = "firefox";
+        launch = {
+          default = "rofi -show combi -combi-modes";
+          alt = "fuzzel";
+          app = "rofi -show drun";
+          calc = "${term.menu} eva";
+          pass = "rofi-pass";
+        };
+        browser = {
+          default = "brave";
+          alt = "firefox";
+          altalt = "nyxt";
+        };
         pim = "thunderbird";
         monitor = "btm";
-        mirror = "wl-present mirror";
-        mirror-output = "wl-present set-output";
-        mirror-region = "wl-present set-region";
+        mirror = {
+          default = "wl-present mirror";
+          output = "wl-present set-output";
+          region = "wl-present set-region";
+        };
       in [
         # Move focus
         "$mod, c, movefocus, l" # Move left
@@ -102,7 +109,7 @@
         "$mod CONTROL SHIFT, g, changegroupactive, b" # Toggle focus in group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
-        "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser-1}" # Auto open browser if not running
+        "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser}" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
         ''
@@ -122,11 +129,11 @@
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
         ''
-          $mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch}'' # Auto open laucher
+          $mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
         ''
-          $mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch}'' # Auto open laucher
+          $mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
@@ -139,7 +146,7 @@
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
         ''
-          $mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch}'' # Auto open laucher
+          $mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         "$mod CONTROL, m, exec, zsh -ic 'mirror'" # Messaging
         # Additional monitor workspaces (Right)
@@ -168,16 +175,17 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${term.cmd}"
         # Launch
-        "$mod, SPACE, exec, ${launch-full}" # Launcher with additional modes
-        "$mod CONTROL, SPACE, exec, ${launch-calc}" # Calculator
-        "$mod SHIFT, SPACE, exec, ${launch-alt}" # Alternative launcher
+        "$mod, SPACE, exec, ${launch}" # Launcher with additional modes
+        "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator
+        "$mod SHIFT, SPACE, exec, ${launch.pass}" # Password store
+        "$mod CONTROL SHIFT, SPACE, exec, ${launch.alt}" # Alternative launcher
         # Launch with special media keys
-        ", Menu, exec, ${launch-full}" # Menu special key
-        ", XF86MenuKB, exec, ${launch-full}" # Menu special key
-        ", XF86Mail, exec, ${launch-full}" # Mail media key
-        ", XF86HomePage, exec, ${launch-full}" # Home media key
-        ", XF86Calculator, exec, ${launch-calc}" # Calculator media key
-        ", XF86Search, exec, ${launch-full}" # Search media key
+        ", Menu, exec, ${launch}" # Menu special key
+        ", XF86MenuKB, exec, ${launch}" # Menu special key
+        ", XF86Mail, exec, ${pim}" # Mail media key
+        ", XF86HomePage, exec, ${launch}" # Home media key
+        ", XF86Calculator, exec, ${launch.calc}" # Calculator media key
+        ", XF86Search, exec, ${launch}" # Search media key
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
@@ -188,11 +196,11 @@
         "$mod, comma, exec, loginctl lock-session" # Lock session (should dim and blur screen)
         "$mod SHIFT, comma, exec, systemctl suspend" # Suspend
         "SUPER, j, exec, ${mirror}" # Mirror output (F9 on Framework Laptop)
-        "SUPER CONTROL, j, exec, ${mirror-output}" # Change mirrored output
-        "SUPER SHIFT, j, exec, ${mirror-region}" # Change mirrored region
+        "SUPER CONTROL, j, exec, ${mirror.output}" # Change mirrored output
+        "SUPER SHIFT, j, exec, ${mirror.region}" # Change mirrored region
         # Web
-        "$mod CONTROL, b, exec, ${browser-2}" # Alternative browser
-        "$mod CONTROL SHIFT, b, exec, ${browser-3}" # Alternative browser
+        "$mod CONTROL, b, exec, ${browser.alt}" # Alternative browser
+        "$mod CONTROL SHIFT, b, exec, ${browser.altalt}" # Alternative browser
         # Audio
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "SHIFT, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
