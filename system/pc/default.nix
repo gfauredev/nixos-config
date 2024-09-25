@@ -167,7 +167,7 @@
   # TODO Find a better place to put this
   services.grocy = {
     enable = true;
-    hostName = "localhost";
+    hostName = "grocy.localhost";
     nginx.enableSSL = false;
     settings = {
       currency = "EUR";
