@@ -1,10 +1,11 @@
-{ pkgs, term, ... }: {
-  # imports = [ inputs.anyrun.homeManagerModules.default ];
+{ pkgs, term, inputs, ... }: {
+  imports = [ inputs.anyrun.homeManagerModules.default ];
 
-  home.packages = with pkgs; [
-    libqalculate # Calculation library used by rofi
-    albert # Full-featured launcher
-  ];
+  home.packages = with pkgs;
+    [
+      libqalculate # Calculation library used by rofi
+      # albert # Full-featured launcher
+    ];
 
   programs = {
     rofi = {
@@ -30,30 +31,30 @@
       enable = true; # TODO test
       # settings = {};
     };
-    # anyrun = { # FIXME
-    #   # DOC: https://github.com/Kirottu/anyrun
-    #   enable = true; # TODO add flake and test
-    #   config = {
-    #     plugins = with inputs.anyrun.packages.${pkgs.system}; [
-    #       applications
-    #       dictionary
-    #       kidex
-    #       randr
-    #       rink
-    #       shell
-    #       # stdin
-    #       symbols
-    #       translate
-    #       websearch
-    #     ];
-    #     hideIcons = false;
-    #     ignoreExclusiveZones = false;
-    #     layer = "overlay";
-    #     hidePluginInfo = false;
-    #     closeOnClick = false;
-    #     showResultsImmediately = false;
-    #     maxEntries = 12;
-    #   };
-    # };
+    anyrun = { # FIXME
+      # DOC: https://github.com/Kirottu/anyrun
+      enable = true; # TODO add flake and test
+      config = {
+        plugins = with inputs.anyrun.packages.${pkgs.system}; [
+          applications
+          dictionary
+          kidex
+          randr
+          rink
+          shell
+          # stdin
+          symbols
+          translate
+          websearch
+        ];
+        hideIcons = false;
+        ignoreExclusiveZones = false;
+        layer = "overlay";
+        hidePluginInfo = false;
+        closeOnClick = false;
+        showResultsImmediately = false;
+        maxEntries = 12;
+      };
+    };
   };
 }
