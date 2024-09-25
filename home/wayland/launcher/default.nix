@@ -1,5 +1,5 @@
-{ pkgs, term, inputs, ... }: {
-  imports = [ inputs.anyrun.homeManagerModules.default ];
+{ pkgs, term, ... }: {
+  # imports = [ inputs.anyrun.homeManagerModules.default ];
 
   home.packages = with pkgs; [
     libqalculate # Calculation library used by rofi
