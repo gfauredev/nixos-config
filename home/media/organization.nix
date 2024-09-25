@@ -1,20 +1,20 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     anki-bin # Memorisation
-    siyuan # Modern knowledge management TEST
-    affine # Next-gen knowledge base TEST
-    anytype # General productivity app TEST
+    # markdown-anki-decks
+    anytype # Knowledge base TEST
+    logseq # Knowledge base TEST
     appflowy # Notion alternative TEST
-    logseq # Outliner note taking TEST
-    silverbullet # Knowledge management TEST
+    # siyuan # Knowledge management # No p2p sync
+    # silverbullet # Knowledge management # No p2p sync
+    # affine # Knowledge base # No Android app
     # mindforger # Outliner note taking
-    grocy # Household management TODO make it work
     # emacsPackages.org-roam-ui
     # emanote # Structured view text notes
     # rnote # Note tool
-    # markdown-anki-decks
-    # calibre # Ebook management
     # memos # Atomic memo hub
+    # calibre # Ebook management
+    grocy # Household management TODO make it work
 
     # Rendering & Presentation
     pdfpc # PDF Presentator Console
