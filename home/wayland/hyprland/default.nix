@@ -109,11 +109,11 @@
         "$mod CONTROL SHIFT, g, changegroupactive, b" # Toggle focus in group
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
-        "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser}" # Auto open browser if not running
+        "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser.default}" # Auto open browser if not running
         "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
         "$mod, a, workspace, name:aud" # Audio workspace
         ''
-          $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch}'' # Auto open laucher
+          $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch.default}'' # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, p, workspace, name:pim" # Personal information management workspace
         ''
@@ -175,17 +175,17 @@
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${term.cmd}"
         # Launch
-        "$mod, SPACE, exec, ${launch}" # Launcher with additional modes
+        "$mod, SPACE, exec, ${launch.default}" # Launcher with additional modes
         "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator
         "$mod SHIFT, SPACE, exec, ${launch.pass}" # Password store
         "$mod CONTROL SHIFT, SPACE, exec, ${launch.alt}" # Alternative launcher
         # Launch with special media keys
-        ", Menu, exec, ${launch}" # Menu special key
-        ", XF86MenuKB, exec, ${launch}" # Menu special key
+        ", Menu, exec, ${launch.default}" # Menu special key
+        ", XF86MenuKB, exec, ${launch.default}" # Menu special key
         ", XF86Mail, exec, ${pim}" # Mail media key
-        ", XF86HomePage, exec, ${launch}" # Home media key
+        ", XF86HomePage, exec, ${launch.default}" # Home media key
         ", XF86Calculator, exec, ${launch.calc}" # Calculator media key
-        ", XF86Search, exec, ${launch}" # Search media key
+        ", XF86Search, exec, ${launch.default}" # Search media key
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
@@ -195,7 +195,7 @@
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
         "$mod, comma, exec, loginctl lock-session" # Lock session (should dim and blur screen)
         "$mod SHIFT, comma, exec, systemctl suspend" # Suspend
-        "SUPER, j, exec, ${mirror}" # Mirror output (F9 on Framework Laptop)
+        "SUPER, j, exec, ${mirror.default}" # Mirror output (F9 on Framework Laptop)
         "SUPER CONTROL, j, exec, ${mirror.output}" # Change mirrored output
         "SUPER SHIFT, j, exec, ${mirror.region}" # Change mirrored region
         # Web
