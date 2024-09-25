@@ -20,15 +20,15 @@
 
     musnix.url = "github:musnix/musnix"; # Music production & realtime audio
 
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # anyrun = {
+    #   url = "github:Kirottu/anyrun";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   # TODO: see if possible to use either @inputs or a comprehensive list of inputs
   outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix
-    , anyrun, ... }@inputs: {
+    , ... }@inputs: {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
         ##### Laptops #####

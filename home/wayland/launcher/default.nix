@@ -1,11 +1,11 @@
 { pkgs, term, inputs, ... }: {
   imports = [ inputs.anyrun.homeManagerModules.default ];
 
-  home.packages = with pkgs;
-    [
-      libqalculate # Calculation library used by rofi
-      # albert # Full-featured launcher
-    ];
+  home.packages = with pkgs; [
+    libqalculate # Calculation library used by rofi
+    # albert # Full-featured launcher
+    anyrun # Modern full-featured launcher
+  ];
 
   programs = {
     rofi = {
@@ -34,6 +34,7 @@
     anyrun = { # FIXME
       # DOC: https://github.com/Kirottu/anyrun
       enable = true; # TODO add flake and test
+      package = pkgs.anyrun;
       config = {
         plugins = with inputs.anyrun.packages.${pkgs.system}; [
           applications
