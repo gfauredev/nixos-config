@@ -14,7 +14,6 @@
     # rnote # Note tool
     # memos # Atomic memo hub
     # calibre # Ebook management
-    grocy # Household management TODO make it work
 
     # Rendering & Presentation
     pdfpc # PDF Presentator Console
@@ -27,4 +26,15 @@
     gpxsee # GPS track viewer
     # archi # Archimate modeling tool
   ];
+
+  services.grocy = {
+    enable = true;
+    hostName = "localhost";
+    nginx.enableSSL = false;
+    settings = {
+      currency = "EUR";
+      culture = "fr";
+      calendar.firstDayOfWeek = 1;
+    };
+  };
 }
