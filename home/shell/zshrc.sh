@@ -36,6 +36,11 @@ replace () {
   \rg --passthrough --multiline "$1" -r "${@:2}"
 }
 
+# Inhib kills the (buggy) idle service for a given time
+inhib () {
+sys --user stop hypridle.service && systemd-inhibit sleep "$1" && sys --user start hypridle.service
+}
+
 present () {
   pdfpc "$@" & disown
 }

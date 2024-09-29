@@ -137,7 +137,7 @@
       pp = "playerctl play-pause";
       next = "playerctl next";
       prev = "playerctl previous";
-      inhib = "systemd-inhibit sleep";
+      # inhib = "systemd-inhibit sleep";
       clic = "klick --auto-connect --interactive";
       clicmap = "klick --auto-connect --tempo-map";
       mix = "pulsemixer";
