@@ -38,7 +38,7 @@ replace () {
 
 # Inhib kills the (buggy) idle service for a given time
 inhib () {
-sys --user stop hypridle.service && systemd-inhibit sleep "$1" && sys --user start hypridle.service
+systemctl --user stop hypridle.service && systemd-inhibit sleep "$1" && systemctl --user start hypridle.service
 }
 
 present () {
