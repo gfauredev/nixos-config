@@ -193,7 +193,8 @@
         "$mod CONTROL, q, exec, hyprctl kill," # Close window by clicking
         # System control
         "$mod CONTROL SHIFT, q, exit," # Close wayland session
-        "$mod, comma, exec, loginctl lock-session" # Lock session (should dim and blur screen)
+        "$mod, comma, exec, ${pkgs.hyprlock}/bin/hyprlock" # Lock session (should dim and blur screen)
+        "$mod CONTROL, comma, exec, loginctl lock-session" # Default lock
         "$mod SHIFT, comma, exec, systemctl suspend" # Suspend
         "SUPER, j, exec, ${mirror.default}" # Mirror output (F9 on Framework Laptop)
         "SUPER CONTROL, j, exec, ${mirror.output}" # Change mirrored output
