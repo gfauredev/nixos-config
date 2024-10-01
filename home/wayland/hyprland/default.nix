@@ -1,4 +1,4 @@
-{ lib, pkgs, term, ... }: {
+{ lib, pkgs, term, term-alt, ... }: {
   home.packages = with pkgs; [
     wl-mirror # Mirror wayland output
     hyprcursor # Modern cursor engine
@@ -174,6 +174,9 @@
         # /!\ Cannot move to Media worspace
         # Terminal # TODO test multiplexing, features of wezterm
         "$mod, RETURN, exec, ${term.cmd}"
+        "$mod SHIFT, RETURN, exec, ${term.menu}"
+        "$mod CONTROL, RETURN, exec, ${term-alt.cmd}"
+        "$mod CONTROL SHIFT, RETURN, exec, ${term-alt.menu}"
         # Launch
         "$mod, SPACE, exec, ${launch.default}" # Launcher with additional modes
         "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator

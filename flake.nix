@@ -147,6 +147,7 @@
             extraSpecialArgs = {
               inherit inputs; # TODO use this to prevent 3 below lines
               term = alacritty;
+              term-alt = wezterm;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -161,6 +162,7 @@
             extraSpecialArgs = {
               inherit inputs; # TODO use this to prevent 3 below lines
               term = alacritty;
+              term-alt = wezterm;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -175,6 +177,7 @@
             extraSpecialArgs = {
               inherit inputs;
               term = alacritty;
+              term-alt = wezterm;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -189,6 +192,7 @@
             extraSpecialArgs = {
               inherit inputs;
               term = alacritty;
+              term-alt = wezterm;
               location = location;
             };
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
