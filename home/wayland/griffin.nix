@@ -16,7 +16,7 @@
       # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       # Griffin (Framework Laptop 13) workspaces
       workspace = [
-        # Every port is considered DP on Framworks
+        # Every port is considered DP on Framework Laptops
         "name:sup, monitor:eDP-1, default:true"
         "name:dpp, monitor:DP-1, default:true"
         "name:hdm, monitor:DP-2, default:true"
@@ -25,7 +25,7 @@
       ];
       env = [
         # Launch on eGPU if available, integrated one instead
-        # WARNING depends on stateful configurations :
+        # WARNING depends on stateful configurations TODO find a cleaner (Nix) way :
         ## ln -sf /dev/dri/by-path/pci-0000:00:02.0-card .config/hypr/igpu
         ## ln -sf /dev/dri/by-path/pci-0000:7f:00.0-card .config/hypr/egpu
         "WLR_DRM_DEVICES,$HOME/.config/hypr/egpu:$HOME/.config/hypr/igpu"
@@ -45,7 +45,10 @@
     # }
     {
       timeout = 600; # Put the computer to sleep
-      on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+      # on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+      # WARNING hacky way to prevent sleep if eGPU connected TODO find a cleaner way :
+      on-timeout =
+        "[ -e $XDG_CONFIG_HOME/hypr/egpu ] || ${pkgs.systemd}/bin/systemctl suspend";
       # on-resume = "hyprctl dispatch dpms on";
     }
   ];
