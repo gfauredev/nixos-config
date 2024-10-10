@@ -31,7 +31,7 @@
           };
 
           temperature = let
-            hwmon = "4";
+            hwmon = "6";
             temp = "1";
           in {
             # thermal-zone = 0;
