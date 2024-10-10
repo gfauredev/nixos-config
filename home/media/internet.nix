@@ -7,7 +7,7 @@
     # P2P & VPN & Web3
     # nym # A new mixnet, anonymous routing protocol
     qbittorrent-nox # Bittorrent client (web interface)
-    calyx-vpn # Free VPN service with bitmask client
+    # calyx-vpn # Free VPN service with bitmask client
     riseup-vpn # Free VPN service with bitmask client
     protonvpn-cli_2 # Free VPN service (Python rewrite)
     # protonvpn-cli # Free VPN service
