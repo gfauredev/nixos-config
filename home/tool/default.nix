@@ -15,7 +15,7 @@
     # glib # GTK Tools
     # gsettitngs-qt # GTK Settings
     # asciiquarium-transparent # Best screensaver ever
-    # cmatrix # Simulate falling text as in matrix
+    cmatrix # Simulate falling text as in matrix
 
     # Cleaning & Desktop monitoring
     # bleachbit # Good old cleaner
