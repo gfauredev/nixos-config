@@ -72,17 +72,17 @@ lsp.ltex.setup({
 lsp.marksman.setup {
   capabilities = capabilities,
 }
-lsp.typst_lsp.setup({
+lsp.tinymist.setup {
   capabilities = capabilities,
-  -- cmd = { "typst-lsp" },
-  -- filetypes = { "typst" },
   single_file_support = true, -- TODO fix need for a .git/ to find working directory
-  settings = {
-    -- exportPdf = "onType",
-    exportPdf = "onSave",
-    -- exportPdf = "never",
-  },
-})
+}
+-- lsp.typst_lsp.setup({ -- DEPRECATED
+--   capabilities = capabilities,
+--   single_file_support = true, -- TODO fix need for a .git/ to find working directory
+--   settings = {
+--     exportPdf = "onSave",
+--   },
+-- })
 
 -- Formatting
 lsp.dprint.setup {
