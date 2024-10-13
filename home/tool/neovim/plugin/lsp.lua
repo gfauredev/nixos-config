@@ -74,7 +74,7 @@ lsp.marksman.setup {
 }
 lsp.tinymist.setup {
   capabilities = capabilities,
-  -- single_file_support = true, -- TODO fix need for a .git/ to find working directory
+  single_file_support = true, -- TODO fix need for a .git/ to find working directory
   settings = {
     exportPdf = "onSave",
   }
