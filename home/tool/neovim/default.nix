@@ -111,7 +111,7 @@
       # hop-nvim # Navigate efficiently in code
 
       ##### Techno & Language Specifics #####
-      typst-vim # Typst
+      # typst-vim # Typst
       nabla-nvim # Render maths formulas
       # neorg # Modern oganization markup # Currently lacks a mobile app
       # orgmode # Organization markup # Has Orgzly mobile app

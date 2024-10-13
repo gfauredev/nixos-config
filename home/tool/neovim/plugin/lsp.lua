@@ -74,8 +74,10 @@ lsp.marksman.setup {
 }
 lsp.tinymist.setup {
   capabilities = capabilities,
+  offset_encoding = "utf-8",
   single_file_support = true, -- TODO fix need for a .git/ to find working directory
   settings = {
+    formatterMode = "typstyle",
     exportPdf = "onSave",
   }
 }
