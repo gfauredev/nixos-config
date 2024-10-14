@@ -25,5 +25,6 @@
     # Misc
     gpxsee # GPS track viewer
     # archi # Archimate modeling tool
+    glib # GTK Tools, needed for logseq
   ];
 }

@@ -12,7 +12,6 @@
     # qt6.qtwayland # TEST if relevant
     # libsForQt5.systemsettings # TEST if relevant
     # adwaita-qt # TEST if relevant
-    # glib # GTK Tools
     # gsettitngs-qt # GTK Settings
     # asciiquarium-transparent # Best screensaver ever
     cmatrix # Simulate falling text as in matrix
