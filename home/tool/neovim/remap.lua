@@ -1,6 +1,7 @@
 -- -- -- -- -- Native remaps -- -- -- -- --
 local mapopt = { noremap = true, silent = true }
 local map = vim.keymap.set
+local lsp = require "lspconfig"
 
 -- normal mode       = n
 -- insert mode       = i
@@ -107,3 +108,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, mapopt)
   end,
 })
+
+-- Language selection for ltex-ls
+vim.api.nvim_create_user_command("Ltlang", function(opt) -- FIXME
+    lsp.ltex.setup {
+      settings = { ltex = { language = opt.fargs[1] } } }
+  end,
+  { nargs = 1 })
