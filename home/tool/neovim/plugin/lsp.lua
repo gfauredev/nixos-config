@@ -76,12 +76,11 @@ lsp.marksman.setup {
 lsp.tinymist.setup {
   capabilities = capabilities,
   offset_encoding = "utf-8",
-  root_dir = vim.fr.getcwd,
-  -- root_dir = function(filename, bufnr)
+  -- root_dir = function(filename, bufnr) -- TODO make this dynamic
   --   return vim.fn.getcwd()
   -- end,
-  -- root_dir = util.find_git_ancestor,
-  -- single_file_support = true, -- TODO fix need for a .git/ to find working directory
+  root_dir = util.find_git_ancestor, -- TODO fix this, make this dynamic
+  single_file_support = true, -- TODO fix need for a .git/ to find working directory
   settings = {
     outputPath = "$dir/$name",
     exportPdf = "onDocumentHasTitle",
