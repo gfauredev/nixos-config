@@ -41,11 +41,39 @@ inhib () {
 systemctl --user stop hypridle.service && systemd-inhibit sleep "$1" ; systemctl --user start hypridle.service
 }
 
+# Present a PDF file
 present () {
   pdfpc "$@" & disown
 }
 
-# Delete some annoying autocreated directories in user home
+usb () {
+  if [ "$1" ]; then
+    [ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb # Create USB link if needed
+    for dev in "$@"; do
+      udisksctl mount -b /dev/"$dev"
+    done
+    cd ~/usb || return
+  else
+    echo -e "Select USB device(s) to mount\n"
+    lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
+  fi
+}
+
+unusb () {
+  if [ "$1" ]; then
+    cd ~ || return
+    for dev in "$@"; do
+      udisksctl unmount -b /dev/"$dev"
+      udisksctl power-off -b /dev/"$dev"
+    done
+    \rm "$HOME"/usb
+  else
+    echo -e "Select USB device(s) to unmount\n"
+    lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
+  fi
+}
+
+# Delete some annoying autocreated directories in user home (if empty)
 UNWANTED=("Downloads" "intelephense" "pt")
 for dir in "${UNWANTED[@]}"; do
   if [ -d "${HOME:?}/$dir" ]; then

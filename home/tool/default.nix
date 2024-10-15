@@ -13,7 +13,7 @@
     # libsForQt5.systemsettings # TEST if relevant
     # adwaita-qt # TEST if relevant
     # gsettitngs-qt # GTK Settings
-    # asciiquarium-transparent # Best screensaver ever
+    asciiquarium-transparent # Best screensaver ever
     cmatrix # Simulate falling text as in matrix
 
     # Cleaning & Desktop monitoring
@@ -39,13 +39,13 @@
     # open-interpreter # Interpret LLM code in terminal directly
 
     # Storage & Backup
-    udiskie # auto mount USB
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
     tmsu # File tagging with virtual FS
     iroh # Efficient IPFS, p2p file sharing
-    sendme # send files and directories p2p
+    # sendme # send files and directories p2p
+    # udiskie # auto mount USB
     # dcfldd # more powerful dd
     # rpi-imager # Raspberry Pi OS generator
 
@@ -56,10 +56,10 @@
     # kubernetes # Container orchestrator
 
     # Miscellaneous
+    jq # JSON parsing and request tool USED BY HYPRLAND CONFIG
     kalker # Evaluate math expression
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
-    jq # JSON parsing and request tool
     # valent # kdeconnect protocol (bilateral Android remote control)
     # poetry # Python project manager # TODO use nix instead
     # python3 # Python # TODO USE nix instead
