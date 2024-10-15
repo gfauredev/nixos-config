@@ -84,8 +84,8 @@ lsp.tinymist.setup {
   settings = {
     -- outputPath = "$dir/$name",
     -- exportPdf = "onDocumentHasTitle", -- FIX this
-    -- exportPdf = "onSave",
-    exportPdf = "onType",
+    exportPdf = "onSave",
+    -- exportPdf = "onType",
     -- rootPath = "-",
     formatterMode = "typstyle",
   }
