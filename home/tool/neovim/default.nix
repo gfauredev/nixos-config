@@ -65,6 +65,7 @@
       indent-blankline-nvim # Indentation lines
       tokyonight-nvim # Blue-ish theme
       gruvbox-nvim # Old fashioned, red-ish theme
+      # nvim-ufo # Modern and performance fold # TODO set up
       # headlines-nvim # Highlights for titles, code blocks …
       # nvim-notify # Notifications
       # vim-table-mode # Display tables

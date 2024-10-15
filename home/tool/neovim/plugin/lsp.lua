@@ -1,5 +1,6 @@
 -- Language servers configurations
 local lsp = require "lspconfig"
+local util = require 'lspconfig.util'
 -- Set up completion
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -75,10 +76,16 @@ lsp.marksman.setup {
 lsp.tinymist.setup {
   capabilities = capabilities,
   offset_encoding = "utf-8",
+  -- root_dir = util.find_git_ancestor,
+  root_dir = function(filename, bufnr)
+    return vim.fn.getcwd()
+  end,
   single_file_support = true, -- TODO fix need for a .git/ to find working directory
   settings = {
+    outputPath = "$dir/$name",
+    exportPdf = "onDocumentHasTitle",
+    rootPath = "-",
     formatterMode = "typstyle",
-    exportPdf = "onSave",
   }
 }
 -- lsp.typst_lsp.setup({ -- DEPRECATED
