@@ -22,8 +22,13 @@
     # stacer # Modern cleaner & monitoring
 
     # LSP & Formatter
+    # tree-sitter # Parser generator tool and library
+    # (pkgs.tree-sitter.withPlugins
+    #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))
+    # (pkgs.tree-sitter.withPlugins (_: allGrammars))
     nil # Nix LSP
     nixfmt # Nix formatter
+    shellcheck # Shell script analysis
     bash-language-server # Bash LSP
     lua-language-server # Lua LSP
     dprint # Pluggable code formatting platform
