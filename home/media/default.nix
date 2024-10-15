@@ -20,9 +20,9 @@
     # hunspellDicts.es_ES # Spanish
     typst # Advanced document processor
     # typst-lsp # Typst LSP # DEPRECATED
-    tinymist # Typst LSP # DEPRECATED
+    # tinymist # Typst LSP FIXME
     typstyle # Typst formatter
-    # typstfmt # Typst formatter
+    # typstfmt # Typst formatter # Deprecated
     marksman # Smart Markdown links
 
     # Document & Spreadsheet & Presentation & Note
