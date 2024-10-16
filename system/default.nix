@@ -107,8 +107,8 @@
       lm_sensors # get temps
       wakelan # send magick packet to wake WoL devices
       age # Modern encryption
-      openvpn # Largely used VPN
       sysstat # Monitoring CLI tools
+      # openvpn # Largely used VPN
       # inputs.agenix.packages.x86_64-linux.default
       # sops # Nix secret management
     ];
