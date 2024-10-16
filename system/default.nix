@@ -73,18 +73,9 @@
 
   users.mutableUsers = lib.mkDefault true; # Set passwords imperatively
 
-  services = { nfs.server.enable = lib.mkDefault true; };
+  services.nfs.server.enable = lib.mkDefault true;
 
-  programs = {
-    openvpn3.enable = lib.mkDefault true;
-    #   neovim = { # TEST relevance
-    #     enable = true;
-    #     defaultEditor = true;
-    #     viAlias = true;
-    #     vimAlias = true;
-    #   };
-    #   git.enable = true; # TEST relevance
-  };
+  programs.openvpn3.enable = lib.mkDefault true;
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
