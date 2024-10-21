@@ -21,7 +21,7 @@
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
     # VST
-    vital # UNFREE Spectral warping wavetable synth
+    vital # PROPRIETARY Spectral warping wavetable synth
     # helm # Ancestor of Vital
     surge-XT # Great hybrid substractive synth
     # surge # Great hybrid substractive synth (old version)
