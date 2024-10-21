@@ -1,9 +1,9 @@
 { pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      tree-sitter-grammars.tree-sitter-typst
-      # tree-sitter-grammars.tree-sitter-latex
-    ];
+  home.packages = with pkgs; [
+    tree-sitter-grammars.tree-sitter-typst
+    nodejs_22 # FIXME remove when withNodeJs param is fixed
+    # tree-sitter-grammars.tree-sitter-latex
+  ];
 
   # nixpkgs.overlays = [
   #   inputs.neovim-nightly-overlay.overlays.default
@@ -132,7 +132,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    withNodeJs = true;
+    withNodeJs = true; # FIXME
     withPython3 = true;
     withRuby = true;
     # extraLuaPackages = ps: [ ps.magick ];
