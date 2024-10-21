@@ -43,6 +43,10 @@
     qpdf # PDF manipulation
     # pdf4qt # PDF edition
     masterpdfeditor4 # CLOSED SOURCE PDF edition
+    # pdfstudio2023 # CLOSED SOURCE PDF edition
+    # xpdf # PDF reader
+    pdf4qt # PDF editor TODO hm module
+    pdf-sign # PDF signing
     naps2 # Scan PDFs
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
