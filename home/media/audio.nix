@@ -14,7 +14,7 @@
     # reaper # PROPRIETARY digital audio workstation
     # audacity # Simple audio editor
     # VST Collections
-    # distrho # Collection of audio plugins, contains Vitalium
+    distrho # Collection of audio plugins, contains Vitalium
     calf # Collection of audio plugins
     bristol # Synths
     # lsp-plugins # Collection of audio plugins
