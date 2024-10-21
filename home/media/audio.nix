@@ -25,7 +25,7 @@
     # helm # Ancestor of Vital
     # surge-XT # Great hybrid substractive synth
     # surge # Great hybrid substractive synth (old version)
-    bespokesynth-with-vst2 # Software modular synth with controllers support
+    # bespokesynth-with-vst2 # Software modular synth with controllers support
     drumgizmo # High quality drums sampler
     # Bridges & Drivers & Adapters
     # airwave # WINE-based VST bridge for Linux VST hosts
