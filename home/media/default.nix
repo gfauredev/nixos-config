@@ -36,6 +36,7 @@
     # xournalpp # Notetaking with draw
 
     # PDF reading & editing
+    adobe-reader # PROPRIETARY "official" PDF reader
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
     poppler_utils # PDF metadata reading
