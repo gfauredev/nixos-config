@@ -31,6 +31,8 @@
     shellcheck # Shell script analysis
     bash-language-server # Bash LSP
     lua-language-server # Lua LSP
+    nodePackages_latest.vscode-json-languageserver # JSON LSP
+    yaml-language-server # YAML LSP
     dprint # Pluggable code formatting platform
 
     # AI Tools
