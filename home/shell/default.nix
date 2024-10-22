@@ -4,16 +4,16 @@
       wd=$PWD
       cmd=""
       if $SHELL -ic "which \"$1\""; then
-        cmd="${term.exec} $SHELL -ic \"$@\""
+        cmd="${term.exec} $SHELL -ic \"$*\""
       elif [ -d "$1" ]; then
         wd="$1"
         shift
         if $SHELL -ic "which \"$1\""; then
-          cmd="${term.exec} $SHELL -ic \"$@\""
+          cmd="${term.exec} $SHELL -ic \"$*\""
         fi
       fi
       echo "Running: ${term.cmd} ${term.cd} $wd $cmd & disown"
-      ${term.cmd} ${term.cd} $wd $cmd & disown
+      "${term.cmd}" "${term.cd}" "$wd" "$cmd" & disown
       sleep 0.5
     '';
     extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
