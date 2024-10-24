@@ -53,6 +53,8 @@ local ui = require "dapui"
 
 ui.setup()
 
+require("nvim-dap-virtual-text").setup() -- Add locals value inline
+
 -- Keymaps --
 
 local map = vim.keymap.set

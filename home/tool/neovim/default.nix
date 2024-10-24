@@ -89,6 +89,7 @@
       cmp-path # FS path as cmp source
       nvim-dap # Debugger protocol
       nvim-dap-ui # Debugger UI
+      nvim-dap-virtual-text # Debugger UI
       cmp-git # Git commits messages as cmp source
       trouble-nvim # Better presentation of messages
       cmp-cmdline # Nvim commands line mode completion source
