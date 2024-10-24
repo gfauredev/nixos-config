@@ -33,8 +33,8 @@
       ${builtins.readFile ./plugin/format.lua}
       ${builtins.readFile ./plugin/copilot.lua}
       ${builtins.readFile ./plugin/maths.lua}
+      ${builtins.readFile ./plugin/dap.lua}
     '';
-    # ${builtins.readFile ./plugin/dap.lua}
     # ${builtins.readFile ./plugin/lint.lua}
     # ${builtins.readFile ./plugin/quarto.lua}
     # ${builtins.readFile ./plugin/notify.lua}
