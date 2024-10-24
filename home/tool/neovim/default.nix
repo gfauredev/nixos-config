@@ -44,6 +44,7 @@
       ##### Libraries #####
       plenary-nvim # Library
       # fuzzy-nvim # Library
+      nvim-nio # Async I/O
 
       ##### Parsing #####
       nvim-treesitter.withAllGrammars # Parsing & text highlighting
@@ -87,6 +88,7 @@
       cmp-buffer # Buffer content as cmp source
       cmp-path # FS path as cmp source
       nvim-dap # Debugger protocol
+      nvim-dap-ui # Debugger UI
       cmp-git # Git commits messages as cmp source
       trouble-nvim # Better presentation of messages
       cmp-cmdline # Nvim commands line mode completion source

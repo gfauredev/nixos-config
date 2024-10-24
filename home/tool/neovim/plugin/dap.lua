@@ -47,11 +47,18 @@ dap.configurations.c = {
   },
 }
 
+-- UI --
+
+local ui = require "dapui"
+
+ui.setup()
+
 -- Keymaps --
 
 local map = vim.keymap.set
 local mapopt = { noremap = true, silent = true }
 
+map("n", "<leader>du", ui.toggle, mapopt) -- Open UI
 map("n", "<leader>dc", dap.continue, mapopt)
 map("n", "<leader>dC", dap.step_into, mapopt)
 map("n", "<leader>db", dap.toggle_breakpoint, mapopt)
