@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, stablepkgs, ... }: {
   home.packages = with pkgs; [
     klick # Metronome
     # Plugins hosts & Routers
@@ -14,7 +14,7 @@
     # reaper # PROPRIETARY digital audio workstation
     # audacity # Simple audio editor
     # VST Collections
-    distrho # Collection of audio plugins, contains Vitalium
+    stablepkgs.distrho # Collection of audio plugins, contains Vitalium
     calf # Collection of audio plugins
     bristol # Synths
     # lsp-plugins # Collection of audio plugins

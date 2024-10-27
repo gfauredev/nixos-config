@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05"; # NixOS Stable
 
     # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
     # sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
@@ -27,83 +28,76 @@
   };
 
   # TODO: see if possible to use either @inputs or a comprehensive list of inputs
-  outputs = { self, nixpkgs, lanzaboote, nixos-hardware, home-manager, musnix
-    , ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      stablepkgs = inputs.nixpkgs-stable.legacyPackages.${system};
+    in {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
         ##### Laptops #####
         griffin = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
             # agenix.nixosModules.default # Secrets storage TODO for all systems
             # sops-nix.nixosModules.sops # Secrets storage TODO for all systems
-            lanzaboote.nixosModules.lanzaboote # Secure boot
-            nixos-hardware.nixosModules.framework-12th-gen-intel
-            nixos-hardware.nixosModules.common-gpu-nvidia-nonprime # eGPU
-            musnix.nixosModules.musnix # System improvements for audio
+            inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
+            inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
+            inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime # eGPU
+            inputs.musnix.nixosModules.musnix # System improvements for audio
             ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
-            ./system/user/gf.nix # Myself
-            ./system/virtualization.nix
-            ./system/pc/gaming.nix
+            ./system/user/gf.nix # TODO make it an option of systems (may include home)
+            ./system/virtualization.nix # TODO make it an option of systems
+            ./system/pc/gaming.nix # TODO make it an option of systems
           ];
         };
         chimera = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            # lanzaboote.nixosModules.lanzaboote # Secure boot TEST
-            nixos-hardware.nixosModules.common-cpu-intel # Hardware
-            nixos-hardware.nixosModules.common-pc # Hardware
-            nixos-hardware.nixosModules.common-pc-ssd # Hardware
-            # musnix.nixosModules.musnix # System improvements for audio
+            # inputs.lanzaboote.nixosModules.lanzaboote # Secure boot TEST
+            inputs.nixos-hardware.nixosModules.common-cpu-intel # Hardware
+            inputs.nixos-hardware.nixosModules.common-pc # Hardware
+            inputs.nixos-hardware.nixosModules.common-pc-ssd # Hardware
+            inputs.musnix.nixosModules.musnix # System improvements for audio
             ./system/pc/laptop/chimera # Chimera, a flying creature
-            ./system/user/gf.nix # Myself
           ];
         };
         ##### Desktops #####
-        typhon = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            lanzaboote.nixosModules.lanzaboote # Secure boot
-            nixos-hardware.nixosModules.common-cpu-amd # Hardware
-            nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-            nixos-hardware.nixosModules.common-pc # Hardware
-            nixos-hardware.nixosModules.common-pc-ssd # Hardware
-            musnix.nixosModules.musnix # System improvements for audio
-            ./system/pc/typhon # Typhon, the most powerful creature
-            ./system/user/gf.nix # Myself
-            ./system/virtualization.nix
-          ];
-        };
-        work = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            lanzaboote.nixosModules.lanzaboote # Secure boot
-            nixos-hardware.nixosModules.common-pc # Hardware
-            ./system/pc/work # PC used at work
-            ./system/user/gf.nix # Myself
-            ./system/virtualization.nix
-          ];
-        };
+        # typhon = nixpkgs.lib.nixosSystem {
+        #   specialArgs = { inherit inputs; };
+        #   modules = [
+        #     inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
+        #     inputs.nixos-hardware.nixosModules.common-cpu-amd # Hardware
+        #     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+        #     inputs.nixos-hardware.nixosModules.common-pc # Hardware
+        #     inputs.nixos-hardware.nixosModules.common-pc-ssd # Hardware
+        #     inputs.musnix.nixosModules.musnix # System improvements for audio
+        #     ./system/pc/typhon # Typhon, the most powerful creature
+        #   ];
+        # };
+        # work = nixpkgs.lib.nixosSystem {
+        #   specialArgs = { inherit inputs; };
+        #   modules = [
+        #     inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
+        #     inputs.nixos-hardware.nixosModules.common-pc # Hardware
+        #     ./system/pc/work # PC used at work
+        #   ];
+        # };
         ##### Servers #####
         cerberus = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            lanzaboote.nixosModules.lanzaboote # Secure boot
-            nixos-hardware.nixosModules.common-cpu-intel # Hardware related
-            nixos-hardware.nixosModules.common-pc # Hardware related
+            inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
+            inputs.nixos-hardware.nixosModules.common-cpu-intel # Hardware related
+            inputs.nixos-hardware.nixosModules.common-pc # Hardware related
             ./system/server/cerberus # Cerberus, a powerful creature with multiple heads
-            ./system/virtualization.nix
+            # ./system/virtualization.nix # TODO make it an option of systems
           ];
         };
         ##### NixOS live ISO image, suitable for installation #####
         installer = nixpkgs.lib.nixosSystem {
           # Build with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
             # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -143,66 +137,64 @@
           };
           location = "/config"; # This Flake location
         in {
-          "gf@griffin" = home-manager.lib.homeManagerConfiguration {
+          "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
             extraSpecialArgs = {
-              inherit inputs; # TODO use this to prevent 3 below lines
+              inherit inputs stablepkgs;
               term = alacritty;
               term-alt = wezterm;
               location = location;
             };
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [
+            modules = [ # TODO clean this down to one module
               ./home/gf.nix # Myself’s home
               ./home/wayland/griffin.nix # Griffin’s GUI
               ./home/tool # Tooling, mostly technical
               ./home/media # Media consuming and editing
             ];
           };
-          "gf@chimera" = home-manager.lib.homeManagerConfiguration {
+          "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
             extraSpecialArgs = {
-              inherit inputs; # TODO use this to prevent 3 below lines
+              inherit inputs stablepkgs;
               term = alacritty;
               term-alt = wezterm;
               location = location;
             };
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [
+            modules = [ # TODO clean this down to one module
               ./home/gf.nix # Myself’s home
               ./home/wayland/griffin.nix # Griffin’s GUI
               # ./home/tool # Tooling, mostly technical
               # ./home/media # Media consuming and editing
             ];
           };
-          "gf@typhon" = home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = {
-              inherit inputs;
-              term = alacritty;
-              term-alt = wezterm;
-              location = location;
-            };
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [
-              ./home/gf.nix # Myself’s home
-              ./home/wayland/typhon.nix # Typhon’s GUI
-              ./home/tool # Tooling, mostly technical
-              ./home/media # Media consuming and editing
-            ];
-          };
-          "gf@work" = home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = {
-              inherit inputs;
-              term = alacritty;
-              term-alt = wezterm;
-              location = location;
-            };
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [
-              ./home/gf.nix # Myself’s home
-              ./home/wayland # Wayland WM & related
-              ./home/tool # Tooling, mostly technical
-              ./home/media # Media consuming and editing
-            ];
-          };
+          # "gf@typhon" = inputs.home-manager.lib.homeManagerConfiguration {
+          #   extraSpecialArgs = {
+          #     inherit inputs;
+          #     term = alacritty;
+          #     term-alt = wezterm;
+          #     location = location;
+          #   };
+          #   modules = [
+          #     ./home/gf.nix # Myself’s home
+          #     ./home/wayland/typhon.nix # Typhon’s GUI
+          #     ./home/tool # Tooling, mostly technical
+          #     ./home/media # Media consuming and editing
+          #   ];
+          # };
+          # "gf@work" = inputs.home-manager.lib.homeManagerConfiguration {
+          #   extraSpecialArgs = {
+          #     inherit inputs;
+          #     term = alacritty;
+          #     term-alt = wezterm;
+          #     location = location;
+          #   };
+          #   modules = [
+          #     ./home/gf.nix # Myself’s home
+          #     ./home/wayland # Wayland WM & related
+          #     ./home/tool # Tooling, mostly technical
+          #     ./home/media # Media consuming and editing
+          #   ];
+          # };
         };
     };
 }
