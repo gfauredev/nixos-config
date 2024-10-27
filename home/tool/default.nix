@@ -52,7 +52,7 @@
     # rpi-imager # Raspberry Pi OS generator
 
     # Virtualization
-    vagrant # VM auto provisionner
+    # vagrant # VM auto provisionner TODO reenable
     virt-manager # GUI frontend to libvirtd
     # looking-glass-client
     # kubernetes # Container orchestrator
