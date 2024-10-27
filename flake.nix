@@ -38,7 +38,7 @@
       nixosConfigurations = {
         ##### Laptops #####
         griffin = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs stablepkgs; };
           modules = [
             # agenix.nixosModules.default # Secrets storage TODO for all systems
             # sops-nix.nixosModules.sops # Secrets storage TODO for all systems

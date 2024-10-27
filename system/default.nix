@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, stablepkgs, ... }: {
   nix = {
     # add each flake input as a registry
     # To make nix3 commands consistent with flake
@@ -76,6 +76,7 @@
   services.nfs.server.enable = lib.mkDefault true;
 
   programs.openvpn3.enable = lib.mkDefault true;
+  programs.openvpn3.package = stablepkgs.openvpn3; # TODO remove
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
