@@ -9,6 +9,7 @@
         "eDP-1, 2256x1504, 0x0, 1.333" # Griffin’s internal monitor
         "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440@144, -874x-1440, 1"
         # "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440@144, -767x-1350, 1.0666"
+        "desc:IGM Communi L238DPH-NS-BU 0x01010101, 1920x1080@60, -1920x-540, 1"
         ", 1920x1080, -114x-1080, 1"
         ", 1920x1200, -114x-1200, 1"
         ", preferred, auto, 1" # Other monitors
