@@ -21,7 +21,7 @@ lsp.ruff_lsp.setup {
   capabilities = capabilities
 }
 
--- Web development
+-- Web & app development
 lsp.ts_ls.setup {
   capabilities = capabilities
 }
@@ -39,6 +39,9 @@ lsp.html.setup({
   }
 })
 lsp.jsonls.setup {
+  capabilities = capabilities
+}
+lsp.jdtls.setup {
   capabilities = capabilities
 }
 
