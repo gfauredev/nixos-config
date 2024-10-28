@@ -57,9 +57,9 @@
 
     # Image & Video
     viu # CLI image viewer
-    vpv # Advanced light image viewer
+    # vpv # Advanced light image viewer
     qimgv # Another image viewer
-    oculante # Image viewer with some advanced features
+    # oculante # Image viewer with some advanced features
     imagemagick # CLI image edition
     ffmpeg # media conversion
     mediainfo # info about audio or video
