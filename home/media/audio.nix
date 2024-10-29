@@ -11,7 +11,6 @@
     # DAW & Editors
     # zrythm # Modern digital audio workstation
     ardour # Full fledged digital audio workstation
-    # reaper # PROPRIETARY digital audio workstation
     # audacity # Simple audio editor
     # VST Collections
     stablepkgs.distrho # Collection of audio plugins, contains Vitalium

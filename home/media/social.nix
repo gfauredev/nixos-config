@@ -11,13 +11,7 @@
     element-desktop # Secure group messaging and calls
     # element-web # Secure messaging and calls
     olvid # French secure messaging
-    # PROPRIETARY Messaging, Calls, Video
     discord # PROPRIETARY messaging and general communication
-    # whatsapp-for-linux # PROPRIETARY messaging and general communication
-    # discord-canary # PROPRIETARY messaging and general communication
-    # teams-for-linux # PROPRIETARY services messaging and work
-    # zoom         # PROPRIETARY messaging and work
-    # keybase-gui # Identity and public key cryptography
   ];
 
   # TODO configure thunderbird with nix

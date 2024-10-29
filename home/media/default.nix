@@ -36,14 +36,11 @@
     # xournalpp # Notetaking with draw
 
     # PDF reading & editing
-    # adobe-reader # PROPRIETARY "official" PDF reader
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
     poppler_utils # PDF metadata reading
     qpdf # PDF manipulation
     # pdf4qt # PDF edition
-    # masterpdfeditor4 # PROPRIETARY PDF edition
-    # pdfstudio2023 # PROPRIETARY PDF edition
     # xpdf # PDF reader
     pdf4qt # PDF editor TODO hm module
     pdf-sign # PDF signing

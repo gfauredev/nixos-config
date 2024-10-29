@@ -95,7 +95,7 @@ directly included in this flake:
 
 ## Optional packages
 
-> These are packages I don’t want in my config but will eventually use
+> These are packages I don’t want in my config but will possibly use
 > ephemerally with `nix-shell -p $PACKAGE` or install with
 > `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
 
@@ -105,6 +105,17 @@ directly included in this flake:
 - `chntpw` # Edit an installed Windows registry
 - `gns3-gui` # Advanced network simulation
 - `gns3-server` # Advanced network simulation (server)
+- `discord` # PROPRIETARY messaging and general communication
+- `whatsapp-for-linux` # PROPRIETARY messaging and general communication
+- `discord-canary` # PROPRIETARY messaging and general communication
+- `teams-for-linux` # PROPRIETARY services messaging and work
+- `zoom` # PROPRIETARY messaging and work
+- `keybase-gui` # Identity and public key cryptography
+- `reaper` # PROPRIETARY digital audio workstation
+- `adobe-reader` # PROPRIETARY "official" PDF reader
+- `masterpdfeditor4` # PROPRIETARY PDF edition
+- `pdfstudio2023` # PROPRIETARY PDF edition
+- `davinci-resolve` # PROPRIETARY video editor
 
 ## Optional flakes
 
@@ -126,4 +137,4 @@ directly included in this flake:
 - `sqlcl` # Oracle SQL CLI
 - `burpsuite` # Pentesting suite
 - `minecraft` # Mythic sandbox game
-  - `fabric-installer` # Minecraft modding toolchain
+- `fabric-installer` # Minecraft modding toolchain

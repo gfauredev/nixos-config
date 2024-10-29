@@ -11,7 +11,5 @@
     # obs-wlrobs
     obs-studio-plugins.wlrobs # OBS for Wayland
     obs-studio # Screen recorder and streaming
-
-    # davinci-resolve # PROPRIETARY video editor
   ];
 }
