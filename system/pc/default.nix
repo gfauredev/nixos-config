@@ -151,6 +151,7 @@
       nix-du # Determine which gc-roots take space
       ssh-to-age # Converter between SSH keys and age
       powertop # Power usage analyzer
+      just # Commands runner
       # bolt # Thunderbolt device manager
       # polkit_gnome # Allow GUI apps to get privileges
       # sbctl # Secure Boot Control

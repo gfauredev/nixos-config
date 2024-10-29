@@ -9,12 +9,13 @@
     podman = {
       enable = true;
       autoPrune.enable = true;
-      extraPackages = with pkgs; [ podman-compose gvisor ];
-      dockerSocket.enable = false;
-      dockerCompat = false;
+      extraPackages = with pkgs; [ podman-compose gvisor dive ];
+      dockerSocket.enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
     };
     docker = {
-      enable = true;
+      enable = false;
       extraPackages = with pkgs; [ docker-compose ];
     };
     virtualbox.host = {
