@@ -11,10 +11,10 @@
         (system: f { pkgs = import nixpkgs { inherit system; }; });
     in {
       devShells = forEachSupportedSystem ({ pkgs }: {
-        default = pkgs.mkShell.override {
+        default = pkgs.mkShell { # .override {
           # Override stdenv in order to change compiler:
           # stdenv = pkgs.clangStdenv;
-        } {
+          # } {
           packages = with pkgs; [
             jdk
             quarkus
@@ -24,6 +24,8 @@
             doxygen
             # gnumake
           ];
+
+          shellHook = "exec zsh";
         };
       });
     };
