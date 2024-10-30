@@ -138,6 +138,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "0cff76cb",
+        "name": "Nixpkgs PR tracker",
+        "trigger": "nixpr",
+        "url": "https://nixpk.gs/pr-tracker.html?pr=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "0f896084",
         "name": "Nixpkgs package",
         "trigger": "pkg",
