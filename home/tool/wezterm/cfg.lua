@@ -1,5 +1,3 @@
-local wezterm = require "wezterm"
--- General options
 cfg = {
   enable_wayland = false,
   -- front_end = "Software", -- Disable hardware acceleration
@@ -16,6 +14,6 @@ cfg = {
     top = 2,
     bottom = 2,
   },
-  enable_kitty_graphics = true, -- Kitty graphics protocol
-  colors = { selection_bg = "#ffddcc" },
+  -- enable_kitty_graphics = true, -- Kitty graphics protocol
+  -- colors = { selection_bg = "#ffddcc" },
 }

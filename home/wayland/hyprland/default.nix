@@ -182,7 +182,7 @@
         "CONTROL SHIFT, XF86Tools, workspace, name:med" # Media ws
         # "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
         # /!\ Cannot move to Media worspace
-        # Terminal # TODO test multiplexing, features of wezterm
+        # Terminal
         "$mod, RETURN, exec, ${term.cmd}"
         "$mod SHIFT, RETURN, exec, ${term.menu} $SHELL"
         "$mod CONTROL, RETURN, exec, ${term-alt.cmd}"
