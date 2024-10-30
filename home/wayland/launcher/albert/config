@@ -7,6 +7,7 @@ telemetry=true
 enabled=false
 
 [calculator_qalculate]
+angle_unit=2
 enabled=true
 
 [clipboard]
@@ -40,7 +41,15 @@ enabled=true
 enabled=true
 
 [system]
+command_poweroff=systemctl poweroff
+command_reboot=systemctl reboot
 enabled=true
+hibernate_enabled=false
+lock_enabled=false
+logout_enabled=false
+suspend_enabled=false
+title_poweroff=off
+title_reboot=reboot
 trigger="sys "
 
 [timer]
