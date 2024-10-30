@@ -15,6 +15,23 @@ enabled=true
 [datetime]
 enabled=true
 
+[fallback_order]
+1\extension=websearch
+1\fallback=5d9812ad
+2\extension=websearch
+2\fallback=870b38cf
+3\extension=websearch
+3\fallback=91f61720
+4\extension=websearch
+4\fallback=5eb8dc52
+5\extension=websearch
+5\fallback=f0a6f22a
+6\extension=websearch
+6\fallback=e3091330
+7\extension=websearch
+7\fallback=e5f2a1af
+size=7
+
 [hash]
 enabled=true
 
