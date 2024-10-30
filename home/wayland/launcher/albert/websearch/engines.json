@@ -1,11 +1,19 @@
 [
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":amazon",
         "id": "ffb62f03",
         "name": "Amazon",
         "trigger": "am",
         "url": "http://www.amazon.com/s/?field-keywords=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "e5f2a1af",
+        "name": "ArchLinux Wiki",
+        "trigger": "aw",
+        "url": "https://wiki.archlinux.org/index.php?title=Special:Search&search=%s"
     },
     {
         "fallback": true,
@@ -16,7 +24,7 @@
         "url": "https://chat.openai.com/?q=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":default",
         "id": "5f79f9e5",
         "name": "Deepl EN to FR",
@@ -24,7 +32,7 @@
         "url": "https://www.deepl.com/translator#en/fr/%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":default",
         "id": "07f98adc",
         "name": "Deepl FR to EN",
@@ -32,7 +40,7 @@
         "url": "https://www.deepl.com/translator#fr/en/%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":default",
         "id": "52520008",
         "name": "Deepl FR to ES",
@@ -48,7 +56,7 @@
         "url": "https://duckduckgo.com/?q=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":ebay",
         "id": "c0021549",
         "name": "Ebay",
@@ -64,7 +72,7 @@
         "url": "https://www.ecosia.org/search?q=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":github",
         "id": "5008800a",
         "name": "GitHub",
@@ -72,7 +80,7 @@
         "url": "https://github.com/search?utf8=✓&q=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":default",
         "id": "30ab4009",
         "name": "GitLab",
@@ -88,7 +96,7 @@
         "url": "https://www.google.com/search?q=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":maps",
         "id": "fc0fc93b",
         "name": "Google Maps",
@@ -96,7 +104,7 @@
         "url": "https://www.google.com/maps/search/%s/"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":scholar",
         "id": "cf05153b",
         "name": "Google Scholar",
@@ -104,7 +112,7 @@
         "url": "https://scholar.google.com/scholar?q=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":google_translate",
         "id": "044ad723",
         "name": "Google Translate",
@@ -112,7 +120,7 @@
         "url": "https://translate.google.com/?text=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":default",
         "id": "cef0522e",
         "name": "MDN",
@@ -120,7 +128,63 @@
         "url": "https://developer.mozilla.org/fr/search?q=%s"
     },
     {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "71167f0d",
+        "name": "NixOS option",
+        "trigger": "opt",
+        "url": "ttps://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "0f896084",
+        "name": "Nixpkgs package",
+        "trigger": "pkg",
+        "url": "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "71a520e2",
+        "name": "Nixpkgs package version",
+        "trigger": "pkgv",
+        "url": "https://lazamar.co.uk/nix-versions/?channel=nixpkgs-unstable&package=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "0ad59816",
+        "name": "Noogle (Nix function search)",
+        "trigger": "noo",
+        "url": "https://noogle.dev/q?term=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "f9c9e93b",
+        "name": "OpenStreetMaps",
+        "trigger": "m",
+        "url": "https://www.openstreetmap.org/search?query=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "515389a6",
+        "name": "Searchix (NixOS, Home Manager…)",
+        "trigger": "nix",
+        "url": "https://searchix.alanpearce.eu/all/search?query=%s"
+    },
+    {
         "fallback": true,
+        "iconPath": ":default",
+        "id": "91f61720",
+        "name": "Wikipedia",
+        "trigger": "w",
+        "url": "https://www.wikipedia.org/w/index.php?search=%s"
+    },
+    {
+        "fallback": false,
         "iconPath": ":wolfram",
         "id": "14b59237",
         "name": "Wolfram Alpha",
