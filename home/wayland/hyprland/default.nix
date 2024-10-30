@@ -181,8 +181,8 @@
         "$mod CONTROL, RETURN, exec, ${term-alt.cmd}"
         "$mod CONTROL SHIFT, RETURN, exec, ${term-alt.menu} $SHELL"
         # Launch
-        "$mod, Super_L, exec, ${launch.all}" # Default launcher
-        "$mod, SPACE, exec, ${launch.alt}" # Alternative launcher
+        "$mod, Super_L, exec, ${launch.alt}" # Default launcher
+        "$mod, SPACE, exec, ${launch.all}" # Alternative launcher
         "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator
         "$mod SHIFT, SPACE, exec, ${launch.pass}" # Password store
         # "$mod CONTROL SHIFT, SPACE, exec, ${launch.alt}" # Alternate alternative launcher
