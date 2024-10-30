@@ -1,4 +1,5 @@
 [General]
+memoryDecay=0.75
 showTray=false
 telemetry=true
 
