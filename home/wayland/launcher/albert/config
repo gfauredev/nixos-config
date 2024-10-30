@@ -3,6 +3,36 @@ showTray=false
 telemetry=true
 
 [applications]
+enabled=false
+
+[calculator_qalculate]
+enabled=true
+
+[clipboard]
+enabled=true
+
+[datetime]
+enabled=true
+
+[hash]
+enabled=true
+
+[mpris]
+enabled=true
+
+[system]
+enabled=true
+
+[timer]
+enabled=true
+
+[timezones]
+enabled=true
+
+[urlhandler]
+enabled=true
+
+[websearch]
 enabled=true
 
 [widgetsboxmodel]

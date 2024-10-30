@@ -1,0 +1,138 @@
+[
+    {
+        "fallback": true,
+        "iconPath": ":amazon",
+        "id": "ffb62f03",
+        "name": "Amazon",
+        "trigger": "am",
+        "url": "http://www.amazon.com/s/?field-keywords=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":gpt",
+        "id": "5eb8dc52",
+        "name": "Chat GPT",
+        "trigger": "gpt",
+        "url": "https://chat.openai.com/?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "5f79f9e5",
+        "name": "Deepl EN to FR",
+        "trigger": "fr",
+        "url": "https://www.deepl.com/translator#en/fr/%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "07f98adc",
+        "name": "Deepl FR to EN",
+        "trigger": "en",
+        "url": "https://www.deepl.com/translator#fr/en/%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "52520008",
+        "name": "Deepl FR to ES",
+        "trigger": "es",
+        "url": "https://www.deepl.com/translator#fr/es/%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":duckduckgo",
+        "id": "f0a6f22a",
+        "name": "DuckDuckGo",
+        "trigger": "dd",
+        "url": "https://duckduckgo.com/?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":ebay",
+        "id": "c0021549",
+        "name": "Ebay",
+        "trigger": "eb",
+        "url": "http://www.ebay.com/sch/i.html?_nkw=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "5d9812ad",
+        "name": "Ecosia",
+        "trigger": "e",
+        "url": "https://www.ecosia.org/search?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":github",
+        "id": "5008800a",
+        "name": "GitHub",
+        "trigger": "gh",
+        "url": "https://github.com/search?utf8=✓&q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "30ab4009",
+        "name": "GitLab",
+        "trigger": "gl",
+        "url": "ttps://gitlab.com/search?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":google",
+        "id": "870b38cf",
+        "name": "Google",
+        "trigger": "g",
+        "url": "https://www.google.com/search?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":maps",
+        "id": "fc0fc93b",
+        "name": "Google Maps",
+        "trigger": "gm",
+        "url": "https://www.google.com/maps/search/%s/"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":scholar",
+        "id": "cf05153b",
+        "name": "Google Scholar",
+        "trigger": "gs",
+        "url": "https://scholar.google.com/scholar?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":google_translate",
+        "id": "044ad723",
+        "name": "Google Translate",
+        "trigger": "gt",
+        "url": "https://translate.google.com/?text=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "cef0522e",
+        "name": "MDN",
+        "trigger": "mdn",
+        "url": "https://developer.mozilla.org/fr/search?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":wolfram",
+        "id": "14b59237",
+        "name": "Wolfram Alpha",
+        "trigger": "w",
+        "url": "https://www.wolframalpha.com/input/?i=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":youtube",
+        "id": "e3091330",
+        "name": "YouTube",
+        "trigger": "y",
+        "url": "https://www.youtube.com/results?search_query=%s"
+    }
+]
