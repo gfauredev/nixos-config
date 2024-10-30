@@ -90,18 +90,11 @@
       ];
       bind = let
         launch = {
-          default = {
-            all = "rofi -show combi -combi-modes";
-            app = "rofi -show drun";
-            pass = "rofi-pass";
-            calc = "${term.menu} kalker";
-          };
-          alt1 = {
-            all = "pgrep albert || albert; albert toggle";
-            app = "rofi -show drun";
-            pass = "rofi-pass";
-            calc = "${term.menu} kalker";
-          };
+          all = "rofi -show combi -combi-modes";
+          alt = "pgrep albert || albert; albert toggle";
+          app = "rofi -show drun";
+          pass = "rofi-pass";
+          calc = "${term.menu} kalker";
         };
         browser = {
           default = "brave";
@@ -123,7 +116,7 @@
         "$mod ALT, b, focusworkspaceoncurrentmonitor, name:web" # Move web browser WS to monitor
         "$mod, a, workspace, name:aud" # Audio workspace
         ''
-          $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch.default.app}'' # Auto open laucher
+          $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
         "$mod, p, workspace, name:pim" # Personal information management workspace
         ''
@@ -139,11 +132,11 @@
         "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
         "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
         ''
-          $mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch.default.app}'' # Auto open laucher
+          $mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
         "$mod, x, workspace, name:ext" # Ext / Extra workspace
         ''
-          $mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.default.app}'' # Auto open laucher
+          $mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
         # Workspaces (Right)
         "$mod, l, workspace, name:cli" # cLi / terminaL workspace
@@ -156,7 +149,7 @@
         "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
         "$mod, m, workspace, name:msg" # Messaging workspace
         ''
-          $mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.default.app}'' # Auto open laucher
+          $mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.app}'' # Auto open laucher
         "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
         "$mod CONTROL, m, exec, zsh -ic 'mirror'" # Messaging
         # Additional monitor workspaces (Right)
@@ -188,18 +181,20 @@
         "$mod CONTROL, RETURN, exec, ${term-alt.cmd}"
         "$mod CONTROL SHIFT, RETURN, exec, ${term-alt.menu} $SHELL"
         # Launch
-        "$mod, Super_L, exec, ${launch.default.all}" # Default launcher
-        "$mod, SPACE, exec, ${launch.alt1.all}" # Alternative launcher
-        "$mod CONTROL, SPACE, exec, ${launch.default.calc}" # Calculator
-        "$mod SHIFT, SPACE, exec, ${launch.default.pass}" # Password store
+        "$mod, Super_L, exec, ${launch.all}" # Default launcher
+        "$mod, SPACE, exec, ${launch.alt}" # Alternative launcher
+        "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator
+        "$mod SHIFT, SPACE, exec, ${launch.pass}" # Password store
         # "$mod CONTROL SHIFT, SPACE, exec, ${launch.alt}" # Alternate alternative launcher
         # Launch with special media keys
-        ", Menu, exec, ${launch.default.all}" # Menu special key
-        ", XF86MenuKB, exec, ${launch.default.all}" # Menu special key
-        ", XF86Mail, exec, ${pim}" # Mail media key
-        ", XF86HomePage, exec, ${launch.default.all}" # Home media key
-        ", XF86Calculator, exec, ${launch.default.calc}" # Calculator media key
-        ", XF86Search, exec, ${launch.default.all}" # Search media key
+        ", Menu, exec, ${launch.all}" # Menu special key
+        ", XF86MenuKB, exec, ${launch.all}" # Menu special key
+        ", XF86Mail, workspace, name:pim" # Personal information management workspace, then launch below
+        ''
+          , XF86Mail, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
+        ", XF86HomePage, exec, ${launch.all}" # Home media key
+        ", XF86Calculator, exec, ${launch.calc}" # Calculator media key
+        ", XF86Search, exec, ${launch.all}" # Search media key
         # Manage windows
         "$mod, f, togglefloating," # Float window
         "$mod, w, fullscreen," # Fullscreen window
