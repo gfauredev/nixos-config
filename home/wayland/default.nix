@@ -14,6 +14,9 @@
     # swww # Dynamic wallpaper
     # eww # Advanced widgets
     # niri # Innovative WM infinity horizontal scroll
+    # wayland # wayland lib
+    # wayland-utils # wayland inffo
+    # wayland-protocols # wayland protocol extensions
   ];
 
   xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
@@ -25,17 +28,7 @@
 
   programs = {
     # Start window managers at login on firsts TTYs
-    zsh.loginExtra = ''
-      if [ -z "$DISPLAY" ]; then
-        if [ "$XDG_VTNR" -eq 1 ]; then
-          exec $HOME/.nix-profile/bin/Hyprland
-        elif [ "$XDG_VTNR" -eq 6 ]; then # Force use of eGPU
-          exec WLR_DRM_DEVICES=$HOME/.config/hypr/egpu $HOME/.nix-profile/bin/Hyprland
-        elif [ "$XDG_VTNR" -eq 9 ]; then
-          exec $HOME/.nix-profile/bin/niri --session
-        fi
-      fi
-    '';
+    zsh.loginExtra = builtins.readFile ./loginManager.sh;
     hyprlock = {
       enable = true;
       settings = {

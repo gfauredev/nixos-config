@@ -17,8 +17,8 @@
     cmatrix # Simulate falling text as in matrix
 
     # Cleaning & Desktop monitoring
+    czkawka # Modern cleaner
     # bleachbit # Good old cleaner
-    # czkawka # Modern cleaner
     # stacer # Modern cleaner & monitoring
 
     # LSP & Formatter
@@ -31,7 +31,8 @@
     shellcheck # Shell script analysis
     bash-language-server # Bash LSP
     lua-language-server # Lua LSP
-    nodePackages_latest.vscode-json-languageserver # JSON LSP
+    vscode-langservers-extracted # HTML/CSS/JSON/ESLint
+    # nodePackages_latest.vscode-json-languageserver # JSON LSP
     yaml-language-server # YAML LSP
     dprint # Pluggable code formatting platform
 
