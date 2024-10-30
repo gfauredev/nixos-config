@@ -10,12 +10,12 @@
       enable = true;
       autoPrune.enable = true;
       extraPackages = with pkgs; [ podman-compose gvisor dive ];
-      dockerSocket.enable = true;
-      dockerCompat = true;
+      dockerSocket.enable = false;
+      dockerCompat = false;
       defaultNetwork.settings.dns_enabled = true;
     };
     docker = {
-      enable = false;
+      enable = true;
       extraPackages = with pkgs; [ docker-compose ];
     };
     virtualbox.host = {
