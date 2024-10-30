@@ -83,7 +83,7 @@
         "$mod CONTROL SHIFT, t, Move focused window below, swapwindow, d"
         "$mod CONTROL SHIFT, s, Move focused window to the right, swapwindow, u"
         "$mod CONTROL SHIFT, r, Move focused window to the right, swapwindow, r"
-        "$mod, g, exec, Toggle group or focus next window in group, hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup"
+        "$mod, g, Toggle group or focus next window in group, exec, hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup"
         "$mod CONTROL, g, Toggle group, togglegroup,"
         "$mod SHIFT, g, Focus next window in group, changegroupactive, f"
         "$mod CONTROL SHIFT, g, Focus previous window in group, changegroupactive, b"
@@ -97,7 +97,7 @@
             calc = "${term.menu} kalker";
           };
           alt1 = {
-            all = "albert";
+            all = "pgrep albert || albert; albert toggle";
             app = "rofi -show drun";
             pass = "rofi-pass";
             calc = "${term.menu} kalker";
