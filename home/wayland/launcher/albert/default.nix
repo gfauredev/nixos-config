@@ -3,5 +3,16 @@
     [
       albert # Full-featured launcher
     ];
-  # TODO config
+
+  xdg.configFile = {
+    config = {
+      enable = false;
+      source = ./config;
+    };
+    websearch = {
+      enable = false;
+      recursive = true;
+      source = ./websearch;
+    };
+  };
 }
