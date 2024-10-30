@@ -1,0 +1,21 @@
+[General]
+showTray=false
+telemetry=true
+
+[applications]
+enabled=true
+
+[widgetsboxmodel]
+alwaysOnTop=true
+clearOnHide=false
+clientShadow=false
+darkTheme=Default Dark
+displayScrollbar=false
+followCursor=true
+hideOnFocusLoss=true
+historySearch=true
+itemCount=10
+lightTheme=Default Dark
+quitOnClose=false
+showCentered=true
+systemShadow=false
