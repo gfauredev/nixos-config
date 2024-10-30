@@ -110,7 +110,8 @@
         # Workspaces (Left)
         "$mod, b, workspace, name:web" # Browsing workspace
         "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser.default}" # Auto open browser if not running
-        "$mod SHIFT, b, movetoworkspace, name:web" # Web browser
+        "$mod SHIFT, b, movetoworkspace, name:web" # Got to web browser WS
+        "$mod ALT, b, focusworkspaceoncurrentmonitor, name:web" # Move web browser WS to monitor
         "$mod, a, workspace, name:aud" # Audio workspace
         ''
           $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch.app}'' # Auto open laucher
@@ -267,7 +268,7 @@
         "SHIFT, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
         "CONTROL SHIFT, XF86AudioLowerVolume, exec, set-volume @DEFAULT_AUDIO_SINK@ 1%-"
       ];
-      bindm = [ "$mod, mouse:272, movewindow" ];
+      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
 
       # See https://wiki.hyprland.org/Configuring/Variables
       general = {
@@ -306,7 +307,6 @@
           size = 3;
           passes = 2;
         };
-        # blur_new_optimizations = true; # Save some power
         drop_shadow = false; # Save some power
         # shadow_range = 4;
         # shadow_render_power = 3;
