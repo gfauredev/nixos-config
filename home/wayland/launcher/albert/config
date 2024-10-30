@@ -14,6 +14,7 @@ enabled=true
 
 [datetime]
 enabled=true
+trigger="date "
 
 [fallback_order]
 1\extension=websearch
@@ -40,18 +41,25 @@ enabled=true
 
 [system]
 enabled=true
+trigger="sys "
 
 [timer]
 enabled=true
+trigger="time "
 
 [timezones]
 enabled=true
 
+[triggers]
+trigger="trigg "
+
 [urlhandler]
 enabled=true
+trigger="url "
 
 [websearch]
 enabled=true
+trigger="search "
 
 [widgetsboxmodel]
 alwaysOnTop=true
