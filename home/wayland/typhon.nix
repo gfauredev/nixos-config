@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [ ./default.nix ./waybar/widescreen.nix ];
 
   # home.sessionVariables = {
@@ -34,41 +34,4 @@
       # ];
     };
   };
-
-  services.hypridle.settings.listener = [
-    {
-      timeout = 300; # Lock the screen with dimmed (and blured) display
-      on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
-    }
-    {
-      timeout = 600; # Put the computer to sleep
-      # TODO before = "${pkgs.playerctl}/bin/playerctl pause";
-      on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
-      # on-resume = "hyprctl dispatch dpms on";
-    }
-  ];
-
-  # services.swayidle = {
-  #   events = [
-  #     {
-  #       event = "before-sleep";
-  #       command = "${pkgs.playerctl}/bin/playerctl pause";
-  #     }
-  #     {
-  #       event = "before-sleep";
-  #       command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-  #     }
-  #   ];
-  #   timeouts = [
-  #     {
-  #       timeout = 300;
-  #       command = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-  #       resumeCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-  #     }
-  #     {
-  #       timeout = 330;
-  #       command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-  #     }
-  #   ];
-  # };
 }

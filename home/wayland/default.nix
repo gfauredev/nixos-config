@@ -67,10 +67,26 @@
         }];
       };
     };
-    # swaylock = {
-    #   enable = false;
-    #   settings.indicator-idle-visible = true;
-    # };
     rofi.package = pkgs.rofi-wayland; # Set this for wayland
   };
+
+  services.hypridle.settings.listener = [
+    {
+      timeout = 300; # Lock session, (blur and dim screen)
+      on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+      # on-timeout = "${pkgs.systemd}/bin/loginctl lock-session"; # FIXME tends to stop working
+    }
+    # {
+    #   timeout = 300; # Dim screen
+    #   on-timeout = "brightnessctl set 1%";
+    # }
+    {
+      timeout = 600; # Put the computer to sleep
+      # on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+      # NOTE hacky way to prevent sleep if eGPU connected TODO find a cleaner way :
+      on-timeout =
+        "[ -e $XDG_CONFIG_HOME/hypr/egpu ] || ${pkgs.systemd}/bin/systemctl suspend";
+      # on-resume = "hyprctl dispatch dpms on";
+    }
+  ];
 }
