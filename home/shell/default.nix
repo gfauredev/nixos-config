@@ -226,7 +226,7 @@
   };
 
   programs = {
-    # command-not-found.enable = true;
+    command-not-found.enable = true;
     eza = {
       enable = true; # Better ls
       enableNushellIntegration = true; # TODO for other programs

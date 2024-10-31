@@ -22,6 +22,8 @@
       XDG_VIDEOS_DIR = "$HOME/data/video";
 
       BROWSER = "brave"; # TODO this directly in Nix
+      PAGER = "nvim -R"; # Use terminal editor as pager
+      MANPAGER = "nvim +Man!"; # Use terminal editor as pager
 
       TYPST_FONT_PATHS =
         "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
@@ -38,6 +40,7 @@
     git = {
       userName = "Guilhem Fauré";
       userEmail = "pro@gfaure.eu";
+      config = { color.pager = "no"; };
     };
   };
 
