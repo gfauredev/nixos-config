@@ -6,6 +6,7 @@ telemetry=true
 [applications]
 enabled=true
 terminal=Alacritty
+trigger="app "
 
 [calculator_qalculate]
 angle_unit=2
@@ -13,13 +14,13 @@ enabled=true
 
 [chromium]
 enabled=true
-trigger="book "
+trigger="bm "
 
 [clipboard]
 enabled=true
 
 [datetime]
-enabled=true
+enabled=false
 show_date_on_empty_query=true
 trigger="date "
 
@@ -29,18 +30,18 @@ enabled=true
 [fallback_order]
 1\extension=websearch
 1\fallback=5d9812ad
-2\extension=websearch
-2\fallback=870b38cf
+2\extension=python.wikipediafb
+2\fallback=python.wikipedia
 3\extension=websearch
-3\fallback=91f61720
+3\fallback=870b38cf
 4\extension=websearch
 4\fallback=5eb8dc52
 5\extension=websearch
-5\fallback=f0a6f22a
+5\fallback=e5f2a1af
 6\extension=websearch
-6\fallback=e3091330
+6\fallback=f0a6f22a
 7\extension=websearch
-7\fallback=e5f2a1af
+7\fallback=e3091330
 size=7
 
 [files]
@@ -74,9 +75,13 @@ home\gf\project\nameFilters=@Invalid()
 home\gf\project\scanInterval=5
 home\gf\project\useFileSystemWatches=false
 paths=/home/gf/data, /home/gf/data.local, /home/gf/life, /home/gf/project
+trigger="file "
 
 [hash]
 enabled=true
+
+[inhibit_sleep]
+trigger="inhib "
 
 [mpris]
 enabled=false
@@ -89,7 +94,7 @@ enabled=true
 
 [python.arch_wiki]
 enabled=true
-trigger=aw
+trigger="aw "
 
 [python.coingecko]
 enabled=true
@@ -121,7 +126,7 @@ enabled=true
 enabled=true
 
 [python.syncthing]
-enabled=true
+enabled=false
 
 [python.tex_to_unicode]
 enabled=true
@@ -129,7 +134,7 @@ enabled=true
 [python.translators]
 enabled=true
 lang=fr
-translator=deepl
+translator=modernMt
 
 [python.wikipedia]
 enabled=true
@@ -158,7 +163,7 @@ trigger="time "
 enabled=true
 
 [triggers]
-trigger="trigg "
+trigger="triggs "
 
 [urlhandler]
 enabled=false
@@ -166,7 +171,7 @@ trigger="url "
 
 [websearch]
 enabled=true
-trigger="search "
+trigger="web "
 
 [widgetsboxmodel]
 alwaysOnTop=true

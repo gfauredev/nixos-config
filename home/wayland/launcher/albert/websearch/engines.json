@@ -184,7 +184,7 @@
         "url": "https://searchix.alanpearce.eu/all/search?query=%s"
     },
     {
-        "fallback": true,
+        "fallback": false,
         "iconPath": ":default",
         "id": "91f61720",
         "name": "Wikipedia",
