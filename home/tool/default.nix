@@ -28,7 +28,9 @@
     # (pkgs.tree-sitter.withPlugins (_: allGrammars))
     nil # Nix LSP
     nixfmt # Nix formatter
+    explain # Explain system call errors
     shellcheck # Shell script analysis
+    shfmt # Shell script formatter
     bash-language-server # Bash LSP
     lua-language-server # Lua LSP
     vscode-langservers-extracted # HTML/CSS/JSON/ESLint
