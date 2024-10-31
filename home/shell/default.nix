@@ -204,16 +204,16 @@
       ## Open
       a = "bat --force-colorization --paging never"; # Better cat
       o = "open"; # xdg-open + disown
-      p = "$PAGER"; # Default pager
+      # p = "$PAGER"; # Default pager, use terminal text editor
       ## Edit
       e = "$EDITOR"; # Default text editor
-      v = "vi"; # Vi(m) text editor
-      u = "lapce"; # gUi text editor
+      v = "vi"; # Vi(m) terminal text editor (fallback)
+      u = "zeditor"; # gUi text editor
       m = "mkdir -pv"; # mkdir (parents)
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # Better cp
       ## Multifunction (Explorers)
       b = "br"; # CLI fast files searcher
-      x = "xplr"; # CLI files explorer
+      # x = "xplr"; # CLI files explorer
     };
   };
 
@@ -255,7 +255,8 @@
       };
     };
     less = {
-      enable = true; # Pager
+      enable = false; # Pager, use term text editor instead
+      # Below config doesn’t work anymore
       keys = ''
         t forw-line
         s back-line
@@ -264,8 +265,8 @@
       '';
     };
     bat = {
-      enable = true; # Better cat
-      config = { pager = "less -i"; };
+      enable = false; # Better cat with syntax highlighting
+      config.pager = "less -i";
     };
     fzf = {
       enable = true; # Fuzzy searcher

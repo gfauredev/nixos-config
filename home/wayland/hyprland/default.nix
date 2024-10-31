@@ -90,8 +90,8 @@
       ];
       bind = let
         launch = {
-          all = "rofi -show combi -combi-modes";
-          alt = "pgrep albert || albert; albert toggle";
+          all = "pgrep albert || albert; albert toggle";
+          alt = "rofi -show combi -combi-modes";
           app = "rofi -show drun";
           pass = "rofi-pass";
           calc = "${term.menu} kalker";
@@ -181,8 +181,8 @@
         "$mod CONTROL, RETURN, exec, ${term-alt.cmd}"
         "$mod CONTROL SHIFT, RETURN, exec, ${term-alt.menu} $SHELL"
         # Launch
-        "$mod, Super_L, exec, ${launch.alt}" # Default launcher
-        "$mod, SPACE, exec, ${launch.all}" # Alternative launcher
+        "$mod, Super_L, exec, ${launch.all}" # Default launcher
+        "$mod, SPACE, exec, ${launch.alt}" # Alternative launcher
         "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator
         "$mod SHIFT, SPACE, exec, ${launch.pass}" # Password store
         # "$mod CONTROL SHIFT, SPACE, exec, ${launch.alt}" # Alternate alternative launcher
