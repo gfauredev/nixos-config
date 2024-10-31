@@ -256,7 +256,7 @@
     };
     less = {
       enable = true; # Pager, use term text editor instead
-      # Below config doesn’t work anymore
+      # FIXME Below config doesn’t work anymore
       keys = ''
         #command
         t forw-line
