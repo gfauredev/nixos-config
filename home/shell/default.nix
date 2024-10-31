@@ -255,9 +255,10 @@
       };
     };
     less = {
-      enable = false; # Pager, use term text editor instead
+      enable = true; # Pager, use term text editor instead
       # Below config doesn’t work anymore
       keys = ''
+        #command
         t forw-line
         s back-line
         T forw-line-force
@@ -265,7 +266,7 @@
       '';
     };
     bat = {
-      enable = false; # Better cat with syntax highlighting
+      enable = true; # Better cat with syntax highlighting
       config.pager = "less -i";
     };
     fzf = {

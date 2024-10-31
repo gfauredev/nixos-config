@@ -97,8 +97,8 @@
 
   security = {
     pam.services = {
-      swaylock = { };
       hyprlock = { };
+      # swaylock = { };
     };
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
     rtkit.enable = true; # Tools for realtime (preemption)

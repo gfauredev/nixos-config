@@ -26,12 +26,12 @@
       "docker" # Use Docker container manager
       "wireshark" # Use wireshark without root
       "keyd" # Use app-specific keyd remaps
-      "config" # Configure system in /config
+      "config" # Configure system in /config WARNING depends of stateful permissions of /config
     ];
   };
 
   users.groups = {
-    config = { }; # RWX in /config
+    config = { }; # RWX in /config WARNING stateful perms of /config
     mtp = { };
     uinput = { };
   };
