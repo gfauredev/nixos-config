@@ -62,7 +62,6 @@ case "$1" in
     cfg-pull
     if [ "$2" != "home" ] && [ "$2" != "system" ] && [ "$2" != "all" ]; then
       home
-      exit
     fi
     # Further "home", "system" or "all" argument to rebuild
     shift
