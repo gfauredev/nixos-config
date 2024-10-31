@@ -100,21 +100,21 @@
             format = "{icon}";
             format-icons = {
               web = "󰖟";
-              aud = "";
+              art = "";
               pim = "󰸍";
               opn = "󰥨";
               top = "󱕍";
               etc = "";
-              ext = "";
+              ext = "";
               sup = "";
               cli = "❯";
               # cli = "";
               # cli = "";
-              not = "";
+              note = "";
               msg = "󰵅";
-              med = "";
+              media = "";
               dpp = "󰍹";
-              hdm = "󰍹";
+              hdm = "";
             };
           };
 

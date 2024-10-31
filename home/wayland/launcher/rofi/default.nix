@@ -1,4 +1,4 @@
-{ pkgs, term, ... }: {
+{ term, ... }: {
   programs = {
     rofi = {
       enable = true;
@@ -6,15 +6,15 @@
       terminal = "${term.cmd} ${term.exec}";
       font = "FiraCode Nerd Font";
       theme = ./rounded-blue-dark.rasi;
-      plugins = with pkgs; [ rofi-emoji-wayland ];
+      # plugins = with pkgs; [ rofi-emoji-wayland ];
       pass = {
         enable = true;
         extraConfig = "";
         stores = [ "$XDG_DATA_HOME/password-store/" ];
       };
       extraConfig = {
-        modes = "combi,drun,window,ssh,emoji";
-        combi-modes = "window,drun,ssh,emoji";
+        modes = "combi,window,drun";
+        combi-modes = "window,drun";
         sorting-method = "fzf";
         show-icons = true;
       };

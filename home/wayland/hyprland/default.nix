@@ -68,7 +68,47 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
-      bindd = [ # TODO describe every bind this way
+      bindd = let
+        launch = {
+          all = "pgrep albert || albert; albert toggle";
+          alt = "rofi -show combi -combi-modes";
+          app = "rofi -show drun";
+          category = "rofi -show drun -drun-categories";
+          pass = "rofi-pass";
+          calc = "${term.menu} kalker";
+        };
+        browser = {
+          default = "brave";
+          alt1 = "firefox";
+          alt2 = "nyxt";
+        };
+        mirror = {
+          default = "wl-present mirror"; # Mirror an output or region
+          region = "wl-present set-region"; # Change mirrored output or region
+          freeze = "wl-present toggle-freeze"; # Freeze mirrored image
+        };
+        screenshot = {
+          fullscreen = "grim";
+          region = ''grim -g "$(slurp)"'';
+          dest-ws = let
+            timestamp = "$(date +'%Y-%m-%d_%H:%M:%S')";
+            target = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
+            filetype = "png";
+          in "$HOME/data/screenshot/${timestamp}_${target}.${filetype}";
+          dest-zone = let
+            timestamp = "$(date +'%Y-%m-%d_%H:%M:%S')";
+            target = ''$(hyprctl activeworkspace -j | jq -r '.["title"]')'';
+            filetype = "png";
+          in "$HOME/data/screenshot/${timestamp}_${target}.${filetype}";
+        };
+        media = {
+          cmd = "spotify";
+          name = "Spotify";
+        };
+        mixer = "pulsemixer";
+        pim = "thunderbird";
+        monitor = "${term.monitoring} btm";
+      in [
         # Move focus
         "$mod, c, Focus the window on the left, movefocus, l"
         "$mod, t, Focus the window below, movefocus, d"
@@ -87,135 +127,98 @@
         "$mod CONTROL, g, Toggle group, togglegroup,"
         "$mod SHIFT, g, Focus next window in group, changegroupactive, f"
         "$mod CONTROL SHIFT, g, Focus previous window in group, changegroupactive, b"
-      ];
-      bind = let
-        launch = {
-          all = "pgrep albert || albert; albert toggle";
-          alt = "rofi -show combi -combi-modes";
-          app = "rofi -show drun";
-          pass = "rofi-pass";
-          calc = "${term.menu} kalker";
-        };
-        browser = {
-          default = "brave";
-          alt1 = "firefox";
-          alt2 = "nyxt";
-        };
-        pim = "thunderbird";
-        monitor = "${term.monitoring} btm";
-        mirror = {
-          default = "wl-present mirror";
-          output = "wl-present set-output";
-          region = "wl-present set-region";
-        };
-      in [
-        # Workspaces (Left)
-        "$mod, b, workspace, name:web" # Browsing workspace
-        "$mod, b, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser.default}" # Auto open browser if not running
-        "$mod SHIFT, b, movetoworkspace, name:web" # Got to web browser WS
-        "$mod ALT, b, focusworkspaceoncurrentmonitor, name:web" # Move web browser WS to monitor
-        "$mod, a, workspace, name:aud" # Audio workspace
+        # Workspaces (Left hand)
+        "$mod, b, Web browsing workspace, workspace, name:web"
+        "$mod, b, Open browser in web workspace, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser.default}"
+        "$mod SHIFT, b, Move window to web workspace, movetoworkspace, name:web"
+        "$mod ALT, b, Move web workspace to monitor, focusworkspaceoncurrentmonitor, name:web"
+        "$mod, a, Audio workspace, workspace, name:art"
         ''
-          $mod, a, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "aud")' || ${launch.app}'' # Auto open laucher
-        "$mod SHIFT, a, movetoworkspace, name:aud" # Audio workspace
-        "$mod, p, workspace, name:pim" # Personal information management workspace
+          $mod, a, exec, Launch Audio/Video app, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "art")' || ${launch.category} AudioVideo''
+        "$mod SHIFT, a, Move window to audio workspace, movetoworkspace, name:art"
+        "$mod, p, Go to Personal Information Management workspace, workspace, name:pim"
         ''
-          $mod, p, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}'' # Auto open personal information management apps
-        "$mod SHIFT, p, movetoworkspace, name:pim" # Personal information management workspace
-        "$mod, o, workspace, name:opn" # Open (a file)
-        "$mod, o, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic 'br;zsh'" # Start a term with explorer
-        "$mod, i, workspace, name:top" # Informations / monItorIng
-        "$mod, i, exec, hyprctl clients | grep -i 'class: monitoring' || ${monitor}" # Auto open bottom if not running
-        # /!\ Cannot move to Monitoring worspace
-        # Additional workspaces (Left)
-        "$mod, u, workspace, name:sup" # Sup / Supplementary workspace
-        "$mod SHIFT, u, movetoworkspace, name:sup" # Sup / Supplementary
-        "$mod, e, workspace, name:etc" # Etc (et cetera) workspace
+          $mod, p, Open Personal Information Management software, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
+        ", XF86Mail, Go to Personal Information Management workspace, workspace, name:pim"
         ''
-          $mod, e, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch.app}'' # Auto open laucher
-        "$mod SHIFT, e, movetoworkspace, name:etc" # Etc (et cetera)
-        "$mod, x, workspace, name:ext" # Ext / Extra workspace
+          , XF86Mail, exec, Open Personal Information Management software, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
+        "$mod SHIFT, p, Move window to PIM workspace, movetoworkspace, name:pim"
+        "$mod, o, Open any file on dedicated workspace, workspace, name:opn"
+        "$mod, o, Open any file on dedicated workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic 'br;zsh'"
+        "$mod, i, Informations / monItorIng workspace, workspace, name:top"
+        "$mod, i, Open monitoring software, exec, hyprctl clients | grep -i 'class: monitoring' || ${monitor}"
+        # Additional workspaces (Left hand)
+        "$mod, u, SUp / SUpplementary workspace, workspace, name:sup"
+        "$mod SHIFT, u, SUp / SUpplementary workspace, movetoworkspace, name:sup"
+        "$mod, e, Etc (et cetera) workspace, workspace, name:etc"
         ''
-          $mod, x, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.app}'' # Auto open laucher
-        "$mod SHIFT, x, movetoworkspace, name:ext" # Ext / Extra
-        # Workspaces (Right)
-        "$mod, l, workspace, name:cli" # cLi / terminaL workspace
+          $mod, e, Launch an app on etc workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch.app}''
+        "$mod SHIFT, e, Move window to etc workspace, movetoworkspace, name:etc"
+        "$mod, x, eXt / eXtra workspace, workspace, name:ext"
         ''
-          $mod, l, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${term.name}";"i")))' || ${term.cmd}'' # Auto open CLI if not running
-        "$mod SHIFT, l, movetoworkspace, name:cli" # cLi / terminaL
-        "$mod, n, workspace, name:not" # Notetaking workspace
+          $mod, x, Launch an app on ext workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.app}''
+        "$mod SHIFT, x, Move window to ext workspace, movetoworkspace, name:ext"
+        # Workspaces (Right hand)
+        "$mod, l, cLi / terminaL workspace, workspace, name:cli"
+        ''
+          $mod, l, Open a terminal on cli workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${term.name}";"i")))' || ${term.cmd}''
+        "$mod SHIFT, l, Move window to cli workspace, movetoworkspace, name:cli"
+        "$mod, n, Go to notetaking workspace, workspace, name:note"
         "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.note} zsh -ic 'br;zsh'" # Start a term with explorer
-        # "$mod, n, exec, hyprctl clients | grep -i 'class: note' || ${term.note} $EDITOR" # Auto open text editor
-        "$mod SHIFT, n, movetoworkspace, name:not" # Notetaking
-        "$mod, m, workspace, name:msg" # Messaging workspace
+        "$mod SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:note"
+        "$mod, m, Go to messaging workspace, workspace, name:msg"
         ''
-          $mod, m, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.app}'' # Auto open laucher
-        "$mod SHIFT, m, movetoworkspace, name:msg" # Messaging
-        "$mod CONTROL, m, exec, zsh -ic 'mirror'" # Messaging
-        # Additional monitor workspaces (Right)
-        "$mod, d, workspace, name:dpp" # DisplayPort workspace
-        "$mod SHIFT, d, movetoworkspace, name:dpp" # DisplayPort
-        "$mod, h, workspace, name:hdm" # HDMI workspace
-        "$mod SHIFT, h, movetoworkspace, name:hdm" # HDMI
-        # Workspaces (Special)
-        ", XF86AudioMedia, workspace, name:med" # Media ws
+          $mod, m, Launch a messaging app, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.all}''
+        # Additional monitor workspaces (Right hand)
+        "$mod, d, Go to DisplayPort workspace, workspace, name:dpp" # FIXME right port
+        "$mod SHIFT, d, Move window to DisplayPort workspace, movetoworkspace, name:dpp"
+        "$mod, h, Go to HDMI workspace, workspace, name:hdm" # FIXME right port
+        "$mod SHIFT, h, Move window to HDMI workspace, movetoworkspace, name:hdm"
+        # Media workspace (Media keys)
+        ", XF86AudioMedia, Go to media workspace, workspace, name:media"
+        ", XF86Tools, Go to media workspace, workspace, name:media"
         ''
-          , XF86AudioMedia, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "Spotify")' || spotify'' # Auto open main media player
-        "SHIFT, XF86AudioMedia, exec, ${term.menu} pulsemixer" # Open audio mixer
-        "CONTROL, XF86AudioMedia, workspace, name:med" # Media ws
-        "CONTROL, XF86AudioMedia, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
-        "CONTROL SHIFT, XF86AudioMedia, workspace, name:med" # Media ws
-        # "CONTROL SHIFT, XF86AudioMedia, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
-        ", XF86Tools, workspace, name:med" # Media ws
+          , XF86AudioMedia, exec, Launch default media player, hyprctl clients -j | jq -e 'any(.[]; .title == "${media.name}")' || ${media.cmd}''
         ''
-          , XF86Tools, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "Spotify")' || spotify'' # Auto open main media player
-        "SHIFT, XF86Tools, exec, ${term.menu} pulsemixer" # Open audio mixer
-        "CONTROL, XF86Tools, workspace, name:med" # Media ws
-        "CONTROL, XF86Tools, exec, hyprctl clients | grep -i 'class: org.pipewire.Helvum' || helvum" # Auto open audio router
-        "CONTROL SHIFT, XF86Tools, workspace, name:med" # Media ws
-        # "CONTROL SHIFT, XF86Tools, exec, hyprctl clients | grep -i 'title: Easy Effects' || easyeffects" # Auto open audio tweaker
-        # /!\ Cannot move to Media worspace
-        # Terminal
-        "$mod, RETURN, exec, ${term.cmd}"
-        "$mod SHIFT, RETURN, exec, ${term.menu} $SHELL"
-        "$mod CONTROL, RETURN, exec, ${term-alt.cmd}"
-        "$mod CONTROL SHIFT, RETURN, exec, ${term-alt.menu} $SHELL"
-        # Launch
-        "$mod, Super_L, exec, ${launch.all}" # Default launcher
-        "$mod, SPACE, exec, ${launch.alt}" # Alternative launcher
-        "$mod CONTROL, SPACE, exec, ${launch.calc}" # Calculator
-        "$mod SHIFT, SPACE, exec, ${launch.pass}" # Password store
-        # "$mod CONTROL SHIFT, SPACE, exec, ${launch.alt}" # Alternate alternative launcher
-        # Launch with special media keys
-        ", Menu, exec, ${launch.all}" # Menu special key
-        ", XF86MenuKB, exec, ${launch.all}" # Menu special key
-        ", XF86Mail, workspace, name:pim" # Personal information management workspace, then launch below
-        ''
-          , XF86Mail, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
-        ", XF86HomePage, exec, ${launch.all}" # Home media key
-        ", XF86Calculator, exec, ${launch.calc}" # Calculator media key
-        ", XF86Search, exec, ${launch.all}" # Search media key
-        # Manage windows
-        "$mod, f, togglefloating," # Float window
-        "$mod, w, fullscreen," # Fullscreen window
-        "$mod, q, killactive," # Close window
-        "$mod CONTROL, q, exec, hyprctl kill," # Close window by clicking
+          , XF86Tools, exec, Launch default media player, hyprctl clients -j | jq -e 'any(.[]; .title == "${media.name}")' || ${media.cmd}''
+        "SHIFT, XF86AudioMedia, Open quick mixer, exec, ${term.menu} ${mixer}"
+        "SHIFT, XF86Tools, Open quick mixer, exec, ${term.menu} ${mixer}"
         # System control
-        "$mod CONTROL SHIFT, q, exit," # Close wayland session
-        "$mod, comma, exec, ${pkgs.hyprlock}/bin/hyprlock" # Lock session (should dim and blur screen)
-        "$mod CONTROL, comma, exec, loginctl lock-session" # Default lock
-        "$mod SHIFT, comma, exec, systemctl suspend" # Suspend
-        "SUPER, j, exec, ${mirror.default}" # Mirror output (F9 on Framework Laptop)
-        "SUPER CONTROL, j, exec, ${mirror.output}" # Change mirrored output
-        "SUPER SHIFT, j, exec, ${mirror.region}" # Change mirrored region
+        "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
+        "$mod, comma, Lock session and obfuscates display, exec, ${pkgs.hyprlock}/bin/hyprlock"
+        "$mod CONTROL, Lock session with default lock, comma, exec, loginctl lock-session"
+        "$mod SHIFT, comma, Suspend computer to sleep, exec, systemctl suspend"
+        "SUPER, j, Mirror output or region, exec, ${mirror.default}" # (F9 on Framework Laptop)
+        "SUPER SHIFT, j, Freeze mirrored image, exec, ${mirror.freeze}"
+        "SUPER SHIFT, j, Change mirrored output or region, exec, ${mirror.region}"
+        # Launch
+        "$mod, Super_L, Default launcher, exec, ${launch.all}"
+        "$mod, SPACE, alternative/fallback launcher, exec, ${launch.alt}"
+        "$mod CONTROL, Quick calculator, SPACE, exec, ${launch.calc}"
+        "$mod SHIFT, SPACE, Quick password manager, exec, ${launch.pass}"
+        # Launch with special media keys
+        ", Menu, exec, Open menu with media key, ${launch.all}"
+        ", XF86MenuKB, Open menu with media key, exec, ${launch.all}"
+        ", XF86HomePage, Open home/menu with media key, exec, ${launch.all}"
+        ", XF86Calculator, Quick calculator with media key, exec, ${launch.calc}"
+        ", XF86Search, exec, Quick search with media key, ${launch.all}"
+        # Manage windows
+        "$mod, f, Toggle window floating, togglefloating,"
+        "$mod, w, Toggle window fullscreen, fullscreen,"
+        "$mod, q, Close current window, killactive,"
+        "$mod CONTROL, q, Close another window by clicking it, exec, hyprctl kill,"
         # Web
-        "$mod CONTROL, b, exec, ${browser.alt1}" # Alternative browser
-        "$mod CONTROL SHIFT, b, exec, ${browser.alt2}" # Alternative browser
+        "$mod CONTROL, b, Open alternative/fallback browser 1, exec, ${browser.alt1}"
+        "$mod CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${browser.alt2}"
+        # Terminal
+        "$mod, RETURN, Open a default terminal, exec, ${term.cmd}"
+        "$mod SHIFT, RETURN, Open a floating default terminal, exec, ${term.menu} $SHELL"
+        "$mod CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${term-alt.cmd}"
+        "$mod CONTROL SHIFT, Open floating alt terminal, RETURN, exec, ${term-alt.menu} $SHELL"
         # Misc
-        ''
-          , Print, exec, grim -g "$(slurp)" "$HOME/data/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"''
-        ''CONTROL, Print, exec, grim -g "$(slurp)" - | wl-copy''
-        "SHIFT, Print, exec, grim $HOME/data/screenshot/$(date +'%Y-%m-%d_%Hh%Mm%Ss.png')"
+        ", Print, exec, ${screenshot.region} ${screenshot.dest-zone}"
+        "CONTROL, Print, exec, ${screenshot.region} - | wl-copy"
+        "SHIFT, Print, exec, ${screenshot.fullscreen} ${screenshot.dest-ws}"
         "$mod, k, exec, hyprpicker --autocopy"
       ];
       binde = [
@@ -359,11 +362,6 @@
       ignore_systemd_inhibit = false;
     };
   };
-
-  # services.swayidle = {
-  #   enable = false;
-  #   systemdTarget = "hyprland-session.target";
-  # };
 
   # xdg.configFile = {
   #   hyprpaper = {
