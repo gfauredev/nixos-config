@@ -1,6 +1,6 @@
 cfg = {
   enable_wayland = false,
-  -- front_end = "Software", -- Disable hardware acceleration
+  front_end = "WebGpu", -- Disable hardware acceleration
   font = wezterm.font "FiraCode Nerd Font",
   font_size = 14,
   enable_tab_bar = false,

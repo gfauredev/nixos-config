@@ -18,6 +18,10 @@
     };
 
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # wezterm-flake = {
+    #   url = "github:wez/wezterm/main?dir=nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     musnix.url = "github:musnix/musnix"; # Music production & realtime audio
 
@@ -126,7 +130,8 @@
           };
           wezterm = {
             name = "wezterm"; # Name of the terminal (for matching)
-            cmd = "wezterm start --always-new-process"; # Launch terminal
+            cmd = "wezterm start"; # Launch terminal
+            # cmd = "wezterm start --always-new-process"; # FIX when too much temrs crash
             exec = ""; # Option to execute a command in place of shell
             cd = "--cwd"; # Option to launch terminal in a directory
             # Classed terminals (executes a command)
@@ -135,14 +140,14 @@
             menu =
               "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
           };
-          location = "/config"; # This Flake location
+          location = "/config"; # This Flake location, to use in config script
         in {
           "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
               inherit inputs stablepkgs;
-              term = alacritty;
-              term-alt = wezterm;
+              term = wezterm;
+              term-alt = alacritty;
               location = location;
             };
             modules = [ # TODO clean this down to one module
