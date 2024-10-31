@@ -1,16 +1,16 @@
-########## Often used, small functions ##########
+# Often used small functions, POSIX compliant
 # Clear screen & give info on empty line CR
-empty_cr () {
-  if [[ -z $BUFFER ]]; then
+empty_cr() {
+  if [ -z "$BUFFER" ]; then
     clear -x
-    date; echo -n
+    date
     # echo "Why I am doing what I do ?"
     if [ "$(hostnamectl chassis)" = "laptop" ]; then
       acpi -b
     fi
     echo
     eza --icons --git -l --no-permissions --no-user --sort=age
-    if git rev-parse --git-dir > /dev/null 2>&1 ; then
+    if git rev-parse --git-dir >/dev/null 2>&1; then
       echo
       zsh -ic "status"
     fi
@@ -22,64 +22,65 @@ zle -N empty_cr
 bindkey '^M' empty_cr
 
 # Open with default MIME handler & detach from term
-open () {
-  xdg-open "$@" & disown
+open() {
+  nohup xdg-open "$@" >/dev/null &
 }
 
 # Make directory(ies) & cd into it (the first)
-md () {
+md() {
   mkdir -pv "$@" && cd "$1" || return
 }
 
 # Replace occurences of $1 by $2 in $3
-replace () {
+replace() {
   \rg --passthrough --multiline "$1" -r "${@:2}"
 }
 
 # Inhib kills the (buggy) idle service for a given time
-inhib () {
-  systemctl --user stop hypridle.service && systemd-inhibit sleep "$1" ; systemctl --user start hypridle.service
+inhib() {
+  systemctl --user stop hypridle.service && systemd-inhibit sleep "$1"
+  systemctl --user start hypridle.service
 }
 
 # Present a PDF file
-present () {
-  pdfpc "$@" & disown
+present() {
+  nohup pdfpc "$@" >/dev/null &
 }
 
-usb () {
+usb() {
   if [ "$1" ]; then
-    devs=("$@")
+    devs=$*
   else
-    echo -e "Select USB device(s) to mount\n"
     lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
-    read -r -a devs
+    printf "Space-separated device(s) to mount, without /dev/ : "
+    read -r devs
   fi
   [ -h "$HOME/usb" ] || ln -s "/run/media/$USER" "$HOME/usb" # Create USB link if needed
-  for dev in "$@"; do
-    udisksctl mount -b /dev/"$dev"
+  for dev in $devs; do
+    udisksctl mount -b /dev/"$dev" || return
   done
-  cd ~/usb/"${devs[0]}" || return
+  cd ~/usb/ || return
 }
 
-unusb () {
+unusb() {
   if [ "$1" ]; then
-    devs=("$@")
+    devs=$*
   else
-    echo -e "Select USB device(s) to unmount\n"
     lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
-    read -r -a devs
+    printf "Space-separated device(s) to unmount, without /dev/ : "
+    read -r devs
   fi
   cd ~ || return
-  for dev in "${devs[@]}"; do
-    udisksctl unmount -b /dev/"$dev"
+  for dev in $devs; do
+    udisksctl unmount -b /dev/"$dev" || return
     udisksctl power-off -b /dev/"$dev"
   done
   \rm "$HOME"/usb
 }
 
 # Delete some annoying autocreated directories in user home (if empty)
-UNWANTED=("Downloads" "intelephense" "pt")
-for dir in "${UNWANTED[@]}"; do
+UNWANTED="Downloads intelephense pt"
+for dir in $UNWANTED; do
   if [ -d "${HOME:?}/$dir" ]; then
     rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
   fi
