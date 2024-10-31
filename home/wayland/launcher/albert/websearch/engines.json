@@ -12,7 +12,7 @@
         "iconPath": ":default",
         "id": "e5f2a1af",
         "name": "ArchLinux Wiki",
-        "trigger": "aw",
+        "trigger": "archwiki",
         "url": "https://wiki.archlinux.org/index.php?title=Special:Search&search=%s"
     },
     {
@@ -28,7 +28,7 @@
         "iconPath": ":default",
         "id": "5f79f9e5",
         "name": "Deepl EN to FR",
-        "trigger": "fr",
+        "trigger": "en-fr",
         "url": "https://www.deepl.com/translator#en/fr/%s"
     },
     {
@@ -36,7 +36,7 @@
         "iconPath": ":default",
         "id": "07f98adc",
         "name": "Deepl FR to EN",
-        "trigger": "en",
+        "trigger": "fr-en",
         "url": "https://www.deepl.com/translator#fr/en/%s"
     },
     {
@@ -44,7 +44,7 @@
         "iconPath": ":default",
         "id": "52520008",
         "name": "Deepl FR to ES",
-        "trigger": "es",
+        "trigger": "fr-es",
         "url": "https://www.deepl.com/translator#fr/es/%s"
     },
     {
@@ -188,7 +188,7 @@
         "iconPath": ":default",
         "id": "91f61720",
         "name": "Wikipedia",
-        "trigger": "w",
+        "trigger": "wikipedia",
         "url": "https://www.wikipedia.org/w/index.php?search=%s"
     },
     {

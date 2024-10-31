@@ -4,18 +4,27 @@ showTray=false
 telemetry=true
 
 [applications]
-enabled=false
+enabled=true
+terminal=Alacritty
 
 [calculator_qalculate]
 angle_unit=2
 enabled=true
+
+[chromium]
+enabled=true
+trigger="book "
 
 [clipboard]
 enabled=true
 
 [datetime]
 enabled=true
+show_date_on_empty_query=true
 trigger="date "
+
+[docs]
+enabled=true
 
 [fallback_order]
 1\extension=websearch
@@ -34,11 +43,100 @@ trigger="date "
 7\fallback=e5f2a1af
 size=7
 
+[files]
+enabled=true
+home\gf\data.local\followSymlinks=false
+home\gf\data.local\indexhidden=false
+home\gf\data.local\maxDepth=255
+home\gf\data.local\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\data.local\nameFilters=@Invalid()
+home\gf\data.local\scanInterval=5
+home\gf\data.local\useFileSystemWatches=false
+home\gf\data\followSymlinks=false
+home\gf\data\indexhidden=false
+home\gf\data\maxDepth=255
+home\gf\data\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\data\nameFilters=@Invalid()
+home\gf\data\scanInterval=5
+home\gf\data\useFileSystemWatches=false
+home\gf\life\followSymlinks=false
+home\gf\life\indexhidden=false
+home\gf\life\maxDepth=255
+home\gf\life\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\life\nameFilters=@Invalid()
+home\gf\life\scanInterval=5
+home\gf\life\useFileSystemWatches=false
+home\gf\project\followSymlinks=false
+home\gf\project\indexhidden=false
+home\gf\project\maxDepth=255
+home\gf\project\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\project\nameFilters=@Invalid()
+home\gf\project\scanInterval=5
+home\gf\project\useFileSystemWatches=false
+paths=/home/gf/data, /home/gf/data.local, /home/gf/life, /home/gf/project
+
 [hash]
 enabled=true
 
 [mpris]
+enabled=false
+
+[pluginregistry]
+trigger="plug "
+
+[python]
 enabled=true
+
+[python.arch_wiki]
+enabled=true
+trigger=aw
+
+[python.coingecko]
+enabled=true
+
+[python.color]
+enabled=false
+
+[python.dice_roll]
+enabled=true
+
+[python.emoji]
+enabled=true
+use_derived=true
+
+[python.goldendict]
+enabled=false
+
+[python.kill]
+enabled=true
+
+[python.pass]
+enabled=true
+use_otp=true
+
+[python.pomodoro]
+enabled=true
+
+[python.python_eval]
+enabled=true
+
+[python.syncthing]
+enabled=true
+
+[python.tex_to_unicode]
+enabled=true
+
+[python.translators]
+enabled=true
+lang=fr
+translator=deepl
+
+[python.wikipedia]
+enabled=true
+trigger="w "
+
+[snippets]
+enabled=false
 
 [system]
 command_poweroff=systemctl poweroff
@@ -63,7 +161,7 @@ enabled=true
 trigger="trigg "
 
 [urlhandler]
-enabled=true
+enabled=false
 trigger="url "
 
 [websearch]
