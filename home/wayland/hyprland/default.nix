@@ -113,7 +113,7 @@
         # System control
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
         "$mod, comma, Lock session and obfuscates display, exec, ${pkgs.hyprlock}/bin/hyprlock"
-        "$mod CONTROL, Lock session with default lock, comma, exec, loginctl lock-session"
+        "$mod CONTROL, comma, Lock session with loginctl, exec, loginctl lock-session"
         "$mod SHIFT, comma, Suspend computer to sleep, exec, systemctl suspend"
         "SUPER, j, Mirror output or region, exec, ${mirror.default}" # (F9 on Framework Laptop)
         "SUPER SHIFT, j, Freeze mirrored image, exec, ${mirror.freeze}"
@@ -358,7 +358,8 @@
       lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
       unlock_cmd = "pkill -USR1 hyprlock";
       before_sleep_cmd =
-        "${pkgs.playerctl}/bin/playerctl pause;${pkgs.systemd}/bin/loginctl lock-session";
+        "${pkgs.playerctl}/bin/playerctl pause; ${pkgs.hyprlock}/bin/hyprlock";
+      # "${pkgs.playerctl}/bin/playerctl pause; ${pkgs.systemd}/bin/loginctl lock-session";
       after_sleep_cmd = "hyprctl dispatch dpms on";
       ignore_dbus_inhibit = false;
       ignore_systemd_inhibit = false;

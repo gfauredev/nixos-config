@@ -37,8 +37,8 @@
   services.hypridle.settings.listener = [
     {
       timeout = 300; # Lock session, (blur and dim screen)
-      on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
-      # on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+      on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+      # on-timeout = "${pkgs.systemd}/bin/loginctl lock-session"; # FIXME tends to stop working
     }
     # {
     #   timeout = 300; # Dim screen
