@@ -40,7 +40,7 @@
     git = {
       userName = "Guilhem Fauré";
       userEmail = "pro@gfaure.eu";
-      config = { color.pager = "no"; };
+      extraConfig = { color.pager = "no"; };
     };
   };
 
