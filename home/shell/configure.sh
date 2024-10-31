@@ -60,7 +60,7 @@ fi
 case "$1" in
   "rebuild")
     cfg-pull
-    if ! [ "$2" ]; then
+    if [ "$2" != "home" ] && [ "$2" != "system" ] && [ "$2" != "all" ]; then
       home
       exit
     fi
