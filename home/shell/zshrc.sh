@@ -48,29 +48,33 @@ present () {
 
 usb () {
   if [ "$1" ]; then
-    [ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb # Create USB link if needed
-    for dev in "$@"; do
-      udisksctl mount -b /dev/"$dev"
-    done
-    cd ~/usb || return
+    devs=("$@")
   else
     echo -e "Select USB device(s) to mount\n"
     lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
+    read -r -a devs
   fi
+  [ -h "$HOME/usb" ] || ln -s "/run/media/$USER" "$HOME/usb" # Create USB link if needed
+  for dev in "$@"; do
+    udisksctl mount -b /dev/"$dev"
+  done
+  cd ~/usb/"${devs[0]}" || return
 }
 
 unusb () {
   if [ "$1" ]; then
-    cd ~ || return
-    for dev in "$@"; do
-      udisksctl unmount -b /dev/"$dev"
-      udisksctl power-off -b /dev/"$dev"
-    done
-    \rm "$HOME"/usb
+    devs=("$@")
   else
     echo -e "Select USB device(s) to unmount\n"
     lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
+    read -r -a devs
   fi
+  cd ~ || return
+  for dev in "${devs[@]}"; do
+    udisksctl unmount -b /dev/"$dev"
+    udisksctl power-off -b /dev/"$dev"
+  done
+  \rm "$HOME"/usb
 }
 
 # Delete some annoying autocreated directories in user home (if empty)

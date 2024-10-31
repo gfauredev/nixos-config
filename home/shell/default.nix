@@ -151,8 +151,7 @@
       # Mounts
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
       unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
-      # usb =
-      #   "[ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb; udiskie-mount --all ; cd ~/usb";
+      # usb = "[ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb; udiskie-mount --all ; cd ~/usb";
       # unusb = "cd ~ ; udiskie-umount --all --eject; \\rm $HOME/usb";
 
       # Git
