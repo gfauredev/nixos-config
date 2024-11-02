@@ -57,12 +57,13 @@
       windowrulev2 = [
         # Menu windows (like mixer)
         "float, class:menu" # Float (not tiled)
+        "center, class:menu" # Center of screen
         "size 888 420, class:menu" # Small rectangle
-        "center, class:menu" # Center
         # Thunderbird
-        "float, title:Reminders" # Reminder right bottom
-        "size 555 333, title:Reminders" # Small rectangle
+        "noinitialfocus, title:Reminders" # Don’t auto focus reminders
+        "float, title:Reminders" # Don’t tile reminders
         "move 100%-557 100%-360, title:Reminders" # Right bottom
+        "size 555 333, title:Reminders" # Small rectangle
         "opacity 0.7, title:Reminders" # Transparent
       ];
 
