@@ -90,7 +90,9 @@
       lsof # list openned files
       zip # Compression
       unzip # Decompression
-      p7zip # Compression / Decompression
+      # p7zip # Compression / Decompression compatible with 7zip
+      _7zz # Compression / Decompression (7zip)
+      # (_7zz.override { useUasm = true; }) # FIXME to remove when PR 353272 merged
       gzip # Compression / Decompression
       bzip2 # Compression / Decompression
       acpi # Information about hardware

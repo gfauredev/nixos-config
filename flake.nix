@@ -54,6 +54,7 @@
             ./system/user/gf.nix # TODO make it an option of systems (may include home)
             ./system/virtualization.nix # TODO make it an option of systems
             ./system/pc/gaming.nix # TODO make it an option of systems
+            (import ./overlay)
           ];
         };
         chimera = nixpkgs.lib.nixosSystem {
@@ -155,6 +156,7 @@
               ./home/wayland/griffin.nix # Griffin’s GUI
               ./home/tool # Tooling, mostly technical
               ./home/media # Media consuming and editing
+              (import ./overlay)
             ];
           };
           "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
