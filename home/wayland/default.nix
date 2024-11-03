@@ -7,7 +7,7 @@
     hyprpicker # Better color picker
     grim # Take screenshots
     slurp # Select a screen zone with mouse
-    wayvnc # Wayland remote desktop
+    # wayvnc # Wayland remote desktop
     # wlr-randr # Edit display settings for wayland
     # waypipe # Send a wayland window through SSH
     # hyprpaper # Wallpaper engine

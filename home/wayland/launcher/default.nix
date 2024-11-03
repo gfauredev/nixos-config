@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./albert ./rofi ./anyrun ];
+  imports = [ ./albert ./rofi ];
 
   home.packages = with pkgs;
     [
