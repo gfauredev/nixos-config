@@ -225,7 +225,8 @@
   };
 
   programs = {
-    command-not-found.enable = true;
+    command-not-found.enable =
+      false; # FIXME doesn’t work (maybe due to shell config)
     eza = {
       enable = true; # Better ls
       enableNushellIntegration = true; # TODO for other programs

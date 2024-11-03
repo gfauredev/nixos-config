@@ -67,12 +67,14 @@
   };
 
   services = {
-    fwupd.enable = lib.mkDefault true; # Update firmwares
-    thermald.enable = lib.mkDefault true; # Keep cool
-    udisks2.enable = true; # Mount USB without privileges
-    geoclue2.enable = true; # Location provider
-    libinput.enable = true; # Enable touchpad support
-    hardware.bolt.enable = true; # Thunderbolt device manager
+    geoclue2 = {
+      enable = true; # Location provider
+      submissionUrl = "https://beacondb.net/v2/geosubmit";
+      submitData = false; # Useless, laptop don’t have GPS
+      geoProviderUrl = "https://beacondb.net/v1/geolocate";
+      # geoProviderUrl =
+      #   "https://www.googleapis.com/geolocation/v1/geolocate?key=MY_KEY"; TODO store secretly
+    };
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
       # audio.enable = true; # Enable modern audio system PipeWire
@@ -90,6 +92,11 @@
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
     };
+    fwupd.enable = lib.mkDefault true; # Update firmwares
+    thermald.enable = lib.mkDefault true; # Keep cool
+    udisks2.enable = true; # Mount USB without privileges
+    libinput.enable = true; # Enable touchpad support
+    hardware.bolt.enable = true; # Thunderbolt device manager (authorize eGPU…)
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
     iperf3.enable = true; # Network testing
