@@ -55,6 +55,18 @@
     networkmanager = {
       enable = lib.mkDefault true;
       appendNameservers = dns;
+      # see https://developer.gnome.org/NetworkManager/stable/NetworkManager.html
+      dispatcherScripts = [{
+        source = pkgs.writeShellScript "09-timezone" ''
+          case "$2" in
+          # connectivity-change) # Prevent change with VPNs
+          up)
+            timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+            ;;
+          esac
+        '';
+        type = "basic";
+      }];
     };
     nameservers = dns;
   };
@@ -73,7 +85,10 @@
 
   users.mutableUsers = lib.mkDefault true; # Set passwords imperatively
 
-  services.nfs.server.enable = lib.mkDefault true;
+  services = {
+    ntp.enable = lib.mkDefault true;
+    nfs.server.enable = lib.mkDefault true;
+  };
 
   programs.openvpn3.enable = lib.mkDefault true;
   programs.openvpn3.package = stablepkgs.openvpn3; # TODO remove
@@ -102,6 +117,7 @@
       wakelan # send magick packet to wake WoL devices
       age # Modern encryption
       sysstat # Monitoring CLI tools
+      modemmanager # Mobile broadband
       # openvpn # Largely used VPN
       # inputs.agenix.packages.x86_64-linux.default
       # sops # Nix secret management
