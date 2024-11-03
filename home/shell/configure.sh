@@ -23,7 +23,7 @@ system() {
   else
     printf "\nFailed update, unmounting /boot\n"
     sudo umount -v /boot # Unmount for security
-    return 1 # Failed update status
+    return 1             # Failed update status
   fi
 }
 
@@ -33,7 +33,7 @@ home() {
 
   printf "\nPerforming profile update: \"%s\"\n" \
     "home-manager $home_manager_param --flake .#${USER}@$(hostname) switch"
-    # "home-manager $home_manager_param --flake . switch" # to TEST the default
+  # "home-manager $home_manager_param --flake . switch" # to TEST the default
   systemd-inhibit home-manager $home_manager_param --flake ".#${USER}@$(hostname)" switch || return
   # systemd-inhibit home-manager $home_manager_param --flake . switch || return
 }
@@ -53,92 +53,101 @@ cd "$CONFIG_DIR" || cd /etc/nixos || exit # Go inside the config directory
 if [ "$#" -eq 0 ]; then
   cfg-pull
   cd home || exit
-  edit && home ; exit
+  edit && home
+  exit
 fi
 
 # Main action according to first parameter
 case "$1" in
-  "rebuild")
-    cfg-pull
-    if [ "$2" != "home" ] && [ "$2" != "system" ] && [ "$2" != "all" ]; then
-      home
-    fi
-    # Further "home", "system" or "all" argument to rebuild
-    shift
-    ;;
-  "system")
-    cfg-pull
-    cd system || exit
-    edit && system || exit
-    shift
-    ;;
-  "home")
-    cfg-pull
-    cd home || exit
-    edit && home || exit
-    shift
-    ;;
-  "all")
-    cfg-pull
-    if edit; then
-      system ; home || exit
-    else
-      exit
-    fi
-    shift
-    ;;
-  "update")
-    cfg-pull
-    nix flake update --commit-lock-file || exit
-    shift
-    ;;
-  "push")
-    git rebase -i || exit
-    git push || exit
-    shift
-    ;;
-  "log")
-    git log --oneline || exit
-    echo
-    git status || exit
-    shift
-    ;;
-  "cd")
-    exec $SHELL
-    ;;
-  *) # If parameters are a message, update home with this commit message and exit
-    cfg-pull
-    cd home || exit
-    edit -m "$*" && home ; exit
-    ;;
+"rebuild")
+  cfg-pull
+  if [ "$2" != "home" ] && [ "$2" != "system" ] && [ "$2" != "all" ]; then
+    home
+  fi
+  # Further "home", "system" or "all" argument to rebuild
+  shift
+  ;;
+"system")
+  sudo echo Asked sudo now for later
+  cfg-pull
+  cd system || exit
+  edit && system || exit
+  shift
+  ;;
+"home")
+  cfg-pull
+  cd home || exit
+  edit && home || exit
+  shift
+  ;;
+"all")
+  sudo echo Asked sudo now for later
+  cfg-pull
+  if edit; then
+    system
+    home || exit
+  else
+    exit
+  fi
+  shift
+  ;;
+"update")
+  if [ "$2" == "system" ] || [ "$2" == "all" ]; then
+    sudo echo Asked sudo now for later
+  fi
+  cfg-pull
+  nix flake update --commit-lock-file || exit
+  shift
+  ;;
+"push")
+  git rebase -i || exit
+  git push || exit
+  shift
+  ;;
+"log")
+  git log --oneline || exit
+  echo
+  git status || exit
+  shift
+  ;;
+"cd")
+  exec $SHELL
+  ;;
+*) # If parameters are a message, update home with this commit message and exit
+  cfg-pull
+  cd home || exit
+  edit -m "$*" && home
+  exit
+  ;;
 esac
 
 # Go through each following parameters and act accordingly
 for param in "$@"; do
   case $param in
-    "home")
-      home
-      ;;
-    "system")
-      system
-      ;;
-    "all")
-      system ; home
-      ;;
-    "push")
-      git push
-      ;;
-    "off")
-      systemctl poweroff
-      ;;
-    "poweroff")
-      systemctl poweroff
-      ;;
-    "boot")
-      systemctl reboot
-      ;;
-    "reboot")
-      systemctl reboot
-      ;;
+  "home")
+    home
+    ;;
+  "system")
+    system
+    ;;
+  "all")
+    system
+    home
+    ;;
+  "push")
+    git push
+    ;;
+  "off")
+    systemctl poweroff
+    ;;
+  "poweroff")
+    systemctl poweroff
+    ;;
+  "boot")
+    systemctl reboot
+    ;;
+  "reboot")
+    systemctl reboot
+    ;;
   esac
 done
