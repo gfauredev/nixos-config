@@ -138,6 +138,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "d4c5ba42",
+        "name": "Nixpkgs Issue",
+        "trigger": "nissue",
+        "url": "https://github.com/NixOS/nixpkgs/issues?q=is%3Aissue+is%3Aopen+%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "0cff76cb",
         "name": "Nixpkgs PR tracker",
         "trigger": "nixpr",
