@@ -49,6 +49,8 @@ size=7
 
 [files]
 enabled=true
+fs_browsers_match_case_sensitive=false
+fs_browsers_show_hidden=false
 home\gf\data.local\followSymlinks=false
 home\gf\data.local\indexhidden=false
 home\gf\data.local\maxDepth=255

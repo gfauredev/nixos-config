@@ -157,7 +157,8 @@
     settings."GenericName[fr]" = "Éditeur de texte";
     comment = "Edit text files";
     settings."Comment[fr]" = "Éditer des fichiers texte";
-    settings.TryExec = "${pkgs.neovim}/bin/nvim";
+    # settings.TryExec = "${pkgs.neovim}/bin/nvim";
+    settings.TryExec = "nvim";
     exec = "env SHELL=zsh ${term.cmd} ${term.exec} nvim %F";
     terminal = false; # We want xdg-open to open it in new window
     type = "Application";
