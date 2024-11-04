@@ -51,21 +51,6 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart =
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
-
   services = {
     geoclue2 = {
       enable = true; # Location provider
@@ -103,10 +88,7 @@
   };
 
   security = {
-    pam.services = {
-      hyprlock = { };
-      # swaylock = { };
-    };
+    pam.services.hyprlock = { };
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
     rtkit.enable = true; # Tools for realtime (preemption)
     # apparmor.enable = lib.mkDefault true; # TEST pertinence
@@ -160,7 +142,6 @@
       powertop # Power usage analyzer
       just # Commands runner
       # bolt # Thunderbolt device manager
-      # polkit_gnome # Allow GUI apps to get privileges
       # sbctl # Secure Boot Control
       # dhcping # DHCP debugging
       # dhcpcd # DHCP client

@@ -2,11 +2,12 @@
   imports = [ ./hyprland ./waybar ./launcher ./remap ];
 
   home.packages = with pkgs; [
-    wev # Evaluate inputs sent to wayland to debug
+    hyprpolkitagent # Hypr Polkit auth agent
     wl-clipboard # Copy from CLI
     hyprpicker # Better color picker
     grim # Take screenshots
     slurp # Select a screen zone with mouse
+    wev # Evaluate inputs sent to wayland to debug
     # wayvnc # Wayland remote desktop
     # wlr-randr # Edit display settings for wayland
     # waypipe # Send a wayland window through SSH
