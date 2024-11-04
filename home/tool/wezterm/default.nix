@@ -16,7 +16,7 @@
   };
 
   xdg.desktopEntries = {
-    wezterm = {
+    "org.wezfurlong.wezterm" = {
       name = "WezTerm";
       genericName = "Terminal emulator";
       settings."GenericName[fr]" = "Émulateur de terminal";
@@ -31,7 +31,7 @@
       categories = [ "Utility" "System" "TerminalEmulator" ];
       startupNotify = false;
       settings.StartupWMClass = "org.wezfurlong.wezterm";
-      mimeType = [ "inode/directory" ];
+      mimeType = [ "application/x-shellscript" ];
     };
 
     directory = {
@@ -40,7 +40,7 @@
       settings."GenericName[fr]" = "Émulateur de terminal";
       comment = "Wez’s Terminal Emulator for directory listing";
       settings.TryExec = "wezterm";
-      exec = ''"env SHELL=zsh wezterm start --cwd %f zsh -ic 'l;zsh'"'';
+      exec = ''"env SHELL=zsh wezterm start --cwd %F zsh -ic 'l;zsh'"'';
       terminal = false; # It is a terminal
       type = "Application";
       settings.Keywords = "directory;cli;";
