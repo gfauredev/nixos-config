@@ -1,6 +1,7 @@
 { lib, pkgs, term, location, ... }: {
   home.packages = let
-    smart-terminal = pkgs.writeShellScriptBin "t" ''
+    smart-terminal = pkgs.writeScriptBin "t" ''
+      #!/bin/sh
       wd=$PWD
       cmd="$SHELL"
       if [ -n "$1" ] && $SHELL -ic which "$1"; then
@@ -16,9 +17,9 @@
       ${term.cmd} ${term.cd} "$wd" ${term.exec} "$cmd" & disown
       sleep 0.5
     '';
-    extract = pkgs.writeShellScriptBin "ex" "${lib.readFile ./extract.sh}";
-    backup = pkgs.writeShellScriptBin "back" "${lib.readFile ./back.sh}";
-    configure = pkgs.writeShellScriptBin "cfg" ''
+    extract = pkgs.writeScriptBin "ex" "${lib.readFile ./extract.sh}";
+    backup = pkgs.writeScriptBin "back" "${lib.readFile ./back.sh}";
+    configure = pkgs.writeScriptBin "cfg" ''
       CONFIG_DIR="${location}"
       ${lib.readFile ./configure.sh}
     '';
