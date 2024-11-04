@@ -7,8 +7,9 @@ telemetry=true
 enabled=true
 terminal=Alacritty
 trigger="app "
+use_generic_name=true
 use_keywords=true
-use_non_localized_name=true
+use_non_localized_name=false
 
 [calculator_qalculate]
 angle_unit=2

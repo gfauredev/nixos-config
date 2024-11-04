@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, term, ... }: {
   home.packages = with pkgs; [
     tree-sitter-grammars.tree-sitter-typst
     nodejs_22 # FIXME remove when withNodeJs param is fixed
@@ -149,5 +149,40 @@
       target = ".dprint.json";
       source = ./plugin/dprint.json;
     };
+  };
+
+  xdg.desktopEntries.nvim = {
+    name = "Neovim";
+    genericName = "Text editor";
+    settings."GenericName[fr]" = "Éditeur de texte";
+    comment = "Edit text files";
+    settings."Comment[fr]" = "Éditer des fichiers texte";
+    settings.TryExec = "${pkgs.neovim}/bin/nvim";
+    exec = "env SHELL=zsh ${term.cmd} ${term.exec} nvim %F";
+    terminal = false; # We want xdg-open to open it in new window
+    type = "Application";
+    settings.Keywords = "text;editor;";
+    settings."Keywords[fr]" = "texte;éditeur;";
+    icon = "nvim";
+    categories = [ "Utility" "TextEditor" ];
+    startupNotify = false;
+    mimeType = [
+      "text/english"
+      "text/french"
+      "text/plain"
+      "text/x-makefile"
+      "text/x-c++hdr"
+      "text/x-c++src"
+      "text/x-chdr"
+      "text/x-csrc"
+      "text/x-java"
+      "text/x-moc"
+      "text/x-pascal"
+      "text/x-tcl"
+      "text/x-tex"
+      "application/x-shellscript"
+      "text/x-c"
+      "text/x-c++"
+    ];
   };
 }
