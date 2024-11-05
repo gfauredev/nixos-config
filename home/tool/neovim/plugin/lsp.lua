@@ -42,7 +42,8 @@ lsp.jsonls.setup {
   capabilities = capabilities
 }
 lsp.jdtls.setup {
-  capabilities = capabilities
+  capabilities = capabilities,
+  server_capabilities = { semanticTokensProvider = nil }
 }
 
 -- Low level development

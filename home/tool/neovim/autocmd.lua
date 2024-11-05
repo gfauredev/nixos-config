@@ -1,4 +1,3 @@
--- -- -- -- -- Autocommands -- -- -- -- --
 -- Relative number only when focused in normal mode
 vim.api.nvim_create_autocmd({ "FocusLost", "InsertEnter" }, {
   callback = function() vim.opt.relativenumber = false end
@@ -39,4 +38,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
       vim.fn.system(string.format("zathura %s & disown", pdf_file))
     end
   end
+})
+
+-- Disable highlighting from jdtls, worse than ts one
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client ~= nil and client.name == "jdtls" then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end,
 })

@@ -111,7 +111,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Language selection for ltex-ls
 vim.api.nvim_create_user_command("Ltlang", function(opt) -- FIXME
-    lsp.ltex.setup {
-      settings = { ltex = { language = opt.fargs[1] } } }
+    for _, client in ipairs(vim.lsp.get_clients({ name = "ltex" })) do
+      client.notify("workspace/didChangeConfiguration",
+        { settings = { ltex = { language = opt.fargs[1] } } }
+      )
+    end
   end,
   { nargs = 1 })
