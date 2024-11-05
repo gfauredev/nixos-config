@@ -86,23 +86,45 @@
     };
     languages = {
       # See : https://docs.helix-editor.com/languages.html
-      language = [{ # TEST if redefining everything really needed
-        name = "nix";
-        scope = "source.nix";
-        injection-regex = "nix";
-        file-types = [ "nix" ];
-        shebangs = [ ];
-        comment-token = "#";
-        language-servers = [ "nil" "nixd" "llm" ];
-        indent = {
-          tab-width = 2;
-          unit = "  ";
-        };
-        auto-format = true;
-        formatter.command = "nixfmt";
-      }];
+      # WARN keep up to date with upstream:
+      # https://github.com/helix-editor/helix/blob/master/languages.toml
+      language = [
+        {
+          name = "nix";
+          scope = "source.nix";
+          injection-regex = "nix";
+          file-types = [ "nix" ];
+          shebangs = [ ];
+          comment-token = "#";
+          language-servers = [ "nil" "nixd" "llm" ];
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+          auto-format = true;
+          formatter.command = "nixfmt";
+        }
+        {
+          name = "typst";
+          scope = "source.typst";
+          injection-regex = "typ(st)?";
+          file-types = [ "typst" "typ" ];
+          comment-token = "//";
+          block-comment-tokens = {
+            start = "/*";
+            end = "*/";
+          };
+          language-servers = [ "tinymist" "typst-lsp" "llm" ];
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+          auto-format = true;
+          formatter.command = "typstyle"; # FIXME
+        }
+      ];
       language-server = {
-        llm.command = "helix-gpt"; # For most of languages
+        llm.command = "helix-gpt"; # TODO For most of languages
       };
     };
     extraPackages = with pkgs;
