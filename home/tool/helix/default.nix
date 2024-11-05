@@ -5,11 +5,14 @@
     settings = {
       theme = "custom";
       editor = {
-        auto-save = {
-          focus-lost = true;
-          after-delay.timeout = 5000;
-          after-delay.enabled = true;
-        };
+        auto-save = true;
+        # auto-save = {
+        #   focus-lost = true; # TODO enable
+        #   after-delay = {
+        #     enabled = true;
+        #     timeout = 5000;
+        #   };
+        # };
         cursor-shape = {
           normal = "block";
           insert = "bar";

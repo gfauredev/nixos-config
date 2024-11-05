@@ -122,6 +122,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "0d1a0b46",
+        "name": "Helix Docs",
+        "trigger": "hx",
+        "url": "https://docs.helix-editor.com/?search=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "cef0522e",
         "name": "MDN",
         "trigger": "mdn",
