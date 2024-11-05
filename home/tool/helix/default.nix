@@ -85,19 +85,22 @@
       };
     };
     languages = {
-      # TODO GitHub Copilot with helix-gpt
-      # TODO Nix formatting with custom language
       # See : https://docs.helix-editor.com/languages.html
-
-      # language-server.typescript-language-server = {
-      #   command = "/bin/typescript-language-server";
-      #   args = [ "--stdio" "---path=/" ];
-      # };
-
-      # language = [{
-      #   name = "rust";
-      #   auto-format = false;
-      # }];
+      language = [{ # TEST if redefining everything really needed
+        name = "nix";
+        scope = "source.nix";
+        injection-regex = "nix";
+        file-types = ["nix"];
+        shebangs = [];
+        comment-token = "#";
+        language-servers = [ "nil" "nixd" "llm" ];
+        indent = { tab-width = 2; unit = "  "; };
+        auto-format = true;
+        formatter.command = "nixfmt";
+      }];
+      language-server = {
+        llm.command = "helix-gpt"; # For most of languages
+      };
     };
     extraPackages = with pkgs; [
       helix-gpt # Add LLMs support through LSP
