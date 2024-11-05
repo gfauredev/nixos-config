@@ -34,14 +34,14 @@
         s = "move_line_up"; # j bépo equivalent
         r = "move_char_right"; # l bépo equivalent
         C = "move_prev_long_word_start"; # B alternative
-        T = [ # TODO fast down move (5 lines or so)
+        T = [ # fast down move (5 lines or so)
           "move_line_down"
           "move_line_down"
           "move_line_down"
           "move_line_down"
           "move_line_down"
         ];
-        S = [ # TODO fast up move (5 lines or so)
+        S = [ # fast up move (5 lines or so)
           "move_line_up"
           "move_line_up"
           "move_line_up"
@@ -87,14 +87,14 @@
         # s = "move_line_up"; # j bépo equivalent
         # r = "move_char_right"; # l bépo equivalent
         C = "move_prev_long_word_start"; # B alternative
-        T = [ # TODO fast down move (5 lines or so)
+        T = [ # fast down move (5 lines or so)
           "move_line_down"
           "move_line_down"
           "move_line_down"
           "move_line_down"
           "move_line_down"
         ];
-        S = [ # TODO fast up move (5 lines or so)
+        S = [ # fast up move (5 lines or so)
           "move_line_up"
           "move_line_up"
           "move_line_up"
