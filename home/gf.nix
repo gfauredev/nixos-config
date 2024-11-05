@@ -27,6 +27,9 @@
 
       TYPST_FONT_PATHS =
         "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
+
+      # WARNING setup secret storage like sops for this TODO
+      COPILOT_API_KEY = "hey";
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

@@ -14,7 +14,8 @@
     discord # PROPRIETARY messaging and general communication
   ];
 
-  # TODO configure thunderbird with nix
+  # TODO setup secret Nix storage like sops or agenix
+  # TODO configure Thunderbird with Nix
   # accounts = {
   #   calendar = { };
   #   email.accounts = {

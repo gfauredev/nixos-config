@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  home.packages = with pkgs;
+    [
+      helix-gpt # Add LLMs support through LSP
+    ];
+
   # See : https://docs.helix-editor.com
   programs.helix = {
     enable = true;
@@ -20,6 +25,8 @@
           select = "block";
           # replace = "underline";
         };
+        indent-guides.render = true;
+        soft-wrap.enable = true;
       };
       keys.normal = {
         c = "move_char_left"; # h bépo equivalent
