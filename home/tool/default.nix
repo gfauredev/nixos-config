@@ -38,6 +38,7 @@
     vscode-langservers-extracted # HTML/CSS/JSON/ESLint
     # nodePackages_latest.vscode-json-languageserver # JSON LSP
     yaml-language-server # YAML LSP
+    taplo # TOML LSP and toolkit
     dprint # Pluggable code formatting platform
 
     # AI Tools
