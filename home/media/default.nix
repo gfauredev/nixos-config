@@ -23,6 +23,7 @@
     # tinymist # Typst LSP FIXME
     typstyle # Typst formatter
     # typstfmt # Typst formatter # Deprecated
+    markdown-oxide # Obsidian style PIM with markdown LSP
     marksman # Smart Markdown links
 
     # Document & Spreadsheet & Presentation & Note
