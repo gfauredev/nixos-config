@@ -28,14 +28,26 @@
         indent-guides.render = true;
         soft-wrap.enable = true;
       };
-      keys.normal = {
+      keys.normal = { # TODO factorize between normal and select using Nix
         c = "move_char_left"; # h bépo equivalent
         t = "move_line_down"; # k bépo equivalent
         s = "move_line_up"; # j bépo equivalent
         r = "move_char_right"; # l bépo equivalent
         C = "move_prev_long_word_start"; # B alternative
-        T = "move_line_down"; # TODO fast down move (5 lines or so)
-        S = "move_line_up"; # TODO fast up move (5 lines or so)
+        T = [ # TODO fast down move (5 lines or so)
+          "move_line_down"
+          "move_line_down"
+          "move_line_down"
+          "move_line_down"
+          "move_line_down"
+        ];
+        S = [ # TODO fast up move (5 lines or so)
+          "move_line_up"
+          "move_line_up"
+          "move_line_up"
+          "move_line_up"
+          "move_line_up"
+        ];
         R = "move_next_long_word_end"; # E alternative
         h = "find_till_char"; # t replacement
         H = "till_prev_char"; # T replacement
@@ -44,12 +56,16 @@
         k = "select_regex"; # s replacement
         K = "split_selection"; # S replacement
         l = "change_selection"; # c replacement
-        L = "copy_selection_on_next_line"; # C replacement
-        A-l = "copy_selection_on_prev_line"; # A-C replacement
-        C-l = "copy_selection_on_prev_line"; # A-C replacement
+        L = "copy_selection_on_prev_line"; # A-c replacement
+        C-l = "copy_selection_on_next_line"; # C replacement
+        A-l = [ # Quick A-c + C replacement
+          "copy_selection_on_prev_line"
+          "copy_selection_on_next_line"
+        ];
         "’" = "command_mode"; # : bépo quicker alternative
         "»" = "indent"; # > bépo quicker alternative
         "«" = "unindent"; # < bépo quicker alternative
+        ret = "open_below"; # o alternative (Return)
       };
       keys.normal."C-w" = { # Window mode
         c = "jump_view_left"; # h bépo equivalent
@@ -71,8 +87,20 @@
         # s = "move_line_up"; # j bépo equivalent
         # r = "move_char_right"; # l bépo equivalent
         C = "move_prev_long_word_start"; # B alternative
-        T = "move_line_down"; # TODO fast down move (5 lines or so)
-        S = "move_line_up"; # TODO fast up move (5 lines or so)
+        T = [ # TODO fast down move (5 lines or so)
+          "move_line_down"
+          "move_line_down"
+          "move_line_down"
+          "move_line_down"
+          "move_line_down"
+        ];
+        S = [ # TODO fast up move (5 lines or so)
+          "move_line_up"
+          "move_line_up"
+          "move_line_up"
+          "move_line_up"
+          "move_line_up"
+        ];
         R = "move_next_long_word_end"; # E alternative
         h = "find_till_char"; # t replacement
         H = "till_prev_char"; # T replacement
@@ -81,12 +109,16 @@
         k = "select_regex"; # s replacement
         K = "split_selection"; # S replacement
         l = "change_selection"; # c replacement
-        L = "copy_selection_on_next_line"; # C replacement
-        A-l = "copy_selection_on_prev_line"; # A-C replacement
-        C-l = "copy_selection_on_prev_line"; # A-C replacement
+        L = "copy_selection_on_prev_line"; # A-c replacement
+        C-l = "copy_selection_on_next_line"; # C replacement
+        A-l = [ # Quick A-c + C replacement
+          "copy_selection_on_prev_line"
+          "copy_selection_on_next_line"
+        ];
         "’" = "command_mode"; # : bépo quicker alternative
         "»" = "indent"; # > bépo quicker alternative
         "«" = "unindent"; # < bépo quicker alternative
+        ret = "open_below"; # o alternative (Return)
       };
     };
     languages = {
