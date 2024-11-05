@@ -2,6 +2,7 @@
   # See : https://docs.helix-editor.com
   programs.helix = {
     enable = true;
+    defaultEditor = true;
     settings = {
       theme = "custom";
       editor = {
@@ -83,7 +84,7 @@
     };
     themes.custom = {
       "inherits" = "onedarker";
-      "ui.background" = "transparent";
+      # "ui.background" = "transparent";
     };
   };
 }

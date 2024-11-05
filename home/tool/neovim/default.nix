@@ -12,7 +12,7 @@
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;
-    defaultEditor = true;
+    defaultEditor = false; # TEST Helix as default editor
     # Generate a big init file with every module
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}

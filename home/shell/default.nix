@@ -178,7 +178,7 @@
       checkout = "git checkout";
       main = "git checkout main";
       merge = "git merge";
-      mrg = "git mergetool --tool=nvimdiff";
+      mrg = "git mergetool --tool=nvimdiff"; # TODO with Helix
       rebase = "git rebase";
       switch = "git switch";
       switchn = "git switch -c";
@@ -206,8 +206,8 @@
       o = "open"; # xdg-open + disown
       ## Edit
       e = "$EDITOR"; # Default text editor
-      h = "hx"; # Modern text editor (Helix) to TEST
-      v = "vi"; # Vi(m) terminal text editor (fallback)
+      v = "vi"; # (Neo)Vi(m) CLI text editor (fallback)
+      h = "hx"; # Helix CLI text editor (fallback)
       u = "zeditor"; # gUi text editor
       m = "mkdir -pv"; # mkdir (parents)
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # Better cp

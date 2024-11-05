@@ -47,7 +47,7 @@
     mimeApps = {
       defaultApplications =
         let # TODO should SSOT, maybe put in flake or modularize
-          text = "nvim";
+          text = "Helix";
           image = "imv";
           audio = "mpv";
           video = "mpv";
