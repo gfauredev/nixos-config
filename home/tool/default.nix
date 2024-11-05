@@ -28,6 +28,8 @@
     # (pkgs.tree-sitter.withPlugins (_: allGrammars))
     nil # Nix LSP
     nixfmt # Nix formatter
+    nickel # Configuration generation language
+    nls # Nickel LSP
     explain # Explain system call errors
     shellcheck # Shell script analysis
     shfmt # Shell script formatter
