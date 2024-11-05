@@ -40,6 +40,7 @@
     yaml-language-server # YAML LSP
     taplo # TOML LSP and toolkit
     dprint # Pluggable code formatting platform
+    lsp-ai # Language server for language models
 
     # AI Tools
     ollama # Run LLMs locally

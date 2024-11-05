@@ -162,13 +162,17 @@
       ];
       language-server = {
         llm = {
-          command = "helix-gpt"; # TODO For most of languages
+          command = "helix-gpt";
           args = [ # WARNING setup secret storage like sops for this TODO
             "--handler"
             "copilot"
             "--copilotApiKey"
             "hey"
           ];
+        };
+        ai = {
+          command = "lsp-ai"; # TODO configure and use for every language
+          args = [ ];
         };
       };
     };
