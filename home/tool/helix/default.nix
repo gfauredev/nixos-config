@@ -21,7 +21,6 @@
         };
       };
       keys.normal = {
-        "’" = "command_mode"; # : bépo quicker alternative
         c = "move_char_left"; # h bépo equivalent
         t = "move_line_down"; # k bépo equivalent
         s = "move_line_up"; # j bépo equivalent
@@ -38,6 +37,9 @@
         K = "split_selection"; # S replacement
         l = "change_selection"; # c replacement
         L = "copy_selection_on_next_line"; # C replacement
+        "’" = "command_mode"; # : bépo quicker alternative
+        "»" = "indent"; # > bépo quicker alternative
+        "«" = "unindent"; # < bépo quicker alternative
       };
       # keys.normal.Z = { # Quick actions mode (from Vim)
       #   Z = ":write-quit!"; # ZZ from Vim
@@ -54,11 +56,14 @@
         R = "swap_view_right"; # L bépo equivalent
       };
       keys.select = {
-        "’" = "command_mode"; # : bépo quicker alternative
-        c = "move_char_left"; # h bépo equivalent
-        t = "move_line_down"; # k bépo equivalent
-        s = "move_line_up"; # j bépo equivalent
-        r = "move_char_right"; # l bépo equivalent
+        c = "extend_char_left"; # Why bothering with consistency ?
+        t = "extend_line_down"; # Why bothering with consistency ?
+        s = "extend_line_up"; # Why bothering with consistency ?
+        r = "extend_char_right"; # Why bothering with consistency ?
+        # c = "move_char_left"; # h bépo equivalent
+        # t = "move_line_down"; # k bépo equivalent
+        # s = "move_line_up"; # j bépo equivalent
+        # r = "move_char_right"; # l bépo equivalent
         C = "move_prev_long_word_start"; # B alternative
         T = "move_line_down"; # TODO fast down move (5 lines or so)
         S = "move_line_up"; # TODO fast up move (5 lines or so)
@@ -71,6 +76,9 @@
         K = "split_selection"; # S replacement
         l = "change_selection"; # c replacement
         L = "copy_selection_on_next_line"; # C replacement
+        "’" = "command_mode"; # : bépo quicker alternative
+        "»" = "indent"; # > bépo quicker alternative
+        "«" = "unindent"; # < bépo quicker alternative
       };
     };
     themes.custom = {
