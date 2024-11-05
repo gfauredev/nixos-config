@@ -141,6 +141,8 @@
       ssh-to-age # Converter between SSH keys and age
       powertop # Power usage analyzer
       just # Commands runner
+      convmv # Converts filenames from one encoding to another
+      enca # Detects the encoding of text files and reencodes them
       # bolt # Thunderbolt device manager
       # sbctl # Secure Boot Control
       # dhcping # DHCP debugging

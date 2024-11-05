@@ -161,7 +161,15 @@
         }
       ];
       language-server = {
-        llm.command = "helix-gpt"; # TODO For most of languages
+        llm = {
+          command = "helix-gpt"; # TODO For most of languages
+          args = [ # WARNING setup secret storage like sops for this TODO
+            "--handler"
+            "copilot"
+            "--copilotApiKey"
+            "hey"
+          ];
+        };
       };
     };
     extraPackages = with pkgs;
