@@ -38,6 +38,8 @@
         K = "split_selection"; # S replacement
         l = "change_selection"; # c replacement
         L = "copy_selection_on_next_line"; # C replacement
+        A-L = "copy_selection_on_prev_line"; # A-C replacement
+        C-L = "copy_selection_on_prev_line"; # A-C replacement
         "’" = "command_mode"; # : bépo quicker alternative
         "»" = "indent"; # > bépo quicker alternative
         "«" = "unindent"; # < bépo quicker alternative
