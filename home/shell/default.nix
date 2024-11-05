@@ -204,22 +204,21 @@
       ## Open
       a = "bat --force-colorization --paging never"; # Better cat
       o = "open"; # xdg-open + disown
-      # p = "$PAGER"; # Default pager, use terminal text editor
       ## Edit
       e = "$EDITOR"; # Default text editor
+      h = "hx"; # Modern text editor (Helix) to TEST
       v = "vi"; # Vi(m) terminal text editor (fallback)
       u = "zeditor"; # gUi text editor
       m = "mkdir -pv"; # mkdir (parents)
       c = "rsync -v --recursive --update --mkpath --perms -h -P"; # Better cp
       ## Multifunction (Explorers)
       b = "br"; # CLI fast files searcher
-      # x = "xplr"; # CLI files explorer
     };
   };
 
   programs.nushell = {
     enable = true;
-    # See https://www.nushell.sh/book/getting_started.html
+    # See : https://www.nushell.sh/book/getting_started.html
     # configFile.source = ./config.nu;
     # envFile.source = ./env.nu;
     # loginFile.source = ./login.nu;
