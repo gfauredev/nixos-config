@@ -90,11 +90,14 @@
         name = "nix";
         scope = "source.nix";
         injection-regex = "nix";
-        file-types = ["nix"];
-        shebangs = [];
+        file-types = [ "nix" ];
+        shebangs = [ ];
         comment-token = "#";
         language-servers = [ "nil" "nixd" "llm" ];
-        indent = { tab-width = 2; unit = "  "; };
+        indent = {
+          tab-width = 2;
+          unit = "  ";
+        };
         auto-format = true;
         formatter.command = "nixfmt";
       }];
@@ -102,9 +105,10 @@
         llm.command = "helix-gpt"; # For most of languages
       };
     };
-    extraPackages = with pkgs; [
-      helix-gpt # Add LLMs support through LSP
-    ];
+    extraPackages = with pkgs;
+      [
+        helix-gpt # Add LLMs support through LSP
+      ];
     themes.custom = {
       "inherits" = "onedarker";
       # "ui.background" = "transparent";
