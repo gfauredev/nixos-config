@@ -20,7 +20,7 @@
     # hunspellDicts.es_ES # Spanish
     typst # Advanced document processor
     # typst-lsp # Typst LSP # DEPRECATED
-    # tinymist # Typst LSP FIXME
+    tinymist # Typst LSP FIXME
     typstyle # Typst formatter
     # typstfmt # Typst formatter # Deprecated
     markdown-oxide # Obsidian style PIM with markdown LSP
