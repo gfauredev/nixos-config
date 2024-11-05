@@ -5,7 +5,7 @@
         "id": "ffb62f03",
         "name": "Amazon",
         "trigger": "am",
-        "url": "http://www.amazon.com/s/?field-keywords=%s"
+        "url": "https://www.amazon.fr/s/?field-keywords=%s"
     },
     {
         "fallback": true,
