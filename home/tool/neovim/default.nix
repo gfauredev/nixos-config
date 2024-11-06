@@ -139,9 +139,25 @@
     withPython3 = true;
     withRuby = true;
     # extraLuaPackages = ps: [ ps.magick ];
-    # extraPackages = with pkgs; [
-    #   luajitPackages.magick
-    # ];
+    extraPackages = with pkgs; [
+      # luajitPackages.magick
+
+      nil # Nix LSP
+      nixfmt # Nix formatter
+
+      bash-language-server # Bash LSP
+      shellcheck # Shell script analysis
+      explain # Explain system call errors
+      shfmt # Shell script formatter
+
+      lua-language-server # Lua LSP
+
+      vscode-langservers-extracted # HTML/CSS/JSON/ESLint
+      yaml-language-server # YAML LSP
+      taplo # TOML LSP and toolkit
+
+      dprint # Pluggable code formatting platform
+    ];
   };
 
   home.file = {

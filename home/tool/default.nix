@@ -21,27 +21,6 @@
     # bleachbit # Good old cleaner
     # stacer # Modern cleaner & monitoring
 
-    # LSP & Formatter
-    # tree-sitter # Parser generator tool and library
-    # (pkgs.tree-sitter.withPlugins
-    #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))
-    # (pkgs.tree-sitter.withPlugins (_: allGrammars))
-    nil # Nix LSP
-    nixfmt # Nix formatter
-    nickel # Configuration generation language
-    nls # Nickel LSP
-    explain # Explain system call errors
-    shellcheck # Shell script analysis
-    shfmt # Shell script formatter
-    bash-language-server # Bash LSP
-    lua-language-server # Lua LSP
-    vscode-langservers-extracted # HTML/CSS/JSON/ESLint
-    # nodePackages_latest.vscode-json-languageserver # JSON LSP
-    yaml-language-server # YAML LSP
-    taplo # TOML LSP and toolkit
-    dprint # Pluggable code formatting platform
-    lsp-ai # Language server for language models
-
     # AI Tools
     ollama # Run LLMs locally
     jan # Run LLMs locally
