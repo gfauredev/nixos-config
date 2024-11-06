@@ -9,7 +9,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "gruvbox-transparent";
+      theme = "jetbrains-transparent";
       editor = {
         auto-save = true;
         auto-format = true;
@@ -123,8 +123,46 @@
           auto-format = true;
           formatter.command = "typstyle"; # FIXME
         }
+        {
+          name = "markdown";
+          scope = "source.md";
+          injection-regex = "md|markdown";
+          file-types = [
+            "md"
+            "markdown"
+            "mdx"
+            "mkd"
+            "mkdn"
+            "mdwn"
+            "mdown"
+            "markdn"
+            "mdtxt"
+            "mdtext"
+            "workbook"
+            { glob = "PULLREQ_EDITMSG"; }
+          ];
+          roots = [ ".marksman.toml" ];
+          language-servers = [ "marksman" "markdown-oxide" "dprint" "llm" ];
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+          block-comment-tokens = {
+            start = "<!--";
+            end = "-->";
+          };
+          auto-format = true;
+          # formatter = {
+          #   command = "dprint";
+          #   args = [ "fmt" ];
+          # };
+        }
       ];
       language-server = {
+        dprint = {
+          command = "dprint";
+          args = [ "lsp" ];
+        };
         llm = {
           command = "helix-gpt";
           args = [ # WARNING setup secret storage like sops for this TODO
@@ -167,10 +205,39 @@
       lsp-ai # Language server for language models
 
       dprint # Pluggable code formatting platform
+
+      # languagetool # Advanced spell checking
+      ltex-ls # LSP between languagetool and pure text
+      # hunspell # Standard spell checker
+      # hunspellDicts.fr-any # French
+      # hunspellDicts.en_US # American
+      # hunspellDicts.en_GB-ise # British
+      # hunspellDicts.es_ES # Spanish
+
+      tinymist # Typst LSP FIXME
+      # typst-lsp # Typst LSP # DEPRECATED
+      typstyle # Typst formatter
+      # typstfmt # Typst formatter # Deprecated
+      # markdown-oxide # TODO Obsidian style PKM
+      marksman # Smart Markdown links
     ];
-    themes.gruvbox-transparent = {
-      inherits = "gruvbox_dark_hard";
-      "ui.background" = "transparent";
+    themes = {
+      jetbrains-transparent = {
+        inherits = "jetbrains_dark";
+        "ui.background" = "transparent";
+      };
+      base16-transparent = {
+        inherits = "base16_default_dark";
+        "ui.background" = "transparent";
+      };
+      tokyo-transparent = { # FIXME
+        inherits = "tokyonight";
+        "ui.background" = "transparent";
+      };
+      gruvbox-transparent = {
+        inherits = "gruvbox_dark_hard";
+        "ui.background" = "transparent";
+      };
     };
   };
 }

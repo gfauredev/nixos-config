@@ -1,7 +1,7 @@
 { pkgs, term, ... }: {
   home.packages = with pkgs; [
     tree-sitter-grammars.tree-sitter-typst
-    nodejs_22 # FIXME remove when withNodeJs param is fixed
+    nodejs_22 # remove when withNodeJs param is fixed
     # tree-sitter-grammars.tree-sitter-latex
   ];
 
@@ -101,7 +101,6 @@
       conform-nvim # Autoformatter
       nvim-surround # Surround text with symbols
       # nvim-lint # Linters adapter
-      # conform-nvim # Formatters adapter
       # cmp-tabnine # AI code completion
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
@@ -135,7 +134,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    withNodeJs = true; # FIXME
+    withNodeJs = true;
     withPython3 = true;
     withRuby = true;
     # extraLuaPackages = ps: [ ps.magick ];
@@ -157,6 +156,19 @@
       taplo # TOML LSP and toolkit
 
       dprint # Pluggable code formatting platform
+
+      ltex-ls # LSP between languagetool and pure text
+      # hunspell # Standard spell checker
+      # hunspellDicts.fr-any # French
+      # hunspellDicts.en_US # American
+      # hunspellDicts.en_GB-ise # British
+      # hunspellDicts.es_ES # Spanish
+
+      tinymist # Typst LSP
+      # typst-lsp # Typst LSP # DEPRECATED
+      typstyle # Typst formatter
+      # typstfmt # Typst formatter # Deprecated
+      marksman # Smart Markdown links
     ];
   };
 

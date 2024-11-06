@@ -10,23 +10,8 @@
   ];
 
   home.packages = with pkgs; [
-    # Text & Language
-    # languagetool # Advanced spell checking
-    ltex-ls # LSP between languagetool and pure text
-    # hunspell # Standard spell checker
-    # hunspellDicts.fr-any # French
-    # hunspellDicts.en_US # American
-    # hunspellDicts.en_GB-ise # British
-    # hunspellDicts.es_ES # Spanish
-    typst # Advanced document processor
-    # typst-lsp # Typst LSP # DEPRECATED
-    tinymist # Typst LSP FIXME
-    typstyle # Typst formatter
-    # typstfmt # Typst formatter # Deprecated
-    markdown-oxide # Obsidian style PIM with markdown LSP
-    marksman # Smart Markdown links
-
     # Document & Spreadsheet & Presentation & Note
+    typst # Advanced document processor
     # onlyoffice-bin # Full office suite
     onlyoffice-bin_latest # Full office suite
     # libreoffice-fresh # Office suite
