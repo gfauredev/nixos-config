@@ -12,6 +12,7 @@
       theme = "custom";
       editor = {
         auto-save = true;
+        auto-format = true;
         # auto-save = {
         #   focus-lost = true; # TODO enable
         #   after-delay = {
