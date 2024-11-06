@@ -9,7 +9,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "custom";
+      theme = "gruvbox-transparent";
       editor = {
         auto-save = true;
         auto-format = true;
@@ -168,9 +168,9 @@
 
       dprint # Pluggable code formatting platform
     ];
-    themes.custom = {
-      "inherits" = "onedarker";
-      # "ui.background" = "transparent";
+    themes.gruvbox-transparent = {
+      inherits = "gruvbox_dark_hard";
+      "ui.background" = "transparent";
     };
   };
 }
