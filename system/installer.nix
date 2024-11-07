@@ -50,11 +50,7 @@
   services = {
     openssh = {
       enable = true; # Enable the OpenSSH daemon
-      settings = {
-        PasswordAuthentication = true; # Prevent the need to setup a key
-        PermitRootLogin = "yes"; # Easily login as root via SSH
-        LogLevel = "VERBOSE"; # So that fail2ban can observe failed logins
-      };
+      settings.PermitRootLogin = "yes"; # Easily login as root via SSH
     };
     # nfs.server.enable = lib.mkDefault true;
   };

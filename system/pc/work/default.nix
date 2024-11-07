@@ -52,18 +52,7 @@
   };
 
   services = {
-    openssh = {
-      enable = true; # Enable the OpenSSH daemon
-      settings = {
-        PermitRootLogin = "no";
-        LogLevel = "VERBOSE"; # For fail2ban
-        PasswordAuthentication = true;
-      };
-    };
-    fail2ban = {
-      # TODO configure me
-      enable = true;
-    };
+    openssh.enable = true; # Enable the OpenSSH daemon
     # xserver.videoDrivers = [ "nvidia" ];
   };
 

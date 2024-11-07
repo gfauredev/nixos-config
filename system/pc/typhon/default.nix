@@ -102,15 +102,7 @@
     # fwupd = {
     #   extraRemotes = [ "lvfs-testing" ];
     # };
-    openssh = {
-      enable = true; # Enable the OpenSSH daemon
-      settings = {
-        PermitRootLogin = "no";
-        LogLevel = "VERBOSE"; # So that fail2ban can observe failed logins
-        PasswordAuthentication = false;
-      };
-    };
-    fail2ban.enable = true;
+    openssh.enable = true; # Enable the OpenSSH daemon
     # xserver.videoDrivers = [ "nvidia" ];
     nix-serve = {
       enable = true; # Enable distribution of nix build cache
