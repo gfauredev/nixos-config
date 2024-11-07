@@ -166,7 +166,7 @@
           command = "ltex-ls";
           config.ltex = {
             completionEnable = true;
-            language = "fr";
+            language = "en-US";
             dictionary = { fr = [ "mdr" ]; };
             additionalRules = {
               enablePickyRules = true;
