@@ -13,7 +13,7 @@
     ardour # Full fledged digital audio workstation
     # audacity # Simple audio editor
     # VST Collections
-    stablepkgs.distrho # Collection of audio plugins, contains Vitalium
+    distrho-ports # Collection of audio plugins, contains Vitalium
     calf # Collection of audio plugins
     bristol # Synths
     # lsp-plugins # Collection of audio plugins
