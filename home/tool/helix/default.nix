@@ -9,7 +9,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "jetbrains-transparent";
+      theme = "catppuccin-trans";
       editor = {
         auto-save = true;
         auto-format = true;
@@ -59,6 +59,7 @@
           "»" = "indent"; # > bépo quicker alternative
           "«" = "unindent"; # < bépo quicker alternative
           ret = "open_below"; # o alternative (Return)
+          S-ret = "open_above"; # o alternative (Return)
         };
       in {
         normal = default // {
@@ -92,70 +93,63 @@
       language = [
         {
           name = "nix";
-          scope = "source.nix";
-          injection-regex = "nix";
-          file-types = [ "nix" ];
-          shebangs = [ ];
-          comment-token = "#";
+          # scope = "source.nix";
+          # injection-regex = "nix";
+          # file-types = [ "nix" ];
+          # shebangs = [ ];
+          # comment-token = "#";
+          # indent = {
+          #   tab-width = 2;
+          #   unit = "  ";
+          # };
           language-servers = [ "nil" "nixd" "llm" ];
-          indent = {
-            tab-width = 2;
-            unit = "  ";
-          };
           auto-format = true;
           formatter.command = "nixfmt";
         }
+
         {
           name = "typst";
-          scope = "source.typst";
-          injection-regex = "typ(st)?";
-          file-types = [ "typst" "typ" ];
-          comment-token = "//";
-          block-comment-tokens = {
-            start = "/*";
-            end = "*/";
-          };
-          language-servers = [ "tinymist" "typst-lsp" "llm" ];
-          indent = {
-            tab-width = 2;
-            unit = "  ";
-          };
+          language-servers = [ "tinymist" "typst-lsp" "ltex-ls" "llm" ];
           auto-format = true;
           formatter.command = "typstyle"; # FIXME
         }
         {
           name = "markdown";
-          scope = "source.md";
-          injection-regex = "md|markdown";
-          file-types = [
-            "md"
-            "markdown"
-            "mdx"
-            "mkd"
-            "mkdn"
-            "mdwn"
-            "mdown"
-            "markdn"
-            "mdtxt"
-            "mdtext"
-            "workbook"
-            { glob = "PULLREQ_EDITMSG"; }
-          ];
-          roots = [ ".marksman.toml" ];
-          language-servers = [ "marksman" "markdown-oxide" "dprint" "llm" ];
+          # roots = [ ".marksman.toml" ];
+          language-servers =
+            [ "marksman" "markdown-oxide" "dprint" "ltex-ls" "llm" ];
+          auto-format = true;
+        }
+
+        {
+          name = "java";
+          language-servers = [ "jdtls" "llm" ];
+          auto-format = true;
+        }
+        {
+          name = "javascript";
+          language-servers = [ "typescript-language-server" "llm" ];
+        }
+        {
+          name = "typescript";
+          language-servers = [ "typescript-language-server" "llm" ];
+        }
+        {
+          name = "jsx";
+          language-servers = [ "typescript-language-server" "llm" ];
+        }
+
+        {
+          name = "default";
+          scope = "source.default";
+          file-types = [ "*" ];
+          comment-token = "#";
           indent = {
             tab-width = 2;
             unit = "  ";
           };
-          block-comment-tokens = {
-            start = "<!--";
-            end = "-->";
-          };
-          auto-format = true;
-          # formatter = {
-          #   command = "dprint";
-          #   args = [ "fmt" ];
-          # };
+          language-servers = [ "ltex-ls" "llm" ];
+          auto-format = false;
         }
       ];
       language-server = {
@@ -222,19 +216,23 @@
       marksman # Smart Markdown links
     ];
     themes = {
-      jetbrains-transparent = {
+      catppuccin-trans = {
+        inherits = "catppuccin_mocha";
+        "ui.background" = "transparent";
+      };
+      jetbrains-trans = {
         inherits = "jetbrains_dark";
         "ui.background" = "transparent";
       };
-      base16-transparent = {
+      base16-trans = {
         inherits = "base16_default_dark";
         "ui.background" = "transparent";
       };
-      tokyo-transparent = { # FIXME
+      tokyo-trans = { # FIXME
         inherits = "tokyonight";
         "ui.background" = "transparent";
       };
-      gruvbox-transparent = {
+      gruvbox-trans = {
         inherits = "gruvbox_dark_hard";
         "ui.background" = "transparent";
       };
