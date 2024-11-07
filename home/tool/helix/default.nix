@@ -109,7 +109,7 @@
 
         {
           name = "typst";
-          language-servers = [ "tinymist" "typst-lsp" "ltex-ls" "llm" ];
+          language-servers = [ "tinymist" "typst-lsp" "ltex" "llm" ];
           auto-format = true;
           formatter.command = "typstyle"; # FIXME
         }
@@ -117,7 +117,7 @@
           name = "markdown";
           # roots = [ ".marksman.toml" ];
           language-servers =
-            [ "marksman" "markdown-oxide" "dprint" "ltex-ls" "llm" ];
+            [ "marksman" "markdown-oxide" "dprint" "ltex" ]; # "llm" ];
           auto-format = true;
         }
 
@@ -140,19 +140,40 @@
         }
 
         {
-          name = "default";
-          scope = "source.default";
+          name = "git-commit";
+          language-servers = [ "ltex" "llm" ];
+        }
+        {
+          name = "git-rebase";
+          language-servers = [ "ltex" "llm" ];
+        }
+
+        {
+          name = "text";
+          scope = "source.text";
           file-types = [ "*" ];
           comment-token = "#";
           indent = {
             tab-width = 2;
             unit = "  ";
           };
-          language-servers = [ "ltex-ls" "llm" ];
+          language-servers = [ "ltex" "llm" ];
           auto-format = false;
         }
       ];
       language-server = {
+        ltex = {
+          command = "ltex-ls";
+          config.ltex = {
+            completionEnable = true;
+            language = "fr";
+            dictionary = { fr = [ "mdr" ]; };
+            additionalRules = {
+              enablePickyRules = true;
+              motherTongue = "fr";
+            };
+          };
+        };
         dprint = {
           command = "dprint";
           args = [ "lsp" ];
@@ -188,12 +209,12 @@
 
       lua-language-server # Lua LSP
 
+      nickel # Configuration generation language
+      nls # Nickel LSP
+
       vscode-langservers-extracted # HTML/CSS/JSON/ESLint
       yaml-language-server # YAML LSP
       taplo # TOML LSP and toolkit
-
-      nickel # Configuration generation language
-      nls # Nickel LSP
 
       helix-gpt # Add LLMs support through LSP
       lsp-ai # Language server for language models
