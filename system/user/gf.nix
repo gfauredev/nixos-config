@@ -20,6 +20,7 @@
       "mtp" # Transfer files with Android devices
       "adbusers" # Connect to Android devices
       "uinput"
+      "kvm" # In case
       "libvirt" # Use KVM hypervisor
       "libvirtd" # Use KVM hypervisor
       "vboxusers" # Use VirtualBox hypervisor
