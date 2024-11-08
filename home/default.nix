@@ -26,12 +26,9 @@
     pipectl # Named pipes management TEST relevance
     cdrkit # ISO tools and misc TEST relevance
     # veracrypt # multiplatform encryption
-    # GUI specific
-    # pinentry # Enter password when needed TEST relevance
-    # Runing
-    # comma # Run command without installing
-    # appimage-run # Run appimages directly
-    # steam-run # Run in isolated FHS
+    comma # Run any command from Nixpkgs
+    appimage-run # Run appimages directly
+    steam-run # Run in isolated FHS
   ];
 
   services = {
@@ -41,7 +38,7 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
       enableNushellIntegration = true;
-      pinentryPackage = pkgs.pinentry-qt; # -gtk2 # -gnome3
+      pinentryPackage = pkgs.pinentry-gtk2; # -gnome3
     };
     # pass-secret-service = {
     #   enable = true; # TEST relevence

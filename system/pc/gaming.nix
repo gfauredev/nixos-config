@@ -24,9 +24,4 @@
     gamemode.enable = true;
     # gamescope.enable = true;
   };
-
-  # environment.systemPackages = with pkgs;
-  #   [
-  #     steam-run # Run program with a steam like environment
-  #   ];
 }
