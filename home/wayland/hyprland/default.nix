@@ -208,7 +208,7 @@
         "$mod SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:note"
         "$mod, m, Go to messaging workspace, workspace, name:msg"
         ''
-          $mod, m, Launch a messaging app, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.all}''
+          $mod, m, Launch a messaging app, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.app}''
         # Additional monitor workspaces (Right hand) may auto launch associated app
         "$mod, d, Go to DisplayPort workspace, workspace, name:dpp" # FIXME right port
         "$mod SHIFT, d, Move window to DisplayPort workspace, movetoworkspace, name:dpp"
