@@ -38,7 +38,7 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
       enableNushellIntegration = true;
-      pinentryPackage = pkgs.pinentry-gtk2; # -gnome3
+      pinentryPackage = pkgs.pinentry-gnome3;
     };
     # pass-secret-service = {
     #   enable = true; # TEST relevence
