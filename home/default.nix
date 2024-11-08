@@ -15,19 +15,19 @@
   news.display = "notify"; # Notify for new home manager options
 
   home.packages = with pkgs; [
-    nixpkgs-review # Review pull requests to nixpkgs
-    manix # Nix documentation CLI
+    moreutils # Additional Unix utilities
     exfatprogs # Tools for exfat fs
+    libnotify # Notifications management
     dislocker # decrypt bitlocker disks
     jmtpfs # Media transfer protocol with Android devices
-    git-secrets # Prevent secrets leaking with Git
+    nixpkgs-review # Review pull requests to nixpkgs TEST
+    manix # Nix documentation CLI TEST
+    git-secrets # Prevent secrets leaking with Git TEST
+    pipectl # Named pipes management TEST relevance
+    cdrkit # ISO tools and misc TEST relevance
     # veracrypt # multiplatform encryption
-    moreutils # Additional Unix utilities
-    pipectl # Named pipes management
-    cdrkit # ISO tools and misc
     # GUI specific
-    pinentry # Enter password when needed
-    libnotify # Notifications management
+    # pinentry # Enter password when needed TEST relevance
     # Runing
     # comma # Run command without installing
     # appimage-run # Run appimages directly
@@ -35,8 +35,17 @@
   ];
 
   services = {
+    # systembus-notify.enable = true; # TEST relevance
+    gpg-agent = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+      pinentryPackage = pkgs.pinentry-qt; # -gtk2 # -gnome3
+    };
     # pass-secret-service = {
     #   enable = true; # TEST relevence
+    #   storePath = "$XDG_DATA_HOME/password-store";
     # };
     dunst = {
       enable = true; # Notifications daemon
@@ -60,6 +69,12 @@
   };
 
   programs = {
+    gpg.enable = true; # Useful cryptography tool
+    password-store = {
+      enable = true; # CLI standard password manager
+      package =
+        pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
+    };
     git = {
       enable = true; # MANDATORY
       lfs.enable = true;
@@ -107,12 +122,6 @@
         "public/"
         "*ignore*"
       ];
-    };
-    gpg.enable = true; # Useful cryptography tool
-    password-store = {
-      enable = true; # CLI standard password manager
-      package =
-        pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
     };
   };
 
