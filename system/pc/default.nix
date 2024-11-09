@@ -170,7 +170,7 @@
   # Realtime & music production related improvements
   musnix.enable = true;
 
-  # Specialisation with RT kernel & performance governor by default
+  # Specialisation with RT kernel & performance governor by default TEST relevance
   # specialisation.realtime.configuration = {
   #   system.nixos.tags = [ "realtime" ];
   #   musnix = {

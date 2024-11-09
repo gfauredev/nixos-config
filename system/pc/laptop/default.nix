@@ -7,12 +7,13 @@
   };
 
   services = {
+    localtimed.enable = true;
+    tlp.settings.PCIE_ASPM_ON_BAT = "powersupersave";
+    fprintd.enable = lib.mkDefault true; # Support figerprint reader
     logind = {
       lidSwitch = "suspend";
       extraConfig = "HandlePowerKey=suspend";
     };
-    localtimed.enable = true;
-    tlp.settings.PCIE_ASPM_ON_BAT = "powersupersave";
   };
 
   powerManagement = {

@@ -3,41 +3,17 @@
 
   nix = {
     settings = {
-      substituters = [ "https://cache.nixos.org" ];
-      extra-substituters = [ # Use --option extra-substituters
-        # "http://192.168.1.4:5000" # Desktop as local binary cache
-      ];
-      trusted-substituters = [
-        # "http://192.168.1.4:5000" # Desktop as local binary cache
-      ];
+      substituters = [ "https://cache.nixos.org" ]; # TEST explicit relevance
+      # extra-substituters = [ # Use --option extra-substituters
+      #   "http://192.168.1.4:5000" # Desktop as local binary cache
+      # ];
+      # trusted-substituters = [
+      #   "http://192.168.1.4:5000" # Desktop as local binary cache
+      # ];
       trusted-public-keys = [
         # "192.168.1.4:M2RK6BgauXFtWIrs9y6Kvw8ptFLUyOmW0PsSjOvKuks="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
-    };
-  };
-
-  hardware = {
-    nvidia = {
-      open = false;
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      # package = config.boot.kernelPackages.nvidiaPackages.beta;
-      # forceFullCompositionPipeline = true; TEST relevance
-      # nvidiaPersistenced = true; TEST relevance
-    };
-    nvidia.prime = {
-      allowExternalGpu = true;
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
-      # sync.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:127:0:0";
     };
   };
 
@@ -68,12 +44,65 @@
     wireguard.enable = true;
   };
 
-  services = {
-    fwupd = {
-      # extraRemotes = [ "lvfs-testing" ];
+  # services = {
+  #   fwupd = {
+  #     extraRemotes = [ "lvfs-testing" ];
+  #   };
+  # };
+
+  hardware = {
+    nvidia = {
+      open = true;
+      modesetting.enable = true;
+      nvidiaSettings = true;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
+      # forceFullCompositionPipeline = true; TEST relevance
+      # nvidiaPersistenced = true; TEST relevance
     };
-    fprintd = {
-      enable = true; # Support figerprint reader
+    nvidia.prime = {
+      allowExternalGpu = true;
+      # offload = {
+      #   enable = true;
+      #   enableOffloadCmd = true;
+      # };
+      # sync.enable = true;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:127:0:0";
+    };
+  };
+  specialisation = {
+    nvidia-closed.configuration = {
+      system.nixos.tags = [ "nvidia" "closed" "dock" ];
+      hardware = {
+        nvidia = {
+          open = false;
+          modesetting.enable = true;
+          nvidiaSettings = true;
+          powerManagement = {
+            enable = false;
+            finegrained = false;
+          };
+          # package = config.boot.kernelPackages.nvidiaPackages.stable;
+          # package = config.boot.kernelPackages.nvidiaPackages.beta;
+          # forceFullCompositionPipeline = true; TEST relevance
+          # nvidiaPersistenced = true; TEST relevance
+        };
+        nvidia.prime = {
+          allowExternalGpu = true;
+          # offload = {
+          #   enable = true;
+          #   enableOffloadCmd = true;
+          # };
+          # sync.enable = true;
+          intelBusId = "PCI:0:2:0";
+          nvidiaBusId = "PCI:127:0:0";
+        };
+      };
     };
   };
 
