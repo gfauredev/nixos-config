@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   imports = [ ./hardware.nix ../default.nix ];
 
   nix = {
@@ -52,7 +52,7 @@
 
   hardware = {
     nvidia = {
-      open = true;
+      open = lib.mkDefault true;
       modesetting.enable = true;
       nvidiaSettings = true;
       powerManagement = {
