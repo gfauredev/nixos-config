@@ -96,8 +96,8 @@
         in {
           fullscreen = "grim";
           region = ''grim -g "$(slurp)"'';
-          dest-ws = "$HOME/data/screenshot/${timestamp}_${workspace}.${ftype}";
-          dest-zone = "$HOME/data/screenshot/${timestamp}_${window}.${ftype}";
+          dest-ws = "$HOME/screenshots/${timestamp}_${workspace}.${ftype}";
+          dest-zone = "$HOME/screenshots/${timestamp}_${window}.${ftype}";
         };
         media = {
           cmd = "spotify";
