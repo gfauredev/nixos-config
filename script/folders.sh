@@ -9,6 +9,8 @@
 # Sub-directories corresponding to *.git/** or *.large
 # should not be synced with lower capacity devices
 
+# TODO stignore and stignore.light content
+
 echo "# Project, projects and eventual nested sub-projects"
 echo "> A project directory contains files that might be required"
 echo "> to progress towards a final goal or a precise milestone"
@@ -54,8 +56,6 @@ echo "> A data directory contains files that might become useful"
 echo "> in a life area or in a project, or just be interesting or fun"
 echo "> Directories represents arbitrarily chosen grouping-criterions among many that might exist"
 mkdir -m 700 -v "$HOME/data/"
-mkdir -m 700 -v "$HOME/data/dcim/"
-mkdir -m 700 -v "$HOME/data/screenshot/"
 mkdir -m 700 -v "$HOME/data/learn/"
 mkdir -m 700 -v "$HOME/data/memory/"
 mkdir -m 700 -v "$HOME/data/misc/"
@@ -69,4 +69,13 @@ mkdir -m 700 -v "$HOME/archive/project/"
 mkdir -m 700 -v "$HOME/archive/life/"
 echo "#include stignore" > "$HOME/archive/.stignore"
 echo "Archive, definitively complete or discontinued project, expired or no longer useful files" > "$HOME/archive/.ventoyignore"
+echo
+
+echo "Screenshots and DCIM (Camera images)"
+mkdir -m 700 -v "$HOME/screenshot/"
+mkdir -m 700 -v "$HOME/dcim/"
+echo "#include stignore" > "$HOME/screenshot/.stignore"
+echo "#include stignore" > "$HOME/dcim/.stignore"
+echo "Screenshots" > "$HOME/screenshot/.ventoyignore"
+echo "DCIM (Camera images)" > "$HOME/screenshot/.ventoyignore"
 echo
