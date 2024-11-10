@@ -88,19 +88,16 @@
           region = "wl-present set-region"; # Change mirrored output or region
           freeze = "wl-present toggle-freeze"; # Freeze mirrored image
         };
-        screenshot = {
+        screenshot = let
+          timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')";
+          workspace = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
+          window = ''$(hyprctl activewindow -j | jq -r '.["title"]')'';
+          ftype = "png";
+        in {
           fullscreen = "grim";
           region = ''grim -g "$(slurp)"'';
-          dest-ws = let
-            timestamp = "$(date +'%Y-%m-%d_%H:%M:%S')";
-            target = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
-            filetype = "png";
-          in "$HOME/data/screenshot/${timestamp}_${target}.${filetype}";
-          dest-zone = let
-            timestamp = "$(date +'%Y-%m-%d_%H:%M:%S')";
-            target = ''$(hyprctl activeworkspace -j | jq -r '.["title"]')'';
-            filetype = "png";
-          in "$HOME/data/screenshot/${timestamp}_${target}.${filetype}";
+          dest-ws = "$HOME/data/screenshot/${timestamp}_${workspace}.${ftype}";
+          dest-zone = "$HOME/data/screenshot/${timestamp}_${window}.${ftype}";
         };
         media = {
           cmd = "spotify";
