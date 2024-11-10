@@ -93,11 +93,12 @@
           workspace = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
           window = ''$(hyprctl activewindow -j | jq -r '.["title"]')'';
           ftype = "png";
+          location = "$HOME/screenshot";
         in {
           fullscreen = "grim";
           region = ''grim -g "$(slurp)"'';
-          dest-ws = "$HOME/screenshots/${timestamp}_${workspace}.${ftype}";
-          dest-zone = "$HOME/screenshots/${timestamp}_${window}.${ftype}";
+          dest-ws = "${location}/${timestamp}_${workspace}.${ftype}";
+          dest-zone = "${location}/${timestamp}_${window}.${ftype}";
         };
         media = {
           cmd = "spotify";
