@@ -86,6 +86,16 @@
           # Email & Calendar
           "x-scheme-handler/mailto" = "${pim}.desktop";
           "x-scheme-handler/webcal" = "${pim}.desktop";
+          "x-scheme-handler/webcals" = "${pim}.desktop";
+          "x-scheme-handler/mid" = "${pim}.desktop";
+          "x-scheme-handler/news" = "${pim}.desktop";
+          "x-scheme-handler/snews" = "${pim}.desktop";
+          "x-scheme-handler/nntp" = "${pim}.desktop";
+          "x-scheme-handler/feed" = "${pim}.desktop";
+          "application/rss+xml" = "${pim}.desktop";
+          "application/x-extension-rss" = "${pim}.desktop";
+          "application/x-extension-ics" = "${pim}.desktop";
+          "text/calender" = "${pim}.desktop";
           # Application specific
           "application/pdf" = "${pdf}.desktop";
           # "application/x-colpkg" = "anki.desktop";
