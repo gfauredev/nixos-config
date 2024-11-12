@@ -29,6 +29,10 @@
     comma # Run any command from Nixpkgs
     appimage-run # Run appimages directly
     steam-run # Run in isolated FHS
+    # bitwarden-cli # Modern password manager
+    # keepass # Popular password manager
+    keepassxc # Password manager
+    # keepass-keeagent # Keepass agent
   ];
 
   services = {
@@ -67,6 +71,10 @@
 
   programs = {
     gpg.enable = true; # Useful cryptography tool
+    rbw = { # Unofficial Rust Bitwarden CLI
+      enable = true;
+      # See: https://searchix.alanpearce.eu/options/home-manager/search?query=programs.rbw 
+    };
     password-store = {
       enable = true; # CLI standard password manager
       package =
