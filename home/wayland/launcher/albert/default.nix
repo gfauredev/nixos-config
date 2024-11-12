@@ -4,14 +4,13 @@
       albert # Full-featured launcher
     ];
 
-  # NOTE disabled because albert modfies its own config
   xdg.configFile = {
     config = {
-      enable = false;
+      enable = false; # Albert edits its own config
       source = ./config;
     };
     websearch = {
-      enable = false;
+      enable = false; # Albert edits its own config
       recursive = true;
       source = ./websearch;
     };
