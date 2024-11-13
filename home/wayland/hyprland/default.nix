@@ -91,7 +91,8 @@
         screenshot = let
           timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')";
           workspace = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
-          window = ''$(hyprctl activewindow -j | jq -r '.["title"]')'';
+          window = ''
+            $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
           ftype = "png";
           location = "$HOME/screenshot";
         in {
