@@ -212,7 +212,7 @@
         "iconPath": ":wolfram",
         "id": "14b59237",
         "name": "Wolfram Alpha",
-        "trigger": "w",
+        "trigger": "wa",
         "url": "https://www.wolframalpha.com/input/?i=%s"
     },
     {
