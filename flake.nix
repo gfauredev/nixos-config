@@ -5,26 +5,24 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05"; # NixOS Stable
 
-    # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
-    # sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
-
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
+
+    # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
+    sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
+    musnix.url = "github:musnix/musnix"; # Music production & realtime audio
+
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # wezterm-flake = {
     #   url = "github:wez/wezterm/main?dir=nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    musnix.url = "github:musnix/musnix"; # Music production & realtime audio
-
     # anyrun = {
     #   url = "github:Kirottu/anyrun";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -32,9 +30,9 @@
   };
 
   # TODO: see if possible to use either @inputs or a comprehensive list of inputs
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs: # WARN removed "self" param
     let
-      system = "x86_64-linux";
+      system = "x86_64-linux"; # PC architecture (may evolve to RISC-V or ARM)
       pkgs = nixpkgs.legacyPackages.${system};
       stablepkgs = inputs.nixpkgs-stable.legacyPackages.${system};
     in {
@@ -44,8 +42,8 @@
         griffin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs stablepkgs; };
           modules = [
-            # agenix.nixosModules.default # Secrets storage TODO for all systems
-            # sops-nix.nixosModules.sops # Secrets storage TODO for all systems
+            # inputs.agenix.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
             inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
             inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
             inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime # eGPU
