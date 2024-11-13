@@ -15,6 +15,7 @@
   news.display = "notify"; # Notify for new home manager options
 
   home.packages = with pkgs; [
+    devenv # Developer environments management (simpler flake.nix for dev)
     moreutils # Additional Unix utilities
     exfatprogs # Tools for exfat fs
     libnotify # Notifications management
@@ -71,6 +72,13 @@
 
   programs = {
     gpg.enable = true; # Useful cryptography tool
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+    };
     rbw = { # Unofficial Rust Bitwarden CLI
       enable = true;
       # See: https://searchix.alanpearce.eu/options/home-manager/search?query=programs.rbw 
