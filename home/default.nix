@@ -15,6 +15,7 @@
   news.display = "notify"; # Notify for new home manager options
 
   home.packages = with pkgs; [
+    sops # Secret management
     devenv # Developer environments management (simpler flake.nix for dev)
     moreutils # Additional Unix utilities
     exfatprogs # Tools for exfat fs
@@ -32,7 +33,7 @@
     steam-run # Run in isolated FHS
     # bitwarden-cli # Modern password manager
     # keepass # Popular password manager
-    keepassxc # Password manager
+    keepassxc # Password manager TEST
     # keepass-keeagent # Keepass agent
   ];
 
@@ -90,6 +91,7 @@
     };
     git = {
       enable = true; # MANDATORY
+      package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
       delta.enable = true;
       extraConfig = {
@@ -150,7 +152,7 @@
   };
 
   home = {
-    pointerCursor = { # Done with Hyprcursor now
+    pointerCursor = { # Done with Hyprcursor now, TEST if still necessary
       package = pkgs.bibata-cursors;
       gtk.enable = true;
       name = "Bibata-Modern-Ice";

@@ -130,7 +130,6 @@
       modemmanager # Mobile broadband
       # openvpn # Largely used VPN
       # inputs.agenix.packages.x86_64-linux.default
-      # sops # Nix secret management
     ];
   };
 }

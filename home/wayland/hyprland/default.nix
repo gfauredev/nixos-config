@@ -344,8 +344,6 @@
         background_color = "0x000000";
         disable_splash_rendering = true;
         vfr = true; # Save power
-        # enable_hyprcursor = true;
-        # hide_cursor_on_key_press = true;
       };
     };
     systemd.enable = true; # TEST relevance
