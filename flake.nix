@@ -42,7 +42,6 @@
         griffin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs stablepkgs; };
           modules = [
-            # inputs.agenix.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
             inputs.nixos-hardware.nixosModules.framework-12th-gen-intel

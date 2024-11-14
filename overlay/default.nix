@@ -3,6 +3,6 @@
 {
   nixpkgs.overlays = [
     # Define overlays in other files
-    (import ./7zz.nix)
+    # (import ./7zz.nix)
   ];
 }
