@@ -1,4 +1,20 @@
 { inputs, lib, config, pkgs, stablepkgs, ... }: {
+  imports = [
+    inputs.sops-nix.nixosModules.sops # Secrets management
+    inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
+  ];
+
+  sops = {
+    defaultSopsFile = ../secrets/main.yaml;
+    secrets.test-key = {
+      mode = "0440";
+      owner = config.users.users.root.name;
+      group = config.users.users.gf.group;
+      # path = "";
+      # restartUnits = [ ];
+    };
+  };
+
   nix = {
     # add each flake input as a registry
     # To make nix3 commands consistent with flake
@@ -89,8 +105,7 @@
     ntp.enable = lib.mkDefault true;
     nfs.server.enable = lib.mkDefault true;
     openssh = {
-      enable =
-        lib.mkDefault false; # Do not enable the OpenSSH daemon by default
+      enable = lib.mkDefault true; # Do not enable the OpenSSH daemon by default
       settings = {
         PermitRootLogin = lib.mkDefault "no";
         LogLevel = "VERBOSE"; # For fail2ban

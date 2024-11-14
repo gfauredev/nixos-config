@@ -8,7 +8,10 @@
 
   services = {
     localtimed.enable = true;
-    tlp.settings.PCIE_ASPM_ON_BAT = "powersupersave";
+    tlp = {
+      enable = true;
+      settings.PCIE_ASPM_ON_BAT = "powersupersave";
+    };
     fprintd.enable = lib.mkDefault true; # Support figerprint reader
     logind = {
       lidSwitch = "suspend";

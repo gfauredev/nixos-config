@@ -6,10 +6,11 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05"; # NixOS Stable
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
+    # See https://github.com/NixOS/nixos-hardware/tree/master
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
 
-    # agenix.url = "github:ryantm/agenix"; # TODO Store secrets encrypted
-    sops-nix.url = "github:Mic92/sops-nix"; # TODO Store secrets encrypted
+    # agenix.url = "github:ryantm/agenix";
+    sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
@@ -42,11 +43,6 @@
         griffin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs stablepkgs; };
           modules = [
-            inputs.sops-nix.nixosModules.sops
-            inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
-            inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
-            inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime # eGPU
-            inputs.musnix.nixosModules.musnix # System improvements for audio
             ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
             ./system/user/gf.nix # TODO make it an option of systems (may include home)
             ./system/virtualization.nix # TODO make it an option of systems
@@ -57,11 +53,6 @@
         chimera = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            # inputs.lanzaboote.nixosModules.lanzaboote # Secure boot TEST
-            inputs.nixos-hardware.nixosModules.common-cpu-intel # Hardware
-            inputs.nixos-hardware.nixosModules.common-pc # Hardware
-            inputs.nixos-hardware.nixosModules.common-pc-ssd # Hardware
-            inputs.musnix.nixosModules.musnix # System improvements for audio
             ./system/pc/laptop/chimera # Chimera, a flying creature
           ];
         };
@@ -69,20 +60,12 @@
         # typhon = nixpkgs.lib.nixosSystem {
         #   specialArgs = { inherit inputs; };
         #   modules = [
-        #     inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
-        #     inputs.nixos-hardware.nixosModules.common-cpu-amd # Hardware
-        #     inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-        #     inputs.nixos-hardware.nixosModules.common-pc # Hardware
-        #     inputs.nixos-hardware.nixosModules.common-pc-ssd # Hardware
-        #     inputs.musnix.nixosModules.musnix # System improvements for audio
         #     ./system/pc/typhon # Typhon, the most powerful creature
         #   ];
         # };
         # work = nixpkgs.lib.nixosSystem {
         #   specialArgs = { inherit inputs; };
         #   modules = [
-        #     inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
-        #     inputs.nixos-hardware.nixosModules.common-pc # Hardware
         #     ./system/pc/work # PC used at work
         #   ];
         # };
@@ -90,9 +73,6 @@
         cerberus = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
-            inputs.nixos-hardware.nixosModules.common-cpu-intel # Hardware related
-            inputs.nixos-hardware.nixosModules.common-pc # Hardware related
             ./system/server/cerberus # Cerberus, a powerful creature with multiple heads
             # ./system/virtualization.nix # TODO make it an option of systems
           ];

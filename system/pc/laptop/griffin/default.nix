@@ -1,5 +1,9 @@
-{ config, lib, ... }: {
-  imports = [ ./hardware.nix ../default.nix ];
+{ inputs, lib, ... }: {
+  imports = [
+    inputs.nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
+    ./hardware.nix
+    ../default.nix
+  ];
 
   nix = {
     settings = {
@@ -44,6 +48,7 @@
     wireguard.enable = true;
   };
 
+  services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
   # services = {
   #   fwupd = {
   #     extraRemotes = [ "lvfs-testing" ];

@@ -1,5 +1,6 @@
-{ lib, pkgs, ... }: {
+{ inputs, lib, pkgs, ... }: {
   imports = [
+    inputs.musnix.nixosModules.musnix # System improvements for audio
     ./remap.nix # Remaps for PC usability
     ../print-scan.nix # Printing & scanning service
     ../default.nix # Always import the previous default
@@ -77,6 +78,7 @@
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
     };
+    fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     thermald.enable = lib.mkDefault true; # Keep cool
     udisks2.enable = true; # Mount USB without privileges

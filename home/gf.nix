@@ -1,5 +1,8 @@
-{ ... }: {
-  imports = [ ./default.nix ];
+{ inputs, ... }: {
+  imports = [ ./default.nix inputs.sops-nix.homeManagerModules.sops ];
+
+  # NixOS system-wide home-manager configuration
+  # home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
 
   nixpkgs = {
     config = {
@@ -10,7 +13,7 @@
   };
 
   home = {
-    username = "gf";
+    username = "gf"; # TEST home-manager.users.<name> config structure
     homeDirectory = "/home/gf";
 
     sessionVariables = {
