@@ -79,8 +79,7 @@ unusb() {
 }
 
 # Delete some annoying autocreated directories in user home (if empty)
-UNWANTED="Downloads intelephense pt"
-for dir in $UNWANTED; do
+for dir in Downloads intelephense pt; do
   if [ -d "${HOME:?}/$dir" ]; then
     rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
   fi
