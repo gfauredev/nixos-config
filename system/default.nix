@@ -6,6 +6,8 @@
 
   sops = {
     defaultSopsFile = ../secrets/main.yaml;
+    # TODO switch to age and ecdsa
+    gnupg.sshKeyPaths = [ "/etc/ssh/ssh_host_rsa_key" ];
     secrets.test-key = {
       mode = "0440";
       owner = config.users.users.root.name;
