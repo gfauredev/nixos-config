@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
@@ -28,7 +28,8 @@
     jmtpfs # Media transfer protocol with Android devices
     nixpkgs-review # Review pull requests to nixpkgs TEST
     manix # Nix documentation CLI TEST
-    git-secrets # Prevent secrets leaking with Git TEST
+    gitleaks # Better tool to discover secrets in Git repo
+    # git-secrets # Prevent secrets leaking with Git
     pipectl # Named pipes management TEST relevance
     cdrkit # ISO tools and misc TEST relevance
     # veracrypt # multiplatform encryption

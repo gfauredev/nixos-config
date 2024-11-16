@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   home.packages = with pkgs;
     [
       helix-gpt # Add LLMs support through LSP
@@ -184,7 +184,7 @@
             "--handler"
             "copilot"
             "--copilotApiKey"
-            "hey"
+            "$(cat ${config.sops.secrets.copilot_api_key.path})" # FIXME Helix seems to not execute commands here
           ];
         };
         # ai = {

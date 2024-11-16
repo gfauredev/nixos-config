@@ -1,5 +1,8 @@
 { ... }: {
-  imports = [ ./default.nix ];
+  imports = [
+    ./default.nix
+    # inputs.sops-nix.homeManagerModules.sops
+  ];
 
   nixpkgs = {
     config = {
@@ -9,24 +12,25 @@
     };
   };
 
+  sops = {
+    defaultSopsFile = ../secret/gf.yml;
+    defaultSopsFormat = "yaml";
+    age = { keyFile = "/home/gf/.config/sops/age/keys.txt"; };
+    secrets = {
+      # Use %r to represent the user runtime dir
+      # example_key = {
+      #   path = "%r/example_key"; # Get this path from anywhere in config
+      #   # restartUnits = [ ];
+      # };
+      copilot_api_key = { };
+    };
+    # Secrets are decrypted by sops-nix.service, it needs to be running before
+    # systemd.user.services.<service>.Unit.After = [ "sops-nix.service" ];
+  };
+
   home = {
     username = "gf"; # TEST home-manager.users.<name> config structure
     homeDirectory = "/home/gf";
-
-    sops = {
-      defaultSopsFile = ../secret/gf.yml;
-      defaultSopsFormat = "yaml";
-      age = { keyFile = "/home/gf/.config/sops/age/keys.txt"; };
-      secrets = {
-        hello = { };
-        example_key = {
-          path = "%r/example_key"; # Get it from anywhere in config
-          # restartUnits = [ ];
-        };
-      };
-      # Secrets are decrypted by sops-nix.service, it needs to be running before
-      # systemd.user.services.<service>.Unit.After = [ "sops-nix.service" ];
-    };
 
     sessionVariables = {
       XDG_DESKTOP_DIR = "$HOME/data";

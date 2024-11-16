@@ -7,17 +7,16 @@
   sops = {
     defaultSopsFile = ../secret/default.yml;
     defaultSopsFormat = "yaml";
-    age = { keyFile = "/home/gf/.config/sops/age/keys.txt"; };
-    secrets = {
-      hello = { };
-      example_key = {
-        mode = "0440"; # Allow group to read
-        owner = config.users.users.root.name;
-        group = config.users.users.gf.group;
-        # path = ""; # Get it from anywhere in config
-        # restartUnits = [ ];
-      };
-    };
+    age.keyFile = "/home/gf/.config/sops/age/keys.txt";
+    # secrets = {
+    #   example_key = {
+    #     mode = "0440"; # Allow group to read
+    #     owner = config.users.users.root.name;
+    #     group = config.users.users.gf.group;
+    #     # path = ""; # Get it from anywhere in config
+    #     # restartUnits = [ ];
+    #   };
+    # };
   };
 
   nix = {
