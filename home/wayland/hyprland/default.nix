@@ -319,10 +319,6 @@
           size = 3;
           passes = 2;
         };
-        drop_shadow = false; # Save some power
-        # shadow_range = 4;
-        # shadow_render_power = 3;
-        # "col.shadow" = "rgba(1f1d1ccc)";
       };
 
       # See https://wiki.hyprland.org/Configuring/Animations
