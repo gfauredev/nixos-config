@@ -28,6 +28,7 @@
     extract # Extract any compressed file
     backup # Backup with restic or rsync
     configure # Configure this flake config
+    ov # Modern pager
     trash-cli # Manage a trash from CLI
     ripgrep-all # ripgrep for non-text files
     duf # global disk usage
@@ -255,8 +256,7 @@
       };
     };
     less = {
-      enable = true; # Pager, use term text editor instead
-      # FIXME Below config doesn’t work anymore
+      enable = false; # Bugged, don’t use lesskeys
       keys = ''
         #command
         t forw-line
@@ -265,6 +265,7 @@
         S back-line-force
       '';
     };
+    lesspipe.enable = false;
     bat = {
       enable = true; # Better cat with syntax highlighting
       config.pager = "less -i";
@@ -274,4 +275,6 @@
       enableZshIntegration = true;
     };
   };
+
+  xdg.configFile = { "ov/config.yaml" = { source = ./ov.yaml; }; };
 }

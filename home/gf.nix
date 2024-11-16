@@ -25,8 +25,10 @@
       XDG_VIDEOS_DIR = "$HOME/data/video";
 
       BROWSER = "brave"; # TODO this directly in Nix
-      # PAGER = "nvim -R"; # Use terminal editor as pager
-      # MANPAGER = "nvim +Man!"; # Use terminal editor as pager
+      PAGER = "ov";
+      # PAGER = "nvim -R"; # Use NeoVim editor as pure text pager
+      # MANPAGER = "ov";
+      # MANPAGER = "nvim +Man!"; # Use NeoVim editor as man pager
 
       TYPST_FONT_PATHS =
         "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts

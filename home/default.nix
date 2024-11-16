@@ -93,7 +93,10 @@
       enable = true; # MANDATORY
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
-      delta.enable = true;
+      delta = {
+        enable = true;
+        options.navigate = true;
+      };
       extraConfig = {
         safe.directory = "/config"; # Flake configuration
         init.defaultBranch = "main";
@@ -110,6 +113,7 @@
           smudge = "git-lfs smudge -- %f";
           process = "git-lfs filter-process";
         };
+        merge.conflictstyle = "zdiff3";
       };
       ignores = [
         "*.pdf"
