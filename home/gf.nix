@@ -1,8 +1,5 @@
-{ inputs, ... }: {
-  imports = [ ./default.nix inputs.sops-nix.homeManagerModules.sops ];
-
-  # NixOS system-wide home-manager configuration
-  # home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
+{ ... }: {
+  imports = [ ./default.nix ];
 
   nixpkgs = {
     config = {
@@ -16,13 +13,28 @@
     username = "gf"; # TEST home-manager.users.<name> config structure
     homeDirectory = "/home/gf";
 
+    sops = {
+      defaultSopsFile = ../secret/gf.yml;
+      defaultSopsFormat = "yaml";
+      age = { keyFile = "/home/gf/.config/sops/age/keys.txt"; };
+      secrets = {
+        hello = { };
+        example_key = {
+          path = "%r/example_key"; # Get it from anywhere in config
+          # restartUnits = [ ];
+        };
+      };
+      # Secrets are decrypted by sops-nix.service, it needs to be running before
+      # systemd.user.services.<service>.Unit.After = [ "sops-nix.service" ];
+    };
+
     sessionVariables = {
       XDG_DESKTOP_DIR = "$HOME/data";
-      XDG_DOCUMENTS_DIR = "$HOME/data/document";
-      XDG_DOWNLOAD_DIR = "$HOME/data.local/tmp";
-      XDG_MUSIC_DIR = "$HOME/data/audio";
-      XDG_PICTURES_DIR = "$HOME/data/image";
-      XDG_VIDEOS_DIR = "$HOME/data/video";
+      XDG_DOCUMENTS_DIR = "$HOME/data";
+      XDG_MUSIC_DIR = "$HOME/data";
+      XDG_PICTURES_DIR = "$HOME/dcim";
+      XDG_VIDEOS_DIR = "$HOME/dcim";
+      XDG_DOWNLOAD_DIR = "$HOME/tmp";
 
       BROWSER = "brave"; # TODO this directly in Nix
       PAGER = "ov";

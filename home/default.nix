@@ -1,10 +1,14 @@
-{ config, pkgs, ... }: {
+{ inputs, config, pkgs, ... }: {
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
     ./shell # Interactive POSIX shell
     ./lib/font.nix # My favorite fonts
+    inputs.sops-nix.homeManagerModules.sops
   ];
+
+  # NixOS system-wide home-manager configuration
+  # home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
 
   manual = {
     html.enable = true;

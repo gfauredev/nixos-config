@@ -11,10 +11,10 @@
     secrets = {
       hello = { };
       example_key = {
-        # mode = "0440"; # TEST relevance (immutable anyway)
+        mode = "0440"; # Allow group to read
         owner = config.users.users.root.name;
         group = config.users.users.gf.group;
-        # path = "";
+        # path = ""; # Get it from anywhere in config
         # restartUnits = [ ];
       };
     };
