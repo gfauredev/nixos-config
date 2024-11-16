@@ -1,19 +1,22 @@
 { inputs, lib, config, pkgs, stablepkgs, ... }: {
   imports = [
-    inputs.sops-nix.nixosModules.sops # Secrets management
     inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
+    inputs.sops-nix.nixosModules.sops # Secrets management
   ];
 
   sops = {
-    defaultSopsFile = ../secrets/main.yaml;
-    # TODO switch to age and ecdsa
-    gnupg.sshKeyPaths = [ "/etc/ssh/ssh_host_rsa_key" ];
-    secrets.test-key = {
-      mode = "0440";
-      owner = config.users.users.root.name;
-      group = config.users.users.gf.group;
-      # path = "";
-      # restartUnits = [ ];
+    defaultSopsFile = ../secret/default.yml;
+    defaultSopsFormat = "yaml";
+    age = { keyFile = "/home/gf/.config/sops/age/keys.txt"; };
+    secrets = {
+      hello = { };
+      example_key = {
+        # mode = "0440"; # TEST relevance (immutable anyway)
+        owner = config.users.users.root.name;
+        group = config.users.users.gf.group;
+        # path = "";
+        # restartUnits = [ ];
+      };
     };
   };
 

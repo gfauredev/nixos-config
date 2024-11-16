@@ -9,7 +9,6 @@
     # See https://github.com/NixOS/nixos-hardware/tree/master
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
 
-    # agenix.url = "github:ryantm/agenix";
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
