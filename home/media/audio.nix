@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, stablepkgs, ... }: {
   home.packages = with pkgs; [
     klick # Metronome
     # Plugins hosts & Routers
@@ -24,7 +24,7 @@
     # helm # Ancestor of Vital
     # surge-XT # Great hybrid substractive synth TODO reenable
     # surge # Great hybrid substractive synth (old version)
-    bespokesynth-with-vst2 # Software modular synth with controllers support TODO reenable
+    stablepkgs.bespokesynth-with-vst2 # Software modular synth with controllers support TODO reenable
     drumgizmo # High quality drums sampler
     # Bridges & Drivers & Adapters
     # airwave # WINE-based VST bridge for Linux VST hosts
