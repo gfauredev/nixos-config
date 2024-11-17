@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs;
     [
       helix-gpt # Add LLMs support through LSP
@@ -180,11 +180,12 @@
         };
         llm = {
           command = "helix-gpt";
-          args = [ # WARNING setup secret storage like sops for this TODO
+          args = [
             "--handler"
             "copilot"
             "--copilotApiKey"
-            "$(cat ${config.sops.secrets.copilot_api_key.path})" # FIXME Helix seems to not execute commands here
+            # If you find this, please do not use my API key, thanks
+            "hey"
           ];
         };
         # ai = {

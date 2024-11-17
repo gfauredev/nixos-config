@@ -33,13 +33,7 @@
       enable = true; # Web browser
     };
     chromium = {
-      enable = true; # Web browser TODO configure brave with sops
-      # package = pkgs.brave; # Web browser
-      # See: https://support.brave.com/hc/en-us/articles/360044860011-How-Do-I-Use-Command-Line-Flags-in-Brave
-      # See: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/chrome/common/chrome_switches.cc
-      # commandLineArgs = [ ];
-      # dictionaries = [ ];
-      # extensions = [{ id = "idididididididid"; }];
+      enable = true; # Web browser
     };
   };
 }
