@@ -1,6 +1,6 @@
 # Useful programs TODO organize better
 { pkgs, ... }: {
-  imports = [ ./wezterm ./alacritty ./neovim ./helix ./zed ./pulsemixer ];
+  imports = [ ./wezterm ./alacritty ./neovim ./helix ./pulsemixer ];
 
   home.packages = with pkgs; [
     # Theme & Style
