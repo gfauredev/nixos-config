@@ -1,5 +1,6 @@
 { lib, pkgs, ... }: {
-  nixpkgs.config.allowUnfree = true; # for printers plugins
+  # nixpkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [ "hp" ];
 
   services = {
     printing = {

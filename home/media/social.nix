@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+
+  # pkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [ "discord" ];
+
   home.packages = with pkgs; [
     # Email
     thunderbird # Popular desktop email and calendar client TODO configure it

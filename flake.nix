@@ -33,11 +33,11 @@
   };
 
   # TODO: see if possible to use either @inputs or a comprehensive list of inputs
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, stable, ... }@inputs:
     let
       system = "x86_64-linux"; # PC architecture (may evolve to RISC-V or ARM)
       pkgs = nixpkgs.legacyPackages.${system};
-      stablepkgs = inputs.stable.legacyPackages.${system};
+      stablepkgs = stable.legacyPackages.${system};
     in {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
@@ -125,7 +125,11 @@
           "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
-              inherit inputs stablepkgs;
+              inherit inputs;
+              stablepkgs = import stable { # TODO do this cleaner
+                inherit system;
+                config.allowUnfree = true;
+              };
               term = wezterm;
               term-alt = alacritty;
               location = location;

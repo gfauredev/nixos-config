@@ -1,4 +1,10 @@
 { pkgs, stablepkgs, ... }: {
+
+  # pkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [ "vital" ];
+  # stablepkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [ "bespokesynth-with-vst2" ];
+
   home.packages = with pkgs; [
     klick # Metronome
     # Plugins hosts & Routers

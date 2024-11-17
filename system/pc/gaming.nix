@@ -1,18 +1,11 @@
 { lib, ... }: {
-  nixpkgs = {
-    config = {
-      # allowUnfree = true;
-      # Fixes https://github.com/nix-community/home-manager/issues/2942
-      # allowUnfreePredicate = (_: true);
-      # More fine-grain control
-      allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "steam"
-          "steam-original"
-          "steam-run"
-        ];
-    };
-  };
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-original"
+      "steam-unwrapped"
+      "steam-run"
+    ];
 
   programs = {
     steam = {

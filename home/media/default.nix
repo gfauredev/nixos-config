@@ -9,6 +9,9 @@
     ./gaming.nix
   ];
 
+  # pkgs.config.allowUnfreePredicate = pkg:
+  #   builtins.elem (lib.getName pkg) [ "spotify" ];
+
   home.packages = with pkgs; [
     # Document & Spreadsheet & Presentation & Note
     typst # Advanced document processor

@@ -1,16 +1,16 @@
-{ ... }: {
-  imports = [
-    ./default.nix
-    # inputs.sops-nix.homeManagerModules.sops
-  ];
+{ lib, ... }: {
+  imports = [ ./default.nix ];
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      # Fixes https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
-    };
-  };
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "albert"
+      "discord"
+      "vital"
+      "bespokesynth"
+      "bespokesynth-with-vst2"
+      "spotify"
+      "steam-unwrapped"
+    ];
 
   sops = {
     defaultSopsFile = ../secret/gf.yml;
@@ -22,7 +22,7 @@
       #   path = "%r/example_key"; # Get this path from anywhere in config
       #   # restartUnits = [ ];
       # };
-      copilot_api_key = { };
+      copilot_api_key.path = "%r/api-key/copilot";
     };
     # Secrets are decrypted by sops-nix.service, it needs to be running before
     # systemd.user.services.<service>.Unit.After = [ "sops-nix.service" ];
