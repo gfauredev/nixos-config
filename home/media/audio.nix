@@ -1,4 +1,4 @@
-{ pkgs, stablepkgs, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     klick # Metronome
     # Plugins hosts & Routers

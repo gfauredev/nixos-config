@@ -2,21 +2,24 @@
   description = "Guilhem Fauré’s NixOS Configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05"; # NixOS Stable
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    nixpkgs.url =
+      "github:nixos/nixpkgs/f6950e6"; # NixOS Unstable just before 25.05
+    # stable.url = "github:nixos/nixpkgs/nixos-25.05"; # Next NixOS Stable
+    # stable.url = "github:nixos/nixpkgs/nixos-24.11"; # Current NixOS Stable
+    stable.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous NixOS Stable
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
-    # See https://github.com/NixOS/nixos-hardware/tree/master
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
 
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:Mic92/sops-nix"; # Manage secrets
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
-    musnix.url = "github:musnix/musnix"; # Music production & realtime audio
+    musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
 
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # wezterm-flake = {
@@ -30,11 +33,11 @@
   };
 
   # TODO: see if possible to use either @inputs or a comprehensive list of inputs
-  outputs = { nixpkgs, ... }@inputs: # WARN removed "self" param
+  outputs = { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux"; # PC architecture (may evolve to RISC-V or ARM)
       pkgs = nixpkgs.legacyPackages.${system};
-      stablepkgs = inputs.nixpkgs-stable.legacyPackages.${system};
+      stablepkgs = inputs.stable.legacyPackages.${system};
     in {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {

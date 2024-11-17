@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, stablepkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: {
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
     inputs.sops-nix.nixosModules.sops # Secrets management
@@ -120,7 +120,6 @@
   };
 
   programs.openvpn3.enable = lib.mkDefault true;
-  programs.openvpn3.package = stablepkgs.openvpn3; # TODO remove
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
@@ -134,9 +133,8 @@
       lsof # list openned files
       zip # Compression
       unzip # Decompression
-      # p7zip # Compression / Decompression compatible with 7zip
       _7zz # Compression / Decompression (7zip)
-      # (_7zz.override { useUasm = true; }) # FIXME to remove when PR 353272 merged
+      # p7zip # Compression / Decompression compatible with 7zip
       gzip # Compression / Decompression
       bzip2 # Compression / Decompression
       acpi # Information about hardware
@@ -147,8 +145,6 @@
       age # Modern encryption
       sysstat # Monitoring CLI tools
       modemmanager # Mobile broadband
-      # openvpn # Largely used VPN
-      # inputs.agenix.packages.x86_64-linux.default
     ];
   };
 }
