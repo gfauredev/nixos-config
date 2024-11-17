@@ -51,7 +51,6 @@
     wireguard.enable = true;
   };
 
-  # services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ]; # TEST relevance
   # services = {
   #   fwupd = {
   #     extraRemotes = [ "lvfs-testing" ];
@@ -71,21 +70,22 @@
       # package = config.boot.kernelPackages.nvidiaPackages.beta;
       # forceFullCompositionPipeline = true; TEST relevance
       # nvidiaPersistenced = true; TEST relevance
-    };
-    nvidia.prime = {
-      allowExternalGpu = true;
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
-      # sync.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:127:0:0";
+      prime = {
+        allowExternalGpu = true;
+        # offload = {
+        #   enable = true;
+        #   enableOffloadCmd = true;
+        # };
+        # sync.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:127:0:0";
+      };
     };
   };
+
   # specialisation = {
   #   nvidia-closed.configuration = {
-  #     # system.nixos.tags = [ "nvidia" "closed" "dock" ];
+  #     system.nixos.tags = [ "closed" "nvidia" ];
   #     hardware = {
   #       nvidia = {
   #         open = false;
@@ -111,6 +111,8 @@
   #         nvidiaBusId = "PCI:127:0:0";
   #       };
   #     };
+  #     services.xserver.videoDrivers =
+  #       lib.mkDefault [ "nvidia" ]; # TEST relevance
   #   };
   # };
 

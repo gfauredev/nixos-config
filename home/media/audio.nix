@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-
   # pkgs.config.allowUnfreePredicate = pkg:
   #   builtins.elem (lib.getName pkg) [ "vital" ];
   # stablepkgs.config.allowUnfreePredicate = pkg:
