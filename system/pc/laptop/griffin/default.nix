@@ -82,7 +82,7 @@
   };
   specialisation = {
     nvidia-closed.configuration = {
-      system.nixos.tags = [ "nvidia" "closed" "dock" ];
+      # system.nixos.tags = [ "nvidia" "closed" "dock" ];
       hardware = {
         nvidia = {
           open = false;
