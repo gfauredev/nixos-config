@@ -2,12 +2,11 @@
   description = "Guilhem Fauré’s NixOS Configurations";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    nixpkgs.url =
-      "github:nixos/nixpkgs/f6950e6"; # NixOS Unstable just before 25.05
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    # nixpkgs.url = "github:nixos/nixpkgs/f6950e6"; # NixOS Unstable just before 25.05
     # stable.url = "github:nixos/nixpkgs/nixos-25.05"; # Next NixOS Stable
-    # stable.url = "github:nixos/nixpkgs/nixos-24.11"; # Current NixOS Stable
-    stable.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous NixOS Stable
+    stable.url = "github:nixos/nixpkgs/nixos-24.11"; # Current NixOS Stable
+    # stable.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous NixOS Stable
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
