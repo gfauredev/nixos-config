@@ -21,7 +21,7 @@
 
   powerManagement = {
     enable = true;
-    powertop.enable = true; # TEST relevance along powertop package
+    # powertop.enable = true; # TEST relevance along powertop package
     cpuFreqGovernor = lib.mkForce "powersave";
   };
 

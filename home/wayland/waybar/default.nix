@@ -29,8 +29,8 @@
             # format-icons =
             #   [ "< " "> " "< " "> " "< " "> " "< " "> " "< " "> " ];
             # format-time = "{H}:{m}";
-            format = "{icon} {power}";
-            format-charging-notfull = " {power}";
+            format = "{icon} {power:4.2f}";
+            format-charging-notfull = " {power:4.2f}";
             format-charging = "󱐥 {cycles}";
             # format = "{icon} {capacity}";
             # format-charging = "󱐥 {capacity}";
