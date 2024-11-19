@@ -1,4 +1,8 @@
-window, box, widget, label, button {
+window,
+box,
+widget,
+label,
+button {
   color: inherit;
   font-size: inherit;
   margin: 0;
@@ -8,7 +12,8 @@ window, box, widget, label, button {
   background-color: transparent;
 }
 
-label, box {
+label,
+box {
   padding: 0 1px;
 }
 
@@ -24,7 +29,8 @@ label, box {
 }
 
 #battery {
-  min-width: 50px;
+  min-width: 45px;
+  /* max-width: 55px; */
 }
 
 @keyframes fgBlink {
@@ -43,7 +49,9 @@ label, box {
   color: red;
 }
 
-#battery.warning:not(.charging), #cpu.warning, #memory.warning {
+#battery.warning:not(.charging),
+#cpu.warning,
+#memory.warning {
   color: red;
   animation-name: fgBlink;
   animation-duration: 0.5s;
@@ -51,7 +59,10 @@ label, box {
   animation-direction: alternate;
 }
 
-#battery.critical:not(.charging), #temperature.critical, #cpu.critical, #memory.critical {
+#battery.critical:not(.charging),
+#temperature.critical,
+#cpu.critical,
+#memory.critical {
   background-color: red;
   animation-name: bgBlink;
   animation-duration: 0.5s;
@@ -67,7 +78,8 @@ label, box {
   min-width: 40px;
 }
 
-#pulseaudio.muted, #pulseaudio.source-muted {
+#pulseaudio.muted,
+#pulseaudio.source-muted {
   min-width: 75px;
 }
 
@@ -94,7 +106,8 @@ label, box {
   animation-direction: alternate;
 }
 
-#workspaces button.focused, #workspaces button.active {
+#workspaces button.focused,
+#workspaces button.active {
   background-color: #fdc;
   color: black;
 }

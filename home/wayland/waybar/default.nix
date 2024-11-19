@@ -17,17 +17,23 @@
           # fixed-center = false; # Fixed position of center module
 
           battery = {
+            interval = 15;
+            full-at = 90;
             states = {
               low = 30;
               warning = 25;
               critical = 15;
             };
-            format = "{icon} {capacity}";
-            format-charging = "󱐥 {capacity}";
-            # format-time = "{H}:{M}";
-            format-icons = [ " " " " " " " " " " ];
-            # max-length = 8;
+            # format-time = "{H}:{m}";
+            format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰂀" "󰂁" "󰂂" "󰁹" ];
+            # format-icons =
+            #   [ "< " "> " "< " "> " "< " "> " "< " "> " "< " "> " ];
+            format = "{icon} {power}";
+            format-charging = "󱐥 {power}";
+            # format = "{icon} {capacity}";
+            # format-charging = "󱐥 {capacity}";
             tooltip = false;
+            # max-length = 8;
           };
 
           temperature = let
