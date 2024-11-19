@@ -18,7 +18,7 @@
 
           battery = {
             interval = 15;
-            # full-at = 90;
+            full-at = 95;
             states = {
               notfull = 85;
               low = 30;
