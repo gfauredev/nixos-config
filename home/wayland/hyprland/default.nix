@@ -252,7 +252,7 @@
         ", XF86AudioPrev, exec, playerctl previous"
         "SHIFT, XF86AudioPrev, exec, playerctl previous -p spotify"
         # Misc
-        ", XF86RFKill, exec, rfkill toggle all"
+        ", XF86RFKill, exec, rfkill toggle all; sleep 1"
       ];
       bindle = [
         # Brightness (light)
