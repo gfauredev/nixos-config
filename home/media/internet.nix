@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # Web browsing
+    browsh # CLI web browser
     brave # Blink based secure and private web browser
     nyxt # Keyboard driven lightweight web browser
 
