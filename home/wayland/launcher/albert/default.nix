@@ -1,7 +1,4 @@
 { pkgs, ... }: {
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [ "albert" ];
-
   home.packages = with pkgs;
     [
       albert # Full-featured launcher

@@ -19,23 +19,29 @@
   news.display = "notify"; # Notify for new home manager options
 
   home.packages = with pkgs; [
-    sops # Secret management
     devenv # Developer environments management (simpler flake.nix for dev)
     moreutils # Additional Unix utilities
-    exfatprogs # Tools for exfat fs
-    libnotify # Notifications management
-    dislocker # decrypt bitlocker disks
-    jmtpfs # Media transfer protocol with Android devices
-    nixpkgs-review # Review pull requests to nixpkgs TEST
-    manix # Nix documentation CLI TEST
-    gitleaks # Better tool to discover secrets in Git repo
-    # git-secrets # Prevent secrets leaking with Git
     pipectl # Named pipes management TEST relevance
     cdrkit # ISO tools and misc TEST relevance
+    # libnotify # Notifications management
+
+    exfatprogs # Tools for exfat fs
+    jmtpfs # Media transfer protocol with Android devices
+
+    browsh # CLI web browser
+    manix # Nix documentation CLI TEST
+    nixpkgs-review # Review pull requests to nixpkgs TEST
+
+    sops # Secret management
+    gitleaks # Better tool to discover secrets in Git repo
+    # git-secrets # Prevent secrets leaking with Git
+    dislocker # decrypt bitlocker disks
     # veracrypt # multiplatform encryption
+
     comma # Run any command from Nixpkgs
     appimage-run # Run appimages directly
     steam-run # Run in isolated FHS
+
     # bitwarden-cli # Modern password manager
     # keepass # Popular password manager
     keepassxc # Password manager TEST

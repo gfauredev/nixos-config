@@ -8,6 +8,7 @@
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs sent to wayland to debug
+    libnotify # Notifications management
     # wayvnc # Wayland remote desktop
     # wlr-randr # Edit display settings for wayland
     # waypipe # Send a wayland window through SSH

@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # Web browsing
-    browsh # CLI web browser
-    brave # Blink based secure and private web browser
     nyxt # Keyboard driven lightweight web browser
+    # browsh # CLI web browser (added to default home)
+    # brave # Blink based secure and private web browser
 
     # P2P & VPN & Web3
     nym # A new mixnet, anonymous routing protocol
@@ -35,6 +35,7 @@
     };
     chromium = {
       enable = true; # Web browser
+      package = pkgs.brave; # Better privacy, security
     };
   };
 }
