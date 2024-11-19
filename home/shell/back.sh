@@ -27,7 +27,11 @@ if [ "$avail" -gt "$used" ]; then
 
     printf "Clean archive directory\n"
     trash --verbose "$HOME"/archive/life/*
+    trash --verbose "$HOME"/archive/life.large/*
     trash --verbose "$HOME"/archive/project/*
+    trash --verbose "$HOME"/archive/project.large/*
+    trash --verbose "$HOME"/archive/memory/*
+    trash --verbose "$HOME"/archive/memory.large/*
     ;;
   *)
     # Store most important directories in drives or sticks (which label don’t contains "back")
