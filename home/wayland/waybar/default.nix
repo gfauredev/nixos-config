@@ -20,7 +20,7 @@
             interval = 15;
             # full-at = 90;
             states = {
-              full = 85;
+              notfull = 85;
               low = 30;
               warning = 25;
               critical = 15;
@@ -30,9 +30,8 @@
             #   [ "< " "> " "< " "> " "< " "> " "< " "> " "< " "> " ];
             # format-time = "{H}:{m}";
             format = "{icon} {power}";
-            format-charging = "󱐥 {power}";
-            # format-charging = " {power}";
-            format-charging-full = "󱐥 {cycles}";
+            format-charging-notfull = " {power}";
+            format-charging = "󱐥 {cycles}";
             # format = "{icon} {capacity}";
             # format-charging = "󱐥 {capacity}";
             tooltip = false;
