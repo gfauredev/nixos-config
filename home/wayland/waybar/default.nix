@@ -18,18 +18,21 @@
 
           battery = {
             interval = 15;
-            full-at = 90;
+            # full-at = 90;
             states = {
+              full = 85;
               low = 30;
               warning = 25;
               critical = 15;
             };
-            # format-time = "{H}:{m}";
             format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰂀" "󰂁" "󰂂" "󰁹" ];
             # format-icons =
             #   [ "< " "> " "< " "> " "< " "> " "< " "> " "< " "> " ];
+            # format-time = "{H}:{m}";
             format = "{icon} {power}";
             format-charging = "󱐥 {power}";
+            # format-charging = " {power}";
+            format-charging-full = "󱐥 {cycles}";
             # format = "{icon} {capacity}";
             # format-charging = "󱐥 {capacity}";
             tooltip = false;
@@ -45,8 +48,8 @@
             critical-threshold = "75";
             format = "{icon} {temperatureC}";
             format-icons = [ "" "" "" "" "" ];
-            # max-length = 6;
             tooltip = false;
+            # max-length = 6;
           };
 
           cpu = {
@@ -55,8 +58,8 @@
               critical = 80;
             };
             format = "󰻠 {usage}";
-            # max-length = 6;
             tooltip = false;
+            # max-length = 6;
           };
 
           memory = {
@@ -65,8 +68,8 @@
               critical = 80;
             };
             format = " {percentage}";
-            # max-length = 6;
             tooltip = false;
+            # max-length = 6;
           };
 
           network = {
@@ -75,8 +78,8 @@
             format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
             format-ethernet = "󰈀 {ipaddr}/{cidr}";
             format-disconnected = "󰤮 {ifname}";
-            # max-length = 20;
             tooltip = false;
+            # max-length = 20;
           };
 
           pulseaudio = {
@@ -95,9 +98,9 @@
               car = " ";
               default = [ "" "" " " ];
             };
-            # max-length = 20;
             tooltip = false;
             ignored-sinks = [ "Easy Effects Sink" ];
+            # max-length = 20;
           };
 
           "hyprland/workspaces" = {
@@ -113,9 +116,7 @@
               etc = "";
               ext = "";
               sup = "";
-              cli = "❯";
-              # cli = "";
-              # cli = "";
+              cli = "❯"; # ""; # "";
               note = "";
               msg = "󰵅";
               media = "";
@@ -126,9 +127,9 @@
 
           window = {
             format = "{title}";
-            # max-length = lib.mkDefault 400;
             icon = true;
             tooltip = false;
+            # max-length = lib.mkDefault 400;
           };
 
           tray = { spacing = 3; };
@@ -153,11 +154,11 @@
           };
 
           clock = {
-            timezone = "Europe/Paris";
+            # timezone = "Europe/Paris";
             # format = "{: %H:%M  %a %d %b}";
             format = "{:%H:%M %a %d %b}";
-            # max-length = 30;
             tooltip = false;
+            # max-length = 30;
           };
         };
       };

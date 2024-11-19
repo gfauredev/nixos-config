@@ -29,8 +29,7 @@ box {
 }
 
 #battery {
-  min-width: 45px;
-  /* max-width: 55px; */
+  min-width: 20px;
 }
 
 @keyframes fgBlink {
