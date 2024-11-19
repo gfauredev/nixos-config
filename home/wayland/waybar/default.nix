@@ -141,9 +141,10 @@
               spotify = "";
               spotifyd = "";
               mpv = "";
-              brave = "";
-              chromium = "";
+              brave = "󰖟";
               firefox = "";
+              nyxt = "󰖟";
+              chromium = "";
             };
             status-icons = {
               stopped = "";
