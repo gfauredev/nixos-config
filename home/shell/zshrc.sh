@@ -23,7 +23,8 @@ bindkey '^M' empty_cr
 
 # Open with default MIME handler & detach from term
 open() {
-  nohup xdg-open "$@" >/dev/null &
+  # nohup xdg-open "$@" >/dev/null & # FIXME
+  xdg-open "$@" & disown # Bashism
 }
 
 # Make directory(ies) & cd into it (the first)
