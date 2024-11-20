@@ -147,8 +147,8 @@
       # Documents
       scanpdf =
         "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-      typ =
-        "typstyle format-all && typst compile *.typ"; # Quickly compile Typst files
+      # typ = "typstyle format-all && typst compile *.typ"; # Quickly compile Typst files
+      typ = "typst compile ./"; # Quickly compile Typst files
 
       # Mounts
       mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
