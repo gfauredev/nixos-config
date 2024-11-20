@@ -174,10 +174,6 @@
             };
           };
         };
-        dprint = {
-          command = "dprint";
-          args = [ "lsp" ];
-        };
         llm = {
           command = "helix-gpt";
           args = [
@@ -192,6 +188,11 @@
         #   command = "lsp-ai"; # TODO configure and use for every language
         #   args = [ ];
         # };
+        tinymist = { config = { exportPdf = "onType"; }; };
+        dprint = {
+          command = "dprint";
+          args = [ "lsp" ];
+        };
       };
     };
     extraPackages = with pkgs; [
