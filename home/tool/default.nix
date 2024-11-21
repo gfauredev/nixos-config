@@ -22,8 +22,9 @@
     # stacer # Modern cleaner & monitoring
 
     # AI Tools
-    ollama # Run LLMs locally
+    aichat # (Local) LLM in the terminal
     jan # Run LLMs locally
+    # ollama # Run LLMs locally
     # open-interpreter # Interpret LLM code in terminal directly
 
     # Storage & Backup

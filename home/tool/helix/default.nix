@@ -1,8 +1,10 @@
 { pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      helix-gpt # Add LLMs support through LSP
-    ];
+  home.packages = with pkgs; [
+    tabby # Self-hosted AI code assistant
+    tabby-agent # LSP agent for Tabby
+    # nodejs # NodeJS (may be needed by tabby-agent)
+    helix-gpt # Add LLMs support through LSP
+  ];
 
   # See : https://docs.helix-editor.com
   programs.helix = {
@@ -162,6 +164,29 @@
         }
       ];
       language-server = {
+        # TODO configure a local LLM and use for every language
+        # ai = {
+        #   command = "lsp-ai";
+        #   args = [ ];
+        # };
+        tabby = {
+          command = "npx";
+          args = [ "tabby-agent" "--stdio" ]; # ?
+        };
+        llm = {
+          command = "helix-gpt";
+          args = [
+            "--handler"
+            "copilot"
+            "--copilotApiKey"
+            # If you find this, please do not use my API key, thanks
+            "hey"
+          ];
+        };
+        dprint = {
+          command = "dprint";
+          args = [ "lsp" ];
+        };
         ltex = {
           command = "ltex-ls";
           config.ltex = {
@@ -174,25 +199,7 @@
             };
           };
         };
-        llm = {
-          command = "helix-gpt";
-          args = [
-            "--handler"
-            "copilot"
-            "--copilotApiKey"
-            # If you find this, please do not use my API key, thanks
-            "hey"
-          ];
-        };
-        # ai = {
-        #   command = "lsp-ai"; # TODO configure and use for every language
-        #   args = [ ];
-        # };
         tinymist = { config = { exportPdf = "onType"; }; };
-        dprint = {
-          command = "dprint";
-          args = [ "lsp" ];
-        };
       };
     };
     extraPackages = with pkgs; [
