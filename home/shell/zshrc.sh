@@ -32,6 +32,11 @@ md() {
   mkdir -pv "$@" && cd "$1" || return
 }
 
+# Edit a file prepending the ISO date
+de() {
+  $EDITOR "$(date -I)"$*
+}
+
 # Replace occurences of $1 by $2 in $3
 replace() {
   \rg --passthrough --multiline "$1" -r "${@:2}"
