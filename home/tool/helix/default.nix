@@ -75,6 +75,9 @@
             S = "swap_view_up"; # J bépo equivalent
             R = "swap_view_right"; # L bépo equivalent
           };
+          "#" = { # "#" sub mode (shell commands)
+            p.d.f = ":run-shell-command xdg-open *.pdf"; # Open every WD PDFs
+          };
         };
         select = default // {
           c = "extend_char_left"; # Why bothering with consistency ?
@@ -118,10 +121,16 @@
           name = "typst-en";
           scope = "source.typst";
           injection-regex = "typ(st)?";
-          file-types = ["en.typst" "en.typ"];
+          file-types = [ "en.typst" "en.typ" ];
           comment-token = "//";
-          block-comment-tokens = { start = "/*"; end = "*/"; };
-          indent = { tab-width = 2; unit = "  "; };
+          block-comment-tokens = {
+            start = "/*";
+            end = "*/";
+          };
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
           language-servers = [ "tinymist" "typst-lsp" "ltex-fr" "llm" ];
           formatter.command = "typstyle"; # FIXME
           auto-format = true;
