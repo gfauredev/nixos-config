@@ -108,21 +108,31 @@
           auto-format = true;
           formatter.command = "nixfmt";
         }
-
         {
           name = "typst";
-          language-servers = [ "tinymist" "typst-lsp" "ltex" "llm" ];
+          language-servers = [ "tinymist" "typst-lsp" "ltex-fr" "llm" ];
           auto-format = true;
           formatter.command = "typstyle"; # FIXME
+        }
+        {
+          name = "typst-en";
+          scope = "source.typst";
+          injection-regex = "typ(st)?";
+          file-types = ["en.typst" "en.typ"];
+          comment-token = "//";
+          block-comment-tokens = { start = "/*"; end = "*/"; };
+          indent = { tab-width = 2; unit = "  "; };
+          language-servers = [ "tinymist" "typst-lsp" "ltex-fr" "llm" ];
+          formatter.command = "typstyle"; # FIXME
+          auto-format = true;
         }
         {
           name = "markdown";
           # roots = [ ".marksman.toml" ];
           language-servers =
-            [ "marksman" "markdown-oxide" "dprint" "ltex" ]; # "llm" ];
+            [ "marksman" "markdown-oxide" "dprint" "ltex-fr" ]; # "llm" ];
           auto-format = true;
         }
-
         {
           name = "java";
           language-servers = [ "jdtls" "llm" ];
@@ -140,16 +150,14 @@
           name = "jsx";
           language-servers = [ "typescript-language-server" "llm" ];
         }
-
         {
           name = "git-commit";
-          language-servers = [ "ltex" "llm" ];
+          language-servers = [ "ltex-fr" "llm" ];
         }
         {
           name = "git-rebase";
-          language-servers = [ "ltex" "llm" ];
+          language-servers = [ "ltex-fr" "llm" ];
         }
-
         {
           name = "text";
           scope = "source.text";
@@ -159,11 +167,24 @@
             tab-width = 2;
             unit = "  ";
           };
-          language-servers = [ "ltex" "llm" ];
+          language-servers = [ "ltex-fr" "llm" ];
           auto-format = false;
         }
       ];
-      language-server = {
+      language-server = let
+        ltex = {
+          command = "ltex-ls";
+          config.ltex = {
+            completionEnable = true;
+            language = "fr";
+            dictionary = { fr = [ "mdr" ]; };
+            additionalRules = {
+              enablePickyRules = true;
+              motherTongue = "fr";
+            };
+          };
+        };
+      in {
         # TODO configure a local LLM and use for every language
         # ai = {
         #   command = "lsp-ai";
@@ -187,19 +208,8 @@
           command = "dprint";
           args = [ "lsp" ];
         };
-        ltex = {
-          command = "ltex-ls";
-          config.ltex = {
-            completionEnable = true;
-            # language = "en-US";
-            language = "fr";
-            dictionary = { fr = [ "mdr" ]; };
-            additionalRules = {
-              enablePickyRules = true;
-              motherTongue = "fr";
-            };
-          };
-        };
+        ltex-fr = ltex; # ltex that defaults to en for unsupported filetypes
+        ltex-en = ltex // { config.ltex.language = "en-US"; };
         tinymist = { config = { exportPdf = "onType"; }; };
       };
     };
