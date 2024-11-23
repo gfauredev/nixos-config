@@ -62,6 +62,7 @@
           "«" = "unindent"; # < bépo quicker alternative
           ret = "open_below"; # o alternative (Return)
           S-ret = "open_above"; # o alternative (Return)
+          D = [ "extend_line_below" "delete_selection" ];
         };
       in {
         normal = default // {
