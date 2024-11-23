@@ -31,8 +31,10 @@
             # format-time = "{H}:{m}";
             format = "{icon} {power:4.2f}";
             format-charging-notfull = " {power:4.2f}";
-            format-charging = "󱐥 {cycles}";
+            # format-charging-notfull = " {power:4.2f}";
+            format-charging = "󱐥 {power:4.2f}";
             # format = "{icon} {capacity}";
+            # format-charging = "󱐥 {cycles}";
             # format-charging = "󱐥 {capacity}";
             tooltip = false;
             # max-length = 8;
