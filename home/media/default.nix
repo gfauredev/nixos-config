@@ -7,6 +7,7 @@
     ./video.nix
     ./social.nix
     ./gaming.nix
+    ./science.nix
   ];
 
   home.packages = with pkgs; [

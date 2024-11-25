@@ -33,10 +33,8 @@ let
 in {
   home.packages = with pkgs; [
     # blender # Most popular 3D, animation & video editor
+    # TEST if still useful
     blenderWithPySlvs # Patched popular 3D, animation & video editor
-
-    # kicad # Elecronics design
-    # fritzing # Elecronics design
 
     # cq-editor # GUI for Python library CadQuery
     # openscad # Parametric, programmatic (code only) 3D CAD
@@ -46,6 +44,6 @@ in {
     # brlcad # Combinatorial solid modeling system
 
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
-    # cura # Popular 3D printer slicer
+    cura # Popular 3D printer slicer
   ];
 }
