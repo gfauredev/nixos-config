@@ -2,35 +2,46 @@
   description = "Guilhem Fauré’s NixOS Configurations";
 
   inputs = {
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    unstable-pre-25-05.url = "github:nixos/nixpkgs/f6950e6"; # Pre 25.05 commit
-    # stable-25-05.url = "github:nixos/nixpkgs/nixos-25.05"; # Next Stable
-    stable-24-11.url = "github:nixos/nixpkgs/nixos-24.11"; # Current Stable
-    stable-24-05.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous Stable
-
-    home-manager = {
-      url = "github:nix-community/home-manager"; # Home manager
-      inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    # nixpkgs.url = "github:nixos/nixpkgs/f6950e6"; # NixOS Unstable just before 25.05
+    # stable.url = "github:nixos/nixpkgs/nixos-25.05"; # Next NixOS Stable
+    stable.url = "github:nixos/nixpkgs/nixos-24.11"; # Current NixOS Stable
+    # stable.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous NixOS Stable
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
 
     sops-nix.url = "github:Mic92/sops-nix"; # Manage secrets
 
+    home-manager = {
+      url = "github:nix-community/home-manager"; # Home manager
+      inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
+    };
+
     musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
+
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # wezterm-flake = {
+    #   url = "github:wez/wezterm/main?dir=nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # anyrun = {
+    #   url = "github:Kirottu/anyrun";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = { unstable, ... }@inputs:
+  # TODO: see if possible to use either @inputs or a comprehensive list of inputs
+  outputs = { nixpkgs, stable, ... }@inputs:
     let
       system = "x86_64-linux"; # PC architecture (may evolve to RISC-V or ARM)
-      pkgs = unstable.legacyPackages.${system};
-      stablepkgs = inputs.stable-24-11.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
+      stablepkgs = stable.legacyPackages.${system};
     in {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
-        # Laptops #
-        griffin = unstable.lib.nixosSystem {
+        ##### Laptops #####
+        griffin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs stablepkgs; };
           modules = [
             ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
@@ -40,27 +51,40 @@
             (import ./overlay)
           ];
         };
-        chimera = unstable.lib.nixosSystem {
+        chimera = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./system/pc/laptop/chimera # Chimera, a flying creature
           ];
         };
-        # Servers #
-        cerberus = unstable.lib.nixosSystem {
+        ##### Desktops #####
+        # typhon = nixpkgs.lib.nixosSystem {
+        #   specialArgs = { inherit inputs; };
+        #   modules = [
+        #     ./system/pc/typhon # Typhon, the most powerful creature
+        #   ];
+        # };
+        # work = nixpkgs.lib.nixosSystem {
+        #   specialArgs = { inherit inputs; };
+        #   modules = [
+        #     ./system/pc/work # PC used at work
+        #   ];
+        # };
+        ##### Servers #####
+        cerberus = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./system/server/cerberus # Cerberus, a powerful creature with multiple heads
             # ./system/virtualization.nix # TODO make it an option of systems
           ];
         };
-        # NixOS live (install) ISO image #
-        installer = unstable.lib.nixosSystem {
+        ##### NixOS live ISO image, suitable for installation #####
+        installer = nixpkgs.lib.nixosSystem {
           # Build with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
           specialArgs = { inherit inputs; };
           modules = [
-            # "${unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            "${unstable}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./system/installer.nix # Bootable ISO used to install NixOS
           ];
         };
@@ -68,7 +92,7 @@
 
       # home-manager config, available through 'home-manager --flake .#username@hostname'
       homeConfigurations =
-        # TODO cleaner common configs (nix functions)
+        # TODO cleaner terminal commands (nix functions)
         let
           alacritty = {
             name = "alacritty"; # Name of the terminal (for matching)
@@ -86,7 +110,7 @@
           wezterm = {
             name = "wezterm"; # Name of the terminal (for matching)
             cmd = "wezterm start"; # Launch terminal
-            # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
+            # cmd = "wezterm start --always-new-process"; # FIX when too much temrs crash
             exec = ""; # Option to execute a command in place of shell
             cd = "--cwd"; # Option to launch terminal in a directory
             # Classed terminals (executes a command)
@@ -101,16 +125,15 @@
             inherit pkgs;
             extraSpecialArgs = {
               inherit inputs;
-              stablepkgs =
-                import inputs.stable-24-11 { # TODO do this cleaner, globally
-                  inherit system;
-                  config.allowUnfree = true;
-                };
+              stablepkgs = import stable { # TODO do this cleaner
+                inherit system;
+                config.allowUnfree = true;
+              };
               term = wezterm;
               term-alt = alacritty;
               location = location;
             };
-            modules = [ # TODO reduce number of imported modules, custom modules
+            modules = [ # TODO clean this down to one module
               ./home/gf.nix # Myself’s home
               ./home/wayland/griffin.nix # Griffin’s GUI
               ./home/tool # Tooling, mostly technical
@@ -126,11 +149,41 @@
               term-alt = wezterm;
               location = location;
             };
-            modules = [
+            modules = [ # TODO clean this down to one module
               ./home/gf.nix # Myself’s home
               ./home/wayland/griffin.nix # Griffin’s GUI
+              # ./home/tool # Tooling, mostly technical
+              # ./home/media # Media consuming and editing
             ];
           };
+          # "gf@typhon" = inputs.home-manager.lib.homeManagerConfiguration {
+          #   extraSpecialArgs = {
+          #     inherit inputs;
+          #     term = alacritty;
+          #     term-alt = wezterm;
+          #     location = location;
+          #   };
+          #   modules = [
+          #     ./home/gf.nix # Myself’s home
+          #     ./home/wayland/typhon.nix # Typhon’s GUI
+          #     ./home/tool # Tooling, mostly technical
+          #     ./home/media # Media consuming and editing
+          #   ];
+          # };
+          # "gf@work" = inputs.home-manager.lib.homeManagerConfiguration {
+          #   extraSpecialArgs = {
+          #     inherit inputs;
+          #     term = alacritty;
+          #     term-alt = wezterm;
+          #     location = location;
+          #   };
+          #   modules = [
+          #     ./home/gf.nix # Myself’s home
+          #     ./home/wayland # Wayland WM & related
+          #     ./home/tool # Tooling, mostly technical
+          #     ./home/media # Media consuming and editing
+          #   ];
+          # };
         };
     };
 }
