@@ -95,8 +95,7 @@
             menu =
               "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
           };
-          # location = "/config"; # This Flake location, to use in config script
-          location = "/home/gf/.config/flake"; # This Flake location
+          location = "/config"; # This Flake location, to use in config script
         in {
           "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
