@@ -2,45 +2,35 @@
   description = "Guilhem Fauré’s NixOS Configurations";
 
   inputs = {
+    # unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    # nixpkgs.url = "github:nixos/nixpkgs/f6950e6"; # NixOS Unstable just before 25.05
-    # stable.url = "github:nixos/nixpkgs/nixos-25.05"; # Next NixOS Stable
+    # nixos-pre-25-05.url = "github:nixos/nixpkgs/f6950e6"; # Pre 25.05 commit
+    # nixos-25-05.url = "github:nixos/nixpkgs/nixos-25.05"; # Next NixOS Stable
+    # nixos-24-11.url = "github:nixos/nixpkgs/nixos-24.11"; # Current NixOS Stable
     stable.url = "github:nixos/nixpkgs/nixos-24.11"; # Current NixOS Stable
-    # stable.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous NixOS Stable
-
-    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
-
-    sops-nix.url = "github:Mic92/sops-nix"; # Manage secrets
+    # nixos-24-05.url = "github:nixos/nixpkgs/nixos-24.05"; # Previous NixOS Stable
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
-    musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
+    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
+    sops-nix.url = "github:Mic92/sops-nix"; # Manage secrets
 
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # wezterm-flake = {
-    #   url = "github:wez/wezterm/main?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # anyrun = {
-    #   url = "github:Kirottu/anyrun";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
+    musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
   };
 
-  # TODO: see if possible to use either @inputs or a comprehensive list of inputs
-  outputs = { nixpkgs, stable, ... }@inputs:
+  outputs = { nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux"; # PC architecture (may evolve to RISC-V or ARM)
       pkgs = nixpkgs.legacyPackages.${system};
-      stablepkgs = stable.legacyPackages.${system};
+      stablepkgs = inputs.stable.legacyPackages.${system};
     in {
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
-        ##### Laptops #####
+        # Laptops #
         griffin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs stablepkgs; };
           modules = [
@@ -57,20 +47,7 @@
             ./system/pc/laptop/chimera # Chimera, a flying creature
           ];
         };
-        ##### Desktops #####
-        # typhon = nixpkgs.lib.nixosSystem {
-        #   specialArgs = { inherit inputs; };
-        #   modules = [
-        #     ./system/pc/typhon # Typhon, the most powerful creature
-        #   ];
-        # };
-        # work = nixpkgs.lib.nixosSystem {
-        #   specialArgs = { inherit inputs; };
-        #   modules = [
-        #     ./system/pc/work # PC used at work
-        #   ];
-        # };
-        ##### Servers #####
+        # Servers #
         cerberus = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
@@ -78,7 +55,7 @@
             # ./system/virtualization.nix # TODO make it an option of systems
           ];
         };
-        ##### NixOS live ISO image, suitable for installation #####
+        # NixOS live (install) ISO image #
         installer = nixpkgs.lib.nixosSystem {
           # Build with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
           specialArgs = { inherit inputs; };
@@ -92,7 +69,7 @@
 
       # home-manager config, available through 'home-manager --flake .#username@hostname'
       homeConfigurations =
-        # TODO cleaner terminal commands (nix functions)
+        # TODO cleaner common config (nix functions)
         let
           alacritty = {
             name = "alacritty"; # Name of the terminal (for matching)
@@ -125,7 +102,7 @@
             inherit pkgs;
             extraSpecialArgs = {
               inherit inputs;
-              stablepkgs = import stable { # TODO do this cleaner
+              stablepkgs = import inputs.stable { # TODO do this cleaner
                 inherit system;
                 config.allowUnfree = true;
               };
@@ -152,38 +129,8 @@
             modules = [ # TODO clean this down to one module
               ./home/gf.nix # Myself’s home
               ./home/wayland/griffin.nix # Griffin’s GUI
-              # ./home/tool # Tooling, mostly technical
-              # ./home/media # Media consuming and editing
             ];
           };
-          # "gf@typhon" = inputs.home-manager.lib.homeManagerConfiguration {
-          #   extraSpecialArgs = {
-          #     inherit inputs;
-          #     term = alacritty;
-          #     term-alt = wezterm;
-          #     location = location;
-          #   };
-          #   modules = [
-          #     ./home/gf.nix # Myself’s home
-          #     ./home/wayland/typhon.nix # Typhon’s GUI
-          #     ./home/tool # Tooling, mostly technical
-          #     ./home/media # Media consuming and editing
-          #   ];
-          # };
-          # "gf@work" = inputs.home-manager.lib.homeManagerConfiguration {
-          #   extraSpecialArgs = {
-          #     inherit inputs;
-          #     term = alacritty;
-          #     term-alt = wezterm;
-          #     location = location;
-          #   };
-          #   modules = [
-          #     ./home/gf.nix # Myself’s home
-          #     ./home/wayland # Wayland WM & related
-          #     ./home/tool # Tooling, mostly technical
-          #     ./home/media # Media consuming and editing
-          #   ];
-          # };
         };
     };
 }
