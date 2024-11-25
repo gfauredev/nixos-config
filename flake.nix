@@ -10,7 +10,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
-      inputs.nixpkgs.follows = "unstable"; # Follow nixpkgs
+      inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
