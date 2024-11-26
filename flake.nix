@@ -106,11 +106,11 @@
         location = "/config"; # This Flake location, to use in config script
       in {
         "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit nixpkgs;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
           extraSpecialArgs = {
             inherit inputs;
             stablepkgs = import inputs.stable { # TODO do this cleaner
-              system = "x86_64-linux"; # System architecture
+              system = "x86_64-linux"; # System architecture TODO factorize
               config.allowUnfree = true;
             };
             term = wezterm;
@@ -126,7 +126,7 @@
           ];
         };
         "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit nixpkgs;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
           extraSpecialArgs = {
             inherit inputs stable;
             term = alacritty;
