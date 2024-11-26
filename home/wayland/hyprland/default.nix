@@ -1,4 +1,4 @@
-{ lib, pkgs, term, term-alt, ... }: {
+{ lib, pkgs, ... }: {
   home.packages = with pkgs; [
     wl-mirror # Mirror wayland output
     hyprcursor # Modern cursor engine
@@ -70,6 +70,33 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
       bindd = let
+        term = # TODO this cleaner, factorize (duplicate of ../../shell/default.nix)
+          {
+            name = "wezterm"; # Name of the terminal (for matching)
+            cmd = "wezterm start"; # Launch terminal
+            # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
+            exec = ""; # Option to execute a command in place of shell
+            cd = "--cwd"; # Option to launch terminal in a directory
+            # Classed terminals (executes a command)
+            monitoring = "wezterm start --class monitoring"; # Monitoring
+            note = "wezterm start --class note"; # Note
+            menu =
+              "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
+          };
+        term-alt = # TODO cleaner
+          {
+            name = "alacritty"; # Name of the terminal (for matching)
+            cmd = "alacritty"; # Launch terminal
+            exec = "--command"; # Option to execute a command in place of shell
+            cd =
+              "--working-directory"; # Option to launch terminal in a directory
+            # Classed terminals (executes a command)
+            monitoring =
+              "alacritty --class monitoring --command"; # Monitoring terminal
+            note = "alacritty --class note --command"; # Monitoring terminal
+            menu =
+              "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
+          };
         launch = {
           all = "pgrep albert || albert; albert toggle";
           alt = "rofi -show combi -combi-modes";

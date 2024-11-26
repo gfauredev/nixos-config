@@ -1,4 +1,4 @@
-{ pkgs, term, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     tree-sitter-grammars.tree-sitter-typst
     nodejs_22 # remove when withNodeJs param is fixed
@@ -187,8 +187,9 @@
     settings."Comment[fr]" = "Éditer des fichiers texte";
     # settings.TryExec = "${pkgs.neovim}/bin/nvim";
     settings.TryExec = "nvim";
-    exec = "env SHELL=zsh ${term.cmd} ${term.exec} nvim %F";
-    terminal = false; # We want xdg-open to open it in new window
+    terminal = true; # FIXME
+    # terminal = false; # We want xdg-open to open it in new window
+    # exec = "env SHELL=zsh ${term.cmd} ${term.exec} nvim %F";
     type = "Application";
     settings.Keywords = "text;editor;";
     settings."Keywords[fr]" = "texte;éditeur;";

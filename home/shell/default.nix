@@ -1,5 +1,18 @@
-{ lib, pkgs, term, location, ... }: {
+{ lib, pkgs, ... }: {
   home.packages = let
+    term = # TODO this cleaner (import ../../tool/wezterm/info.nix)
+      {
+        name = "wezterm"; # Name of the terminal (for matching)
+        cmd = "wezterm start"; # Launch terminal
+        # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
+        exec = ""; # Option to execute a command in place of shell
+        cd = "--cwd"; # Option to launch terminal in a directory
+        # Classed terminals (executes a command)
+        monitoring = "wezterm start --class monitoring"; # Monitoring
+        note = "wezterm start --class note"; # Note
+        menu =
+          "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
+      };
     smart-terminal = pkgs.writeScriptBin "t" ''
       #!/bin/sh
       wd=$PWD
@@ -19,10 +32,7 @@
     '';
     extract = pkgs.writeScriptBin "ex" "${lib.readFile ./extract.sh}";
     backup = pkgs.writeScriptBin "back" "${lib.readFile ./back.sh}";
-    configure = pkgs.writeScriptBin "cfg" ''
-      CONFIG_DIR="${location}"
-      ${lib.readFile ./configure.sh}
-    '';
+    configure = pkgs.writeScriptBin "cfg" "${lib.readFile ./configure.sh}";
   in with pkgs; [
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
@@ -114,8 +124,8 @@
       gc = "nix-collect-garbage";
       governor =
         "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
-      news =
-        "home-manager --flake ${location}#$USER@$(hostname) news"; # See home manager news
+      # news = # See home manager news FIXME
+      #   "home-manager --flake ${flake-location}#$USER@$(hostname) news";
       egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
 
       # Tools

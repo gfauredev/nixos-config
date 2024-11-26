@@ -76,68 +76,32 @@
     };
 
     # home-manager config, available through 'home-manager --flake .#username@hostname'
-    homeConfigurations =
-      # TODO cleaner common config (nix functions/modules options)
-      let
-        alacritty = {
-          name = "alacritty"; # Name of the terminal (for matching)
-          cmd = "alacritty"; # Launch terminal
-          exec = "--command"; # Option to execute a command in place of shell
-          cd = "--working-directory"; # Option to launch terminal in a directory
-          # Classed terminals (executes a command)
-          monitoring =
-            "alacritty --class monitoring --command"; # Monitoring terminal
-          note = "alacritty --class note --command"; # Monitoring terminal
-          menu =
-            "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
-        };
-        wezterm = {
-          name = "wezterm"; # Name of the terminal (for matching)
-          cmd = "wezterm start"; # Launch terminal
-          # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
-          exec = ""; # Option to execute a command in place of shell
-          cd = "--cwd"; # Option to launch terminal in a directory
-          # Classed terminals (executes a command)
-          monitoring = "wezterm start --class monitoring"; # Monitoring
-          note = "wezterm start --class note"; # Note
-          menu =
-            "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
-        };
-        location = "/config"; # This Flake location, to use in config script
-      in {
-        "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
-          extraSpecialArgs = {
-            inherit inputs;
-            stablepkgs = import inputs.stable { # TODO do this cleaner
-              system = "x86_64-linux"; # System architecture TODO factorize
-              config.allowUnfree = true;
-            };
-            term = wezterm;
-            term-alt = alacritty;
-            location = location;
+    homeConfigurations = {
+      "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
+        extraSpecialArgs = {
+          inherit inputs;
+          stablepkgs = import inputs.stable { # TODO do this cleaner
+            system = "x86_64-linux"; # System architecture TODO factorize
+            config.allowUnfree = true;
           };
-          modules = [ # TODO clean this down to one module
-            ./home/gf.nix # Myself’s home
-            ./home/wayland/griffin.nix # Griffin’s GUI
-            ./home/tool # Tooling, mostly technical
-            ./home/media # Media consuming and editing
-            (import ./overlay)
-          ];
         };
-        "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
-          extraSpecialArgs = {
-            inherit inputs stable;
-            term = alacritty;
-            term-alt = wezterm;
-            location = location;
-          };
-          modules = [ # TODO clean this down to one module
-            ./home/gf.nix # Myself’s home
-            ./home/wayland/griffin.nix # Griffin’s GUI
-          ];
-        };
+        modules = [ # TODO clean this down to one module
+          ./home/gf.nix # Myself’s home
+          ./home/wayland/griffin.nix # Griffin’s GUI
+          ./home/tool # Tooling, mostly technical
+          ./home/media # Media consuming and editing
+          (import ./overlay)
+        ];
       };
+      "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
+        extraSpecialArgs = { inherit inputs stable; };
+        modules = [ # TODO clean this down to one module
+          ./home/gf.nix # Myself’s home
+          ./home/wayland/griffin.nix # Griffin’s GUI
+        ];
+      };
+    };
   };
 }
