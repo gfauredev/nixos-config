@@ -182,8 +182,8 @@
       amenda = "git commit --amend -a";
       amendam = "git commit --amend -am";
       push = "git push";
-      pusha = "git commit -am 'Unnamed update'; git push";
-      upsub = "git commit -am 'Updated submodule(s)'; git push";
+      # pusha = "git commit -am 'UNNAMED'; git push"; # This is wrong
+      upsub = "git commit -am 'chore: update submodule(s)'; git push";
       pull = "git pull --recurse-submodules --jobs=16";
       pupu = "git pull --recurse-submodules --jobs=16 && git push";
       checkout = "git checkout";
