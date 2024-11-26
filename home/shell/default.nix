@@ -122,8 +122,11 @@
       jo = "sudo journalctl -xfe";
       re = "exec zsh";
       gc = "nix-collect-garbage";
-      governor =
-        "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
+      # governor = "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
+      performance =
+        "sudo cpupower frequency-set --governor performance"; # Performance mode
+      powersave =
+        "sudo cpupower frequency-set --governor powersave"; # Powersave mode
       # news = # See home manager news FIXME
       #   "home-manager --flake ${flake-location}#$USER@$(hostname) news";
       egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
