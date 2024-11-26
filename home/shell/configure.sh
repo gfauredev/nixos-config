@@ -49,8 +49,9 @@ edit() {
   $EDITOR . && git add . && git commit "$@" || return
 }
 
-cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" || cd /flake || cd /config \
- || cd /etc/nixos || cd /etc/flake || exit # Go inside the config directory
+cd /config || exit # Go inside the config directory
+# cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" || cd /flake || cd /config \
+#  || cd /etc/nixos || cd /etc/flake || exit # Go inside the config directory
 
 if [ "$#" -eq 0 ]; then
   cfg_pull
