@@ -48,7 +48,7 @@ enabled=true
 size=7
 
 [files]
-enabled=true
+enabled=false
 fs_browsers_match_case_sensitive=false
 fs_browsers_show_hidden=false
 home\gf\data.local\followSymlinks=false
