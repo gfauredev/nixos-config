@@ -84,8 +84,10 @@
             r = "goto_line_end";
             h = "goto_window_center";
             k = "goto_reference";
-            l = "goto_reference"; # TODO more obvious mapping
-            j = "no_op"; # TODO repurpose
+            D = "goto_definition";
+            d.d = "goto_definition";
+            d.f = "goto_definition";
+            d.c = "goto_declaration";
           };
         };
         select = default // {
