@@ -79,6 +79,14 @@
           "#" = { # "#" sub mode (shell commands)
             p.d.f = ":run-shell-command xdg-open *.pdf"; # Open every WD PDFs
           };
+          g = {
+            c = "goto_line_start";
+            r = "goto_line_end";
+            h = "goto_window_center";
+            k = "goto_reference";
+            l = "goto_reference"; # TODO more obvious mapping
+            j = "no_op"; # TODO repurpose
+          };
         };
         select = default // {
           c = "extend_char_left"; # Why bothering with consistency ?
