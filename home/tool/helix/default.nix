@@ -77,7 +77,9 @@
             R = "swap_view_right"; # L bépo equivalent
           };
           "#" = { # "#" sub mode (shell commands)
-            p.d.f = ":run-shell-command xdg-open *.pdf"; # Open every WD PDFs
+            # Open every WD PDFs
+            p.d.f =
+              ":run-shell-command xdg-open $(ls --sort=time *.pdf|head -n1)";
           };
           g = {
             c = "goto_line_start";
