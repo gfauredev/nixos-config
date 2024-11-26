@@ -22,42 +22,53 @@
     musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux"; # PC architecture (may evolve to RISC-V or ARM)
       pkgs = nixpkgs.legacyPackages.${system};
       stablepkgs = inputs.stable.legacyPackages.${system};
     in {
+      nixosModules = {
+        # Laptops #
+        griffin = { # Griffin, a powerful and flying creature
+          imports = [
+            ./system/pc/laptop/griffin
+            ./system/user/gf.nix # TODO make it an option
+            ./system/virtualization.nix # TODO make it an option
+            ./system/pc/gaming.nix # TODO make it an option
+          ];
+        };
+        chimera = { # Chimera, a flying creature
+          imports = [ ./system/pc/laptop/chimera ];
+        };
+        # Servers #
+        cerberus = { # Cerberus, a powerful creature with multiple heads
+          imports = [ ./system/server/cerberus ];
+        };
+        # Misc #
+        overlay = { # Changes made to nixpkgs globally
+          imports = [ (import ./overlay) ];
+        };
+      };
       # NixOS config, available through 'nixos-rebuild --flake .#hostname'
       nixosConfigurations = {
         # Laptops #
         griffin = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs stablepkgs; };
-          modules = [
-            ./system/pc/laptop/griffin # Griffin, a powerful and flying creature
-            ./system/user/gf.nix # TODO make it an option of systems (may include home)
-            ./system/virtualization.nix # TODO make it an option of systems
-            ./system/pc/gaming.nix # TODO make it an option of systems
-            (import ./overlay)
-          ];
+          modules = [ self.nixosModules.griffin self.nixosModules.overlay ];
         };
         chimera = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
-          modules = [
-            ./system/pc/laptop/chimera # Chimera, a flying creature
-          ];
+          modules = [ self.nixosModules.chimera self.nixosModules.overlay ];
         };
         # Servers #
         cerberus = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
-          modules = [
-            ./system/server/cerberus # Cerberus, a powerful creature with multiple heads
-            # ./system/virtualization.nix # TODO make it an option of systems
-          ];
+          modules = [ self.nixosModules.cerberus self.nixosModules.overlay ];
         };
         # NixOS live (install) ISO image #
-        installer = nixpkgs.lib.nixosSystem {
-          # Build with : nix build .#nixosConfigurations.installer.config.system.build.isoImage
+        installer = nixpkgs.lib.nixosSystem { # TODO this cleaner
+          # Build : nix build .#nixosConfigurations.installer.config.system.build.isoImage
           specialArgs = { inherit inputs; };
           modules = [
             # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -69,7 +80,7 @@
 
       # home-manager config, available through 'home-manager --flake .#username@hostname'
       homeConfigurations =
-        # TODO cleaner common config (nix functions)
+        # TODO cleaner common config (nix functions/modules options)
         let
           alacritty = {
             name = "alacritty"; # Name of the terminal (for matching)
@@ -87,7 +98,7 @@
           wezterm = {
             name = "wezterm"; # Name of the terminal (for matching)
             cmd = "wezterm start"; # Launch terminal
-            # cmd = "wezterm start --always-new-process"; # FIX when too much temrs crash
+            # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
             exec = ""; # Option to execute a command in place of shell
             cd = "--cwd"; # Option to launch terminal in a directory
             # Classed terminals (executes a command)
