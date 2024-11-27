@@ -28,21 +28,19 @@
           normal = "block";
           select = "block";
           insert = "bar";
-          # replace = "underline";
         };
         indent-guides.render = true;
       };
       keys = let
+        qk = 8; # Quicker movements multiplier
         default = {
           c = "move_char_left"; # h bépo equivalent
           t = "move_visual_line_down"; # k bépo equivalent
           s = "move_visual_line_up"; # j bépo equivalent
           r = "move_char_right"; # l bépo equivalent
           C = "move_prev_long_word_start"; # B alternative
-          T = builtins.genList (x: "move_visual_line_down")
-            8; # j×8 quick alternative
-          S = builtins.genList (x: "move_visual_line_up")
-            8; # k×8 quicker alternative
+          T = builtins.genList (x: "move_visual_line_down") qk; # j×8 quicker
+          S = builtins.genList (x: "move_visual_line_up") qk; # k×8 quicker
           R = "move_next_long_word_end"; # E alternative
           h = "find_till_char"; # t replacement
           H = "till_prev_char"; # T replacement
@@ -53,7 +51,7 @@
           l = "change_selection"; # c replacement
           L = "copy_selection_on_prev_line"; # A-c replacement
           C-l = "copy_selection_on_next_line"; # C replacement
-          A-l = [ # Quick A-c + C replacement
+          A-l = [ # A-c + C quicker replacement
             "copy_selection_on_prev_line"
             "copy_selection_on_next_line"
           ];
@@ -62,7 +60,8 @@
           "«" = "unindent"; # < bépo quicker alternative
           ret = "open_below"; # o alternative (Return)
           S-ret = "open_above"; # o alternative (Return)
-          D = [ "extend_line_below" "delete_selection" ];
+          D = [ "extend_line_below" "delete_selection" ]; # Delete line
+          space.t = "goto_word"; # Jump to a tag
         };
       in {
         normal = default // {
@@ -76,10 +75,9 @@
             S = "swap_view_up"; # J bépo equivalent
             R = "swap_view_right"; # L bépo equivalent
           };
-          "#" = { # "#" sub mode (shell commands)
-            # Open every WD PDFs
-            p.d.f =
-              ":run-shell-command xdg-open $(ls --sort=time *.pdf|head -n1)";
+          "#" = { # "#" sub mode (shell or files related commands)
+            # Open most recently edited PDF
+            p = ":run-shell-command xdg-open $(ls --sort=time *.pdf|head -n1)";
           };
           g = {
             c = "goto_line_start";
@@ -90,17 +88,16 @@
             d.d = "goto_definition";
             d.f = "goto_definition";
             d.c = "goto_declaration";
+            d.l = "goto_declaration";
           };
         };
         select = default // {
-          c = "extend_char_left"; # Why bothering with consistency ?
-          t = "extend_line_down"; # Why bothering with consistency ?
-          s = "extend_line_up"; # Why bothering with consistency ?
-          r = "extend_char_right"; # Why bothering with consistency ?
-          T =
-            builtins.genList (x: "extend_line_down") 8; # j×8 quick alternative
-          S =
-            builtins.genList (x: "extend_line_up") 8; # k×8 quicker alternative
+          c = "extend_char_left"; # h bépo equivalent
+          t = "extend_line_down"; # j bépo equivalent
+          s = "extend_line_up"; # k bépo equivalent
+          r = "extend_char_right"; # l bépo equivalent
+          T = builtins.genList (x: "extend_line_down") qk; # j×8 quicker
+          S = builtins.genList (x: "extend_line_up") qk; # k×8 quicker
         };
       };
     };
