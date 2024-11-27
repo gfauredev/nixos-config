@@ -38,10 +38,12 @@
           t = "move_visual_line_down"; # k bépo equivalent
           s = "move_visual_line_up"; # j bépo equivalent
           r = "move_char_right"; # l bépo equivalent
-          C = "move_prev_long_word_start"; # B alternative
+          C = "extend_to_line_start"; # B, quicker vgl
+          # C = "move_prev_long_word_start"; # B alternative
           T = builtins.genList (x: "move_visual_line_down") qk; # j×8 quicker
           S = builtins.genList (x: "move_visual_line_up") qk; # k×8 quicker
-          R = "move_next_long_word_end"; # E alternative
+          R = "extend_to_line_end"; # E, quicker vgh
+          # R = "move_next_long_word_end"; # E alternative
           h = "find_till_char"; # t replacement
           H = "till_prev_char"; # T replacement
           j = "replace"; # r replacement
