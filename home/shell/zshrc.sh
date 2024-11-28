@@ -34,7 +34,7 @@ md() {
 
 # Edit a file prepending the ISO date
 de() {
-  $EDITOR "$(date -I)"$*
+  $EDITOR "$(date -I)".$*
 }
 
 # Replace occurences of $1 by $2 in $3
