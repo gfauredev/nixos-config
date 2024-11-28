@@ -26,6 +26,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "b139c705",
+        "name": "DataSheetCatalog",
+        "trigger": "ds",
+        "url": "https://search.datasheetcatalog.net/key/%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "5f79f9e5",
         "name": "Deepl EN to FR",
         "trigger": "en-fr",
