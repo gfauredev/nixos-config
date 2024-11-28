@@ -88,5 +88,6 @@
         default_flags = "dgps";
       };
     };
+    translate-shell.enable = true;
   };
 }
