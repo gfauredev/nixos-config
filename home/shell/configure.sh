@@ -41,7 +41,7 @@ home() {
 
 cfg_pull() {
   printf "Pulling latest changes\n"
-  git pull || printf '\nUnable to pull from %s\n' "$(git remote)"
+  git pull --recurse-submodules || printf '\nUnable to pull from %s\n' "$(git remote)"
   echo
 }
 
