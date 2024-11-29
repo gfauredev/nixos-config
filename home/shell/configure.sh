@@ -55,7 +55,7 @@ cd /config || exit # Go inside the config directory
 
 if [ "$#" -eq 0 ]; then
   cfg_pull
-  cd home || exit
+  # cd home || exit # FIXME
   edit && home
   exit
 fi
@@ -73,13 +73,13 @@ case "$1" in
 "system")
   sudo echo Asked sudo now for later
   cfg_pull
-  cd system || exit
+  # cd system || exit # FIXME
   edit && system || exit
   shift
   ;;
 "home")
   cfg_pull
-  cd home || exit
+  # cd home || exit # FIXME
   edit && home || exit
   shift
   ;;
@@ -114,11 +114,11 @@ case "$1" in
   shift
   ;;
 "cd")
-  exec $SHELL
+  exec $SHELL # We execute a shell at the WD of this script
   ;;
 *) # If parameters are a message, update home with this commit message and exit
   cfg_pull
-  cd home || exit
+  # cd home || exit # FIXME
   edit -m "$*" && home
   exit
   ;;
