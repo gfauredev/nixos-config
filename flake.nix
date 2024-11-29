@@ -25,10 +25,10 @@
       # Laptops #
       griffin = { # Griffin, a powerful and flying creature
         imports = [
-          ./system/pc/laptop/griffin
-          ./system/user/gf.nix # TODO make it an option
-          ./system/virtualization.nix # TODO make it an option
-          ./system/pc/gaming.nix # TODO make it an option
+          ./system/pc/laptop/griffin # TODO use below options instead
+          ./system/user/gf.nix # TODO make it an option of module system/user/
+          ./system/virtualization.nix # TODO make it an option of module system/
+          ./system/pc/gaming.nix # TODO make it an option of module system/pc/
         ];
       };
       chimera = { # Chimera, a flying creature
@@ -75,10 +75,24 @@
       };
     };
 
+    homeModules = {
+      gf = { # Myself, main user
+        imports = [ ./home/gf.nix ];
+      };
+      griffin = { # Griffin laptop’s GUI
+        imports = [ ./home/wayland/griffin.nix ];
+      };
+      tool = { # Miscellaneous tools, mostly technical
+        imports = [ ./home/tool ];
+      };
+      media = { # Media consuming and editing
+        imports = [ ./home/media ];
+      };
+    };
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations = {
       "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs;
           stablepkgs = import inputs.stablepkgs { # TODO do this cleaner
@@ -86,21 +100,18 @@
             config.allowUnfree = true;
           };
         };
-        modules = [ # TODO clean this down to one module
-          ./home/gf.nix # Myself’s home
-          ./home/wayland/griffin.nix # Griffin’s GUI
-          ./home/tool # Tooling, mostly technical
-          ./home/media # Media consuming and editing
-          (import ./overlay)
+        modules = [
+          self.homeModules.gf
+          self.homeModules.griffin
+          self.homeModules.tool
+          self.homeModules.media
+          self.nixosModules.overlay
         ];
       };
       "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # TODO factorize
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
-        modules = [ # TODO clean this down to one module
-          ./home/gf.nix # Myself’s home
-          ./home/wayland/griffin.nix # Griffin’s GUI
-        ];
+        modules = [ self.homeModules.gf ];
       };
     };
   };
