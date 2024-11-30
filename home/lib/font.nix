@@ -16,29 +16,16 @@
     # libre-franklin
     noto-fonts-cjk-sans # Chinese, Japanese, Korean sans
     #################### Mono ####################
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "Iosevka"
-        # "IosevkaTerm"
-        # "IosevkaTermSlab"
-        "Hack"
-        # "Noto"
-        # "JetBrainsMono"
-        # "SourceCodePro"
-        # "Ubuntu"
-        # "UbuntuMono"
-      ];
-    })
-    # fira-code # Great mono font
-    # fira-code-symbols # Great icons
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.iosevka
+    nerd-fonts.hack
     #################### Packages ####################
-    # nerdfonts # Big package of fonts with lots of icons
     liberation_ttf # ≃ Times New Roman, Arial, Courier New equivalents
     # noto-fonts # Google well internationalized fonts
     #################### Symbols ####################
     noto-fonts-emoji # Emojies
+    # fira-code-symbols # Great icons
     # emojione # Emojies
     # lmmath # Classic font with math support
     # font-awesome # Thousands of icons
