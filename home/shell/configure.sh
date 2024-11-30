@@ -42,6 +42,7 @@ home() {
 cfg_pull() {
   printf "Pulling latest changes\n"
   git pull --recurse-submodules || printf '\nUnable to pull from %s\n' "$(git remote)"
+  nix flake update --commit-lock-file || exit
   echo
 }
 
@@ -99,7 +100,7 @@ case "$1" in
     sudo echo Asked sudo now for later
   fi
   cfg_pull
-  nix flake update --commit-lock-file || exit
+  nix flake update --flake ./public/ --commit-lock-file || exit
   shift
   ;;
 "push")
