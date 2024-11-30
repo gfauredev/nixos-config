@@ -20,7 +20,7 @@
     musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosModules = {
       # Laptops #
       griffin = { # Griffin, a powerful and flying creature
@@ -94,7 +94,7 @@
     };
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations = {
-      "gf@griffin" = inputs.home-manager.lib.homeManagerConfiguration {
+      "gf@griffin" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs;
@@ -105,7 +105,7 @@
         };
         modules = [ self.homeModules."gf@griffin" ];
       };
-      "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
+      "gf@chimera" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
         modules = [ self.homeModules."gf@chimera" ];
