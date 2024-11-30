@@ -31,7 +31,7 @@
     # xpdf # PDF reader
     pdf4qt # PDF editor TODO hm module
     pdf-sign # PDF signing
-    naps2 # Scan PDFs
+    # naps2 # Scan PDFs FIX
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
 
