@@ -1,5 +1,5 @@
 #!/bin/sh
-subflake='public'
+subflake='./public/'
 nixos_param=''
 home_manager_param=''
 local_substituter='http://192.168.42.42:42'
@@ -104,18 +104,18 @@ case "$1" in
     sudo echo Asked sudo now for later
   fi
   cfg_pull
-  nix flake update --flake ./public/ --commit-lock-file || exit
+  nix flake update --flake $subflake --commit-lock-file || exit
   shift
   ;;
 "push")
-  git rebase -i || exit
+  git -C $subflake rebase -i || exit
   git push || exit
   shift
   ;;
 "log")
-  git log --oneline || exit
+  git -C $subflake log --oneline || exit
   echo
-  git status || exit
+  git -C $subflake status || exit
   shift
   ;;
 "cd")
@@ -143,7 +143,7 @@ for param in "$@"; do
     home
     ;;
   "push")
-    git push
+    git -C $subflake push
     ;;
   "off")
     systemctl poweroff

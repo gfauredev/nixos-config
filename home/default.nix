@@ -3,7 +3,6 @@
 
   imports = [
     ./shell # Interactive POSIX shell
-    ./lib/font.nix # My favorite fonts
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -17,6 +16,16 @@
   };
 
   news.display = "notify"; # Notify for new home manager options
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = [ "FiraCode Nerd Font" ];
+      serif = [ "Libre Baskerville" ];
+      sansSerif = [ "Nacelle" ];
+      emoji = [ "Noto Color Emoji" ];
+    };
+  };
 
   home.packages = with pkgs; [
     devenv # Developer environments management (simpler flake.nix for dev)

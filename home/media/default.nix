@@ -55,8 +55,6 @@
     # winetricks # Execute Window$ programs TODO reenable
   ];
 
-  fonts.fontconfig.enable = true;
-
   services = {
     playerctld.enable = true;
     mpris-proxy.enable = true;

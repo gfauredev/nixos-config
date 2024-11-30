@@ -46,8 +46,8 @@
       # MANPAGER = "ov";
       # MANPAGER = "nvim +Man!"; # Use NeoVim editor as man pager
 
-      TYPST_FONT_PATHS =
-        "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
+      # TYPST_FONT_PATHS =
+      #   "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
