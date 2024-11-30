@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    # unstable.url = "github:nixos/nixpkgs/f6950e6"; # Commit before 25.05 Unstable
-    # stable.url = "github:nixos/nixpkgs/nixos-25.05"; # 25.05 NixOS Stable
-    stablepkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # 24.11 NixOS Stable
-    # stable.url = "github:nixos/nixpkgs/nixos-24.05"; # 24.05 NixOS Stable
+    # pkgs25-04.url = "github:nixos/nixpkgs/f6950e6"; # Commit before 25.05 Unstable
+    # pkgs25-05.url = "github:nixos/nixpkgs/nixos-25.05"; # 25.05 NixOS Stable
+    pkgs24-11.url = "github:nixos/nixpkgs/nixos-24.11"; # 24.11 NixOS Stable
+    # pkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05"; # 24.05 NixOS Stable
 
     home-manager = {
       url = "github:nix-community/home-manager"; # Home manager
@@ -82,6 +82,15 @@
           (import ./overlay) # Changes made to nixpkgs globally TODO factorize
         ];
       };
+      "gf@chimera" = {
+        imports = [
+          ./home/gf.nix # Myself, main user
+          ./home/wayland # Laptop GUI
+          ./home/tool # Miscellaneous tools, mostly technical
+          ./home/media # Media consuming and editing
+          (import ./overlay) # Changes made to nixpkgs globally TODO factorize
+        ];
+      };
     };
     # home-manager config, available through 'home-manager --flake .#username@hostname'
     homeConfigurations = {
@@ -89,7 +98,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs;
-          stablepkgs = import inputs.stablepkgs { # TODO do this cleaner
+          stablepkgs = import inputs.pkgs24-11 { # TODO do this cleaner
             system = "x86_64-linux"; # System architecture TODO factorize
             config.allowUnfree = true;
           };
