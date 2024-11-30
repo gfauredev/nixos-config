@@ -1,4 +1,5 @@
 #!/bin/sh
+subflake='public'
 nixos_param=''
 home_manager_param=''
 local_substituter='http://192.168.42.42:42'
@@ -42,12 +43,15 @@ home() {
 cfg_pull() {
   printf "Pulling latest changes\n"
   git pull --recurse-submodules || printf '\nUnable to pull from %s\n' "$(git remote)"
-  nix flake update --commit-lock-file || exit
+  # nix flake update --commit-lock-file || exit # FIXME
   echo
 }
 
 edit() {
-  $EDITOR . && git add . && git commit "$@" || return
+  # $EDITOR . && git add . && git commit "$@" || return # FIXME
+  $EDITOR . && git -C $subflake add . && git -C $subflake commit "$@" || return 
+  nix flake update # FIXME
+  git commit -am "Update public configuration" || return
 }
 
 # cd /config || exit # Go inside the config directory
