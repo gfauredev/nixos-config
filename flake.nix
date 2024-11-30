@@ -29,6 +29,7 @@
           ./system/user/gf.nix # TODO make it an option of module system/user/
           ./system/virtualization.nix # TODO make it an option of module system/
           ./system/pc/gaming.nix # TODO make it an option of module system/pc/
+          (import ./overlay) # Changes made to nixpkgs globally TODO factorize
         ];
       };
       chimera = { # Chimera, a flying creature
@@ -38,10 +39,6 @@
       cerberus = { # Cerberus, a powerful creature with multiple heads
         imports = [ ./system/server/cerberus ];
       };
-      # Misc #
-      overlay = { # Changes made to nixpkgs globally
-        imports = [ (import ./overlay) ];
-      };
     };
     # NixOS config, available through 'nixos-rebuild --flake .#hostname'
     nixosConfigurations = {
@@ -49,18 +46,18 @@
       griffin = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux"; # PC architecture
         specialArgs = { inherit inputs; };
-        modules = [ self.nixosModules.griffin self.nixosModules.overlay ];
+        modules = [ self.nixosModules.griffin ];
       };
       chimera = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux"; # PC architecture
         specialArgs = { inherit inputs; };
-        modules = [ self.nixosModules.chimera self.nixosModules.overlay ];
+        modules = [ self.nixosModules.chimera ];
       };
       # Servers #
       cerberus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux"; # Server architecture
         specialArgs = { inherit inputs; };
-        modules = [ self.nixosModules.cerberus self.nixosModules.overlay ];
+        modules = [ self.nixosModules.cerberus ];
       };
       # NixOS live (install) ISO image #
       installer = nixpkgs.lib.nixosSystem { # TODO this cleaner
@@ -76,17 +73,14 @@
     };
 
     homeModules = {
-      gf = { # Myself, main user
-        imports = [ ./home/gf.nix ];
-      };
-      griffin = { # Griffin laptop’s GUI
-        imports = [ ./home/wayland/griffin.nix ];
-      };
-      tool = { # Miscellaneous tools, mostly technical
-        imports = [ ./home/tool ];
-      };
-      media = { # Media consuming and editing
-        imports = [ ./home/media ];
+      "gf@griffin" = {
+        imports = [
+          ./home/gf.nix # Myself, main user
+          ./home/wayland/griffin.nix # Griffin laptop’s GUI
+          ./home/tool # Miscellaneous tools, mostly technical
+          ./home/media # Media consuming and editing
+          (import ./overlay) # Changes made to nixpkgs globally TODO factorize
+        ];
       };
     };
     # home-manager config, available through 'home-manager --flake .#username@hostname'
@@ -100,18 +94,12 @@
             config.allowUnfree = true;
           };
         };
-        modules = [
-          self.homeModules.gf
-          self.homeModules.griffin
-          self.homeModules.tool
-          self.homeModules.media
-          self.nixosModules.overlay
-        ];
+        modules = [ self.homeModules."gf@griffin" ];
       };
       "gf@chimera" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
-        modules = [ self.homeModules.gf ];
+        modules = [ self.homeModules."gf@chimera" ];
       };
     };
   };
