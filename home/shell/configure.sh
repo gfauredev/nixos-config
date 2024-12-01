@@ -1,25 +1,24 @@
 #!/bin/sh
-subflake='./public/'
-nixos_param=''
+nixos_rebuild_param=''
 home_manager_param=''
-local_substituter='http://192.168.42.42:42'
-local_network='inet 42.42.42.42/24.*wlp166s0' # ip addr regexp
+git_param="-C ./public/"
+nix_flake_param="--flake ./public/"
 
 # Use local substituter if local net
-if ip addr | grep "$local_network"; then
-  home_manager_param="${home_manager_param} --option extra-substituters $local_substituter"
-  nixos_param="${nixos_param} --option extra-substituters $local_substituter"
-  printf "Passing \"%s\" to nixos-rebuild\n" "$nixos_param"
-  printf "Passing \"%s\" to home-manager\n" "$home_manager_param"
-fi
-echo
+# if ip addr | grep "$local_network"; then
+#   local_substituter='http://192.168.42.42:42'
+#   local_network='inet 42.42.42.42/24.*wlp166s0' # ip addr regexp
+#   home_manager_param="${home_manager_param} --option extra-substituters $local_substituter"
+#   nixos_rebuild_param="${nixos_rebuild_param} --option extra-substituters $local_substituter"
+#   printf "Passing \"%s\" to nixos-rebuild\n" "$nixos_rebuild_param"
+#   printf "Passing \"%s\" to home-manager\n" "$home_manager_param"
+# fi
 
 system() {
   printf "\nMounting /boot before system update\n"
   sudo mount -v /boot || return # Use fstab
-
-  printf "\nPerforming system update: \"%s\"\n" "sudo nixos-rebuild $nixos_param --flake . switch"
-  if systemd-inhibit sudo nixos-rebuild $nixos_param --flake . switch; then
+  printf "\nPerforming system update: \"%s\"\n" "sudo nixos-rebuild $nixos_rebuild_param --flake . switch"
+  if systemd-inhibit sudo nixos-rebuild $nixos_rebuild_param --flake . switch; then
     printf "\nUnmounting /boot after update\n"
     sudo umount -v /boot # Unmount for security
   else
@@ -32,35 +31,33 @@ system() {
 home() {
   printf "\nRemoving .config/mimeapps.list\n"
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-
   printf "\nPerforming profile update: \"%s\"\n" \
-    "home-manager $home_manager_param --flake .#${USER}@$(hostname) switch"
-  # "home-manager $home_manager_param --flake . switch" # to TEST the default
-  systemd-inhibit home-manager $home_manager_param --flake ".#${USER}@$(hostname)" switch || return
-  # systemd-inhibit home-manager $home_manager_param --flake . switch || return
+    "home-manager $home_manager_param --flake . switch"
+  systemd-inhibit home-manager $home_manager_param --flake . switch || return
+  # home-manager $home_manager_param --flake ".#${USER}@$(hostname)" switch
 }
 
 cfg_pull() {
   printf "Pulling latest changes\n"
   git pull --recurse-submodules || printf '\nUnable to pull from %s\n' "$(git remote)"
-  # nix flake update --commit-lock-file || exit # FIXME
   echo
 }
 
 edit() {
-  # $EDITOR . && git add . && git commit "$@" || return # FIXME
-  $EDITOR . && git -C $subflake add . && git -C $subflake commit "$@" || return 
-  nix flake update # FIXME
-  git commit -am "Update public configuration" || return
+  $EDITOR . && git $git_param add . && git $git_param commit "$@" || return 
+  nix flake update public # Update public config
+  git commit public flake.lock "$@" || return
 }
 
-# cd /config || exit # Go inside the config directory
-cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" || cd /flake || cd /config \
- || cd /etc/nixos || cd /etc/flake || exit # Go inside the config directory
+# Go inside the config directory
+cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" \
+  || cd /flake || cd /config \
+  || cd /etc/flake || cd /etc/nixos \
+  || exit
 
+# If no parameters, just edit home
 if [ "$#" -eq 0 ]; then
   cfg_pull
-  # cd home || exit # FIXME
   edit && home
   exit
 fi
@@ -78,13 +75,11 @@ case "$1" in
 "system")
   sudo echo Asked sudo now for later
   cfg_pull
-  # cd system || exit # FIXME
   edit && system || exit
   shift
   ;;
 "home")
   cfg_pull
-  # cd home || exit # FIXME
   edit && home || exit
   shift
   ;;
@@ -104,18 +99,20 @@ case "$1" in
     sudo echo Asked sudo now for later
   fi
   cfg_pull
-  nix flake update --flake $subflake --commit-lock-file || exit
+  nix flake update $nix_flake_param --commit-lock-file || exit
+  nix flake update --commit-lock-file || exit
   shift
   ;;
 "push")
-  git -C $subflake rebase -i || exit
+  git $git_param rebase -i || exit
+  git commit --amend --all && git rebase -i || exit
   git push || exit
   shift
   ;;
 "log")
-  git -C $subflake log --oneline || exit
+  git $git_param log --oneline || exit
   echo
-  git -C $subflake status || exit
+  git $git_param status || exit
   shift
   ;;
 "cd")
@@ -123,8 +120,7 @@ case "$1" in
   ;;
 *) # If parameters are a message, update home with this commit message and exit
   cfg_pull
-  # cd home || exit # FIXME
-  edit -m "$*" && home
+  edit --message="$*" && home
   exit
   ;;
 esac
@@ -143,7 +139,7 @@ for param in "$@"; do
     home
     ;;
   "push")
-    git -C $subflake push
+    git $git_param push
     ;;
   "off")
     systemctl poweroff
