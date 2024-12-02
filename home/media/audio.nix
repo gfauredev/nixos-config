@@ -19,6 +19,7 @@
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
+    musescore # Music writing
     # VST
     vital # PROPRIETARY Spectral warping wavetable synth
     # helm # Ancestor of Vital
