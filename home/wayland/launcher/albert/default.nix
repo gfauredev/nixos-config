@@ -5,12 +5,8 @@
     ];
 
   xdg.configFile = {
-    "albert/config" = {
-      enable = false; # Albert edits its own config
-      source = ./config;
-    };
-    "albert/websearch" = {
-      enable = false; # Albert edits its own config
+    "albert/config.static" = { source = ./config; };
+    "albert/websearch.static" = {
       recursive = true;
       source = ./websearch;
     };
