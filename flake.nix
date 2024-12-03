@@ -20,8 +20,8 @@
     musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, nixos-hardware, musnix
-    , ... }@inputs: {
+  outputs = { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware
+    , musnix, ... }: {
       nixosModules = {
         # Laptops #
         griffin = { # Griffin, a powerful and flying creature
@@ -104,8 +104,7 @@
         "gf@griffin" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {
-            inherit inputs;
-            stablepkgs = import inputs.pkgs24-11 { # TODO do this cleaner
+            stablepkgs = import pkgs24-11 { # TODO do this cleaner
               system = "x86_64-linux"; # System architecture TODO factorize
               config.allowUnfree = true;
             };
@@ -114,7 +113,7 @@
         };
         "gf@chimera" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs; };
+          # extraSpecialArgs = { inherit inputs; };
           modules = [ self.homeModules."gf@chimera" self.nixosModules.overlay ];
         };
       };
