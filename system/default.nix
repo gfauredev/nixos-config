@@ -1,8 +1,4 @@
 { lib, pkgs, ... }: {
-  imports = [
-    # inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
-  ];
-
   # sops = {
   #   defaultSopsFile = ../secret/default.yml;
   #   defaultSopsFormat = "yaml";

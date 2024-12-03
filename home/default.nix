@@ -5,9 +5,6 @@
     ./shell # Interactive POSIX shell
   ];
 
-  # NixOS system-wide home-manager configuration
-  # home-manager.sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
-
   manual = {
     html.enable = true;
     json.enable = true;

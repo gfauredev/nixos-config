@@ -1,6 +1,4 @@
 { pkgs, ... }: {
-  # imports = [ inputs.anyrun.homeManagerModules.default ];
-
   home.packages = with pkgs;
     [
       anyrun # Modern full-featured launcher
@@ -11,7 +9,7 @@
   #   enable = true; # TODO add flake and test
   #   package = pkgs.anyrun;
   #   config = {
-  #     plugins = with inputs.anyrun.packages.${pkgs.system}; [
+  #     plugins = with anyrun.packages.${pkgs.system}; [
   #       applications
   #       dictionary
   #       kidex

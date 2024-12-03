@@ -5,10 +5,6 @@
     # tree-sitter-grammars.tree-sitter-latex
   ];
 
-  # nixpkgs.overlays = [
-  #   inputs.neovim-nightly-overlay.overlays.default
-  # ];
-
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;

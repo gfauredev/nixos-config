@@ -1,9 +1,5 @@
 { lib, ... }: {
-  imports = [
-    # inputs.nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
-    ./hardware.nix
-    ../default.nix
-  ];
+  imports = [ ./hardware.nix ../default.nix ];
 
   # nixpkgs.config.allowUnfreePredicate = pkg:
   #   builtins.elem (lib.getName pkg) [ "nvidia" ];
