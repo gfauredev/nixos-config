@@ -1,32 +1,31 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ lib, pkgs, ... }: {
   imports = [
-    inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
-    inputs.sops-nix.nixosModules.sops # Secrets management
+    # inputs.lanzaboote.nixosModules.lanzaboote # Secure boot
   ];
 
-  sops = {
-    defaultSopsFile = ../secret/default.yml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/gf/.config/sops/age/keys.txt";
-    # secrets = {
-    #   example_key = {
-    #     mode = "0440"; # Allow group to read
-    #     owner = config.users.users.root.name;
-    #     group = config.users.users.gf.group;
-    #     # path = ""; # Get it from anywhere in config
-    #     # restartUnits = [ ];
-    #   };
-    # };
-  };
+  # sops = {
+  #   defaultSopsFile = ../secret/default.yml;
+  #   defaultSopsFormat = "yaml";
+  #   age.keyFile = "/home/gf/.config/sops/age/keys.txt";
+  #   secrets = {
+  #     example_key = {
+  #       mode = "0440"; # Allow group to read
+  #       owner = config.users.users.root.name;
+  #       group = config.users.users.gf.group;
+  #       path = ""; # Get it from anywhere in config
+  #       restartUnits = [ ];
+  #     };
+  #   };
+  # };
 
   nix = {
     # add each flake input as a registry
     # To make nix3 commands consistent with flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    # registry = lib.mapAttrs (_: value: { flake = value; }) inputs; TEST relevance
     # add inputs to the system's legacy channels
     # Making legacy nix commands consistent as well
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
-      config.nix.registry;
+    # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") TEST relevance
+    #   config.nix.registry; TEST relevance
 
     gc = {
       automatic = lib.mkDefault true;

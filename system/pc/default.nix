@@ -1,6 +1,6 @@
-{ inputs, lib, pkgs, ... }: {
+{ lib, pkgs, ... }: {
   imports = [
-    inputs.musnix.nixosModules.musnix # System improvements for audio
+    # inputs.musnix.nixosModules.musnix # System improvements for audio
     ./remap.nix # Remaps for PC usability
     ../print-scan.nix # Printing & scanning service
     ../default.nix # Always import the previous default

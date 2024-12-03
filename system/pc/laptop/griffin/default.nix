@@ -1,6 +1,6 @@
-{ inputs, lib, ... }: {
+{ lib, ... }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
+    # inputs.nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
     ./hardware.nix
     ../default.nix
   ];

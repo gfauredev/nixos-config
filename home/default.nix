@@ -1,9 +1,8 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, ... }: {
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
     ./shell # Interactive POSIX shell
-    inputs.sops-nix.homeManagerModules.sops
   ];
 
   # NixOS system-wide home-manager configuration
