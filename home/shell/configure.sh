@@ -64,7 +64,7 @@ fi
 
 # Main action according to first parameter
 case "$1" in
-"rebuild")
+re*) # Rebuild
   cfg_pull
   if [ "$2" != "home" ] && [ "$2" != "system" ] && [ "$2" != "all" ]; then
     home
@@ -72,18 +72,18 @@ case "$1" in
   # Further "home", "system" or "all" argument to rebuild
   shift
   ;;
-"system")
+sys*) # System
   sudo echo Asked sudo now for later
   cfg_pull
   edit && system || exit
   shift
   ;;
-"home")
+hom*) # Home
   cfg_pull
   edit && home || exit
   shift
   ;;
-"all")
+all) # System + Home
   sudo echo Asked sudo now for later
   cfg_pull
   if edit; then
@@ -94,7 +94,7 @@ case "$1" in
   fi
   shift
   ;;
-"update")
+up*) # Upgrade
   if [ "$2" = "system" ] || [ "$2" = "all" ]; then
     sudo echo Asked sudo now for later
   fi
@@ -103,19 +103,19 @@ case "$1" in
   nix flake update --commit-lock-file || exit
   shift
   ;;
-"push")
+pu*) # Push
   git $git_param rebase -i || exit
   git commit --amend --all && git rebase -i || exit
   git push || exit
   shift
   ;;
-"log")
+lo*) # (Git) Logs
   git $git_param log --oneline || exit
   echo
   git $git_param status || exit
   shift
   ;;
-"cd")
+c?) # cd
   exec $SHELL # We execute a shell at the WD of this script
   ;;
 *) # If parameters are a message, update home with this commit message and exit
@@ -128,29 +128,23 @@ esac
 # Go through each following parameters and act accordingly
 for param in "$@"; do
   case $param in
-  "home")
+  hom*)
     home
     ;;
-  "system")
+  sys*)
     system
     ;;
-  "all")
+  all*)
     system
     home
     ;;
-  "push")
+  pu*)
     git $git_param push
     ;;
-  "off")
+  *off)
     systemctl poweroff
     ;;
-  "poweroff")
-    systemctl poweroff
-    ;;
-  "boot")
-    systemctl reboot
-    ;;
-  "reboot")
+  *boot)
     systemctl reboot
     ;;
   esac
