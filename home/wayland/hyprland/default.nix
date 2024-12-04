@@ -135,7 +135,7 @@
         open = "br"; # Global oppener
         mixer = "pulsemixer"; # Audio mixer
         pim = "thunderbird"; # PIM app
-        monitor = "${term.monitoring} btm"; # Monitoring
+        monitor = "${term.monitoring} btm --battery --enable_gpu"; # Monitoring
       in [
         # System control
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
