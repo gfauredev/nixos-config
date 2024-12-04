@@ -83,6 +83,19 @@ hom*) # Home
   edit && home || exit
   shift
   ;;
+h*) # Help
+  echo "re[build]: Enable rebuild only mode, no editing"
+  echo "sys[tem]: (Edit) and rebuild NixOS configuration"
+  echo "hom[e]: (Edit and) rebuild Home Manager configuration"
+  echo "h[elp]: Show this help message"
+  echo "all: (Edit) and rebuild NixOS and Home Manager configurations"
+  echo "up[date|grade]: Update every flake inputs"
+  echo "pu[sh]: Interactively rebase and push the Git repository"
+  echo "lo[g]: Display Git logs"
+  echo "c|d|cd: Open the shell in the flake directory"
+  echo "[re]boot: Reboot after"
+  echo "[power]off: Poweroff after"
+;;
 all) # System + Home
   sudo echo Asked sudo now for later
   cfg_pull
@@ -115,7 +128,7 @@ lo*) # (Git) Logs
   git $git_param status || exit
   shift
   ;;
-c?) # cd
+c|d|cd) # cd
   exec $SHELL # We execute a shell at the WD of this script
   ;;
 *) # If parameters are a message, update home with this commit message and exit
