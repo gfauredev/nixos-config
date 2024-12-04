@@ -84,6 +84,7 @@ hom*) # Home
   shift
   ;;
 h*) # Help
+  echo "Arguments can be passed in any order"
   echo "re[build]: Enable rebuild only mode, no editing"
   echo "sys[tem]: (Edit) and rebuild NixOS configuration"
   echo "hom[e]: (Edit and) rebuild Home Manager configuration"
@@ -95,6 +96,7 @@ h*) # Help
   echo "c|d|cd: Open the shell in the flake directory"
   echo "[re]boot: Reboot after"
   echo "[power]off: Poweroff after"
+  echo "*: Remaining arguments are appended to the Git commit message"
 ;;
 all) # System + Home
   sudo echo Asked sudo now for later
