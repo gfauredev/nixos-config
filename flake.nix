@@ -21,7 +21,7 @@
   };
 
   outputs = { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware
-    , musnix, ... }: {
+    , musnix }: {
       nixosModules = {
         # Laptops #
         griffin = { # Griffin, a powerful and flying creature
