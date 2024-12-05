@@ -1,8 +1,8 @@
 #!/bin/sh
-nixos_rebuild_param=''
-home_manager_param=''
-git_param="-C ./public/"            # TODO cleaner
-nix_flake_param="--flake ./public/" # TODO cleaner
+NIXOS_REBUILD_PARAM=''
+HOME_MANAGER_PARAM=''
+SUBFLAKE_GIT_PARAM="-C ./public/"            # TODO cleaner
+SUBFLAKE_NIX_PARAM="--flake ./public/" # TODO cleaner
 
 # Use local substituter if local net
 # if ip addr | grep "$local_network"; then
@@ -17,8 +17,8 @@ nix_flake_param="--flake ./public/" # TODO cleaner
 rebuild_system() {
   printf "\nMounting /boot before system update\n"
   sudo mount -v /boot || return # Use fstab
-  printf "\nPerforming system update: \"%s\"\n" "sudo nixos-rebuild $nixos_rebuild_param --flake . switch"
-  if systemd-inhibit sudo nixos-rebuild $nixos_rebuild_param --flake . switch; then
+  printf "\nPerforming system update: \"%s\"\n" "sudo nixos-rebuild $NIXOS_REBUILD_PARAM --flake . switch"
+  if systemd-inhibit sudo nixos-rebuild $NIXOS_REBUILD_PARAM --flake . switch; then
     printf "\nUnmounting /boot after update\n"
     sudo umount -v /boot # Unmount for security
   else
@@ -32,8 +32,8 @@ rebuild_home() {
   printf "\nRemoving .config/mimeapps.list\n"
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
   printf "\nPerforming profile update: \"%s\"\n" \
-    "home-manager $home_manager_param --flake . switch"
-  systemd-inhibit home-manager $home_manager_param --flake . switch || return
+    "home-manager $HOME_MANAGER_PARAM --flake . switch"
+  systemd-inhibit home-manager $HOME_MANAGER_PARAM --flake . switch || return
   # home-manager $home_manager_param --flake ".#${USER}@$(hostname)" switch
 }
 
@@ -44,7 +44,7 @@ cfg_pull() {
 }
 
 edit_commit() {
-  $EDITOR . && git $git_param add . && git $git_param commit "$*" || return
+  $EDITOR . && git $SUBFLAKE_GIT_PARAM add . && git $SUBFLAKE_GIT_PARAM commit "$*" || return
   nix flake update public # Update public config
   git commit public flake.lock "$@" || return
 }
@@ -145,18 +145,18 @@ if $home; then
   rebuild_home
 fi
 if $update_inputs; then # TODO factorize, modularize ($flake_param)
-  nix flake update $nix_flake_param --commit-lock-file || exit
+  nix flake update $SUBFLAKE_NIX_PARAM --commit-lock-file || exit
   nix flake update --commit-lock-file || exit
 fi
 if $push_repositories; then # TODO factorize, modularize ($git_param)
-  git $git_param rebase -i || exit
+  git $SUBFLAKE_GIT_PARAM rebase -i || exit
   git commit --amend --all && git rebase -i || exit
   git push || exit
 fi
 if $git_logs_status; then # TODO factorize, modularize ($git_param)
-  git $git_param log --oneline || exit
+  git $SUBFLAKE_GIT_PARAM log --oneline || exit
   echo
-  git $git_param status || exit
+  git $SUBFLAKE_GIT_PARAM status || exit
 fi
 if $cd; then
   exec $SHELL # Execute the default shell at the WD of this script
