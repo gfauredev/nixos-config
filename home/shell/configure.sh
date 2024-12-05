@@ -1,8 +1,8 @@
 #!/bin/sh
 NIXOS_REBUILD_PARAM=''
 HOME_MANAGER_PARAM=''
-SUBFLAKE_GIT_PARAM="-C ./public/"            # TODO cleaner
-SUBFLAKE_NIX_PARAM="--flake ./public/" # TODO cleaner
+SUBFLAKE_GIT_PARAM="-C ./public/"
+SUBFLAKE_NIX_PARAM="--flake ./public/"
 
 # Use local substituter if local net
 # if ip addr | grep "$local_network"; then
@@ -71,8 +71,6 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
   cd /etc/flake || cd /etc/nixos ||
   exit
 
-cfg_pull # Always pull the latest configuration
-
 edit=true # Edit by default, disabled by rebuild-only mode
 system=false
 home=true # Rebuild home by default
@@ -134,11 +132,15 @@ done
 if $help; then
   show_help
 fi
+if $cd; then
+  exec $SHELL # Execute the default shell at the WD of this script
+fi
 if $system; then
   sudo echo Asked sudo now for later
 fi
 if $edit; then
-  edit_commit --message="$commit_message"
+  cfg_pull # Always pull the latest configuration
+  edit_commit --message="${commit_message##*( )}"
 fi
 if $system; then
   rebuild_system
@@ -147,6 +149,7 @@ if $home; then
   rebuild_home
 fi
 if $update_inputs; then # TODO factorize, modularize ($flake_param)
+  cfg_pull              # Always pull the latest configuration
   nix flake update $SUBFLAKE_NIX_PARAM --commit-lock-file || exit
   nix flake update --commit-lock-file || exit
 fi
@@ -159,9 +162,6 @@ if $git_logs_status; then # TODO factorize, modularize ($git_param)
   git $SUBFLAKE_GIT_PARAM log --oneline || exit
   echo
   git $SUBFLAKE_GIT_PARAM status || exit
-fi
-if $cd; then
-  exec $SHELL # Execute the default shell at the WD of this script
 fi
 if $poweroff; then
   systemctl poweroff

@@ -10,7 +10,7 @@
         "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440@144, -874x-1440, 1"
         # "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440@144, -767x-1350, 1.0666"
         "desc:IGM Communi L238DPH-NS-BU 0x01010101, 1920x1080@60, -1920x-540, 1"
-        "desc:NEC Corporation EA221WM 0x01010101, 1680x1050@60, -840x-1050, 1"
+        "desc:NEC Corporation EA221WM 0x01010101, 1680x1050@60, -323x-1050, 1"
         ", 1920x1080, -114x-1080, 1"
         ", 1920x1200, -114x-1200, 1"
         ", preferred, auto, 1" # Other monitors
