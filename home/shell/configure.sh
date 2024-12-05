@@ -102,6 +102,8 @@ while [ "$#" -gt 0 ]; do
     ;;
   u | up | update | upgrade) # Update the flake’s inputs
     update_inputs=true
+    edit=false
+    home=false
     ;;
   p | push) # Push the flake’s repository
     push_repositories=true
