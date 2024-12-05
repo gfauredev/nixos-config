@@ -53,6 +53,9 @@
     # Emulation
     # wine # Execute Window$ programs TODO reenable
     # winetricks # Execute Window$ programs TODO reenable
+
+    # Misc
+    exercism # CLI for the programming exercises website
   ];
 
   services = {
