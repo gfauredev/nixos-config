@@ -1,8 +1,8 @@
 #!/bin/sh
 NIXOS_REBUILD_PARAM=''
 HOME_MANAGER_PARAM=''
-SUBFLAKE_GIT_PARAM="-C ./public/"
-SUBFLAKE_NIX_PARAM="--flake ./public/"
+SUBFLAKE_GIT_PARAM="-C ./public/"      # TODO cleaner
+SUBFLAKE_NIX_PARAM="--flake ./public/" # TODO cleaner
 
 # Use local substituter if local net
 # if ip addr | grep "$local_network"; then
@@ -50,19 +50,22 @@ edit_commit() {
 }
 
 show_help() {
-  echo "Arguments can be passed in any order"
-  echo "r[ebuild]: Enable rebuild only mode, no editing"
-  echo "s[ystem]: (Edit and) rebuild NixOS configuration"
-  # echo "home: (Edit and) rebuild Home Manager configuration" # Default
-  echo "h[elp]: Show this help message"
-  echo "a[ll]: (Edit and) rebuild NixOS and Home Manager configurations"
-  echo "u[pdate|pgrade]: Update every flake inputs"
-  echo "p[ush]: Interactively rebase and push the Git repository"
-  echo "l[og]: Display Git logs and status of the configuration’s repository"
-  echo "c|d|cd: Open the default shell ($SHELL) in the flake directory"
-  echo "[re]boot: Reboot after all actions, cancel previous poweroff/cd argument(s)"
-  echo "[power]off: Poweroff after all actions, cancel previous reboot/cd argument(s)"
-  echo "*: Append argument to the Git commit message"
+  echo "By default: Edit the configuration, commit the changes, then rebuild Home."
+  echo "Arguments can be passed in any order."
+  echo
+  echo "r[ebuild]:   Enable rebuild only mode, no editing."
+  echo "s[ystem]:    Rebuild NixOS configuration."
+  echo "ho[me]:      Always rebuild Home Manager configuration."
+  echo "h[elp]:      Show this help message (and exit if no other arguments)."
+  echo "a[ll]:       Rebuild NixOS and Home Manager configurations."
+  echo "u[pdate]:    Update every flake inputs."
+  echo "p[ush]:      Interactively rebase and push the Git repository,"
+  echo "             don’t rebuild Home by default."
+  echo "l[og]:       Display Git logs and status of the configuration’s repository."
+  echo "c|d|cd:      Open the default shell ($SHELL) in the flake directory."
+  echo "[re]boot:    Reboot after all actions, cancel previous poweroff/cd argument(s)."
+  echo "[power]off:  Poweroff after all actions, cancel previous reboot/cd argument(s)."
+  echo "*:           Append argument to the Git commit message."
 }
 
 # Go inside the config directory, start of the main script
@@ -71,9 +74,10 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
   cd /etc/flake || cd /etc/nixos ||
   exit
 
-edit=true # Edit by default, disabled by rebuild-only mode
+rebuild_only=false # Whether to forcefully not edit
 system=false
 home=true # Rebuild home by default
+home_always=false
 help=false
 update_inputs=false
 push_repositories=false
@@ -86,31 +90,38 @@ reboot=false
 while [ "$#" -gt 0 ]; do
   case "$1" in
   r | re | rebuild) # Rebuild only, don’t edit
-    edit=false
+    rebuild_only=true
     ;;
   s | sys | system) # Rebuild System but not Home
     system=true
     home=false
     ;;
+  ho | home) # Rebuild Home anyway
+    home_always=true
+    ;;
   h | help) # Show help message
     help=true
+    home=false
     ;;
   a | all) # Rebuild System and Home
     system=true
+    home_always=true
     ;;
-  u | up | update | upgrade) # Update the flake’s inputs
+  u | up | update | upgrade) # Update the flake’s inputs, no rebuild
     update_inputs=true
-    edit=false
     home=false
     ;;
   p | push) # Push the flake’s repository
     push_repositories=true
+    home=false
     ;;
   l | log) # Show Git logs and status
     git_logs_status=true
+    home=false
     ;;
   c | d | cd) # Open default shell into current WD
     cd=true
+    home=false
     ;;
   off | poweroff) # Turn off the system at the end of the script
     poweroff=true
@@ -132,20 +143,19 @@ done
 if $help; then
   show_help
 fi
-if $cd; then
-  exec $SHELL # Execute the default shell at the WD of this script
-fi
 if $system; then
   sudo echo Asked sudo now for later
 fi
-if $edit; then
+if [ $rebuild_only = false ] && \
+   { [ "$push_repositories" = false ] && [ "$cd" = false ] \
+    || [ $system = true ] || [ $home_always = true ]; }; then
   cfg_pull # Always pull the latest configuration
   edit_commit --message="${commit_message##*( )}"
 fi
 if $system; then
   rebuild_system
 fi
-if $home; then
+if [ $home = "true" ] || [ $home_always = "true" ]; then
   rebuild_home
 fi
 if $update_inputs; then # TODO factorize, modularize ($flake_param)
@@ -162,6 +172,9 @@ if $git_logs_status; then # TODO factorize, modularize ($git_param)
   git $SUBFLAKE_GIT_PARAM log --oneline || exit
   echo
   git $SUBFLAKE_GIT_PARAM status || exit
+fi
+if $cd; then
+  exec $SHELL # Execute the default shell at the WD of this script
 fi
 if $poweroff; then
   systemctl poweroff
