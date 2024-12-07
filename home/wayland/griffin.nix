@@ -20,6 +20,7 @@
       workspace = [
         # Every port is considered DP on Framework Laptops
         "name:sup, monitor:eDP-1, default:true"
+        "name:dpp, monitor:DP-7, default:true" # eGPU’s DP1
         "name:dpp, monitor:DP-1, default:true"
         "name:hdm, monitor:DP-3, default:true"
       ];
