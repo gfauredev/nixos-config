@@ -151,7 +151,7 @@ if [ $rebuild_only = false ] && \
    { [ "$push_repositories" = false ] && [ "$git_logs_status" = false ] && [ "$cd" = false ] \
     || [ $system = true ] || [ $home_always = true ]; }; then
   cfg_pull # Always pull the latest configuration
-  edit_commit --message="${commit_message##*( )}"
+  edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
 fi
 if $system; then
   rebuild_system
