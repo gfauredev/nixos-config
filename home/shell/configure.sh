@@ -135,6 +135,7 @@ while [ "$#" -gt 0 ]; do
     ;;
   *) # Append any other parameters to the Git commit message
     commit_message="$commit_message $1"
+    home_always=true
     ;;
   esac
   shift
