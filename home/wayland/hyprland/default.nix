@@ -211,7 +211,7 @@
         "$mod SHIFT, p, Move window to PIM workspace, movetoworkspace, name:pim"
         "$mod, o, Open any file on dedicated workspace, workspace, name:opn"
         "$mod, o, Open any file on dedicated workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic '${open};zsh'"
-        "$mod, i, Informations / monItorIng workspace, workspace, name:top"
+        "$mod, i, Informations / monItorIng workspace, workspace, name:inf"
         "$mod, i, Open monitoring software, exec, hyprctl clients | grep -i 'class: monitoring' || ${monitor}"
         # Additional workspaces (Left hand) may auto launch associated app
         "$mod, u, SUp / SUpplementary workspace, workspace, name:sup"
@@ -229,9 +229,9 @@
         ''
           $mod, l, Open a terminal on cli workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${term.name}";"i")))' || ${term.cmd}''
         "$mod SHIFT, l, Move window to cli workspace, movetoworkspace, name:cli"
-        "$mod, n, Go to notetaking workspace, workspace, name:note"
+        "$mod, n, Go to notetaking workspace, workspace, name:not"
         "$mod, n, Open any document in main user folders, exec, hyprctl clients | grep -i 'class: note' || ${term.note} zsh -ic '${open};zsh'"
-        "$mod SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:note"
+        "$mod SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:not"
         "$mod, m, Go to messaging workspace, workspace, name:msg"
         ''
           $mod, m, Launch a messaging app, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.app}''

@@ -26,13 +26,10 @@
               critical = 15;
             };
             format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰂀" "󰂁" "󰂂" "󰁹" ];
-            # format-icons =
-            #   [ "< " "> " "< " "> " "< " "> " "< " "> " "< " "> " ];
             # format-time = "{H}:{m}";
             format = "{icon} {power:4.2f}";
             format-charging-notfull = " {power:4.2f}";
-            # format-charging-notfull = " {power:4.2f}";
-            format-charging = "󱐥 {power:4.2f}";
+            format-charging = "󱐥 {power:4.2f}"; # When above 85% (full)
             # format = "{icon} {capacity}";
             # format-charging = "󱐥 {cycles}";
             # format-charging = "󱐥 {capacity}";
@@ -113,16 +110,16 @@
               art = "";
               pim = "󰸍";
               opn = "󰥨";
-              top = "󱕍";
+              inf = "󱕍";
               etc = "";
               ext = "";
               sup = "";
               cli = "❯"; # ""; # "";
-              note = "";
+              not = "";
               msg = "󰵅";
               media = "";
               dpp = "󰍹";
-              hdm = "";
+              hdm = "󰍹"; # "";
             };
           };
 
