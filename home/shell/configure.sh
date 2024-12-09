@@ -1,7 +1,7 @@
 #!/bin/sh
 NIXOS_REBUILD_PARAM=''
 HOME_MANAGER_PARAM=''
-SUBFLAKE="./public" # Leave empty to disable
+SUBFLAKE="public" # Leave empty to disable
 
 # Use local substituter if local net
 # if ip addr | grep "$local_network"; then
@@ -35,9 +35,9 @@ show_help() {
 
 show_logs_status() {
   if [ -n "$SUBFLAKE" ]; then
-    git -C $SUBFLAKE log --oneline || exit
+    git -C ./$SUBFLAKE log --oneline || exit
     echo
-    git -C $SUBFLAKE status || exit
+    git -C ./$SUBFLAKE status || exit
   else
     git log --oneline || exit
     echo
@@ -54,8 +54,8 @@ cfg_pull() {
 flake_update_inputs() {
   cfg_pull # Always pull the latest configuration
   if [ -n "$SUBFLAKE" ]; then
-    nix flake update --flake $SUBFLAKE --commit-lock-file || exit
-    git commit $SUBFLAKE --message="chore($SUBFLAKE): update flake inputs"
+    nix flake update --flake ./$SUBFLAKE --commit-lock-file || exit
+    git commit ./$SUBFLAKE --message="chore($SUBFLAKE): update flake inputs"
   fi
   nix flake update --commit-lock-file || exit
 }
@@ -64,11 +64,11 @@ edit_commit() {
   cfg_pull
   $EDITOR .
   if [ -n "$SUBFLAKE" ]; then
-    git -C $SUBFLAKE add .
-    git -C $SUBFLAKE commit "$*"
+    git -C ./$SUBFLAKE add .
+    git -C ./$SUBFLAKE commit "$*"
     nix flake update $SUBFLAKE # Update subflake input
   fi
-  git commit $SUBFLAKE flake.lock "$@" || return
+  git commit ./$SUBFLAKE flake.lock "$@" || return
 }
 
 rebuild_system() {
@@ -96,7 +96,7 @@ rebuild_home() {
 
 cfg_push() {
   if [ -n "$SUBFLAKE" ]; then
-    git -C $SUBFLAKE rebase -i || exit
+    git -C ./$SUBFLAKE rebase -i || exit
   fi
   git commit --amend --all && git rebase -i && git push || exit
 }
