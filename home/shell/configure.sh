@@ -147,9 +147,16 @@ fi
 if $system; then
   sudo echo Asked sudo now for later
 fi
-if [ $rebuild_only = false ] && \
-   { [ "$push_repositories" = false ] && [ "$git_logs_status" = false ] && [ "$cd" = false ] \
-    || [ $system = true ] || [ $home_always = true ]; }; then
+if $update_inputs; then # TODO factorize, modularize ($flake_param)
+  cfg_pull              # Always pull the latest configuration
+  nix flake update $SUBFLAKE_NIX_PARAM --commit-lock-file || exit
+  nix flake update --commit-lock-file || exit
+fi
+if [ $rebuild_only = false ] &&
+  [ $update_inputs = false ] &&
+  { [ "$push_repositories" = false ] &&
+    [ "$git_logs_status" = false ] && [ "$cd" = false ] ||
+    [ $system = true ] || [ $home_always = true ]; }; then
   cfg_pull # Always pull the latest configuration
   edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
 fi
@@ -158,11 +165,6 @@ if $system; then
 fi
 if [ $home = "true" ] || [ $home_always = "true" ]; then
   rebuild_home
-fi
-if $update_inputs; then # TODO factorize, modularize ($flake_param)
-  cfg_pull              # Always pull the latest configuration
-  nix flake update $SUBFLAKE_NIX_PARAM --commit-lock-file || exit
-  nix flake update --commit-lock-file || exit
 fi
 if $push_repositories; then # TODO factorize, modularize ($git_param)
   git $SUBFLAKE_GIT_PARAM rebase -i || exit
