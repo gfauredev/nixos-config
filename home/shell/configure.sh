@@ -150,6 +150,7 @@ fi
 if $update_inputs; then # TODO factorize, modularize ($flake_param)
   cfg_pull              # Always pull the latest configuration
   nix flake update $SUBFLAKE_NIX_PARAM --commit-lock-file || exit
+  git commit ./public/ --message="chore: update public flake inputs"
   nix flake update --commit-lock-file || exit
 fi
 if [ $rebuild_only = false ] &&
