@@ -1,8 +1,7 @@
 #!/bin/sh
 NIXOS_REBUILD_PARAM=''
 HOME_MANAGER_PARAM=''
-SUBFLAKE_GIT_PARAM="-C ./public/"      # TODO cleaner
-SUBFLAKE_NIX_PARAM="--flake ./public/" # TODO cleaner
+SUBFLAKE="./public" # Leave empty to disable
 
 # Use local substituter if local net
 # if ip addr | grep "$local_network"; then
@@ -44,9 +43,13 @@ cfg_pull() {
 }
 
 edit_commit() {
-  $EDITOR . && git $SUBFLAKE_GIT_PARAM add . && git $SUBFLAKE_GIT_PARAM commit "$*" || return
-  nix flake update public # Update public config
-  git commit public flake.lock "$@" || return
+  $EDITOR .
+  if [ -n "$SUBFLAKE" ]; then
+    git -C $SUBFLAKE add .
+    git -C $SUBFLAKE commit "$*"
+    nix flake update $SUBFLAKE # Update subflake input
+  fi
+  git commit $SUBFLAKE flake.lock "$@" || return
 }
 
 show_help() {
@@ -74,19 +77,18 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
   cd /etc/flake || cd /etc/nixos ||
   exit
 
+# Collect arguments
 rebuild_only=false # Whether to forcefully not edit
 system=false
-home=true # Rebuild home by default
-home_always=false
+home=false
 help=false
 update_inputs=false
 push_repositories=false
 git_logs_status=false
 cd=false
-commit_message=""
+commit_message="" # To be constructed with remaining arguments
 poweroff=false
 reboot=false
-# While there are remaining parameters, parse them
 while [ "$#" -gt 0 ]; do
   case "$1" in
   r | re | rebuild) # Rebuild only, don’t edit
@@ -94,48 +96,37 @@ while [ "$#" -gt 0 ]; do
     ;;
   s | sys | system) # Rebuild System but not Home
     system=true
-    home=false
     ;;
   ho | home) # Rebuild Home anyway
-    home_always=true
+    home=true
     ;;
   h | help) # Show help message
     help=true
-    home=false
     ;;
   a | all) # Rebuild System and Home
     system=true
-    home_always=true
+    home=true
     ;;
   u | up | update | upgrade) # Update the flake’s inputs, no rebuild
     update_inputs=true
-    home=false
     ;;
   p | push) # Push the flake’s repository
     push_repositories=true
-    home=false
     ;;
   l | log) # Show Git logs and status
     git_logs_status=true
-    home=false
     ;;
   c | d | cd) # Open default shell into current WD
     cd=true
-    home=false
     ;;
   off | poweroff) # Turn off the system at the end of the script
     poweroff=true
-    cd=false
-    reboot=false
     ;;
   boot | reboot) # Restart the system at the end of the script
     reboot=true
-    cd=false
-    poweroff=false
     ;;
   *) # Append any other parameters to the Git commit message
     commit_message="$commit_message $1"
-    home_always=true
     ;;
   esac
   shift
@@ -143,46 +134,62 @@ done
 
 if $help; then
   show_help
+  exit
+fi
+if $git_logs_status; then
+  if [ -n "$SUBFLAKE" ]; then
+    git -C $SUBFLAKE log --oneline || exit
+    echo
+    git -C $SUBFLAKE status || exit
+  else
+    git log --oneline || exit
+    echo
+    git status || exit
+  fi
+  exit
 fi
 if $system; then
   sudo echo Asked sudo now for later
 fi
-if $update_inputs; then # TODO factorize, modularize ($flake_param)
-  cfg_pull              # Always pull the latest configuration
-  nix flake update $SUBFLAKE_NIX_PARAM --commit-lock-file || exit
-  git commit ./public/ --message="chore: update public flake inputs"
+if $update_inputs; then
+  cfg_pull # Always pull the latest configuration
+  if [ -n "$SUBFLAKE" ]; then
+    nix flake update --flake $SUBFLAKE --commit-lock-file || exit
+    git commit $SUBFLAKE --message="chore($SUBFLAKE): update flake inputs"
+  fi
   nix flake update --commit-lock-file || exit
 fi
-if [ $rebuild_only = false ] &&
-  [ $update_inputs = false ] &&
-  { [ "$push_repositories" = false ] &&
-    [ "$git_logs_status" = false ] && [ "$cd" = false ] ||
-    [ $system = true ] || [ $home_always = true ]; }; then
+# Never edit when rebuild-only mode or if updating inputs
+# If pushing repositosries or changing directory, only edit if explicitly precised
+if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
+  { [ "$push_repositories" = false ] && [ "$cd" = false ] ||
+    [ $system = true ] || [ $home = true ]; }; then
   cfg_pull # Always pull the latest configuration
   edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
 fi
 if $system; then
   rebuild_system
 fi
-if [ $home = "true" ] || [ $home_always = "true" ]; then
+# Rebuild home by default, unless: updating inputs, pushing repositories or changing dir
+# Always rebuild home if explicitly precised
+if [ $home = "true" ] ||
+  { [ $update_inputs = "false" ] && [ $push_repositories = "false" ] &&
+    [ $cd = "false" ]; }; then
   rebuild_home
 fi
 if $push_repositories; then # TODO factorize, modularize ($git_param)
-  git $SUBFLAKE_GIT_PARAM rebase -i || exit
-  git commit --amend --all && git rebase -i || exit
-  git push || exit
-fi
-if $git_logs_status; then # TODO factorize, modularize ($git_param)
-  git $SUBFLAKE_GIT_PARAM log --oneline || exit
-  echo
-  git $SUBFLAKE_GIT_PARAM status || exit
+  if [ -n "$SUBFLAKE" ]; then
+    git -C $SUBFLAKE rebase -i || exit
+  fi
+  git commit --amend --all && git rebase -i && git push || exit
 fi
 if $cd; then
   exec $SHELL # Execute the default shell at the WD of this script
-fi
-if $poweroff; then
-  systemctl poweroff
+  exit        # Stop the script
 fi
 if $reboot; then
   systemctl reboot
+fi
+if $poweroff; then
+  systemctl poweroff
 fi
