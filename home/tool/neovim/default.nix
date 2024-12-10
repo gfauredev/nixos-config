@@ -1,9 +1,10 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    tree-sitter-grammars.tree-sitter-typst
-    nodejs_22 # remove when withNodeJs param is fixed
-    # tree-sitter-grammars.tree-sitter-latex
-  ];
+  home.packages = with pkgs;
+    [
+      tree-sitter-grammars.tree-sitter-typst
+      # nodejs_22 # remove when withNodeJs param is fixed
+      # tree-sitter-grammars.tree-sitter-latex
+    ];
 
   programs.neovim = {
     enable = true;
