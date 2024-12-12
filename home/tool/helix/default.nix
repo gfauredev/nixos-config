@@ -124,6 +124,36 @@
           formatter.command = "nixfmt";
         }
         {
+          name = "python";
+          scope = "source.python";
+          injection-regex = "py(thon)?";
+          file-types = [
+            "py"
+            "pyi"
+            "py3"
+            "pyw"
+            "ptl"
+            "rpy"
+            "cpy"
+            "ipy"
+            "pyt"
+            { glob = ".python_history"; }
+            { glob = ".pythonstartup"; }
+            { glob = ".pythonrc"; }
+            { glob = "SConstruct"; }
+            { glob = "SConscript"; }
+          ];
+          shebangs = [ "python" ];
+          roots =
+            [ "pyproject.toml" "setup.py" "poetry.lock" "pyrightconfig.json" ];
+          comment-token = "#";
+          language-servers = [ "ruff" "mypy" ]; # TODO implement mypy server
+          indent = {
+            tab-width = 4;
+            unit = "    ";
+          };
+        }
+        {
           name = "typst";
           language-servers = [ "tinymist" "typst-lsp" "ltex-fr" "llm" ];
           auto-format = true;
@@ -232,6 +262,10 @@
         ltex-fr = ltex; # ltex that defaults to en for unsupported filetypes
         ltex-en = ltex // { config.ltex.language = "en-US"; };
         tinymist = { config = { exportPdf = "onType"; }; };
+        ruff = {
+          command = "ruff";
+          args = [ "server" ];
+        };
       };
     };
     extraPackages = with pkgs; [
