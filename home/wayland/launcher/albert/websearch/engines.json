@@ -1,6 +1,14 @@
 [
     {
         "fallback": false,
+        "iconPath": ":default",
+        "id": "687f5101",
+        "name": "AlternativeTo",
+        "trigger": "alt",
+        "url": "https://alternativeto.net/browse/search/?q=%s"
+    },
+    {
+        "fallback": false,
         "iconPath": ":amazon",
         "id": "ffb62f03",
         "name": "Amazon",
