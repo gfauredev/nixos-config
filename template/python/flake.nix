@@ -44,8 +44,8 @@
       in pkgs.mkShell {
         packages = [
           pythonEnv
-          pkgs.ruff # Lint, Format
-          pkgs.mypy # Type check
+          pkgs.ruff # Lint, Format, LSP
+          pkgs.mypy # Type check, launch as server with `dmypy start`
         ];
       };
 

@@ -6,8 +6,7 @@ requires-python = ">=3.8"
 authors = [{name = "Guilhem Fauré"}]
 
 dependencies = [
-  "debugpy",
-  "jedi",
-  "notebook",
   "numpy",
+  "notebook",
+  "debugpy",
 ]
