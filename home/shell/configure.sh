@@ -64,11 +64,13 @@ edit_commit() {
   cfg_pull
   $EDITOR .
   if [ -n "$SUBFLAKE" ]; then
-    git -C ./$SUBFLAKE add .
-    git -C ./$SUBFLAKE commit "$*"
+    cd $SUBFLAKE || return
+    git add .
+    git commit "$@"
+    cd .. || return
     nix flake update $SUBFLAKE # Update subflake input
   fi
-  git commit ./$SUBFLAKE flake.lock "$@" || return
+  git commit $SUBFLAKE flake.lock "$@" || return
 }
 
 rebuild_system() {
