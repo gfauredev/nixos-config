@@ -120,6 +120,10 @@
     #   flake = /config;
     #   # clean.enable = true;
     # };
+    appimage = { # Run appimages directly
+      enable = true;
+      binfmt = true;
+    };
   };
 
   environment = {
