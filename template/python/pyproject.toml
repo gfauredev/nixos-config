@@ -1,0 +1,13 @@
+[project]
+name = "Python"
+version = "0.0.0"
+description = "Python project"
+requires-python = ">=3.8"
+authors = [{name = "Guilhem Fauré"}]
+
+dependencies = [
+  "debugpy",
+  "jedi",
+  "notebook",
+  "numpy",
+]
