@@ -44,7 +44,6 @@
     # veracrypt # multiplatform encryption
 
     comma # Run any command from Nixpkgs
-    appimage-run # Run appimages directly
     steam-run # Run in isolated FHS
 
     # bitwarden-cli # Modern password manager
