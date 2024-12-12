@@ -85,7 +85,7 @@
       enableNushellIntegration = true;
       settings = {
         # modal = true;
-        default_flags = "dgps";
+        default_flags = "dgHps";
       };
     };
     translate-shell.enable = true;
