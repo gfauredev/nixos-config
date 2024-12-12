@@ -65,6 +65,7 @@ edit_commit() {
   $EDITOR .
   if [ -n "$SUBFLAKE" ]; then
     cd $SUBFLAKE || return
+    git checkout main
     git add .
     git commit "$@"
     cd .. || return
@@ -98,7 +99,10 @@ rebuild_home() {
 
 cfg_push() {
   if [ -n "$SUBFLAKE" ]; then
-    git -C ./$SUBFLAKE rebase -i || exit
+    cd $SUBFLAKE || return
+    git checkout main
+    git  rebase -i || exit
+    cd .. || return
   fi
   git commit --amend --all && git rebase -i && git push || exit
 }
