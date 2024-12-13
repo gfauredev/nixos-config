@@ -126,9 +126,19 @@
     };
   };
 
+  documentation = {
+    nixos = {
+      enable = true;
+      includeAllModules = true;
+    };
+    dev.enable = true;
+  };
+
   environment = {
     shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
+      man-pages # Documentation
+      man-pages-posix # Documentation
       cpulimit # Limit CPU usage of processes
       libsecret # Allow apps to use gnome-keyring
       iw # Control network cards
