@@ -40,11 +40,21 @@
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
-    kernel.sysctl = { "kernel.sysrq" = 212; };
+    kernel.sysctl = {
+      "kernel.sysrq" = 212;
+      "vm.swappiness" = 10; # TEST relevance, used by musnix
+    };
     kernelPackages = lib.mkOverride 1001
       pkgs.linuxPackages_latest; # Latest Linux kernel by default
+    kernelParams = [
+      "threadirqs" # TEST relevance, used by musnix
+    ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
+    # postBootCommands = '' # TEST relevance, used by musnix
+    #   ${pkgs.pciutils}/bin/setpci -v -d *:* latency_timer=b0
+    #   ${pkgs.pciutils}/bin/setpci -v -s ${cfg.soundcardPciId} latency_timer=ff
+    # '';
   };
 
   fonts = {

@@ -17,11 +17,11 @@
     # sops-nix.url = "github:Mic92/sops-nix"; # Encrypted secrets management
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
-    musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
+    # musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
   };
 
-  outputs = { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware
-    , musnix }: {
+  outputs =
+    { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware }: {
       nixosModules = {
         # Laptops #
         griffin = { # Griffin, a powerful and flying creature
@@ -32,7 +32,6 @@
             ./system/pc/gaming.nix # TODO make it an option of module system/pc/
             lanzaboote.nixosModules.lanzaboote # TODO factorize, tie to system/default.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
-            musnix.nixosModules.musnix # System improvements for audio TODO factorize
           ];
         };
         chimera = { # Chimera, a flying creature

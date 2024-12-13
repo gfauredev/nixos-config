@@ -6,7 +6,10 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "uas" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [
+    "snd-seq" # TEST relevance, used by musnix
+    "snd-rawmidi" # TEST relevance, used by musnix
+  ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 

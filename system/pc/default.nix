@@ -75,7 +75,11 @@
       ];
       extraRules = ''
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-      '';
+
+        KERNEL=="rtc0", GROUP="audio"
+        KERNEL=="hpet", GROUP="audio"
+        DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
+      ''; # TEST relevance of latter 3, used by musnix
     };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
@@ -92,8 +96,35 @@
     pam.services.hyprlock = { };
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
     rtkit.enable = true; # Tools for realtime (preemption)
-    # apparmor.enable = lib.mkDefault true; # TEST pertinence
+    # apparmor.enable = lib.mkDefault true; # TODO secure system
   };
+
+  security.pam.loginLimits = [ # TEST relevance, used by musnix
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "99";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "soft";
+      value = "99999";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "hard";
+      value = "99999";
+    }
+  ];
 
   location.provider = "geoclue2";
 
@@ -104,7 +135,7 @@
     adb.enable = true; # Talk to Android devices
     zsh.enable = true;
     firejail = {
-      enable = true; # TEST pertinence
+      enable = true; # TODO ensure apps are jailed
       wrappedBinaries = {
         # TODO wrap binaries properly, may need home-manager tweaks to apply to desktop apps
         # brave = {
@@ -181,20 +212,4 @@
       calendar.firstDayOfWeek = 1;
     };
   };
-
-  # Realtime & music production related improvements
-  musnix.enable = true;
-
-  # Specialisation with RT kernel & performance governor by default TEST relevance
-  # specialisation.realtime.configuration = {
-  #   system.nixos.tags = [ "realtime" ];
-  #   musnix = {
-  #     kernel = {
-  #       realtime = true; # WARNING requires a kernel recompile
-  #       # TEST if below can be used without above
-  #       packages = pkgs.linuxPackages_rt; # Stable RT kernel
-  #       # packages = pkgs.linuxPackages_latest_rt; # Latest RT kernel
-  #     };
-  #   };
-  # };
 }
