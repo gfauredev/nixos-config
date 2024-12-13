@@ -1,4 +1,6 @@
 { pkgs, lib, ... }: {
+  # See: https://wiki.archlinux.org/title/Professional_audio
+
   home.sessionVariables = let
     makePluginPath = format:
       (lib.makeSearchPath format [

@@ -42,12 +42,12 @@
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = {
       "kernel.sysrq" = 212;
-      "vm.swappiness" = 10; # TEST relevance, used by musnix
+      # "vm.swappiness" = 50; # Reduce memory swap to disk (no swap partition anyway)
     };
     kernelPackages = lib.mkOverride 1001
       pkgs.linuxPackages_latest; # Latest Linux kernel by default
     kernelParams = [
-      "threadirqs" # TEST relevance, used by musnix
+      "threadirqs" # Force threading interrupts
     ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs

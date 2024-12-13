@@ -99,7 +99,7 @@
     # apparmor.enable = lib.mkDefault true; # TODO secure system
   };
 
-  security.pam.loginLimits = [ # TEST relevance, used by musnix
+  security.pam.loginLimits = [ # Increased pam limits for audio group
     {
       domain = "@audio";
       item = "memlock";
