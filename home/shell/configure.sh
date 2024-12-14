@@ -101,7 +101,7 @@ cfg_push() {
     git checkout main
     cd .. || return
   fi
-  git commit --amend --all && git push || exit
+  git commit --amend --all --no-edit && git push || exit
 }
 
 cfg_rebase_push() {
@@ -111,7 +111,7 @@ cfg_rebase_push() {
     git rebase -i || exit
     cd .. || return
   fi
-  git commit --amend --all && git rebase -i && git push || exit
+  git commit --amend --all --no-edit && git rebase -i && git push || exit
 }
 
 # Go inside the config directory, start of the main script
