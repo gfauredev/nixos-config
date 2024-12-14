@@ -21,6 +21,8 @@
     monero-cli # Monero CLI
     electrum # Light Bitcoin Wallet
     sparrow # Bitcoin wallet
+    ord # Ordinals CLI
+    cointop # Cryptocurrencies monitor
     go-ethereum # Ethereum CLI
 
     # Monitoring & Analysis
