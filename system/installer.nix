@@ -1,7 +1,4 @@
-{ pkgs, ... }: {
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [ "nvidia" ];
-
+{ ... }: {
   # hardware.enableAllFirmware = true;
 
   boot = {

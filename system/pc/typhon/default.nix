@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [ ./hardware.nix ../default.nix ];
 
   nix = {
@@ -8,24 +8,6 @@
       # trusted-substituters = [ ];
       trusted-public-keys =
         [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
-    };
-  };
-
-  hardware = {
-    # opengl = { # TODO remove deprecated
-    #   driSupport = true;
-    #   driSupport32Bit = true;
-    # };
-    nvidia = {
-      open = false;
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      nvidiaSettings = true;
-      # package = config.boot.kernelPackages.nvidiaPackages.stable;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-      # forceFullCompositionPipeline = true; TEST relevance
-      # nvidiaPersistenced = true; TEST relevance
     };
   };
 
@@ -103,7 +85,6 @@
     #   extraRemotes = [ "lvfs-testing" ];
     # };
     openssh.enable = true; # Enable the OpenSSH daemon
-    # xserver.videoDrivers = [ "nvidia" ];
     nix-serve = {
       enable = true; # Enable distribution of nix build cache
       openFirewall = true;

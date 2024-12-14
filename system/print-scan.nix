@@ -1,7 +1,4 @@
 { lib, pkgs, ... }: {
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [ "hp" ];
-
   services = {
     printing = {
       enable = true; # Enable CUPS to print documents

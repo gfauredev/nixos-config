@@ -1,4 +1,16 @@
 { lib, pkgs, ... }: {
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11" # GPU drivers
+      "nvidia-settings" # GPU drivers
+      "nvidia-persistenced" # GPU drivers
+      "hp" # Printer drivers
+      "steam" # Video games software
+      "steam-original" # Video games software
+      "steam-unwrapped" # Video games software
+      "steam-run" # Video games software
+    ];
+
   # sops = {
   #   defaultSopsFile = ../secret/default.yml;
   #   defaultSopsFormat = "yaml";

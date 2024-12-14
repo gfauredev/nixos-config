@@ -10,7 +10,6 @@
       "bespokesynth-with-vst2"
       "spotify"
       "steam-unwrapped"
-      "nvidia"
     ];
 
   # sops = {

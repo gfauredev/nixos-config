@@ -1,8 +1,5 @@
 { ... }: {
-  imports = [ ./hardware.nix ../default.nix ];
-
-  # nixpkgs.config.allowUnfreePredicate = pkg:
-  #   builtins.elem (lib.getName pkg) [ "nvidia" ];
+  imports = [ ./hardware.nix ../default.nix ../../nvidia.nix ];
 
   nix = {
     settings = {
@@ -52,32 +49,6 @@
   #     extraRemotes = [ "lvfs-testing" ];
   #   };
   # };
-
-  hardware = {
-    nvidia = {
-      open = true;
-      modesetting.enable = true;
-      nvidiaSettings = true;
-      powerManagement = {
-        enable = false;
-        finegrained = false;
-      };
-      # package = config.boot.kernelPackages.nvidiaPackages.stable;
-      # package = config.boot.kernelPackages.nvidiaPackages.beta;
-      # forceFullCompositionPipeline = true; TEST relevance
-      # nvidiaPersistenced = true; TEST relevance
-      prime = {
-        allowExternalGpu = true;
-        # offload = {
-        #   enable = true;
-        #   enableOffloadCmd = true;
-        # };
-        # sync.enable = true;
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:127:0:0";
-      };
-    };
-  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";

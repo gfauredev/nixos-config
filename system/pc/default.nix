@@ -7,15 +7,7 @@
 
   hardware = {
     uinput.enable = true;
-    graphics = {
-      enable = true;
-      # extraPackages = with pkgs; [ # TODO REMOVE
-      #   intel-media-driver # Intel HD
-      #   vaapiIntel # i965
-      #   vaapiVdpau # Nvidia
-      #   libvdpau-va-gl # Nvidia
-      # ];
-    };
+    graphics.enable = true;
     # fancontrol = {
     #   enable = true;
     #   config = ''
