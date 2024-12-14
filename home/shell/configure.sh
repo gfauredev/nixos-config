@@ -1,6 +1,6 @@
 #!/bin/sh
-NIXOS_REBUILD_PARAM=''
-HOME_MANAGER_PARAM=''
+NIXOS_REBUILD_CMD='nixos-rebuild' # Set default params here
+HOME_MANAGER_CMD='home-manager' # Set default params here
 SUBFLAKE="public" # Leave empty to disable
 
 # Use local substituter if local net
@@ -9,8 +9,6 @@ SUBFLAKE="public" # Leave empty to disable
 #   local_network='inet 42.42.42.42/24.*wlp166s0' # ip addr regexp
 #   home_manager_param="${home_manager_param} --option extra-substituters $local_substituter"
 #   nixos_rebuild_param="${nixos_rebuild_param} --option extra-substituters $local_substituter"
-#   printf "Passing \"%s\" to nixos-rebuild\n" "$nixos_rebuild_param"
-#   printf "Passing \"%s\" to home-manager\n" "$home_manager_param"
 # fi
 
 show_help() {
@@ -77,8 +75,8 @@ edit_commit() {
 rebuild_system() {
   printf "\nMounting /boot before system update\n"
   sudo mount -v /boot || return # Use fstab
-  printf "\nPerforming system update: \"%s\"\n" "sudo nixos-rebuild $NIXOS_REBUILD_PARAM --flake . switch"
-  if systemd-inhibit sudo nixos-rebuild $NIXOS_REBUILD_PARAM --flake . switch; then
+  printf "\nPerforming system update: \"%s\"\n" "sudo $NIXOS_REBUILD_CMD --flake . switch"
+  if systemd-inhibit sudo $NIXOS_REBUILD_CMD --flake . switch; then
     printf "\nUnmounting /boot after update\n"
     sudo umount -v /boot # Unmount for security
   else
@@ -92,16 +90,25 @@ rebuild_home() {
   printf "\nRemoving .config/mimeapps.list\n"
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
   printf "\nPerforming profile update: \"%s\"\n" \
-    "home-manager $HOME_MANAGER_PARAM --flake . switch"
-  systemd-inhibit home-manager $HOME_MANAGER_PARAM --flake . switch || return
-  # home-manager $home_manager_param --flake ".#${USER}@$(hostname)" switch
+    "$HOME_MANAGER_CMD --flake . switch"
+  systemd-inhibit $HOME_MANAGER_CMD --flake . switch || return
+  # $home_manager_param --flake ".#${USER}@$(hostname)" switch
 }
 
 cfg_push() {
   if [ -n "$SUBFLAKE" ]; then
     cd $SUBFLAKE || return
     git checkout main
-    git  rebase -i || exit
+    cd .. || return
+  fi
+  git commit --amend --all && git push || exit
+}
+
+cfg_rebase_push() {
+  if [ -n "$SUBFLAKE" ]; then
+    cd $SUBFLAKE || return
+    git checkout main
+    git rebase -i || exit
     cd .. || return
   fi
   git commit --amend --all && git rebase -i && git push || exit
@@ -199,8 +206,12 @@ if [ $home = true ] ||
     [ $cd = false ] && [ $system = false ]; }; then
   rebuild_home
 fi
-if $push_repositories; then # TODO factorize, modularize ($git_param)
-  cfg_push
+if $push_repositories; then
+  if [ $cd = true ] || [ $reboot = true ] || [ $poweroff = true ]; then
+    cfg_push
+  else
+    cfg_rebase_push
+  fi
 fi
 if $cd; then
   exec $SHELL # Execute the default shell at the WD of this script
