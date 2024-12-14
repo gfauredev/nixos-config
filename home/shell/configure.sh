@@ -65,7 +65,7 @@ edit_commit() {
     cd $SUBFLAKE || return
     git checkout main
     git add .
-    git commit "$@"
+    git commit "$@" || return
     cd .. || return
     nix flake update $SUBFLAKE # Update subflake input
   fi
