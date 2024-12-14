@@ -55,7 +55,7 @@
 
   hardware = {
     nvidia = {
-      open = false; # Sadly
+      open = true;
       modesetting.enable = true;
       nvidiaSettings = true;
       powerManagement = {
