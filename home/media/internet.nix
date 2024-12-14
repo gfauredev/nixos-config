@@ -15,6 +15,13 @@
     protonvpn-cli_2 # Swiss VPN service (Python rewrite)
     # protonvpn-cli # Swiss VPN service
     wayback # Web archiving tool
+    bitcoin # Bitcoin Core
+    lnd # Lightning Network Daemon
+    monero-gui # Private cryptocurrency
+    monero-cli # Monero CLI
+    electrum # Light Bitcoin Wallet
+    sparrow # Bitcoin wallet
+    go-ethereum # Ethereum CLI
 
     # Monitoring & Analysis
     sherlock # Search social media accounts
