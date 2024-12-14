@@ -216,8 +216,9 @@
       rg = "echo You might prefer using custom command 'g';rg"; # Reminder
       rga = "echo You might prefer using custom command 'g';rga"; # Reminder
       ## Open
-      a = "bat --force-colorization --paging never"; # Better cat
+      a = "bat --force-colorization"; # --paging never"; # Better cat
       o = "open"; # xdg-open + disown
+      p = "$PAGER"; # Default pager
       ## Edit
       e = "$EDITOR"; # Default text editor
       v = "vi"; # (Neo)Vi(m) CLI text editor (fallback)
@@ -281,7 +282,7 @@
     lesspipe.enable = false;
     bat = {
       enable = true; # Better cat with syntax highlighting
-      config.pager = "less -i";
+      # config.pager = "less -i"; # TODO set ov
     };
     fzf = {
       enable = true; # Fuzzy searcher
