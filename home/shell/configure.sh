@@ -110,6 +110,7 @@ cfg_rebase_push() {
     git checkout main
     git rebase -i || exit
     cd .. || return
+    git commit --amend --message="$(git -C $SUBFLAKE log -1 --pretty=%s)"
   fi
   git commit --amend --all --no-edit && git rebase -i && git push || exit
 }
