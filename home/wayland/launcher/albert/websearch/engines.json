@@ -89,6 +89,14 @@
     },
     {
         "fallback": false,
+        "iconPath": ":default",
+        "id": "912a1373",
+        "name": "F-Droid",
+        "trigger": "fdroid",
+        "url": "https://search.f-droid.org/?q=%s"
+    },
+    {
+        "fallback": false,
         "iconPath": ":github",
         "id": "5008800a",
         "name": "GitHub",
