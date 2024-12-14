@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ ... }: {
   imports = [ ./hardware.nix ../default.nix ];
 
   # nixpkgs.config.allowUnfreePredicate = pkg:
@@ -55,7 +55,7 @@
 
   hardware = {
     nvidia = {
-      open = lib.mkDefault true;
+      open = false; # Sadly
       modesetting.enable = true;
       nvidiaSettings = true;
       powerManagement = {
@@ -78,39 +78,6 @@
       };
     };
   };
-
-  # specialisation = {
-  #   nvidia-closed.configuration = {
-  #     system.nixos.tags = [ "closed" "nvidia" ];
-  #     hardware = {
-  #       nvidia = {
-  #         open = false;
-  #         modesetting.enable = true;
-  #         nvidiaSettings = true;
-  #         powerManagement = {
-  #           enable = false;
-  #           finegrained = false;
-  #         };
-  #         # package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #         # package = config.boot.kernelPackages.nvidiaPackages.beta;
-  #         # forceFullCompositionPipeline = true; TEST relevance
-  #         # nvidiaPersistenced = true; TEST relevance
-  #       };
-  #       nvidia.prime = {
-  #         allowExternalGpu = true;
-  #         # offload = {
-  #         #   enable = true;
-  #         #   enableOffloadCmd = true;
-  #         # };
-  #         # sync.enable = true;
-  #         intelBusId = "PCI:0:2:0";
-  #         nvidiaBusId = "PCI:127:0:0";
-  #       };
-  #     };
-  #     services.xserver.videoDrivers =
-  #       lib.mkDefault [ "nvidia" ]; # TEST relevance
-  #   };
-  # };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
