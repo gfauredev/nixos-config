@@ -91,6 +91,9 @@ trigger="inhib "
 [mpris]
 enabled=false
 
+[path]
+enabled=true
+
 [pluginregistry]
 trigger="plug "
 
