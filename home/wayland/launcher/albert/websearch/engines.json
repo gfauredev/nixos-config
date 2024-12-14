@@ -218,6 +218,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "bff2954f",
+        "name": "Nostr.Band",
+        "trigger": "nostr",
+        "url": "https://nostr.band/?q=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "f9c9e93b",
         "name": "OpenStreetMaps",
         "trigger": "m",
@@ -254,5 +262,13 @@
         "name": "YouTube",
         "trigger": "y",
         "url": "https://www.youtube.com/results?search_query=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "b326a8ae",
+        "name": "nos.today",
+        "trigger": "nos",
+        "url": "https://nos.today/search?q=%s"
     }
 ]

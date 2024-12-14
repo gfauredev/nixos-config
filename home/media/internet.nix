@@ -7,13 +7,14 @@
     servo # New modular embeddable web engine
 
     # P2P & VPN & Web3
-    nym # A new mixnet, anonymous routing protocol
-    mullvad # VPN service
+    nym # Super-anonymous routing protocol FIXME lacks desktop apps
+    mullvad # Anonymous VPN service
     qbittorrent-nox # Bittorrent client (web interface)
     # calyx-vpn # (bitmask client) Free VPN service FIXME
     riseup-vpn # (bitmask client) Free VPN service
-    protonvpn-cli_2 # Free VPN service (Python rewrite)
-    # protonvpn-cli # Free VPN service
+    protonvpn-cli_2 # Swiss VPN service (Python rewrite)
+    # protonvpn-cli # Swiss VPN service
+    wayback # Web archiving tool
 
     # Monitoring & Analysis
     sherlock # Search social media accounts
