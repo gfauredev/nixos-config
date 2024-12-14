@@ -154,6 +154,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "23972c62",
+        "name": "NixOS Wiki",
+        "trigger": "nw",
+        "url": "https://wiki.nixos.org/w/index.php?search=%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "71167f0d",
         "name": "NixOS option",
         "trigger": "opt",
