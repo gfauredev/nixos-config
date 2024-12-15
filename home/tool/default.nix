@@ -88,6 +88,43 @@
         default_flags = "dgHps";
       };
     };
+    yazi = {
+      enable = true;
+      #   keymap = {
+      #     input.prepend_keymap = [
+      #       {
+      #         run = "close";
+      #         on = [ "<C-q>" ];
+      #       }
+      #       {
+      #         run = "close --submit";
+      #         on = [ "<Enter>" ];
+      #       }
+      #       {
+      #         run = "escape";
+      #         on = [ "<Esc>" ];
+      #       }
+      #       {
+      #         run = "backspace";
+      #         on = [ "<Backspace>" ];
+      #       }
+      #     ];
+      #     manager.prepend_keymap = [
+      #       {
+      #         run = "escape";
+      #         on = [ "<Esc>" ];
+      #       }
+      #       {
+      #         run = "quit";
+      #         on = [ "q" ];
+      #       }
+      #       {
+      #         run = "close";
+      #         on = [ "<C-q>" ];
+      #       }
+      #     ];
+      #   };
+    };
     translate-shell.enable = true;
   };
 }
