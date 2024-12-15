@@ -35,10 +35,12 @@ in {
     # blender # Most popular 3D, animation & video editor
     # TEST if still useful
     blenderWithPySlvs # Patched popular 3D, animation & video editor
+    # meshlab # 3D mesh processing tool
 
-    # cq-editor # GUI for Python library CadQuery
     # openscad # Parametric, programmatic (code only) 3D CAD
+    # cq-editor # GUI for Python library CadQuery
 
+    dune3d # New parametric CAD
     freecad # Popular parametric 3D CAD
     # solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
