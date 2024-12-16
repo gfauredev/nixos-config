@@ -1,5 +1,4 @@
-# Useful programs TODO organize better
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: { # Useful programs TODO organize better
   imports = [ ./wezterm ./alacritty ./neovim ./helix ./pulsemixer ];
 
   home.packages = with pkgs; [
@@ -84,8 +83,8 @@
       enableZshIntegration = true;
       enableNushellIntegration = true;
       settings = {
-        # modal = true;
-        default_flags = "dgHps";
+        default_flags = "dgps";
+        special_paths = lib.mkForce { };
       };
     };
     yazi = {
