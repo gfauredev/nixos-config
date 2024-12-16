@@ -1,23 +1,15 @@
 #!/bin/sh
 NIXOS_REBUILD_CMD='nixos-rebuild' # Set default params here
-HOME_MANAGER_CMD='home-manager' # Set default params here
-SUBFLAKE="public" # Leave empty to disable
-
-# Use local substituter if local net
-# if ip addr | grep "$local_network"; then
-#   local_substituter='http://192.168.42.42:42'
-#   local_network='inet 42.42.42.42/24.*wlp166s0' # ip addr regexp
-#   home_manager_param="${home_manager_param} --option extra-substituters $local_substituter"
-#   nixos_rebuild_param="${nixos_rebuild_param} --option extra-substituters $local_substituter"
-# fi
+HOME_MANAGER_CMD='home-manager'   # Set default params here
+SUBFLAKE="public"                 # Leave empty to disable
 
 show_help() {
   echo "By default, edit the configuration, commit the changes, and rebuild Home."
   echo "The following arguments can be passed in any order."
   echo
   echo "- r[ebuild]:   Enable rebuild only mode, no editing."
-  echo "- s[ystem]:    Rebuild NixOS configuration."
-  echo "- ho[me]:      Always rebuild Home Manager configuration."
+  echo "- s[ystem]:    Rebuild NixOS configuration ($NIXOS_REBUILD_CMD)"
+  echo "- ho[me]:      Always rebuild Home Manager configuration ($HOME_MANAGER_CMD)"
   echo "- h[elp]:      Show this help message (and exit if no other arguments)."
   echo "- a[ll]:       Rebuild NixOS and Home Manager configurations."
   echo "- u[pdate]:    Update every flake inputs (don’t edit the configuration)."
@@ -92,16 +84,18 @@ rebuild_home() {
   printf "\nPerforming profile update: \"%s\"\n" \
     "$HOME_MANAGER_CMD --flake . switch"
   systemd-inhibit $HOME_MANAGER_CMD --flake . switch || return
-  # $home_manager_param --flake ".#${USER}@$(hostname)" switch
 }
 
 cfg_push() {
-  if [ -n "$SUBFLAKE" ]; then
-    cd $SUBFLAKE || return
-    git checkout main
-    cd .. || return
+  # if [ -n "$SUBFLAKE" ]; then
+  #   cd $SUBFLAKE || return
+  #   git checkout main # TEST relevance
+  #   cd .. || return
+  # fi
+  if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
+    git commit --amend --all --no-edit
   fi
-  git commit --amend --all --no-edit && git push || exit
+  git push || exit
 }
 
 cfg_rebase_push() {
@@ -110,9 +104,14 @@ cfg_rebase_push() {
     git checkout main
     git rebase -i || exit
     cd .. || return
-    git commit --amend --message="$(git -C $SUBFLAKE log -1 --pretty=%s)"
+    if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
+      git commit --amend --message="$(git -C $SUBFLAKE log -1 --pretty=%s)"
+    fi
   fi
-  git commit --amend --all --no-edit && git rebase -i && git push || exit
+  if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
+    git commit --amend --all --no-edit
+  fi
+  git rebase -i && git push || exit
 }
 
 # Go inside the config directory, start of the main script
