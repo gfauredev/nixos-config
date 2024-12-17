@@ -51,8 +51,10 @@
     spotdl # download music and playlists from Spotify
 
     # Emulation
-    # wine # Execute Window$ programs TODO reenable
-    # winetricks # Execute Window$ programs TODO reenable
+    # wine # Execute Window$ programs
+    # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
+    wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
+    winetricks # Execute Window$ programs (config tool)
 
     # Misc
     exercism # CLI for the programming exercises website
