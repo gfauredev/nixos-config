@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, config, ... }: {
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11" # GPU drivers
@@ -112,21 +112,13 @@
       lib.mkDefault false; # True for compatibility with Windows
   };
 
-  networking = let
-    dns = [
-      #dns0.eu
-      "193.110.81.0"
-      "2a0f:fc80::"
-      "185.253.5.0"
-      "2a0f:fc81::"
-    ];
-  in {
+  networking = {
     firewall.enable = lib.mkDefault true;
     wireguard.enable = lib.mkDefault true;
     networkmanager = {
+      # See: https://developer.gnome.org/NetworkManager/stable/NetworkManager.html
       enable = lib.mkDefault true;
-      appendNameservers = dns;
-      # see https://developer.gnome.org/NetworkManager/stable/NetworkManager.html
+      insertNameservers = config.networking.nameservers; # FIX
       dispatcherScripts = [{
         source = pkgs.writeShellScript "09-timezone" ''
           case "$2" in
@@ -139,7 +131,13 @@
         type = "basic";
       }];
     };
-    nameservers = dns;
+    nameservers = [ # This options doesn’t seem effective, FIX above
+      #dns0.eu
+      "193.110.81.0"
+      "2a0f:fc80::"
+      "185.253.5.0"
+      "2a0f:fc81::"
+    ];
   };
 
   hardware = {
