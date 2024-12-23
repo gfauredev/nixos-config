@@ -1,24 +1,23 @@
 { pkgs, ... }: {
-  imports = [ ./hyprland ./waybar ./launcher ./remap ];
+  imports = [ ./hyprland ./waybar ./launcher ./remap ./eww ];
 
   home.packages = with pkgs; [
-    hyprpolkitagent # Hypr Polkit auth agent
     wl-clipboard # Copy from CLI
-    hyprpicker # Better color picker
+    wl-mirror # Mirror wayland output
     grim # Take screenshots
     slurp # Select a screen zone with mouse
     wev # Evaluate inputs sent to wayland to debug
     libnotify # Notifications management
+    hyprpicker # Better color picker
     # wayvnc # Wayland remote desktop
     # wlr-randr # Edit display settings for wayland
     # waypipe # Send a wayland window through SSH
     # hyprpaper # Wallpaper engine
     # swww # Dynamic wallpaper
-    # eww # Advanced widgets
     # niri # Innovative WM infinity horizontal scroll
-    # wayland # wayland lib
-    # wayland-utils # wayland inffo
-    # wayland-protocols # wayland protocol extensions
+    wayland # wayland lib
+    wayland-utils # wayland inffo
+    wayland-protocols # wayland protocol extensions
   ];
 
   xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
