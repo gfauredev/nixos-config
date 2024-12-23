@@ -103,6 +103,7 @@ directly included in this flake:
 - `keybase-gui` # Identity and public key cryptography
 - `github:Wazzaps/fingerpaint` # Use touchpad to draw
 - `prismlauncher` # Open source Minecraft launcher
+- `modrinth-app` # Open source Minecraft launcher
 
 - `masterpdfeditor` # PROPRIETARY PDF editor
 - `discord` # PROPRIETARY messaging and general communication
