@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     wl-mirror # Mirror wayland output
     hyprcursor # Modern cursor engine
+    hyprland-protocols # Wayland extensions
+    hyprutils # Hypr ecosystem utilities
     # xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
 
@@ -12,7 +14,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # plugins = [ ];
+    # plugins = with pkgs.hyprlandPlugins;
+    #   [
+    #     hyprfocus # Window focus animationt
+    #   ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
@@ -361,6 +366,13 @@
           "workspaces, 1, 6, default"
         ];
       };
+
+      # hyprfocus = {
+      #   enabled = "yes";
+      #   animate_floating = "yes";
+      #   animate_workspacechange = "no";
+      #   focus_animation = "flash";
+      # };
 
       misc = {
         disable_hyprland_logo = true;
