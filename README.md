@@ -90,14 +90,12 @@ directly included in this flake:
       configurations)
   - Consider using nixos-generators like
     `nixos-generate -f iso -c installer.nix`
-- [ ] Improve rofi menu (frecency sorting, fuzzy matching …) or test other menus
-      with more features
 
 ## Optional packages
 
-> These are packages I don’t want in my config but will possibly use
-> ephemerally with `nix-shell -p $PACKAGE` or install with
-> `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
+> These are packages I don’t want in my config but will possibly use ephemerally
+> with `nix-shell -p $PACKAGE` or install with `nix-env -iA nixos.$PACKAGE` or
+> `nix-env -iA nixpkgs.$PACKAGE`
 
 - `pdf4qt` # Open source PDF editor
 - `masterpdfeditor` # Closed source PDF editor
@@ -137,4 +135,5 @@ directly included in this flake:
 - `sqlcl` # Oracle SQL CLI
 - `burpsuite` # Pentesting suite
 - `minecraft` # Mythic sandbox game
+- `prismlauncher` # Open source minecraft launcher
 - `fabric-installer` # Minecraft modding toolchain
