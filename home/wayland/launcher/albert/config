@@ -166,7 +166,7 @@ lock_enabled=false
 logout_enabled=false
 suspend_enabled=false
 title_poweroff=off
-title_reboot=reboot
+title_reboot=boot
 trigger="sys "
 
 [timer]
