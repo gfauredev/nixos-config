@@ -86,48 +86,41 @@ directly included in this flake:
 
 > Consider TODO, FIXME, TEST and WARNING tags already inside files
 
-- [ ] Improve installer ISO creation (installer in `flake.nix` NixOS
-      configurations)
+- [ ] Improve installer ISO creation
   - Consider using nixos-generators like
     `nixos-generate -f iso -c installer.nix`
 
 ## Optional packages
 
-> These are packages I don’t want in my config but will possibly use ephemerally
-> with `nix-shell -p $PACKAGE` or install with `nix-env -iA nixos.$PACKAGE` or
-> `nix-env -iA nixpkgs.$PACKAGE`
+> Packages I don’t want in my config but will possibly use ephemerally with
+> `nix-shell -p $PACKAGE` or install with `nix profile nixpkgs#$PACKAGE`
 
 - `pdf4qt` # Open source PDF editor
-- `masterpdfeditor` # Closed source PDF editor
 - `veracrypt` # Multiplatform encryption
 - `chntpw` # Edit an installed Windows registry
 - `gns3-gui` # Advanced network simulation
 - `gns3-server` # Advanced network simulation (server)
+- `keybase-gui` # Identity and public key cryptography
+- `github:Wazzaps/fingerpaint` # Use touchpad to draw
+- `prismlauncher` # Open source Minecraft launcher
+
+- `masterpdfeditor` # PROPRIETARY PDF editor
 - `discord` # PROPRIETARY messaging and general communication
 - `whatsapp-for-linux` # PROPRIETARY messaging and general communication
 - `discord-canary` # PROPRIETARY messaging and general communication
 - `teams-for-linux` # PROPRIETARY services messaging and work
 - `zoom` # PROPRIETARY messaging and work
-- `keybase-gui` # Identity and public key cryptography
 - `reaper` # PROPRIETARY digital audio workstation
-- `adobe-reader` # PROPRIETARY "official" PDF reader
+- `adobe-reader` # PROPRIETARY “official” PDF reader
 - `masterpdfeditor4` # PROPRIETARY PDF edition
 - `pdfstudio2023` # PROPRIETARY PDF edition
 - `davinci-resolve` # PROPRIETARY video editor
 
-## Optional flakes
-
-> These are packages I don’t want in my config but will eventually install with
-> `nix profile install URL`
-
-- `github:Wazzaps/fingerpaint` # Use touchpad to draw
-
 ## Non-redistributable packages
 
-> These are packages that require downloading assets from various places and add
-> them to the Nix store with `$ nix-store --add-fixed sha256 /path/to/file`
-> before being ephemerally used with `nix-shell -p $PACKAGE` or being installed
-> with `nix-env -iA nixos.$PACKAGE` or `nix-env -iA nixpkgs.$PACKAGE`
+> Packages that require downloading assets from various places and add them to
+> the Nix Store with `$ nix-store --add-fixed sha256 /path/to/file` before using
+> `nix-shell -p $PACKAGE` or installing `nix profile install nixpkgs#$PACKAGE`
 
 - `protonvpn-gui` # Partly free VPN
 - `ciscoPacketTracer8` # Network simulation
@@ -135,5 +128,4 @@ directly included in this flake:
 - `sqlcl` # Oracle SQL CLI
 - `burpsuite` # Pentesting suite
 - `minecraft` # Mythic sandbox game
-- `prismlauncher` # Open source minecraft launcher
 - `fabric-installer` # Minecraft modding toolchain
