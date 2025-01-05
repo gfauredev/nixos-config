@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # Web browsing
-    nyxt # Keyboard driven lightweight web browser
+    # nyxt # Keyboard driven lightweight web browser
     # browsh # CLI web browser (added to default home)
     # brave # Blink based secure and private web browser
-    servo # New modular embeddable web engine
+    # servo # New modular embeddable web engine
 
     # P2P & VPN & Web3
     nym # Super-anonymous routing protocol FIXME lacks desktop apps
@@ -15,7 +15,7 @@
     protonvpn-cli_2 # Swiss VPN service (Python rewrite)
     # protonvpn-cli # Swiss VPN service
     wayback # Web archiving tool
-    bitcoin # Bitcoin Core
+    # bitcoin # Bitcoin Core
     lnd # Lightning Network Daemon
     monero-gui # Private cryptocurrency
     monero-cli # Monero CLI
