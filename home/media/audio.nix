@@ -34,7 +34,7 @@
     # VST Collections
     distrho-ports # Collection of audio plugins, contains Vitalium
     calf # Collection of audio plugins
-    bristol # Synths
+    stablepkgs.bristol # Synths
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
