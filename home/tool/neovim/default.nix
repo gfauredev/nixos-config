@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, stablepkgs, ... }: {
   home.packages = with pkgs;
     [
       tree-sitter-grammars.tree-sitter-typst
@@ -143,7 +143,7 @@
 
       bash-language-server # Bash LSP
       shellcheck # Shell script analysis
-      explain # Explain system call errors
+      stablepkgs.explain # Explain system call errors
       shfmt # Shell script formatter
 
       lua-language-server # Lua LSP
