@@ -2,36 +2,37 @@
   imports = [ ./wezterm ./alacritty ./neovim ./helix ./pulsemixer ];
 
   home.packages = with pkgs; [
+    ghostty # Modern term emulator TODO its own module
+
     # Theme & Style
     # libsForQt5.qt5ct # TEST if relevant
-    libsForQt5.qtstyleplugin-kvantum # TEST if relevant
+    # libsForQt5.qtstyleplugin-kvantum # TEST if relevant
     # libsForQt5.qt5.qtwayland # TEST if relevant
     # qt6Packages.qt6ct # TEST if relevant
-    qt6Packages.qtstyleplugin-kvantum # TEST if relevant
+    # qt6Packages.qtstyleplugin-kvantum # TEST if relevant
     # qt6.qtwayland # TEST if relevant
     # libsForQt5.systemsettings # TEST if relevant
     # adwaita-qt # TEST if relevant
     # gsettitngs-qt # GTK Settings
-    asciiquarium-transparent # Best screensaver ever
-    cmatrix # Simulate falling text as in matrix
+    # asciiquarium-transparent # Best screensaver ever, to install declaratively
+    # cmatrix # Simulate falling text as in matrix, to install declaratively
 
     # Cleaning & Desktop monitoring
-    czkawka # Modern cleaner
+    # czkawka # Modern cleaner
     # bleachbit # Good old cleaner
     # stacer # Modern cleaner & monitoring
 
     # AI Tools
-    aichat # (Local) LLM in the terminal
-    jan # Run LLMs locally
-    # ollama # Run LLMs locally
+    ollama # Run LLMs locally
+    # aichat # (Local) LLM in the terminal
+    # jan # Run LLMs locally
     # open-interpreter # Interpret LLM code in terminal directly
 
     # Storage & Backup
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
-    tmsu # File tagging with virtual FS
-    iroh # Efficient IPFS, p2p file sharing
+    # tmsu # File tagging with virtual FS
     # sendme # send files and directories p2p
     # udiskie # auto mount USB
     # dcfldd # more powerful dd
@@ -88,7 +89,7 @@
       };
     };
     yazi = {
-      enable = true;
+      enable = true; # TODO configure
       #   keymap = {
       #     input.prepend_keymap = [
       #       {
