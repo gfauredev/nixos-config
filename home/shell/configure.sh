@@ -203,20 +203,21 @@ fi
 if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   { [ $push_repositories = false ] && [ $cd = false ] ||
     [ $system = true ] || [ $home = true ]; } || [ -n "$commit_message" ]; then
-  printf "Editing because " # DEBUG
-  if [ $rebuild_only = false ] && [ $update_inputs = false ]; then
-    printf "no rebuild only mode and not updating inputs, "
-    if [ $push_repositories = false ] && [ $cd = false ]; then
-      printf "not pushing repositories and not changing directory "
-    elif [ $system = true ]; then
-      printf "system explicitly precised "
-    elif [ $home = true ]; then
-      printf "home explicitly precised "
-    fi
-  fi
-  if [ -n "$commit_message" ]; then
-    printf "Commit message: %s" "$commit_message"
-  fi # DEBUG end
+  # printf "Editing because " # DEBUG
+  # if [ $rebuild_only = false ] && [ $update_inputs = false ]; then
+  #   printf "no rebuild only mode and not updating inputs, "
+  #   if [ $push_repositories = false ] && [ $cd = false ]; then
+  #     printf "not pushing repositories and not changing directory "
+  #   elif [ $system = true ]; then
+  #     printf "system explicitly precised "
+  #   elif [ $home = true ]; then
+  #     printf "home explicitly precised "
+  #   fi
+  # fi
+  # if [ -n "$commit_message" ]; then
+  #   printf "Commit message: %s" "$commit_message"
+  # fi
+  # printf "\n" # DEBUG end
   edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
 fi
 if $system; then
