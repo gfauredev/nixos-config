@@ -2,7 +2,7 @@
   programs = {
     alacritty = {
       enable = true; # Fast terminal emulator
-      settings = {
+      settings = { # TODO configure
         window = {
           # opacity = 0.8;
           padding = {

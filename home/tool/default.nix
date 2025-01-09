@@ -1,9 +1,7 @@
 { pkgs, lib, ... }: { # Useful programs TODO organize better
-  imports = [ ./wezterm ./alacritty ./neovim ./helix ./pulsemixer ];
+  imports = [ ./alacritty ./wezterm ./ghostty ./neovim ./helix ./pulsemixer ];
 
   home.packages = with pkgs; [
-    ghostty # Modern term emulator TODO its own module
-
     # Theme & Style
     # libsForQt5.qt5ct # TEST if relevant
     # libsForQt5.qtstyleplugin-kvantum # TEST if relevant
