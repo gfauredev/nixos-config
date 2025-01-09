@@ -134,13 +134,16 @@ poweroff=false
 reboot=false
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  r | re | rebuild) # Rebuild only, don’t edit
+  # r | re | rebuild) # Rebuild only, don’t edit
+  r | re) # Use words unlikely to appear in commit message
     rebuild_only=true
     ;;
-  s | sys | system) # Rebuild System but not Home
+  # s | sy | sys | system) # Rebuild System but not Home
+  s | sy | sys) # Words less likely to appear in commit messages
     system=true
     ;;
-  ho | home) # Rebuild Home anyway
+  # ho | home) # Rebuild Home anyway
+  ho | hom) # Words less likely to appear in commit messages
     home=true
     ;;
   h | help) # Show help message
@@ -150,7 +153,8 @@ while [ "$#" -gt 0 ]; do
     system=true
     home=true
     ;;
-  u | up | update | upgrade) # Update the flake’s inputs, no rebuild
+  # u | up | update | upgrade) # Update the flake’s inputs, no rebuild
+  u | up | upd | upg) # Words less likely to appear in commit messages
     update_inputs=true
     ;;
   p | push) # Push the flake’s repository
@@ -162,10 +166,12 @@ while [ "$#" -gt 0 ]; do
   c | d | cd) # Open default shell into current WD
     cd=true
     ;;
-  off | poweroff) # Turn off the system at the end of the script
+  # off | poweroff) # Turn off the system at the end of the script
+  off) # Words less likely to appear in commit messages
     poweroff=true
     ;;
-  boot | reboot) # Restart the system at the end of the script
+  # boot | reboot) # Restart the system at the end of the script
+  boot) # Words less likely to appear in commit messages
     reboot=true
     ;;
   *) # Append any other parameters to the Git commit message
@@ -189,21 +195,24 @@ fi
 if $update_inputs; then
   flake_update_inputs
 fi
-# Never edit when rebuild-only mode or if updating inputs
-# If pushing repositosries or changing directory, only edit if explicitly precised
+# Edit by default
+# Don’t edit if rebuild-only mode or if updating inputs
+# Don’t edit if pushing repositories or changing directory,
+#   unless system or home (or all)
+# Always edit if commit message
 if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   { [ $push_repositories = false ] && [ $cd = false ] ||
-    [ $system = true ] || [ $home = true ] || [ -n "$commit_message" ]; }; then
+    [ $system = true ] || [ $home = true ]; } || [ -n "$commit_message" ]; then
   edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
 fi
 if $system; then
   rebuild_system
 fi
-# Rebuild home by default, unless: updating inputs, pushing repositories or changing dir
-# Always rebuild home if explicitly precised
-if [ $home = true ] ||
-  { [ $update_inputs = false ] && [ $push_repositories = false ] &&
-    [ $cd = false ] && [ $system = false ]; }; then
+# Rebuild home by default (home is true by default),
+# Don’t rebuild home if updating inputs or pushing repositories or changing dir or system
+# Always rebuild home if home
+if { [ $update_inputs = false ] && [ $push_repositories = false ] &&
+  [ $cd = false ] && [ $system = false ]; } || [ $home = true ]; then
   rebuild_home
 fi
 if $push_repositories; then

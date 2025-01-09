@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   programs.zsh.shellAliases = let ls = "eza --icons --git";
   in {
     sudo = "sudo ";
