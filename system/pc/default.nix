@@ -174,7 +174,10 @@
       dhcpdump # DHCP debugging
       inetutils # Things like FTP command
       bridge-utils # Network interface bridging
-      dig # DNS analyzer
+      # dig # DNS analyzer
+      doggo # Modern CLI DNS client
+      procs # Better ps
+      gping # Ping with a graph
       nix-du # Determine which gc-roots take space
       ssh-to-age # Converter between SSH keys and age
       powertop # Power usage analyzer

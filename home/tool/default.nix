@@ -51,7 +51,6 @@
     # poetry # Python project manager # TODO use nix instead
     # python3 # Python # TODO USE nix instead
     # conda # Python package manager TODO flake shell
-    # procs # better ps
     # cachix # TEST relevance
     # android-file-transfer
     # android-tools # ADB & Fastboot
