@@ -2,7 +2,7 @@
 lang: en
 ---
 
-# My public NixOS flake systems and homes configurations
+# My NixOS flake systems and homes configurations
 
 ## NixOS’ installation instructions
 

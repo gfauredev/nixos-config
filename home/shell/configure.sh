@@ -216,7 +216,7 @@ fi
 if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   { [ $push_repositories = false ] && [ $cd = false ] ||
     [ $system = true ] || [ $home = true ]; } ||
-  [ -n "$commit_message" ] || [ $amend_edits ]; then
+  [ -n "$commit_message" ] || [ $amend_edits = true ]; then
   # printf "Editing because " # Start DEBUG
   # if [ $rebuild_only = false ] && [ $update_inputs = false ]; then
   #   printf "no rebuild only mode and not updating inputs, "
@@ -253,7 +253,7 @@ fi
 if $push_repositories; then
   # Rebase only if not rebuilding and not updating and not turning off or rebooting
   if [ $rebuild_only = false ] && [ $system = false ] && [ $home = false ] &&
-    [ $update_inputs = false ] && [ $amend_edits ] &&
+    [ $update_inputs = false ] && [ $amend_edits = false ] &&
     [ $poweroff = false ] && [ $reboot = false ]; then
     cfg_rebase
   fi
