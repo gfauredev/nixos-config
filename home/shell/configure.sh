@@ -13,11 +13,12 @@ show_help() {
   echo "- h[elp]:      Show this help message (and exit if no other arguments)."
   echo "- a[ll]:       Rebuild NixOS and Home Manager configurations."
   echo "- u[p|pd|pg]:  Update every flake inputs (don’t edit the configuration)."
-  echo "- p[ush]:      Interactively rebase and push the Git repository (don’t edit if only)."
+  echo "- am[end]:     Amend the eventual modifications instead of creating a new commit."
+  echo "- p[ush]:      Push the Git repositories after sucessful rebuild, rebase if alone."
   echo "- l[og]:       Display Git logs and status of the configuration’s repository."
-  echo "- c|d|cd:      Open the default shell ($SHELL) in the flake directory."
-  echo "- off:         Poweroff after all actions, cancel previous reboot/cd argument(s)."
-  echo "- boot:        Reboot after all actions, cancel previous poweroff/cd argument(s)."
+  echo "- c|d|cd:      Open the default shell ($SHELL) in the flake config directory."
+  echo "- off:         Poweroff after all actions, cancels previous reboot/cd argument(s)."
+  echo "- boot:        Reboot after all actions, cancels previous poweroff/cd argument(s)."
   echo
   echo "Any remaining argument is appended to the Git commit message,"
   echo "and thus forces the configuration to be edited (unless rebuild-only mode)."
@@ -50,18 +51,36 @@ flake_update_inputs() {
   nix flake update --commit-lock-file || exit
 }
 
-edit_commit() {
+cfg_edit() {
   cfg_pull
   $EDITOR .
+}
+
+cfg_commit() {
   if [ -n "$SUBFLAKE" ]; then
     cd $SUBFLAKE || return
-    git checkout main
+    git checkout main # Ensure we’re on main FIX
     git add .
     git commit "$@" || return
     cd .. || return
     nix flake update $SUBFLAKE # Update subflake input
   fi
-  git commit $SUBFLAKE flake.lock "$@" || return
+  git commit --all "$@" || return
+}
+
+cfg_amend() {
+  if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
+    if [ -n "$SUBFLAKE" ]; then
+      cd $SUBFLAKE || return
+      git checkout main # Ensure we’re on main FIX
+      git commit --amend --all --no-edit || return
+      cd .. || return
+      nix flake update $SUBFLAKE # Update subflake input
+    fi
+    git commit --amend --all --no-edit || return
+  else
+    cfg_commit
+  fi
 }
 
 rebuild_system() {
@@ -87,31 +106,28 @@ rebuild_home() {
 }
 
 cfg_push() {
-  # if [ -n "$SUBFLAKE" ]; then
-  #   cd $SUBFLAKE || return
-  #   git checkout main # TEST relevance
-  #   cd .. || return
-  # fi
-  if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
+  if [ -n "$SUBFLAKE" ]; then
+    cd $SUBFLAKE || return
+    git checkout main
+    if [ -n "$(git log @{u}..)" ]; then # Amend pending edits if there’s unpushed commits
+      git commit --amend --message="$(git log -1 --pretty=%s)"
+    fi
+    cd .. || return
+  fi
+  if [ -n "$(git log @{u}..)" ]; then # Amend pending edits if there’s unpushed commits
     git commit --amend --all --no-edit
   fi
   git push || exit
 }
 
-cfg_rebase_push() {
+cfg_rebase() {
   if [ -n "$SUBFLAKE" ]; then
     cd $SUBFLAKE || return
     git checkout main
     git rebase -i || exit
     cd .. || return
-    if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
-      git commit --amend --message="$(git -C $SUBFLAKE log -1 --pretty=%s)"
-    fi
   fi
-  if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
-    git commit --amend --all --no-edit
-  fi
-  git rebase -i && git push || exit
+  git rebase -i
 }
 
 # Go inside the config directory, start of the main script
@@ -125,6 +141,7 @@ rebuild_only=false # Whether to forcefully not edit
 system=false
 home=false
 update_inputs=false
+amend_edits=false
 push_repositories=false
 cd=false
 commit_message="" # To be constructed with remaining arguments
@@ -133,7 +150,7 @@ reboot=false
 while [ "$#" -gt 0 ]; do
   case "$1" in
   # r | re | rebuild) # Rebuild only, don’t edit
-  r | re) # Use words unlikely to appear in commit message
+  r | re | reb) # Use words unlikely to appear in commit message
     rebuild_only=true
     ;;
   # s | sy | sys | system) # Rebuild System but not Home
@@ -155,6 +172,9 @@ while [ "$#" -gt 0 ]; do
   # u | up | update | upgrade) # Update the flake’s inputs, no rebuild
   u | up | upd | upg) # Words less likely to appear in commit messages
     update_inputs=true
+    ;;
+  am | amend) # Amend the eventual modifications
+    amend_edits=true
     ;;
   p | push) # Push the flake’s repository
     push_repositories=true
@@ -211,7 +231,12 @@ if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   #   printf "Commit message: %s" "$commit_message"
   # fi
   # printf "\n" # End DEBUG
-  edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
+  cfg_edit
+  if [ $amend_edits ]; then
+    cfg_amend
+  else
+    cfg_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
+  fi
 fi
 if $system; then
   rebuild_system
@@ -223,12 +248,14 @@ if { [ $update_inputs = false ] && [ $push_repositories = false ] &&
   [ $cd = false ] && [ $system = false ]; } || [ $home = true ]; then
   rebuild_home
 fi
+# Push repositories if push repositories
 if $push_repositories; then
-  if [ $cd = true ] || [ $reboot = true ] || [ $poweroff = true ]; then
-    cfg_push
-  else
-    cfg_rebase_push
+  # Rebase only if not rebuilding and not updating and not turning off or rebooting
+  if [ $rebuild_only = false ] && [ $system = false ] && [ $home = false ] &&
+    [ $update_inputs = false ] && [ $poweroff = false ] && [ $reboot = false ]; then
+    cfg_rebase
   fi
+  cfg_push
 fi
 if $cd; then
   exec $SHELL # Execute the default shell at the WD of this script
