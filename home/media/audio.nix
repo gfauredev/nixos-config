@@ -21,7 +21,7 @@
   home.packages = with pkgs; [
     klick # Metronome
     # Plugins hosts & Routers
-    stablepkgs.carla # VST Host & audio router
+    carla # VST Host & audio router
     cardinal # Plugin VCV Rack
     # ingen # Modular audio environment
     # giada # Live electronic music platform
