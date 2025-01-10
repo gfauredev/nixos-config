@@ -212,10 +212,11 @@ fi
 # Don’t edit if rebuild-only mode or if updating inputs
 # Don’t edit if pushing repositories or changing directory,
 #   unless system or home (or all)
-# Always edit if commit message
+# Always edit if commit message not empty or if amending
 if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   { [ $push_repositories = false ] && [ $cd = false ] ||
-    [ $system = true ] || [ $home = true ]; } || [ -n "$commit_message" ]; then
+    [ $system = true ] || [ $home = true ]; } ||
+  [ -n "$commit_message" ] || [ $amend_edits ]; then
   # printf "Editing because " # Start DEBUG
   # if [ $rebuild_only = false ] && [ $update_inputs = false ]; then
   #   printf "no rebuild only mode and not updating inputs, "
@@ -252,7 +253,8 @@ fi
 if $push_repositories; then
   # Rebase only if not rebuilding and not updating and not turning off or rebooting
   if [ $rebuild_only = false ] && [ $system = false ] && [ $home = false ] &&
-    [ $update_inputs = false ] && [ $poweroff = false ] && [ $reboot = false ]; then
+    [ $update_inputs = false ] && [ $amend_edits ] &&
+    [ $poweroff = false ] && [ $reboot = false ]; then
     cfg_rebase
   fi
   cfg_push
