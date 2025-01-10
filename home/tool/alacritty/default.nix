@@ -2,7 +2,12 @@
   programs = {
     alacritty = {
       enable = true; # Fast terminal emulator
+      # See: <https://alacritty.org/config-alacritty.html>
       settings = { # TODO configure
+        general = {
+          # import = [ ];
+          live_config_reload = false;
+        };
         window = {
           # opacity = 0.8;
           padding = {
