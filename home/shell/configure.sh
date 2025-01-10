@@ -83,6 +83,17 @@ cfg_amend() {
   fi
 }
 
+cfg_amend() {
+  if [ -n "$SUBFLAKE" ]; then
+    cd $SUBFLAKE || return
+    git checkout main # Ensure we’re on main FIX
+    git commit --amend --all --no-edit || return
+    cd .. || return
+    nix flake update $SUBFLAKE # Update subflake input
+  fi
+  git commit $SUBFLAKE flake.lock --amend --all --no-edit || return
+}
+
 rebuild_system() {
   printf "\nMounting /boot before system update\n"
   sudo mount -v /boot || return # Use fstab
