@@ -254,7 +254,7 @@ if $push_repositories; then
   # Rebase only if not rebuilding and not updating and not turning off or rebooting
   if [ $rebuild_only = false ] && [ $system = false ] && [ $home = false ] &&
     [ $update_inputs = false ] && [ $amend_edits = false ] &&
-    [ $poweroff = false ] && [ $reboot = false ]; then
+    [ $poweroff = false ] && [ $reboot = false ] && [ -n "$commit_message" ]; then
     cfg_rebase
   fi
   cfg_push
