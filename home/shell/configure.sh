@@ -7,20 +7,20 @@ show_help() {
   echo "By default, edit the configuration, commit the changes, and rebuild Home."
   echo "The following arguments can be passed in any order."
   echo
-  echo "- r[ebuild]:   Enable rebuild only mode, no editing."
-  echo "- s[ystem]:    Rebuild NixOS configuration ($NIXOS_REBUILD_CMD)"
-  echo "- ho[me]:      Always rebuild Home Manager configuration ($HOME_MANAGER_CMD)"
+  echo "- r[e]:        Enable rebuild only mode, no editing."
+  echo "- s[y|ys]:     Rebuild NixOS configuration ($NIXOS_REBUILD_CMD)."
+  echo "- ho[m]:       Always rebuild Home Manager configuration ($HOME_MANAGER_CMD)."
   echo "- h[elp]:      Show this help message (and exit if no other arguments)."
   echo "- a[ll]:       Rebuild NixOS and Home Manager configurations."
-  echo "- u[pdate]:    Update every flake inputs (don’t edit the configuration)."
+  echo "- u[p|pd|pg]:  Update every flake inputs (don’t edit the configuration)."
   echo "- p[ush]:      Interactively rebase and push the Git repository (don’t edit if only)."
   echo "- l[og]:       Display Git logs and status of the configuration’s repository."
   echo "- c|d|cd:      Open the default shell ($SHELL) in the flake directory."
-  echo "- [re]boot:    Reboot after all actions, cancel previous poweroff/cd argument(s)."
-  echo "- [power]off:  Poweroff after all actions, cancel previous reboot/cd argument(s)."
+  echo "- off:         Poweroff after all actions, cancel previous reboot/cd argument(s)."
+  echo "- boot:        Reboot after all actions, cancel previous poweroff/cd argument(s)."
   echo
   echo "Any remaining argument is appended to the Git commit message,"
-  echo "and thus forces the configuration to be edited (unless rebuild-only mode)"
+  echo "and thus forces the configuration to be edited (unless rebuild-only mode)."
 }
 
 show_logs_status() {
@@ -124,10 +124,8 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
 rebuild_only=false # Whether to forcefully not edit
 system=false
 home=false
-help=false
 update_inputs=false
 push_repositories=false
-git_logs_status=false
 cd=false
 commit_message="" # To be constructed with remaining arguments
 poweroff=false
@@ -146,8 +144,9 @@ while [ "$#" -gt 0 ]; do
   ho | hom) # Words less likely to appear in commit messages
     home=true
     ;;
-  h | help) # Show help message
-    help=true
+  h | help)   # Show help message
+    show_help # Directly show help message…
+    exit      # and exit right after
     ;;
   a | all) # Rebuild System and Home
     system=true
@@ -160,8 +159,9 @@ while [ "$#" -gt 0 ]; do
   p | push) # Push the flake’s repository
     push_repositories=true
     ;;
-  l | log) # Show Git logs and status
-    git_logs_status=true
+  l | log)           # Show Git logs and status
+    show_logs_status # Directly show Git logs and status
+    exit
     ;;
   c | d | cd) # Open default shell into current WD
     cd=true
@@ -182,13 +182,6 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Execute proper functions according to collected arguments
-if [ $help = true ]; then
-  show_help
-fi
-if $git_logs_status; then
-  show_logs_status
-  exit
-fi
 if $system; then
   sudo echo Asked sudo now for later
 fi
@@ -203,7 +196,7 @@ fi
 if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   { [ $push_repositories = false ] && [ $cd = false ] ||
     [ $system = true ] || [ $home = true ]; } || [ -n "$commit_message" ]; then
-  # printf "Editing because " # DEBUG
+  # printf "Editing because " # Start DEBUG
   # if [ $rebuild_only = false ] && [ $update_inputs = false ]; then
   #   printf "no rebuild only mode and not updating inputs, "
   #   if [ $push_repositories = false ] && [ $cd = false ]; then
@@ -217,7 +210,7 @@ if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   # if [ -n "$commit_message" ]; then
   #   printf "Commit message: %s" "$commit_message"
   # fi
-  # printf "\n" # DEBUG end
+  # printf "\n" # End DEBUG
   edit_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
 fi
 if $system; then
