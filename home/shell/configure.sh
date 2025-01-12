@@ -201,6 +201,20 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
+# DEBUG
+printf "Rebuild only mode (no edit): %s\n" $rebuild_only
+printf "Rebuild system: %s\n" $system
+printf "Rebuild home: %s\n" $home
+printf "Update flake inputs: %s\n" $update_inputs
+printf "Amend edits (no new commits): %s\n" $amend_edits
+printf "Push Git repositories: %s\n" $push_repositories
+printf "Change directory: %s\n" $cd
+printf "Commit message: '%s'\n" "$commit_message"
+printf "Poweroff: %s\n" $poweroff
+printf "Reboot: %s\n" $reboot
+echo
+
+
 # Execute proper functions according to collected arguments
 if $system; then
   sudo echo Asked sudo now for later
@@ -217,21 +231,6 @@ if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   { [ $push_repositories = false ] && [ $cd = false ] ||
     [ $system = true ] || [ $home = true ]; } ||
   [ -n "$commit_message" ] || [ $amend_edits = true ]; then
-  # printf "Editing because " # Start DEBUG
-  # if [ $rebuild_only = false ] && [ $update_inputs = false ]; then
-  #   printf "no rebuild only mode and not updating inputs, "
-  #   if [ $push_repositories = false ] && [ $cd = false ]; then
-  #     printf "not pushing repositories and not changing directory "
-  #   elif [ $system = true ]; then
-  #     printf "system explicitly precised "
-  #   elif [ $home = true ]; then
-  #     printf "home explicitly precised "
-  #   fi
-  # fi
-  # if [ -n "$commit_message" ]; then
-  #   printf "Commit message: %s" "$commit_message"
-  # fi
-  # printf "\n" # End DEBUG
   cfg_edit
   if $amend_edits; then
     cfg_amend
