@@ -25,5 +25,11 @@
     vmware.host = {
       enable = false; # PROPRIETARY
     };
+    # sharedDirectories = {
+    #   virt-share = {
+    #     source = "/virt-share";
+    #     target = "/mnt/virt-share";
+    #   };
+    # };
   };
 }
