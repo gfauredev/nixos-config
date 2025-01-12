@@ -1,6 +1,11 @@
 { pkgs, ... }: {
   # networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
 
+  environment.systemPackages = with pkgs;
+    [
+      virtiofsd # virtio-fs backend
+    ];
+
   virtualisation = {
     libvirtd = {
       enable = true;
