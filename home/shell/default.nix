@@ -45,6 +45,7 @@
     ripgrep-all # ripgrep for non-text files
     duf # global disk usage
     du-dust # detailed disk usage of a directory
+    imhex # Powerful hex editor
     hexyl # hex viever
   ];
 
