@@ -26,11 +26,11 @@
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
     poppler_utils # PDF metadata reading
-    qpdf # PDF manipulation
+    qpdf # CLI PDF manipulation
     # pdf4qt # PDF edition
     # xpdf # PDF reader
-    pdf4qt # PDF editor TODO hm module
-    pdf-sign # PDF signing
+    # pdf4qt # PDF editor
+    pdf-sign # Automated PDF signing
     # naps2 # Scan PDFs FIX
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
