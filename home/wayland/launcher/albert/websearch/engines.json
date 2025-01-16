@@ -242,6 +242,14 @@
     {
         "fallback": false,
         "iconPath": ":default",
+        "id": "f3cec098",
+        "name": "Typst Docs",
+        "trigger": "typ",
+        "url": "https://typst.app/docs/%s"
+    },
+    {
+        "fallback": false,
+        "iconPath": ":default",
         "id": "91f61720",
         "name": "Wikipedia",
         "trigger": "wikipedia",
