@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     tabby # Self-hosted AI code assistant
     tabby-agent # LSP agent for Tabby
-    # nodejs # NodeJS (may be needed by tabby-agent)
     helix-gpt # Add LLMs support through LSP
   ];
 
@@ -236,15 +235,10 @@
           };
         };
       in {
-        # TODO configure a local LLM and use for every language
-        # ai = {
-        #   command = "lsp-ai";
-        #   args = [ ];
+        # tabby = {
+        #   command = "npx";
+        #   args = [ "tabby-agent" "--stdio" ]; # TODO configure and add it to every language
         # };
-        tabby = {
-          command = "npx";
-          args = [ "tabby-agent" "--stdio" ]; # ?
-        };
         llm = {
           command = "helix-gpt";
           args = [
@@ -304,11 +298,9 @@
       # hunspellDicts.en_GB-ise # British
       # hunspellDicts.es_ES # Spanish
 
-      tinymist # Typst LSP FIXME
-      # typst-lsp # Typst LSP # DEPRECATED
+      tinymist # Typst LSP
       typstyle # Typst formatter
-      # typstfmt # Typst formatter # Deprecated
-      # markdown-oxide # TODO Obsidian style PKM
+      # markdown-oxide # TEST Obsidian style PKM
       marksman # Smart Markdown links
     ];
     themes = {
