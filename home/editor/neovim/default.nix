@@ -147,7 +147,8 @@
 
       dprint # Pluggable code formatting platform
 
-      ltex-ls # LSP between languagetool and pure text
+      # ltex-ls # LSP between languagetool and pure text
+      ltex-ls-plus # LSP between languagetool and text
       # hunspell # Standard spell checker
       # hunspellDicts.fr-any # French
       # hunspellDicts.en_US # American

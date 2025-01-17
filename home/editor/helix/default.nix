@@ -217,7 +217,7 @@
       ];
       language-server = let
         ltex = {
-          command = "ltex-ls";
+          command = "ltex-ls-plus";
           config.ltex = {
             completionEnable = true;
             language = "fr";
@@ -285,7 +285,8 @@
       dprint # Pluggable code formatting platform
 
       # languagetool # Advanced spell checking
-      ltex-ls # LSP between languagetool and pure text
+      # ltex-ls # LSP between languagetool and pure text
+      ltex-ls-plus # LSP between languagetool and text
       # hunspell # Standard spell checker
       # hunspellDicts.fr-any # French
       # hunspellDicts.en_US # American
