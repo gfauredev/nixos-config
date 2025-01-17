@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [ ./alias.nix ];
+  imports = [ ./alias.nix ./pulsemixer ];
 
   home.packages = let
     term = # TODO this cleaner (import ../../tool/wezterm/info.nix)
@@ -101,6 +101,53 @@
   };
 
   programs = {
+    broot = { # TODO organize
+      enable = true; # Quick fuzzy file finder
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+      settings = {
+        default_flags = "dgps";
+        special_paths = lib.mkForce { };
+      };
+    };
+    yazi = { # TODO organize
+      enable = true; # TODO configure
+      #   keymap = {
+      #     input.prepend_keymap = [
+      #       {
+      #         run = "close";
+      #         on = [ "<C-q>" ];
+      #       }
+      #       {
+      #         run = "close --submit";
+      #         on = [ "<Enter>" ];
+      #       }
+      #       {
+      #         run = "escape";
+      #         on = [ "<Esc>" ];
+      #       }
+      #       {
+      #         run = "backspace";
+      #         on = [ "<Backspace>" ];
+      #       }
+      #     ];
+      #     manager.prepend_keymap = [
+      #       {
+      #         run = "escape";
+      #         on = [ "<Esc>" ];
+      #       }
+      #       {
+      #         run = "quit";
+      #         on = [ "q" ];
+      #       }
+      #       {
+      #         run = "close";
+      #         on = [ "<C-q>" ];
+      #       }
+      #     ];
+      #   };
+    };
+    translate-shell.enable = true; # Google Translate CLI
     command-not-found.enable =
       false; # FIXME doesn’t work (maybe due to shell config)
     eza = {

@@ -2,7 +2,7 @@
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
-    ./shell # Interactive POSIX shell
+    ./shell # Interactive POSIX shell(s)
   ];
 
   manual = {
@@ -23,7 +23,7 @@
     };
   };
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; [ # TODO organize better, eventually in shell/
     devenv # Developer environments management (simpler flake.nix for dev)
     moreutils # Additional Unix utilities
     pipectl # Named pipes management TEST relevance
@@ -34,7 +34,7 @@
     jmtpfs # Media transfer protocol with Android devices
 
     browsh # CLI web browser
-    manix # Nix documentation CLI TEST
+    manix # Nix documentation CLI
     nixpkgs-review # Review pull requests to nixpkgs TEST
 
     sops # Secret management
@@ -50,9 +50,29 @@
     # keepass # Popular password manager
     keepassxc # Password manager TEST
     # keepass-keeagent # Keepass agent
+
+    # Storage & Backup
+    restic # Efficient backup tool
+    ventoy-full # create bootable keys
+    testdisk # file recuperation
+    # tmsu # File tagging with virtual FS
+    # sendme # send files and directories p2p
+    # udiskie # auto mount USB
+    # dcfldd # more powerful dd
+    # rpi-imager # Raspberry Pi OS generator
+
+    # Miscellaneous
+    jq # JSON parsing and request tool USED BY HYPRLAND CONFIG
+    kalker # Evaluate math expression
+    watchexec # Run command when file changes
+    hyperfine # Benchmark commands
   ];
 
   services = {
+    syncthing = {
+      enable = true; # Efficient P2P Syncing
+      extraOptions = [ "--no-default-folder" ];
+    };
     # systembus-notify.enable = true; # TEST relevance
     gpg-agent = {
       enable = true;

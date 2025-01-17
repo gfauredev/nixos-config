@@ -1,10 +1,4 @@
 { pkgs, stablepkgs, ... }: {
-  home.packages = with pkgs; [
-    tabby # Self-hosted AI code assistant
-    tabby-agent # LSP agent for Tabby
-    helix-gpt # Add LLMs support through LSP
-  ];
-
   # See : https://docs.helix-editor.com
   programs.helix = {
     enable = true;
@@ -262,7 +256,7 @@
         };
       };
     };
-    extraPackages = with pkgs; [
+    extraPackages = with pkgs; [ # TODO factorize with other editors
       # tree-sitter # Parser generator tool and builtinsrary
       # (pkgs.tree-sitter.withPlugins
       #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))

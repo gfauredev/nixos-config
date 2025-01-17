@@ -37,4 +37,7 @@
     #   };
     # };
   };
+
+  programs.virt-manager.enable = true;
+  # TODO Vagrant
 }

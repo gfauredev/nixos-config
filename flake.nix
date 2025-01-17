@@ -85,7 +85,8 @@
           imports = [
             ./home/gf.nix # Myself, main user
             ./home/wayland/griffin.nix # Griffin laptop’s GUI
-            ./home/tool # Miscellaneous tools, mostly technical
+            ./home/terminal # Terminal emulators
+            ./home/editor # CLI and GUI text editors
             ./home/media # Media consuming and editing
           ];
         };
@@ -93,7 +94,8 @@
           imports = [
             ./home/gf.nix # Myself, main user
             ./home/wayland # Laptop GUI
-            ./home/tool # Miscellaneous tools, mostly technical
+            ./home/terminal # Terminal emulators
+            ./home/editor # CLI and GUI text editors
             ./home/media # Media consuming and editing
           ];
         };

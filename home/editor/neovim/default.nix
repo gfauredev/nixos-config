@@ -1,16 +1,9 @@
 { pkgs, stablepkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      tree-sitter-grammars.tree-sitter-typst
-      # nodejs_22 # remove when withNodeJs param is fixed
-      # tree-sitter-grammars.tree-sitter-latex
-    ];
-
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;
-    defaultEditor = false; # TEST Helix as default editor
-    # Generate a big init file with every module
+    defaultEditor = false;
+    # Generate a big init file with every module, may be done cleaner
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./opt.lua}
@@ -135,7 +128,7 @@
     withPython3 = true;
     withRuby = true;
     # extraLuaPackages = ps: [ ps.magick ];
-    extraPackages = with pkgs; [
+    extraPackages = with pkgs; [ # TODO factorize with editors
       # luajitPackages.magick
 
       nil # Nix LSP
