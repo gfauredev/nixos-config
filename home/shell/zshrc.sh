@@ -24,7 +24,8 @@ bindkey '^M' empty_cr
 # Open with default MIME handler & detach from term
 open() {
   # nohup xdg-open "$@" >/dev/null & # FIXME
-  xdg-open "$@" & disown # Bashism
+  xdg-open "$@" &
+  disown # Bashism
 }
 
 # Make directory(ies) & cd into it (the first)
@@ -51,6 +52,17 @@ inhib() {
 # Present a PDF file
 present() {
   nohup pdfpc "$@" >/dev/null &
+}
+
+# Quickly compile Typst files
+typ() {
+  if [ "$#" -gt 0 ]; then
+    for f in "$@"; do
+      typst compile "$f"
+    done
+  else
+    typst compile "$(\ls --sort=time ./*.typ|head -n1)"
+  fi
 }
 
 usb() {
