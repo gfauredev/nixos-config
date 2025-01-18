@@ -74,11 +74,11 @@
       ''; # TEST relevance of latter 3, used by musnix
     };
     rustdesk-server = {
-      enable = true; # TODO configure
+      enable = false; # TEST
       # See: https://rustdesk.com/docs/en/self-host
-      signal.enable = false; # TEST
-      relay.enable = false; # TEST
-      openFirewall = true;
+      signal.enable = false;
+      relay.enable = false;
+      openFirewall = false;
     };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
