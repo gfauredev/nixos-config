@@ -73,6 +73,13 @@
         DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
       ''; # TEST relevance of latter 3, used by musnix
     };
+    rustdesk-server = {
+      enable = true; # TODO configure
+      # See: https://rustdesk.com/docs/en/self-host
+      signal.enable = false; # TEST
+      relay.enable = false; # TEST
+      openFirewall = true;
+    };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     thermald.enable = lib.mkDefault true; # Keep cool

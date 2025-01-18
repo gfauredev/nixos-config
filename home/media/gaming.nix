@@ -4,7 +4,7 @@
     # gogdl # Gog alternative
     # legendary-gl # Epic Games launcher alternative
 
-    # moonlight-qt # Game streaming client # TEST if better than rustdesk
+    # moonlight-qt # Moonlight Game streaming client
     mangohud # A practical HUD on top of games
     # protonup-ng # Manage installation of proton-ge
   ];

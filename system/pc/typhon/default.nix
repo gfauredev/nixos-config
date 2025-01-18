@@ -73,12 +73,7 @@
     # TODO IPv6 config
   };
 
-  environment.systemPackages = with pkgs;
-    [
-      # rustdesk-server # Remote desktop # TEST against steam streaming
-      # sunshine # Game streaming server # TEST against rustdesk
-      mesa
-    ];
+  environment.systemPackages = with pkgs; [ mesa ];
 
   services = {
     # fwupd = {
