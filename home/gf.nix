@@ -10,6 +10,7 @@
       "bespokesynth-with-vst2"
       "spotify"
       "steam-unwrapped"
+      "libsciter" # Used by rustdesk
     ];
 
   # sops = {
