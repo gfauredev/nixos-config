@@ -214,7 +214,6 @@ printf "Poweroff: %s\n" $poweroff
 printf "Reboot: %s\n" $reboot
 echo
 
-
 # Execute proper functions according to collected arguments
 if $system; then
   sudo echo Asked sudo now for later
@@ -241,11 +240,13 @@ fi
 if $system; then
   rebuild_system
 fi
-# Rebuild home by default (home is true by default),
+# Rebuild home by default,
 # Don’t rebuild home if updating inputs or pushing repositories or changing dir or system
+# Rebuild if rebuild only mode and no system
 # Always rebuild home if home
 if { [ $update_inputs = false ] && [ $push_repositories = false ] &&
-  [ $cd = false ] && [ $system = false ]; } || [ $home = true ]; then
+  [ $cd = false ] && [ $system = false ]; } ||
+  { [ $system = false ] && [ $rebuild_only = true ]; } || [ $home = true ]; then
   rebuild_home
 fi
 # Push repositories if push repositories
