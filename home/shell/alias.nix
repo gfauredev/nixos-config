@@ -137,8 +137,7 @@
     h = "hx"; # Helix CLI text editor (fallback)
     u = "zeditor"; # gUi text editor
     m = "mkdir -pv"; # mkdir (parents)
-    c = # Better cp
-      "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
+    # c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
     ## Multifunction (Explorers)
     b = "br"; # CLI fast files searcher
   };

@@ -38,6 +38,11 @@ de() {
   $EDITOR "$(date -I)".$*
 }
 
+# Copy a file with improvements
+c() {
+  systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
+}
+
 # Replace occurences of $1 by $2 in $3
 replace() {
   \rg --passthrough --multiline "$1" -r "${@:2}"
@@ -61,7 +66,7 @@ typ() {
       typst compile "$f"
     done
   else
-    typst compile "$(\ls --sort=time ./*.typ|head -n1)"
+    typst compile "$(\ls --sort=time ./*.typ | head -n1)"
   fi
 }
 
