@@ -23,7 +23,8 @@ if [ "$avail" -gt "$used" ]; then
     printf "%s contains back : Backing up archive,data,graph,life,project with restic in it\n" "$1"
     restic -r "$1" -v backup $important_dirs "$HOME/data" "$HOME/archive" \
       --exclude ".stversions/" --exclude ".stfolder/" \
-      --exclude ".venv*/" --exclude ".vagrant/"
+      --exclude ".venv*/" --exclude ".vagrant/" \
+      --exclude "*.local"
 
     printf "Clean archive directory\n"
     trash --verbose "$HOME"/archive/life/*
@@ -37,7 +38,7 @@ if [ "$avail" -gt "$used" ]; then
     # Store most important directories in drives or sticks (which label don’t contains "back")
     printf "%s don’t contains back : Backing up data,graph,life,project with rsync in it\n" "$1"
     rsync --verbose --archive --delete --human-readable --partial --progress \
-      --exclude=".stversions/" --exclude=".stfolder/" --exclude="*.large/" \
+      --exclude=".stversions/" --exclude=".stfolder/" --exclude="*.large" --exclude="*.local" \
       --exclude=".venv*/" --exclude=".vagrant/" --exclude=".git/" \
       --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" \
       --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" \
@@ -51,7 +52,7 @@ else
   # Don’t store less important directories in too small drives
   printf "%s seems almost full : Backing up graph,life,project with rsync in it\n" "$1"
   rsync --verbose --archive --delete --human-readable --partial --progress \
-    --exclude=".stversions/" --exclude=".stfolder/" --exclude="*.large/" \
+    --exclude=".stversions/" --exclude=".stfolder/" --exclude="*.large" --exclude="*.local" \
     --exclude=".venv*/" --exclude=".vagrant/" --exclude=".git/" \
     --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" --exclude="*.bmp" \
     --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" --exclude="*.BMP" \
