@@ -145,7 +145,7 @@ enabled=true
 [python.translators]
 enabled=true
 lang=fr
-translator=modernMt
+translator=google
 
 [python.unit_converter]
 enabled=false
