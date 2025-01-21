@@ -52,6 +52,9 @@
     keepassxc # Password manager TEST
     # keepass-keeagent # Keepass agent
 
+    # Machine learning tools
+    # aichat # TEST
+
     # Storage & Backup
     restic # Efficient backup tool
     ventoy-full # create bootable keys
@@ -105,6 +108,7 @@
         };
       };
     };
+    ollama.enable = true; # Large language model inference server
   };
 
   programs = {
