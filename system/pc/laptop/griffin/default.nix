@@ -17,6 +17,8 @@
     };
   };
 
+  hardware.framework.enableKmod = false; # FIX bug in NixOS Hardware
+
   boot = {
     # extraModprobeConfig = ''
     #   options snd_usb_audio vid=0x1235 pid=0x8210 device_setup=1
@@ -24,6 +26,7 @@
     # Last line above is used for Focusrite sound interfaces
     bootspec.enable = true;
     loader.systemd-boot.enable = false; # Disabled for secureboot
+    # kernelPackages = pkgs.linuxPackages_6_12; # Pin major Linux kernel version
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";

@@ -16,7 +16,8 @@
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
     # sops-nix.url = "github:Mic92/sops-nix"; # Encrypted secrets management
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
+    # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/b98df1827a48e"; # Hardware
     # musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
   };
 
