@@ -53,7 +53,7 @@
     # keepass-keeagent # Keepass agent
 
     # Machine learning tools
-    # aichat # TEST
+    aichat
 
     # Storage & Backup
     restic # Efficient backup tool
