@@ -53,7 +53,9 @@
     # keepass-keeagent # Keepass agent
 
     # Machine learning tools
-    aichat
+    gpt4all # -cuda # TEST
+    llama-cpp # Large language model server
+    # aichat # CLI LLM chat
 
     # Storage & Backup
     restic # Efficient backup tool

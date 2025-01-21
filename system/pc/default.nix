@@ -203,7 +203,7 @@
     ];
   };
 
-  # TODO Find a better place to put this
+  # TODO Find a better place to put these more "user" services
   services.grocy = {
     enable = true;
     hostName = "grocy.localhost";
@@ -214,4 +214,8 @@
       calendar.firstDayOfWeek = 1;
     };
   };
+  # services.llama-cpp = {
+  #   enable = true; # Large language model server
+  #   port = 7777;
+  # };
 }
