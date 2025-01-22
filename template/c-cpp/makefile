@@ -1,15 +1,19 @@
-CC = gcc
-CFLAGS = -Wall -Werror -g
+CC=gcc
+PARAMS=-Wall -Werror -g -fanalyzer
 
-EXE=ex1 ex2
+MAIN=main
+LIBS=
 
-run: $(lastword $(EXE))
+run: $(MAIN)
 	./$<
 
-%: %.c
-	$(CC) $(CFLAGS) $^ -o $@
+$(MAIN): $(MAIN).o $(LIBS)
+	$(CC) $(PARAMS) $^ -o $@
+
+%.o: %.c
+	$(CC) $(PARAMS) -c $< -o $@
 
 clean:
-	trash $(EXE) *.o
+	trash $(MAIN) *.o
 
-.PHONY: clean
+.PHONY: run clean
