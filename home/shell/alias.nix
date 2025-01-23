@@ -112,6 +112,7 @@
     branch = "git branch";
     clean = "git clean -idx";
     clone = "git clone -v";
+    unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
     giff = "git diff";
