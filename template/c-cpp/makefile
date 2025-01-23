@@ -1,19 +1,20 @@
-CC=gcc
-PARAMS=-Wall -Werror -g -fanalyzer
+# CC=gcc
+CFLAGS=-Wall -Werror -g -fanalyzer
+OBJS=lib.o
+# LDFLAGS=-lm
+EXE=dump_base
 
-MAIN=main
-LIBS=
-
-run: $(MAIN)
+run: $(EXE)
 	./$<
 
-$(MAIN): $(MAIN).o $(LIBS)
-	$(CC) $(PARAMS) $^ -o $@
+all: $(EXE)
 
-%.o: %.c
-	$(CC) $(PARAMS) -c $< -o $@
+$(EXE): %: %.o $(OBJS)
+
+%.zip: *.c *.h makefile
+	zip -r $@ $^
 
 clean:
-	trash $(MAIN) *.o
+	trash main $(EXE) *.o *.so *_ SON *.zip 
 
 .PHONY: run clean
