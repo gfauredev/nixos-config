@@ -77,6 +77,8 @@
           pim = "thunderbird";
           pdf = "org.pwmt.zathura";
           explorer = "directory";
+          document = "writer";
+          spreadsheet = "calc";
           # term = "org.wezfurlong.wezterm";
         in {
           # Text & Code
@@ -84,6 +86,16 @@
           "text/markdown" = "${text}.desktop";
           "text/code" = "${text}.desktop";
           "inode/directory" = "${explorer}.desktop"; # Workspace
+          # Document
+          "application/vnd.oasis.opendocument.text" = "${document}.desktop";
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
+            "${spreadsheet}.desktop";
+          "application/vnd.ms-excel" = "${spreadsheet}.desktop";
+          "application/pdf" = "${pdf}.desktop";
+          # "application/x-colpkg" = "anki.desktop";
+          # "application/x-apkg" = "anki.desktop";
+          # "application/x-ankiaddon" = "anki.desktop";
+          # "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
           # Image
           "image/avif" = "${image}.desktop";
           "image/webp" = "${image}.desktop";
@@ -118,12 +130,6 @@
           "application/x-extension-rss" = "${pim}.desktop";
           "application/x-extension-ics" = "${pim}.desktop";
           "text/calender" = "${pim}.desktop";
-          # Application specific
-          "application/pdf" = "${pdf}.desktop";
-          # "application/x-colpkg" = "anki.desktop";
-          # "application/x-apkg" = "anki.desktop";
-          # "application/x-ankiaddon" = "anki.desktop";
-          # "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
         };
     };
   };
