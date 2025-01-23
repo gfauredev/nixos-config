@@ -15,6 +15,6 @@ $(EXE): %: %.o $(OBJS)
 	zip -r $@ $^
 
 clean:
-	trash main $(EXE) *.o *.so *_ SON *.zip 
+	trash main $(EXE) *.o *.so *.zip 
 
 .PHONY: run clean
