@@ -6,23 +6,31 @@
     settings = {
       theme = "catppuccin-trans";
       editor = {
-        auto-save = true;
         auto-format = true;
-        # auto-save = {
-        #   focus-lost = true; # TODO enable
-        #   after-delay = {
-        #     enabled = true;
-        #     timeout = 5000;
-        #   };
-        # };
+        auto-save = {
+          focus-lost = true; # TODO enable
+          after-delay = {
+            enable = true;
+            # timeout = 5000;
+          };
+        };
+        # auto-save = true;
         soft-wrap.enable = true;
         line-number = "relative";
         cursor-shape = {
-          normal = "block";
+          normal = "underline";
           select = "block";
           insert = "bar";
         };
         indent-guides.render = true;
+        inline-diagnostics = {
+          cursor-line = "hint";
+          other-lines = "error";
+        };
+        lsp = {
+          display-progress-messages = true;
+          display-inlay-hints = true;
+        };
       };
       keys = let
         qk = 8; # Quicker movements multiplier
