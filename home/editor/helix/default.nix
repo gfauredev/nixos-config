@@ -186,6 +186,10 @@
           auto-format = true;
         }
         {
+          name = "c";
+          auto-format = true;
+        }
+        {
           name = "java";
           language-servers = [ "jdtls" "llm" ];
           auto-format = true;
