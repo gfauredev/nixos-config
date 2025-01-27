@@ -187,6 +187,8 @@
         }
         {
           name = "c";
+          file-types = [ "c" "h" ];
+          language-servers = [ "clangd" "llm" ];
           auto-format = true;
         }
         {
