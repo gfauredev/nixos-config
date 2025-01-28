@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ./internet.nix
+    ./internet.nix # TODO modularize theses based on user@machine
     ./organization.nix
     ./audio.nix
     ./photo.nix
@@ -8,6 +8,7 @@
     ./social.nix
     ./gaming.nix
     ./science.nix
+    ./3d.nix
   ];
 
   home.packages = with pkgs; [
