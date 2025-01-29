@@ -2,9 +2,9 @@
 lang: en
 ---
 
-# My NixOS flake systems and homes configurations
+# My NixOS Flake systems and homes configurations
 
-## NixOS’ installation instructions
+## NixOS’ setup instructions
 
 ### _0._ Build the installer image
 
@@ -16,24 +16,24 @@ or directly from this flake with
 Boot it from a bootable USB stick (preferably a multi-ISO one like with Ventoy).
 
 Once booted, get this git repo with the command `clone` (or `clone-ssh` if
-private key is availiable).
+private key is availiable) that is built in the installer image.
 
 ### _1._ Partition, encrypt, format disks (according to partitioning/ templates)
 
 Use a tool like `fdisk` or `cfdisk` to partition and label disks :
 
-- `fdisk /dev/???` (interactive)
+- `fdisk /dev/…` (interactive)
 
 If the choosen file system doesn’t support its own encryption, use
 `cryptsetup …` to create an encrypted partition and mount it (for the root).
 
 Then, format the partitions :
 
-- `mkfs.fat -F 32 /dev/???? -n ESP` to host `/boot`
-- `mkfs.??? /dev/????` to host `/` (the system root)
+- `mkfs.fat -F 32 /dev/… -n ESP` to host `/boot`
+- `mkfs.??? /dev/…` to host `/` (the system root)
 
 Finaly, depending on the choosen(s) filesystem(s), continue formating or
-creating and mounting **subvolumes** with appropriate commands.
+creating and mounting eventual **subvolumes** with appropriate commands.
 
 ### _2._ Handle hardware configuration
 
@@ -42,22 +42,43 @@ config in this directory.
 
 Then, compare with choosen system hardware configuration and fix it if needed.
 
-PS : UUIDs can be got with `lsblk -o NAME,SIZE,UUID,LABEL`.
+Partitions UUIDs can be obtained with `lsblk -o NAME,SIZE,UUID,LABEL`.
 
 ### _3._ Install from the Nix flake
 
-Use the command `nixos-install -v --root /mnt --flake '<path-to-flake>#HOST'` to
-install the HOST specific NixOS system from this flake.
+Use the command `nixos-install -v --root /mnt --flake '<path-to-flake>#$HOST'`
+to install the `$HOST` specific NixOS system from this flake.
 
-Then user homes can be installed with
-`home-manager switch --flake <path-to-flake>#USER`, and the system can be
-updated with `sudo nixos-rebuild --flake <path-to-flake>#HOSTNAME switch`.
+Then user home(s) can be installed with
+`home-manager switch --flake <path-to-flake>#$HOST@$USER`, and the system can be
+updated with `sudo nixos-rebuild --flake <path-to-flake> switch`, or better,
+with my custom helper tool located at `home/shell/configure.sh` and mapped to
+the command `cfg` (`cfg h` to display usage).
 
 ### Develop !
 
 A dev environment for a specific tech stack can be initialised with
-`nix flake init --template templates#STACK` and then activated with
+`nix flake init --template templates#$STACK` and then activated with
 `nix develop`.
+
+TODO: `direnv` setup.
+
+## Documentation and learning ressources
+
+- [NixOS documentation](https://nixos.org/manual/nixos/unstable)
+- [Home Manager documentation](https://nix-community.github.io/home-manager)
+- [Home Manager options](https://nix-community.github.io/home-manager/options.html)
+- [NixOS Wiki](https://nixos.wiki)
+- [nix.dev](https://nix.dev)
+- [Vimjoyer YouTube channel](https://www.youtube.com/@vimjoyer)
+- [Global Nix options search engine](https://searchix.alanpearce.eu/all/search)
+- `manix` CLI Nix options search engine
+- [NixOS starter flake configs](https://github.com/Misterio77/nix-starter-configs)
+- [hlissner’s config](https://github.com/hlissner/dotfiles)
+- [gvolpe’s config](https://github.com/gvolpe/nix-config/blob/master/flake.nix)
+- [gvolpe’s private flake article](https://gvolpe.com/blog/private-flake)
+- [yelite’s conf ex.](https://github.com/yelite/private-flake-example/blob/main/flake.nix)
+- [yelite’s cfg article](https://greenfield.blog/posts/private-nix-flake-with-public-subtree)
 
 ## Other configuration repositories
 
