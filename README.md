@@ -68,6 +68,7 @@ TODO: `direnv` setup.
 - [NixOS documentation](https://nixos.org/manual/nixos/unstable)
 - [Home Manager documentation](https://nix-community.github.io/home-manager)
 - [Home Manager options](https://nix-community.github.io/home-manager/options.html)
+- [The Nix Way Dev Templates](https://github.com/the-nix-way/dev-templates)
 - [NixOS Wiki](https://nixos.wiki)
 - [nix.dev](https://nix.dev)
 - [Vimjoyer YouTube channel](https://www.youtube.com/@vimjoyer)
