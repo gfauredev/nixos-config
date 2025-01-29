@@ -201,18 +201,21 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
-# DEBUG
-printf "Rebuild only mode (no edit): %s\n" $rebuild_only
+# Clean commit message (remove start and end whitespaces)
+commit_message=$(echo "$commit_message" | sed 's/^[ \t]*//')
+
+# DEBUG start
+printf "Rebuild (only) mode (no edit): %s\n" $rebuild_only
 printf "Rebuild system: %s\n" $system
-printf "Rebuild home: %s\n" $home
-printf "Update flake inputs: %s\n" $update_inputs
+printf "Rebuild (explicitly) home: %s\n" $home
+printf "Update Flake inputs: %s\n" $update_inputs
 printf "Amend edits (no new commits): %s\n" $amend_edits
 printf "Push Git repositories: %s\n" $push_repositories
 printf "Change directory: %s\n" $cd
 printf "Commit message: '%s'\n" "$commit_message"
 printf "Poweroff: %s\n" $poweroff
 printf "Reboot: %s\n" $reboot
-echo
+echo # DEBUG end
 
 # Execute proper functions according to collected arguments
 if $system; then
@@ -234,18 +237,23 @@ if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   if $amend_edits; then
     cfg_amend
   else
-    cfg_commit --message="$(echo "$commit_message" | sed 's/^[ \t]*//')"
+    cfg_commit --message="$commit_message"
   fi
 fi
 if $system; then
   rebuild_system
 fi
-# Rebuild home by default,
-# Don’t rebuild home if updating inputs or pushing repositories or changing dir or system
-# Rebuild if rebuild only mode and no system
-# Always rebuild home if home
-if { [ $update_inputs = false ] && [ $push_repositories = false ] &&
-  [ $cd = false ] && [ $system = false ]; } ||
+# Rebuild home by default, unless:
+# - rebuilding system
+# - updating inputs and no commit message
+# - pushing repositories and no commit message
+# - changing dir without and no commit message
+# Always rebuild home if:
+# - rebuild only mode and not rebuilding system
+# - rebuild home
+if { [ $system = false ] &&
+  { [ $update_inputs = false ] && [ $push_repositories = false ] && [ $cd = false ] ||
+    [ -n "$commit_message" ]; }; } ||
   { [ $system = false ] && [ $rebuild_only = true ]; } || [ $home = true ]; then
   rebuild_home
 fi
@@ -260,6 +268,7 @@ if $push_repositories; then
   cfg_push
 fi
 if $cd; then
+  echo "You can exit the shell to get back to previous working directory"
   exec $SHELL # Execute the default shell at the WD of this script
 fi
 if $reboot; then
