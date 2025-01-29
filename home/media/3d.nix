@@ -34,10 +34,10 @@
 {
   home.packages = with pkgs; [
     openscad # Parametric, programmatic (code only) 3D CAD
-    cq-editor # GUI for Python library CadQuery
+    # cq-editor # GUI for Python library CadQuery (install via env Flake)
 
     dune3d # New parametric CAD
-    freecad # Popular parametric 3D CAD
+    # freecad # Popular parametric 3D CAD
     # solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
 
