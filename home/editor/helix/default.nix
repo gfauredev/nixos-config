@@ -153,6 +153,7 @@
             tab-width = 4;
             unit = "    ";
           };
+          auto-format = true;
         }
         {
           name = "typst";
@@ -197,24 +198,33 @@
           auto-format = true;
         }
         {
+          name = "bash";
+          auto-format = true;
+        }
+        {
           name = "javascript";
           language-servers = [ "typescript-language-server" "llm" ];
+          auto-format = true;
         }
         {
           name = "typescript";
           language-servers = [ "typescript-language-server" "llm" ];
+          auto-format = true;
         }
         {
           name = "jsx";
           language-servers = [ "typescript-language-server" "llm" ];
+          auto-format = true;
         }
         {
           name = "git-commit";
           language-servers = [ "ltex-fr" "llm" ];
+          auto-format = true;
         }
         {
           name = "git-rebase";
           language-servers = [ "ltex-fr" "llm" ];
+          auto-format = true;
         }
         {
           name = "text";
