@@ -18,4 +18,9 @@
 
     discord # PROPRIETARY messaging and general communication
   ];
+
+  programs = {
+    thunderbird.enable = true; # Privately configured
+    himalaya.enable = true; # Privately configured
+  };
 }
