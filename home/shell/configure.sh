@@ -65,7 +65,9 @@ cfg_commit() {
     cd .. || return
     nix flake update $SUBFLAKE # Update subflake input
   fi
-  git commit --all "$@" || return
+  git add .
+  # git commit --all "$@" || return # TEST if needed
+  git commit "$@" || return
 }
 
 cfg_amend() {
