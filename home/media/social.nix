@@ -20,7 +20,19 @@
   ];
 
   programs = {
-    thunderbird.enable = true; # Privately configured
+    thunderbird = {
+      enable = true; # Privately configured
+      profiles = {
+        default = {
+          isDefault = true;
+          # settings = { }; # TODO
+          extensions = with pkgs; [ ];
+          # extraConfig = '' ''; # TODO
+          # withExternalGnupg = true; # TEST if needed
+        };
+      };
+      # settings = { }; # TODO
+    };
     himalaya.enable = true; # Privately configured
   };
 }
