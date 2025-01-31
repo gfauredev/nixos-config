@@ -72,6 +72,8 @@
     kalker # Evaluate math expression
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
+    uv # Python package and project manager TODO reorg
+    # cachix # CLI cachix client TODO reorg
   ];
 
   services = {
