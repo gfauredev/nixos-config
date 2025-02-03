@@ -26,7 +26,7 @@
         default = {
           isDefault = true;
           # settings = { }; # TODO
-          extensions = with pkgs; [ ];
+          # extensions = with pkgs; [ ]; # TODO
           # extraConfig = '' ''; # TODO
           # withExternalGnupg = true; # TEST if needed
         };
