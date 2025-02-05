@@ -27,8 +27,8 @@
             lcov
             vcpkg
             vcpkg-tool
-            python312Packages.lizard
             valgrind
+            # python313Packages.lizard
           ];
         };
       });
