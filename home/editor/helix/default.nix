@@ -33,7 +33,7 @@
         };
       };
       keys = let
-        qk = 8; # Quicker movements multiplier
+        mult = 8; # Quicker movements multiplier
         default = {
           c = "move_char_left"; # h bépo equivalent
           t = "move_visual_line_down"; # k bépo equivalent
@@ -41,8 +41,8 @@
           r = "move_char_right"; # l bépo equivalent
           C = "extend_to_line_start"; # B, quicker vgl
           # C = "move_prev_long_word_start"; # B alternative
-          T = builtins.genList (x: "move_visual_line_down") qk; # j×8 quicker
-          S = builtins.genList (x: "move_visual_line_up") qk; # k×8 quicker
+          T = builtins.genList (x: "move_visual_line_down") mult; # j×8 quicker
+          S = builtins.genList (x: "move_visual_line_up") mult; # k×8 quicker
           R = "extend_to_line_end"; # E, quicker vgh
           # R = "move_next_long_word_end"; # E alternative
           h = "find_till_char"; # t replacement
@@ -65,6 +65,8 @@
           S-ret = "open_above"; # o alternative (Return)
           D = [ "extend_line_below" "delete_selection" ]; # Delete line
           space.t = "goto_word"; # Jump to a tag
+          X = "keep_selections";
+          A-X = "remove_selections";
         };
       in {
         normal = default // {
@@ -99,8 +101,8 @@
           t = "extend_line_down"; # j bépo equivalent
           s = "extend_line_up"; # k bépo equivalent
           r = "extend_char_right"; # l bépo equivalent
-          T = builtins.genList (x: "extend_line_down") qk; # j×8 quicker
-          S = builtins.genList (x: "extend_line_up") qk; # k×8 quicker
+          T = builtins.genList (x: "extend_line_down") mult; # j×8 quicker
+          S = builtins.genList (x: "extend_line_up") mult; # k×8 quicker
         };
       };
     };
