@@ -47,6 +47,7 @@
     du-dust # detailed disk usage of a directory
     imhex # Powerful hex editor
     hexyl # hex viever
+    sd # Intuitive find & replace
   ];
 
   programs.zsh = {

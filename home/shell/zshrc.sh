@@ -44,9 +44,9 @@ c() {
 }
 
 # Replace occurences of $1 by $2 in $3
-replace() {
-  \rg --passthrough --multiline "$1" -r "${@:2}"
-}
+# replace() {
+#   \rg --passthrough --multiline "$1" -r "${@:2}"
+# }
 
 # Inhib kills the (buggy) idle service for a given time
 inhib() {
