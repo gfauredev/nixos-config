@@ -26,6 +26,7 @@
       exec-once = [
         "systemctl --user start hyprpolkitagent" # Polkit authentication agent
         "waybar" # Status bar
+        "albert" # General quick launcher
         # "wezterm-mux-server" # Terminal multiplexer TEST relevance
       ];
 
@@ -103,7 +104,8 @@
               "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
           };
         launch = {
-          all = "pgrep albert || albert; albert toggle";
+          # all = "pgrep albert || albert; albert toggle"; # Lazy start
+          all = "albert toggle";
           alt = "rofi -show combi -combi-modes";
           app = "rofi -show drun";
           category = "rofi -show drun -drun-categories";
