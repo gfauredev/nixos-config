@@ -48,6 +48,7 @@
     imhex # Powerful hex editor
     hexyl # hex viever
     sd # Intuitive find & replace
+    grex # Regex generator from test cases
   ];
 
   programs.zsh = {
