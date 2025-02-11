@@ -1,10 +1,5 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    # thunderbird # Popular desktop email and calendar client TODO configure it
-    # evolution # Desktop email and calendar client
-    # himalaya # CLI mail client # Configure via home manager module
-    # mailspring # Email client WARNING security issue
-
     simplex-chat-desktop # Super secure messaging
     element-desktop # Secure group messaging and calls
     # element-web # Secure messaging and calls
@@ -18,21 +13,4 @@
 
     discord # PROPRIETARY messaging and general communication
   ];
-
-  programs = {
-    thunderbird = {
-      enable = true; # Privately configured
-      profiles = {
-        default = {
-          isDefault = true;
-          # settings = { }; # TODO
-          # extensions = with pkgs; [ ]; # TODO
-          # extraConfig = '' ''; # TODO
-          # withExternalGnupg = true; # TEST if needed
-        };
-      };
-      # settings = { }; # TODO
-    };
-    himalaya.enable = true; # Privately configured
-  };
 }
