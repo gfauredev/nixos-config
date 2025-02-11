@@ -37,13 +37,13 @@ show_logs_status() {
 }
 
 cfg_pull() {
-  printf "Pulling latest changes\n"
+  printf "\033[1mPulling latest changes\033[0m\n"
   git pull --recurse-submodules || printf '\nUnable to pull from %s\n' "$(git remote)"
   echo
 }
 
 flake_update_inputs() {
-  printf "Updating Flake inputs\n"
+  printf "\033[1mUpdating Flake inputs\033[0m\n"
   if [ -n "$SUBFLAKE" ]; then
     nix flake update --flake ./$SUBFLAKE --commit-lock-file || exit
     git commit ./$SUBFLAKE --message="chore($SUBFLAKE): update flake inputs"
@@ -52,37 +52,36 @@ flake_update_inputs() {
 }
 
 cfg_edit() {
-  printf "Starting the editor\n"
+  printf "\033[1mStarting the editor\033[0m\n"
   $EDITOR .
 }
 
 cfg_commit() {
   if [ -n "$SUBFLAKE" ]; then
-    printf "Commiting the subflake %s\n" $SUBFLAKE
+    printf "\033[1mCommiting the subflake %s\033[0m\n" $SUBFLAKE
     cd $SUBFLAKE || return
     git checkout main # Ensure we’re on main FIX
     git add .
-    git commit "$@" || return
+    git commit "$@"
     cd .. || return
     nix flake update $SUBFLAKE # Update subflake input
   fi
   printf "Commiting the top level Flake\n"
   # git add . # TEST if needed
   git commit --all "$@" || return
-  # git commit "$@" || return
 }
 
 cfg_amend() {
   if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
     if [ -n "$SUBFLAKE" ]; then
-      printf "Amending the subflake %s\n" $SUBFLAKE
+      printf "\033[1mAmending the subflake %s\033[0m\n" $SUBFLAKE
       cd $SUBFLAKE || return
       git checkout main # Ensure we’re on main FIX
-      git commit --amend --all --no-edit || return
+      git commit --amend --all --no-edit
       cd .. || return
       nix flake update $SUBFLAKE # Update subflake input
     fi
-    printf "Amending the top level Flake\n"
+    printf "\033[1mAmending the top level Flake\033[0m\n"
     git commit --amend --all --no-edit || return
   else
     cfg_commit
@@ -90,23 +89,23 @@ cfg_amend() {
 }
 
 rebuild_system() {
-  printf "\nMounting /boot before system update\n"
+  printf "\033[1mMounting /boot before system update\033[0m\n"
   sudo mount -v /boot || return # Use fstab
-  printf "\nPerforming system update: \"%s\"\n" "sudo $NIXOS_REBUILD_CMD --flake . switch"
+  printf "\033[1mPerforming system update: \033[0m\"%s\"\n" "sudo $NIXOS_REBUILD_CMD --flake . switch"
   if systemd-inhibit sudo $NIXOS_REBUILD_CMD --flake . switch; then
-    printf "\nUnmounting /boot after update\n"
+    printf "\033[1mUnmounting /boot after update\033[0m\n"
     sudo umount -v /boot # Unmount for security
   else
-    printf "\nFailed update, unmounting /boot\n"
+    printf "\033[1mFailed update, unmounting /boot\033[0m\n"
     sudo umount -v /boot # Unmount for security
     return 1             # Failed update status
   fi
 }
 
 rebuild_home() {
-  printf "\nRemoving .config/mimeapps.list\n"
+  printf "\033[1mRemoving .config/mimeapps.list\033[0m\n"
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  printf "\nPerforming profile update: \"%s\"\n" \
+  printf "\033[1mPerforming profile update: \033[0m\"%s\"\n" \
     "$HOME_MANAGER_CMD --flake . switch"
   systemd-inhibit $HOME_MANAGER_CMD --flake . switch || return
 }
@@ -116,28 +115,28 @@ cfg_push() {
     cd $SUBFLAKE || return
     git checkout main
     if [ -n "$(git log @{u}..)" ]; then # Amend pending edits if there’s unpushed commits
-      printf "Amending pending edits in the subflake\n"
+      printf "\033[1mAmending pending edits in the subflake\033[0m\n"
       git commit --amend --message="$(git log -1 --pretty=%s)"
     fi
     cd .. || return
   fi
   if [ -n "$(git log @{u}..)" ]; then # Amend pending edits if there’s unpushed commits
-    printf "Amending pending edits in the top level Flake\n"
+    printf "\033[1mAmending pending edits in the top level Flake\033[0m\n"
     git commit --amend --all --no-edit
   fi
-  printf "Pushing the repositories\n"
+  printf "\033[1mPushing the repositories\033[0m\n"
   git push || exit
 }
 
 cfg_rebase() {
   if [ -n "$SUBFLAKE" ]; then
-    printf "Rebasing the subflake %s\n" $SUBFLAKE
+    printf "\033[1mRebasing the subflake %s\033[0m\n" $SUBFLAKE
     cd $SUBFLAKE || return
     git checkout main
     git rebase -i || exit
     cd .. || return
   fi
-  printf "Rebasing the subflake top level flake\n"
+  printf "\033[1mRebasing the subflake top level flake\033[0m\n"
   git rebase -i
 }
 
