@@ -25,9 +25,9 @@ show_help() {
 }
 
 info() {
-  print '\033[1m' # Start bold
+  printf '\033[1m' # Start bold
   printf "$@"
-  print '\033[0m\n' # End bold, newline
+  printf '\033[0m\n' # End bold, newline
 }
 
 show_logs_status() {
