@@ -25,9 +25,9 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
         "waybar" # Status bar
-        "systemctl --user start hyprpolkitagent" # Polkit authentication agent
-        "albert" # General quick launcher
         "wezterm-mux-server" # Terminal multiplexer TEST relevance
+        "albert" # General quick launcher
+        "systemctl --user start hyprpolkitagent" # Polkit authentication agent
       ];
 
       xwayland.force_zero_scaling = true;
