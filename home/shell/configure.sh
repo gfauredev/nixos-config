@@ -64,7 +64,7 @@ cfg_edit() {
 
 cfg_commit() {
   if [ -n "$SUBFLAKE" ]; then
-    info 'Commiting the subflake %s' $SUBFLAKE
+    info 'Commit the subflake %s' $SUBFLAKE
     cd $SUBFLAKE || exit 1
     git checkout main # Ensure we’re on main FIX
     git add .
