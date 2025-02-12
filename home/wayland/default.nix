@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./hyprland ./waybar ./launcher ./remap ./eww ];
+  imports = [ ./hyprland ./waybar ./launcher ./remap ]; # ./eww ];
 
   home.packages = with pkgs; [
     wl-clipboard # Copy from CLI
