@@ -66,11 +66,11 @@
         "center, class:menu" # Center of screen
         "size 888 420, class:menu" # Small rectangle
         # Thunderbird
-        "noinitialfocus, title:Reminders" # Don’t auto focus reminders
-        "float, title:Reminders" # Don’t tile reminders
-        "move 100%-557 100%-360, title:Reminders" # Right bottom
-        "size 555 333, title:Reminders" # Small rectangle
-        "opacity 0.7, title:Reminders" # Transparent
+        "noinitialfocus, initialTitle:Calendar Reminders" # Don’t auto focus reminders
+        "float, initialTitle:Calendar Reminders" # Don’t tile reminders
+        "move 100%-557 100%-360, initialTitle:Calendar Reminders" # Right bottom
+        "size 555 333, initialTitle:Calendar Reminders" # Small rectangle
+        "opacity 0.7, initialTitle:Calendar Reminders" # Transparent
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
