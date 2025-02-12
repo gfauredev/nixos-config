@@ -25,7 +25,7 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
         "waybar" # Status bar
-        "wezterm-mux-server" # Terminal multiplexer TEST relevance
+        # "wezterm-mux-server" # Terminal multiplexer TEST relevance
         "albert" # General quick launcher
         "systemctl --user start hyprpolkitagent" # Polkit authentication agent
       ];
