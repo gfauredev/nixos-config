@@ -171,8 +171,8 @@
   programs.openvpn3.enable = lib.mkDefault true;
 
   i18n = {
-    supportedLocales = lib.mkDefault [ "en_US.UTF-8/UTF-8" ];
-    defaultLocale = lib.mkDefault "en_US.UTF-8";
+    supportedLocales = lib.mkDefault [ "en_GB.UTF-8/UTF-8" ];
+    defaultLocale = lib.mkDefault "en_GB.UTF-8";
   };
 
   environment = {
