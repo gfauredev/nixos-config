@@ -9,7 +9,8 @@
     # P2P & VPN & Web3
     nym # Super-anonymous routing protocol FIXME lacks desktop apps
     mullvad # Anonymous VPN service
-    qbittorrent-nox # Bittorrent client (web interface)
+    transmission_4 # Bittorrent client
+    qbittorrent # Bittorrent client
     iroh # Efficient IPFS, p2p file sharing
     # calyx-vpn # (bitmask client) Free VPN service FIXME
     riseup-vpn # (bitmask client) Free VPN service
