@@ -66,11 +66,11 @@
         "center, class:menu" # Center of screen
         "size 888 420, class:menu" # Small rectangle
         # Thunderbird Reminders
-        "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders" # Don’t auto focus reminders
-        "float, initialClass:thunderbird, initialTitle:.* Reminders" # Don’t tile reminders
-        "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders" # Right bottom
-        "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders" # Small rectangle
-        "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders" # Transparent
+        "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
+        "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
+        "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
+        "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
+        "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
         # Thunderbird Notifications
         "noinitialfocus, initialClass:thunderbird, initialTitle:^$" # Don’t auto focus
         "float, initialClass:thunderbird, initialTitle:^$" # Don’t tile notifications

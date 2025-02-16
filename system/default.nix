@@ -103,8 +103,11 @@
       # font-awesome # Thousands of icons
     ];
   };
-  console.font = "Lat2-Terminus16";
-  console.keyMap = lib.mkDefault "fr-bepo";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = lib.mkDefault "fr-bepo";
+    useXkbConfig = lib.mkDefault true;
+  };
 
   time = {
     timeZone = lib.mkDefault "Europe/Paris";
