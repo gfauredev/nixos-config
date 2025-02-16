@@ -66,17 +66,18 @@
         "center, class:menu" # Center of screen
         "size 888 420, class:menu" # Small rectangle
         # Thunderbird Reminders
-        "noinitialfocus, initialTitle:.* Reminders" # Don’t auto focus reminders
-        "float, initialTitle:.* Reminders" # Don’t tile reminders
-        "move 100%-557 100%-360, initialTitle:.* Reminders" # Right bottom
-        "size 555 333, initialTitle:.* Reminders" # Small rectangle
-        "opacity 0.7, initialTitle:.* Reminders" # Transparent
+        "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders" # Don’t auto focus reminders
+        "float, initialClass:thunderbird, initialTitle:.* Reminders" # Don’t tile reminders
+        "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders" # Right bottom
+        "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders" # Small rectangle
+        "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders" # Transparent
         # Thunderbird Notifications
-        "noinitialfocus, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
-        "float, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
-        "move 0 100%-360, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
-        "size 555 333, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
-        "opacity 0.7, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
+        "noinitialfocus, initialClass:thunderbird, initialTitle:^$" # Don’t auto focus
+        "float, initialClass:thunderbird, initialTitle:^$" # Don’t tile notifications
+        "move 100%-557 2, initialClass:thunderbird, initialTitle:^$" # Right top
+        # "move 2 100%-360, initialClass:thunderbird, initialTitle:^$" # Left bottom
+        "size 555 333, initialClass:thunderbird, initialTitle:^$" # Small rectangle
+        "opacity 0.7, initialClass:thunderbird, initialTitle:^$" # Transparent
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
