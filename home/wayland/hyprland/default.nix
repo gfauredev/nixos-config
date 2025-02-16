@@ -72,11 +72,11 @@
         "size 555 333, initialTitle:Calendar Reminders" # Small rectangle
         "opacity 0.7, initialTitle:Calendar Reminders" # Transparent
         # Thunderbird Notifications
-        "noinitialfocus, class:thunderbird, title:" # Don’t auto focus notifs
-        "float, class:thunderbird, title:" # Don’t tile notifs
-        "move 2 27, class:thunderbird, title:" # Left bottom
-        "size 555 333, class:thunderbird, title:" # Small rectangle
-        "opacity 0.7, class:thunderbird, title:" # Transparent
+        "noinitialfocus, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
+        "float, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
+        "move 2 27, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
+        "size 555 333, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
+        "opacity 0.7, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords
