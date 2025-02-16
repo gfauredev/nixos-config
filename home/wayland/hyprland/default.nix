@@ -74,7 +74,7 @@
         # Thunderbird Notifications
         "noinitialfocus, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
         "float, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
-        "move 2 27, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
+        "move 0 100%-360, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
         "size 555 333, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
         "opacity 0.7, class:thunderbird, title:^$, initialClass:thunderbird, initialTitle:^$"
       ];
