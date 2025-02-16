@@ -203,18 +203,17 @@
     ];
   };
 
-  # TODO Find a better place to put these more "user" services
-  services.grocy = {
-    enable = true;
-    hostName = "grocy.localhost";
-    nginx.enableSSL = false;
-    settings = {
-      currency = "EUR";
-      culture = "fr";
-      calendar.firstDayOfWeek = 1;
-    };
-  };
-  # services.llama-cpp = {
+  # services.grocy = { # TODO Find a better place to put this "user" service
+  #   enable = true;
+  #   hostName = "grocy.localhost";
+  #   nginx.enableSSL = false;
+  #   settings = {
+  #     currency = "EUR";
+  #     culture = "fr";
+  #     calendar.firstDayOfWeek = 1;
+  #   };
+  # };
+  # services.llama-cpp = { # TODO Find a better place to put this "user" service
   #   enable = true; # Large language model server
   #   port = 7777;
   # };
