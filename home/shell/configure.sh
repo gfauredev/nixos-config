@@ -153,8 +153,8 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
 
 # Collect arguments in any order
 rebuild_only=false # Whether to forcefully not edit
-system=false
-home=false
+system=false       # TODO infer what to rebuild based on which code was edited (system/)
+home=false         # TODO infer what to rebuild based on which code was edited (home/)
 update_inputs=false
 amend_edits=false
 push_repositories=false

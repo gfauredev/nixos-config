@@ -61,8 +61,6 @@ A dev environment for a specific tech stack can be initialised with
 `nix flake init --template templates#$STACK` and then activated with
 `nix develop`.
 
-TODO: `direnv` setup.
-
 ## Documentation and learning ressources
 
 - [NixOS documentation](https://nixos.org/manual/nixos/unstable)
