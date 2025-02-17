@@ -104,9 +104,9 @@
     ];
   };
   console = {
-    font = "Lat2-Terminus16";
     keyMap = lib.mkDefault "fr-bepo";
-    useXkbConfig = lib.mkDefault true;
+    # font = "Lat2-Terminus16";
+    # useXkbConfig = lib.mkDefault true;
   };
 
   time = {
@@ -115,7 +115,32 @@
       lib.mkDefault false; # True for compatibility with Windows
   };
 
-  networking = {
+  networking = let
+    dns0.standard = [ # Modern European public DNS
+      "2a0f:fc80::#dns0.eu" # IPv6
+      "193.110.81.0#dns0.eu" # IPv4
+      "2a0f:fc81::#dns0.eu" # IPv6
+      "185.253.5.0#dns0.eu" # IPv4
+    ];
+    dns0.zero = [ # Hardened modern European public DNS
+      "2a0f:fc80::9#zero.dns0.eu" # IPv6
+      "193.110.81.9#zero.dns0.eu" # IPv4
+      "2a0f:fc81::9#zero.dns0.eu" # IPv6
+      "185.253.5.9#zero.dns0.eu" # IPv4
+    ];
+    quad9.standard = [ # Public DNS
+      "2620:fe::fe#dns.quad9.net/dns-query"
+      "9.9.9.9#dns.quad9.net/dns-query"
+      "2620:fe::9#dns.quad9.net/dns-query"
+      "149.112.112.112#dns.quad9.net/dns-query"
+    ];
+    quad9.hard = [ # Hardened public DNS
+      "2620:fe::11#dns11.quad9.net/dns-query"
+      "9.9.9.11#dns11.quad9.net/dns-query"
+      "2620:fe::fe:11#dns11.quad9.net/dns-query"
+      "149.112.112.11#dns11.quad9.net/dns-query"
+    ];
+  in {
     firewall.enable = lib.mkDefault true;
     wireguard.enable = lib.mkDefault true;
     networkmanager = {
@@ -134,13 +159,7 @@
         type = "basic";
       }];
     };
-    nameservers = [ # This options doesn’t seem effective, FIX above
-      #dns0.eu
-      "193.110.81.0"
-      "2a0f:fc80::"
-      "185.253.5.0"
-      "2a0f:fc81::"
-    ];
+    nameservers = dns0.standard; # Doesn’t seem effective, FIX above
   };
 
   hardware = {
