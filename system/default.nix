@@ -208,8 +208,27 @@
     fail2ban.enable = lib.mkDefault true;
     # See https://wiki.nixos.org/wiki/Encrypted_DNS
     dnscrypt-proxy2 = {
-      # enable = true; # TODO
-      # settings = { }; # TODO
+      enable = true;
+      settings = {
+        sources.public-resolvers = {
+          urls = [
+            "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+            "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          ];
+          cache_file = "public-resolvers.md";
+          # See https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+          minisign_key =
+            "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+        };
+        ipv4_servers = true;
+        ipv6_servers = true;
+        dnscrypt_servers = true;
+        doh_servers = true;
+        odoh_servers = true;
+        require_dnssec = true;
+        require_nolog = true;
+        require_nofilter = true;
+      };
     };
   };
 
