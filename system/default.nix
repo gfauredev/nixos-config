@@ -208,7 +208,7 @@
     fail2ban.enable = lib.mkDefault true;
     # See https://wiki.nixos.org/wiki/Encrypted_DNS
     dnscrypt-proxy2 = {
-      enable = true;
+      # enable = true; # TODO
       # settings = { }; # TODO
     };
   };
