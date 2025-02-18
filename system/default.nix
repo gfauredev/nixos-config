@@ -116,6 +116,12 @@
   };
 
   networking = let
+    dns0.open = [ # Unfiltered modern European public DNS
+      "2a0f:fc80::ffff#open.dns0.eu" # IPv6
+      "193.110.81.254#open.dns0.eu" # IPv4
+      "2a0f:fc81::ffff#open.dns0.eu" # IPv6
+      "185.253.5.254#open.dns0.eu" # IPv4
+    ];
     dns0.normal = [ # Modern European public DNS
       "2a0f:fc80::#dns0.eu" # IPv6
       "193.110.81.0#dns0.eu" # IPv4
@@ -171,7 +177,7 @@
         type = "basic";
       }];
     };
-    nameservers = dns0.normal; # Doesn’t seem effective, FIX above
+    nameservers = dns0.open; # Doesn’t seem effective, FIX above
   };
 
   hardware = {
