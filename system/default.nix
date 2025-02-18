@@ -134,18 +134,6 @@
       "2a0f:fc81::9#zero.dns0.eu" # IPv6
       "185.253.5.9#zero.dns0.eu" # IPv4
     ];
-    quad9.normal = [ # Public DNS
-      "2620:fe::fe#dns.quad9.net"
-      "9.9.9.9#dns.quad9.net"
-      "2620:fe::9#dns.quad9.net"
-      "149.112.112.112#dns.quad9.net"
-    ];
-    quad9.hard = [ # Hardened public DNS
-      "2620:fe::11#dns11.quad9.net"
-      "9.9.9.11#dns11.quad9.net"
-      "2620:fe::fe:11#dns11.quad9.net"
-      "149.112.112.11#dns11.quad9.net"
-    ];
     fdn.normal = [ # Non-profit public DNS
       "2001:910:800::12#ns0.fdn.fr"
       "80.67.169.12#ns0.fdn.fr"
@@ -158,13 +146,27 @@
       "2606:4700:4700::1001#one.one.one.one"
       "1.0.0.1#one.one.one.one"
     ];
+    quad9.normal = [ # Public DNS
+      "2620:fe::fe#dns.quad9.net"
+      "9.9.9.9#dns.quad9.net"
+      "2620:fe::9#dns.quad9.net"
+      "149.112.112.112#dns.quad9.net"
+    ];
+    quad9.hard = [ # Hardened public DNS
+      "2620:fe::11#dns11.quad9.net"
+      "9.9.9.11#dns11.quad9.net"
+      "2620:fe::fe:11#dns11.quad9.net"
+      "149.112.112.11#dns11.quad9.net"
+    ];
   in {
+    nameservers = dns0.open;
     firewall.enable = lib.mkDefault true;
     wireguard.enable = lib.mkDefault true;
     networkmanager = {
       # See: https://developer.gnome.org/NetworkManager/stable/NetworkManager.html
       enable = lib.mkDefault true;
-      insertNameservers = config.networking.nameservers; # FIX for below
+      # insertNameservers = config.networking.nameservers;
+      dns = "none"; # Static name servers, we don’t want DHCP ones
       dispatcherScripts = [{
         source = pkgs.writeShellScript "09-timezone" ''
           case "$2" in
@@ -177,7 +179,6 @@
         type = "basic";
       }];
     };
-    nameservers = dns0.open; # Doesn’t seem effective, FIX above
   };
 
   hardware = {
