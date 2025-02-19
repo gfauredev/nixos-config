@@ -38,6 +38,10 @@
         chimera = { # Chimera, a flying creature
           imports = [ ./system/pc/laptop/chimera ];
         };
+        # Desktops #
+        # muses = { # Muses, nine goddesses of the arts and sciences
+        #   imports = [ ./system/pc/desktop/muses ];
+        # };
         # Servers #
         cerberus = { # Cerberus, a powerful creature with multiple heads
           imports = [ ./system/server/cerberus ];
@@ -68,6 +72,12 @@
           system = "x86_64-linux"; # PC architecture
           modules = [ self.nixosModules.chimera self.nixosModules.overlay ];
         };
+        # Desktops #
+        # muses = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux"; # PC architecture
+        #   # specialArgs = { inherit inputs; };
+        #   modules = [ self.nixosModules.muses self.nixosModules.overlay ];
+        # };
         # Servers #
         cerberus = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # Server architecture
