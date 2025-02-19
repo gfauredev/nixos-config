@@ -26,15 +26,15 @@
     # PDF reading & editing
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
-    poppler_utils # PDF metadata reading
-    pdftk # CLI PDF manipulation
-    qpdf # CLI PDF manipulation
+    poppler_utils # PDF metadata reading/editing
+    # pdftk # CLI PDF manipulation
+    qpdf # More modern CLI PDF manipulation
     pdfrip # PDF password cracking
     # pdf4qt # PDF edition
     # xpdf # PDF reader
     # pdf4qt # PDF editor
     pdf-sign # Automated PDF signing TODO config
-    pdfmixtool # Simple GUI to merge/split PDFs
+    # pdfmixtool # Simple GUI to edit PDFs structure
     # naps2 # Scan PDFs FIX
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
