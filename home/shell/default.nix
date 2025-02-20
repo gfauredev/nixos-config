@@ -103,6 +103,10 @@
     # loginFile.source = ./login.nu;
   };
 
+  programs.ion = {
+    enable = true; # TODO configure
+  };
+
   programs = {
     broot = { # TODO organize
       enable = true; # Quick fuzzy file finder
@@ -164,8 +168,8 @@
     eza = {
       enable = true; # Better ls
       enableZshIntegration = true;
-      enableBashIntegration = true;
       enableNushellIntegration = true;
+      enableIonIntegration = true;
     };
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
@@ -178,6 +182,8 @@
     starship = {
       enable = true; # Super prompt
       enableZshIntegration = true;
+      enableNushellIntegration = true;
+      enableIonIntegration = true;
       settings = {
         character = {
           format = "$symbol ";
