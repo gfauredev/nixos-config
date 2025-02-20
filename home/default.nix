@@ -61,7 +61,7 @@
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
-    # tmsu # File tagging with virtual FS
+    tmsu # File tagging with virtual FS
     # sendme # send files and directories p2p
     # udiskie # auto mount USB
     # dcfldd # more powerful dd

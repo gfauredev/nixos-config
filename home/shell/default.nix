@@ -49,6 +49,7 @@
     hexyl # hex viever
     sd # Intuitive find & replace
     grex # Regex generator from test cases
+    superfile # Fancy CLI file manager
   ];
 
   programs.zsh = {
