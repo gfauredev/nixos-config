@@ -110,52 +110,62 @@
       enableNushellIntegration = true;
       settings = {
         default_flags = "dgps";
-        special_paths = lib.mkForce { };
+        special_paths = lib.mkForce { }; # Remove them
+        verbs = [{
+          invocation = "edit";
+          key = "enter";
+          shortcut = "e";
+          external = "$EDITOR {file}:{line}";
+          apply_to = "text_file";
+          leave_broot = false;
+          set_working_dir = true;
+        }];
       };
     };
-    yazi = { # TODO organize
-      enable = true; # TODO configure
-      #   keymap = {
-      #     input.prepend_keymap = [
-      #       {
-      #         run = "close";
-      #         on = [ "<C-q>" ];
-      #       }
-      #       {
-      #         run = "close --submit";
-      #         on = [ "<Enter>" ];
-      #       }
-      #       {
-      #         run = "escape";
-      #         on = [ "<Esc>" ];
-      #       }
-      #       {
-      #         run = "backspace";
-      #         on = [ "<Backspace>" ];
-      #       }
-      #     ];
-      #     manager.prepend_keymap = [
-      #       {
-      #         run = "escape";
-      #         on = [ "<Esc>" ];
-      #       }
-      #       {
-      #         run = "quit";
-      #         on = [ "q" ];
-      #       }
-      #       {
-      #         run = "close";
-      #         on = [ "<C-q>" ];
-      #       }
-      #     ];
-      #   };
-    };
+    # yazi = { # TODO organize
+    #   enable = true; # TODO configure, TEST
+    #   keymap = {
+    #     input.prepend_keymap = [
+    #       {
+    #         run = "close";
+    #         on = [ "<C-q>" ];
+    #       }
+    #       {
+    #         run = "close --submit";
+    #         on = [ "<Enter>" ];
+    #       }
+    #       {
+    #         run = "escape";
+    #         on = [ "<Esc>" ];
+    #       }
+    #       {
+    #         run = "backspace";
+    #         on = [ "<Backspace>" ];
+    #       }
+    #     ];
+    #     manager.prepend_keymap = [
+    #       {
+    #         run = "escape";
+    #         on = [ "<Esc>" ];
+    #       }
+    #       {
+    #         run = "quit";
+    #         on = [ "q" ];
+    #       }
+    #       {
+    #         run = "close";
+    #         on = [ "<C-q>" ];
+    #       }
+    #     ];
+    #   };
+    # };
     translate-shell.enable = true; # Google Translate CLI
-    command-not-found.enable =
-      false; # FIXME doesn’t work (maybe due to shell config)
+    command-not-found.enable = false; # FIXME maybe shell config’s fault
     eza = {
       enable = true; # Better ls
-      enableNushellIntegration = true; # TODO for other programs
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
     };
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
