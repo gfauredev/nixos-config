@@ -114,9 +114,11 @@
           # all = "pgrep albert || albert; albert toggle"; # Lazy start
           all = "albert toggle";
           alt = "rofi -show combi -combi-modes";
-          app = "rofi -show drun";
+          app = "albert show 'app ''";
+          # app = "rofi -show drun";
           category = "rofi -show drun -drun-categories";
-          pass = "rofi-pass";
+          pass = "albert show 'pass '";
+          # pass = "rofi-pass";
           calc = "${term.menu} kalker";
         };
         browser = {
@@ -162,7 +164,7 @@
         # Launch
         "$mod, Super_L, Default launcher, exec, ${launch.all}"
         "$mod, SPACE, alternative/fallback launcher, exec, ${launch.alt}"
-        "$mod CONTROL, Quick calculator, SPACE, exec, ${launch.calc}"
+        "$mod CONTROL, SPACE, Quick calculator, exec, ${launch.calc}"
         "$mod SHIFT, SPACE, Quick password manager, exec, ${launch.pass}"
         # Launch with special media keys
         ", Menu, Open menu with media key, exec, ${launch.all}"
