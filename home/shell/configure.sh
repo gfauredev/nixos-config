@@ -43,12 +43,18 @@ show_logs_status() {
 }
 
 cfg_pull() {
-  info "Pull latest changes"
-  git pull --recurse-submodules || info 'Unable to pull from %s' "$(git remote)"
+  remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
+  info 'Test if remote %s is reachable (in less than 3s)' "$remote"
+  if ping -c 1 -w 3 "$remote"; then
+    info '%s reached, pull latest changes from it' "$remote"
+    git pull --recurse-submodules || info 'Unable to pull from %s' "$(git remote)"
+  else
+    info '%s non reachable, move on' "$remote"
+  fi
 }
 
 flake_update_inputs() {
-  info "Update flake inputs"
+  info 'Update flake inputs'
   if [ -n "$SUBFLAKE" ]; then
     nix flake update --flake ./$SUBFLAKE --commit-lock-file || exit
     git commit ./$SUBFLAKE --message="chore($SUBFLAKE): update flake inputs"
@@ -57,9 +63,9 @@ flake_update_inputs() {
 }
 
 cfg_edit() {
-  info "Start the editor"
+  info 'Start the editor'
   $EDITOR .
-  info "Editor closed"
+  info 'Editor closed'
 }
 
 cfg_commit() {
@@ -162,9 +168,12 @@ cd=false
 commit_message="" # To be constructed with remaining arguments
 poweroff=false
 reboot=false
+# TODO commit message is all the args from the conventional commit type
+# RegEx: ([a-z\(\)\-]{2,16}):
+# TODO rebuild by default only for fix: and feat: commit types
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  # r | re | rebuild) # Rebuild only, don’t edit
+  # r | re | rb | rebuild | build) # Rebuild only, don’t edit
   r | re | reb) # Use words unlikely to appear in commit message
     rebuild_only=true
     ;;
@@ -194,7 +203,7 @@ while [ "$#" -gt 0 ]; do
   p | push) # Push the flake’s repository
     push_repositories=true
     ;;
-  l | log)           # Show Git logs and status
+  l | log | logs)    # Show Git logs and status
     show_logs_status # Directly show Git logs and status
     exit
     ;;
