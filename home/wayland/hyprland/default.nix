@@ -114,10 +114,10 @@
           # all = "pgrep albert || albert; albert toggle"; # Lazy start
           all = "albert toggle";
           alt = "rofi -show combi -combi-modes";
-          app = "albert show 'app ''";
+          app = ''albert show "app "'';
           # app = "rofi -show drun";
           category = "rofi -show drun -drun-categories";
-          pass = "albert show 'pass '";
+          pass = ''albert show "pass "'';
           # pass = "rofi-pass";
           calc = "${term.menu} kalker";
         };
