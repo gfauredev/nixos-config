@@ -8,5 +8,5 @@
     helix-gpt # Add LLMs support through LSP
   ];
 
-  # TODO factorize extra packages (LPSs…)
+  # TODO define common, global editors packages with nix modules
 }

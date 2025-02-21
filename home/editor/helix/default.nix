@@ -282,7 +282,7 @@
         };
       };
     };
-    extraPackages = with pkgs; [ # TODO factorize with other editors
+    extraPackages = with pkgs; [ # TODO global editors packages with nix modules
       # tree-sitter # Parser generator tool and builtinsrary
       # (pkgs.tree-sitter.withPlugins
       #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))

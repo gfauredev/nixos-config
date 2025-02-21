@@ -7,24 +7,24 @@
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./opt.lua}
-      ${builtins.readFile ./filetype.lua}
-      ${builtins.readFile ./autocmd.lua}
-      ${builtins.readFile ./theme.lua}
-      ${builtins.readFile ./plugin/telescope.lua}
-      ${builtins.readFile ./plugin/comment.lua}
-      ${builtins.readFile ./plugin/treesitter.lua}
-      ${builtins.readFile ./plugin/gitsigns.lua}
-      ${builtins.readFile ./plugin/lsp.lua}
-      ${builtins.readFile ./plugin/cmp.lua}
-      ${builtins.readFile ./plugin/leap.lua}
-      ${builtins.readFile ./plugin/trouble.lua}
-      ${builtins.readFile ./plugin/autopair.lua}
-      ${builtins.readFile ./plugin/indentline.lua}
-      ${builtins.readFile ./plugin/format.lua}
-      ${builtins.readFile ./plugin/copilot.lua}
-      ${builtins.readFile ./plugin/maths.lua}
-      ${builtins.readFile ./plugin/dap.lua}
     '';
+    # ${builtins.readFile ./filetype.lua}
+    # ${builtins.readFile ./autocmd.lua}
+    # ${builtins.readFile ./theme.lua}
+    # ${builtins.readFile ./plugin/telescope.lua}
+    # ${builtins.readFile ./plugin/comment.lua}
+    # ${builtins.readFile ./plugin/treesitter.lua}
+    # ${builtins.readFile ./plugin/gitsigns.lua}
+    # ${builtins.readFile ./plugin/lsp.lua}
+    # ${builtins.readFile ./plugin/cmp.lua}
+    # ${builtins.readFile ./plugin/leap.lua}
+    # ${builtins.readFile ./plugin/trouble.lua}
+    # ${builtins.readFile ./plugin/autopair.lua}
+    # ${builtins.readFile ./plugin/indentline.lua}
+    # ${builtins.readFile ./plugin/format.lua}
+    # ${builtins.readFile ./plugin/copilot.lua}
+    # ${builtins.readFile ./plugin/maths.lua}
+    # ${builtins.readFile ./plugin/dap.lua}
     # ${builtins.readFile ./plugin/lint.lua}
     # ${builtins.readFile ./plugin/quarto.lua}
     # ${builtins.readFile ./plugin/notify.lua}
@@ -32,30 +32,30 @@
     # ${builtins.readFile ./plugin/dashboard.lua}
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
-      plenary-nvim # Library
+      # plenary-nvim # Library
       # fuzzy-nvim # Library
-      nvim-nio # Async I/O
+      # nvim-nio # Async I/O
 
       ##### Parsing #####
       nvim-treesitter.withAllGrammars # Parsing & text highlighting
       # nvim-treesitter-parsers.markdown # Parsing & text highlighting
       # nvim-treesitter-parsers.norg # Parsing & text highlighting
-      nvim-treesitter-parsers.arduino # Parsing & text highlighting
-      nvim-treesitter-textobjects # Parsing & text highlighting
-      nvim-treesitter-textsubjects # Parsing & text highlighting
-      nvim-treesitter-refactor # Parsing & text highlighting
-      nvim-treesitter-context # Typically displays the function signature you’re in
+      # nvim-treesitter-parsers.arduino # Parsing & text highlighting
+      # nvim-treesitter-textobjects # Parsing & text highlighting
+      # nvim-treesitter-textsubjects # Parsing & text highlighting
+      # nvim-treesitter-refactor # Parsing & text highlighting
+      # nvim-treesitter-context # Typically displays the function signature you’re in
 
       ##### UI & Misc #####
-      nvim-web-devicons # Icons
-      gitsigns-nvim # Displays git related indications
-      comment-nvim # Comment/Uncomment easily
-      nvim-tree-lua # Tree file explorer
-      sniprun # Run snippets of code from neovim
-      otter-nvim # LSP & features for embedded languages
-      indent-blankline-nvim # Indentation lines
-      tokyonight-nvim # Blue-ish theme
-      gruvbox-nvim # Old fashioned, red-ish theme
+      # nvim-web-devicons # Icons
+      # gitsigns-nvim # Displays git related indications
+      # comment-nvim # Comment/Uncomment easily
+      # nvim-tree-lua # Tree file explorer
+      # sniprun # Run snippets of code from neovim
+      # otter-nvim # LSP & features for embedded languages
+      # indent-blankline-nvim # Indentation lines
+      # tokyonight-nvim # Blue-ish theme
+      # gruvbox-nvim # Old fashioned, red-ish theme
       # nvim-ufo # Modern and performance fold # TODO set up
       # headlines-nvim # Highlights for titles, code blocks …
       # nvim-notify # Notifications
@@ -68,28 +68,28 @@
 
       ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
-      nvim-cmp # Autocompletion for neovim
-      friendly-snippets # Snippets collection
-      luasnip # Snippet engine
-      nvim-autopairs # Handle pairs like parentheses
-      cmp_luasnip # LuaSnip as cmp source
-      cmp-nvim-lua # Use ls as cmp source
-      cmp-nvim-lsp # Use ls as cmp source
-      cmp-buffer # Buffer content as cmp source
-      cmp-path # FS path as cmp source
-      nvim-dap # Debugger protocol
-      nvim-dap-ui # Debugger UI
-      nvim-dap-virtual-text # Debugger UI
-      cmp-git # Git commits messages as cmp source
-      trouble-nvim # Better presentation of messages
-      cmp-cmdline # Nvim commands line mode completion source
-      cmp-nvim-lsp-signature-help
-      cmp-zsh # ZSH completions in Neovim
-      copilot-lua # GitHub copilot
-      copilot-cmp # GitHub copilot completions
-      nvim-ts-autotag # Auto close tags
-      conform-nvim # Autoformatter
-      nvim-surround # Surround text with symbols
+      # nvim-cmp # Autocompletion for neovim
+      # cmp_luasnip # LuaSnip as cmp source
+      # cmp-nvim-lua # Use ls as cmp source
+      # cmp-nvim-lsp # Use ls as cmp source
+      # cmp-buffer # Buffer content as cmp source
+      # cmp-path # FS path as cmp source
+      # friendly-snippets # Snippets collection
+      # luasnip # Snippet engine
+      # nvim-autopairs # Handle pairs like parentheses
+      # nvim-dap # Debugger protocol
+      # nvim-dap-ui # Debugger UI
+      # nvim-dap-virtual-text # Debugger UI
+      # cmp-git # Git commits messages as cmp source
+      # trouble-nvim # Better presentation of messages
+      # cmp-cmdline # Nvim commands line mode completion source
+      # cmp-nvim-lsp-signature-help
+      # cmp-zsh # ZSH completions in Neovim
+      # copilot-lua # GitHub copilot
+      # copilot-cmp # GitHub copilot completions
+      # nvim-ts-autotag # Auto close tags
+      # conform-nvim # Autoformatter
+      # nvim-surround # Surround text with symbols
       # nvim-lint # Linters adapter
       # cmp-tabnine # AI code completion
       # cmp-fuzzy-buffer # Buffer content as cmp source
@@ -98,14 +98,14 @@
 
       ##### Search & Move #####
       telescope-nvim # Fuzzy search & navigate files & code
-      leap-nvim # Navigate efficiently in code
+      # leap-nvim # Navigate efficiently in code
       # telescope-fzf-native-nvim # Fuzzy search & navigate
       # telescope-media-files-nvim # Works with hacky ueberzug
       # hop-nvim # Navigate efficiently in code
 
       ##### Techno & Language Specifics #####
       # typst-vim # Typst
-      nabla-nvim # Render maths formulas
+      # nabla-nvim # Render maths formulas
       # neorg # Modern oganization markup # Currently lacks a mobile app
       # orgmode # Organization markup # Has Orgzly mobile app
       # quarto-nvim # Publishing system
@@ -128,39 +128,7 @@
     withPython3 = true;
     withRuby = true;
     # extraLuaPackages = ps: [ ps.magick ];
-    extraPackages = with pkgs; [ # TODO factorize with editors
-      # luajitPackages.magick
-
-      nil # Nix LSP
-      nixfmt # Nix formatter
-
-      bash-language-server # Bash LSP
-      shellcheck # Shell script analysis
-      stablepkgs.explain # Explain system call errors
-      shfmt # Shell script formatter
-
-      lua-language-server # Lua LSP
-
-      vscode-langservers-extracted # HTML/CSS/JSON/ESLint
-      yaml-language-server # YAML LSP
-      taplo # TOML LSP and toolkit
-
-      dprint # Pluggable code formatting platform
-
-      # ltex-ls # LSP between languagetool and pure text
-      ltex-ls-plus # LSP between languagetool and text
-      # hunspell # Standard spell checker
-      # hunspellDicts.fr-any # French
-      # hunspellDicts.en_US # American
-      # hunspellDicts.en_GB-ise # British
-      # hunspellDicts.es_ES # Spanish
-
-      tinymist # Typst LSP
-      # typst-lsp # Typst LSP # DEPRECATED
-      typstyle # Typst formatter
-      # typstfmt # Typst formatter # Deprecated
-      marksman # Smart Markdown links
-    ];
+    extraPackages = [ ]; # TODO define global editors packages with nix modules
   };
 
   home.file = {
@@ -178,7 +146,7 @@
     settings."Comment[fr]" = "Éditer des fichiers texte";
     # settings.TryExec = "${pkgs.neovim}/bin/nvim";
     settings.TryExec = "nvim";
-    terminal = true; # FIXME
+    terminal = true; # Doesn’t work all the time
     # terminal = false; # We want xdg-open to open it in new window
     # exec = "env SHELL=zsh ${term.cmd} ${term.exec} nvim %F";
     type = "Application";
