@@ -17,6 +17,11 @@
       lidSwitch = "suspend";
       extraConfig = "HandlePowerKey=suspend";
     };
+    getty.helpLine = ''
+      tty1: Hyprland (wayland window manager)
+      tty4: Hyprland, force eGPU
+      tty5: Niri (experimental wayland window manager)
+    ''; # TODO link this to the actual login manager in home/wayland/
   };
 
   powerManagement = {
