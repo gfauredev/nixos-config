@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }: {
+{ lib, pkgs, ... }: {
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11" # GPU drivers
@@ -34,16 +34,16 @@
     # Making legacy nix commands consistent as well
     # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") TEST relevance
     #   config.nix.registry; TEST relevance
-
     gc = {
       automatic = lib.mkDefault true;
       dates = lib.mkDefault "weekly";
       options = lib.mkDefault "--delete-older-than 7d";
     };
-
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      connect-timeout = 5; # Quickly go offline if substituters not reachable
+      # log-lines = lib.mkDefault 25; # More logging
     };
   };
 
