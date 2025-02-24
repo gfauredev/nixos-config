@@ -80,20 +80,42 @@
             S = "swap_view_up"; # J bépo equivalent
             R = "swap_view_right"; # L bépo equivalent
           };
+          space = {
+            u = "goto_reference"; # Usages
+            U = "select_references_to_symbol_under_cursor"; # Select Usages
+            h = "hover"; # Help
+            space = "command_palette";
+          };
+          g = { # GO TO
+            # g = "goto_file_start"; # Default
+            # e = "goto_last_line"; # Default
+            # f = "goto_file"; # Default
+            c = "goto_line_start";
+            T = "move_line_down";
+            S = "move_line_up";
+            r = "goto_line_end";
+            space = "goto_first_nonwhitespace";
+            F = "goto_last_modified_file";
+            m = "goto_window_center";
+            k = "goto_reference";
+            u = "goto_reference";
+            h = "hover";
+            R = "goto_reference";
+            d = "goto_definition";
+            l = "goto_declaration";
+          };
           "#" = { # "#" sub mode (shell or files related commands)
             # Open most recently edited PDF
             p = ":run-shell-command xdg-open $(ls --sort=time *.pdf|head -n1)";
           };
-          g = {
-            c = "goto_line_start";
-            r = "goto_line_end";
-            h = "goto_window_center";
-            k = "goto_reference";
-            D = "goto_definition";
-            d.d = "goto_definition";
-            d.f = "goto_definition";
-            d.c = "goto_declaration";
-            d.l = "goto_declaration";
+          z = { # View mode
+            c = "align_view_center";
+            t = "scroll_down";
+            s = "scroll_up";
+            r = "align_view_top";
+            T = "page_down";
+            S = "page_up";
+            b = "align_view_bottom";
           };
         };
         select = default // {
