@@ -1,7 +1,9 @@
 #!/bin/sh
 NIXOS_REBUILD_CMD='nixos-rebuild' # Set default params here
 HOME_MANAGER_CMD='home-manager'   # Set default params here
-SUBFLAKE="public"                 # Leave empty to disable
+SUBFLAKE='public'                 # Leave empty to disable
+# RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66% -p CPUQuota=500%'
+RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%' # CPU limited by nix params
 
 show_help() {
   echo "By default, edit the configuration, commit the changes, and rebuild Home."
@@ -104,7 +106,7 @@ rebuild_system() {
   info 'Mount /boot before system update'
   sudo mount -v /boot || return # Use fstab
   info 'SYSTEM update: "%s"' $NIXOS_REBUILD_CMD
-  if systemd-inhibit sudo $NIXOS_REBUILD_CMD --flake . switch; then
+  if systemd-inhibit sudo $RESOURCE_LIMIT $NIXOS_REBUILD_CMD --flake . switch; then
     info 'Unmount /boot after update'
     sudo umount -v /boot # Unmount for security
   else
