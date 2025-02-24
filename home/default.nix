@@ -33,7 +33,7 @@
     exfatprogs # Tools for exfat fs
     jmtpfs # Media transfer protocol with Android devices
 
-    rustdesk # Modern remote desktop
+    # rustdesk # Modern remote desktop
     browsh # CLI web browser
     manix # Nix documentation CLI
     nixpkgs-review # Review pull requests to nixpkgs TEST
