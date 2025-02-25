@@ -9,8 +9,8 @@
           default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
               uv # Python project and packages management
-              pkgs.ruff # Lint, Format, LSP
-              pkgs.mypy # Type check, launch as server with `dmypy start`
+              ruff # Lint, Format, LSP
+              mypy # Type check, launch as server with `dmypy start`
               # TODO add type checkers
             ];
           };
