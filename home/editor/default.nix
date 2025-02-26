@@ -42,7 +42,10 @@ let
     lua-language-server # Lua
     vscode-langservers-extracted # HTML/CSS/JSON
     ruff # Python lint, format
-    mypy # Python type check. Launch server: `dmypy start`
+    # mypy # Python type check. Launch server: `dmypy start`
+    # python3Packages.python-lsp-server # Python LSP
+    # python3Packages.pylsp-mypy # Mypy LSP
+    # python3Packages.pylsp-rope # Extended refactoring
   ];
 in { # CLI and GUI text editors
   imports = [ ./helix ./neovim ]; # ./zed ];

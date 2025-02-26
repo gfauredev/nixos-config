@@ -136,8 +136,8 @@
           formatter.command = "nixfmt";
         }
         {
-          name = "python"; # TODO config mypy LSP
-          language-servers = [ "ruff" "mypy" "harper" "llm" ];
+          name = "python";
+          language-servers = [ "ruff" "jedi" "pylsp" "harper" "llm" ];
           auto-format = true;
         }
         {
