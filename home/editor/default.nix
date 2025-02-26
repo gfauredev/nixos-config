@@ -1,7 +1,8 @@
 { pkgs, stablepkgs, ... }:
 let
   editor-packages = with pkgs; [
-    (tree-sitter.withPlugins (_: allGrammars)) # All Tree-Sitter grammars
+    (tree-sitter.withPlugins # Every Tree-Sitter grammars
+      (p: builtins.attrValues p))
     # (pkgs.tree-sitter.withPlugins # Select Tree-Sitter grammars
     #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))
     dprint # Pluggable code formatting platform
