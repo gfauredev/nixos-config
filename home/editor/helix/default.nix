@@ -77,10 +77,10 @@
             R = "swap_view_right"; # L bépo equivalent
           };
           space = {
-            u = "goto_reference"; # Usages
-            U = "select_references_to_symbol_under_cursor"; # Select Usages
-            h = "hover"; # Help
-            space = "command_palette";
+            u = "select_references_to_symbol_under_cursor"; # Select all Usages
+            U = "goto_reference"; # Select a Usage to go to
+            h = "hover"; # Show Help
+            space = "command_palette"; # Show all the commands
           };
           g = { # GO TO
             # g = "goto_file_start"; # Default
