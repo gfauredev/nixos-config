@@ -95,8 +95,9 @@
     initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
   };
 
+  # TODO separate files for each shell
   programs.nushell = {
-    enable = true; # TODO configure
+    enable = true; # TODO configure and TEST
     # See : https://www.nushell.sh/book/getting_started.html
     # configFile.source = ./config.nu;
     # envFile.source = ./env.nu;
@@ -104,8 +105,12 @@
   };
 
   programs.ion = {
-    enable = true; # TODO configure
+    enable = true; # TODO configure and TEST
   };
+
+  # programs.xonsh = {
+  #   enable = true; # TODO configure and TEST
+  # };
 
   programs = {
     broot = { # TODO organize

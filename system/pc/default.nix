@@ -132,7 +132,7 @@
     gnupg.agent.enable = true;
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
-    zsh.enable = true;
+    zsh.enable = true; # Default shell
     firejail = {
       enable = true; # TODO ensure apps are jailed
       wrappedBinaries = {
