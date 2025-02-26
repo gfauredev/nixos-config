@@ -1,4 +1,4 @@
-{ pkgs, stablepkgs, ... }: {
+{ ... }: {
   # See : https://docs.helix-editor.com
   programs.helix = {
     enable = true;
@@ -8,13 +8,9 @@
       editor = {
         auto-format = true;
         auto-save = {
-          focus-lost = true; # TODO enable
-          after-delay = {
-            enable = true;
-            # timeout = 5000;
-          };
+          focus-lost = true;
+          after-delay.enable = true;
         };
-        # auto-save = true;
         soft-wrap.enable = true;
         line-number = "relative";
         cursor-shape = {
@@ -135,132 +131,67 @@
       language = [
         {
           name = "nix";
-          # scope = "source.nix";
-          # injection-regex = "nix";
-          # file-types = [ "nix" ];
-          # shebangs = [ ];
-          # comment-token = "#";
-          # indent = {
-          #   tab-width = 2;
-          #   unit = "  ";
-          # };
-          language-servers = [ "nil" "nixd" "llm" ];
+          language-servers = [ "nil" "nixd" "harper" "llm" ];
           auto-format = true;
           formatter.command = "nixfmt";
         }
         {
-          name = "python";
-          scope = "source.python";
-          injection-regex = "py(thon)?";
-          file-types = [
-            "py"
-            "pyi"
-            "py3"
-            "pyw"
-            "ptl"
-            "rpy"
-            "cpy"
-            "ipy"
-            "pyt"
-            { glob = ".python_history"; }
-            { glob = ".pythonstartup"; }
-            { glob = ".pythonrc"; }
-            { glob = "SConstruct"; }
-            { glob = "SConscript"; }
-          ];
-          shebangs = [ "python" ];
-          roots =
-            [ "pyproject.toml" "setup.py" "poetry.lock" "pyrightconfig.json" ];
-          comment-token = "#";
-          language-servers = [ "ruff" "mypy" ]; # TODO implement mypy server
-          indent = {
-            tab-width = 4;
-            unit = "    ";
-          };
+          name = "python"; # TODO config mypy LSP
+          language-servers = [ "ruff" "mypy" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "typst";
-          language-servers = [ "tinymist" "typst-lsp" "ltex-fr" "llm" ];
+          language-servers = [ "tinymist" "ltex-fr" "llm" ];
           auto-format = true;
-          formatter.command = "typstyle"; # FIXME
-        }
-        {
-          name = "typst-en";
-          scope = "source.typst";
-          injection-regex = "typ(st)?";
-          file-types = [ "en.typst" "en.typ" ];
-          comment-token = "//";
-          block-comment-tokens = {
-            start = "/*";
-            end = "*/";
-          };
-          indent = {
-            tab-width = 2;
-            unit = "  ";
-          };
-          language-servers = [ "tinymist" "typst-lsp" "ltex-fr" "llm" ];
-          formatter.command = "typstyle"; # FIXME
-          auto-format = true;
+          formatter.command = "typstyle";
         }
         {
           name = "markdown";
-          # roots = [ ".marksman.toml" ];
           language-servers =
-            [ "marksman" "markdown-oxide" "dprint" "ltex-fr" ]; # "llm" ];
+            [ "marksman" "markdown-oxide" "dprint" "ltex-fr" "llm" ];
           auto-format = true;
         }
         {
           name = "c";
           file-types = [ "c" "h" ];
-          language-servers = [ "clangd" "llm" ];
+          language-servers = [ "clangd" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "java";
-          language-servers = [ "jdtls" "llm" ];
+          language-servers = [ "jdtls" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "bash";
+          language-servers = [ "bash-language-server" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "javascript";
-          language-servers = [ "typescript-language-server" "llm" ];
+          language-servers = [ "typescript-language-server" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "typescript";
-          language-servers = [ "typescript-language-server" "llm" ];
+          language-servers = [ "typescript-language-server" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "jsx";
-          language-servers = [ "typescript-language-server" "llm" ];
+          language-servers = [ "typescript-language-server" "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "git-commit";
-          language-servers = [ "ltex-fr" "llm" ];
+          language-servers = [ "harper" "llm" ];
           auto-format = true;
         }
         {
           name = "git-rebase";
-          language-servers = [ "ltex-fr" "llm" ];
+          language-servers = [ "harper" "llm" ];
           auto-format = true;
-        }
-        {
-          name = "text";
-          scope = "source.text";
-          file-types = [ "*" ];
-          comment-token = "#";
-          indent = {
-            tab-width = 2;
-            unit = "  ";
-          };
-          language-servers = [ "ltex-fr" "llm" ];
-          auto-format = false;
         }
       ];
       language-server = let
@@ -268,8 +199,33 @@
           command = "ltex-ls-plus";
           config.ltex = {
             completionEnable = true;
-            language = "fr";
-            dictionary = { fr = [ "mdr" ]; };
+            # language = "fr"; # "en-GB";
+            dictionary = let
+              common = [
+                "Griffin"
+                "Typhon"
+                "Shiba"
+                "Cerberus"
+                "HDD"
+                "SSD"
+                "UFS"
+                "SuperSpeed"
+                "SATA"
+                "CD-RW"
+                "Classic"
+                "Syncthing"
+                "Restic"
+                "rsync"
+                "udev"
+                "NixOS"
+                "Scaleway"
+                "Gandi"
+                "Adata"
+              ];
+            in {
+              fr = common // [ "mdr" ];
+              en = common;
+            };
             additionalRules = {
               enablePickyRules = true;
               motherTongue = "fr";
@@ -277,75 +233,22 @@
           };
         };
       in {
-        # tabby = {
-        #   command = "npx";
-        #   args = [ "tabby-agent" "--stdio" ]; # TODO configure and add it to every language
-        # };
-        llm = {
-          command = "helix-gpt";
-          args = [
-            "--handler"
-            "copilot"
-            "--copilotApiKey"
-            # If you find this, please do not use my API key, thanks
-            "hey"
-          ];
-        };
         dprint = {
           command = "dprint";
           args = [ "lsp" ];
         };
-        ltex-fr = ltex; # ltex that defaults to en for unsupported filetypes
-        ltex-en = ltex // { config.ltex.language = "en-US"; };
-        tinymist = { config = { exportPdf = "onType"; }; };
+        ltex-fr = ltex // { config.ltex.language = "fr"; };
+        harper = {
+          command = "harper-ls";
+          args = [ "--stdio" ];
+        };
+        tinymist.config = { exportPdf = "onType"; };
         ruff = {
           command = "ruff";
           args = [ "server" ];
         };
       };
     };
-    extraPackages = with pkgs; [ # TODO global editors packages with nix modules
-      # tree-sitter # Parser generator tool and builtinsrary
-      # (pkgs.tree-sitter.withPlugins
-      #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))
-      # (pkgs.tree-sitter.withPlugins (_: allGrammars))
-
-      nil # Nix LSP
-      nixfmt # Nix formatter
-
-      bash-language-server # Bash LSP
-      shellcheck # Shell script analysis
-      stablepkgs.explain # Explain system call errors
-      shfmt # Shell script formatter
-
-      lua-language-server # Lua LSP
-
-      nickel # Configuration generation language
-      nls # Nickel LSP
-
-      vscode-langservers-extracted # HTML/CSS/JSON/ESLint
-      yaml-language-server # YAML LSP
-      taplo # TOML LSP and toolkit
-
-      helix-gpt # Add LLMs support through LSP
-      lsp-ai # Language server for language models
-
-      dprint # Pluggable code formatting platform
-
-      # languagetool # Advanced spell checking
-      # ltex-ls # LSP between languagetool and pure text
-      ltex-ls-plus # LSP between languagetool and text
-      # hunspell # Standard spell checker
-      # hunspellDicts.fr-any # French
-      # hunspellDicts.en_US # American
-      # hunspellDicts.en_GB-ise # British
-      # hunspellDicts.es_ES # Spanish
-
-      tinymist # Typst LSP
-      typstyle # Typst formatter
-      # markdown-oxide # TEST Obsidian style PKM
-      marksman # Smart Markdown links
-    ];
     themes = {
       catppuccin-trans = {
         inherits = "catppuccin_mocha";

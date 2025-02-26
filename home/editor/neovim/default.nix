@@ -1,4 +1,4 @@
-{ pkgs, stablepkgs, ... }: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;
@@ -30,6 +30,7 @@
     # ${builtins.readFile ./plugin/notify.lua}
     # ${builtins.readFile ./plugin/image.lua}
     # ${builtins.readFile ./plugin/dashboard.lua}
+    # extraLuaPackages = ps: [ ps.magick ];
     plugins = with pkgs.vimPlugins; [
       ##### Libraries #####
       # plenary-nvim # Library
@@ -127,8 +128,6 @@
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
-    # extraLuaPackages = ps: [ ps.magick ];
-    extraPackages = [ ]; # TODO define global editors packages with nix modules
   };
 
   home.file = {

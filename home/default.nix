@@ -53,8 +53,8 @@
     # keepass-keeagent # Keepass agent
 
     # Machine learning tools
-    gpt4all # -cuda # TEST
     llama-cpp # Large language model server
+    # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
 
     # Storage & Backup
@@ -72,6 +72,7 @@
     kalker # Evaluate math expression
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
+    nickel # Modern configuration Nickel, Nix improvement
     # uv # Python package and project manager, in project flakes
     # cachix # CLI cachix client TODO reorg
   ];
