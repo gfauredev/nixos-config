@@ -12,7 +12,7 @@ let
     # lsp-ai # Language server for language models
     helix-gpt # Add LLMs support through LSP
 
-    harper # Grammar and spell checker for text, documentation and comments
+    harper # Grammar and spell checker for text, documentation, and comments
     # vale # Linter for prose
     # vale-ls # LSP Vale implementation
     # languagetool # Advanced spell checking (Java, slow)
@@ -24,14 +24,14 @@ let
     # hunspellDicts.es_ES # Spanish
 
     nil # Nix
-    nixfmt # Formatter
+    nixfmt # Formater
     nls # Nickel
     yaml-language-server # YAML
     taplo # TOML
 
     bash-language-server # Bash, shell script
     shellcheck # Analysis
-    shfmt # Formatter
+    shfmt # Formater
     stablepkgs.explain # Explain system call errors
 
     tinymist # Typst
@@ -41,6 +41,8 @@ let
 
     lua-language-server # Lua
     vscode-langservers-extracted # HTML/CSS/JSON
+    ruff # Python lint, format
+    mypy # Python type check. Launch server: `dmypy start`
   ];
 in { # CLI and GUI text editors
   imports = [ ./helix ./neovim ]; # ./zed ];

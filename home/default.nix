@@ -73,7 +73,7 @@
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
     nickel # Modern configuration Nickel, Nix improvement
-    # uv # Python package and project manager, in project flakes
+    uv # Python package and project manager
     # cachix # CLI cachix client TODO reorg
   ];
 
