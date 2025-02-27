@@ -116,9 +116,9 @@
     p = "$PAGER"; # Default pager
     ## Edit
     e = "$EDITOR"; # Default text editor
-    v = "vi"; # (Neo)Vi(m) CLI text editor (fallback)
-    h = "hx"; # Helix CLI text editor (fallback)
-    u = "zeditor"; # gUi text editor
+    # v = "vi"; # (Neo)Vi(m) CLI text editor (fallback)
+    # h = "hx"; # Helix CLI text editor (fallback)
+    # u = "zeditor"; # gUi text editor
     m = "mkdir -pv"; # mkdir (parents)
     # c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
     ## Multifunction (Explorers)

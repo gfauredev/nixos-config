@@ -34,6 +34,7 @@
         "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         "GDK_SCALE,1.25" # Set scaling on Xwayland
         "SHELL,${pkgs.nushell}/bin/nu" # Nushell as interactive shell
+        "EDITOR,hx" # FIX despair
       ];
     };
   };
