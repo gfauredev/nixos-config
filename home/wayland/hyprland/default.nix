@@ -1,9 +1,10 @@
 { lib, pkgs, ... }: {
   home.packages = with pkgs; [
-    hyprcursor # Modern cursor engine
-    # hyprland-protocols # Wayland extensions
+    jq # Interpret `hyprctl -j` JSON in keybindings
     hyprutils # Hypr ecosystem utilities
     hyprpolkitagent # Hypr Polkit auth agent
+    hyprcursor # Modern cursor engine
+    # hyprland-protocols # Wayland extensions
     # xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
 

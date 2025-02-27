@@ -2,7 +2,7 @@
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
-    ./shell # Interactive POSIX shell(s)
+    ./shell # Interactive POSIX shell(s) # TODO slit shells in individual modules
   ];
 
   manual = {
@@ -24,40 +24,21 @@
   };
 
   home.packages = with pkgs; [ # TODO organize better, eventually in shell/
-    devenv # Developer environments management (simpler flake.nix for dev)
-    moreutils # Additional Unix utilities
-    pipectl # Named pipes management TEST relevance
-    cdrkit # ISO tools and misc TEST relevance
-    # libnotify # Notifications management
-
-    exfatprogs # Tools for exfat fs
-    jmtpfs # Media transfer protocol with Android devices
-
-    # rustdesk # Modern remote desktop
-    browsh # CLI web browser
-    manix # Nix documentation CLI
-    nixpkgs-review # Review pull requests to nixpkgs TEST
-
-    sops # Secret management
-    gitleaks # Better tool to discover secrets in Git repo
-    # git-secrets # Prevent secrets leaking with Git
-    dislocker # decrypt bitlocker disks
-    # veracrypt # multiplatform encryption
-
-    comma # Run any command from Nixpkgs
-    steam-run # Run in isolated FHS
-
-    # bitwarden-cli # Modern password manager
-    # keepass # Popular password manager
-    keepassxc # Password manager TEST
-    # keepass-keeagent # Keepass agent
-
-    # Machine learning tools
+    # Machine learning
     llama-cpp # Large language model server
     # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
 
-    # Storage & Backup
+    # Passwords & Secrets
+    # bitwarden-cli # Modern password manager
+    # keepass # Popular password manager
+    keepassxc # Password manager TEST
+    # keepass-keeagent # Keepass agent
+    gitleaks # Better tool to discover secrets in Git repo
+    # git-secrets # Prevent secrets leaking with Git
+    # sops # Secret management
+
+    # Storage & Backup & Encryption
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
@@ -66,15 +47,29 @@
     # udiskie # auto mount USB
     # dcfldd # more powerful dd
     # rpi-imager # Raspberry Pi OS generator
+    dislocker # decrypt bitlocker disks
+    # veracrypt # multiplatform encryption
+    exfatprogs # Tools for exfat fs
+    jmtpfs # Media transfer protocol with Android devices
 
-    # Miscellaneous
-    jq # JSON parsing and request tool USED BY HYPRLAND CONFIG
+    # Development and general CLI tools
+    moreutils # Additional Unix utilities
+    gitlab-shell # GitLab CLI
+    gh # GitHub CLI
+    uv # Python package and project manager
+    jq # JSON parsing and request tool
+    # rustdesk # Modern remote desktop
     kalker # Evaluate math expression
+    nixpkgs-review # Quickly review pull requests to nixpkgs TEST
+    comma # Run any command from Nixpkgs
+    steam-run # Run in isolated FHS
+    manix # Nix documentation CLI
     watchexec # Run command when file changes
     hyperfine # Benchmark commands
     nickel # Modern configuration Nickel, Nix improvement
-    uv # Python package and project manager
-    # cachix # CLI cachix client TODO reorg
+    cdrkit # ISO tools and misc
+    browsh # 6ixel CLI web browser
+    pipectl # Named pipes management
   ];
 
   services = {
