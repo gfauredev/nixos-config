@@ -45,11 +45,11 @@
     ripgrep-all # ripgrep for non-text files
     duf # global disk usage
     du-dust # detailed disk usage of a directory
-    imhex # Powerful hex editor
     hexyl # hex viever
     sd # Intuitive find & replace
     grex # Regex generator from test cases
-    superfile # Fancy CLI file manager TEST
+    # superfile # Fancy CLI file manager TEST
+    # imhex # Powerful hex editor TEST
   ];
 
   programs = {
