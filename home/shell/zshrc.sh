@@ -43,9 +43,9 @@ de() {
   $EDITOR "$(date -I)".$*
 }
 
-__commitlint="commitlint --config ~/.config/commitlintrc.yaml"
 # TODO Nixify ~/.config/commitlintrc.yaml
 cmt() { # Quick commit or amend
+  __commitlint="commitlint --config ~/.config/commitlintrc.yaml"
   if [ -n "$1" ]; then
     echo "$@" | __commitlint && git commit -am "$@"
   else
@@ -60,12 +60,14 @@ cmt() { # Quick commit or amend
 }
 
 commit() {
+  __commitlint="commitlint --config ~/.config/commitlintrc.yaml"
   if git commit "$@"; then
     __commitlint || git reset HEAD^
   fi
 }
 
 amend() {
+  __commitlint="commitlint --config ~/.config/commitlintrc.yaml"
   if git amend "$@"; then
     __commitlint || git reset HEAD^
   fi

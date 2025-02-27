@@ -49,7 +49,7 @@
     hexyl # hex viever
     sd # Intuitive find & replace
     grex # Regex generator from test cases
-    superfile # Fancy CLI file manager
+    superfile # Fancy CLI file manager TEST
   ];
 
   programs.zsh = {
@@ -81,8 +81,8 @@
       bindkey -M vicmd 'r' vi-forward-char
     '';
     defaultKeymap = "viins";
-    # FIXME make it dependent on XDG_CONFIG_HOME
-    dotDir = ".config/zsh";
+    # TODO make it dependent on XDG_CONFIG_HOME, cleaner
+    # dotDir = ".config/zsh";
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
@@ -94,7 +94,7 @@
     };
     historySubstringSearch.enable = true;
     initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
-    sessionVariables.SHELL = "$HOME/.nix-profile/zsh"; # Interactive
+    sessionVariables.SHELL = "$(which zsh)"; # Interactive
   };
 
   # TODO separate files for each shell
