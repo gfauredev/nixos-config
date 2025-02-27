@@ -68,14 +68,12 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
       bindd = let
-        shell = "$HOME/.nix-profile/bin/zsh"; # Interactive shell, only in terms
-        exec = "-ic"; # Interactive shell replaces itself with a command
         # TODO this cleaner, factorize (duplicate of ../../shell/default.nix)
         term = {
           name = "wezterm"; # Name of the terminal (for matching)
-          cmd = "wezterm start ${shell}"; # Launch terminal
+          cmd = "wezterm start"; # Launch terminal
           # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
-          exec = exec; # Option to execute a command in place of shell
+          exec = ""; # Option to execute a command in place of shell
           cd = "--cwd"; # Option to launch terminal in a directory
           # Classed terminals (executes a command)
           monitoring = "wezterm start --class monitoring"; # Monitoring

@@ -24,6 +24,7 @@
         "name:dpp, monitor:DP-1, default:true" # bottom-left port
         "name:hdm, monitor:DP-3, default:true" # bottom-right port ?
       ];
+      # FIXME some variables should be common, NIX MODULEs
       env = [
         # Launch on eGPU if available, integrated one instead
         # WARNING depends on stateful configurations TODO find a cleaner (Nix) way :
@@ -32,6 +33,7 @@
         "AQ_DRM_DEVICES,$HOME/.config/hypr/egpu:$HOME/.config/hypr/igpu"
         "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         "GDK_SCALE,1.25" # Set scaling on Xwayland
+        "SHELL,$(which nu)" # Nushell as interactive shell
       ];
     };
   };

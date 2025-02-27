@@ -6,7 +6,6 @@
     autocd = true;
     enableCompletion = true;
     initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
-    sessionVariables.SHELL = "$(which zsh)"; # Set interactive shell
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
