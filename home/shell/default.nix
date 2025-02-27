@@ -57,15 +57,6 @@
       enable = true; # Super prompt
       enableNushellIntegration = true;
       enableZshIntegration = true;
-      settings = {
-        character = {
-          format = "$symbol ";
-          vimcmd_symbol = "[N](bold blue)";
-          vimcmd_replace_one_symbol = "[r](bold blue)";
-          vimcmd_replace_symbol = "[R](bold blue)";
-          vimcmd_visual_symbol = "[V](bold blue)";
-        };
-      };
     };
     eza = {
       enable = true; # Better ls
