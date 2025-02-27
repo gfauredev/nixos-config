@@ -6,7 +6,11 @@
   };
 
   # See: https://ghostty.org/docs/config
-  # programs.ghostty.settings = { }; # TODO
+  programs.ghostty.settings = {
+    theme = "catppuccin-mocha";
+    # font-size = 10;
+    # keybind = [ "ctrl+h=goto_split:left" "ctrl+l=goto_split:right" ];
+  };
 
   # programs.ghostty.themes = { }; # TODO
 }
