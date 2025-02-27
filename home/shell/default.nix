@@ -58,7 +58,9 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    # TEST revelance of each options below # TODO improve, cleaner
+    # TEST revelance of each options below
+    # TODO improve, cleaner
+    # FIXME <del> enables normal mode and toggles case of 3 chars, make it normal instead
     completionInit = ''
       autoload -Uz compinit && compinit -i && _comp_options+=(globdots)
 

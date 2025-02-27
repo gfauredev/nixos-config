@@ -33,25 +33,43 @@ md() {
   mkdir -pv "$@" && cd "$1" || return
 }
 
-# Edit a file prepending the ISO date
-de() {
-  $EDITOR "$(date -I)".$*
-}
-
 # Copy a file with improvements
 c() {
   systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
 }
 
-cmt() {
-  # TODO Nixify ~/.config/commitlintrc.yaml
-  echo "$@" | commitlint --config ~/.config/commitlintrc.yaml && git commit -am "$@"
+# Edit a file prepending the ISO date
+de() {
+  $EDITOR "$(date -I)".$*
 }
 
-# Replace occurences of $1 by $2 in $3
-# replace() {
-#   \rg --passthrough --multiline "$1" -r "${@:2}"
-# }
+__commitlint="commitlint --config ~/.config/commitlintrc.yaml"
+# TODO Nixify ~/.config/commitlintrc.yaml
+cmt() { # Quick commit or amend
+  if [ -n "$1" ]; then
+    echo "$@" | __commitlint && git commit -am "$@"
+  else
+    # Amend if there’s unpushed commits
+    if [ -n "$(git log --branches --not --remotes)" ]; then
+      git commit --amend --all --no-edit
+    else
+      git commit
+      __commitlint || git reset HEAD^
+    fi
+  fi
+}
+
+commit() {
+  if git commit "$@"; then
+    __commitlint || git reset HEAD^
+  fi
+}
+
+amend() {
+  if git amend "$@"; then
+    __commitlint || git reset HEAD^
+  fi
+}
 
 # Inhib kills the (buggy) idle service for a given time
 inhib() {
@@ -112,3 +130,8 @@ for dir in Downloads intelephense pt; do
     rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
   fi
 done
+
+# Replace occurences of $1 by $2 in $3
+# replace() {
+#   \rg --passthrough --multiline "$1" -r "${@:2}"
+# }

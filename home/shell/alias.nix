@@ -34,13 +34,10 @@
     jo = "sudo journalctl -xfe";
     re = "exec zsh";
     gc = "nix-collect-garbage";
-    # governor = "sudo cpupower frequency-set --governor"; # Set CPU frequency governor
     performance =
       "sudo cpupower frequency-set --governor performance"; # Performance mode
     powersave =
       "sudo cpupower frequency-set --governor powersave"; # Powersave mode
-    # news = # See home manager news FIXME
-    #   "home-manager --flake ${flake-location}#$USER@$(hostname) news";
     egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
 
     # Tools
@@ -53,7 +50,6 @@
     http = "xh";
     https = "xh --https";
     wx = "watchexec";
-    # rp = "replace"; # Replace function based on ripgrep
 
     # Bluetooth & Network
     bt = "bluetoothctl";
@@ -72,49 +68,38 @@
     # Documents
     scanpdf =
       "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-    # typ = "typstyle format-all && typst compile *.typ"; # Quickly compile Typst files
-    # typ = "typst compile"; # Quickly compile Typst files
 
     # Mounts
     mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
     unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
-    # usb = "[ -h $HOME/usb ] || ln -s /run/media/$USER $HOME/usb; udiskie-mount --all ; cd ~/usb";
-    # unusb = "cd ~ ; udiskie-umount --all --eject; \\rm $HOME/usb";
 
     # Git
-    # status = "git status";
+    clone = "git clone -v";
     fetch = "git fetch -v";
-    # fetchd = "git fetch -v --dry-run";
+    pull = "git pull --recurse-submodules --jobs=8";
     remote = "git remote -v";
-    gadd = "git add";
-    commit = "git commit";
-    # commita = "git commit -a";
-    amend = "git commit --amend";
-    # amendm = "git commit --amend -m";
-    # amenda = "git commit --amend -a";
-    # amendam = "git commit --amend -am";
-    push = "git push";
-    # pusha = "git commit -am 'UNNAMED'; git push"; # This is wrong
-    upsub = "git commit -am 'chore: update submodule(s)'; git push";
-    pull = "git pull --recurse-submodules --jobs=16";
-    pupu = "git pull --recurse-submodules --jobs=16 && git push";
     checkout = "git checkout";
-    main = "git checkout main";
+    gadd = "git add";
+    # commit = "git commit";
+    # amend = "git commit --amend";
+    push = "git push";
     merge = "git merge";
-    # mrg = "git mergetool --tool=nvimdiff"; # TODO with Helix
     rebase = "git rebase";
     switch = "git switch";
-    # switchn = "git switch -c";
-    revert = "git revert";
     branch = "git branch";
+    revert = "git revert";
     clean = "git clean -idx";
-    clone = "git clone -v";
+    giff = "git diff";
+    glog = "git log --oneline";
+    # logg = "git log --oneline";
+    upsub = ''
+      git commit -am 'chore: update submodule(s)' \
+      commitlint --config ~/.config/commitlintrc.yaml && git push
+    '';
+    pupu = "git pull --recurse-submodules --jobs=8 && git push";
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
-    giff = "git diff";
-    glog = "git log --oneline";
-    logg = "git log --oneline";
 
     # ONE LETTER ALIASES, difficult to live without
     ## List & Search
