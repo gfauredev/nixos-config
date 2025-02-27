@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [ ./alias.nix ./pulsemixer ];
+  imports = [ ./alias.nix ./zsh.nix ./nush.nix ./pulsemixer ];
 
   home.packages = let
     term = # TODO this cleaner (import ../../tool/wezterm/info.nix) duplicated
@@ -51,39 +51,6 @@
     grex # Regex generator from test cases
     superfile # Fancy CLI file manager TEST
   ];
-
-  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    autocd = true;
-    enableCompletion = true;
-    initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
-    sessionVariables.SHELL = "$(which zsh)"; # Set interactive shell
-    history = {
-      expireDuplicatesFirst = true;
-      ignoreDups = true;
-      ignorePatterns = [ ];
-      ignoreSpace = true;
-      path = "$XDG_DATA_HOME/zsh_history";
-      size = 30000;
-      share = true;
-    };
-    historySubstringSearch.enable = true;
-  };
-
-  # TODO separate files for each shell
-  programs.nushell = {
-    enable = true; # TODO configure and TEST
-    # See : https://www.nushell.sh/book/getting_started.html
-    # configFile.source = ./config.nu;
-    # envFile.source = ./env.nu;
-    # loginFile.source = ./login.nu;
-  };
-
-  # programs.xonsh = {
-  #   enable = true; # Shell which is a superset of Python
-  # };
 
   programs = {
     broot = { # TODO organize
