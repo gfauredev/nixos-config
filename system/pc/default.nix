@@ -184,9 +184,14 @@
     #   flake = /config;
     #   # clean.enable = true;
     # };
-    appimage = { # Run appimages directly
+    appimage = { # Run not packaged appimages
       enable = true;
       binfmt = true;
+    };
+    # uwsm.enable = true; # TEST wayland session manager
+    hyprland = {
+      enable = true; # Main Window Manager
+      # withUWSM = true; # TEST session manager
     };
   };
 
