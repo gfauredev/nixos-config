@@ -69,12 +69,12 @@
       "$mod" = "SUPER";
       bindd = let
         # TODO this cleaner, factorize (duplicate of ../../shell/default.nix)
-        term = {
-          name = "wezterm"; # Name of the terminal (for matching)
-          cmd = "wezterm start ${pkgs.nushell}/bin/nu"; # FIX no $SHELL support
+        term = rec {
+          name = "ghostty"; # Name of the terminal (for matching)
+          cmd = name;
           # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
-          exec = "-c"; # Option to execute a command in place of shell
-          cd = "--cwd"; # Option to launch terminal in a directory
+          exec = "-e"; # Option to execute a command in place of shell
+          cd = ""; # FIXME Option to launch terminal in a directory
           # Classed terminals (executes a command)
           monitoring = "wezterm start --class monitoring"; # Monitoring
           note = "wezterm start --class note"; # Note

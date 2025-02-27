@@ -1,3 +1,3 @@
 { ... }: { # Terminal emulators
-  imports = [ ./alacritty ./wezterm ./ghostty ];
+  imports = [ ./ghostty ./alacritty ./wezterm ];
 }

@@ -6,8 +6,8 @@
       terminal = let
         term = # TODO this cleaner, factorize (duplicate of ../../shell/default.nix)
           {
-            name = "wezterm"; # Name of the terminal (for matching)
-            cmd = "wezterm start"; # Launch terminal
+            name = "ghostty"; # Name of the terminal (for matching)
+            cmd = "ghostty"; # Launch terminal
             # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
             exec = ""; # Option to execute a command in place of shell
             cd = "--cwd"; # Option to launch terminal in a directory

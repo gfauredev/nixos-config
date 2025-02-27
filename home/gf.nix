@@ -56,7 +56,6 @@
           explorer = "directory";
           document = "writer";
           spreadsheet = "calc";
-          # term = "org.wezfurlong.wezterm";
         in {
           # Text & Code
           "text/plain" = "${text}.desktop";

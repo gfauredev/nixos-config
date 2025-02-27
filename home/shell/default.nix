@@ -2,19 +2,18 @@
   imports = [ ./alias.nix ./zsh.nix ./nush.nix ./pulsemixer ];
 
   home.packages = let
-    term = # TODO cleaner w/ nix module (DUPLICATED ../../tool/wezterm/info.nix)
-      {
-        name = "wezterm"; # Name of the terminal (for matching)
-        cmd = "wezterm start"; # Launch terminal
-        # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
-        exec = ""; # Option to execute a command in place of shell
-        cd = "--cwd"; # Option to launch terminal in a directory
-        # Classed terminals (executes a command)
-        monitoring = "wezterm start --class monitoring"; # Monitoring
-        note = "wezterm start --class note"; # Note
-        menu =
-          "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
-      };
+    # TODO cleaner w/ nix module (DUPLICATED ../../tool/wezterm/info.nix)
+    term = rec {
+      name = "ghostty"; # Name of the terminal (for matching)
+      cmd = name; # Launch terminal
+      exec = "-e"; # Option to execute a command in place of shell
+      cd = ""; # FIXME Option to launch terminal in a directory
+      # Classed terminals (executes a command)
+      monitoring = "wezterm start --class monitoring"; # FIXME hyprctl
+      note = "wezterm start --class note"; # Note
+      menu =
+        "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
+    };
     smart-terminal = pkgs.writeScriptBin "t" ''
       #!/bin/sh
       wd=$PWD
