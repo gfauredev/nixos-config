@@ -30,8 +30,6 @@
         ## ln -sf /dev/dri/by-path/pci-0000:00:02.0-card .config/hypr/igpu
         ## ln -sf /dev/dri/by-path/pci-0000:7f:00.0-card .config/hypr/egpu
         "AQ_DRM_DEVICES,$HOME/.config/hypr/egpu:$HOME/.config/hypr/igpu"
-        # Set interactive shell after login, only for GUI and their child processes
-        "SHELL,$HOME/.nix-profile/bin/zsh" # TODO generalize this
       ];
     };
   };
