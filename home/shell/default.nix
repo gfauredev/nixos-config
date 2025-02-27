@@ -2,7 +2,7 @@
   imports = [ ./alias.nix ./zsh.nix ./nush.nix ./pulsemixer ];
 
   home.packages = let
-    term = # TODO this cleaner (import ../../tool/wezterm/info.nix) duplicated
+    term = # TODO this cleaner (import ../../tool/wezterm/info.nix) DUPLICATED
       {
         name = "wezterm"; # Name of the terminal (for matching)
         cmd = "wezterm start"; # Launch terminal
@@ -32,9 +32,10 @@
       ${term.cmd} ${term.cd} "$wd" ${term.exec} "$cmd" & disown
       sleep 0.5
     '';
-    extract = pkgs.writeScriptBin "ex" "${lib.readFile ./extract.sh}";
-    backup = pkgs.writeScriptBin "back" "${lib.readFile ./back.sh}";
-    configure = pkgs.writeScriptBin "cfg" "${lib.readFile ./configure.sh}";
+    extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
+    backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/back.sh}";
+    configure =
+      pkgs.writeScriptBin "cfg" "${lib.readFile ./script/configure.sh}";
   in with pkgs; [
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
