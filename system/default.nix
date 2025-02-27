@@ -11,28 +11,13 @@
       "steam-run" # Video games software
     ];
 
-  # sops = {
-  #   defaultSopsFile = ../secret/default.yml;
-  #   defaultSopsFormat = "yaml";
-  #   age.keyFile = "/home/gf/.config/sops/age/keys.txt";
-  #   secrets = {
-  #     example_key = {
-  #       mode = "0440"; # Allow group to read
-  #       owner = config.users.users.root.name;
-  #       group = config.users.users.gf.group;
-  #       path = ""; # Get it from anywhere in config
-  #       restartUnits = [ ];
-  #     };
-  #   };
-  # };
-
   nix = {
-    # add each flake input as a registry
-    # To make nix3 commands consistent with flake
-    # registry = lib.mapAttrs (_: value: { flake = value; }) inputs; TEST relevance
-    # add inputs to the system's legacy channels
+    # Add each flake input as a registry.
+    # To make `nix3` commands consistent with flake.
+    # Registry = lib.mapAttrs (_: value: { flake = value; }) inputs; TEST relevance
+    # Add inputs to the system's legacy channels
     # Making legacy nix commands consistent as well
-    # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") TEST relevance
+    # `nixPath` = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") TEST relevance
     #   config.nix.registry; TEST relevance
     gc = {
       automatic = lib.mkDefault true;
@@ -69,40 +54,6 @@
     # '';
   };
 
-  fonts = {
-    enableDefaultPackages = true; # Standard fonts
-    packages = with pkgs; [
-      #################### Serif ####################
-      libre-baskerville # Great, stylish serif
-      vollkorn # Great serif font
-      # merriweather # Serif readable on low res screens
-      # gelasio # Serif Georgia replacement
-      # lmodern # Classic serif
-      # noto-fonts-cjk-serif
-      #################### Sans ####################
-      fira-go # Great sans with icons
-      nacelle # Helvetica equivalent
-      inter # Interesting sans font
-      carlito # Calibri equivalent
-      # merriweather-sans # Sans font readable on low res
-      # libre-franklin
-      noto-fonts-cjk-sans # Chinese, Japanese, Korean sans
-      #################### Mono ####################
-      nerd-fonts.fira-code
-      # nerd-fonts.fira-mono
-      nerd-fonts.iosevka
-      nerd-fonts.hack
-      #################### Packages ####################
-      liberation_ttf # ≃ Times New Roman, Arial, Courier New equivalents
-      # noto-fonts # Google well internationalized fonts
-      #################### Symbols ####################
-      noto-fonts-emoji # Emojies
-      # fira-code-symbols # Great icons
-      # emojione # Emojies
-      # lmmath # Classic font with math support
-      # font-awesome # Thousands of icons
-    ];
-  };
   console = {
     keyMap = lib.mkDefault "fr-bepo";
     # font = "Lat2-Terminus16";
@@ -253,7 +204,7 @@
     };
   };
 
-  programs.openvpn3.enable = lib.mkDefault true;
+  programs = { openvpn3.enable = lib.mkDefault true; };
 
   i18n = {
     supportedLocales = lib.mkDefault [ "en_GB.UTF-8/UTF-8" ];
@@ -261,24 +212,27 @@
   };
 
   environment = {
+    shells = with pkgs; [ dash ]; # Only allowed login shell
     binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
     systemPackages = with pkgs; [
-      dash # Small & light POSIX shell for scripts
-      lsof # list openned files
-      zip # Compression
-      unzip # Decompression
-      _7zz # Compression / Decompression (7zip)
-      # p7zip # Compression / Decompression compatible with 7zip
-      gzip # Compression / Decompression
-      bzip2 # Compression / Decompression
-      acpi # Information about hardware
-      usbutils # lsusb
-      pciutils # lspci
+      dash # Only login and script shell
       lm_sensors # get temps
-      wakelan # send magick packet to wake WoL devices
-      age # Modern encryption
+      acpi # Information about hardware
       sysstat # Monitoring CLI tools
-      modemmanager # Mobile broadband
+      procs # Better ps
+      powertop # Power usage analyzer
+      nix-du # Determine which gc-roots take space
+      wakelan # send magick packet to wake WoL devices
+      sshfs # browser ssh as directory
+      rsync # cp through network & with superpowers
+      doggo # Modern CLI DNS client
+      # dig # DNS analyzer
+      gping # Ping with a graph
+      tcpdump # Dump network packets
+      dhcpdump # DHCP debugging
+      inetutils # Things like FTP command
+      age # Modern encryption
+      ssh-to-age # Converter between SSH keys and age
     ];
   };
 }

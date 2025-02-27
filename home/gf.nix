@@ -13,22 +13,6 @@
       "libsciter" # Used by rustdesk
     ];
 
-  # sops = {
-  #   defaultSopsFile = ../secret/gf.yml;
-  #   defaultSopsFormat = "yaml";
-  #   age = { keyFile = "/home/gf/.config/sops/age/keys.txt"; };
-  #   secrets = {
-  #     # Use %r to represent the user runtime dir
-  #     example_key = {
-  #       path = "%r/example_key"; # Get this path from anywhere in config
-  #       restartUnits = [ ];
-  #     };
-  #     copilot_api_key.path = "%r/api-key/copilot";
-  #   };
-  #   # Secrets are decrypted by sops-nix.service, it needs to be running before
-  #   # systemd.user.services.<service>.Unit.After = [ "sops-nix.service" ];
-  # };
-
   home = {
     username = "gf"; # TEST home-manager.users.<name> config structure
     homeDirectory = "/home/gf";
@@ -40,15 +24,8 @@
       XDG_PICTURES_DIR = "$HOME/dcim";
       XDG_VIDEOS_DIR = "$HOME/dcim";
       XDG_DOWNLOAD_DIR = "$HOME/tmp";
-
       BROWSER = "brave"; # TODO this directly in Nix
       PAGER = "ov";
-      # PAGER = "nvim -R"; # Use NeoVim editor as pure text pager
-      # MANPAGER = "ov";
-      # MANPAGER = "nvim +Man!"; # Use NeoVim editor as man pager
-
-      # TYPST_FONT_PATHS =
-      #   "$HOME/.nix-profile/share/fonts"; # Allow Typst to find fonts
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

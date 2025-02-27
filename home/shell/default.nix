@@ -58,7 +58,7 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    # TEST revelance of each options below
+    # TEST relevance of each options below
     # TODO improve, cleaner
     # FIXME <del> enables normal mode and toggles case of 3 chars, make it normal instead
     completionInit = ''
@@ -117,8 +117,8 @@
   programs = {
     broot = { # TODO organize
       enable = true; # Quick fuzzy file finder
-      enableZshIntegration = true;
       enableNushellIntegration = true;
+      enableZshIntegration = true;
       settings = {
         default_flags = "dgps";
         special_paths = lib.mkForce { }; # Remove them
@@ -174,9 +174,8 @@
     command-not-found.enable = false; # FIXME maybe shell config’s fault
     eza = {
       enable = true; # Better ls
-      enableZshIntegration = true;
       enableNushellIntegration = false; # TEST seems to break the very nu logic
-      enableIonIntegration = true;
+      enableZshIntegration = true;
     };
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
@@ -184,13 +183,13 @@
     fastfetch.enable = true; # Quick system info
     zoxide = {
       enable = true; # Smart cd
+      # enableNushellIntegration = true; # TODO
       enableZshIntegration = true;
     };
     starship = {
       enable = true; # Super prompt
-      enableZshIntegration = true;
       enableNushellIntegration = true;
-      enableIonIntegration = true;
+      enableZshIntegration = true;
       settings = {
         character = {
           format = "$symbol ";
@@ -220,6 +219,7 @@
     };
     fzf = {
       enable = true; # Fuzzy searcher
+      # enableNushellIntegration = true; # TODO
       enableZshIntegration = true;
     };
   };

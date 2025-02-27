@@ -24,7 +24,6 @@
             doxygen
             # gnumake
           ];
-          shellHook = "exec zsh";
         };
       });
     };

@@ -1,11 +1,12 @@
-{ pkgs, ... }: {
+{ ... }: {
   users.users.gf = {
     isNormalUser = true;
     home = "/home/gf";
     homeMode = "700";
     createHome = true;
     description = "Guilhem Fauré";
-    shell = pkgs.zsh;
+    useDefaultShell = true; # The only one allowed
+    # shell = pkgs.dash;
     extraGroups = [
       "wheel" # sudo
       "networkmanager" # Manage networks
@@ -14,7 +15,7 @@
       "realtime"
       "lp" # Manage printing & scanning
       "scanner" # Manage scanning
-      "fuse"
+      "fuse" # Mount USB keys and other filesystems
       "uucp" # Connect to serial ports
       "dialout" # Connect to serial ports
       "mtp" # Transfer files with Android devices
@@ -28,12 +29,10 @@
       "podman" # Use Podman container manager
       "wireshark" # Use wireshark without root
       "keyd" # Use app-specific keyd remaps
-      "config" # Configure system in /config WARNING depends of stateful permissions of /config
     ];
   };
 
   users.groups = {
-    config = { }; # RWX in /config WARNING stateful perms of /config
     mtp = { };
     uinput = { };
   };

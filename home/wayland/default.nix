@@ -15,9 +15,9 @@
     # hyprpaper # Wallpaper engine
     # swww # Dynamic wallpaper
     # niri # Innovative WM infinity horizontal scroll
-    wayland # wayland lib
     wayland-utils # wayland inffo
-    wayland-protocols # wayland protocol extensions
+    # wayland-protocols # wayland protocol extensions
+    # wayland # wayland lib
   ];
 
   xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
@@ -28,8 +28,6 @@
   };
 
   programs = {
-    # Start window managers at login on firsts TTYs
-    zsh.loginExtra = builtins.readFile ./loginManager.sh;
     hyprlock = {
       enable = true;
       settings = {

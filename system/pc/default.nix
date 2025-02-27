@@ -16,32 +16,46 @@
     # };
   };
 
-  i18n = {
-    # Locales internatinalization properties
-    supportedLocales = [ "en_GB.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" ];
-    defaultLocale = "en_GB.UTF-8"; # Set localization settings
-    extraLocaleSettings = {
-      LC_NUMERIC = "fr_FR.UTF-8";
-      LC_TIME = "fr_FR.UTF-8";
-      LC_MONETARY = "fr_FR.UTF-8";
-      LC_MESSAGES = "en_GB.UTF-8";
-      LC_PAPER = "fr_FR.UTF-8";
-      LC_NAME = "fr_FR.UTF-8";
-      LC_ADDRESS = "fr_FR.UTF-8";
-      LC_TELEPHONE = "fr_FR.UTF-8";
-      LC_MEASUREMENTS = "fr_FR.UTF-8";
-      LC_IDENTIFICATION = "fr_FR.UTF-8";
-      LC_CTYPE = "en_GB.UTF-8";
-      LC_COLLATE = "C";
-    };
-  };
-
   systemd.services.unmount-boot = {
     description = "Unmount /boot at boot as useless once booted";
     script =
       "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
     wantedBy = [ "multi-user.target" ];
   };
+
+  security = {
+    pam.services.hyprlock = { };
+    polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
+    rtkit.enable = true; # Tools for realtime (preemption)
+    # apparmor.enable = lib.mkDefault true; # TODO secure system
+  };
+
+  security.pam.loginLimits = [ # Increased pam limits for audio group
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "99";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "soft";
+      value = "99999";
+    }
+    {
+      domain = "@audio";
+      item = "nofile";
+      type = "hard";
+      value = "99999";
+    }
+  ];
 
   services = {
     geoclue2 = {
@@ -91,48 +105,68 @@
     iperf3.enable = true; # Network testing
   };
 
-  security = {
-    pam.services.hyprlock = { };
-    polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
-    rtkit.enable = true; # Tools for realtime (preemption)
-    # apparmor.enable = lib.mkDefault true; # TODO secure system
+  location.provider = "geoclue2";
+
+  i18n = {
+    # Locales internatinalization properties
+    supportedLocales = [ "en_GB.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" ];
+    defaultLocale = "en_GB.UTF-8"; # Set localization settings
+    extraLocaleSettings = {
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_MESSAGES = "en_GB.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_MEASUREMENTS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_CTYPE = "en_GB.UTF-8";
+      LC_COLLATE = "C";
+    };
   };
 
-  security.pam.loginLimits = [ # Increased pam limits for audio group
-    {
-      domain = "@audio";
-      item = "memlock";
-      type = "-";
-      value = "unlimited";
-    }
-    {
-      domain = "@audio";
-      item = "rtprio";
-      type = "-";
-      value = "99";
-    }
-    {
-      domain = "@audio";
-      item = "nofile";
-      type = "soft";
-      value = "99999";
-    }
-    {
-      domain = "@audio";
-      item = "nofile";
-      type = "hard";
-      value = "99999";
-    }
-  ];
-
-  location.provider = "geoclue2";
+  fonts = {
+    enableDefaultPackages = true; # Standard fonts
+    packages = with pkgs; [
+      #################### Serif ####################
+      libre-baskerville # Great, stylish serif
+      vollkorn # Great serif font
+      # merriweather # Serif readable on low res screens
+      # gelasio # Serif Georgia replacement
+      # lmodern # Classic serif
+      # noto-fonts-cjk-serif
+      #################### Sans ####################
+      fira-go # Great sans with icons
+      nacelle # Helvetica equivalent
+      inter # Interesting sans font
+      carlito # Calibri equivalent
+      # merriweather-sans # Sans font readable on low res
+      # libre-franklin
+      noto-fonts-cjk-sans # Chinese, Japanese, Korean sans
+      #################### Mono ####################
+      nerd-fonts.fira-code
+      # nerd-fonts.fira-mono
+      nerd-fonts.iosevka
+      nerd-fonts.hack
+      #################### Packages ####################
+      liberation_ttf # ≃ Times New Roman, Arial, Courier New equivalents
+      # noto-fonts # Google well internationalized fonts
+      #################### Symbols ####################
+      noto-fonts-emoji # Emojies
+      # fira-code-symbols # Great icons
+      # emojione # Emojies
+      # lmmath # Classic font with math support
+      # font-awesome # Thousands of icons
+    ];
+  };
 
   programs = {
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
-    zsh.enable = true; # Default shell
     firejail = {
       enable = true; # TODO ensure apps are jailed
       wrappedBinaries = {
@@ -165,32 +199,30 @@
   };
 
   environment = {
-    shells = with pkgs; [ zsh ];
-    systemPackages = with pkgs; [
+    systemPackages = with pkgs; [ # TODO clean, remove unused, move some to home
+      lsof # list opened files
+      zip # Universal compression
+      unzip # Universal decompression
+      _7zz # Compression / Decompression (7zip)
+      # p7zip # Compression / Decompression compatible with 7zip
+      gzip # Compression / Decompression
+      bzip2 # Compression / Decompression
+      usbutils # lsusb
+      pciutils # lspci
       man-pages # Documentation
       man-pages-posix # Documentation
-      cpulimit # Limit CPU usage of processes
-      libsecret # Allow apps to use gnome-keyring
-      iw # Control network cards
-      exfat # fs tool
-      ntfs3g # fs tool
-      tldr # short, examples man pages
-      sshfs # browser ssh as directory
-      rsync # cp through network & with superpowers
-      tcpdump # Dump network packets
-      dhcpdump # DHCP debugging
-      inetutils # Things like FTP command
-      bridge-utils # Network interface bridging
-      # dig # DNS analyzer
-      doggo # Modern CLI DNS client
-      procs # Better ps
-      gping # Ping with a graph
-      nix-du # Determine which gc-roots take space
-      ssh-to-age # Converter between SSH keys and age
-      powertop # Power usage analyzer
-      just # Commands runner
+      exfat # USB sticks filesystem
+      ntfs3g # Window$s filesystem
       convmv # Converts filenames from one encoding to another
-      enca # Detects the encoding of text files and reencodes them
+      navi # Cheat sheet for CLIs
+      # tldr # short, examples man pages
+      # libsecret # Allow apps to use gnome-keyring
+      # bridge-utils # Network interface bridging
+      # cpulimit # Limit CPU usage of processes
+      # modemmanager # Mobile broadband
+      # iw # Control network cards
+      # enca # Detects the encoding of text files and reencodes them
+      # just # Commands runner
       # bolt # Thunderbolt device manager
       # sbctl # Secure Boot Control
       # dhcping # DHCP debugging
@@ -202,19 +234,4 @@
       # ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
     ];
   };
-
-  # services.grocy = { # TODO Find a better place to put this "user" service
-  #   enable = true;
-  #   hostName = "grocy.localhost";
-  #   nginx.enableSSL = false;
-  #   settings = {
-  #     currency = "EUR";
-  #     culture = "fr";
-  #     calendar.firstDayOfWeek = 1;
-  #   };
-  # };
-  # services.llama-cpp = { # TODO Find a better place to put this "user" service
-  #   enable = true; # Large language model server
-  #   port = 7777;
-  # };
 }

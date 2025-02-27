@@ -2,7 +2,7 @@
   imports = [ ../default.nix ];
 
   # Limit threads usage of nix builds
-  nix.settings = { max-jobs = lib.mkDefault 8; };
+  nix.settings.max-jobs = lib.mkDefault 8;
 
   # Forcefuly restrict nix-daemon memory usage TODO study and TEST
   systemd = {
@@ -29,7 +29,7 @@
       enable = true;
       settings.PCIE_ASPM_ON_BAT = "powersupersave";
     };
-    fprintd.enable = lib.mkDefault true; # Support figerprint reader
+    fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     logind = {
       lidSwitch = "suspend";
       extraConfig = "HandlePowerKey=suspend";
@@ -47,10 +47,11 @@
     cpuFreqGovernor = lib.mkForce "powersave";
   };
 
-  # programs.light.enable = true; # DEPRECATED
+  # Start window managers at login on firsts TTYs
+  environment.loginShellInit = builtins.readFile ./loginManager.sh;
 
-  environment.systemPackages = with pkgs;
-    [
-      brightnessctl # Keyboard brightness control
-    ];
+  environment.systemPackages = [
+    pkgs.brightnessctl # Keyboard brightness control
+  ];
+  # hardware.brillo.enable = true;
 }

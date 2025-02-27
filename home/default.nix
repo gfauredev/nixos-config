@@ -81,9 +81,8 @@
     # systembus-notify.enable = true; # TEST relevance
     gpg-agent = {
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
       enableNushellIntegration = true;
+      enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-gnome3;
     };
     # pass-secret-service = {
@@ -117,9 +116,8 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-      enableZshIntegration = true;
-      enableBashIntegration = true;
       enableNushellIntegration = true;
+      enableZshIntegration = true;
     };
     rbw = { # Unofficial Rust Bitwarden CLI
       enable = true;
