@@ -56,6 +56,7 @@
     moreutils # Additional Unix utilities
     gitlab-shell # GitLab CLI
     gh # GitHub CLI
+    commitlint-rs # Be consistent in commit messages
     uv # Python package and project manager
     jq # JSON parsing and request tool
     # rustdesk # Modern remote desktop
