@@ -8,17 +8,8 @@
     # xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
 
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; # Force wayland support for some apps
-    GDK_SCALE = "1.25"; # Scaling on Xwayland
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
-    # plugins = with pkgs.hyprlandPlugins;
-    #   [
-    #     hyprfocus # Window focus animationt
-    #   ];
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
@@ -397,11 +388,4 @@
       ignore_systemd_inhibit = false;
     };
   };
-
-  # xdg.configFile = {
-  #   hyprpaper = {
-  #     target = "hypr/hyprpaper.conf";
-  #     source = ./hyprpaper.conf;
-  #   };
-  # };
 }

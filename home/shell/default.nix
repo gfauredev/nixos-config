@@ -2,7 +2,7 @@
   imports = [ ./alias.nix ./zsh.nix ./nush.nix ./pulsemixer ];
 
   home.packages = let
-    term = # TODO this cleaner (import ../../tool/wezterm/info.nix) DUPLICATED
+    term = # TODO cleaner w/ nix module (DUPLICATED ../../tool/wezterm/info.nix)
       {
         name = "wezterm"; # Name of the terminal (for matching)
         cmd = "wezterm start"; # Launch terminal
@@ -53,6 +53,8 @@
     # imhex # Powerful hex editor TEST
   ];
 
+  home.shell = { enableNushellIntegration = true; };
+
   programs = {
     starship = {
       enable = true; # Super prompt
@@ -66,7 +68,7 @@
     };
     zoxide = {
       enable = true; # Smart cd
-      # enableNushellIntegration = true; # TODO
+      enableNushellIntegration = true;
       enableZshIntegration = true;
     };
     broot = { # TODO organize
@@ -89,8 +91,16 @@
     };
     bat = {
       enable = true; # Better cat with syntax highlighting
-      # config.pager = "less -i"; # TODO set ov
+      # config.pager = "less -i"; # TODO setup ov
     };
+    atuin = {
+      enable = true; # TODO configure
+      enableNushellIntegration = true;
+    };
+    # nix-your-shell = {
+    #   enable = true; # Not needed, `direnv` does it
+    #   enableNushellIntegration = true;
+    # };
     command-not-found.enable = true; # FIXME maybe shell config’s fault
     translate-shell.enable = true; # Google Translate CLI
     fd.enable = true; # Better find
@@ -99,7 +109,6 @@
     fastfetch.enable = true; # Quick system info
     fzf = {
       enable = true; # Fuzzy searcher
-      # enableNushellIntegration = true; # TODO
       enableZshIntegration = true;
     };
     less = {
