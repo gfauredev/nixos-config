@@ -14,7 +14,7 @@ cfg = {
     top = 2,
     bottom = 2,
   },
-  default_prog = { "$SHELL" }
+  -- default_prog = { "$SHELL" }
   -- enable_kitty_graphics = true, -- Kitty graphics protocol
   -- colors = { selection_bg = "#ffddcc" },
 }

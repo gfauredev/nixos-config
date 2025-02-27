@@ -43,31 +43,31 @@ de() {
   $EDITOR "$(date -I)".$*
 }
 
-commitlint_cfg="commitlint --config ~/.config/commitlintrc.yaml"
+COMMITLINT_CMD="commitlint --config $XDG_CONFIG_HOME/commitlintrc.yaml"
 # TODO Nixify ~/.config/commitlintrc.yaml
 cmt() { # Quick commit or amend
   if [ -n "$1" ]; then
-    echo "$@" | $commitlint_cfg && git commit -am "$@"
+    echo "$@" | $COMMITLINT_CMD && git commit -am "$@"
   else
     # Amend if there’s unpushed commits
     if [ -n "$(git log --branches --not --remotes)" ]; then
       git commit --amend --all --no-edit
     else
       git commit
-      $commitlint_cfg || git reset HEAD^
+      $COMMITLINT_CMD || git reset HEAD^
     fi
   fi
 }
 
 commit() {
   if git commit "$@"; then
-    $commitlint_cfg || git reset HEAD^
+    $COMMITLINT_CMD || git reset HEAD^
   fi
 }
 
 amend() {
-  if git amend "$@"; then
-    $commitlint_cfg || git reset HEAD^
+  if git git commit --amend "$@"; then
+    $COMMITLINT_CMD || git reset HEAD^
   fi
 }
 

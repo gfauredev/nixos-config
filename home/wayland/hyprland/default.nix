@@ -71,9 +71,9 @@
         # TODO this cleaner, factorize (duplicate of ../../shell/default.nix)
         term = {
           name = "wezterm"; # Name of the terminal (for matching)
-          cmd = "wezterm start"; # Launch terminal
+          cmd = "wezterm start ${pkgs.nushell}/bin/nu"; # FIX no $SHELL support
           # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
-          exec = ""; # Option to execute a command in place of shell
+          exec = "-c"; # Option to execute a command in place of shell
           cd = "--cwd"; # Option to launch terminal in a directory
           # Classed terminals (executes a command)
           monitoring = "wezterm start --class monitoring"; # Monitoring
