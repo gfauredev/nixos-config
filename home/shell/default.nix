@@ -53,6 +53,30 @@
   ];
 
   programs = {
+    starship = {
+      enable = true; # Super prompt
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        character = {
+          format = "$symbol ";
+          vimcmd_symbol = "[N](bold blue)";
+          vimcmd_replace_one_symbol = "[r](bold blue)";
+          vimcmd_replace_symbol = "[R](bold blue)";
+          vimcmd_visual_symbol = "[V](bold blue)";
+        };
+      };
+    };
+    eza = {
+      enable = true; # Better ls
+      enableNushellIntegration = false; # TEST seems to break the very nu logic
+      enableZshIntegration = true;
+    };
+    zoxide = {
+      enable = true; # Smart cd
+      # enableNushellIntegration = true; # TODO
+      enableZshIntegration = true;
+    };
     broot = { # TODO organize
       enable = true; # Quick fuzzy file finder
       enableNushellIntegration = true;
@@ -71,35 +95,20 @@
         }];
       };
     };
-    translate-shell.enable = true; # Google Translate CLI
-    command-not-found.enable = false; # FIXME maybe shell config’s fault
-    eza = {
-      enable = true; # Better ls
-      enableNushellIntegration = false; # TEST seems to break the very nu logic
-      enableZshIntegration = true;
+    bat = {
+      enable = true; # Better cat with syntax highlighting
+      # config.pager = "less -i"; # TODO set ov
     };
+    command-not-found.enable = true; # FIXME maybe shell config’s fault
+    translate-shell.enable = true; # Google Translate CLI
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
     bottom.enable = true; # Better top
     fastfetch.enable = true; # Quick system info
-    zoxide = {
-      enable = true; # Smart cd
+    fzf = {
+      enable = true; # Fuzzy searcher
       # enableNushellIntegration = true; # TODO
       enableZshIntegration = true;
-    };
-    starship = {
-      enable = true; # Super prompt
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
-      settings = {
-        character = {
-          format = "$symbol ";
-          vimcmd_symbol = "[N](bold blue)";
-          vimcmd_replace_one_symbol = "[r](bold blue)";
-          vimcmd_replace_symbol = "[R](bold blue)";
-          vimcmd_visual_symbol = "[V](bold blue)";
-        };
-      };
     };
     less = {
       enable = false; # Bugged, don’t use lesskeys
@@ -112,15 +121,6 @@
       '';
     };
     lesspipe.enable = false;
-    bat = {
-      enable = true; # Better cat with syntax highlighting
-      # config.pager = "less -i"; # TODO set ov
-    };
-    fzf = {
-      enable = true; # Fuzzy searcher
-      # enableNushellIntegration = true; # TODO
-      enableZshIntegration = true;
-    };
   };
 
   xdg.configFile = { "ov/config.yaml" = { source = ./ov.yaml; }; };
