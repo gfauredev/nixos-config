@@ -12,7 +12,7 @@ empty_cr() {
     eza --icons --git -l --no-permissions --no-user --sort=age
     if git rev-parse --git-dir >/dev/null 2>&1; then
       echo
-      zsh -ic "status"
+      git status
     fi
   fi
   zle accept-line

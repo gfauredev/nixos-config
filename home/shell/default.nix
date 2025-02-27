@@ -175,7 +175,7 @@
     eza = {
       enable = true; # Better ls
       enableZshIntegration = true;
-      enableNushellIntegration = true;
+      enableNushellIntegration = false; # TEST seems to break the very nu logic
       enableIonIntegration = true;
     };
     fd.enable = true; # Better find
