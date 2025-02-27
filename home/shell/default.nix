@@ -81,20 +81,20 @@
       bindkey -M vicmd 'r' vi-forward-char
     '';
     defaultKeymap = "viins";
-    # FIXME
-    # dotDir = "${config.home-manager.users.gf.home.sessionVariables.XDG_CONFIG_HOME}/zsh";
+    # FIXME make it dependent on XDG_CONFIG_HOME
     dotDir = ".config/zsh";
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
       ignorePatterns = [ ];
       ignoreSpace = true;
-      path = "$ZDOTDIR/history"; # FIXME make this dependant on above
-      size = 12420;
+      path = "$ZDOTDIR/history"; # FIXME make this depend on above
+      size = 30000;
       share = true;
     };
     historySubstringSearch.enable = true;
     initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
+    sessionVariables.SHELL = "$HOME/.nix-profile/zsh"; # Interactive
   };
 
   # TODO separate files for each shell
@@ -106,12 +106,8 @@
     # loginFile.source = ./login.nu;
   };
 
-  programs.ion = {
-    enable = true; # TODO configure and TEST
-  };
-
   # programs.xonsh = {
-  #   enable = true; # TODO configure and TEST
+  #   enable = true; # Shell which is a superset of Python
   # };
 
   programs = {
