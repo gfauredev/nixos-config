@@ -82,9 +82,9 @@
     # unusb = "cd ~ ; udiskie-umount --all --eject; \\rm $HOME/usb";
 
     # Git
-    status = "git status";
+    # status = "git status";
     fetch = "git fetch -v";
-    fetchd = "git fetch -v --dry-run";
+    # fetchd = "git fetch -v --dry-run";
     remote = "git remote -v";
     gadd = "git add";
     commit = "git commit";
@@ -113,6 +113,7 @@
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
     giff = "git diff";
+    glog = "git log --oneline";
     logg = "git log --oneline";
 
     # ONE LETTER ALIASES, difficult to live without
