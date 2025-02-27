@@ -58,43 +58,18 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    # TEST relevance of each options below
-    # TODO improve, cleaner
-    # FIXME <del> enables normal mode and toggles case of 3 chars, make it normal instead
-    completionInit = ''
-      autoload -Uz compinit && compinit -i && _comp_options+=(globdots)
-
-      zstyle ':completion:*' completer _complete _approximate _expand_alias
-      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-      zstyle ':completion:*' menu select
-      zmodload zsh/complist
-
-      bindkey -M menuselect 'c' vi-backward-char
-      bindkey -M menuselect 't' vi-down-line-or-history
-      bindkey -M menuselect 's' vi-up-line-or-history
-      bindkey -M menuselect 'r' vi-forward-char
-
-      bindkey -M vicmd 'c' vi-backward-char
-      bindkey -M vicmd 't' history-beginning-search-forward
-      bindkey -M vicmd 's' history-beginning-search-backward
-      bindkey -M vicmd 'r' vi-forward-char
-    '';
-    defaultKeymap = "viins";
-    # TODO make it dependent on XDG_CONFIG_HOME, cleaner
-    # dotDir = ".config/zsh";
+    initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
+    sessionVariables.SHELL = "$(which zsh)"; # Set interactive shell
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
       ignorePatterns = [ ];
       ignoreSpace = true;
-      path = "$ZDOTDIR/history"; # FIXME make this depend on above
+      path = "$XDG_DATA_HOME/zsh_history";
       size = 30000;
       share = true;
     };
     historySubstringSearch.enable = true;
-    initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
-    sessionVariables.SHELL = "$(which zsh)"; # Interactive
   };
 
   # TODO separate files for each shell
