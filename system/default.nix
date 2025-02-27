@@ -164,7 +164,10 @@
     # apparmor.enable = lib.mkDefault true; # TEST pertinence
   };
 
-  users.mutableUsers = lib.mkDefault true; # Set passwords imperatively
+  users = {
+    defaultUserShell = pkgs.dash; # Only allow shell, reduce attack surface
+    mutableUsers = lib.mkDefault true; # Set passwords imperatively
+  };
 
   services = {
     ntp.enable = lib.mkDefault true;

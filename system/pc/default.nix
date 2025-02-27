@@ -190,7 +190,7 @@
     };
     # uwsm.enable = true; # TEST wayland session manager
     hyprland = {
-      enable = true; # Main Window Manager
+      # enable = true; # Main Window Manager
       # withUWSM = true; # TEST session manager
     };
   };
