@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [ ./default.nix ];
 
   wayland.windowManager.hyprland = {
@@ -33,7 +33,7 @@
         "AQ_DRM_DEVICES,$HOME/.config/hypr/egpu:$HOME/.config/hypr/igpu"
         "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         "GDK_SCALE,1.25" # Set scaling on Xwayland
-        "SHELL,$(which nu)" # Nushell as interactive shell
+        "SHELL,${pkgs.nushell}/bin/nu" # Nushell as interactive shell
       ];
     };
   };
