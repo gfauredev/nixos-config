@@ -9,15 +9,7 @@
     wev # Evaluate inputs sent to wayland to debug
     libnotify # Notifications management
     hyprpicker # Better color picker
-    # wayvnc # Wayland remote desktop
-    # wlr-randr # Edit display settings for wayland
-    # waypipe # Send a wayland window through SSH
-    # hyprpaper # Wallpaper engine
-    # swww # Dynamic wallpaper
-    # niri # Innovative WM infinity horizontal scroll
     wayland-utils # wayland inffo
-    # wayland-protocols # wayland protocol extensions
-    # wayland # wayland lib
   ];
 
   xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;

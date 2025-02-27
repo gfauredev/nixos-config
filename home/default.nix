@@ -85,10 +85,6 @@
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-gnome3;
     };
-    # pass-secret-service = {
-    #   enable = true; # TEST relevence
-    #   storePath = "$XDG_DATA_HOME/password-store";
-    # };
     dunst = {
       enable = true; # Notifications daemon
       settings = {

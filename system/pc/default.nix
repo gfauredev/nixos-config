@@ -179,11 +179,6 @@
     };
     nix-ld.enable = true; # Run binaries
     wireshark.enable = true; # Network analysis
-    # nh = {
-    #   enable = true; # Nix multipurpose helper
-    #   flake = /config;
-    #   # clean.enable = true;
-    # };
     appimage = { # Run not packaged appimages
       enable = true;
       binfmt = true;
@@ -220,23 +215,6 @@
       ntfs3g # Window$s filesystem
       convmv # Converts filenames from one encoding to another
       navi # Cheat sheet for CLIs
-      # tldr # short, examples man pages
-      # libsecret # Allow apps to use gnome-keyring
-      # bridge-utils # Network interface bridging
-      # cpulimit # Limit CPU usage of processes
-      # modemmanager # Mobile broadband
-      # iw # Control network cards
-      # enca # Detects the encoding of text files and reencodes them
-      # just # Commands runner
-      # bolt # Thunderbolt device manager
-      # sbctl # Secure Boot Control
-      # dhcping # DHCP debugging
-      # dhcpcd # DHCP client
-      # bubblewrap # Applications sandboxer TEST if better than firejail
-      # samba # Share files with other OSes
-      # samba4Full # Share files with other OSes
-      # cifs-utils # Share files with other Oses
-      # ath9k-htc-blobless-firmware # Firmware for Alpha wifi card
     ];
   };
 }

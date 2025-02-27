@@ -2,7 +2,7 @@
   imports = [ ./alias.nix ./pulsemixer ];
 
   home.packages = let
-    term = # TODO this cleaner (import ../../tool/wezterm/info.nix)
+    term = # TODO this cleaner (import ../../tool/wezterm/info.nix) duplicated
       {
         name = "wezterm"; # Name of the terminal (for matching)
         cmd = "wezterm start"; # Launch terminal
@@ -129,43 +129,6 @@
         }];
       };
     };
-    # yazi = { # TODO organize
-    #   enable = true; # TODO configure, TEST
-    #   keymap = {
-    #     input.prepend_keymap = [
-    #       {
-    #         run = "close";
-    #         on = [ "<C-q>" ];
-    #       }
-    #       {
-    #         run = "close --submit";
-    #         on = [ "<Enter>" ];
-    #       }
-    #       {
-    #         run = "escape";
-    #         on = [ "<Esc>" ];
-    #       }
-    #       {
-    #         run = "backspace";
-    #         on = [ "<Backspace>" ];
-    #       }
-    #     ];
-    #     manager.prepend_keymap = [
-    #       {
-    #         run = "escape";
-    #         on = [ "<Esc>" ];
-    #       }
-    #       {
-    #         run = "quit";
-    #         on = [ "q" ];
-    #       }
-    #       {
-    #         run = "close";
-    #         on = [ "<C-q>" ];
-    #       }
-    #     ];
-    #   };
-    # };
     translate-shell.enable = true; # Google Translate CLI
     command-not-found.enable = false; # FIXME maybe shell config’s fault
     eza = {
@@ -189,8 +152,6 @@
       settings = {
         character = {
           format = "$symbol ";
-          # success_symbol = "[☭](bold green)";
-          # error_symbol = "[\\$](bold red)";
           vimcmd_symbol = "[N](bold blue)";
           vimcmd_replace_one_symbol = "[r](bold blue)";
           vimcmd_replace_symbol = "[R](bold blue)";
