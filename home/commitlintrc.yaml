@@ -1,0 +1,32 @@
+# See https://www.conventionalcommits.org
+# See https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+# See https://semver.org
+rules:
+  type:
+    level: error
+    options:
+      - fix      # Fixes an API or user interface bug, related to previous feat
+      - feat     # Adds a new feature to API or user interface
+      - perf     # Performance improvements, algorithms, data structures
+      - test     # Creation or fix of an automated test
+      - build    # Build tools, integration tools and pipelines, dependencies
+      - ops      # Operation components, infrastructure, deployment pipelines
+      - docs     # Documentation, code comments
+      - style    # Code formatting, typos, organisation, structure
+      - chore    # Other, gitignore, gitattributes, cleaning…
+      # - ci     # Automated testing and analysis infrastructure
+      # - cicd   # Not Angular covention
+      # - doc    # Not Angular convention
+      # - revert # Commit revert
+      # - refactor # Code organisation, structure
+  # type-empty: # Type must be set
+  #   level: error # TEST relevancy when defining types
+  scope-empty: # Scope should be set
+    level: warning
+  description-empty: # Description must be set
+    level: error
+  description-max-length: # Description must not exceed 64 characters
+    level: error
+    length: 64
+  # subject-empty: # Subject line should exist
+  #   level: error # TEST relevancy

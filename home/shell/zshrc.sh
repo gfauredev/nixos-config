@@ -43,6 +43,11 @@ c() {
   systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
 }
 
+cmt() {
+  # TODO Nixify ~/.config/commitlintrc.yaml
+  echo "$@" | commitlint --config ~/.config/commitlintrc.yaml && git commit -am "$@"
+}
+
 # Replace occurences of $1 by $2 in $3
 # replace() {
 #   \rg --passthrough --multiline "$1" -r "${@:2}"

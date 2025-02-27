@@ -87,15 +87,12 @@
     fetchd = "git fetch -v --dry-run";
     remote = "git remote -v";
     gadd = "git add";
-    gadda = "git add .";
     commit = "git commit";
-    commitm = "git commit -m";
-    commita = "git commit -a";
-    cmt = "git commit -am";
+    # commita = "git commit -a";
     amend = "git commit --amend";
-    amendm = "git commit --amend -m";
-    amenda = "git commit --amend -a";
-    amendam = "git commit --amend -am";
+    # amendm = "git commit --amend -m";
+    # amenda = "git commit --amend -a";
+    # amendam = "git commit --amend -am";
     push = "git push";
     # pusha = "git commit -am 'UNNAMED'; git push"; # This is wrong
     upsub = "git commit -am 'chore: update submodule(s)'; git push";
@@ -104,10 +101,10 @@
     checkout = "git checkout";
     main = "git checkout main";
     merge = "git merge";
-    mrg = "git mergetool --tool=nvimdiff"; # TODO with Helix
+    # mrg = "git mergetool --tool=nvimdiff"; # TODO with Helix
     rebase = "git rebase";
     switch = "git switch";
-    switchn = "git switch -c";
+    # switchn = "git switch -c";
     revert = "git revert";
     branch = "git branch";
     clean = "git clean -idx";
