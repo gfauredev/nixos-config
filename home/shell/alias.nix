@@ -90,8 +90,7 @@
     revert = "git revert";
     clean = "git clean -idx";
     giff = "git diff";
-    glog = "git log --oneline";
-    # logg = "git log --oneline";
+    logg = "git log --oneline";
     upsub = ''
       git commit -am 'chore: update submodule(s)' \
       commitlint --config ~/.config/commitlintrc.yaml && git push
