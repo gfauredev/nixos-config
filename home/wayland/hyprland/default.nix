@@ -17,7 +17,6 @@
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
         "waybar" # Status bar
-        # "wezterm-mux-server" # Terminal multiplexer TEST relevance
         "albert" # General quick launcher
         "systemctl --user start hyprpolkitagent" # Polkit authentication agent
       ];
@@ -72,14 +71,13 @@
         term = rec {
           name = "ghostty"; # Name of the terminal (for matching)
           cmd = name;
-          # cmd = "wezterm start --always-new-process"; # FIX when too much terms crash
           exec = "-e"; # Option to execute a command in place of shell
           cd = ""; # FIXME Option to launch terminal in a directory
           # Classed terminals (executes a command)
-          monitoring = "wezterm start --class monitoring"; # Monitoring
-          note = "wezterm start --class note"; # Note
+          monitoring = "wezterm start --class monitoring"; # Monitoring FIXME
+          note = "wezterm start --class note"; # Note FIXME
           menu =
-            "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
+            "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu FIXME
         };
         # TODO cleaner
         term-alt = {
