@@ -36,6 +36,9 @@
     usb-mount = pkgs.writeScriptBin "usb" "${lib.readFile ./script/usb.sh}";
     usb-umount =
       pkgs.writeScriptBin "unusb" "${lib.readFile ./script/unusb.sh}";
+    mtp-mount = pkgs.writeScriptBin "mtp" "${lib.readFile ./script/mtp.sh}";
+    mtp-umount =
+      pkgs.writeScriptBin "unmtp" "${lib.readFile ./script/unmtp.sh}";
   in with pkgs; [
     # Custom scripts
     smart-terminal # Open a terminal quickly with first parameter always cd
@@ -50,6 +53,8 @@
     typst-compile # Compile the latest edited Typst file in current dir
     usb-mount # Quickly mount a USB device in ~/usb
     usb-umount # Quickly unmount USB device(s) mounted in ~/usb
+    mtp-mount # Quickly mount Android device(s) mounted in ~/mtp
+    mtp-umount # Quickly unmount Android device(s) mounted in ~/mtp
     # Development and general CLI tools
     ov # Modern pager
     trash-cli # Manage a trash from CLI
@@ -83,7 +88,7 @@
   programs = {
     starship = {
       enable = true; # Super prompt
-      # enableNushellIntegration = true;
+      enableNushellIntegration = false; # TEST
       enableZshIntegration = true;
     };
     eza = {

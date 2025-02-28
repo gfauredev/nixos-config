@@ -71,8 +71,6 @@ let
     clean = "git clean -idx";
     giff = "git diff";
     logg = "git log --oneline";
-    upsub = "git commit -am 'build: update submodule(s)'; git push";
-    pupu = "git pull --recurse-submodules --jobs=8; git push";
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
@@ -89,9 +87,6 @@ in {
   programs.zsh.shellAliases = common // {
     # System
     re = "exec zsh";
-    ## Mounts
-    mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
-    unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
@@ -113,11 +108,14 @@ in {
     # Edit ONE LETTER
     e = "$EDITOR"; # Default text editor
     m = "mkdir -pv"; # mkdir with parents if needed
+    # Git
+    upsub = "git commit -am 'build: update submodule(s)'; git push";
+    pupu = "git pull --recurse-submodules --jobs=8; git push";
   };
   programs.nushell.shellAliases = common // {
     # System
     re = "exec nu";
-    # List TODO, improve
+    # List TODO
     # ls = "ls";
     # sl = "ls --reverse";
     # lsd = "ls -l --no-permissions --sort=age";
@@ -132,5 +130,8 @@ in {
     # Edit ONE LETTER
     e = "hx"; # FIXME Default text editor
     m = "mkdir"; # Quick mkdir
+    # Git TODO
+    # upsub = "git commit -am 'build: update submodule(s)'; git push";
+    # pupu = "git pull --recurse-submodules --jobs=8; git push";
   };
 }
