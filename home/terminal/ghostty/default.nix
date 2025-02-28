@@ -9,8 +9,11 @@
   programs.ghostty.settings = {
     theme = "catppuccin-mocha";
     font-size = 12;
-    # keybind = [ "ctrl+h=goto_split:left" "ctrl+l=goto_split:right" ];
+    keybind = [
+      "ctrl+t=new_tab"
+      "ctrl+s=next_tab"
+      "performable:ctrl+c=copy_to_clipboard"
+      "performable:ctrl+v=paste_from_clipboard"
+    ];
   };
-
-  # programs.ghostty.themes = { }; # TODO
 }
