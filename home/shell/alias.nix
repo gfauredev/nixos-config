@@ -85,7 +85,6 @@ let
     ## Open ONE LETTER
     o = "open"; # xdg-open + disown
     ## Edit ONE LETTER
-    e = "$EDITOR"; # Default text editor
     m = "mkdir -pv"; # mkdir with parents if needed
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
@@ -112,6 +111,8 @@ in {
     # Open ONE LETTER
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "$PAGER"; # Default pager
+    # Edit ONE LETTER
+    e = "$EDITOR"; # Default text editor
   };
   programs.nushell.shellAliases = common // {
     # System
