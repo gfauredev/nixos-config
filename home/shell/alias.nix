@@ -117,17 +117,10 @@ in {
     re = "exec nu";
     # List
     l = "ls"; # Better ls
-    sl = "ls | reverse"; # FIXME
-    lsd = "ls | sort-by modified"; # FIXME
-    sld = "ls | sort-by modified | reverse"; # FIXME
     ll = "ls --long";
     la = "ls --all --long";
-    al = "ls --all --long | reverse"; # FIXME
     # Edit ONE LETTER
     e = "hx"; # FIXME Default text editor
     m = "mkdir"; # Quick mkdir
-    # Git TODO
-    # upsub = "git commit -am 'build: update submodule(s)'; git push";
-    # pupu = "git pull --recurse-submodules --jobs=8; git push";
   };
 }
