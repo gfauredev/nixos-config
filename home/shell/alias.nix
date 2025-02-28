@@ -2,8 +2,7 @@
 let
   eza_cfg = "eza --icons --git";
   # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
-in {
-  home.shellAliases = {
+  common = {
     # System
     sudo = "sudo ";
     se = "sudoedit ";
@@ -92,7 +91,9 @@ in {
     m = "mkdir -pv"; # mkdir with parents if needed
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
-  programs.zsh.shellAliases = {
+in {
+  # home.shellAliases = common; # Don’t works
+  programs.zsh.shellAliases = common // {
     # System
     re = "exec zsh";
     # List
@@ -111,7 +112,7 @@ in {
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "$PAGER"; # Default pager
   };
-  programs.nushell.shellAliases = {
+  programs.nushell.shellAliases = common // {
     # System
     re = "exec nu";
     # List TODO, improve
