@@ -51,26 +51,6 @@
     # veracrypt # multiplatform encryption
     exfatprogs # Tools for exfat fs
     jmtpfs # Media transfer protocol with Android devices
-
-    # Development and general CLI tools
-    moreutils # Additional Unix utilities
-    gitlab-shell # GitLab CLI
-    gh # GitHub CLI
-    commitlint-rs # Be consistent in commit messages
-    uv # Python package and project manager
-    jq # JSON parsing and request tool
-    # rustdesk # Modern remote desktop
-    kalker # Evaluate math expression
-    nixpkgs-review # Quickly review pull requests to nixpkgs TEST
-    comma # Run any command from Nixpkgs
-    steam-run # Run in isolated FHS
-    manix # Nix documentation CLI
-    watchexec # Run command when file changes
-    hyperfine # Benchmark commands
-    nickel # Modern configuration Nickel, Nix improvement
-    cdrkit # ISO tools and misc
-    browsh # 6ixel CLI web browser
-    pipectl # Named pipes management
   ];
 
   services = {

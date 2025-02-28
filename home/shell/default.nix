@@ -36,10 +36,12 @@
     configure =
       pkgs.writeScriptBin "cfg" "${lib.readFile ./script/configure.sh}";
   in with pkgs; [
+    # Custom scripts
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
     backup # Backup with restic or rsync
     configure # Configure this flake config
+    # Development and general CLI tools
     ov # Modern pager
     trash-cli # Manage a trash from CLI
     ripgrep-all # ripgrep for non-text files
@@ -48,8 +50,23 @@
     hexyl # hex viever
     sd # Intuitive find & replace
     grex # Regex generator from test cases
-    # superfile # Fancy CLI file manager TEST
-    # imhex # Powerful hex editor TEST
+    moreutils # Additional Unix utilities
+    uv # Python package and project manager
+    # rustdesk # Modern remote desktop
+    kalker # Evaluate math expression
+    nixpkgs-review # Quickly review pull requests to nixpkgs TEST
+    comma # Run any command from Nixpkgs
+    steam-run # Run in isolated FHS
+    manix # Nix documentation CLI
+    watchexec # Run command when file changes
+    hyperfine # Benchmark commands
+    nickel # Modern configuration Nickel, Nix improvement
+    cdrkit # ISO tools and misc
+    browsh # 6ixel CLI web browser
+    pipectl # Named pipes management
+    # Git
+    gitlab-shell # GitLab CLI
+    commitlint-rs # Be consistent in commit messages
   ];
 
   home.shell = { enableNushellIntegration = true; };
@@ -96,10 +113,22 @@
       enable = true; # TODO configure
       enableNushellIntegration = true;
     };
+    zellij = {
+      enable = true; # Terminal workspace and multiplexer
+      enableZshIntegration = true;
+      # See https://zellij.dev/documentation 
+      # settings = { }; # TODO
+    };
     # nix-your-shell = {
     #   enable = true; # Not needed, `direnv` does it
     #   enableNushellIntegration = true;
     # };
+    gh = {
+      enable = true; # GitHub official CLI
+      # settings = { }; # TODO + credentials
+    };
+    gh-dash.enable = true; # GitHub dashboard
+    jq.enable = true; # JSON parsing and request tool
     command-not-found.enable = true; # FIXME maybe shell config’s fault
     translate-shell.enable = true; # Google Translate CLI
     fd.enable = true; # Better find
