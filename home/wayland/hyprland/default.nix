@@ -1,4 +1,69 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+let
+  # TODO this cleaner with Nix module to set global options
+  term = rec {
+    name = "ghostty"; # Name of the terminal window (for matching)
+    cmd = name;
+    exec = "-e"; # Option to execute a command in place of shell
+    # Class terminals (executes a command) TODO with ghostty
+    monitoring = "wezterm start --class monitoring"; # Monitoring
+    note = "wezterm start --class note"; # Note
+    menu = "wezterm --config window_background_opacity=0.7 start --class menu";
+  };
+  # TODO cleaner
+  term-alt = {
+    name = "alacritty"; # Name of the terminal (for matching)
+    cmd = "alacritty"; # Launch terminal
+    exec = "--command"; # Option to execute a command in place of shell
+    cd = "--working-directory"; # Option to launch terminal in a directory
+    # Classed terminals (executes a command)
+    monitoring = "alacritty --class monitoring --command"; # Monitoring terminal
+    note = "alacritty --class note --command"; # Monitoring terminal
+    menu = "alacritty --option window.opacity=0.7 --class menu --command";
+  };
+  launch = {
+    # all = "pgrep albert || albert; albert toggle"; # Lazy start
+    all = "albert toggle";
+    alt = "rofi -show combi -combi-modes";
+    app = ''albert show "app "'';
+    # app = "rofi -show drun";
+    category = "rofi -show drun -drun-categories";
+    pass = ''albert show "pass "'';
+    # pass = "rofi-pass";
+    calc = "${term.menu} kalker";
+  };
+  browser = {
+    default = "brave";
+    alt1 = "firefox";
+    alt2 = "nyxt";
+  };
+  mirror = {
+    default = "wl-present mirror"; # Mirror an output or region
+    region = "wl-present set-region"; # Change mirrored output or region
+    freeze = "wl-present toggle-freeze"; # Freeze mirrored image
+  };
+  screenshot = let
+    timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')";
+    workspace = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
+    window = ''
+      $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
+    ftype = "png";
+    location = "$HOME/screenshot";
+  in {
+    fullscreen = "grim";
+    region = ''grim -g "$(slurp)"'';
+    dest-ws = "${location}/${timestamp}_${workspace}.${ftype}";
+    dest-zone = "${location}/${timestamp}_${window}.${ftype}";
+  };
+  media = {
+    cmd = "spotify";
+    name = "Spotify";
+  };
+  open = "br"; # Global oppener
+  mixer = "pulsemixer"; # Audio mixer
+  pim = "thunderbird"; # PIM app
+  monitor = "${term.monitoring} btm --battery --enable_gpu"; # Monitoring
+in {
   home.packages = with pkgs; [
     jq # Interpret `hyprctl -j` JSON in keybindings
     hyprutils # Hypr ecosystem utilities
@@ -66,75 +131,7 @@
 
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
-      bindd = let
-        # TODO this cleaner, factorize (duplicate of ../../shell/default.nix)
-        term = rec {
-          name = "ghostty"; # Name of the terminal (for matching)
-          cmd = name;
-          exec = "-e"; # Option to execute a command in place of shell
-          cd = ""; # FIXME Option to launch terminal in a directory
-          # Classed terminals (executes a command)
-          monitoring = "wezterm start --class monitoring"; # Monitoring FIXME
-          note = "wezterm start --class note"; # Note FIXME
-          menu =
-            "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu FIXME
-        };
-        # TODO cleaner
-        term-alt = {
-          name = "alacritty"; # Name of the terminal (for matching)
-          cmd = "alacritty"; # Launch terminal
-          exec = "--command"; # Option to execute a command in place of shell
-          cd = "--working-directory"; # Option to launch terminal in a directory
-          # Classed terminals (executes a command)
-          monitoring =
-            "alacritty --class monitoring --command"; # Monitoring terminal
-          note = "alacritty --class note --command"; # Monitoring terminal
-          menu =
-            "alacritty --option window.opacity=0.7 --class menu --command"; # Menu terminal
-        };
-        launch = {
-          # all = "pgrep albert || albert; albert toggle"; # Lazy start
-          all = "albert toggle";
-          alt = "rofi -show combi -combi-modes";
-          app = ''albert show "app "'';
-          # app = "rofi -show drun";
-          category = "rofi -show drun -drun-categories";
-          pass = ''albert show "pass "'';
-          # pass = "rofi-pass";
-          calc = "${term.menu} kalker";
-        };
-        browser = {
-          default = "brave";
-          alt1 = "firefox";
-          alt2 = "nyxt";
-        };
-        mirror = {
-          default = "wl-present mirror"; # Mirror an output or region
-          region = "wl-present set-region"; # Change mirrored output or region
-          freeze = "wl-present toggle-freeze"; # Freeze mirrored image
-        };
-        screenshot = let
-          timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')";
-          workspace = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
-          window = ''
-            $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
-          ftype = "png";
-          location = "$HOME/screenshot";
-        in {
-          fullscreen = "grim";
-          region = ''grim -g "$(slurp)"'';
-          dest-ws = "${location}/${timestamp}_${workspace}.${ftype}";
-          dest-zone = "${location}/${timestamp}_${window}.${ftype}";
-        };
-        media = {
-          cmd = "spotify";
-          name = "Spotify";
-        };
-        open = "br"; # Global oppener
-        mixer = "pulsemixer"; # Audio mixer
-        pim = "thunderbird"; # PIM app
-        monitor = "${term.monitoring} btm --battery --enable_gpu"; # Monitoring
-      in [
+      bindd = [
         # System control
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
         "$mod, comma, Lock session and obfuscates display, exec, ${pkgs.hyprlock}/bin/hyprlock"
@@ -384,4 +381,13 @@
       ignore_systemd_inhibit = false;
     };
   };
+
+  # TODO at wayland level, maybe cleaner with Nix modules
+  wayland.windowManager.hyprland.settings.env = [
+    "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
+    "SHELL,${pkgs.nushell}/bin/nu" # Set Nushell as interactive shell
+    "EDITOR,hx" # Force default editor
+    "TERM,${term.cmd}" # Default terminal
+    "TERM_EXEC,${term.exec}" # Default terminal run args
+  ];
 }

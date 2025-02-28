@@ -1,11 +1,15 @@
-wd=$PWD
-cmd="$SHELL"
-if [ -n "$1" ] && $SHELL -ic which "$1"; then
-  cmd="$cmd -ic $*"
-elif [ -d "$1" ]; then
-  wd="$1"
-  shift
-  if [ -n "$1" ] && $SHELL -ic which "$1"; then
-    cmd="$cmd -ic $*"
-  fi
+cd=true              # Don’t change directory by default
+if [ -d "$1" ]; then # If the first argument is a directory,
+  cd="cd $1"         # open our terminal in it
+  shift              # The second argument becomes the first
 fi
+# if which "$1"; then   # If the first parameter is a command,
+#   cmd="$TERM_EXEC $*" # run it (with remaining args) in the new terminal
+#   shift               # The second argument becomes the first
+# fi
+if [ -n "$*" ]; then  # If there are remaining arguments,
+  cmd="$TERM_EXEC $*" # pass them to the new terminal as a command to run
+fi
+echo "Running: nohup $TERM $cmd &"
+$cd || exit
+nohup "$TERM" $cmd &

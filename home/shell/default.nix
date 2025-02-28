@@ -2,25 +2,9 @@
   imports = [ ./alias.nix ./nushell ./zsh.nix ./pulsemixer ];
 
   home.packages = let
-    # TODO cleaner w/ nix module (DUPLICATED ../../tool/wezterm/info.nix)
-    smart-terminal = let
-      term = rec {
-        name = "ghostty"; # Name of the terminal (for matching)
-        cmd = name; # Launch terminal
-        exec = "-e"; # Option to execute a command in place of shell
-        cd = ""; # FIXME Option to launch terminal in a directory
-        # Classed terminals (executes a command)
-        monitoring = "wezterm start --class monitoring"; # FIXME hyprctl
-        note = "wezterm start --class note"; # Note
-        menu =
-          "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
-      };
-    in pkgs.writeScriptBin "t" ''
-      ${lib.readFile ./script/smart-terminal.sh}
-      echo "Running: ${term.cmd} ${term.cd} $wd $cmd & disown"
-      ${term.cmd} ${term.cd} "$wd" ${term.exec} "$cmd" & disown
-      sleep 0.5
-    '';
+    # TODO research how to do cleaner
+    smart-terminal =
+      pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
     extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
     backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/backup.sh}";
     configure =
@@ -31,7 +15,7 @@
     mkdir-cd = pkgs.writeScriptBin "md" "${lib.readFile ./script/md.sh}";
     present-pdf =
       pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
-    open = pkgs.writeScriptBin "open" "${lib.readFile ./script/open.sh}";
+    xdg-open = pkgs.writeScriptBin "xopen" "${lib.readFile ./script/open.sh}";
     typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
     usb-mount = pkgs.writeScriptBin "usb" "${lib.readFile ./script/usb.sh}";
     usb-umount =
@@ -49,7 +33,7 @@
     date-edit # Open text files, prepend current date to the first one
     mkdir-cd # Create dir(s) and cd into the first one
     present-pdf # Open detached pdfpc to present a PDF slide
-    open # xdg-open from the CLI
+    xdg-open # xdg-open from the CLI
     typst-compile # Compile the latest edited Typst file in current dir
     usb-mount # Quickly mount a USB device in ~/usb
     usb-umount # Quickly unmount USB device(s) mounted in ~/usb

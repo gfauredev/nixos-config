@@ -119,8 +119,10 @@ in {
     l = "ls"; # Better ls
     ll = "ls --long";
     la = "ls --all --long";
+    # Open ONE LETTER
+    x = "xopen";
     # Edit ONE LETTER
-    e = "hx"; # FIXME Default text editor
+    e = "run-external $env.EDITOR"; # Default text editor
     m = "mkdir"; # Quick mkdir
   };
 }
