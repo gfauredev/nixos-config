@@ -6,7 +6,7 @@ telemetry=true
 [applications]
 enabled=true
 ignore_show_in_keys=false
-terminal=Alacritty
+terminal=com.mitchellh.ghostty
 trigger="app "
 use_generic_name=true
 use_keywords=true
