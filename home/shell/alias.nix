@@ -23,9 +23,6 @@ let
     wcp = "wl-copy";
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
-    ## Mounts
-    mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
-    unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
 
     # Files
     mv = "mv -uv";
@@ -85,7 +82,6 @@ let
     ## Open ONE LETTER
     o = "open"; # xdg-open + disown
     ## Edit ONE LETTER
-    m = "mkdir -pv"; # mkdir with parents if needed
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
 in {
@@ -93,6 +89,9 @@ in {
   programs.zsh.shellAliases = common // {
     # System
     re = "exec zsh";
+    ## Mounts
+    mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
+    unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
@@ -113,6 +112,7 @@ in {
     p = "$PAGER"; # Default pager
     # Edit ONE LETTER
     e = "$EDITOR"; # Default text editor
+    m = "mkdir -pv"; # mkdir with parents if needed
   };
   programs.nushell.shellAliases = common // {
     # System
@@ -129,5 +129,8 @@ in {
     # lt = "ls -l --tree";
     # List & Search ONE LETTER
     l = "ls"; # Better ls
+    # Edit ONE LETTER
+    e = "hx"; # FIXME Default text editor
+    m = "mkdir"; # Quick mkdir
   };
 }
