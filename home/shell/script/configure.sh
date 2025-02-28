@@ -269,7 +269,7 @@ if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
   fi
 fi
 if $system; then
-  rebuild_system
+  rebuild_system || push_repositories=false # Don’t push if the build failed
 fi
 # Rebuild home by default, unless:
 # - rebuilding system
@@ -283,7 +283,7 @@ if { [ $system = false ] &&
   { [ $update_inputs = false ] && [ $push_repositories = false ] && [ $cd = false ] ||
     [ -n "$commit_message" ]; }; } ||
   { [ $system = false ] && [ $rebuild_only = true ]; } || [ $home = true ]; then
-  rebuild_home
+  rebuild_home || push_repositories=false # Don’t push if the build failed
 fi
 # Push repositories if push repositories
 if $push_repositories; then
