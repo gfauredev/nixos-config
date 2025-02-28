@@ -115,18 +115,14 @@ in {
   programs.nushell.shellAliases = common // {
     # System
     re = "exec nu";
-    # List TODO
-    # ls = "ls";
-    # sl = "ls --reverse";
-    # lsd = "ls -l --no-permissions --sort=age";
-    # sld = "ls -l --no-permissions --sort=age --reverse";
-    # lss = "ls -l --no-permissions --time-style full-iso";
-    # ll = "ls -l --group";
-    # la = "ls -l --group -all";
-    # al = "ls -l --group -all --reverse";
-    # lt = "ls -l --tree";
-    # List & Search ONE LETTER
+    # List
     l = "ls"; # Better ls
+    sl = "ls | reverse"; # FIXME
+    lsd = "ls | sort-by modified"; # FIXME
+    sld = "ls | sort-by modified | reverse"; # FIXME
+    ll = "ls --long";
+    la = "ls --all --long";
+    al = "ls --all --long | reverse"; # FIXME
     # Edit ONE LETTER
     e = "hx"; # FIXME Default text editor
     m = "mkdir"; # Quick mkdir
