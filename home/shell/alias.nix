@@ -23,7 +23,6 @@ let
     wcp = "wl-copy";
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
-
     # Files
     mv = "mv -uv";
     ts = "trash -v";
@@ -35,14 +34,12 @@ let
     bd = "br --sort-by-date";
     bs = "br --sort-by-size";
     bc = "br --sort-by-count";
-
     # Bluetooth & Network
     bt = "bluetoothctl";
     wi = "nmcli device wifi";
     wid = "nmcli device disconnect";
     http = "xh";
     https = "xh --https";
-
     # Media & Documents
     pp = "playerctl play-pause";
     next = "playerctl next";
@@ -52,7 +49,6 @@ let
     mix = "pulsemixer";
     scanpdf =
       "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
-
     # Git
     clone = "git clone -v";
     fetch = "git fetch -v";
@@ -111,6 +107,7 @@ in {
   programs.nushell.shellAliases = common // {
     # System
     re = "exec nu";
+    status = "git status"; # WARN temporary, waiting for CR shortcut
     # List
     l = "ls"; # Better ls
     ll = "ls --long";
@@ -118,7 +115,9 @@ in {
     # List & Search ONE LETTER
     g = "rga --smart-case --color=always"; # Better grep
     # Open ONE LETTER
-    x = "xopen";
+    x = "xopen"; # xdg-open
+    o = "open"; # nushell’s open
+    a = "bat --force-colorization"; # --paging never"; # Better cat
     # Edit ONE LETTER
     e = "run-external $env.EDITOR"; # Default text editor
     m = "mkdir"; # Quick mkdir
