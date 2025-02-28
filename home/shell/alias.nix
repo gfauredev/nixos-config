@@ -74,13 +74,6 @@ let
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
-
-    ## List & Search ONE LETTER
-    g = "\\rga --smart-case --color=always"; # Better grep
-    ## Open ONE LETTER
-    o = "open"; # xdg-open + disown
-    ## Edit ONE LETTER
-    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
 in {
   # home.shellAliases = common; # Don’t works
@@ -102,12 +95,15 @@ in {
     lt = "${eza_cfg} -l --tree";
     # List & Search ONE LETTER
     l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
+    g = "\\rga --smart-case --color=always"; # Better grep
     # Open ONE LETTER
+    o = "open"; # xdg-open + disown
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "$PAGER"; # Default pager
     # Edit ONE LETTER
     e = "$EDITOR"; # Default text editor
     m = "mkdir -pv"; # mkdir with parents if needed
+    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
     # Git
     upsub = "git commit -am 'build: update submodule(s)'; git push";
     pupu = "git pull --recurse-submodules --jobs=8; git push";
@@ -119,10 +115,13 @@ in {
     l = "ls"; # Better ls
     ll = "ls --long";
     la = "ls --all --long";
+    # List & Search ONE LETTER
+    g = "rga --smart-case --color=always"; # Better grep
     # Open ONE LETTER
     x = "xopen";
     # Edit ONE LETTER
     e = "run-external $env.EDITOR"; # Default text editor
     m = "mkdir"; # Quick mkdir
+    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
 }
