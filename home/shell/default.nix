@@ -122,12 +122,12 @@
       enable = true; # TODO configure
       enableNushellIntegration = true;
     };
-    zellij = {
-      enable = true; # Terminal workspace and multiplexer
-      enableZshIntegration = true;
-      # See https://zellij.dev/documentation 
-      # settings = { }; # TODO
-    };
+    # zellij = {
+    #   enable = true; # Terminal workspace and multiplexer
+    #   enableZshIntegration = true;
+    #   # See https://zellij.dev/documentation 
+    #   settings = { };
+    # };
     # nix-your-shell = {
     #   enable = true; # Not needed, `direnv` does it
     #   enableNushellIntegration = true;
