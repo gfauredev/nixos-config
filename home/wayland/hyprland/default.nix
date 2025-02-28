@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
   # TODO this cleaner with Nix module to set global options
   term = rec {
@@ -389,5 +389,6 @@ in {
     "EDITOR,hx" # Force default editor
     "TERM,${term.cmd}" # Default terminal
     "TERM_EXEC,${term.exec}" # Default terminal run args
+    "XDG_CONFIG_HOME,${config.home.sessionVariables.XDG_CONFIG_HOME}"
   ];
 }

@@ -2,7 +2,7 @@
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
-    ./shell # Interactive POSIX shell(s) # TODO slit shells in individual modules
+    ./shell # Interactive POSIX shell(s)
   ];
 
   manual = {

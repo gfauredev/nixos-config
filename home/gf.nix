@@ -17,14 +17,15 @@
     username = "gf"; # TEST home-manager.users.<name> config structure
     homeDirectory = "/home/gf";
 
-    sessionVariables = {
+    sessionVariables = { # Maybe Nix modules are more appropriated
       XDG_DESKTOP_DIR = "$HOME/data";
       XDG_DOCUMENTS_DIR = "$HOME/data";
       XDG_MUSIC_DIR = "$HOME/data";
       XDG_PICTURES_DIR = "$HOME/dcim";
       XDG_VIDEOS_DIR = "$HOME/dcim";
       XDG_DOWNLOAD_DIR = "$HOME/tmp";
-      BROWSER = "brave"; # TODO this directly in Nix
+      # XDG_CONFIG_HOME = "$HOME/.config";
+      BROWSER = "brave";
       PAGER = "ov";
     };
 
