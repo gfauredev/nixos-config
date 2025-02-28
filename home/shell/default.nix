@@ -108,14 +108,12 @@
       # config.pager = "less -i"; # TODO setup ov
     };
     atuin = {
-      enable = true; # TODO configure
+      enable = true;
       enableNushellIntegration = true;
+      settings = {
+        enter_accept = true; # Don’t currently work on Nushell
+      };
     };
-    # zellij = {
-    #   enable = true; # Terminal workspace and multiplexer
-    #   enableZshIntegration = true;
-    #   # See https://zellij.dev/documentation 
-    #   settings = { };
     # };
     # nix-your-shell = {
     #   enable = true; # Not needed, `direnv` does it

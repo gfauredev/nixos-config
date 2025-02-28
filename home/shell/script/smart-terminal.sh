@@ -1,7 +1,9 @@
-cd=true                  # Don’t change directory by default
-cmd=$TERM                # Launch a default terminal
-if ! which "$TERM"; then # If $TERM is not a command,
-  cmd=$TERM_COMMAND      # try another env var
+cd=true # Don’t change directory by default
+cmd=""
+if which "$TERM"; then # Try to find the default terminal command
+  cmd=$TERM
+else
+  cmd=$TERM_COMMAND
 fi
 if [ -d "$1" ]; then # If the first argument is a directory,
   cd="cd $1"         # open our terminal in it
