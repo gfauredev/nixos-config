@@ -75,8 +75,8 @@ let
     clean = "git clean -idx";
     giff = "git diff";
     logg = "git log --oneline";
-    upsub = "git commit -am 'build: update submodule(s)' && git push";
-    pupu = "git pull --recurse-submodules --jobs=8 && git push";
+    upsub = "git commit -am 'build: update submodule(s)'; git push";
+    pupu = "git pull --recurse-submodules --jobs=8; git push";
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
