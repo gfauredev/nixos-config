@@ -2,7 +2,8 @@
 let
   eza_cfg = "eza --icons --git";
   # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
-  common = {
+in {
+  home.shellAliases = {
     # System
     sudo = "sudo ";
     se = "sudoedit ";
@@ -22,12 +23,13 @@ let
     dfa = "duf -all";
     wcp = "wl-copy";
     wpt = "wl-paste";
+    inhib = "systemd-inhibit sleep";
     ## Mounts
     mtp = "[ -d $HOME/mtp ] || mkdir $HOME/mtp; jmtpfs $HOME/mtp";
     unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
 
     # Files
-    cp = "echo You might prefer using rsync alias 'c';cp -urv"; # Reminder
+    cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     mv = "mv -uv";
     ts = "trash -v";
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
@@ -64,8 +66,8 @@ let
     remote = "git remote -v";
     checkout = "git checkout";
     gadd = "git add";
-    # commit = "git commit"; # Smarter function
-    # amend = "git commit --amend"; # Smarter function
+    commit = "git commit"; # Smarter function
+    amend = "git commit --amend"; # Smarter function
     push = "git push";
     merge = "git merge";
     rebase = "git rebase";
@@ -90,8 +92,7 @@ let
     m = "mkdir -pv"; # mkdir with parents if needed
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
-in {
-  programs.zsh.shellAliases = common // {
+  programs.zsh.shellAliases = {
     # System
     re = "exec zsh";
     # List
@@ -110,7 +111,7 @@ in {
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "$PAGER"; # Default pager
   };
-  programs.nushell.shellAliases = common // {
+  programs.nushell.shellAliases = {
     # System
     re = "exec nu";
     # List TODO, improve

@@ -3,44 +3,53 @@
 
   home.packages = let
     # TODO cleaner w/ nix module (DUPLICATED ../../tool/wezterm/info.nix)
-    term = rec {
-      name = "ghostty"; # Name of the terminal (for matching)
-      cmd = name; # Launch terminal
-      exec = "-e"; # Option to execute a command in place of shell
-      cd = ""; # FIXME Option to launch terminal in a directory
-      # Classed terminals (executes a command)
-      monitoring = "wezterm start --class monitoring"; # FIXME hyprctl
-      note = "wezterm start --class note"; # Note
-      menu =
-        "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
-    };
-    smart-terminal = pkgs.writeScriptBin "t" ''
-      #!/bin/sh
-      wd=$PWD
-      cmd="$SHELL"
-      if [ -n "$1" ] && $SHELL -ic which "$1"; then
-        cmd="$cmd -ic $*"
-      elif [ -d "$1" ]; then
-        wd="$1"
-        shift
-        if [ -n "$1" ] && $SHELL -ic which "$1"; then
-          cmd="$cmd -ic $*"
-        fi
-      fi
+    smart-terminal = let
+      term = rec {
+        name = "ghostty"; # Name of the terminal (for matching)
+        cmd = name; # Launch terminal
+        exec = "-e"; # Option to execute a command in place of shell
+        cd = ""; # FIXME Option to launch terminal in a directory
+        # Classed terminals (executes a command)
+        monitoring = "wezterm start --class monitoring"; # FIXME hyprctl
+        note = "wezterm start --class note"; # Note
+        menu =
+          "wezterm --config window_background_opacity=0.7 start --class menu"; # Menu
+      };
+    in pkgs.writeScriptBin "t" ''
+      ${lib.readFile ./script/smart-terminal.sh}
       echo "Running: ${term.cmd} ${term.cd} $wd $cmd & disown"
       ${term.cmd} ${term.cd} "$wd" ${term.exec} "$cmd" & disown
       sleep 0.5
     '';
     extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
-    backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/back.sh}";
+    backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/backup.sh}";
     configure =
       pkgs.writeScriptBin "cfg" "${lib.readFile ./script/configure.sh}";
+    smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/cmt.sh}";
+    date-edit = pkgs.writeScriptBin "de" "${lib.readFile ./script/de.sh}";
+    # inhib = pkgs.writeScriptBin "inhib" "${lib.readFile ./script/inhib.sh}";
+    mkdir-cd = pkgs.writeScriptBin "md" "${lib.readFile ./script/md.sh}";
+    present-pdf =
+      pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
+    open = pkgs.writeScriptBin "open" "${lib.readFile ./script/open.sh}";
+    typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
+    usb-mount = pkgs.writeScriptBin "usb" "${lib.readFile ./script/usb.sh}";
+    usb-umount =
+      pkgs.writeScriptBin "unusb" "${lib.readFile ./script/unusb.sh}";
   in with pkgs; [
     # Custom scripts
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
     backup # Backup with restic or rsync
     configure # Configure this flake config
+    smart-commit # Quickly commit or amend, lint message
+    date-edit # Open text files, prepend current date to the first one
+    mkdir-cd # Create dir(s) and cd into the first one
+    present-pdf # Open detached pdfpc to present a PDF slide
+    open # xdg-open from the CLI
+    typst-compile # Compile the latest edited Typst file in current dir
+    usb-mount # Quickly mount a USB device in ~/usb
+    usb-umount # Quickly unmount USB device(s) mounted in ~/usb
     # Development and general CLI tools
     ov # Modern pager
     trash-cli # Manage a trash from CLI
@@ -69,7 +78,7 @@
     commitlint-rs # Be consistent in commit messages
   ];
 
-  home.shell = { enableNushellIntegration = true; };
+  home.shell.enableShellIntegration = true;
 
   programs = {
     starship = {

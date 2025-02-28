@@ -1,6 +1,5 @@
 # Often used small functions, POSIX compliant
-# Clear screen & give info on empty line CR
-empty_cr() {
+empty_cr() { # Clear screen & give info on empty line CR
   if [ -z "$BUFFER" ]; then
     clear -x
     date
@@ -17,112 +16,28 @@ empty_cr() {
   fi
   zle accept-line
 }
-# Define function ran on empty carriage return
-zle -N empty_cr
+zle -N empty_cr # Define function ran on empty carriage return
 bindkey '^M' empty_cr
 
-# Open with default MIME handler & detach from term
-open() {
-  # nohup xdg-open "$@" >/dev/null & # FIXME
-  xdg-open "$@" &
-  disown # Bashism
-}
-
-# Make directory(ies) & cd into it (the first)
-md() {
-  mkdir -pv "$@" && cd "$1" || return
-}
-
-# Copy a file with improvements
-# c() {
+# c() { # Copy a file with improvements
 #   systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
 # }
 
-# Edit a file prepending the ISO date
-de() {
-  $EDITOR "$(date -I)".$*
-}
+# commit() { # Commit and lint message
+#   if git commit "$@"; then
+#     $COMMITLINT_CMD || git reset HEAD^
+#   fi
+# }
 
-COMMITLINT_CMD="commitlint --config $XDG_CONFIG_HOME/commitlintrc.yaml"
-# TODO Nixify ~/.config/commitlintrc.yaml
-cmt() { # Quick commit or amend
-  if [ -n "$1" ]; then
-    echo "$@" | $COMMITLINT_CMD && git commit -am "$@"
-  else
-    # Amend if there’s unpushed commits
-    if [ -n "$(git log --branches --not --remotes)" ]; then
-      git commit --amend --all --no-edit
-    else
-      git commit
-      $COMMITLINT_CMD || git reset HEAD^
-    fi
-  fi
-}
+# amend() { # Amend commit and lint message
+#   if git git commit --amend "$@"; then
+#     $COMMITLINT_CMD || git reset HEAD^
+#   fi
+# }
 
-commit() {
-  if git commit "$@"; then
-    $COMMITLINT_CMD || git reset HEAD^
-  fi
-}
-
-amend() {
-  if git git commit --amend "$@"; then
-    $COMMITLINT_CMD || git reset HEAD^
-  fi
-}
-
-# Inhib kills the (buggy) idle service for a given time
-inhib() {
-  systemctl --user stop hypridle.service && systemd-inhibit sleep "$1"
-  systemctl --user start hypridle.service
-}
-
-# Present a PDF file
-present() {
-  nohup pdfpc "$@" >/dev/null &
-}
-
-# Quickly compile Typst files
-typ() {
-  if [ "$#" -gt 0 ]; then
-    for f in "$@"; do
-      typst compile "$f"
-    done
-  else
-    typst compile "$(\ls --sort=time ./*.typ | head -n1)"
-  fi
-}
-
-usb() {
-  if [ "$1" ]; then
-    devs=$*
-  else
-    lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
-    printf "Space-separated device(s) to mount, without /dev/ : "
-    read -r devs
-  fi
-  [ -h "$HOME/usb" ] || ln -s "/run/media/$USER" "$HOME/usb" # Create USB link if needed
-  for dev in $devs; do
-    udisksctl mount -b /dev/"$dev" || return
-  done
-  cd ~/usb/ || return
-}
-
-unusb() {
-  if [ "$1" ]; then
-    devs=$*
-  else
-    lsblk --output TRAN,NAME,SIZE,MOUNTPOINTS || udisksctl status
-    printf "Space-separated device(s) to unmount, without /dev/ : "
-    read -r devs
-  fi
-  cd ~ || return
-  for dev in $devs; do
-    udisksctl unmount -b /dev/"$dev" || return
-    udisksctl power-off -b /dev/"$dev"
-  done
-  \rm "$HOME"/usb
-}
+# replace() { # Replace occurences of $1 by $2 in $3
+#   \rg --passthrough --multiline "$1" -r "${@:2}"
+# }
 
 # Delete some annoying autocreated directories in user home (if empty)
 for dir in Downloads intelephense pt; do
@@ -130,8 +45,3 @@ for dir in Downloads intelephense pt; do
     rmdir --ignore-fail-on-non-empty "${HOME:?}/$dir"
   fi
 done
-
-# Replace occurences of $1 by $2 in $3
-# replace() {
-#   \rg --passthrough --multiline "$1" -r "${@:2}"
-# }
