@@ -28,10 +28,8 @@ let
     unmtp = "fusermount -u $HOME/mtp; rmdir $HOME/mtp";
 
     # Files
-    cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     mv = "mv -uv";
     ts = "trash -v";
-    rm = "echo 'Use ts to trash instead of removing'; rm -irv";
     restore = "trash-restore";
     empty = "trash-empty -i";
     shred = "shred -vu";
@@ -96,6 +94,9 @@ in {
   programs.zsh.shellAliases = common // {
     # System
     re = "exec zsh";
+    # Files
+    cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
+    rm = "echo 'Use ts to trash instead of removing'; rm -irv";
     # List
     ls = "${eza_cfg}";
     sl = "${eza_cfg} --reverse";
