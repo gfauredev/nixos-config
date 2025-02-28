@@ -1,7 +1,7 @@
 { ... }:
 let
-  ls = "eza --icons --git";
-  commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
+  eza_cfg = "eza --icons --git";
+  # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
   common = {
     # System
     sudo = "sudo ";
@@ -95,17 +95,17 @@ in {
     # System
     re = "exec zsh";
     # List
-    ls = "${ls}";
-    sl = "${ls} --reverse";
-    lsd = "${ls} -l --no-permissions --sort=age";
-    sld = "${ls} -l --no-permissions --sort=age --reverse";
-    lss = "${ls} -l --no-permissions --time-style full-iso";
-    ll = "${ls} -l --group";
-    la = "${ls} -l --group -all";
-    al = "${ls} -l --group -all --reverse";
-    lt = "${ls} -l --tree";
+    ls = "${eza_cfg}";
+    sl = "${eza_cfg} --reverse";
+    lsd = "${eza_cfg} -l --no-permissions --sort=age";
+    sld = "${eza_cfg} -l --no-permissions --sort=age --reverse";
+    lss = "${eza_cfg} -l --no-permissions --time-style full-iso";
+    ll = "${eza_cfg} -l --group";
+    la = "${eza_cfg} -l --group -all";
+    al = "${eza_cfg} -l --group -all --reverse";
+    lt = "${eza_cfg} -l --tree";
     # List & Search ONE LETTER
-    l = "${ls} -l --no-permissions --no-user"; # Better ls
+    l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
     # Open ONE LETTER
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "$PAGER"; # Default pager
@@ -113,5 +113,17 @@ in {
   programs.nushell.shellAliases = common // {
     # System
     re = "exec nu";
+    # List TODO, improve
+    # ls = "ls";
+    # sl = "ls --reverse";
+    # lsd = "ls -l --no-permissions --sort=age";
+    # sld = "ls -l --no-permissions --sort=age --reverse";
+    # lss = "ls -l --no-permissions --time-style full-iso";
+    # ll = "ls -l --group";
+    # la = "ls -l --group -all";
+    # al = "ls -l --group -all --reverse";
+    # lt = "ls -l --tree";
+    # List & Search ONE LETTER
+    l = "ls"; # Better ls
   };
 }

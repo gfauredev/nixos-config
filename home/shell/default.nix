@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [ ./alias.nix ./zsh.nix ./nush.nix ./pulsemixer ];
+  imports = [ ./alias.nix ./nushell ./zsh.nix ./pulsemixer ];
 
   home.packages = let
     # TODO cleaner w/ nix module (DUPLICATED ../../tool/wezterm/info.nix)
