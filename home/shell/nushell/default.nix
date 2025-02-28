@@ -1,11 +1,8 @@
 { pkgs, ... }: {
   programs.nushell = {
     enable = true;
-    # See https://www.nushell.sh/book/getting_started.html
-    # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.nushell.configFile
     configFile.source = ./config.nu;
     # envFile.source = ./env.nu; # TODO
-    # loginFile.source = ./login.nu; # TODO
     plugins = with pkgs.nushellPlugins; [ # FIXME plugins don’t build
       # net # List network interfaces
       skim # Fuzzy finder

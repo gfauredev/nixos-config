@@ -83,12 +83,12 @@
   programs = {
     starship = {
       enable = true; # Super prompt
-      enableNushellIntegration = true;
+      # enableNushellIntegration = true;
       enableZshIntegration = true;
     };
     eza = {
       enable = true; # Better ls
-      enableNushellIntegration = false; # TEST seems to break the very nu logic
+      enableNushellIntegration = false;
       enableZshIntegration = true;
     };
     zoxide = {
