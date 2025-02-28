@@ -34,9 +34,9 @@ md() {
 }
 
 # Copy a file with improvements
-c() {
-  systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
-}
+# c() {
+#   systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
+# }
 
 # Edit a file prepending the ISO date
 de() {
