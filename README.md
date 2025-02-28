@@ -4,6 +4,17 @@ lang: en
 
 # My NixOS Flake systems and homes configurations
 
+## Conventions of this repository
+
+- Files and directories names are `camelCase` and singular.
+- `system` contains configurations related to specific devices (hosts).
+  - Systems are generally named after a mythological entity.
+  - The `module` subdirectory contains Nix modules
+- `home` contains configuratons related to users homes.
+  - Users usernames are generally their initials.
+  - The `module` subdirectory contains Nix modules
+- `template` contains dev environment flakes templates
+
 ## NixOS’ setup instructions
 
 ### _0._ Build the installer image
@@ -55,12 +66,6 @@ updated with `sudo nixos-rebuild --flake <path-to-flake> switch`, or better,
 with my custom helper tool located at `home/shell/configure.sh` and mapped to
 the command `cfg` (`cfg h` to display usage).
 
-### Develop !
-
-A dev environment for a specific tech stack can be initialised with
-`nix flake init --template templates#$STACK` and then activated with
-`nix develop`.
-
 ## Documentation and learning ressources
 
 - [NixOS documentation](https://nixos.org/manual/nixos/unstable)
@@ -78,6 +83,7 @@ A dev environment for a specific tech stack can be initialised with
 - [gvolpe’s private flake article](https://gvolpe.com/blog/private-flake)
 - [yelite’s conf ex.](https://github.com/yelite/private-flake-example/blob/main/flake.nix)
 - [yelite’s cfg article](https://greenfield.blog/posts/private-nix-flake-with-public-subtree)
+- [mitchellh’s config](https://github.com/mitchellh/nixos-config)
 
 ## Other configuration repositories
 
