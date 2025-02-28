@@ -88,7 +88,7 @@
   programs = {
     starship = {
       enable = true; # Super prompt
-      enableNushellIntegration = false; # TEST
+      enableNushellIntegration = true;
       enableZshIntegration = true;
     };
     eza = {
