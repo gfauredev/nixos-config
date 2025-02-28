@@ -31,26 +31,24 @@
 
     # Passwords & Secrets
     # bitwarden-cli # Modern password manager
-    # keepass # Popular password manager
+    # keepass # Popular password manager TODO sync with phone
     keepassxc # Password manager TEST
     # keepass-keeagent # Keepass agent
     gitleaks # Better tool to discover secrets in Git repo
     # git-secrets # Prevent secrets leaking with Git
-    # sops # Secret management
 
     # Storage & Backup & Encryption
     restic # Efficient backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
-    tmsu # File tagging with virtual FS
-    # sendme # send files and directories p2p
-    # udiskie # auto mount USB
-    # dcfldd # more powerful dd
-    # rpi-imager # Raspberry Pi OS generator
-    dislocker # decrypt bitlocker disks
-    # veracrypt # multiplatform encryption
     exfatprogs # Tools for exfat fs
     jmtpfs # Media transfer protocol with Android devices
+    # tmsu # File tagging with virtual FS
+    # sendme # send files and directories p2p
+    # dcfldd # more powerful dd
+    # rpi-imager # Raspberry Pi OS generator
+    # veracrypt # multiplatform encryption
+    dislocker # decrypt bitlocker disks
   ];
 
   services = {
