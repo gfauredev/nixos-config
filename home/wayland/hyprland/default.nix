@@ -79,6 +79,8 @@ in {
       # See https://wiki.hyprland.org/Configuring/Monitors
       monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
 
+      debug.disable_logs = false;
+
       # See https://wiki.hyprland.org/Configuring/Keywords
       exec-once = [
         "waybar" # Status bar
