@@ -11,8 +11,6 @@
       pkgs.writeScriptBin "cfg" "${lib.readFile ./script/configure.sh}";
     smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/cmt.sh}";
     date-edit = pkgs.writeScriptBin "de" "${lib.readFile ./script/de.sh}";
-    # inhib = pkgs.writeScriptBin "inhib" "${lib.readFile ./script/inhib.sh}";
-    mkdir-cd = pkgs.writeScriptBin "md" "${lib.readFile ./script/md.sh}";
     present-pdf =
       pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
     xdg-open = pkgs.writeScriptBin "xopen" "${lib.readFile ./script/open.sh}";
@@ -32,7 +30,6 @@
     configure # Configure this flake config
     smart-commit # Quickly commit or amend, lint message
     date-edit # Open text files, prepend current date to the first one
-    mkdir-cd # Create dir(s) and cd into the first one
     present-pdf # Open detached pdfpc to present a PDF slide
     xdg-open # xdg-open from the CLI
     typst-compile # Compile the latest edited Typst file in current dir

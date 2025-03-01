@@ -19,25 +19,8 @@ empty_cr() { # Clear screen & give info on empty line CR
 zle -N empty_cr # Define function ran on empty carriage return
 bindkey '^M' empty_cr
 
-# c() { # Copy a file with improvements
-#   systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P "$@"
-# }
-
-# commit() { # Commit and lint message
-#   if git commit "$@"; then
-#     $COMMITLINT_CMD || git reset HEAD^
-#   fi
-# }
-
-# amend() { # Amend commit and lint message
-#   if git git commit --amend "$@"; then
-#     $COMMITLINT_CMD || git reset HEAD^
-#   fi
-# }
-
-# replace() { # Replace occurences of $1 by $2 in $3
-#   \rg --passthrough --multiline "$1" -r "${@:2}"
-# }
+# Make directory(ies) & cd into it (the first)
+mkdir -pv "$@" && cd "$1" || return
 
 # Delete some annoying autocreated directories in user home (if empty)
 for dir in Downloads intelephense pt; do
