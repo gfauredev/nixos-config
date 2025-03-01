@@ -2,4 +2,4 @@
 *.iso
 *.pdf
 result
-# hardware-configuration.nix
+.direnv/

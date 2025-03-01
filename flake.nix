@@ -21,7 +21,18 @@
   };
 
   outputs =
-    { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware }: {
+    { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware }:
+    let
+      supportedSystems = [
+        "x86_64-linux" # 64-bit Intel/AMD Linux
+        "aarch64-linux" # 64-bit ARM Linux
+        "x86_64-darwin" # 64-bit Intel macOS
+        "aarch64-darwin" # 64-bit ARM macOS
+      ];
+      forEachSupportedSystem = f:
+        nixpkgs.lib.genAttrs supportedSystems
+        (system: f { pkgs = import nixpkgs { inherit system; }; });
+    in {
       nixosModules = {
         # Laptops #
         griffin = { # Griffin, a powerful and flying creature
@@ -128,5 +139,20 @@
           modules = [ self.homeModules."gf@chimera" self.nixosModules.overlay ];
         };
       };
+      devShells = forEachSupportedSystem ({ pkgs }: {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            cachix # CLI for Nix binary cache
+            lorri # To TEST
+            nil # Nix LSP
+            niv # Dependency management
+            nixfmt # Formater
+            statix # Lints & suggestions for Nix
+            vulnix # NixOS vulnerability scanner
+          ];
+          # env = { }; # Environment variable
+          # shellHook = ""; # Shell command(s) activated when entering dev env
+        };
+      });
     };
 }

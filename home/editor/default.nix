@@ -1,12 +1,7 @@
-{ pkgs, stablepkgs, ... }:
+{ pkgs, ... }:
 let
   editor-packages = with pkgs; [
-    (tree-sitter.withPlugins # Every Tree-Sitter grammars
-      (p: builtins.attrValues p))
-    # (pkgs.tree-sitter.withPlugins # Select Tree-Sitter grammars
-    #   (p: [ p.tree-sitter-c p.tree-sitter-typescript ]))
-    dprint # Pluggable code formatting platform
-
+    (tree-sitter.withPlugins (p: builtins.attrValues p)) # Every grammar
     # tabby # Self-hosted AI code assistant TODO configure
     # tabby-agent # LSP agent for Tabby TODO configure
     # lsp-ai # Language server for language models
@@ -23,36 +18,23 @@ let
     # hunspellDicts.en_GB-ise # British
     # hunspellDicts.es_ES # Spanish
 
-    nil # Nix
-    nixfmt # Formater
-    nls # Nickel
-    yaml-language-server # YAML
-    taplo # TOML
-
-    bash-language-server # Bash, shell script
-    shellcheck # Analysis
-    shfmt # Formater
-    stablepkgs.explain # Explain system call errors
-
-    tinymist # Typst
-    typstyle # Typst formatter
-    # markdown-oxide # TEST Obsidian style PKM
+    dprint # Pluggable code formatting platform
+    nil # Nix LSP
+    nixfmt # Nix formater
+    nls # Nickel LSP
+    yaml-language-server # YAML LSP
+    taplo # TOML LSP
+    bash-language-server # Bash, shell script LSP
+    shellcheck # Shell script analysis
+    shfmt # Shell script formater
     marksman # Smart Markdown links
-
-    lua-language-server # Lua
+    # markdown-oxide # TEST Obsidian style PKM
     vscode-langservers-extracted # HTML/CSS/JS(ON)
-    ruff # Python fast lint and format
-    mypy # Python type check
-    python3Packages.rope # Python smart refactoring
-    python3Packages.python-lsp-server # Python LSP
-    python3Packages.pylsp-mypy # Mypy LSP
-    python3Packages.pylsp-rope # Rope LSP
   ];
 in { # CLI and GUI text editors
   imports = [ ./helix ./neovim ]; # ./zed ];
 
   programs.helix.extraPackages = editor-packages;
-
   programs.neovim.extraPackages = editor-packages;
 
   # TODO cleaner common editor packages with nix modules

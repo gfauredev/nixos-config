@@ -20,7 +20,9 @@ zle -N empty_cr # Define function ran on empty carriage return
 bindkey '^M' empty_cr
 
 # Make directory(ies) & cd into it (the first)
-mkdir -pv "$@" && cd "$1" || return
+md() {
+  mkdir -pv "$@" && cd "$1" || return
+}
 
 # Delete some annoying autocreated directories in user home (if empty)
 for dir in Downloads intelephense pt; do

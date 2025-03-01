@@ -13,7 +13,7 @@
 
   home.packages = with pkgs; [
     # Document & Spreadsheet & Presentation & Note
-    typst # Advanced document processor
+    # typst # Advanced document processor
     # onlyoffice-bin # Full office suite
     onlyoffice-bin_latest # Full office suite
     libreoffice-fresh # Office suite
