@@ -36,9 +36,9 @@
     };
     # TODO link this to the actual login manager in home/wayland/
     getty.helpLine = ''
-      tty1: Hyprland (wayland window manager)
-      tty4: Hyprland, force eGPU
-      tty5: Niri (experimental wayland window manager)'';
+      tty1: Hyprland, on iGPU only (wayland window manager)
+      tty2: Hyprland, on eGPU only (wayland window manager)
+      tty3: Niri, to test (wayland window manager)'';
   };
 
   powerManagement = {

@@ -29,7 +29,6 @@
         # WARNING depends on stateful configurations TODO find a cleaner (Nix) way :
         ## ln -sf /dev/dri/by-path/pci-0000:00:02.0-card .config/hypr/igpu
         ## ln -sf /dev/dri/by-path/pci-0000:7f:00.0-card .config/hypr/egpu
-        "AQ_DRM_DEVICES,$HOME/.config/hypr/egpu:$HOME/.config/hypr/igpu"
         "GDK_SCALE,1.25" # Set scaling on Xwayland
       ];
     };
