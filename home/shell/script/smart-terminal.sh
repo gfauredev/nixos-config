@@ -18,4 +18,4 @@ if [ -n "$*" ]; then       # If there are remaining arguments,
 fi
 echo "Running: nohup $TERM $cmd &"
 $cd || exit
-nohup $cmd &
+nohup $cmd >/dev/null &
