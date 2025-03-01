@@ -15,5 +15,7 @@
       "performable:ctrl+c=copy_to_clipboard"
       "performable:ctrl+v=paste_from_clipboard"
     ];
+    background = "#000000";
+    background-opacity = ".8";
   };
 }
