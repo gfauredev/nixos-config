@@ -2,7 +2,7 @@
   imports = [ ./alias.nix ./nushell ./zsh.nix ./pulsemixer ];
 
   home.packages = let
-    # TODO research how to do cleaner
+    dev-template = pkgs.writeScriptBin "dev" "${lib.readFile ./script/dev.sh}";
     smart-terminal =
       pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
     extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
@@ -25,6 +25,7 @@
       pkgs.writeScriptBin "unmtp" "${lib.readFile ./script/unmtp.sh}";
   in with pkgs; [
     # Custom scripts
+    dev-template # Initialize a Nix Flake based development environment
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
     backup # Backup with restic or rsync
