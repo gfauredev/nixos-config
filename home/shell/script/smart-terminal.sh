@@ -3,7 +3,7 @@ cmd=""
 if which "$TERM"; then # Try to find the default terminal command
   cmd=$TERM
 else
-  cmd=$TERM_COMMAND
+  cmd=$TERM_PROGRAM
 fi
 if [ -d "$1" ]; then # If the first argument is a directory,
   cd="cd $1"         # open our terminal in it
