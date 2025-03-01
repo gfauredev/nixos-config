@@ -40,7 +40,7 @@ let
     marksman # Smart Markdown links
 
     lua-language-server # Lua
-    vscode-langservers-extracted # HTML/CSS/JSON
+    vscode-langservers-extracted # HTML/CSS/JS(ON)
     ruff # Python fast lint and format
     mypy # Python type check
     python3Packages.rope # Python smart refactoring

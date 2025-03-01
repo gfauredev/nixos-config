@@ -112,6 +112,9 @@
       enableNushellIntegration = true;
       settings = {
         enter_accept = true; # Don’t currently work on Nushell
+        filter_mode_shell_up_key_binding = "session";
+        workspaces = true; # Filter commands executed in Git repo
+        ctrl_n_shortcuts = true; # Ctrl+[1-9] quickly select cmd
       };
     };
     # };
@@ -148,5 +151,8 @@
     lesspipe.enable = false;
   };
 
-  xdg.configFile = { "ov/config.yaml" = { source = ./ov.yaml; }; };
+  xdg.configFile = {
+    "ov/config.yaml".source = ./ov.yaml;
+    "commitlintrc.yaml".source = ./commitlintrc.yaml;
+  };
 }
