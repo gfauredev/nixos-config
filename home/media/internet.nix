@@ -8,7 +8,7 @@
 
     # P2P & VPN & Web3
     nym # Super-anonymous routing protocol FIXME lacks desktop apps
-    mullvad # Anonymous VPN service
+    # mullvad # Anonymous VPN service
     transmission_4 # Bittorrent client
     qbittorrent # Bittorrent client
     iroh # Efficient IPFS, p2p file sharing
