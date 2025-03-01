@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 let
   eza_cfg = "eza --icons --git";
   # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
@@ -119,7 +119,7 @@ in {
     o = "open"; # nushell’s open
     a = "bat --force-colorization"; # --paging never"; # Better cat
     # Edit ONE LETTER
-    e = "run-external $env.EDITOR"; # Default text editor
+    e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
     m = "mkdir"; # Quick mkdir
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
