@@ -1,21 +1,10 @@
 { lib, pkgs, config, ... }:
 let
-  # TODO this cleaner with Nix modules, global options
-  browser = {
-    default = "brave";
-    alt1 = "firefox";
-    alt2 = "nyxt";
-  };
-  media = "spotify";
-  pim = "thunderbird"; # PIM app
-  picker = "hyprpicker --autocopy";
-  lock = "${pkgs.hyprlock}/bin/hyprlock";
-  # Utility functions & definitions
-  lock-alt = "loginctl lock-session";
-  suspend = "systemctl suspend";
-  plane-mode = "rfkill toggle all; sleep 1";
+  picker = "hyprpicker --autocopy"; # Color picker
+  plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
   mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
-  open = "${config.term.cmd} ${config.term.exec} br"; # Global opener command
+  # FIXME cd for broot (br)
+  open = "${config.term.cmd} ${config.term.exec} broot"; # Global opener command
   monitor = # Monitoring
     "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
   brightness = {
@@ -40,11 +29,12 @@ let
     mic.lower = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"; # Wireplumber
     mic.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"; # Wireplumber
     play.toggle = "playerctl play-pause";
+    play.pause = "playerctl pause";
     play.next = "playerctl next";
     play.previous = "playerctl previous";
-    media.toggle = "playerctl play-pause -p ${media}";
-    media.next = "playerctl next -p ${media}";
-    media.previous = "playerctl previous -p ${media}";
+    media.toggle = "playerctl play-pause -p ${config.media.favorite}";
+    media.next = "playerctl next -p ${config.media.favorite}";
+    media.previous = "playerctl previous -p ${config.media.favorite}";
   };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
@@ -74,28 +64,25 @@ in {
     hyprutils # Hypr ecosystem utilities
     hyprpolkitagent # Hypr Polkit auth agent
     hyprcursor # Modern cursor engine
-    # hyprland-protocols # Wayland extensions
     # xcur2png # Convert X cursor to PNG, needed for hyprcursor
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
+    xwayland.enable = true; # Backwards compatibility
     settings = {
-      # See https://wiki.hyprland.org/Configuring/Monitors
+      # See https://wiki.hyprland.org/Configuring/
       monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
-
-      debug.disable_logs = false;
-
-      # See https://wiki.hyprland.org/Configuring/Keywords
+      debug.disable_logs = false; # Enable logs
+      xwayland.force_zero_scaling = true;
+      "$mod" = "SUPER";
+      gestures.workspace_swipe = false;
       exec-once = [
         "waybar" # Status bar
         "albert" # General quick launcher
         "systemctl --user start hyprpolkitagent" # Polkit authentication agent
       ];
-
-      xwayland.force_zero_scaling = true;
-
-      # See https://wiki.hyprland.org/Configuring/Variables
       input = {
         kb_layout = "fr,us";
         kb_variant = "bepo_afnor,";
@@ -110,24 +97,12 @@ in {
         sensitivity = 0;
         touchpad.natural_scroll = false;
       };
-
-      # See https://wiki.hyprland.org/Configuring/Dwindle-Layout
       dwindle = {
         pseudotile = true; # master switch for pseudotiling TEST
         preserve_split = true; # you probably want this
         # no_gaps_when_only = 1; # Disable gaps & borders for lone window
       };
-      # See https://wiki.hyprland.org/Configuring/Master-Layout
-      # master = {
-      #   new_is_master = false; # TEST
-      # };
-
-      # See https://wiki.hyprland.org/Configuring/Window-Rules
       windowrulev2 = [
-        # Menu windows (like the audio mixer), moved to exec rules
-        # "float, class:menu" # Float (not tiled)
-        # "center, class:menu" # Center of screen
-        # "size 888 420, class:menu" # Small rectangle
         # Thunderbird Reminders
         "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
         "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
@@ -135,20 +110,17 @@ in {
         "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
         "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
       ];
-
-      # See https://wiki.hyprland.org/Configuring/Keywords
-      "$mod" = "SUPER";
       bindd = [
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
-        "$mod, comma, Lock session and obfuscates display, exec, ${lock}"
-        "$mod CONTROL, comma, Lock session with loginctl, exec, ${lock-alt}"
-        "$mod SHIFT, comma, Suspend computer to sleep, exec, ${suspend}"
+        "$mod, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
+        "$mod CONTROL, comma, Lock session with loginctl, exec, ${config.wayland.lock-session}"
+        "$mod SHIFT, comma, Suspend computer to sleep, exec, ${config.wayland.suspend}"
         "SUPER, j, Mirror output or region, exec, ${mirror.default}" # (F9 on Framework Laptop)
         "SUPER SHIFT, j, Freeze mirrored image, exec, ${mirror.freeze}"
         "SUPER SHIFT, j, Change mirrored output or region, exec, ${mirror.region}"
         "$mod, Super_L, Default launcher, exec, ${config.launch.all}"
         "$mod, SPACE, alternative/fallback launcher, exec, ${config.launch.alt}"
-        "$mod CONTROL, SPACE, Quick calculator, exec, ${config.launch.calc}"
+        "$mod CONTROL, SPACE, Quick calculator, exec, [float; center; size 888 420] ${config.launch.calc}"
         "$mod SHIFT, SPACE, Quick password manager, exec, ${config.launch.pass}"
         ", Menu, Open launcher with media key, exec, ${config.launch.all}"
         ", XF86MenuKB, Open launcher with media key, exec, ${config.launch.all}"
@@ -179,8 +151,8 @@ in {
         "$mod CONTROL, g, Toggle grouping, togglegroup,"
         "$mod SHIFT, g, Focus next window in group, changegroupactive, f"
         "$mod CONTROL SHIFT, g, Focus previous window in group, changegroupactive, b"
-        "$mod CONTROL, b, Open alternative/fallback browser 1, exec, ${browser.alt1}"
-        "$mod CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${browser.alt2}"
+        "$mod CONTROL, b, Open alternative/fallback browser 1, exec, ${config.home.sessionVariables.BROWSER_ALT}"
+        "$mod CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${config.home.sessionVariables.BROWSER_ALT}"
         ", Print, Take a zoned screenshot, exec, ${screenshot.region} ${screenshot.dest-zone}"
         "CONTROL, Print, Copy screen zone to clipboard, exec, ${screenshot.region} - | wl-copy"
         "SHIFT, Print, Full screenshot, exec, ${screenshot.fullscreen} ${screenshot.dest-ws}"
@@ -188,7 +160,7 @@ in {
         "$mod, b, Web browsing workspace, workspace, name:web"
         "$mod, b, Open browser in web workspace, exec, ${
           ifWorkspaceEmpty { ws = "web"; }
-        } ${browser.default}"
+        } ${config.home.sessionVariables.BROWSER}"
         "$mod SHIFT, b, Move window to web workspace, movetoworkspace, name:web"
         "$mod ALT, b, Move web workspace to monitor, focusworkspaceoncurrentmonitor, name:web"
         "$mod, a, Audio workspace, workspace, name:art"
@@ -199,11 +171,11 @@ in {
         "$mod, p, Go to Personal Information Management workspace, workspace, name:pim"
         "$mod, p, Open Personal Information Management software, exec, ${
           ifWorkspaceEmpty { ws = "pim"; }
-        } ${pim}"
+        } ${config.organization.pim}"
         ", XF86Mail, Go to Personal Information Management workspace, workspace, name:pim"
         ", XF86Mail, Open Personal Information Management software, exec, ${
           ifWorkspaceEmpty { ws = "pim"; }
-        } ${pim}"
+        } ${config.organization.pim}"
         "$mod SHIFT, p, Move window to PIM workspace, movetoworkspace, name:pim"
         "$mod, o, Open any file on dedicated workspace, workspace, name:opn"
         "$mod, o, Open any file on dedicated workspace, exec, ${
@@ -250,11 +222,11 @@ in {
         ", XF86AudioMedia, Go to media workspace, workspace, name:media"
         ", XF86AudioMedia, Launch default media player, exec, ${
           ifWorkspaceEmpty { ws = "media"; }
-        } ${media}"
+        } ${config.media.favorite}"
         ", XF86Tools, Go to media workspace, workspace, name:media"
         ", XF86Tools, Launch default media player, exec, ${
           ifWorkspaceEmpty { ws = "media"; }
-        } ${media}"
+        } ${config.media.favorite}"
         "SHIFT, XF86AudioMedia, Open quick mixer, exec, [float; center; size 888 420] ${mixer}"
         "SHIFT, XF86Tools, Open quick mixer, exec, [float; center; size 888 420] ${mixer}"
       ];
@@ -302,8 +274,6 @@ in {
         "CONTROL SHIFT, XF86AudioLowerVolume, exec, ${audio.mic.lower}"
       ];
       bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-
-      # See https://wiki.hyprland.org/Configuring/Variables
       general = {
         gaps_in = 0;
         gaps_out = 0;
@@ -313,7 +283,6 @@ in {
         "col.inactive_border" = "rgb(000000)";
         # cursor_inactive_timeout = 1;
       };
-
       cursor = {
         no_hardware_cursors = false;
         inactive_timeout = 1;
@@ -321,7 +290,6 @@ in {
         hide_on_key_press = true;
         hide_on_touch = true;
       };
-
       group = {
         "col.border_active" = "rgb(e6d4c2)";
         "col.border_inactive" = "rgb(000000)";
@@ -329,10 +297,6 @@ in {
           enabled = false; # Don’t eat my screen space
         };
       };
-
-      # See https://wiki.hyprland.org/Configuring/Variables
-      gestures.workspace_swipe = false;
-
       decoration = {
         rounding = 8;
         blur = {
@@ -341,8 +305,6 @@ in {
           passes = 2;
         };
       };
-
-      # See https://wiki.hyprland.org/Configuring/Animations
       animations = {
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
@@ -355,7 +317,6 @@ in {
           "workspaces, 1, 6, default"
         ];
       };
-
       misc = {
         disable_hyprland_logo = true;
         background_color = "0x000000";
@@ -363,31 +324,17 @@ in {
         vfr = true; # Save power
       };
     };
-    systemd.enable = true; # TEST relevance
-    xwayland.enable = true;
   };
 
   services.hypridle = {
     enable = true;
     settings.general = {
-      lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+      lock_cmd = "${config.wayland.lock}";
       unlock_cmd = "pkill -USR1 hyprlock";
-      before_sleep_cmd =
-        "${pkgs.playerctl}/bin/playerctl pause; ${pkgs.hyprlock}/bin/hyprlock";
-      # "${pkgs.playerctl}/bin/playerctl pause; ${pkgs.systemd}/bin/loginctl lock-session";
+      before_sleep_cmd = "${audio.play.pause}; ${config.wayland.lock}";
       after_sleep_cmd = "hyprctl dispatch dpms on";
       ignore_dbus_inhibit = false;
       ignore_systemd_inhibit = false;
     };
   };
-
-  # TODO at wayland level, maybe cleaner with Nix modules
-  wayland.windowManager.hyprland.settings.env = [
-    "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
-    "SHELL,${pkgs.nushell}/bin/nu" # Set Nushell as interactive shell
-    "EDITOR,hx" # Force default editor
-    "config.TERM,${config.term.cmd}" # Default terminal
-    "config.TERM_EXEC,${config.term.exec}" # Default terminal run args
-    "XDG_CONFIG_HOME,${config.home.sessionVariables.XDG_CONFIG_HOME}"
-  ];
 }

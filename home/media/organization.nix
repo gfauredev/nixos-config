@@ -1,5 +1,10 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
+{ pkgs, lib, ... }: {
+  options.organization.pim = lib.mkOption {
+    default = "thunderbird";
+    description = "Main Personal Information Management app";
+  };
+
+  config.home.packages = with pkgs; [
     anki-bin # Memorisation
     # markdown-anki-decks
     # anytype # Knowledge base TEST

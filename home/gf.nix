@@ -16,7 +16,6 @@
   home = {
     username = "gf"; # TEST home-manager.users.<name> config structure
     homeDirectory = "/home/gf";
-
     sessionVariables = { # Maybe Nix modules are more appropriated
       XDG_DESKTOP_DIR = "$HOME/data";
       XDG_DOCUMENTS_DIR = "$HOME/data";
@@ -24,13 +23,13 @@
       XDG_PICTURES_DIR = "$HOME/dcim";
       XDG_VIDEOS_DIR = "$HOME/dcim";
       XDG_DOWNLOAD_DIR = "$HOME/tmp";
-      # XDG_CONFIG_HOME = "$HOME/.config";
-      BROWSER = "brave";
-      PAGER = "ov";
+      SHELL = "nu"; # TEST if better with full paths
+      PAGER = "ov"; # TEST if better with full paths
+      BROWSER = "brave"; # TEST if better with full paths
+      BROWSER_ALT = "firefox"; # TEST if better with full paths
       PASSWORD_STORE_DIR =
         "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
     };
-
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.11";
   };
