@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ config, lib, ... }: {
   imports = [ ./default.nix ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -27,6 +27,8 @@
       # XDG_CONFIG_HOME = "$HOME/.config";
       BROWSER = "brave";
       PAGER = "ov";
+      PASSWORD_STORE_DIR =
+        "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
