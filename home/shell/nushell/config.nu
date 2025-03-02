@@ -25,6 +25,6 @@ $env.config.keybindings = [
   }
 ]
 
-$env.config.always_trash = true
+# $env.config.always_trash = true
 
 $env.config.show_banner = false

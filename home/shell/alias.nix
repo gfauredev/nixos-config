@@ -111,6 +111,8 @@ in {
     # System
     re = "exec nu";
     status = "git status"; # WARN temporary, waiting for CR shortcut
+    # Files
+    rm = "rm -v";
     # List
     l = "ls"; # Quick ls
     ll = "ls --long"; # List all the data

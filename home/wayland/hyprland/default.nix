@@ -1,22 +1,18 @@
 { lib, pkgs, config, ... }:
 let
-  # TODO this cleaner with Nix module to set global options
-  launch = {
-    # all = "pgrep albert || albert; albert toggle"; # Lazy start
-    all = "albert toggle";
-    alt = "rofi -show combi -combi-modes";
-    app = ''albert show "app "'';
-    # app = "rofi -show drun";
-    category = "rofi -show drun -drun-categories";
-    pass = ''albert show "pass "'';
-    # pass = "rofi-pass";
-    calc = "${config.term.menu} kalker";
-  };
+  # TODO this cleaner with Nix modules, global options
   browser = {
     default = "brave";
     alt1 = "firefox";
     alt2 = "nyxt";
   };
+  media = "spotify";
+  pim = "thunderbird"; # PIM app
+  # Utility functions & definitions
+  mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
+  open = "${config.term.cmd} ${config.term.exec} br"; # Global opener command
+  monitor = # Monitoring
+    "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
     region = "wl-present set-region"; # Change mirrored output or region
@@ -35,14 +31,10 @@ let
     dest-ws = "${location}/${timestamp}_${workspace}.${ftype}";
     dest-zone = "${location}/${timestamp}_${window}.${ftype}";
   };
-  media = {
-    cmd = "spotify";
-    name = "Spotify";
-  };
-  open = "br"; # Global oppener
-  mixer = "pulsemixer"; # Audio mixer
-  pim = "thunderbird"; # PIM app
-  monitor = "${config.term.monitor} btm --battery --enable_gpu"; # Monitoring
+  ifWorkspaceEmpty = { ws }:
+    ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
+  cycleOrToggleGroup =
+    "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
 in {
   home.packages = with pkgs; [
     jq # Interpret `hyprctl -j` JSON in keybindings
@@ -99,10 +91,10 @@ in {
 
       # See https://wiki.hyprland.org/Configuring/Window-Rules
       windowrulev2 = [
-        # Menu windows (like mixer)
-        "float, class:menu" # Float (not tiled)
-        "center, class:menu" # Center of screen
-        "size 888 420, class:menu" # Small rectangle
+        # Menu windows (like the audio mixer), moved to exec rules
+        # "float, class:menu" # Float (not tiled)
+        # "center, class:menu" # Center of screen
+        # "size 888 420, class:menu" # Small rectangle
         # Thunderbird Reminders
         "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
         "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
@@ -123,26 +115,26 @@ in {
         "SUPER SHIFT, j, Freeze mirrored image, exec, ${mirror.freeze}"
         "SUPER SHIFT, j, Change mirrored output or region, exec, ${mirror.region}"
         # Launch
-        "$mod, Super_L, Default launcher, exec, ${launch.all}"
-        "$mod, SPACE, alternative/fallback launcher, exec, ${launch.alt}"
-        "$mod CONTROL, SPACE, Quick calculator, exec, ${launch.calc}"
-        "$mod SHIFT, SPACE, Quick password manager, exec, ${launch.pass}"
+        "$mod, Super_L, Default launcher, exec, ${config.launch.all}"
+        "$mod, SPACE, alternative/fallback launcher, exec, ${config.launch.alt}"
+        "$mod CONTROL, SPACE, Quick calculator, exec, ${config.launch.calc}"
+        "$mod SHIFT, SPACE, Quick password manager, exec, ${config.launch.pass}"
         # Launch with special media keys
-        ", Menu, Open menu with media key, exec, ${launch.all}"
-        ", XF86MenuKB, Open menu with media key, exec, ${launch.all}"
-        ", XF86HomePage, Open home/menu with media key, exec, ${launch.all}"
-        ", XF86Calculator, Quick calculator with media key, exec, ${launch.calc}"
-        ", XF86Search, Quick search with media key, exec, ${launch.all}"
-        # config.Terminal
-        "$mod, RETURN, Open a default config.terminal, exec, ${config.term.cmd}"
-        "$mod SHIFT, RETURN, Open a floating default config.terminal, exec, ${config.term.menu} $SHELL"
-        "$mod CONTROL, RETURN, Open an alternative/fallback config.terminal, exec, ${config.term-alt.cmd}"
-        "$mod CONTROL SHIFT, Open floating alt config.terminal, RETURN, exec, ${config.term-alt.menu} $SHELL"
+        ", Menu, Open launcher with media key, exec, ${config.launch.all}"
+        ", XF86MenuKB, Open launcher with media key, exec, ${config.launch.all}"
+        ", XF86HomePage, Open launcher with media key, exec, ${config.launch.all}"
+        ", XF86Calculator, Quick calculator with media key, exec, ${config.launch.calc}"
+        ", XF86Search, Quick search with media key, exec, ${config.launch.all}"
+        # Terminal
+        "$mod, RETURN, Open a default terminal, exec, ${config.term.cmd}"
+        "$mod SHIFT, RETURN, Open a floating default terminal, exec, [float; center; size 888 420] ${config.term.cmd}"
+        "$mod CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}"
+        "$mod CONTROL SHIFT, Open floating alt terminal, RETURN, exec, [float; center; size 888 420] ${config.term.alt.cmd}"
         # Manage windows
         "$mod, f, Toggle window floating, togglefloating,"
         "$mod, w, Toggle window fullscreen, fullscreen,"
         "$mod, q, Close current window, killactive,"
-        "$mod CONTROL, q, Close another window by clicking it, exec, hyprctl kill,"
+        "$mod CONTROL, q, Close another window by clicking it, exec, hyprctl kill," # FIXME
         # Move focus
         "$mod, c, Focus the window on the left, movefocus, l"
         "$mod, t, Focus the window below, movefocus, d"
@@ -158,7 +150,7 @@ in {
         "$mod CONTROL SHIFT, s, Move focused window to the right, swapwindow, u"
         "$mod CONTROL SHIFT, r, Move focused window to the right, swapwindow, r"
         # Grouping
-        "$mod, g, Toggle group or focus next window in group if there’s one, exec, hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup"
+        "$mod, g, Toggle group or focus next window in group if there’s one, exec, ${cycleOrToggleGroup}"
         "$mod CONTROL, g, Toggle grouping, togglegroup,"
         "$mod SHIFT, g, Focus next window in group, changegroupactive, f"
         "$mod CONTROL SHIFT, g, Focus previous window in group, changegroupactive, b"
@@ -172,72 +164,90 @@ in {
         "$mod, k, Pick a color anywhere on the screen, exec, hyprpicker --autocopy"
         # Workspaces (Left hand) may auto launch associated app
         "$mod, b, Web browsing workspace, workspace, name:web"
-        "$mod, b, Open browser in web workspace, exec, hyprctl clients | grep -i 'class: .*browser.*' || ${browser.default}"
+        "$mod, b, Open browser in web workspace, exec, ${
+          ifWorkspaceEmpty { ws = "web"; }
+        } ${browser.default}"
         "$mod SHIFT, b, Move window to web workspace, movetoworkspace, name:web"
         "$mod ALT, b, Move web workspace to monitor, focusworkspaceoncurrentmonitor, name:web"
         "$mod, a, Audio workspace, workspace, name:art"
-        ''
-          $mod, a, Launch Audio/Video app, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "art")' || ${launch.category} AudioVideo''
+        "$mod, a, Launch Audio/Video app, exec, ${
+          ifWorkspaceEmpty { ws = "art"; }
+        } ${config.launch.category} AudioVideo"
         "$mod SHIFT, a, Move window to audio workspace, movetoworkspace, name:art"
         "$mod, p, Go to Personal Information Management workspace, workspace, name:pim"
-        ''
-          $mod, p, Open Personal Information Management software, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
+        "$mod, p, Open Personal Information Management software, exec, ${
+          ifWorkspaceEmpty { ws = "pim"; }
+        } ${pim}"
         ", XF86Mail, Go to Personal Information Management workspace, workspace, name:pim"
-        ''
-          , XF86Mail, Open Personal Information Management software, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
+        ", XF86Mail, Open Personal Information Management software, exec, ${
+          ifWorkspaceEmpty { ws = "pim"; }
+        } ${pim}"
         "$mod SHIFT, p, Move window to PIM workspace, movetoworkspace, name:pim"
         "$mod, o, Open any file on dedicated workspace, workspace, name:opn"
-        "$mod, o, Open any file on dedicated workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${config.term.cmd} ${config.term.exec} zsh -ic '${open};zsh'"
+        "$mod, o, Open any file on dedicated workspace, exec, ${
+          ifWorkspaceEmpty { ws = "opn"; }
+        } ${open}"
         "$mod, i, Informations / monItorIng workspace, workspace, name:inf"
-        "$mod, i, Open monitoring software, exec, hyprctl clients | grep -i 'class: monitoring' || ${monitor}"
-        # Additional workspaces (Left hand) may auto launch associated app
+        "$mod, i, Open monitoring software, exec, ${
+          ifWorkspaceEmpty { ws = "top"; }
+        } ${monitor}"
+        # Additional workspaces (Left hand) that may auto launch associated app
         "$mod, u, SUp / SUpplementary workspace, workspace, name:sup"
+        "$mod, u, Launch an app on suplementary workspace, exec, ${
+          ifWorkspaceEmpty { ws = "sup"; }
+        } ${config.launch.app}"
         "$mod SHIFT, u, SUp / SUpplementary workspace, movetoworkspace, name:sup"
         "$mod, e, Etc (et cetera) workspace, workspace, name:etc"
-        ''
-          $mod, e, Launch an app on etc workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "etc")' || ${launch.app}''
+        "$mod, e, Launch an app on etc workspace, exec, ${
+          ifWorkspaceEmpty { ws = "etc"; }
+        } ${config.launch.app}"
         "$mod SHIFT, e, Move window to etc workspace, movetoworkspace, name:etc"
         "$mod, x, eXt / eXtra workspace, workspace, name:ext"
-        ''
-          $mod, x, Launch an app on ext workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.app}''
+        "$mod, x, Launch an app on ext workspace, exec, ${
+          ifWorkspaceEmpty { ws = "ext"; }
+        } ${config.launch.app}"
         "$mod SHIFT, x, Move window to ext workspace, movetoworkspace, name:ext"
         # Workspaces (Right hand) may auto launch associated app
-        "$mod, l, cLi / config.terminaL workspace, workspace, name:cli"
-        ''
-          $mod, l, Open a config.terminal on cli workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${config.term.name}";"i")))' || ${config.term.cmd}''
+        "$mod, l, cLi / terminaL workspace, workspace, name:cli"
+        "$mod, l, Open a terminal on cli workspace, exec, ${
+          ifWorkspaceEmpty { ws = "cli"; }
+        } ${config.term.cmd}"
         "$mod SHIFT, l, Move window to cli workspace, movetoworkspace, name:cli"
         "$mod, n, Go to notetaking workspace, workspace, name:not"
-        "$mod, n, Open any document in main user folders, exec, hyprctl clients | grep -i 'class: note' || ${config.term.note} zsh -ic '${open};zsh'"
+        "$mod, n, Open any document in main user folders, exec, ${
+          ifWorkspaceEmpty { ws = "not"; }
+        } ${open}"
         "$mod SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:not"
         "$mod, m, Go to messaging workspace, workspace, name:msg"
-        ''
-          $mod, m, Launch a messaging app, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "msg")' || ${launch.app}''
-        # Additional monitor workspaces (Right hand) may auto launch associated app
+        "$mod, m, Launch a messaging app, exec, ${
+          ifWorkspaceEmpty { ws = "msg"; }
+        } ${config.launch.app}"
+        # Additional monitor workspaces (Right hand)
         "$mod, d, Go to DisplayPort workspace, workspace, name:dpp" # FIXME right port
         "$mod SHIFT, d, Move window to DisplayPort workspace, movetoworkspace, name:dpp"
         "$mod, h, Go to HDMI workspace, workspace, name:hdm" # FIXME right port
         "$mod SHIFT, h, Move window to HDMI workspace, movetoworkspace, name:hdm"
-        # Media workspace (Media keys) may auto launch associated app
+        # Media workspace (Media keys) that auto launch associated app
         ", XF86AudioMedia, Go to media workspace, workspace, name:media"
+        ", XF86AudioMedia, Launch default media player, exec, ${
+          ifWorkspaceEmpty { ws = "media"; }
+        } ${media}"
         ", XF86Tools, Go to media workspace, workspace, name:media"
-        ''
-          , XF86AudioMedia, Launch default media player, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "${media.name}")' || ${media.cmd}''
-        ''
-          , XF86Tools, Launch default media player, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "${media.name}")' || ${media.cmd}''
-        "SHIFT, XF86AudioMedia, Open quick mixer, exec, ${config.term.menu} ${mixer}"
-        "SHIFT, XF86Tools, Open quick mixer, exec, ${config.term.menu} ${mixer}"
+        ", XF86Tools, Launch default media player, exec, ${
+          ifWorkspaceEmpty { ws = "media"; }
+        } ${media}"
+        "SHIFT, XF86AudioMedia, Open quick mixer, exec, [float; center; size 888 420] ${mixer}"
+        "SHIFT, XF86Tools, Open quick mixer, exec, [float; center; size 888 420] ${mixer}"
       ];
       binde = [
-        # Move windows
-        "$mod SHIFT, c, moveactive, -10 0" # Move floating left
-        "$mod SHIFT, t, moveactive, 0 10" # Move floating down
-        "$mod SHIFT, s, moveactive, 0 -10" # Move floating up
-        "$mod SHIFT, r, moveactive, 10 0" # Move floating right
-        # Resize windows
-        "$mod CONTROL, c, resizeactive, -10 0" # Move left
-        "$mod CONTROL, t, resizeactive, 0 10" # Move down
-        "$mod CONTROL, s, resizeactive, 0 -10" # Move up
-        "$mod CONTROL, r, resizeactive, 10 0" # Move right
+        "$mod SHIFT, c, moveactive, -10 0" # Move left
+        "$mod SHIFT, t, moveactive, 0 10" # Move down
+        "$mod SHIFT, s, moveactive, 0 -10" # Move up
+        "$mod SHIFT, r, moveactive, 10 0" # Move right
+        "$mod CONTROL, c, resizeactive, -10 0" # Resize to the left
+        "$mod CONTROL, t, resizeactive, 0 10" # Resize to the bottom
+        "$mod CONTROL, s, resizeactive, 0 -10" # Resize to the top
+        "$mod CONTROL, r, resizeactive, 10 0" # Resize to the right
       ];
       bindl = [
         # Audio
@@ -369,8 +379,8 @@ in {
     "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
     "SHELL,${pkgs.nushell}/bin/nu" # Set Nushell as interactive shell
     "EDITOR,hx" # Force default editor
-    "config.TERM,${config.term.cmd}" # Default config.terminal
-    "config.TERM_EXEC,${config.term.exec}" # Default config.terminal run args
+    "config.TERM,${config.term.cmd}" # Default terminal
+    "config.TERM_EXEC,${config.term.exec}" # Default terminal run args
     "XDG_CONFIG_HOME,${config.home.sessionVariables.XDG_CONFIG_HOME}"
   ];
 }

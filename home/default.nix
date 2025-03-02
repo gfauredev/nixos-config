@@ -169,11 +169,13 @@
   };
 
   home = {
-    pointerCursor = { # Done with Hyprcursor now, TEST if still necessary
-      package = pkgs.bibata-cursors;
-      gtk.enable = true;
+    pointerCursor = {
       name = "Bibata-Modern-Ice";
       size = 22;
+      # hyprCursor.enable = true; # TODO
+      # hyprCursor.size = size;
+      package = pkgs.bibata-cursors;
+      gtk.enable = true;
     };
     preferXdgDirectories = true;
   };
