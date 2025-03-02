@@ -8,11 +8,44 @@ let
   };
   media = "spotify";
   pim = "thunderbird"; # PIM app
+  picker = "hyprpicker --autocopy";
+  lock = "${pkgs.hyprlock}/bin/hyprlock";
   # Utility functions & definitions
+  lock-alt = "loginctl lock-session";
+  suspend = "systemctl suspend";
+  plane-mode = "rfkill toggle all; sleep 1";
   mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   open = "${config.term.cmd} ${config.term.exec} br"; # Global opener command
   monitor = # Monitoring
     "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
+  brightness = {
+    RAISE = "brightnessctl set 5%+";
+    # RAISE = "light -A 5";
+    raise = "brightnessctl set 1%+";
+    # raise = "light -A 1";
+    LOWER = "brightnessctl set 5%-";
+    # LOWER = "light -U 5";
+    lower = "brightnessctl set 1%-";
+    # lower = "light -U 1";
+  };
+  audio = {
+    speaker.toggle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
+    speaker.raise = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; # Wireplumber
+    speaker.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; # Wireplumber
+    speaker.lower = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"; # Wireplumber
+    speaker.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; # Wireplumber
+    mic.toggle = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; # Wireplumber
+    mic.raise = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"; # Wireplumber
+    mic.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"; # Wireplumber
+    mic.lower = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"; # Wireplumber
+    mic.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"; # Wireplumber
+    play.toggle = "playerctl play-pause";
+    play.next = "playerctl next";
+    play.previous = "playerctl previous";
+    media.toggle = "playerctl play-pause -p ${media}";
+    media.next = "playerctl next -p ${media}";
+    media.previous = "playerctl previous -p ${media}";
+  };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
     region = "wl-present set-region"; # Change mirrored output or region
@@ -106,41 +139,34 @@ in {
       # See https://wiki.hyprland.org/Configuring/Keywords
       "$mod" = "SUPER";
       bindd = [
-        # System control
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
-        "$mod, comma, Lock session and obfuscates display, exec, ${pkgs.hyprlock}/bin/hyprlock"
-        "$mod CONTROL, comma, Lock session with loginctl, exec, loginctl lock-session"
-        "$mod SHIFT, comma, Suspend computer to sleep, exec, systemctl suspend"
+        "$mod, comma, Lock session and obfuscates display, exec, ${lock}"
+        "$mod CONTROL, comma, Lock session with loginctl, exec, ${lock-alt}"
+        "$mod SHIFT, comma, Suspend computer to sleep, exec, ${suspend}"
         "SUPER, j, Mirror output or region, exec, ${mirror.default}" # (F9 on Framework Laptop)
         "SUPER SHIFT, j, Freeze mirrored image, exec, ${mirror.freeze}"
         "SUPER SHIFT, j, Change mirrored output or region, exec, ${mirror.region}"
-        # Launch
         "$mod, Super_L, Default launcher, exec, ${config.launch.all}"
         "$mod, SPACE, alternative/fallback launcher, exec, ${config.launch.alt}"
         "$mod CONTROL, SPACE, Quick calculator, exec, ${config.launch.calc}"
         "$mod SHIFT, SPACE, Quick password manager, exec, ${config.launch.pass}"
-        # Launch with special media keys
         ", Menu, Open launcher with media key, exec, ${config.launch.all}"
         ", XF86MenuKB, Open launcher with media key, exec, ${config.launch.all}"
         ", XF86HomePage, Open launcher with media key, exec, ${config.launch.all}"
         ", XF86Calculator, Quick calculator with media key, exec, ${config.launch.calc}"
         ", XF86Search, Quick search with media key, exec, ${config.launch.all}"
-        # Terminal
         "$mod, RETURN, Open a default terminal, exec, ${config.term.cmd}"
         "$mod SHIFT, RETURN, Open a floating default terminal, exec, [float; center; size 888 420] ${config.term.cmd}"
         "$mod CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}"
         "$mod CONTROL SHIFT, Open floating alt terminal, RETURN, exec, [float; center; size 888 420] ${config.term.alt.cmd}"
-        # Manage windows
         "$mod, f, Toggle window floating, togglefloating,"
         "$mod, w, Toggle window fullscreen, fullscreen,"
         "$mod, q, Close current window, killactive,"
         "$mod CONTROL, q, Close another window by clicking it, exec, hyprctl kill," # FIXME
-        # Move focus
         "$mod, c, Focus the window on the left, movefocus, l"
         "$mod, t, Focus the window below, movefocus, d"
         "$mod, s, Focus the window above, movefocus, u"
         "$mod, r, Focus the window on the right, movefocus, r"
-        # Move window
         "$mod SHIFT, c, Move focused window to the left, movewindoworgroup, l"
         "$mod SHIFT, t, Move focused window below, movewindoworgroup, d"
         "$mod SHIFT, s, Move focused window above, movewindoworgroup, u"
@@ -149,20 +175,16 @@ in {
         "$mod CONTROL SHIFT, t, Move focused window below, swapwindow, d"
         "$mod CONTROL SHIFT, s, Move focused window to the right, swapwindow, u"
         "$mod CONTROL SHIFT, r, Move focused window to the right, swapwindow, r"
-        # Grouping
         "$mod, g, Toggle group or focus next window in group if there’s one, exec, ${cycleOrToggleGroup}"
         "$mod CONTROL, g, Toggle grouping, togglegroup,"
         "$mod SHIFT, g, Focus next window in group, changegroupactive, f"
         "$mod CONTROL SHIFT, g, Focus previous window in group, changegroupactive, b"
-        # Web
         "$mod CONTROL, b, Open alternative/fallback browser 1, exec, ${browser.alt1}"
         "$mod CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${browser.alt2}"
-        # Misc
         ", Print, Take a zoned screenshot, exec, ${screenshot.region} ${screenshot.dest-zone}"
         "CONTROL, Print, Copy screen zone to clipboard, exec, ${screenshot.region} - | wl-copy"
         "SHIFT, Print, Full screenshot, exec, ${screenshot.fullscreen} ${screenshot.dest-ws}"
-        "$mod, k, Pick a color anywhere on the screen, exec, hyprpicker --autocopy"
-        # Workspaces (Left hand) may auto launch associated app
+        "$mod, k, Pick a color anywhere on the screen, exec, ${picker}"
         "$mod, b, Web browsing workspace, workspace, name:web"
         "$mod, b, Open browser in web workspace, exec, ${
           ifWorkspaceEmpty { ws = "web"; }
@@ -191,7 +213,6 @@ in {
         "$mod, i, Open monitoring software, exec, ${
           ifWorkspaceEmpty { ws = "top"; }
         } ${monitor}"
-        # Additional workspaces (Left hand) that may auto launch associated app
         "$mod, u, SUp / SUpplementary workspace, workspace, name:sup"
         "$mod, u, Launch an app on suplementary workspace, exec, ${
           ifWorkspaceEmpty { ws = "sup"; }
@@ -222,12 +243,10 @@ in {
         "$mod, m, Launch a messaging app, exec, ${
           ifWorkspaceEmpty { ws = "msg"; }
         } ${config.launch.app}"
-        # Additional monitor workspaces (Right hand)
         "$mod, d, Go to DisplayPort workspace, workspace, name:dpp" # FIXME right port
         "$mod SHIFT, d, Move window to DisplayPort workspace, movetoworkspace, name:dpp"
         "$mod, h, Go to HDMI workspace, workspace, name:hdm" # FIXME right port
         "$mod SHIFT, h, Move window to HDMI workspace, movetoworkspace, name:hdm"
-        # Media workspace (Media keys) that auto launch associated app
         ", XF86AudioMedia, Go to media workspace, workspace, name:media"
         ", XF86AudioMedia, Launch default media player, exec, ${
           ifWorkspaceEmpty { ws = "media"; }
@@ -250,49 +269,37 @@ in {
         "$mod CONTROL, r, resizeactive, 10 0" # Resize to the right
       ];
       bindl = [
-        # Audio
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        "SHIFT, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        "CONTROL, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        "SHIFT, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        # Media
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        "SHIFT, XF86AudioPlay, exec, playerctl play-pause -p spotify"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        "SHIFT, XF86AudioPause, exec, playerctl play-pause -p spotify"
-        ", XF86AudioNext, exec, playerctl next"
-        "SHIFT, XF86AudioNext, exec, playerctl next -p spotify"
-        ", XF86AudioPrev, exec, playerctl previous"
-        "SHIFT, XF86AudioPrev, exec, playerctl previous -p spotify"
-        # Misc
-        ", XF86RFKill, exec, rfkill toggle all; sleep 1"
+        ", XF86AudioMute, exec, ${audio.speaker.toggle}"
+        "SHIFT, XF86AudioMute, exec, ${audio.mic.toggle}"
+        "CONTROL, XF86AudioMute, exec, ${audio.mic.toggle}"
+        ", XF86AudioMicMute, exec, ${audio.mic.toggle}"
+        "SHIFT, XF86AudioMicMute, exec, ${audio.speaker.toggle}"
+        "CONTROL, XF86AudioMicMute, exec, ${audio.speaker.toggle}"
+        ", XF86AudioPlay, exec, ${audio.play.toggle}"
+        "SHIFT, XF86AudioPlay, exec, ${audio.media.toggle}"
+        ", XF86AudioPause, exec, ${audio.play.toggle}"
+        "SHIFT, XF86AudioPause, exec, ${audio.media.toggle}"
+        ", XF86AudioNext, exec, ${audio.play.next}"
+        "SHIFT, XF86AudioNext, exec, ${audio.media.next}"
+        ", XF86AudioPrev, exec, ${audio.play.previous}"
+        "SHIFT, XF86AudioPrev, exec, ${audio.media.previous}"
+        ", XF86RFKill, exec, ${plane-mode}"
       ];
       bindle = [
-        # Brightness (light)
-        # ",XF86MonBrightnessUp, exec, light -A 5"
-        # ",XF86MonBrightnessDown, exec, light -U 5"
-        # "SHIFT, XF86MonBrightnessUp, exec, light -A 2"
-        # "SHIFT, XF86MonBrightnessDown, exec, light -U 2"
-        # "CONTROL, XF86MonBrightnessUp, exec, light -A 1"
-        # "CONTROL, XF86MonBrightnessDown, exec, light -U 1"
-        # Brightness (brightnessctl)
-        ",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-        "SHIFT, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
-        "SHIFT, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
-        "CONTROL, XF86MonBrightnessUp, exec, brightnessctl set 1%+"
-        "CONTROL, XF86MonBrightnessDown, exec, brightnessctl set 1%-"
-        # Audio
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        "CONTROL, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
-        "SHIFT, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"
-        "CONTROL SHIFT, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"
-
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        "CONTROL, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
-        "SHIFT, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
-        "CONTROL SHIFT, XF86AudioLowerVolume, exec, set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+        ",XF86MonBrightnessUp, exec, ${brightness.RAISE}"
+        ",XF86MonBrightnessDown, exec, ${brightness.LOWER}"
+        "SHIFT, XF86MonBrightnessUp, exec, ${brightness.raise}"
+        "SHIFT, XF86MonBrightnessDown, exec, ${brightness.lower}"
+        "CONTROL, XF86MonBrightnessUp, exec, ${brightness.raise}"
+        "CONTROL, XF86MonBrightnessDown, exec, ${brightness.lower}"
+        ", XF86AudioRaiseVolume, exec, ${audio.speaker.RAISE}"
+        "CONTROL, XF86AudioRaiseVolume, exec, ${audio.speaker.raise}"
+        "SHIFT, XF86AudioRaiseVolume, exec, ${audio.mic.RAISE}"
+        "CONTROL SHIFT, XF86AudioRaiseVolume, exec, ${audio.mic.raise}"
+        ", XF86AudioLowerVolume, exec, ${audio.speaker.LOWER}"
+        "CONTROL, XF86AudioLowerVolume, exec, ${audio.speaker.lower}"
+        "SHIFT, XF86AudioLowerVolume, exec, ${audio.mic.LOWER}"
+        "CONTROL SHIFT, XF86AudioLowerVolume, exec, ${audio.mic.lower}"
       ];
       bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
 
