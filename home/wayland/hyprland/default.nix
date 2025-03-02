@@ -182,7 +182,7 @@ in {
         } ${open}"
         "$mod, i, Informations / monItorIng workspace, workspace, name:inf"
         "$mod, i, Open monitoring software, exec, ${
-          ifWorkspaceEmpty { ws = "top"; }
+          ifWorkspaceEmpty { ws = "inf"; }
         } ${monitor}"
         "$mod, u, SUp / SUpplementary workspace, workspace, name:sup"
         "$mod, u, Launch an app on suplementary workspace, exec, ${
