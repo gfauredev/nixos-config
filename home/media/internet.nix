@@ -12,15 +12,14 @@
     transmission_4 # Bittorrent client
     qbittorrent # Bittorrent client
     iroh # Efficient IPFS, p2p file sharing
-    calyx-vpn # (bitmask client) Free VPN service FIXME
-    # riseup-vpn # (bitmask client) Free VPN service
-    protonvpn-cli_2 # Swiss VPN service (Python rewrite)
-    # protonvpn-cli # Swiss VPN service
+    # calyx-vpn # (bitmask client) Free VPN service FIXME
+    # riseup-vpn # (bitmask client) Free VPN service FIXME
+    protonvpn-gui # Swiss VPN service (Python rewrite)
     wayback # Web archiving tool
     # bitcoin # Bitcoin Core
     lnd # Lightning Network Daemon
     monero-gui # Private cryptocurrency
-    monero-cli # Monero CLI
+    # monero-cli # Monero CLI
     electrum # Light Bitcoin Wallet
     sparrow # Bitcoin wallet
     ord # Ordinals CLI
