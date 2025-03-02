@@ -112,7 +112,7 @@ in {
     re = "exec nu";
     status = "git status"; # WARN temporary, waiting for CR shortcut
     # Files
-    rm = "rm -v";
+    rm = "rm --trash --verbose";
     # List
     l = "ls"; # Quick ls
     ll = "ls --long"; # List all the data
