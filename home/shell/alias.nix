@@ -24,10 +24,6 @@ let
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
     # Files
-    mv = "mv -uv";
-    ts = "trash -v";
-    restore = "trash-restore";
-    empty = "trash-empty -i";
     shred = "shred -vu";
     wx = "watchexec";
     ## Search
@@ -70,6 +66,13 @@ let
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
+    # Open ONE LETTER
+    x = "xopen"; # xdg-open as separate process
+    a = "bat --force-colorization"; # --paging never"; # Better cat
+    p = "${config.home.sessionVariables.PAGER}"; # Default pager
+    # Edit ONE LETTER
+    e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
+    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
 in {
   # home.shellAliases = common; # Don’t works
@@ -79,6 +82,10 @@ in {
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
+    mv = "mv -uv";
+    ts = "trash -v";
+    restore = "trash-restore";
+    empty = "trash-empty -i";
     # List
     ls = "${eza_cfg}";
     sl = "${eza_cfg} --reverse";
@@ -93,13 +100,9 @@ in {
     l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
     g = "\\rga --smart-case --color=always"; # Better grep
     # Open ONE LETTER
-    o = "open"; # xdg-open as separate process
-    a = "bat --force-colorization"; # --paging never"; # Better cat
-    p = "$PAGER"; # Default pager
+    o = "xopen"; # xdg-open as separate process
     # Edit ONE LETTER
-    e = "$EDITOR"; # Default text editor
     m = "mkdir -pv"; # mkdir with parents if needed
-    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
     # Git
     upsub = "git commit -am 'build: update submodule(s)'; git push";
     pupu = "git pull --recurse-submodules --jobs=8; git push";
@@ -109,18 +112,14 @@ in {
     re = "exec nu";
     status = "git status"; # WARN temporary, waiting for CR shortcut
     # List
-    l = "ls"; # Better ls
-    ll = "ls --long";
-    la = "ls --all --long";
+    l = "ls"; # Quick ls
+    ll = "ls --long"; # List all the data
+    la = "ls --all --long"; # List all the data of all files, hidden included
     # List & Search ONE LETTER
     g = "rga --smart-case --color=always"; # Better grep
     # Open ONE LETTER
-    x = "xopen"; # xdg-open
     o = "open"; # nushell’s open
-    a = "bat --force-colorization"; # --paging never"; # Better cat
     # Edit ONE LETTER
-    e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
-    m = "mkdir"; # Quick mkdir
-    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
+    m = "mkdir -v"; # Quick mkdir
   };
 }
