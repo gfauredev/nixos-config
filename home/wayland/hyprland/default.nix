@@ -1,22 +1,21 @@
 { lib, pkgs, config, ... }:
 let
-  picker = "hyprpicker --autocopy"; # Color picker
-  plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
+  active_win = ''
+    $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
+  active_ws = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
+  cycleOrToggleGroup =
+    "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
+  ifWorkspaceEmpty = { ws }:
+    ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
   mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
-  # FIXME cd for broot (br)
-  open = "${config.term.cmd} ${config.term.exec} broot"; # Global opener command
   monitor = # Monitoring
     "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
-  brightness = {
-    RAISE = "brightnessctl set 5%+";
-    # RAISE = "light -A 5";
-    raise = "brightnessctl set 1%+";
-    # raise = "light -A 1";
-    LOWER = "brightnessctl set 5%-";
-    # LOWER = "light -U 5";
-    lower = "brightnessctl set 1%-";
-    # lower = "light -U 1";
-  };
+  # Global opener command # FIXME cd for broot (br)
+  open =
+    "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -c broot";
+  picker = "hyprpicker --autocopy"; # Color picker
+  plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
+  timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')"; # Current date as string
   audio = {
     speaker.toggle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
     speaker.raise = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; # Wireplumber
@@ -36,28 +35,28 @@ let
     media.next = "playerctl next -p ${config.media.favorite}";
     media.previous = "playerctl previous -p ${config.media.favorite}";
   };
+  brightness = {
+    RAISE = "brightnessctl set 5%+";
+    # RAISE = "light -A 5";
+    raise = "brightnessctl set 1%+";
+    # raise = "light -A 1";
+    LOWER = "brightnessctl set 5%-";
+    # LOWER = "light -U 5";
+    lower = "brightnessctl set 1%-";
+    # lower = "light -U 1";
+  };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
     region = "wl-present set-region"; # Change mirrored output or region
     freeze = "wl-present toggle-freeze"; # Freeze mirrored image
   };
-  screenshot = let
-    timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')";
-    workspace = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
-    window = ''
-      $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
-    ftype = "png";
-    location = "$HOME/screenshot";
+  screenshot = let location = "$HOME/screenshot";
   in {
     fullscreen = "grim";
     region = ''grim -g "$(slurp)"'';
-    dest-ws = "${location}/${timestamp}_${workspace}.${ftype}";
-    dest-zone = "${location}/${timestamp}_${window}.${ftype}";
+    dest-ws = "${location}/${timestamp}_${active_ws}.png";
+    dest-zone = "${location}/${timestamp}_${active_win}.png";
   };
-  ifWorkspaceEmpty = { ws }:
-    ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
-  cycleOrToggleGroup =
-    "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
 in {
   home.packages = with pkgs; [
     jq # Interpret `hyprctl -j` JSON in keybindings
