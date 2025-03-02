@@ -9,11 +9,11 @@
         skim # Fuzzy finder
         # dbus # Communicate with D-BUS
         # units # Convert between units
-        # query # Query JSON, XML, web data
+        query # Query JSON, XML, web data
         gstat # Git status
-        # polars # Work with polars dataframes
-        # formats # Convert eml, ics, ini, vcf to Nushell tables
-        # highlight # Syntax highlighting (like bat)
+        polars # Work with polars dataframes
+        formats # Convert eml, ics, ini, vcf to Nushell tables
+        highlight # Syntax highlighting (like bat)
       ];
   };
 }
