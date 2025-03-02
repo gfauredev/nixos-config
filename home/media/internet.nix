@@ -12,8 +12,8 @@
     transmission_4 # Bittorrent client
     qbittorrent # Bittorrent client
     iroh # Efficient IPFS, p2p file sharing
-    # calyx-vpn # (bitmask client) Free VPN service FIXME
-    riseup-vpn # (bitmask client) Free VPN service
+    calyx-vpn # (bitmask client) Free VPN service FIXME
+    # riseup-vpn # (bitmask client) Free VPN service
     protonvpn-cli_2 # Swiss VPN service (Python rewrite)
     # protonvpn-cli # Swiss VPN service
     wayback # Web archiving tool
