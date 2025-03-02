@@ -1,26 +1,6 @@
 { lib, pkgs, config, ... }:
 let
   # TODO this cleaner with Nix module to set global options
-  term = rec {
-    name = "ghostty"; # Name of the terminal window (for matching)
-    cmd = name;
-    exec = "-e"; # Option to execute a command in place of shell
-    # Class terminals (executes a command) TODO with ghostty
-    monitoring = "wezterm start --class monitoring"; # Monitoring
-    note = "wezterm start --class note"; # Note
-    menu = "wezterm --config window_background_opacity=0.7 start --class menu";
-  };
-  # TODO cleaner
-  term-alt = {
-    name = "alacritty"; # Name of the terminal (for matching)
-    cmd = "alacritty"; # Launch terminal
-    exec = "--command"; # Option to execute a command in place of shell
-    cd = "--working-directory"; # Option to launch terminal in a directory
-    # Classed terminals (executes a command)
-    monitoring = "alacritty --class monitoring --command"; # Monitoring terminal
-    note = "alacritty --class note --command"; # Monitoring terminal
-    menu = "alacritty --option window.opacity=0.7 --class menu --command";
-  };
   launch = {
     # all = "pgrep albert || albert; albert toggle"; # Lazy start
     all = "albert toggle";
@@ -30,7 +10,7 @@ let
     category = "rofi -show drun -drun-categories";
     pass = ''albert show "pass "'';
     # pass = "rofi-pass";
-    calc = "${term.menu} kalker";
+    calc = "${config.term.menu} kalker";
   };
   browser = {
     default = "brave";
@@ -62,7 +42,7 @@ let
   open = "br"; # Global oppener
   mixer = "pulsemixer"; # Audio mixer
   pim = "thunderbird"; # PIM app
-  monitor = "${term.monitoring} btm --battery --enable_gpu"; # Monitoring
+  monitor = "${config.term.monitor} btm --battery --enable_gpu"; # Monitoring
 in {
   home.packages = with pkgs; [
     jq # Interpret `hyprctl -j` JSON in keybindings
@@ -153,11 +133,11 @@ in {
         ", XF86HomePage, Open home/menu with media key, exec, ${launch.all}"
         ", XF86Calculator, Quick calculator with media key, exec, ${launch.calc}"
         ", XF86Search, Quick search with media key, exec, ${launch.all}"
-        # Terminal
-        "$mod, RETURN, Open a default terminal, exec, ${term.cmd}"
-        "$mod SHIFT, RETURN, Open a floating default terminal, exec, ${term.menu} $SHELL"
-        "$mod CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${term-alt.cmd}"
-        "$mod CONTROL SHIFT, Open floating alt terminal, RETURN, exec, ${term-alt.menu} $SHELL"
+        # config.Terminal
+        "$mod, RETURN, Open a default config.terminal, exec, ${config.term.cmd}"
+        "$mod SHIFT, RETURN, Open a floating default config.terminal, exec, ${config.term.menu} $SHELL"
+        "$mod CONTROL, RETURN, Open an alternative/fallback config.terminal, exec, ${config.term-alt.cmd}"
+        "$mod CONTROL SHIFT, Open floating alt config.terminal, RETURN, exec, ${config.term-alt.menu} $SHELL"
         # Manage windows
         "$mod, f, Toggle window floating, togglefloating,"
         "$mod, w, Toggle window fullscreen, fullscreen,"
@@ -207,7 +187,7 @@ in {
           , XF86Mail, Open Personal Information Management software, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "pim")' || ${pim}''
         "$mod SHIFT, p, Move window to PIM workspace, movetoworkspace, name:pim"
         "$mod, o, Open any file on dedicated workspace, workspace, name:opn"
-        "$mod, o, Open any file on dedicated workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${term.cmd} ${term.exec} zsh -ic '${open};zsh'"
+        "$mod, o, Open any file on dedicated workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"opn\")' || ${config.term.cmd} ${config.term.exec} zsh -ic '${open};zsh'"
         "$mod, i, Informations / monItorIng workspace, workspace, name:inf"
         "$mod, i, Open monitoring software, exec, hyprctl clients | grep -i 'class: monitoring' || ${monitor}"
         # Additional workspaces (Left hand) may auto launch associated app
@@ -222,12 +202,12 @@ in {
           $mod, x, Launch an app on ext workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "ext")' || ${launch.app}''
         "$mod SHIFT, x, Move window to ext workspace, movetoworkspace, name:ext"
         # Workspaces (Right hand) may auto launch associated app
-        "$mod, l, cLi / terminaL workspace, workspace, name:cli"
+        "$mod, l, cLi / config.terminaL workspace, workspace, name:cli"
         ''
-          $mod, l, Open a terminal on cli workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${term.name}";"i")))' || ${term.cmd}''
+          $mod, l, Open a config.terminal on cli workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "cli" and (.class | test("${config.term.name}";"i")))' || ${config.term.cmd}''
         "$mod SHIFT, l, Move window to cli workspace, movetoworkspace, name:cli"
         "$mod, n, Go to notetaking workspace, workspace, name:not"
-        "$mod, n, Open any document in main user folders, exec, hyprctl clients | grep -i 'class: note' || ${term.note} zsh -ic '${open};zsh'"
+        "$mod, n, Open any document in main user folders, exec, hyprctl clients | grep -i 'class: note' || ${config.term.note} zsh -ic '${open};zsh'"
         "$mod SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:not"
         "$mod, m, Go to messaging workspace, workspace, name:msg"
         ''
@@ -244,8 +224,8 @@ in {
           , XF86AudioMedia, Launch default media player, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "${media.name}")' || ${media.cmd}''
         ''
           , XF86Tools, Launch default media player, exec, hyprctl clients -j | jq -e 'any(.[]; .title == "${media.name}")' || ${media.cmd}''
-        "SHIFT, XF86AudioMedia, Open quick mixer, exec, ${term.menu} ${mixer}"
-        "SHIFT, XF86Tools, Open quick mixer, exec, ${term.menu} ${mixer}"
+        "SHIFT, XF86AudioMedia, Open quick mixer, exec, ${config.term.menu} ${mixer}"
+        "SHIFT, XF86Tools, Open quick mixer, exec, ${config.term.menu} ${mixer}"
       ];
       binde = [
         # Move windows
@@ -389,8 +369,8 @@ in {
     "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
     "SHELL,${pkgs.nushell}/bin/nu" # Set Nushell as interactive shell
     "EDITOR,hx" # Force default editor
-    "TERM,${term.cmd}" # Default terminal
-    "TERM_EXEC,${term.exec}" # Default terminal run args
+    "config.TERM,${config.term.cmd}" # Default config.terminal
+    "config.TERM_EXEC,${config.term.exec}" # Default config.terminal run args
     "XDG_CONFIG_HOME,${config.home.sessionVariables.XDG_CONFIG_HOME}"
   ];
 }
