@@ -1,4 +1,3 @@
-#!/bin/sh
 # Directories under user $HOME, roughly in order of importance
 # 1. life records for important areas that need monitoring or documents that might be recurrently asked
 # 2. project, files that might be required to progress towards a final goal or a precise milestone

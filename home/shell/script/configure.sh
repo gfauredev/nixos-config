@@ -1,4 +1,3 @@
-#!/bin/sh
 NIXOS_REBUILD_CMD='nixos-rebuild' # Set default params here
 HOME_MANAGER_CMD='home-manager'   # Set default params here
 SUBFLAKE='public'                 # Leave empty to disable

@@ -93,7 +93,7 @@ in {
     l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
     g = "\\rga --smart-case --color=always"; # Better grep
     # Open ONE LETTER
-    o = "open"; # xdg-open + disown
+    o = "open"; # xdg-open as separate process
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "$PAGER"; # Default pager
     # Edit ONE LETTER

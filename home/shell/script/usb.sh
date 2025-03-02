@@ -9,4 +9,4 @@ fi
 for dev in $devs; do
   udisksctl mount -b /dev/"$dev" || return
 done
-cd ~/usb/ || return
+# cd ~/usb/ || return # TODO per shell function that does this
