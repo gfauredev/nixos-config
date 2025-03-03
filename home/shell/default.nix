@@ -7,6 +7,8 @@
       pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
     extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
     backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/backup.sh}";
+    clean-archive = pkgs.writeScriptBin "cleanarchive"
+      "${lib.readFile ./script/clean-archive.sh}";
     configure =
       pkgs.writeScriptBin "cfg" "${lib.readFile ./script/configure.sh}";
     smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/cmt.sh}";
@@ -27,6 +29,7 @@
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
     backup # Backup with restic or rsync
+    clean-archive # Clean the ~/archive dir after a backup
     configure # Configure this flake config
     smart-commit # Quickly commit or amend, lint message
     date-edit # Open text files, prepend current date to the first one
