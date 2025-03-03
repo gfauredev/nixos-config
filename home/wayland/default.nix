@@ -1,5 +1,5 @@
 { pkgs, config, lib, ... }: {
-  imports = [ ./hyprland ./waybar ./launcher ./remap ]; # ./eww ];
+  imports = [ ./hyprland ./launcher ./eww ./waybar ./remap ];
 
   options.wayland = {
     lock = lib.mkOption {
