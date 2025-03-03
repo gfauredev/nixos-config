@@ -18,9 +18,7 @@ echo "Available space on destination : ${avail}o"
 echo "Used space by important data :   ${used}o"
 
 # Common rsync config
-alias rsync="rsync --verbose --archive --human-readable --partial --progress \
---exclude=.stversions/ --exclude=.stfolder/ --exclude=\*.local --exclude=.venv\*/\
- --exclude=.vagrant/ --exclude=.git/ --exclude=\*cache\* --exclude=\*thumbnails\*"
+alias rsync="rsync --verbose --archive --human-readable --partial --progress --exclude-from=$XDG_CONFIG_HOME/backup-exclude/common"
 
 if [ "$avail" -gt "$used" ]; then
   case "$1" in
@@ -28,29 +26,23 @@ if [ "$avail" -gt "$used" ]; then
     # Backup everything incrementally with restic in backup drives
     # (which label contains "back")
     printf "%s contains back : Backing up archive,data,graph,life,project with restic in it\n" "$1"
-    restic -r "$1" -v backup $IMPORTANT $DATA $ARCHIVE
+    restic -r "$1" -v backup $IMPORTANT "$DATA" "$ARCHIVE" \
+      --exclude-caches --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common
     ;;
   *)
     # Store most important directories in large drives or sticks
     # (which label don’t contains "back")
     printf "%s don’t contains back : Backing up data,graph,life,project with rsync in it\n" "$1"
     rsync --exclude="*.large" \
-      --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" \
-      --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" \
-      --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" \
-      --exclude="*.MP4" --exclude="*.MKV" --exclude="*.AVI" \
-      $IMPORTANT "$HOME/data" "$1"
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
+      $IMPORTANT "$DATA" "$1"
     ;;
   esac
 else
   # Don’t store less important directories in too small drives
   printf "%s seems almost full : Backing up graph,life,project with rsync in it\n" "$1"
   rsync --delete --exclude="*.large" --exclude="*.git" \
-    --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" --exclude="*.bmp" \
-    --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" --exclude="*.BMP" \
-    --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" \
-    --exclude="*.MP4" --exclude="*.MKV" --exclude="*.AVI" \
-    $IMPORTANT "$1"
+    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img $IMPORTANT "$1"
 fi
 
 printf "Don’t forget to clean the ~/archive directory with cleanarchive"

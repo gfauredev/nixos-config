@@ -1,0 +1,8 @@
+.stversions/
+.stfolder/
+*.local
+.venv*/
+.vagrant/
+.git/
+*thumbnails*
+*cache*
