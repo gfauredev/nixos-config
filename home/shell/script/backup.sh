@@ -9,11 +9,18 @@
 
 # TODO: restic backups in every drive of at least 500Go
 
-important_dirs="$HOME/life $HOME/project $HOME/.graph" # Always backed up
-avail=$(\df --output=avail "$1" | tail -n1)            # Available destination
-used=$(\du -c $important_dirs | tail -n1 | cut -f1)    # Used by important dirs
+IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
+DATA="$HOME/data"
+ARCHIVE="$HOME/archive"
+avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
+used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
 echo "Available space on destination : ${avail}o"
 echo "Used space by important data :   ${used}o"
+
+# Common rsync config
+alias rsync="rsync --verbose --archive --human-readable --partial --progress \
+--exclude=.stversions/ --exclude=.stfolder/ --exclude=\*.local --exclude=.venv\*/\
+ --exclude=.vagrant/ --exclude=.git/ --exclude=\*cache\* --exclude=\*thumbnails\*"
 
 if [ "$avail" -gt "$used" ]; then
   case "$1" in
@@ -21,41 +28,29 @@ if [ "$avail" -gt "$used" ]; then
     # Backup everything incrementally with restic in backup drives
     # (which label contains "back")
     printf "%s contains back : Backing up archive,data,graph,life,project with restic in it\n" "$1"
-    restic -r "$1" -v backup $important_dirs "$HOME/data" "$HOME/archive" \
-      --exclude ".stversions/" --exclude ".stfolder/" \
-      --exclude "*.local" \
-      --exclude ".venv*/" --exclude ".vagrant/" --exclude=".git/" \
-      --exclude="*cache*" --exclude="*thumbnails*"
+    restic -r "$1" -v backup $IMPORTANT $DATA $ARCHIVE
     ;;
   *)
     # Store most important directories in large drives or sticks
     # (which label don’t contains "back")
     printf "%s don’t contains back : Backing up data,graph,life,project with rsync in it\n" "$1"
-    rsync --verbose --archive --human-readable --partial --progress \
-      --exclude=".stversions/" --exclude=".stfolder/" \
-      --exclude="*.large" --exclude="*.local" \
-      --exclude=".venv*/" --exclude=".vagrant/" --exclude=".git/" \
+    rsync --exclude="*.large" \
       --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" \
       --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" \
       --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" \
       --exclude="*.MP4" --exclude="*.MKV" --exclude="*.AVI" \
-      --exclude="*cache*" --exclude="*thumbnails*" \
-      $important_dirs "$HOME/data" "$1"
+      $IMPORTANT "$HOME/data" "$1"
     ;;
   esac
 else
   # Don’t store less important directories in too small drives
   printf "%s seems almost full : Backing up graph,life,project with rsync in it\n" "$1"
-  rsync --verbose --archive --delete --human-readable --partial --progress \
-    --exclude=".stversions/" --exclude=".stfolder/" \
-    --exclude="*.large" --exclude="*.local" \
-    --exclude=".venv*/" --exclude=".vagrant/" --exclude="*.git" \
+  rsync --delete --exclude="*.large" --exclude="*.git" \
     --exclude="*.png" --exclude="*.jpg" --exclude="*.jpeg" --exclude="*.bmp" \
     --exclude="*.PNG" --exclude="*.JPG" --exclude="*.JPEG" --exclude="*.BMP" \
     --exclude="*.mp4" --exclude="*.mkv" --exclude="*.avi" \
     --exclude="*.MP4" --exclude="*.MKV" --exclude="*.AVI" \
-    --exclude="*cache*" --exclude="*thumbnails*" \
-    $important_dirs "$1"
+    $IMPORTANT "$1"
 fi
 
 printf "Don’t forget to clean the ~/archive directory with cleanarchive"
