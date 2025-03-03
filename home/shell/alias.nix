@@ -47,6 +47,7 @@ let
       "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
     # Git
     clone = "git clone -v";
+    status = "git status";
     fetch = "git fetch -v";
     pull = "git pull --recurse-submodules --jobs=8";
     remote = "git remote -v";
@@ -110,9 +111,8 @@ in {
   programs.nushell.shellAliases = common // {
     # System
     re = "exec nu";
-    status = "git status"; # WARN temporary, waiting for CR shortcut
     # Files
-    rm = "rm --trash --verbose";
+    rm = "rm --verbose"; # TODO trash by default
     # List
     l = "ls"; # Quick ls
     ll = "ls --long"; # List all the data
@@ -122,6 +122,6 @@ in {
     # Open ONE LETTER
     o = "open"; # nushell’s open
     # Edit ONE LETTER
-    m = "mkdir -v"; # Quick mkdir
+    m = "mkdir --verbose"; # Quick mkdir
   };
 }
