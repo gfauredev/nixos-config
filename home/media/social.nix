@@ -11,6 +11,8 @@
     gossip # Nostr GUI
     # nostr-rs-relay # Rust Nostr relay
 
+    lpac # Manage eSIMs in a chip (eUICC LPA)
+
     discord # PROPRIETARY messaging and general communication
   ];
 }
