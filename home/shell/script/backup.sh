@@ -11,6 +11,7 @@
 
 IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
 DATA="$HOME/data"
+OS="$HOME/data/operatingSystems.large"
 ARCHIVE="$HOME/archive"
 avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
 used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
@@ -28,6 +29,16 @@ if [ "$avail" -gt "$used" ]; then
     printf "%s contains back : Backing up archive,data,graph,life,project with restic in it\n" "$1"
     restic -r "$1" -v backup $IMPORTANT "$DATA" "$ARCHIVE" \
       --exclude-caches --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common
+    ;;
+  *boot*)
+    # Store most important directories in large drives or sticks
+    # (which label don’t contains "back")
+    printf "%s don’t contains back : Backing up data,graph,life,project with rsync in it\n" "$1"
+    rsync --exclude="*.large" \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
+      $IMPORTANT "$1"
+    rsync "$OS"/linux+bsd "$1"
+    rsync "$OS"/windows "$1"
     ;;
   *)
     # Store most important directories in large drives or sticks
