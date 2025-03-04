@@ -1,8 +1,11 @@
 .stversions/
 .stfolder/
-*.local
 .venv*/
 .vagrant/
 .git/
+node_modules/
+.direnv/
+*.local
 *thumbnails*
 *cache*
+# *.lock
