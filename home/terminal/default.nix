@@ -1,6 +1,5 @@
 { lib, ... }: { # Terminal emulators
-  imports = [ ./ghostty ./alacritty ./wezterm ];
-
+  imports = [ ./ghostty ./alacritty ./foot ]; # ./wezterm ];
   options.term = {
     name = lib.mkOption { # Main, full-featured terminal
       # type = lib.types.str;
