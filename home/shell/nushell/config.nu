@@ -25,8 +25,9 @@ $env.config.hooks.pre_execution = (
   | append {
     if (commandline | is-empty) {
       clear --keep-scrollback
-      ls | table   # FIXME doesn’t display
+      ls           # FIXME doesn’t display
       # git status # FIXME only in git repository
+      # commandline edit --append "git status"
     }
   }
 )
