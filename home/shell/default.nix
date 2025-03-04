@@ -71,14 +71,13 @@
   home.shell.enableShellIntegration = true;
 
   programs = {
+    fd.enable = true; # Better find
+    ripgrep.enable = true; # Better grep
+    bat.enable = true; # Better cat with syntax highlighting
+    bottom.enable = true; # Better top
     starship = {
       enable = true; # Super prompt
       enableNushellIntegration = true;
-      enableZshIntegration = true;
-    };
-    eza = {
-      enable = true; # Better ls
-      enableNushellIntegration = false;
       enableZshIntegration = true;
     };
     zoxide = {
@@ -104,52 +103,32 @@
         }];
       };
     };
-    bat = {
-      enable = true; # Better cat with syntax highlighting
-      # config.pager = "less -i"; # TODO setup ov
-    };
     atuin = {
       enable = true;
       enableNushellIntegration = true;
       settings = {
         enter_accept = true; # Don’t currently work on Nushell
-        filter_mode_shell_up_key_binding = "session";
         workspaces = true; # Filter commands executed in Git repo
         ctrl_n_shortcuts = true; # Ctrl+[1-9] quickly select cmd
+        # filter_mode_shell_up_key_binding = "session";
       };
     };
-    # };
-    # nix-your-shell = {
-    #   enable = true; # Not needed, `direnv` does it
-    #   enableNushellIntegration = true;
-    # };
+    eza = {
+      enable = true; # Better ls
+      enableNushellIntegration = false;
+      enableZshIntegration = true;
+    };
     gh = {
       enable = true; # GitHub official CLI
       # settings = { }; # TODO + credentials
     };
     gh-dash.enable = true; # GitHub dashboard
     jq.enable = true; # JSON parsing and request tool
-    command-not-found.enable = true; # FIXME maybe shell config’s fault
     translate-shell.enable = true; # Google Translate CLI
-    fd.enable = true; # Better find
-    ripgrep.enable = true; # Better grep
-    bottom.enable = true; # Better top
     fastfetch.enable = true; # Quick system info
-    fzf = {
-      enable = true; # Fuzzy searcher
-      enableZshIntegration = true;
-    };
-    less = {
-      enable = false; # Bugged, don’t use lesskeys
-      keys = ''
-        #command
-        t forw-line
-        s back-line
-        T forw-line-force
-        S back-line-force
-      '';
-    };
+    less.enable = false; # Bugged, don’t respects lesskeys
     lesspipe.enable = false;
+    # command-not-found.enable = true; # Done manually in Nushell
   };
 
   xdg.configFile = {

@@ -2,7 +2,6 @@
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;
-    # envFile.source = ./env.nu;
     plugins = with pkgs.nushellPlugins; # FIXME plugins don’t build
       [
         # net # List network interfaces
@@ -15,5 +14,9 @@
         formats # Convert eml, ics, ini, vcf to Nushell tables
         highlight # Syntax highlighting (like bat)
       ];
+    settings = {
+      rm.always_trash = true;
+      show_banner = false;
+    };
   };
 }
