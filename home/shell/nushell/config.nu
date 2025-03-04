@@ -17,7 +17,6 @@ def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 # TODO display ethernet info if connected over ethernet,
 #   if not, display wifi info if connected over wifi
 # TODO display connected bluetooth devices info
-# TODO display hello message if session time less than 5 min (300s)
 # Actually run ENTER on empty command line Enter
 $env.config.hooks.pre_execution = (
   $env.config.hooks.pre_execution?
@@ -26,9 +25,14 @@ $env.config.hooks.pre_execution = (
     if (commandline | is-empty) {
       clear --keep-scrollback
       print (ls | table)
-      if (git status | complete | $in.exit_code != 0) {
+      if (git status | complete | $in.exit_code == 0) {
         git status
+      } else {
+        date now
       }
+      # TODO display hello message if session time less than 5 min (300s)
+      # if (w -h -s|head -n1|tr -s ' '|cut -d' ' -f3|into datetime) {
+      # }
     }
   }
 )
