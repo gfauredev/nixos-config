@@ -18,18 +18,18 @@ def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 #   if not, display wifi info if connected over wifi
 # TODO display connected bluetooth devices info
 # TODO display hello message if session time less than 5 min (300s)
-let ENTER =  {
-  if (commandline | is-empty) {
-    clear --keep-scrollback
-    print (ls)           # FIXME Colors
-    # print (git status) # FIXME only in git repository
-  } # Let the enter event pass
-}
 # Actually run ENTER on empty command line Enter
 $env.config.hooks.pre_execution = (
   $env.config.hooks.pre_execution?
   | default []
-  | append $ENTER)
+  | append {
+    if (commandline | is-empty) {
+      clear --keep-scrollback
+      ls | table   # FIXME doesn’t display
+      # git status # FIXME only in git repository
+    }
+  }
+)
 
 $env.config.hooks.command_not_found = {
   |command_name| print (command-not-found $command_name | str trim)

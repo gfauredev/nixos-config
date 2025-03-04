@@ -128,7 +128,6 @@
     fastfetch.enable = true; # Quick system info
     less.enable = false; # Bugged, don’t respects lesskeys
     lesspipe.enable = false;
-    # command-not-found.enable = true; # Done manually in Nushell
   };
 
   xdg.configFile = {
