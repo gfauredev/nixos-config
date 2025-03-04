@@ -27,7 +27,7 @@ if [ "$avail" -gt "$used" ]; then
   *back*)
     # Backup everything incrementally with restic in backup drives
     # (which label contains "back")
-    printf "%s contains back" "$1"
+    printf "%s contains back: " "$1"
     printf "Backing up life, project, data, archive incrementally with restic\n"
     restic -r "$1" -v backup $IMPORTANT "$DATA" "$ARCHIVE" \
       --exclude-caches --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common
