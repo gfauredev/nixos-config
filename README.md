@@ -11,43 +11,66 @@ the mouse is a chore, so I live mostly in the terminal and in keyboard-driven
 apps.
 
 [Hyprland](https://hyprland.org) dynamic wayland **window manager**, to
-efficiently organize apps on monitors and workspace with the keyboard.
-
-- Waybar
-- Eww
+efficiently organize apps on monitors and workspace with the keyboard,
+complemented with **Waybar** (probably **Eww** in a close future).
 
 [Nushell](https://www.nushell.sh) **interactive shell**, modern, working with
-structured data, allowing sophisticated pipelines on them.
+structured data, allowing sophisticated pipelines on them. I use it along a lot
+of other tools that make terminal life easier.
 
+- [Starship](https://starship.rs) prompt to always know where you are and other
+  useful status information using the shell.
 - [Broot](https://dystroy.org/broot) fast and ergonomic file fuzzy-finder.
-- [Dash shell](http://gondor.apana.org.au/~herbert/dash) **login shell**, very
-  fast, stricly POSIX compliant, reduced attack surface.
-- [Atuin](https://atuin.sh) cross-terminal and cross-devices command history.
 - [Zoxide](https://github.com/ajeetdsouza/zoxide) smater, faster cd alternative.
-- ripgrep
-- fd
-- sd
-- bat
-- bottom
-- starship
+- [bat](https://github.com/sharkdp/bat) to display text files neatly.
+- [Atuin](https://atuin.sh) cross-terminal and cross-devices command history.
+- [ripgrep](https://github.com/BurntSushi/ripgrep) with
+  [ripgrep-all](https://github.com/phiresky/ripgrep-all) to quickly search
+  full-text inside any file.
+- [fd](https://github.com/sharkdp/fd) to quickly find files.
+- [sd](https://github.com/chmln/sd) to easily replace a pattern in one or a
+  batch of files.
+- [bottom](https://github.com/ClementTsang/bottom) to monitor system ressources
+  with neat plots.
 
-[Helix](https://helix-editor.com) terminal-based, modal **text editor** to edit
-text very efficiently.
+Aditionnally, I use [Dash shell](http://gondor.apana.org.au/~herbert/dash) as my
+**login shell** and default scripts runner (`/bin/sh`), because it’s very fast,
+stricly POSIX compliant and by such has a reduced attack surface.
 
-[Ghostty](https://ghostty.org) modern, quick and feature-complet terminal
-emulator.
+[Helix](https://helix-editor.com) is my go-to **text editor** which is
+terminal-based, featureful, modern and most importantly modal **text editor**
+allowing to edit text very efficiently. It has strong LSP support, interesting
+productivity features such as global pickers, and growing DAP and plugins
+support.
 
-- [Alacritty](https://alacritty.org) fallback terminal, less featurefull than
-  Ghostty, but robust.
+My main **terminal** emulator is [Ghostty](https://ghostty.org) which is modern,
+quick and feature-complete, but I use [Alacritty](https://alacritty.org) as a
+fallback, which is less featurefull, but robust.
 
-[Albert](https://albertlauncher.github.io) general launcher with which I launch
-apps, do calculations, manage my `pass` passwords, search for emojies…
+[Albert](https://albertlauncher.github.io) is my general **launcher** with which
+I launch apps, do calculations, manage my `pass` passwords, search for emojies…
 
-[Thunderbird](https://www.thunderbird.net) not exactly keyboard-driven, but a
-very comprehensive and standards-based personal information management tool.
+[Thunderbird](https://www.thunderbird.net) for **personal information
+management**. Not exactly keyboard-driven, but very comprehensive and
+standards-based. I may drift to CLI tools such as
+[Himalaya](https://github.com/pimalaya/himalaya) and
+[Khal](https://github.com/pimutils/khal).
 
-I also am of course a big [direnv](https://direnv.net) fan to manager all my dev
-environments along with Nix Flakes.
+[Stylix](https://stylix.danth.me) Flake to enforce my favorite color theme, my
+favorite fonts and other style settings everywhere. To fully leverage OLED
+screens for power saving, I always set background to pitch black `#000`.
+
+- [Catppuccin Mocha](https://catppuccin.com) color theme, but with pitch black
+  `#000` background.
+- [Libre Baskerville]() Serif font.
+- [Nacelle]() Sans font.
+- [JetBrainsMono]() or [FiraCode]() `Nerd Font` Mono font.
+- [Noto Color Emoji]() for emoticons.
+- [Bibata Modern Ice]() cursor theme.
+
+I also am a big fan of [direnv](https://direnv.net) along Nix Flake’s dev shells
+to manage all my development environments declaratively, and activate them
+effortlessly.
 
 ## Conventions of this repository
 

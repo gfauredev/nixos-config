@@ -289,12 +289,10 @@ in {
         hide_on_key_press = true;
         hide_on_touch = true;
       };
+      group.groupbar.enabled = false; # Don’t eat my screen space
       group = {
-        "col.border_active" = "rgb(e6d4c2)";
-        "col.border_inactive" = "rgb(000000)";
-        groupbar = {
-          enabled = false; # Don’t eat my screen space
-        };
+        "col.border_active" = "rgb(e6d4c2)"; # TODO Stylix
+        "col.border_inactive" = "rgb(000000)"; # TODO Stylix
       };
       decoration = {
         rounding = 8;
@@ -318,9 +316,9 @@ in {
       };
       misc = {
         disable_hyprland_logo = true;
-        background_color = "0x000000";
         disable_splash_rendering = true;
         vfr = true; # Save power
+        background_color = lib.mkForce "0x000000"; # Stylix
       };
     };
   };

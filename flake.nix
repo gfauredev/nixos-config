@@ -44,7 +44,6 @@
             ./system/pc/gaming.nix # TODO make it an option of module system/pc/
             lanzaboote.nixosModules.lanzaboote # TODO factorize, tie to system/default.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
-            stylix.nixosModules.stylix # Color & fonts TODO for home-manager
           ];
         };
         chimera = { # Chimera, a flying creature
@@ -111,6 +110,7 @@
             ./home/terminal # Terminal emulators
             ./home/editor # CLI and GUI text editors
             ./home/media # Media consuming and editing
+            stylix.homeManagerModules.stylix # Color & fonts
           ];
         };
         "gf@chimera" = {

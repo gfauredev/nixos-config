@@ -1,4 +1,5 @@
 { config, lib, ... }: {
+  # TODO move most of this in home/default.nix, this file should no be needed
   imports = [ ./default.nix ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -10,6 +11,7 @@
       "bespokesynth-with-vst2"
       "spotify"
       "steam-unwrapped"
+      "steam"
       "libsciter" # Used by rustdesk
     ];
 

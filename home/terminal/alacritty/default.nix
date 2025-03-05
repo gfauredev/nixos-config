@@ -1,30 +1,15 @@
-{ ... }: {
+{ lib, ... }: {
   programs = {
     alacritty = {
       enable = true; # Fast terminal emulator
-      # See: <https://alacritty.org/config-alacritty.html>
-      settings = { # TODO configure
-        general = {
-          # import = [ ];
-          live_config_reload = false;
+      # See https://alacritty.org/config-alacritty.html
+      settings = {
+        general.live_config_reload = false;
+        window.padding = {
+          x = 2;
+          y = 2;
         };
-        window = {
-          # opacity = 0.8;
-          padding = {
-            x = 2;
-            y = 2;
-          };
-        };
-        font = {
-          # family = "FiraCode Nerd Font";
-          size = 11;
-        };
-        colors = {
-          primary = {
-            background = "#000000";
-            # foreground = "#000000";
-          };
-        };
+        colors.primary.background = lib.mkForce "#000000";
       };
     };
   };

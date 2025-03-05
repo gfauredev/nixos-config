@@ -13,15 +13,52 @@
 
   news.display = "notify"; # Notify for new home manager options
 
-  fonts.fontconfig = {
+  # fonts.fontconfig = {
+  #   enable = true;
+  #   defaultFonts = {
+  #     monospace = [ "FiraCode Nerd Font" ];
+  #     serif = [ "Libre Baskerville" ];
+  #     sansSerif = [ "Nacelle" ];
+  #     emoji = [ "Noto Color Emoji" ];
+  #   };
+  # };
+
+  stylix = { # Manage all things style & appearance
     enable = true;
-    defaultFonts = {
-      monospace = [ "FiraCode Nerd Font" ];
-      serif = [ "Libre Baskerville" ];
-      sansSerif = [ "Nacelle" ];
-      emoji = [ "Noto Color Emoji" ];
+    polarity = "dark";
+    fonts = {
+      serif = {
+        package = pkgs.libre-baskerville;
+        name = "Libre Baskerville";
+      };
+      sansSerif = {
+        package = pkgs.nacelle;
+        name = "Nacelle";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        # package = pkgs.nerd-fonts.fira-code;
+        name = "JetBrainsMono Nerd Font";
+        # name = "FiraCode Nerd Font";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
+    # TODO enforce pitch black #000 background for OLED
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 22;
     };
   };
+  # home.pointerCursor = {
+  #   hyprCursor.enable = true;
+  #   hyprCursor.size = config.home.pointerCursor.size;
+  #   gtk.enable = true;
+  # };
 
   home.packages = with pkgs; [ # TODO organize better, eventually in shell/
     # Machine learning
@@ -74,10 +111,6 @@
           # origin = "bottom-center";
           origin = "bottom-right";
           offset = "0x-28"; # Lowered to align with status bar
-          background = "#000000cc"; # As transparent as status
-          foreground = "#def";
-          separator_color = "auto";
-          font = "FiraCode Nerd Font";
           timeout = "6s";
         };
       };
@@ -168,17 +201,7 @@
     mimeApps.enable = true;
   };
 
-  home = {
-    pointerCursor = {
-      name = "Bibata-Modern-Ice";
-      size = 22;
-      # hyprCursor.enable = true; # TODO
-      # hyprCursor.size = size;
-      package = pkgs.bibata-cursors;
-      gtk.enable = true;
-    };
-    preferXdgDirectories = true;
-  };
+  home.preferXdgDirectories = true;
 
   gtk = {
     enable = true;

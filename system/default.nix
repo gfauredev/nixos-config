@@ -54,11 +54,7 @@
     # '';
   };
 
-  console = {
-    keyMap = lib.mkDefault "fr-bepo";
-    # font = "Lat2-Terminus16";
-    # useXkbConfig = lib.mkDefault true;
-  };
+  console.keyMap = lib.mkDefault "fr-bepo";
 
   time = {
     timeZone = lib.mkDefault "Europe/Paris";

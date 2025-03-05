@@ -53,15 +53,10 @@
             dots_spacing = 0.15;
             dots_center = true;
             dots_rounding = -1;
-            outer_color = "rgb(000000)"; # TODO rice with catppuccin-mocha
-            inner_color = "rgb(000000)"; # TODO rice with catppuccin-mocha
-            font_color = "rgb(ffddcc)"; # TODO rice with catppuccin-mocha
             fade_on_empty = true;
             fade_timeout = 2000;
             placeholder_text = "Passphrase / Fingerprint";
             hide_input = false;
-            check_color = "rgb(b6a482)"; # TODO rice with catppuccin-mocha
-            fail_color = "rgb(fe4321)"; # TODO rice with catppuccin-mocha
             fail_text = "$FAIL ($ATTEMPTS)";
             fail_transition = 300;
             capslock_color = -1;
@@ -70,8 +65,11 @@
             position = "0, 0";
             halign = "center";
             valign = "center";
-            # invert_numlock = false;
-            # swap_font_color = false;
+            outer_color = "rgb(000000)"; # TODO Stylix
+            inner_color = "rgb(000000)"; # TODO Stylix
+            font_color = "rgb(ffddcc)"; # TODO Stylix
+            check_color = "rgb(b6a482)"; # TODO Stylix
+            fail_color = "rgb(fe4321)"; # TODO Stylix
           }];
         };
       };
