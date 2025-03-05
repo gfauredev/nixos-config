@@ -64,23 +64,29 @@
           X = "keep_selections";
           A-X = "remove_selections";
         };
+        window = { # Window sub mode
+          c = "jump_view_left"; # h bépo equivalent
+          t = "jump_view_down"; # k bépo equivalent
+          s = "jump_view_up"; # j bépo equivalent
+          r = "jump_view_right"; # l bépo equivalent
+          C = "swap_view_left"; # H bépo equivalent
+          T = "swap_view_down"; # K bépo equivalent
+          S = "swap_view_up"; # J bépo equivalent
+          R = "swap_view_right"; # L bépo equivalent
+          v = "vsplit"; # Vertical right split
+          w = "vsplit"; # Vertical right split
+          h = "hsplit"; # Horizontal bottom split
+          W = "hsplit"; # Horizontal bottom split
+        };
       in {
         normal = default // {
-          "C-w" = { # Window sub mode
-            c = "jump_view_left"; # h bépo equivalent
-            t = "jump_view_down"; # k bépo equivalent
-            s = "jump_view_up"; # j bépo equivalent
-            r = "jump_view_right"; # l bépo equivalent
-            C = "swap_view_left"; # H bépo equivalent
-            T = "swap_view_down"; # K bépo equivalent
-            S = "swap_view_up"; # J bépo equivalent
-            R = "swap_view_right"; # L bépo equivalent
-          };
+          "C-w" = window;
           space = {
             u = "select_references_to_symbol_under_cursor"; # Select all Usages
             U = "goto_reference"; # Select a Usage to go to
             h = "hover"; # Show Help
             space = "command_palette"; # Show all the commands
+            w = window;
           };
           g = { # GO TO
             # g = "goto_file_start"; # Default
