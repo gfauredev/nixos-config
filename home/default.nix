@@ -50,6 +50,7 @@
       };
     };
     # Based on Catppuccin Mocha, but with pitch black #000 background for OLED
+    # https://catppuccin.com/palette
     base16Scheme = {
       # base00 = "#1e1e2e"; # base, default background
       base00 = "#000000"; # pitch black, default background

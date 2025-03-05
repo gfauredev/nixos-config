@@ -10,6 +10,12 @@ make interacting with the computer more efficient and comfortable. Having to use
 the mouse is a chore, so I live mostly in the terminal and in keyboard-driven
 apps.
 
+First, I use the [bépo](https://bepo.fr) ergonomic **keyboard layout**, which is
+optimized for writing French, as well as english and code.
+
+Added to that, the amazing [keyd](https://github.com/rvaiya/keyd) kernel-level
+key remapping daemon, that allows me to define system-wide Vim-like motions.
+
 [Hyprland](https://hyprland.org) dynamic wayland **window manager**, to
 efficiently organize apps on monitors and workspace with the keyboard,
 complemented with **Waybar** (probably **Eww** in a close future).
@@ -58,13 +64,12 @@ standards-based. I may drift to CLI tools such as
 
 [Stylix](https://stylix.danth.me) Flake to enforce my favorite color theme, my
 favorite fonts and other style settings everywhere. To fully leverage OLED
-screens for power saving, I always set background to pitch black `#000`.
+screens for power saving, I always set background to pitch black `#000000`.
 
-- [Catppuccin Mocha](https://catppuccin.com) color theme, but with pitch black
-  `#000` background.
-- [Libre Baskerville]() Serif font.
-- [Nacelle]() Sans font.
-- [JetBrainsMono]() or [FiraCode]() `Nerd Font` Mono font.
+- [Catppuccin Mocha](https://catppuccin.com) colorscheme, with black background.
+- [Libre Baskerville]() Serif font, for writen documents…
+- [Nacelle]() Sans font, for slides…
+- [JetBrainsMono]() or [FiraCode]() `Nerd Font` Mono font, for code, terminal…
 - [Noto Color Emoji]() for emoticons.
 - [Bibata Modern Ice]() cursor theme.
 

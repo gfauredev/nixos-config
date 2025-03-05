@@ -70,7 +70,12 @@ in {
     enable = true;
     systemd.enable = true;
     xwayland.enable = true; # Backwards compatibility
-    settings = {
+    settings = let
+      _base07 = config.stylix.base16Scheme.base07;
+      base07 = # Remove the leading hash
+        "rgb(${builtins.substring 1 (builtins.stringLength _base07) _base07})";
+      black = "rgb(000000)"; # Pitch black background for OLED
+    in {
       # See https://wiki.hyprland.org/Configuring/
       monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
       debug.disable_logs = false; # Enable logs
@@ -278,7 +283,7 @@ in {
         gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
-        "col.inactive_border" = lib.mkForce "rgb(000000)"; # Low-cost gaps
+        "col.inactive_border" = lib.mkForce black; # Low-cost gaps
       };
       cursor = {
         no_hardware_cursors = false;
@@ -289,9 +294,8 @@ in {
       };
       group.groupbar.enabled = false; # Don’t eat my screen space
       group = {
-        "col.border_active" =
-          lib.mkForce "rgb(abcdef)"; # TODO Stylix, group hint
-        "col.border_inactive" = lib.mkForce "rgb(000000)"; # Low-cost gaps
+        "col.border_active" = lib.mkForce base07; # Stylix
+        "col.border_inactive" = lib.mkForce black; # Low-cost gaps
       };
       decoration = {
         rounding = 6;

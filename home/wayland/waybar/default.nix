@@ -207,7 +207,7 @@
         }
         #workspaces button {
           padding-left: 0;
-          padding-right: 3px;
+          padding-right: 5px;
         }
       '';
     };
