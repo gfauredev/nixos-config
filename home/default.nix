@@ -69,6 +69,22 @@
       base0D = "#89b4fa"; # blue
       base0E = "#cba6f7"; # mauve
       base0F = "#f2cdcd"; # flamingo
+      # Added based on Helix’s Catppuccin Mocha theme
+      base10 = "#f5c2e7"; # pink
+      base11 = "#eba0ac"; # maroon
+      base12 = "#89dceb"; # sky
+      base13 = "#74c7ec"; # sapphire
+      base14 = "#bac2de"; # subtext1
+      base15 = "#a6adc8"; # subtext0
+      base16 = "#9399b2"; # overlay2
+      base17 = "#7f849c"; # overlay1
+      base18 = "#6c7086"; # overlay0
+      base19 = "#11111b"; # crust
+      # Additional
+      base1A = "#2a2b3c"; # cursorline
+      base1B = "#b5a6a8"; # secondary_cursor
+      base1C = "#878ec0"; # secondary_cursor_normal
+      base1D = "#7ea87f"; # secondary_cursor_insert
     };
     cursor = {
       package = pkgs.bibata-cursors;
