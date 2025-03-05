@@ -36,18 +36,21 @@
         package = pkgs.nacelle;
         name = "Nacelle";
       };
+      # sans = sansSerif; # Alias
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        # package = pkgs.nerd-fonts.fira-code;
-        name = "JetBrainsMono Nerd Font";
-        # name = "FiraCode Nerd Font";
+        # package = pkgs.nerd-fonts.jetbrains-mono;
+        package = pkgs.nerd-fonts.fira-code;
+        # name = "JetBrainsMono Nerd Font";
+        name = "FiraCode Nerd Font";
       };
+      # mono = monospace; # Alias
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
       };
     };
     # TODO enforce pitch black #000 background for OLED
+    # FIXME not enough color for treesitter apparently
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     cursor = {
       package = pkgs.bibata-cursors;
@@ -55,6 +58,7 @@
       size = 22;
     };
     targets.hyprlock.enable = false; # FIXME make hyprlock use stylix
+    targets.helix.enable = false; # FIXME make helix use stylix
   };
   # home.pointerCursor = {
   #   hyprCursor.enable = true;
