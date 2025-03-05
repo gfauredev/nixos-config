@@ -6,14 +6,11 @@
         bottomBar = {
           layer = "top";
           position = "bottom";
+          margin = "0";
 
           modules-left = [ "battery" "temperature" "cpu" "memory" "network" ];
           modules-center = [ "hyprland/workspaces" "hyprland/window" ];
           modules-right = [ "tray" "pulseaudio" "mpris" "clock" ];
-
-          margin = "0";
-          exclusive = true; # No drawing on top or underneath
-          # fixed-center = false; # Fixed position of center module
 
           battery = {
             interval = 15;
@@ -101,6 +98,7 @@
           };
 
           "hyprland/workspaces" = {
+            on-click = null;
             all-outputs = false;
             # format = "{name}";
             format = "{icon}";

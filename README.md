@@ -44,10 +44,9 @@ Aditionnally, I use [Dash shell](http://gondor.apana.org.au/~herbert/dash) as my
 stricly POSIX compliant and by such has a reduced attack surface.
 
 [Helix](https://helix-editor.com) is my go-to **text editor** which is
-terminal-based, featureful, modern and most importantly modal **text editor**
-allowing to edit text very efficiently. It has strong LSP support, interesting
-productivity features such as global pickers, and growing DAP and plugins
-support.
+terminal-based, featureful, modern and most importantly modal, allowing to edit
+text very efficiently. It has strong LSP support, interesting productivity
+features such as global pickers, and growing DAP and plugins support.
 
 My main **terminal** emulator is [Ghostty](https://ghostty.org) which is modern,
 quick and feature-complete, but I use [Alacritty](https://alacritty.org) as a
