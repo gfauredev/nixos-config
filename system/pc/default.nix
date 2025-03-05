@@ -148,6 +148,7 @@
       # noto-fonts # Google well internationalized fonts
       # Symbols and emoticons
       noto-fonts-emoji # Emojies
+      font-awesome # Icons
     ];
   };
 
