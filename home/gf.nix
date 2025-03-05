@@ -1,5 +1,7 @@
 { config, lib, ... }: {
   # TODO move most of this in home/default.nix, this file should no be needed
+  # TODO common user config for system/ and home/ in the flake.nix,
+  #      infer homeConfigurations of the form `user@machine` based on it
   imports = [ ./default.nix ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:

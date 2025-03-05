@@ -33,6 +33,8 @@
       forEachSupportedSystem = f:
         nixpkgs.lib.genAttrs supportedSystems
         (system: f { pkgs = import nixpkgs { inherit system; }; });
+      # TODO common user config for system/ and home/ in the flake.nix,
+      #      infer homeConfigurations of the form `user@machine` based on it
     in {
       nixosModules = {
         # Laptops #

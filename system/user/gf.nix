@@ -1,4 +1,5 @@
 { ... }: {
+  # TODO common user config for system/ and home/ in the flake.nix
   users.users.gf = {
     isNormalUser = true;
     home = "/home/gf";
