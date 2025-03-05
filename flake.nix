@@ -15,8 +15,8 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/b98df1827a48e"; # Hardware
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
+    # nixos-hardware.url = "github:NixOS/nixos-hardware/b98df1827a48e"; # Hardware
     # musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
