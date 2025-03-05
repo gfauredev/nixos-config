@@ -203,7 +203,7 @@
 
   home.preferXdgDirectories = true;
 
-  gtk = {
+  gtk = { # TODO Stylix
     enable = true;
     # Remove this from $HOME
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";

@@ -1,7 +1,6 @@
 [core]
 modal = false
 custom-titlebar = true
-color-theme = "Gruvbox Dark"
 
 [editor]
 hover-delay = 222

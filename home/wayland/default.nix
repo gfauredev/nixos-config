@@ -32,10 +32,10 @@
     xdg.dataFile."icons/Bibata-Hypr-Ice".source =
       ./Bibata-Modern-Ice.hyprcursor;
 
-    home.sessionVariables = {
-      HYPRCURSOR_THEME = "Bibata-Hypr-Ice"; # Modern cursor theme
-      HYPRCURSOR_SIZE = "22";
-    };
+    # home.sessionVariables = {
+    #   HYPRCURSOR_THEME = "Bibata-Hypr-Ice"; # Modern cursor theme
+    #   HYPRCURSOR_SIZE = "22";
+    # };
 
     programs = {
       hyprlock = {
@@ -65,11 +65,11 @@
             position = "0, 0";
             halign = "center";
             valign = "center";
-            outer_color = "rgb(000000)"; # TODO Stylix
-            inner_color = "rgb(000000)"; # TODO Stylix
-            font_color = "rgb(ffddcc)"; # TODO Stylix
-            check_color = "rgb(b6a482)"; # TODO Stylix
-            fail_color = "rgb(fe4321)"; # TODO Stylix
+            # outer_color = "rgb(000000)"; # TODO Stylix
+            # inner_color = "rgb(000000)"; # TODO Stylix
+            # font_color = "rgb(ffddcc)"; # TODO Stylix
+            # check_color = "rgb(b6a482)"; # TODO Stylix
+            # fail_color = "rgb(fe4321)"; # TODO Stylix
           }];
         };
       };

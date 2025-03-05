@@ -23,6 +23,7 @@ box {
 }
 
 #waybar {
+  /* TODO style according to Stylix */
   color: #fdc;
   font-size: 14px;
   font-family: "FiraCode Nerd Font", monospace;

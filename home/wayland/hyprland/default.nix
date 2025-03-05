@@ -278,9 +278,8 @@ in {
         gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
-        "col.active_border" = "rgb(b6a482)";
-        "col.inactive_border" = "rgb(000000)";
-        # cursor_inactive_timeout = 1;
+        # "col.active_border" = "rgb(b6a482)"; # Stylix
+        # "col.inactive_border" = "rgb(000000)"; # Stylix
       };
       cursor = {
         no_hardware_cursors = false;
@@ -290,20 +289,17 @@ in {
         hide_on_touch = true;
       };
       group.groupbar.enabled = false; # Don’t eat my screen space
-      group = {
-        "col.border_active" = "rgb(e6d4c2)"; # TODO Stylix
-        "col.border_inactive" = "rgb(000000)"; # TODO Stylix
-      };
+      # group = {
+      #   "col.border_active" = "rgb(e6d4c2)"; # TODO Stylix
+      #   "col.border_inactive" = "rgb(000000)"; # TODO Stylix
+      # };
       decoration = {
-        rounding = 8;
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 2;
-        };
+        rounding = 6;
+        blur.enabled = lib.mkDefault false; # Save power
+        shadow.enabled = false; # Save power
       };
       animations = {
-        enabled = true;
+        enabled = lib.mkDefault false; # Save power
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 7, myBezier"
@@ -317,7 +313,7 @@ in {
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
-        vfr = true; # Save power
+        vfr = true; # Save power, less tearing
         background_color = lib.mkForce "0x000000"; # Stylix
       };
     };
