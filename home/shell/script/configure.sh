@@ -44,6 +44,7 @@ show_logs_status() {
 }
 
 cfg_pull() {
+  # FIXME Never detach head of submodule(s)
   remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   info 'Test if remote %s is reachable (in less than 3s)' "$remote"
   if ping -c 1 -w 3 "$remote"; then
