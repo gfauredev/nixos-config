@@ -158,7 +158,6 @@
           };
         };
       };
-      # TODO fgBlink to Stylix fg color
       style = ''
         * {
           margin-top: 0;
@@ -171,14 +170,14 @@
           font-family: "${config.stylix.fonts.monospace.name}";
           font-size: 14;
         }
-        @keyframes fgBlink {
+        @keyframes warn {
           to {
-            color: white;
+            color: red;
           }
         }
-        @keyframes bgBlink {
+        @keyframes crit {
           to {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: red;
           }
         }
         #battery.low:not(.charging) {
@@ -187,8 +186,7 @@
         #battery.warning:not(.charging),
         #cpu.warning,
         #memory.warning {
-          color: red;
-          animation-name: fgBlink;
+          animation-name: warn;
           animation-duration: 0.5s;
           animation-iteration-count: infinite;
           animation-direction: alternate;
@@ -197,8 +195,7 @@
         #temperature.critical,
         #cpu.critical,
         #memory.critical {
-          background-color: red;
-          animation-name: bgBlink;
+          animation-name: crit;
           animation-duration: 0.5s;
           animation-iteration-count: infinite;
           animation-direction: alternate;
