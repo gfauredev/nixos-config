@@ -4,7 +4,7 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      # theme = "catppuccin-trans"; # Stylix
+      theme = "catppuccin-trans"; # TODO Stylix
       editor = {
         auto-format = true;
         auto-save = {
@@ -249,27 +249,27 @@
         };
       };
     };
-    # themes = {
-    #   catppuccin-trans = {
-    #     inherits = "catppuccin_mocha";
-    #     "ui.background" = "transparent";
-    #   };
-    #   jetbrains-trans = {
-    #     inherits = "jetbrains_dark";
-    #     "ui.background" = "transparent";
-    #   };
-    #   base16-trans = {
-    #     inherits = "base16_default_dark";
-    #     "ui.background" = "transparent";
-    #   };
-    #   tokyo-trans = { # FIXME
-    #     inherits = "tokyonight";
-    #     "ui.background" = "transparent";
-    #   };
-    #   gruvbox-trans = {
-    #     inherits = "gruvbox_dark_hard";
-    #     "ui.background" = "transparent";
-    #   };
-    # };
+    themes = {
+      catppuccin-trans = {
+        inherits = "catppuccin_mocha";
+        "ui.background" = "transparent";
+      };
+      # jetbrains-trans = {
+      #   inherits = "jetbrains_dark";
+      #   "ui.background" = "transparent";
+      # };
+      # base16-trans = {
+      #   inherits = "base16_default_dark";
+      #   "ui.background" = "transparent";
+      # };
+      # tokyo-trans = { # FIXME
+      #   inherits = "tokyonight";
+      #   "ui.background" = "transparent";
+      # };
+      # gruvbox-trans = {
+      #   inherits = "gruvbox_dark_hard";
+      #   "ui.background" = "transparent";
+      # };
+    };
   };
 }

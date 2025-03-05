@@ -38,10 +38,10 @@
       };
       # sans = sansSerif; # Alias
       monospace = {
-        # package = pkgs.nerd-fonts.jetbrains-mono;
-        package = pkgs.nerd-fonts.fira-code;
-        # name = "JetBrainsMono Nerd Font";
-        name = "FiraCode Nerd Font";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        # package = pkgs.nerd-fonts.fira-code;
+        name = "JetBrainsMono Nerd Font";
+        # name = "FiraCode Nerd Font";
       };
       # mono = monospace; # Alias
       emoji = {
@@ -57,8 +57,9 @@
       name = "Bibata-Modern-Ice";
       size = 22;
     };
-    targets.hyprlock.enable = false; # FIXME make hyprlock use stylix
-    targets.helix.enable = false; # FIXME make helix use stylix
+    targets.hyprlock.enable = false; # FIXME error empty config file
+    targets.helix.enable = false; # FIXME color theme not compatible treesitter
+    targets.waybar.enable = false; # FIXME no icons because sans font injected
   };
   # home.pointerCursor = {
   #   hyprCursor.enable = true;

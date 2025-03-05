@@ -187,7 +187,7 @@
         #waybar {
           color: #fdc;
           font-size: 14px;
-          font-family: "${config.stylix.fonts.monospace.name}";
+          font-family: "${config.stylix.fonts.monospace.name}"
         }
 
         #battery {
