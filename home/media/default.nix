@@ -1,11 +1,10 @@
 { pkgs, lib, ... }: {
   imports = [
-    ./internet.nix # TODO modularize theses based on user@machine
+    ./internet+communication.nix
     ./organization.nix
     ./audio.nix
     ./photo.nix
     ./video.nix
-    ./social.nix
     ./gaming.nix
     ./science.nix
     ./3d.nix

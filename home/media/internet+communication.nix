@@ -39,6 +39,24 @@
     # iperf # IP bandwidth measuring
     # hping # Network monitoring tool
     # kismet # Wireless network sniffer
+
+    # Messaging
+    simplex-chat-desktop # Super secure messaging
+    element-desktop # Secure group messaging and calls
+    # element-web # Secure messaging and calls
+    signal-desktop # Secure messaging
+    # signal-cli # Secure messaging
+    olvid # French secure messaging
+    discord # PROPRIETARY messaging and general communication
+
+    # Social networks
+    nak # Nostr CLI
+    gossip # Nostr GUI
+    # nostr-rs-relay # Rust Nostr relay
+
+    # Misc
+    lpac # Manage eSIMs in a chip (eUICC LPA)
+
   ];
 
   programs = {

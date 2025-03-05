@@ -1,5 +1,5 @@
 {
-  description = "Guilhem Fauré’s NixOS Configurations";
+  description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
@@ -59,8 +59,8 @@
         # NixOS live (install) ISO image #
         live = {
           imports = [
-            # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
             ./system/installer.nix # Bootable ISO used to install NixOS
           ];
         };
@@ -70,7 +70,7 @@
           ];
         };
       };
-      # NixOS config, available through 'nixos-rebuild --flake .#hostname'
+      # NixOS config, enable: `nixos-rebuild --flake .#hostname`
       nixosConfigurations = {
         # Laptops #
         griffin = nixpkgs.lib.nixosSystem {
@@ -121,7 +121,7 @@
           ];
         };
       };
-      # home-manager config, available through 'home-manager --flake .#username@hostname'
+      # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;

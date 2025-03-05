@@ -53,7 +53,6 @@
           audio = "mpv";
           video = "mpv";
           web = "brave-browser";
-          pim = "thunderbird";
           pdf = "org.pwmt.zathura";
           explorer = "directory";
           document = "writer";
@@ -96,18 +95,18 @@
           "x-scheme-handler/https" = "${web}.desktop";
           "x-scheme-handler/http" = "${web}.desktop";
           # Email & Calendar
-          "x-scheme-handler/mailto" = "${pim}.desktop";
-          "x-scheme-handler/webcal" = "${pim}.desktop";
-          "x-scheme-handler/webcals" = "${pim}.desktop";
-          "x-scheme-handler/mid" = "${pim}.desktop";
-          "x-scheme-handler/news" = "${pim}.desktop";
-          "x-scheme-handler/snews" = "${pim}.desktop";
-          "x-scheme-handler/nntp" = "${pim}.desktop";
-          "x-scheme-handler/feed" = "${pim}.desktop";
-          "application/rss+xml" = "${pim}.desktop";
-          "application/x-extension-rss" = "${pim}.desktop";
-          "application/x-extension-ics" = "${pim}.desktop";
-          "text/calender" = "${pim}.desktop";
+          "x-scheme-handler/mailto" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/webcal" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/webcals" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/mid" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/news" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/snews" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/nntp" = "${config.organization.pim}.desktop";
+          "x-scheme-handler/feed" = "${config.organization.pim}.desktop";
+          "application/rss+xml" = "${config.organization.pim}.desktop";
+          "application/x-extension-rss" = "${config.organization.pim}.desktop";
+          "application/x-extension-ics" = "${config.organization.pim}.desktop";
+          "text/calender" = "${config.organization.pim}.desktop";
         };
     };
   };
