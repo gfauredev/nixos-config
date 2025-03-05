@@ -18,10 +18,11 @@
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/b98df1827a48e"; # Hardware
     # musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
+    stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
 
-  outputs =
-    { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware }:
+  outputs = { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware
+    , stylix }:
     let
       supportedSystems = [
         "x86_64-linux" # 64-bit Intel/AMD Linux
@@ -43,6 +44,7 @@
             ./system/pc/gaming.nix # TODO make it an option of module system/pc/
             lanzaboote.nixosModules.lanzaboote # TODO factorize, tie to system/default.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
+            stylix.nixosModules.stylix # Color & fonts TODO for home-manager
           ];
         };
         chimera = { # Chimera, a flying creature
