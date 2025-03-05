@@ -49,15 +49,34 @@
         name = "Noto Color Emoji";
       };
     };
-    # TODO enforce pitch black #000 background for OLED
-    # FIXME not enough color for treesitter apparently
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    # Based on Catppuccin Mocha, but with pitch black #000 background for OLED
+    base16Scheme = {
+      # base00 = "#1e1e2e"; # base, default background
+      base00 = "#000000"; # pitch black, default background
+      base01 = "#181825"; # mantle, alternate background
+      base02 = "#313244"; # surface0, selection background
+      base03 = "#45475a"; # surface1
+      base04 = "#585b70"; # surface2, alternate text
+      base05 = "#cdd6f4"; # text, default text
+      base06 = "#f5e0dc"; # rosewater
+      base07 = "#b4befe"; # lavender
+      base08 = "#f38ba8"; # red, error
+      base09 = "#fab387"; # peach, urgent
+      base0A = "#f9e2af"; # yellow, warning
+      base0B = "#a6e3a1"; # green
+      base0C = "#94e2d5"; # teal
+      base0D = "#89b4fa"; # blue
+      base0E = "#cba6f7"; # mauve
+      base0F = "#f2cdcd"; # flamingo
+    };
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
       size = 22;
     };
     targets.hyprlock.enable = false; # FIXME error empty config file
+    # FIXME ugly looking,
+    # see  https://github.com/chriskempson/base16/blob/main/styling.md
     targets.helix.enable = false; # FIXME color theme not compatible treesitter
   };
   # home.pointerCursor = {

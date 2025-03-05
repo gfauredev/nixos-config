@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ config, ... }: {
   programs.fuzzel = {
     enable = true;
     settings = {
@@ -6,7 +6,6 @@
         terminal = "${config.term.cmd} ${config.term.exec}";
         layer = "overlay";
       };
-      colors.background = lib.mkForce "00000080"; # Stylix
     };
   };
 }

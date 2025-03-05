@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ ... }: {
   programs = {
     alacritty = {
       enable = true; # Fast terminal emulator
@@ -9,7 +9,6 @@
           x = 2;
           y = 2;
         };
-        colors.primary.background = lib.mkForce "#000000";
       };
     };
   };

@@ -125,7 +125,7 @@
       };
     };
     languages = {
-      # See : https://docs.helix-editor.com/languages.html
+      # See https://docs.helix-editor.com/languages.html
       # WARN keep up to date with upstream:
       # https://github.com/helix-editor/helix/blob/master/languages.toml
       language = [
