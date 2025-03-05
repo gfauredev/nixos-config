@@ -53,6 +53,7 @@
       name = "Bibata-Modern-Ice";
       size = 22;
     };
+    targets.hyprlock.enable = false; # FIXME make hyprlock use stylix
   };
   # home.pointerCursor = {
   #   hyprCursor.enable = true;
