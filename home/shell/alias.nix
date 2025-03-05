@@ -24,6 +24,9 @@ let
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
     # Files
+    ts = "trash -v";
+    restore = "trash-restore";
+    empty = "trash-empty -i";
     shred = "shred -vu";
     wx = "watchexec";
     ## Search
@@ -84,9 +87,6 @@ in {
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
     mv = "mv -uv";
-    ts = "trash -v";
-    restore = "trash-restore";
-    empty = "trash-empty -i";
     # List
     ls = "${eza_cfg}";
     sl = "${eza_cfg} --reverse";
