@@ -7,10 +7,9 @@
           layer = "top";
           position = "bottom";
 
-          modules-left =
-            [ "battery" "temperature" "cpu" "memory" "network" "pulseaudio" ];
+          modules-left = [ "battery" "temperature" "cpu" "memory" "network" ];
           modules-center = [ "hyprland/workspaces" "hyprland/window" ];
-          modules-right = [ "tray" "mpris" "clock" ];
+          modules-right = [ "tray" "pulseaudio" "mpris" "clock" ];
 
           margin = "0";
           exclusive = true; # No drawing on top or underneath
@@ -55,7 +54,7 @@
               critical = 80;
             };
             # format = "󰻠 {usage}";
-            format = " {usage}";
+            format = " {usage}";
             tooltip = false;
             # max-length = 6;
           };
@@ -86,7 +85,7 @@
             format-bluetooth-muted = "{icon}  󰸈 {format_source}";
             format-muted = "󰸈 {format_source}";
             format-source = " {volume}";
-            format-source-muted = "";
+            format-source-muted = " ";
             format-icons = {
               headphone = "";
               hands-free = "";
@@ -94,7 +93,7 @@
               phone = "";
               portable = "";
               car = "";
-              default = [ "" "" "" ];
+              default = [ "" " " " " ];
             };
             tooltip = false;
             ignored-sinks = [ "Easy Effects Sink" ];
@@ -164,14 +163,15 @@
       # TODO fgBlink to Stylix fg color
       style = ''
         * {
-          margin: 0;
-          padding: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding-top: 0;
+          padding-bottom: 0;
           min-height: 0;
-          min-width: 0;
         }
         label {
           font-family: "${config.stylix.fonts.monospace.name}";
-          font-size: 12;
+          font-size: 14;
         }
         @keyframes fgBlink {
           to {
@@ -205,99 +205,11 @@
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
-
+        #workspaces button {
+          padding-left: 0;
+          padding-right: 3px;
+        }
       '';
-      #   window,
-      #   box,
-      #   widget,
-      #   label,
-      #   button {
-      #     color: inherit;
-      #     font-size: inherit;
-      #     margin: 0;
-      #     padding: 0;
-      #     min-height: 0;
-      #     min-width: 0;
-      #     background-color: transparent;
-      #   }
-
-      #   label,
-      #   box {
-      #     padding: 0 1px;
-      #   }
-
-      #   .modules-left label {
-      #     margin-left: 0;
-      #     margin-right: 8px;
-      #   }
-
-      #   #waybar {
-      #     color: #fdc;
-      #     font-size: 14px;
-      #   }
-
-      #   #battery {
-      #     min-width: 20px;
-      #   }
-
-      #   #pulseaudio {
-      #     min-width: 100px;
-      #   }
-
-      #   #pulseaudio.muted.source-muted {
-      #     min-width: 40px;
-      #   }
-
-      #   #pulseaudio.muted,
-      #   #pulseaudio.source-muted {
-      #     min-width: 75px;
-      #   }
-
-      #   #workspaces button {
-      #     padding-right: 3px;
-      #     margin-right: 3px;
-      #     border-radius: 8px;
-      #   }
-
-      #   #workspaces {
-      #     margin-top: 2px;
-      #     margin-bottom: 1px;
-      #   }
-
-      #   #workspaces button:last-child {
-      #     margin: 0;
-      #   }
-
-      #   #workspaces button.urgent {
-      #     background-color: #fdc;
-      #     animation-name: bgBlink;
-      #     animation-duration: 0.5s;
-      #     animation-iteration-count: infinite;
-      #     animation-direction: alternate;
-      #   }
-
-      #   #workspaces button.focused,
-      #   #workspaces button.active {
-      #     background-color: #fdc;
-      #     color: black;
-      #   }
-
-      #   #workspaces button:hover {
-      #     box-shadow: inherit;
-      #     text-shadow: inherit;
-      #     background: #876;
-      #     border-color: #876;
-      #   }
-
-      #   #tray {
-      #     border-radius: 8px;
-      #   }
-
-      #   #clock {
-      #     min-width: 160px;
-      #     padding: 0 1px;
-      #   }
-      # '';
     };
   };
 }

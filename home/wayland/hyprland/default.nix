@@ -278,8 +278,7 @@ in {
         gaps_out = 0;
         border_size = 2;
         layout = "dwindle";
-        # "col.active_border" = "rgb(b6a482)"; # Stylix
-        # "col.inactive_border" = "rgb(000000)"; # Stylix
+        "col.inactive_border" = lib.mkForce "rgb(000000)"; # Low-cost gaps
       };
       cursor = {
         no_hardware_cursors = false;
@@ -289,10 +288,11 @@ in {
         hide_on_touch = true;
       };
       group.groupbar.enabled = false; # Don’t eat my screen space
-      # group = {
-      #   "col.border_active" = "rgb(e6d4c2)"; # TODO Stylix
-      #   "col.border_inactive" = "rgb(000000)"; # TODO Stylix
-      # };
+      group = {
+        "col.border_active" =
+          lib.mkForce "rgb(abcdef)"; # TODO Stylix, group hint
+        "col.border_inactive" = lib.mkForce "rgb(000000)"; # Low-cost gaps
+      };
       decoration = {
         rounding = 6;
         blur.enabled = lib.mkDefault false; # Save power
