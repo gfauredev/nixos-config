@@ -99,6 +99,7 @@
       "XDG_CONFIG_HOME,${config.home.sessionVariables.XDG_CONFIG_HOME}"
       "SHELL,${config.home.sessionVariables.SHELL}" # Set Nushell as interactive shell
       "EDITOR,${config.home.sessionVariables.EDITOR}" # Force default editor
+      "PAGER,${config.home.sessionVariables.PAGER}" # Force default pager
       "PASSWORD_STORE_DIR,${config.home.sessionVariables.PASSWORD_STORE_DIR}"
     ];
   };
