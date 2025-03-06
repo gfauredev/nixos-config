@@ -46,6 +46,8 @@
             ./system/pc/gaming.nix # TODO make it an option of module system/pc/
             lanzaboote.nixosModules.lanzaboote # TODO factorize, tie to system/default.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
+            home-manager.nixosModules.home-manager
+            { home-manager.backupFileExtension = ".bak"; }
           ];
         };
         chimera = { # Chimera, a flying creature

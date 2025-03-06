@@ -1,6 +1,5 @@
 { config, pkgs, ... }: {
   programs.home-manager.enable = true; # MANDATORY
-  # home-manager.backupFileExtension = ".bak"; # FIXME
 
   imports = [
     ./shell # Interactive POSIX shell(s)

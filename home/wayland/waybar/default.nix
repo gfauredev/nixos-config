@@ -166,9 +166,7 @@
           padding-bottom: 0;
           min-height: 0;
           font-family:
-            "${config.stylix.fonts.sansSerif.name}",
             "${config.stylix.fonts.monospace.name}",
-            "${config.stylix.fonts.emoji.name}",
             "FontAwesome", "Symbols Nerd Font";
           font-size: 14;
         }
