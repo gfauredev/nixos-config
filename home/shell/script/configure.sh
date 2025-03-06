@@ -163,7 +163,7 @@ rebuild_home() {
   else
     HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake ."
   fi
-  info 'PROFILE update: "%s"' "$HOME_MANAGER_CMD"
+  info 'Home: Update: "%s"' "$HOME_MANAGER_CMD"
   systemd-inhibit $HOME_MANAGER_CMD switch || return
 }
 
