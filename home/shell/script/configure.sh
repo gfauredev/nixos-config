@@ -3,8 +3,8 @@ HOME_MANAGER_CMD='home-manager'   # Set default params here
 RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
 # -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
 
-SYSTEM="system/" # System (NixOS) configurations location
-HOME="home/"     # Home (Home Manager) configurations location
+SYSTEM="./system/" # System (NixOS) configurations location
+HOME="./home/"     # Home (Home Manager) configurations location
 
 show_help() {
   echo "By default, edit the configuration, amend or commit the changes, rebuild."
@@ -31,9 +31,9 @@ info() {
 
 show_logs_status() {
   if [ -d "public" ]; then
-    git -C public/ log --oneline || exit
+    git -C ./public/ log --oneline || exit
     echo
-    git -C public/ status || exit
+    git -C ./public/ status || exit
   else
     git log --oneline || exit
     echo
@@ -56,9 +56,9 @@ __cfg_pull() {
 cfg_pull() {
   if [ -d "public" ]; then
     info 'Public: Pulling latest changes'
-    __cfg_pull -C public/
+    __cfg_pull -C ./public/
     info 'Private: Pulling latest changes'
-    __cfg_pull -C private/
+    __cfg_pull -C ./private/
   else
     info 'Pulling latest changes'
     __cfg_pull
@@ -68,9 +68,9 @@ cfg_pull() {
 flake_update_inputs() {
   if [ -d "public" ]; then
     info 'Public: Update flake inputs'
-    nix flake update --flake public/ --commit-lock-file || exit 1
+    nix flake update --flake ./public/ --commit-lock-file || exit 1
     info 'Private: Update flake inputs'
-    nix flake update --flake private/ --commit-lock-file || return
+    nix flake update --flake ./private/ --commit-lock-file || return
   else
     info 'Update flake inputs'
     nix flake update --commit-lock-file || return
@@ -104,10 +104,10 @@ __cfg_commit() {
 cfg_commit() {
   if [ -d 'public' ]; then
     info 'Public: Commit flake repository'
-    __cfg_commit -C public/ "$*"
+    __cfg_commit -C ./public/ "$*"
     info 'Private: Commit flake repository (including public update)'
-    nix flake update --flake private/ public || exit 1
-    git -C private/ commit --all --message "$*" || exit # Stop if no changes
+    nix flake update --flake ./private/ public || exit 1
+    git -C ./private/ commit --all --message "$*" || exit # Stop if no changes
   else
     info 'Commit flake repository'
     __cfg_commit '' '' "$*" || exit # Stop if no changes
@@ -126,10 +126,10 @@ __cfg_amend() {
 cfg_amend() {
   if [ -d "public" ]; then
     info 'Public: Amend flake repository'
-    __cfg_amend -C public/
+    __cfg_amend -C ./public/
     info 'Private: Amend flake repository'
-    nix flake --flake private/ update public || exit 1
-    __cfg_amend -C private/
+    nix flake --flake ./private/ update public || exit 1
+    __cfg_amend -C ./private/
   else
     info 'Amend flake repository'
     __cfg_amend
@@ -171,9 +171,9 @@ cfg_push() {
   cfg_amend # Amend before pushing in case there’s uncommited changes
   if [ -d "public" ]; then
     info 'Public: Push flake repository'
-    git -C public/ push || return
+    git -C ./public/ push || return
     info 'Private: Push flake repository'
-    git -C private/ push || return
+    git -C ./private/ push || return
   else
     info 'Push flake repository'
     git push || exit
@@ -183,10 +183,10 @@ cfg_push() {
 cfg_rebase() {
   if [ -d "public" ]; then
     info 'Public: Rebase flake repository'
-    git -C public/ rebase -i || return
+    git -C ./public/ rebase -i || return
     info 'Private: Rebase flake repository'
     # TODO Automatically sync the private non-pushed commits with the public ones
-    git -C private/ rebase -i || return # TODO stop that, annoying
+    git -C ./private/ rebase -i || return # TODO stop that, annoying
   else
     info 'Rebase flake repository'
     git rebase -i || return
