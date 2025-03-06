@@ -3,8 +3,8 @@ HOME_MANAGER_CMD='home-manager'   # Set default params here
 RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
 # -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
 
-SYSTEM="./system/" # System (NixOS) configurations location
-HOME="./home/"     # Home (Home Manager) configurations location
+SYSTEM_CFG="./system/" # System (NixOS) configurations location
+HOME_CFG="./home/"     # Home (Home Manager) configurations location
 
 show_help() {
   echo "By default, edit the configuration, amend or commit the changes, rebuild."
@@ -89,11 +89,11 @@ g_home=false   # Whether to rebuild the home with $HOME_MANAGER_CMD
 
 __cfg_commit() {
   amend=''
-  if ! git "$1" "$2" commit $SYSTEM flake.nix --message "$3"; then
+  if ! git "$1" "$2" commit $SYSTEM_CFG flake.nix --message "$3"; then
     g_system=true   # Rebuild system as changes have been made
     amend='--amend' # Amend following commits because there’s already it
   fi
-  if ! git "$1" "$2" commit $amend $HOME --message "$3"; then
+  if ! git "$1" "$2" commit $amend $HOME_CFG --message "$3"; then
     g_home=true     # Rebuild home as changes have been made
     amend='--amend' # Amend following commits because there’s already it
   fi
@@ -194,7 +194,7 @@ cfg_rebase() {
 }
 
 # Go inside the config directory, start of the main script
-cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
+cd "$XDG_CONFIG_HOME/flake" || cd "$HOME_CFG/.config/flake" ||
   cd /flake || cd /config ||
   cd /etc/flake || cd /etc/nixos ||
   exit
