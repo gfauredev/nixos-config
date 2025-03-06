@@ -107,8 +107,8 @@ cfg_commit() {
     info 'Public: Commit flake repository'
     __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
-    nix flake update --flake ./private/ public || exit 1
-    git -C ./private/ commit --all ${1:+--message "$1"} || exit # Stop if no changes
+    nix flake update --flake ./private/ public || return
+    git -C ./private/ commit --all ${1:+--message "$1"}
   else
     info 'Commit flake repository'
     __cfg_commit '' '' "$1" || exit # Stop if no changes
