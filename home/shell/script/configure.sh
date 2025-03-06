@@ -108,7 +108,7 @@ cfg_commit() {
     info 'Public: Commit flake repository'
     __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
-    # FIXME it seems like there’s always inputs updates
+    # FIXME make below line only happen once
     nix flake update public --flake ./private/ --commit-lock-file || return
     git -C ./private/ commit --all ${1:+--message "$1"}
   else
