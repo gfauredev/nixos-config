@@ -128,7 +128,7 @@ __cfg_amend() {
   fi
 }
 
-cfg_amend() {
+cfg_amend() { # FIXME should quit if there’s no uncomitted changes
   if [ -d "public" ]; then
     info 'Public: Amend flake repository'
     __cfg_amend -C ./public/
