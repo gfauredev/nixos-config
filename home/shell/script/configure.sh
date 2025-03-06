@@ -7,24 +7,20 @@ SYSTEM="system/" # System (NixOS) configurations location
 HOME="home/"     # Home (Home Manager) configurations location
 
 show_help() {
-  echo "By default, edit the configuration, commit the changes, and rebuild Home."
+  echo "By default, edit the configuration, amend or commit the changes, rebuild."
   echo "The following arguments can be passed in any order."
   echo
-  echo "- r[e]:       Enable rebuild only mode, no editing."
-  echo "- s[y|ys]:    Rebuild NixOS configuration ($NIXOS_REBUILD_CMD)."
-  echo "- h[o]:       Always rebuild Home Manager configuration ($HOME_MANAGER_CMD)."
-  echo "- [--]help:   Show this help message (and exit if no other arguments)."
-  echo "- a[ll]:      Rebuild NixOS and Home Manager configurations."
-  echo "- u[p|pd|pg]: Update every flake inputs (don’t edit the configuration)."
-  # echo "- am[end]:    Amend the eventual modifications instead of creating a new commit."
-  echo "- p[ush]:     Push the Git repositories after sucessful rebuild, rebase if alone."
-  echo "- l[og]:      Display Git logs and status of the configuration’s repository."
-  echo "- c|d|cd:     Open the default shell ($SHELL) in the flake config directory."
-  echo "- [power]off: Poweroff after all actions, cancels previous reboot/cd argument(s)."
-  echo "- [re]boot:   Reboot after all actions, cancels previous poweroff/cd argument(s)."
+  echo "- [--]h[elp]: Show this help message (and exit)."
+  echo "- u[pgrade]:  Update every flake inputs (don’t edit the configuration)."
+  echo "- p[ush]:     Push the Git repositories after sucessful rebuild."
+  echo "- l[og]:      Display Git logs and status of the configuration’s repo."
+  echo "- c|d|cd:     Open the default shell ($SHELL) in the flake config dir."
+  echo "- [power]off: Poweroff after all actions, cancels previous power args."
+  echo "- [re]boot:   Reboot after all actions, cancels previous power args."
+  echo "- sus[pend]|sleep: Suspend after all actions, cancels prevs power args."
   echo
   echo "Any remaining argument is appended to the Git commit message,"
-  echo "and thus forces the configuration to be edited (unless rebuild-only mode)."
+  echo "and thus indicates that the configuration should be edited."
 }
 
 info() {
@@ -211,7 +207,7 @@ push_repositories=false # Whether to push the Git repositories after update
 power_state=""          # Whether to suspend, turn off or reboot the computer
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  -h | --help | help)
+  h | help | -h | --help)
     show_help # Directly show help message…
     exit      # and exit right after
     ;;
@@ -238,7 +234,7 @@ while [ "$#" -gt 0 ]; do
   off | poweroff) # Turn off the system at the end of the script
     power_state="poweroff"
     ;;
-  boot | reboot) # Restart the system at the end of the script
+  re | boot | reboot) # Restart the system at the end of the script
     power_state="reboot"
     ;;
   feat:) # New feature commit append remaining arguemnts,, rebuild
