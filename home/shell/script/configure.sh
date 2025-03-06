@@ -86,24 +86,20 @@ cfg_edit() {
 rebuild_home=false # Whether to rebuild the home with $HOME_MANAGER_CMD
 
 __cfg_commit() {
-  msg=''
-  if [ -n "$3" ]; then
-    msg="--message $3"
-  fi
   amend=''
   info 'Commit %s and flake.nix' $SYSTEM_CFG
-  if git "$1" "$2" commit $SYSTEM_CFG flake.nix $msg; then
+  if git "$1" "$2" commit $SYSTEM_CFG flake.nix ${3:+--message "$3"}; then
     rebuild_system=true # Rebuild system as changes have been made
     amend='--amend'     # Amend following commits because there’s already it
   fi
   info 'Commit (or amend) %s' $HOME_CFG
-  if git "$1" "$2" commit $amend $HOME_CFG $msg; then
+  if git "$1" "$2" commit $amend $HOME_CFG ${3:+--message "$3"}; then
     rebuild_home=true # Rebuild home as changes have been made
     amend='--amend'   # Amend following commits because there’s already it
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
-  info 'Commit (or amend) all the remaining: %s' "$msg"
-  git "$1" "$2" commit $amend --all $msg
+  info 'Commit (or amend) all the remaining: %s' "$3"
+  git "$1" "$2" commit $amend --all ${3:+--message "$3"}
 }
 
 cfg_commit() {
@@ -112,7 +108,7 @@ cfg_commit() {
     __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
     nix flake update --flake ./private/ public || exit 1
-    git -C ./private/ commit --all --message "$1" || exit # Stop if no changes
+    git -C ./private/ commit --all ${1:+--message "$1"} || exit # Stop if no changes
   else
     info 'Commit flake repository'
     __cfg_commit '' '' "$1" || exit # Stop if no changes
