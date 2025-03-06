@@ -82,25 +82,24 @@ cfg_edit() {
   $EDITOR .
 }
 
-# Global arguments that will be collected in any order
-g_system=false # Whether to rebuild the system with $NIXOS_REBUILD_CMD
-g_home=false   # Whether to rebuild the home with $HOME_MANAGER_CMD
+# Global argument
+rebuild_home=false # Whether to rebuild the home with $HOME_MANAGER_CMD
 
 __cfg_commit() {
   msg=''
-  if [ -n "$1" ]; then
-    msg="--message $1"
+  if [ -n "$3" ]; then
+    msg="--message $3"
   fi
   amend=''
   info 'Commit %s and flake.nix' $SYSTEM_CFG
-  if ! git "$1" "$2" commit $SYSTEM_CFG flake.nix $msg; then
-    g_system=true   # Rebuild system as changes have been made
-    amend='--amend' # Amend following commits because there’s already it
+  if git "$1" "$2" commit $SYSTEM_CFG flake.nix $msg; then
+    rebuild_system=true # Rebuild system as changes have been made
+    amend='--amend'     # Amend following commits because there’s already it
   fi
   info 'Commit (or amend) %s' $HOME_CFG
-  if ! git "$1" "$2" commit $amend $HOME_CFG $msg; then
-    g_home=true     # Rebuild home as changes have been made
-    amend='--amend' # Amend following commits because there’s already it
+  if git "$1" "$2" commit $amend $HOME_CFG $msg; then
+    rebuild_home=true # Rebuild home as changes have been made
+    amend='--amend'   # Amend following commits because there’s already it
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
   info 'Commit (or amend) all the remaining: %s' "$msg"
@@ -113,7 +112,7 @@ cfg_commit() {
     __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
     nix flake update --flake ./private/ public || exit 1
-    git -C ./private/ commit --all "$1" || exit # Stop if no changes
+    git -C ./private/ commit --all --message "$1" || exit # Stop if no changes
   else
     info 'Commit flake repository'
     __cfg_commit '' '' "$1" || exit # Stop if no changes
@@ -208,8 +207,9 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME_CFG/.config/flake" ||
 
 # Arguments that are collected in any order
 update_inputs=false     # Whether to update flake inputs
+rebuild_system=false    # Whether to rebuild the system with $NIXOS_REBUILD_CMD
 commit_msg=""           # Message to be constructed with remaining arguments
-rebuild=false           # Whether we should rebuild  (home or system)
+commit_type=""          # Type of commit, new feature, bugfix…
 push_repositories=false # Whether to push the Git repositories after update
 power_state=""          # Whether to suspend, turn off or reboot the computer
 while [ "$#" -gt 0 ]; do
@@ -218,10 +218,6 @@ while [ "$#" -gt 0 ]; do
     show_help # Directly show help message…
     exit      # and exit right after
     ;;
-  l | log | logs | stat | stats | status) # Show Git logs and status
-    show_logs_status                      # Directly show Git logs and status
-    exit
-    ;;
   c | d | cd) # Directly open default shell into current working directory
     info 'You can exit the shell to get back to previous working directory'
     if [ "$2" = "public" ] || [ "$2" = "private" ]; then
@@ -229,11 +225,16 @@ while [ "$#" -gt 0 ]; do
     fi
     exec $SHELL # Execute the default shell at the WD of this script
     ;;
-  s | sy | sys | system | os)            # Indicate that you want to rebuild
-    sudo echo 'Asked sudo now for later' # system to ask sudo preventively
+  l | log | logs | stat | stats | status) # Show Git logs and status
+    show_logs_status                      # Directly show Git logs and status
+    exit
     ;;
   u | up | update | upgrade) # Update the flake’s inputs, no rebuild by default
     update_inputs=true
+    ;;
+  s | sy | sys | system | os)            # Rebuild the NixOS system
+    sudo echo 'Asked sudo now for later' # ask sudo preventively
+    rebuild_system=true
     ;;
   p | pu | push) # Push the flake’s repository
     push_repositories=true
@@ -247,14 +248,14 @@ while [ "$#" -gt 0 ]; do
   re | boot | reboot) # Restart the system at the end of the script
     power_state="reboot"
     ;;
-  feat*) # New feature commit append remaining arguemnts, rebuild
+  feat*) # New feature commit append remaining arguments, rebuild
     commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
-    rebuild=true
+    commit_type=feat
     break # The loop should stop anyway, but quicker
     ;;
   fix*) # Bug fix commit, append remaining arguemnts, rebuild
     commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
-    rebuild=true
+    commit_type=fix
     break # The loop should stop anyway, but quicker
     ;;
   *) # Append any other arguments to the Git commit message
@@ -266,13 +267,12 @@ while [ "$#" -gt 0 ]; do
   shift # Next argument
 done
 
-printf "System changed, rebuild: %s\n" $g_system
-printf "Home changed, rebuild: %s\n" $g_home
 printf "Update Flake inputs: %s\n" $update_inputs
-printf "Push Git repositories: %s\n" $push_repositories
+printf "Rebuild NixOS system: %s\n" $rebuild_system
 printf "Commit message: '%s'\n" "$commit_msg"
+printf "Commit type: '%s'\n" "$commit_type"
+printf "Push Git repositories: %s\n" $push_repositories
 printf "Power state change: '%s'\n" $power_state
-echo # DEBUG end
 
 if $update_inputs; then
   cfg_pull            # Always pull the latest configuration…
@@ -289,16 +289,17 @@ elif [ $update_inputs = false ] && [ $push_repositories = false ]; then
   cfg_edit  # before editing the configuration,
   cfg_amend # and amending the commit
 fi
-if $g_system && $rebuild; then # Rebuild, system/ changed, feat or fix
-  rebuild_system || exit 1     # Don’t continue if the build failed
+if $rebuild_system; then   # Always rebuild system if explicitly set
+  rebuild_system || exit 1 # Don’t continue if the build failed
 fi
-if $g_home && $rebuild; then # Rebuild, home/ changed, feat or fix
-  rebuild_home || exit 1     # Don’t continue if the build failed
+if $rebuild_home && # Rebuild if home/ changed for a feat or a fix
+  { [ $commit_type = feat ] || [ $commit_type = fix ]; }; then
+  rebuild_home || exit 1 # Don’t continue if the build failed
 fi
 # Push repositories if explicit argument
 if $push_repositories; then
   # Rebase interactively before pushing, if not doing any other operations
-  if [ $g_system = false ] && [ $g_home = false ] &&
+  if [ $rebuild_system = false ] && [ $rebuild_home = false ] &&
     [ $update_inputs = false ] &&
     [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
     cfg_rebase
