@@ -107,7 +107,7 @@ cfg_commit() {
     info 'Public: Commit flake repository'
     __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
-    nix flake update --flake ./private/ public || return
+    nix flake update public --flake ./private/ --commit-lock-file || return
     git -C ./private/ commit --all ${1:+--message "$1"}
   else
     info 'Commit flake repository'
@@ -130,7 +130,7 @@ cfg_amend() {
     info 'Public: Amend flake repository'
     __cfg_amend -C ./public/
     info 'Private: Amend flake repository'
-    nix flake --flake ./private/ update public || exit 1
+    nix flake update public --flake ./private/ --commit-lock-file || return
     __cfg_amend -C ./private/
   else
     info 'Amend flake repository'
