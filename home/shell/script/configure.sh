@@ -70,6 +70,7 @@ flake_update_inputs() {
     info 'Public: Update flake inputs'
     nix flake update --flake ./public/ --commit-lock-file || exit 1
     info 'Private: Update flake inputs'
+    # FIXME it seems like there’s always inputs updates
     nix flake update --flake ./private/ --commit-lock-file || return
   else
     info 'Update flake inputs'
@@ -107,6 +108,7 @@ cfg_commit() {
     info 'Public: Commit flake repository'
     __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
+    # FIXME it seems like there’s always inputs updates
     nix flake update public --flake ./private/ --commit-lock-file || return
     git -C ./private/ commit --all ${1:+--message "$1"}
   else
@@ -117,10 +119,11 @@ cfg_commit() {
 
 __cfg_amend() {
   # Amend only if there’s unpushed commits
-  if [ -n "$(git log --branches --not --remotes)" ]; then
+  if [ -n "$(git "$@" log --branches --not --remotes)" ]; then
     git "$@" commit --amend --all --no-edit || exit # Stop if no changes
   else
     info 'All commits pushed, no one to amend, create new commit instead'
+    # FIXME use internal __cfg_commit() directly, do not multiply public/private
     cfg_commit # If needed, new commit
   fi
 }
@@ -130,6 +133,7 @@ cfg_amend() {
     info 'Public: Amend flake repository'
     __cfg_amend -C ./public/
     info 'Private: Amend flake repository'
+    # FIXME it seems like there’s always inputs updates
     nix flake update public --flake ./private/ --commit-lock-file || return
     __cfg_amend -C ./private/
   else
