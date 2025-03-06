@@ -1,25 +1,27 @@
 NIXOS_REBUILD_CMD='nixos-rebuild' # Set default params here
 HOME_MANAGER_CMD='home-manager'   # Set default params here
-SUBFLAKE='public'                 # Leave empty to disable
-# RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66% -p CPUQuota=500%'
-RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%' # CPU limited by nix params
+RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
+# -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
+
+SYSTEM="system/" # System (NixOS) configurations location
+HOME="home/"     # Home (Home Manager) configurations location
 
 show_help() {
   echo "By default, edit the configuration, commit the changes, and rebuild Home."
   echo "The following arguments can be passed in any order."
   echo
-  echo "- r[e]:        Enable rebuild only mode, no editing."
-  echo "- s[y|ys]:     Rebuild NixOS configuration ($NIXOS_REBUILD_CMD)."
-  echo "- ho[m]:       Always rebuild Home Manager configuration ($HOME_MANAGER_CMD)."
-  echo "- h[elp]:      Show this help message (and exit if no other arguments)."
-  echo "- a[ll]:       Rebuild NixOS and Home Manager configurations."
-  echo "- u[p|pd|pg]:  Update every flake inputs (don’t edit the configuration)."
-  echo "- am[end]:     Amend the eventual modifications instead of creating a new commit."
-  echo "- p[ush]:      Push the Git repositories after sucessful rebuild, rebase if alone."
-  echo "- l[og]:       Display Git logs and status of the configuration’s repository."
-  echo "- c|d|cd:      Open the default shell ($SHELL) in the flake config directory."
-  echo "- off:         Poweroff after all actions, cancels previous reboot/cd argument(s)."
-  echo "- boot:        Reboot after all actions, cancels previous poweroff/cd argument(s)."
+  echo "- r[e]:       Enable rebuild only mode, no editing."
+  echo "- s[y|ys]:    Rebuild NixOS configuration ($NIXOS_REBUILD_CMD)."
+  echo "- h[o]:       Always rebuild Home Manager configuration ($HOME_MANAGER_CMD)."
+  echo "- [--]help:   Show this help message (and exit if no other arguments)."
+  echo "- a[ll]:      Rebuild NixOS and Home Manager configurations."
+  echo "- u[p|pd|pg]: Update every flake inputs (don’t edit the configuration)."
+  # echo "- am[end]:    Amend the eventual modifications instead of creating a new commit."
+  echo "- p[ush]:     Push the Git repositories after sucessful rebuild, rebase if alone."
+  echo "- l[og]:      Display Git logs and status of the configuration’s repository."
+  echo "- c|d|cd:     Open the default shell ($SHELL) in the flake config directory."
+  echo "- [power]off: Poweroff after all actions, cancels previous reboot/cd argument(s)."
+  echo "- [re]boot:   Reboot after all actions, cancels previous poweroff/cd argument(s)."
   echo
   echo "Any remaining argument is appended to the Git commit message,"
   echo "and thus forces the configuration to be edited (unless rebuild-only mode)."
@@ -32,10 +34,10 @@ info() {
 }
 
 show_logs_status() {
-  if [ -n "$SUBFLAKE" ]; then
-    git -C ./$SUBFLAKE log --oneline || exit
+  if [ -d "public" ]; then
+    git -C public/ log --oneline || exit
     echo
-    git -C ./$SUBFLAKE status || exit
+    git -C public/ status || exit
   else
     git log --oneline || exit
     echo
@@ -43,70 +45,111 @@ show_logs_status() {
   fi
 }
 
-cfg_pull() {
-  # FIXME Never detach head of submodule(s)
+__cfg_pull() {
   remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
-  info 'Test if remote %s is reachable (in less than 3s)' "$remote"
-  if ping -c 1 -w 3 "$remote"; then
+  timeout=3
+  info 'Test if remote %s is reachable (in less than %ss)' "$remote" "$timeout"
+  if ping -c 1 -w $timeout "$remote"; then
     info '%s reached, pull latest changes from it' "$remote"
-    git pull --recurse-submodules || info 'Unable to pull from %s' "$(git remote)"
+    git "$@" pull
   else
     info '%s non reachable, move on' "$remote"
   fi
 }
 
-flake_update_inputs() {
-  info 'Update flake inputs'
-  if [ -n "$SUBFLAKE" ]; then
-    nix flake update --flake ./$SUBFLAKE --commit-lock-file || exit
-    git commit ./$SUBFLAKE --message="chore($SUBFLAKE): update flake inputs"
+cfg_pull() {
+  if [ -d "public" ]; then
+    info 'Public: Pulling latest changes'
+    __cfg_pull -C public/
+    info 'Private: Pulling latest changes'
+    __cfg_pull -C private/
+  else
+    info 'Pulling latest changes'
+    __cfg_pull
   fi
-  nix flake update --commit-lock-file || exit
+}
+
+flake_update_inputs() {
+  if [ -d "public" ]; then
+    info 'Public: Update flake inputs'
+    nix flake update --flake public/ --commit-lock-file || exit 1
+    info 'Private: Update flake inputs'
+    nix flake update --flake private/ --commit-lock-file || return
+  else
+    info 'Update flake inputs'
+    nix flake update --commit-lock-file || return
+  fi
 }
 
 cfg_edit() {
-  info 'Start the editor'
+  info 'Edit configuration: Start default text editor'
   $EDITOR .
-  info 'Editor closed'
+  info 'Edit configuration: Text editor closed'
+}
+
+# Global arguments that will be collected in any order
+g_system=false # Whether to rebuild the system with $NIXOS_REBUILD_CMD
+g_home=false   # Whether to rebuild the home with $HOME_MANAGER_CMD
+
+__cfg_commit() {
+  amend=''
+  if ! git "$1" "$2" commit $SYSTEM flake.nix --message "$3"; then
+    g_system=true   # Rebuild system as changes have been made
+    amend='--amend' # Amend following commits because there’s already it
+  fi
+  if ! git "$1" "$2" commit $amend $HOME --message "$3"; then
+    g_home=true     # Rebuild home as changes have been made
+    amend='--amend' # Amend following commits because there’s already it
+  fi
+  # Commit remaining changes, but don’t trigger a rebuild in these cases
+  git -C public/ commit $amend --all --message "$*"
 }
 
 cfg_commit() {
-  if [ -n "$SUBFLAKE" ]; then
-    info 'Commit the subflake %s' $SUBFLAKE
-    cd $SUBFLAKE || exit 1
-    git checkout main # Ensure we’re on main FIX
-    git add .
-    git commit "$@"
-    cd .. || return
-    nix flake update $SUBFLAKE # Update subflake input
+  if [ -d "public" ]; then
+    info 'Public: Commit flake repository'
+    __cfg_commit -C public/ "$*"
+    info 'Private: Commit flake repository (including public update)'
+    nix flake --flake private/ update public || exit 1
+    git -C private/ commit --all --message "$*" || exit # Stop if no changes
+  else
+    info 'Commit flake repository'
+    __cfg_commit '' '' "$*" || exit # Stop if no changes
   fi
-  info 'Commit the top level flake'
-  # git add . # TEST if needed
-  git commit --all "$@" || return
+}
+
+__cfg_amend() {
+  # Amend only if there’s unpushed commits
+  if [ -n "$(git log --branches --not --remotes)" ]; then
+    git "$@" commit --amend --all --no-edit || exit # Stop if no changes
+  else
+    cfg_commit # If needed, new commit
+  fi
 }
 
 cfg_amend() {
-  if [ -n "$(git log @{u}..)" ]; then # Amend only if there’s unpushed commits
-    if [ -n "$SUBFLAKE" ]; then
-      info 'Amend the subflake %s' $SUBFLAKE
-      cd $SUBFLAKE || return
-      git checkout main # Ensure we’re on main FIX
-      git commit --amend --all --no-edit
-      cd .. || return
-      nix flake update $SUBFLAKE # Update subflake input
-    fi
-    info 'Amend the top level Flake'
-    git commit --amend --all --no-edit || return
+  if [ -d "public" ]; then
+    info 'Public: Amend flake repository'
+    __cfg_amend -C public/
+    info 'Private: Amend flake repository'
+    nix flake --flake private/ update public || exit 1
+    __cfg_amend -C private/
   else
-    cfg_commit
+    info 'Amend flake repository'
+    __cfg_amend
   fi
 }
 
 rebuild_system() {
   info 'Mount /boot before system update'
-  sudo mount -v /boot || return # Use fstab
-  info 'SYSTEM update: "%s"' $NIXOS_REBUILD_CMD
-  if systemd-inhibit sudo $RESOURCE_LIMIT $NIXOS_REBUILD_CMD --flake . switch; then
+  sudo mount -v /boot || exit 1 # Use fstab
+  if [ -d "public" ]; then
+    NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake private/"
+  else
+    NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake ."
+  fi
+  info 'System: Update: "%s"' "$NIXOS_REBUILD_CMD"
+  if systemd-inhibit sudo $RESOURCE_LIMIT $NIXOS_REBUILD_CMD switch; then
     info 'Unmount /boot after update'
     sudo umount -v /boot # Unmount for security
   else
@@ -119,38 +162,39 @@ rebuild_system() {
 rebuild_home() {
   info 'Remove .config/mimeapps.list'
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  info 'PROFILE update: "%s"' $HOME_MANAGER_CMD
-  systemd-inhibit $HOME_MANAGER_CMD --flake . switch || return
+  if [ -d "public" ]; then
+    HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake private/"
+  else
+    HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake ."
+  fi
+  info 'PROFILE update: "%s"' "$HOME_MANAGER_CMD"
+  systemd-inhibit $HOME_MANAGER_CMD switch || return
 }
 
 cfg_push() {
-  if [ -n "$SUBFLAKE" ]; then
-    cd $SUBFLAKE || return
-    git checkout main
-    if [ -n "$(git log @{u}..)" ]; then # Amend pending edits if there’s unpushed commits
-      info 'Amend pending edits in the subflake'
-      git commit --amend --message="$(git log -1 --pretty=%s)"
-    fi
-    cd .. || return
+  cfg_amend # Amend before pushing in case there’s uncommited changes
+  if [ -d "public" ]; then
+    info 'Public: Push flake repository'
+    git -C public/ push || return
+    info 'Private: Push flake repository'
+    git -C private/ push || return
+  else
+    info 'Push flake repository'
+    git push || exit
   fi
-  if [ -n "$(git log @{u}..)" ]; then # Amend pending edits if there’s unpushed commits
-    info 'Amend pending edits in the top level flake'
-    git commit --amend --all --no-edit
-  fi
-  info 'Push the repositories'
-  git push || exit
 }
 
 cfg_rebase() {
-  if [ -n "$SUBFLAKE" ]; then
-    info 'Rebase the subflake %s' $SUBFLAKE
-    cd $SUBFLAKE || return
-    git checkout main
-    git rebase -i || exit
-    cd .. || return
+  if [ -d "public" ]; then
+    info 'Public: Rebase flake repository'
+    git -C public/ rebase -i || return
+    info 'Private: Rebase flake repository'
+    # TODO Automatically sync the private non-pushed commits with the public ones
+    git -C private/ rebase -i || return # TODO stop that, annoying
+  else
+    info 'Rebase flake repository'
+    git rebase -i || return
   fi
-  info 'Rebase the subflake top level flake'
-  git rebase -i
 }
 
 # Go inside the config directory, start of the main script
@@ -159,149 +203,107 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
   cd /etc/flake || cd /etc/nixos ||
   exit
 
-# Collect arguments in any order
-rebuild_only=false # Whether to forcefully not edit
-system=false       # TODO infer what to rebuild based on which code was edited (system/)
-home=false         # TODO infer what to rebuild based on which code was edited (home/)
-update_inputs=false
-amend_edits=false
-push_repositories=false
-cd=false
-commit_message="" # To be constructed with remaining arguments
-poweroff=false
-reboot=false
-# TODO commit message is all the args from the conventional commit type
-# RegEx: ([a-z\(\)\-]{2,16}):
-# TODO rebuild by default only for fix: and feat: commit types
+# Arguments that are collected in any order
+update_inputs=false     # Whether to update flake inputs
+commit_msg=""           # Message to be constructed with remaining arguments
+rebuild=false           # Whether we should rebuild  (home or system)
+push_repositories=false # Whether to push the Git repositories after update
+power_state=""          # Whether to suspend, turn off or reboot the computer
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  # r | re | rb | rebuild | build) # Rebuild only, don’t edit
-  r | re | reb) # Use words unlikely to appear in commit message
-    rebuild_only=true
-    ;;
-  # s | sy | sys | system) # Rebuild System but not Home
-  s | sy | sys) # Words less likely to appear in commit messages
-    system=true
-    ;;
-  # ho | home) # Rebuild Home anyway
-  ho | hom) # Words less likely to appear in commit messages
-    home=true
-    ;;
-  h | help)   # Show help message
+  -h | --help | help)
     show_help # Directly show help message…
     exit      # and exit right after
     ;;
-  a | all) # Rebuild System and Home
-    system=true
-    home=true
-    ;;
-  # u | up | update | upgrade) # Update the flake’s inputs, no rebuild
-  u | up | upd | upg) # Words less likely to appear in commit messages
-    update_inputs=true
-    ;;
-  am | amend) # Amend the eventual modifications
-    amend_edits=true
-    ;;
-  p | push) # Push the flake’s repository
-    push_repositories=true
-    ;;
-  l | log | logs)    # Show Git logs and status
-    show_logs_status # Directly show Git logs and status
+  l | log | logs | stat | stats | status) # Show Git logs and status
+    show_logs_status                      # Directly show Git logs and status
     exit
     ;;
-  c | d | cd) # Open default shell into current WD
-    cd=true
+  c | d | cd) # Directly open default shell into current working directory
+    info 'You can exit the shell to get back to previous working directory'
+    if [ "$2" = "public" ] || [ "$2" = "private" ]; then
+      cd "$2" || exit 1 # cd into sub-directory
+    fi
+    exec $SHELL # Execute the default shell at the WD of this script
     ;;
-  # off | poweroff) # Turn off the system at the end of the script
-  off) # Words less likely to appear in commit messages
-    poweroff=true
+  u | up | update | upgrade) # Update the flake’s inputs, no rebuild by default
+    update_inputs=true
     ;;
-  # boot | reboot) # Restart the system at the end of the script
-  boot) # Words less likely to appear in commit messages
-    reboot=true
+  p | pu | push) # Push the flake’s repository
+    push_repositories=true
     ;;
-  *) # Append any other parameters to the Git commit message
-    commit_message="$commit_message $1"
+  sus | sleep | suspend) # Suspend the system at the end of the script
+    power_state="suspend"
+    ;;
+  off | poweroff) # Turn off the system at the end of the script
+    power_state="poweroff"
+    ;;
+  boot | reboot) # Restart the system at the end of the script
+    power_state="reboot"
+    ;;
+  feat:) # New feature commit append remaining arguemnts,, rebuild
+    commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
+    rebuild=true
+    break # The loop should stop anyway, but quicker
+    ;;
+  fix:) # Bug fix commit, append remaining arguemnts, rebuild
+    commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
+    rebuild=true
+    break # The loop should stop anyway, but quicker
+    ;;
+  *) # Append any other arguments to the Git commit message
+    commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
+    # Also clean commit message (remove start and end whitespaces)
+    break # The loop should stop anyway, but quicker
     ;;
   esac
-  shift
+  shift # Next argument
 done
 
-# Clean commit message (remove start and end whitespaces)
-commit_message=$(echo "$commit_message" | sed 's/^[ \t]*//')
-
 # DEBUG start
-printf "Rebuild (only) mode (no edit): %s\n" $rebuild_only
-printf "Rebuild system: %s\n" $system
-printf "Rebuild (explicitly) home: %s\n" $home
+printf "System changed, rebuild: %s\n" $g_system
+printf "Home changed, rebuild: %s\n" $g_home
 printf "Update Flake inputs: %s\n" $update_inputs
-printf "Amend edits (no new commits): %s\n" $amend_edits
 printf "Push Git repositories: %s\n" $push_repositories
-printf "Change directory: %s\n" $cd
-printf "Commit message: '%s'\n" "$commit_message"
-printf "Poweroff: %s\n" $poweroff
-printf "Reboot: %s\n" $reboot
+printf "Commit message: '%s'\n" "$commit_msg"
+printf "Power state change: %s\n" $power_state
 echo # DEBUG end
 
 # Execute proper functions according to collected arguments
-if $system; then
+if $g_system; then
   sudo echo 'Asked sudo now for later'
 fi
 if $update_inputs; then
   cfg_pull            # Always pull the latest configuration…
   flake_update_inputs # before updating inputs
 fi
-# Edit by default
-# Don’t edit if rebuild-only mode or if updating inputs
-# Don’t edit if pushing repositories or changing directory,
-#   unless system or home (or all)
-# Always edit if commit message not empty or if amending
-if [ $rebuild_only = false ] && [ $update_inputs = false ] &&
-  { [ $push_repositories = false ] && [ $cd = false ] ||
-    [ $system = true ] || [ $home = true ]; } ||
-  [ -n "$commit_message" ] || [ $amend_edits = true ]; then
-  cfg_pull # Always pull the latest configuration…
-  cfg_edit # before editing the configuration
-  if $amend_edits; then
-    cfg_amend
-  else
-    cfg_commit --message="$commit_message"
-  fi
+# Always edit and commit if commit message not empty
+if [ -n "$commit_msg" ]; then
+  cfg_pull                 # Always pull the latest configuration…
+  cfg_edit                 # before editing the configuration,
+  cfg_commit "$commit_msg" # and commiting
+# By default (no args), amend if there’s unpushed commits, or else commit
+elif [ $update_inputs = false ] && [ $push_repositories = false ]; then
+  cfg_pull  # Always pull the latest configuration…
+  cfg_edit  # before editing the configuration,
+  cfg_amend # and amending the commit
 fi
-if $system; then
-  rebuild_system || push_repositories=false # Don’t push if the build failed
+if $g_system && $rebuild; then # Rebuild, system/ changed, feat or fix
+  rebuild_system || exit 1     # Don’t continue if the build failed
 fi
-# Rebuild home by default, unless:
-# - rebuilding system
-# - updating inputs and no commit message
-# - pushing repositories and no commit message
-# - changing dir without and no commit message
-# Always rebuild home if:
-# - rebuild only mode and not rebuilding system
-# - rebuild home
-if { [ $system = false ] &&
-  { [ $update_inputs = false ] && [ $push_repositories = false ] && [ $cd = false ] ||
-    [ -n "$commit_message" ]; }; } ||
-  { [ $system = false ] && [ $rebuild_only = true ]; } || [ $home = true ]; then
-  rebuild_home || push_repositories=false # Don’t push if the build failed
+if $g_home && $rebuild; then # Rebuild, home/ changed, feat or fix
+  rebuild_home || exit 1     # Don’t continue if the build failed
 fi
-# Push repositories if push repositories
+# Push repositories if explicit argument
 if $push_repositories; then
-  # Rebase only if not rebuilding and not updating and not turning off or rebooting
-  if [ $rebuild_only = false ] && [ $system = false ] && [ $home = false ] &&
-    [ $update_inputs = false ] && [ $amend_edits = false ] &&
-    [ $poweroff = false ] && [ $reboot = false ] && [ -z "$commit_message" ]; then
+  # Rebase interactively before pushing, if not doing any other operations
+  if [ $g_system = false ] && [ $g_home = false ] &&
+    [ $update_inputs = false ] &&
+    [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
     cfg_rebase
   fi
   cfg_push
 fi
-if $cd; then
-  info 'You can exit the shell to get back to previous working directory'
-  exec $SHELL # Execute the default shell at the WD of this script
-fi
-if $reboot; then
-  systemctl reboot
-fi
-if $poweroff; then
-  systemctl poweroff
+if [ -n "$power_state" ]; then # Change power state after other operations
+  systemctl $power_state
 fi
