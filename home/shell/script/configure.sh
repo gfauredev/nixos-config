@@ -78,9 +78,8 @@ flake_update_inputs() {
 }
 
 cfg_edit() {
-  info 'Edit configuration: Start default text editor'
+  info 'Start default text editor'
   $EDITOR .
-  info 'Edit configuration: Text editor closed'
 }
 
 # Global arguments that will be collected in any order
@@ -88,29 +87,36 @@ g_system=false # Whether to rebuild the system with $NIXOS_REBUILD_CMD
 g_home=false   # Whether to rebuild the home with $HOME_MANAGER_CMD
 
 __cfg_commit() {
+  msg=''
+  if [ -n "$1" ]; then
+    msg="--message $1"
+  fi
   amend=''
-  if ! git "$1" "$2" commit $SYSTEM_CFG flake.nix --message "$3"; then
+  info 'Commit %s and flake.nix' $SYSTEM_CFG
+  if ! git "$1" "$2" commit $SYSTEM_CFG flake.nix $msg; then
     g_system=true   # Rebuild system as changes have been made
     amend='--amend' # Amend following commits because there’s already it
   fi
-  if ! git "$1" "$2" commit $amend $HOME_CFG --message "$3"; then
+  info 'Commit (or amend) %s' $HOME_CFG
+  if ! git "$1" "$2" commit $amend $HOME_CFG $msg; then
     g_home=true     # Rebuild home as changes have been made
     amend='--amend' # Amend following commits because there’s already it
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
-  git "$1" "$2" commit $amend --all --message "$3"
+  info 'Commit (or amend) all the remaining: %s' "$msg"
+  git "$1" "$2" commit $amend --all $msg
 }
 
 cfg_commit() {
   if [ -d 'public' ]; then
     info 'Public: Commit flake repository'
-    __cfg_commit -C ./public/ "$*"
+    __cfg_commit -C ./public/ "$1"
     info 'Private: Commit flake repository (including public update)'
     nix flake update --flake ./private/ public || exit 1
-    git -C ./private/ commit --all --message "$*" || exit # Stop if no changes
+    git -C ./private/ commit --all "$1" || exit # Stop if no changes
   else
     info 'Commit flake repository'
-    __cfg_commit '' '' "$*" || exit # Stop if no changes
+    __cfg_commit '' '' "$1" || exit # Stop if no changes
   fi
 }
 
@@ -119,6 +125,7 @@ __cfg_amend() {
   if [ -n "$(git log --branches --not --remotes)" ]; then
     git "$@" commit --amend --all --no-edit || exit # Stop if no changes
   else
+    info 'All commits pushed, no one to amend, create new commit instead'
     cfg_commit # If needed, new commit
   fi
 }
@@ -222,6 +229,9 @@ while [ "$#" -gt 0 ]; do
     fi
     exec $SHELL # Execute the default shell at the WD of this script
     ;;
+  s | sy | sys | system | os)            # Indicate that you want to rebuild
+    sudo echo 'Asked sudo now for later' # system to ask sudo preventively
+    ;;
   u | up | update | upgrade) # Update the flake’s inputs, no rebuild by default
     update_inputs=true
     ;;
@@ -237,12 +247,12 @@ while [ "$#" -gt 0 ]; do
   re | boot | reboot) # Restart the system at the end of the script
     power_state="reboot"
     ;;
-  feat:) # New feature commit append remaining arguemnts,, rebuild
+  feat*) # New feature commit append remaining arguemnts, rebuild
     commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
     rebuild=true
     break # The loop should stop anyway, but quicker
     ;;
-  fix:) # Bug fix commit, append remaining arguemnts, rebuild
+  fix*) # Bug fix commit, append remaining arguemnts, rebuild
     commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
     rebuild=true
     break # The loop should stop anyway, but quicker
@@ -256,19 +266,14 @@ while [ "$#" -gt 0 ]; do
   shift # Next argument
 done
 
-# DEBUG start
 printf "System changed, rebuild: %s\n" $g_system
 printf "Home changed, rebuild: %s\n" $g_home
 printf "Update Flake inputs: %s\n" $update_inputs
 printf "Push Git repositories: %s\n" $push_repositories
 printf "Commit message: '%s'\n" "$commit_msg"
-printf "Power state change: %s\n" $power_state
+printf "Power state change: '%s'\n" $power_state
 echo # DEBUG end
 
-# Execute proper functions according to collected arguments
-if $g_system; then
-  sudo echo 'Asked sudo now for later'
-fi
 if $update_inputs; then
   cfg_pull            # Always pull the latest configuration…
   flake_update_inputs # before updating inputs

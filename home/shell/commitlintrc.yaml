@@ -14,6 +14,7 @@ rules:
       - docs     # Documentation, code comments
       - style    # Code formatting, typos, organisation, structure
       - chore    # Other, gitignore, gitattributes, cleaning…
+      - flake.lock # Nix Flake Updates
       # - ci     # Automated testing and analysis infrastructure
       # - cicd   # Not Angular covention
       # - doc    # Not Angular convention
