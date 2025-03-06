@@ -14,16 +14,6 @@
 
   news.display = "notify"; # Notify for new home manager options
 
-  # fonts.fontconfig = {
-  #   enable = true;
-  #   defaultFonts = {
-  #     monospace = [ "FiraCode Nerd Font" ];
-  #     serif = [ "Libre Baskerville" ];
-  #     sansSerif = [ "Nacelle" ];
-  #     emoji = [ "Noto Color Emoji" ];
-  #   };
-  # };
-
   stylix = { # Manage all things style & appearance
     enable = true;
     polarity = "dark";
@@ -50,8 +40,7 @@
       };
     };
     # Based on Catppuccin Mocha, but with pitch black #000 background for OLED
-    # https://catppuccin.com/palette
-    base16Scheme = {
+    base16Scheme = { # https://catppuccin.com/palette
       # base00 = "#1e1e2e"; # base, default background
       base00 = "#000000"; # pitch black, default background
       base01 = "#181825"; # mantle, alternate background
@@ -96,11 +85,6 @@
     # see  https://github.com/chriskempson/base16/blob/main/styling.md
     targets.helix.enable = false; # FIXME color theme not compatible treesitter
   };
-  # home.pointerCursor = {
-  #   hyprCursor.enable = true;
-  #   hyprCursor.size = config.home.pointerCursor.size;
-  #   gtk.enable = true;
-  # };
 
   home.packages = with pkgs; [ # TODO organize better, eventually in shell/
     # Machine learning

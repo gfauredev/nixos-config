@@ -165,9 +165,11 @@
           padding-top: 0;
           padding-bottom: 0;
           min-height: 0;
-        }
-        label {
-          font-family: "${config.stylix.fonts.monospace.name}";
+          font-family:
+            "${config.stylix.fonts.sansSerif.name}",
+            "${config.stylix.fonts.monospace.name}",
+            "${config.stylix.fonts.emoji.name}",
+            "FontAwesome", "Symbols Nerd Font";
           font-size: 14;
         }
         @keyframes warn {
