@@ -42,7 +42,7 @@ show_logs_status() {
 }
 
 __cfg_pull() {
-  remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
+  remote=$(git "$@" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   timeout=3
   info 'Test if remote %s is reachable (in less than %ss)' "$remote" "$timeout"
   if ping -c 1 -w $timeout "$remote"; then
@@ -98,15 +98,15 @@ __cfg_commit() {
     amend='--amend' # Amend following commits because there’s already it
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
-  git -C public/ commit $amend --all --message "$*"
+  git "$1" "$2" commit $amend --all --message "$3"
 }
 
 cfg_commit() {
-  if [ -d "public" ]; then
+  if [ -d 'public' ]; then
     info 'Public: Commit flake repository'
     __cfg_commit -C public/ "$*"
     info 'Private: Commit flake repository (including public update)'
-    nix flake --flake private/ update public || exit 1
+    nix flake update --flake private/ public || exit 1
     git -C private/ commit --all --message "$*" || exit # Stop if no changes
   else
     info 'Commit flake repository'
