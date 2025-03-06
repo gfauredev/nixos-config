@@ -97,7 +97,7 @@
     keepassxc # Password manager TEST
     # keepass-keeagent # Keepass agent
     gitleaks # Better tool to discover secrets in Git repo
-    # git-secrets # Prevent secrets leaking with Git
+    git-filter-repo # Quickly rewrite history
 
     # Storage & Backup & Encryption
     restic # Efficient backup tool
