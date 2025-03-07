@@ -32,21 +32,21 @@
 #   blenderWithPySlvs = pkgs.blender.withPackages (p: [ (py-slvs p) ]);
 # in
 {
-  home.packages = with pkgs;
-    [
-      # openscad # Parametric, programmatic 3D CAD
-      # cq-editor # GUI for Python lib CadQuery
+  home.packages = with pkgs; [
+    # openscad # Parametric, programmatic 3D CAD
+    # cq-editor # GUI for Python lib CadQuery
 
-      dune3d # New parametric CAD
-      # freecad # Popular parametric 3D CAD
-      # solvespace # Simple parametric 3D CAD
-      # brlcad # Combinatorial solid modeling system
+    dune3d # New parametric CAD
+    # freecad # Popular parametric 3D CAD
+    # solvespace # Simple parametric 3D CAD
+    # brlcad # Combinatorial solid modeling system
 
-      # blender # Most popular 3D, animation & video editor
-      # blenderWithPySlvs # Patched popular 3D, animation & video editor
-      # meshlab # 3D mesh processing tool
+    # blender # Most popular 3D, animation & video editor
+    # blenderWithPySlvs # Patched popular 3D, animation & video editor
+    # meshlab # 3D mesh processing tool
 
-      # cura # Popular 3D printer slicer
-      # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
-    ];
+    bambu-studio # Bambu 3D printers’ slicer
+    # cura # Popular 3D printer slicer
+    # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
+  ];
 }
