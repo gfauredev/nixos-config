@@ -155,6 +155,13 @@
             nixfmt # Formater
             statix # Lints & suggestions for Nix
             vulnix # NixOS vulnerability scanner
+            nls # Nickel LSP
+            yaml-language-server # YAML LSP
+            taplo # TOML LSP
+            bash-language-server # Bash, shell script LSP
+            shellcheck # Shell script analysis
+            shfmt # Shell script formater
+            vscode-langservers-extracted # HTML/CSS/JS(ON)
           ];
           # env = { }; # Environment variable
           # shellHook = ""; # Shell command(s) activated when entering dev env

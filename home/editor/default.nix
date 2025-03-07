@@ -19,17 +19,20 @@ let
     # hunspellDicts.es_ES # Spanish
 
     dprint # Pluggable code formatting platform
-    nil # Nix LSP
-    nixfmt # Nix formater
-    nls # Nickel LSP
-    yaml-language-server # YAML LSP
-    taplo # TOML LSP
-    bash-language-server # Bash, shell script LSP
-    shellcheck # Shell script analysis
-    shfmt # Shell script formater
+    # nil # Nix LSP
+    # nixfmt # Nix formater
+    # nls # Nickel LSP
+    # yaml-language-server # YAML LSP
+    # taplo # TOML LSP
+
+    # bash-language-server # Bash, shell script LSP
+    # shellcheck # Shell script analysis
+    # shfmt # Shell script formater
+
+    # vscode-langservers-extracted # HTML/CSS/JS(ON)
+
     marksman # Smart Markdown links
     # markdown-oxide # TEST Obsidian style PKM
-    vscode-langservers-extracted # HTML/CSS/JS(ON)
   ];
 in { # CLI and GUI text editors
   imports = [ ./helix ./neovim ]; # ./zed ];
