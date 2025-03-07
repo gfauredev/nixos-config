@@ -1,10 +1,14 @@
+# This script allows to easily manage a two-flakes system & home Nix config,
+# with one private config having as single input one public config,
+# which contains most of the configurations
 NIXOS_REBUILD_CMD='nixos-rebuild' # Set default params here
 HOME_MANAGER_CMD='home-manager'   # Set default params here
+SYSTEM_LOC="./system/"            # System (NixOS) configurations location
+HOME_LOC="./home/"                # Home (Home Manager) configurations location
+PRIVATE_LOC="./private/"          # Private configuration location
+PUBLIC_LOC="./public/"            # Public configuration location
 RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
 # -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
-
-SYSTEM_CFG="./system/" # System (NixOS) configurations location
-HOME_CFG="./home/"     # Home (Home Manager) configurations location
 
 show_help() {
   echo "By default, edit the configuration, amend or commit the changes, rebuild."
@@ -30,22 +34,14 @@ info() {
 }
 
 show_logs_status() {
-  if [ -d "public" ]; then
-    git -C ./public/ log --oneline || exit
-    echo
-    git -C ./public/ status || exit
-  else
-    git log --oneline || exit
-    echo
-    git status || exit
-  fi
+  git -C $PUBLIC_LOC log --oneline || exit
+  git -C $PUBLIC_LOC status || exit
 }
 
 __cfg_pull() {
   remote=$(git "$@" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
-  timeout=3
-  info 'Test if remote %s is reachable (in less than %ss)' "$remote" "$timeout"
-  if ping -c 1 -w $timeout "$remote"; then
+  info 'Test if remote %s is reachable (in less than %ss)' "$remote" 3
+  if ping -c 1 -w 3 "$remote"; then
     info '%s reached, pull latest changes from it' "$remote"
     git "$@" pull
   else
@@ -54,28 +50,10 @@ __cfg_pull() {
 }
 
 cfg_pull() {
-  if [ -d "public" ]; then
-    info 'Public: Pulling latest changes'
-    __cfg_pull -C ./public/
-    info 'Private: Pulling latest changes'
-    __cfg_pull -C ./private/
-  else
-    info 'Pulling latest changes'
-    __cfg_pull
-  fi
-}
-
-flake_update_inputs() {
-  if [ -d "public" ]; then
-    info 'Public: Update flake inputs'
-    nix flake update --flake ./public/ --commit-lock-file || exit 1
-    info 'Private: Update flake inputs'
-    # FIXME it seems like there’s always inputs updates
-    nix flake update --flake ./private/ --commit-lock-file || return
-  else
-    info 'Update flake inputs'
-    nix flake update --commit-lock-file || return
-  fi
+  info 'Public: Pulling latest changes'
+  __cfg_pull -C $PUBLIC_LOC
+  info 'Private: Pulling latest changes'
+  __cfg_pull -C $PRIVATE_LOC
 }
 
 cfg_edit() {
@@ -88,13 +66,13 @@ rebuild_home=false # Whether to rebuild the home with $HOME_MANAGER_CMD
 
 __cfg_commit() {
   amend=''
-  info 'Commit %s and flake.nix' $SYSTEM_CFG
-  if git "$1" "$2" commit $SYSTEM_CFG flake.nix ${3:+--message "$3"}; then
+  info 'Commit %s and flake.nix' $SYSTEM_LOC
+  if git "$1" "$2" commit $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
     rebuild_system=true # Rebuild system as changes have been made
     amend='--amend'     # Amend following commits because there’s already it
   fi
-  info 'Commit (or amend) %s' $HOME_CFG
-  if git "$1" "$2" commit $amend $HOME_CFG ${3:+--message "$3"}; then
+  info 'Commit (or amend) %s' $HOME_LOC
+  if git "$1" "$2" commit $amend $HOME_LOC ${3:+--message "$3"}; then
     rebuild_home=true # Rebuild home as changes have been made
     amend='--amend'   # Amend following commits because there’s already it
   fi
@@ -104,17 +82,10 @@ __cfg_commit() {
 }
 
 cfg_commit() {
-  if [ -d 'public' ]; then
-    info 'Public: Commit flake repository'
-    __cfg_commit -C ./public/ "$1"
-    info 'Private: Commit flake repository (including public update)'
-    # FIXME make below line only happen once
-    nix flake update public --flake ./private/ --commit-lock-file || return
-    git -C ./private/ commit --all ${1:+--message "$1"}
-  else
-    info 'Commit flake repository'
-    __cfg_commit '' '' "$1" || exit # Stop if no changes
-  fi
+  info 'Public: Commit flake repository'
+  __cfg_commit -C $PUBLIC_LOC "$1"
+  info 'Private: Commit flake repository (including public update)'
+  git -C $PRIVATE_LOC commit --all ${1:+--message "$1"}
 }
 
 __cfg_amend() {
@@ -129,27 +100,16 @@ __cfg_amend() {
 }
 
 cfg_amend() { # FIXME should quit if there’s no uncomitted changes
-  if [ -d "public" ]; then
-    info 'Public: Amend flake repository'
-    __cfg_amend -C ./public/
-    info 'Private: Amend flake repository'
-    # FIXME it seems like there’s always inputs updates
-    nix flake update public --flake ./private/ --commit-lock-file || return
-    __cfg_amend -C ./private/
-  else
-    info 'Amend flake repository'
-    __cfg_amend
-  fi
+  info 'Public: Amend flake repository'
+  __cfg_amend -C $PUBLIC_LOC
+  info 'Private: Amend flake repository'
+  __cfg_amend -C $PRIVATE_LOC
 }
 
 rebuild_system() {
   info 'Mount /boot before system update'
   sudo mount -v /boot || exit 1 # Use fstab
-  if [ -d "public" ]; then
-    NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake private/"
-  else
-    NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake ."
-  fi
+  NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake private/"
   info 'System: Update: "%s"' "$NIXOS_REBUILD_CMD"
   if systemd-inhibit sudo $RESOURCE_LIMIT $NIXOS_REBUILD_CMD switch; then
     info 'Unmount /boot after update'
@@ -164,43 +124,29 @@ rebuild_system() {
 rebuild_home() {
   info 'Remove .config/mimeapps.list'
   rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  if [ -d "public" ]; then
-    HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake private/"
-  else
-    HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake ."
-  fi
+  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake private/"
   info 'Home: Update: "%s"' "$HOME_MANAGER_CMD"
   systemd-inhibit $HOME_MANAGER_CMD switch || return
 }
 
 cfg_push() {
   cfg_amend # Amend before pushing in case there’s uncommited changes
-  if [ -d "public" ]; then
-    info 'Public: Push flake repository'
-    git -C ./public/ push || return
-    info 'Private: Push flake repository'
-    git -C ./private/ push || return
-  else
-    info 'Push flake repository'
-    git push || exit
-  fi
+  info 'Public: Push flake repository'
+  git -C $PUBLIC_LOC push || return
+  info 'Private: Push flake repository'
+  git -C $PRIVATE_LOC push || return
 }
 
 cfg_rebase() {
-  if [ -d "public" ]; then
-    info 'Public: Rebase flake repository'
-    git -C ./public/ rebase -i || return
-    info 'Private: Rebase flake repository'
-    # TODO Automatically sync the private non-pushed commits with the public ones
-    git -C ./private/ rebase -i || return # TODO stop that, annoying
-  else
-    info 'Rebase flake repository'
-    git rebase -i || return
-  fi
+  info 'Public: Rebase flake repository'
+  git -C $PUBLIC_LOC rebase -i || return
+  info 'Private: Rebase flake repository'
+  # TODO Automatically sync the private non-pushed commits with the public ones
+  git -C $PRIVATE_LOC rebase -i || return # TODO stop that, annoying
 }
 
 # Go inside the config directory, start of the main script
-cd "$XDG_CONFIG_HOME/flake" || cd "$HOME_CFG/.config/flake" ||
+cd "$XDG_CONFIG_HOME/flake" || cd "$HOME_LOC/.config/flake" ||
   cd /flake || cd /config ||
   cd /etc/flake || cd /etc/nixos ||
   exit
@@ -275,8 +221,9 @@ printf "Push Git repositories: %s\n" $push_repositories
 printf "Power state change: '%s'\n" $power_state
 
 if $update_inputs; then
-  cfg_pull            # Always pull the latest configuration…
-  flake_update_inputs # before updating inputs
+  cfg_pull # Always pull the latest configuration before updating inputs
+  info 'Public: Update flake %s inputs' $PUBLIC_LOC
+  nix flake update --flake $PUBLIC_LOC --commit-lock-file
 fi
 # Always edit and commit if commit message not empty
 if [ -n "$commit_msg" ]; then
@@ -289,6 +236,8 @@ elif [ $update_inputs = false ] && [ $push_repositories = false ]; then
   cfg_edit  # before editing the configuration,
   cfg_amend # and amending the commit
 fi
+info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private inputs
+nix flake update --flake $PRIVATE_LOC --commit-lock-file || exit 1
 if $rebuild_system; then   # Always rebuild system if explicitly set
   rebuild_system || exit 1 # Don’t continue if the build failed
 fi
