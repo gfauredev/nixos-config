@@ -10,7 +10,6 @@ HOME_LOC="./home/"                              # Home (Home Manager) config
 PRIVATE_LOC="./private/"                        # Private configuration location
 PUBLIC_LOC="./public/"                          # Public configuration location
 rebuild_home=false                              # Whether to rebuild the home
-printf "Rebuild Home Manager home: %s\n" $rebuild_home
 
 show_help() {
   echo "Default: edit the configuration, amend or commit the changes, rebuild."
@@ -28,6 +27,14 @@ show_help() {
   echo "Any remaining argument is appended to the Git commit message,"
   echo "and thus indicates that the configuration should be edited."
 }
+
+state() {
+  printf '\033[3m' # Start itacil
+  printf "$@"
+  printf '\033[0m\n' # End italic, newline
+}
+
+state "Rebuild Home Manager home: %s\n" $rebuild_home
 
 info() {
   printf '\033[1m' # Start bold
@@ -62,13 +69,13 @@ cfg_commit() {
     info 'Commit %s and flake.nix' $SYSTEM_LOC
     if git "$1" "$2" commit $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
       rebuild_system=true # Rebuild system as changes have been made
-      printf "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
+      state "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
       amend='--amend' # Amend following commits because there’s already it
     fi
     info 'Commit (or amend) %s' $HOME_LOC
     if git "$1" "$2" commit $amend $HOME_LOC ${3:+--message "$3"}; then
       rebuild_home=true # Rebuild home as changes have been made
-      printf "Rebuild Home Manager home: %s\n" $rebuild_home
+      state "Rebuild Home Manager home: %s\n" $rebuild_home
       amend='--amend' # Amend following commits because there’s already it
     fi
   fi
@@ -115,7 +122,7 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
   cd /flake || cd /config ||
   cd /etc/flake || cd /etc/nixos || exit 1
 
-printf "Initial state based on arguments\n"
+info "Initial state based on arguments\n"
 update_inputs=false     # Whether to update flake inputs
 rebuild_system=false    # Whether to rebuild the system with $NIXOS_REBUILD_CMD
 commit_msg=""           # Message to be constructed with remaining arguments
@@ -176,12 +183,12 @@ while [ "$#" -gt 0 ]; do
   esac
   shift # Next argument
 done
-printf "Update Flake inputs: %s\n" $update_inputs
-printf "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
-printf "Commit message: '%s'\n" "$commit_msg"
-printf "Commit type: '%s'\n" "$commit_type"
-printf "Push Git repositories: %s\n" $push_repositories
-printf "Power state change: '%s'\n" $power_state
+state "Update Flake inputs: %s\n" $update_inputs
+state "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
+state "Commit message: '%s'\n" "$commit_msg"
+state "Commit type: '%s'\n" "$commit_type"
+state "Push Git repositories: %s\n" $push_repositories
+state "Power state change: '%s'\n" $power_state
 
 # Always pull the latest configuration before doing anything
 info 'Public: Pulling latest changes'
@@ -193,9 +200,9 @@ if $update_inputs; then
   if nix flake update --flake $PUBLIC_LOC --commit-lock-file; then
     # TODO properly test if there were updates
     rebuild_system=true
-    printf "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
+    state "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
     rebuild_home=true
-    printf "Rebuild Home Manager home: %s\n" $rebuild_home
+    state "Rebuild Home Manager home: %s\n" $rebuild_home
   fi
 fi
 # Always edit and commit if commit message not empty
@@ -221,7 +228,7 @@ if $rebuild_system; then       # Always rebuild system if explicitly set
   cfg_rebuild_system || exit 1 # Don’t continue if the build failed
 fi
 if $rebuild_home && # Rebuild if home/ changed for a feat or a fix
-  { [ $commit_type = feat ] || [ $commit_type = fix ]; }; then
+  { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; }; then
   cfg_rebuild_home || exit 1 # Don’t continue if the build failed
 fi
 # Push repositories if explicit argument
