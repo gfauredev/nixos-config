@@ -214,7 +214,7 @@ else                                       # Defaults to try amending changes
   info 'Public: Amend flake repository'
   cfg_amend -C $PUBLIC_LOC                            # May amend the commit
   info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private input
-  nix flake update --flake $PRIVATE_LOC || exit 1
+  nix flake update --flake $PRIVATE_LOC --commit-lock-file || exit 1
   info 'Private: Amend flake repository'
   cfg_amend -C $PRIVATE_LOC # else create new commit
 fi
