@@ -31,13 +31,13 @@ show_help() {
 state() {
   printf '\033[3m' # Start italic
   printf "$@"
-  printf '\033[0m\n' # End italic, newline
+  printf '\033[0m\n\n' # End italic, newline
 }
 
 info() {
   printf '\033[1m' # Start bold
   printf "$@"
-  printf '\033[0m\n' # End bold, newline
+  printf '\033[0m\n\n' # End bold, newline
 }
 
 show_logs_status() {
@@ -89,6 +89,9 @@ cfg_amend() {
   else
     info 'All commits pushed, no one to amend, create new commit instead'
     cfg_commit "$@" # Commit instead
+    commit_msg=$(git log -1 --pretty=format:%s)
+    commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
+    state "Commit type: '%s'" "$commit_type"
   fi
 }
 
@@ -162,16 +165,6 @@ while [ "$#" -gt 0 ]; do
   re | boot | reboot) # Restart the system at the end of the script
     power_state="reboot"
     ;;
-  feat*) # New feature commit append remaining arguments, rebuild
-    commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
-    commit_type=feat
-    break # The loop should stop anyway, but quicker
-    ;;
-  fix*) # Bug fix commit, append remaining arguemnts, rebuild
-    commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
-    commit_type=fix
-    break # The loop should stop anyway, but quicker
-    ;;
   *) # Append any other arguments to the Git commit message
     commit_msg=$(echo "$*" | sed 's/^\s*//' | sed 's/\s*$//')
     # Also clean commit message (remove start and end whitespaces)
@@ -185,6 +178,7 @@ info "Initial state based on arguments"
 state "Update Flake inputs: %s" $update_inputs
 state "Rebuild NixOS system (explicitly): %s" $rebuild_system
 state "Commit message: '%s'" "$commit_msg"
+commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
 state "Commit type: '%s'" "$commit_type"
 state "Push Git repositories: %s" $push_repositories
 state "Power state change: '%s'" $power_state
@@ -211,8 +205,7 @@ if [ -n "$commit_msg" ]; then
   cfg_commit -C $PUBLIC_LOC "$commit_msg" # Commit public
   info 'Private: Commit flake repository (including public update)'
   cfg_commit -C $PRIVATE_LOC "$commit_msg" # Commit private
-  # git -C $PRIVATE_LOC commit --all ${commit_msg:+--message "$commit_msg"}
-else # Defaults to try amending the uncommited changes
+else                                       # Defaults to try amending the uncommited changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     cfg_edit # Edit the configuration if not doing other things explicitly
   fi
