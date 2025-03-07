@@ -29,12 +29,10 @@ show_help() {
 }
 
 state() {
-  printf '\033[3m' # Start itacil
+  printf '\033[3m' # Start italic
   printf "$@"
   printf '\033[0m\n' # End italic, newline
 }
-
-state "Rebuild Home Manager home: %s\n" $rebuild_home
 
 info() {
   printf '\033[1m' # Start bold
@@ -69,13 +67,13 @@ cfg_commit() {
     info 'Commit %s and flake.nix' $SYSTEM_LOC
     if git "$1" "$2" commit $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
       rebuild_system=true # Rebuild system as changes have been made
-      state "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
+      state "Rebuild NixOS system (explicitly): %s" $rebuild_system
       amend='--amend' # Amend following commits because there’s already it
     fi
     info 'Commit (or amend) %s' $HOME_LOC
     if git "$1" "$2" commit $amend $HOME_LOC ${3:+--message "$3"}; then
       rebuild_home=true # Rebuild home as changes have been made
-      state "Rebuild Home Manager home: %s\n" $rebuild_home
+      state "Rebuild Home Manager home: %s" $rebuild_home
       amend='--amend' # Amend following commits because there’s already it
     fi
   fi
@@ -122,7 +120,6 @@ cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
   cd /flake || cd /config ||
   cd /etc/flake || cd /etc/nixos || exit 1
 
-info "Initial state based on arguments\n"
 update_inputs=false     # Whether to update flake inputs
 rebuild_system=false    # Whether to rebuild the system with $NIXOS_REBUILD_CMD
 commit_msg=""           # Message to be constructed with remaining arguments
@@ -183,12 +180,14 @@ while [ "$#" -gt 0 ]; do
   esac
   shift # Next argument
 done
-state "Update Flake inputs: %s\n" $update_inputs
-state "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
-state "Commit message: '%s'\n" "$commit_msg"
-state "Commit type: '%s'\n" "$commit_type"
-state "Push Git repositories: %s\n" $push_repositories
-state "Power state change: '%s'\n" $power_state
+state "Rebuild Home Manager home: %s" $rebuild_home
+info "Initial state based on arguments"
+state "Update Flake inputs: %s" $update_inputs
+state "Rebuild NixOS system (explicitly): %s" $rebuild_system
+state "Commit message: '%s'" "$commit_msg"
+state "Commit type: '%s'" "$commit_type"
+state "Push Git repositories: %s" $push_repositories
+state "Power state change: '%s'" $power_state
 
 # Always pull the latest configuration before doing anything
 info 'Public: Pulling latest changes'
@@ -200,9 +199,9 @@ if $update_inputs; then
   if nix flake update --flake $PUBLIC_LOC --commit-lock-file; then
     # TODO properly test if there were updates
     rebuild_system=true
-    state "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
+    state "Rebuild NixOS system (explicitly): %s" $rebuild_system
     rebuild_home=true
-    state "Rebuild Home Manager home: %s\n" $rebuild_home
+    state "Rebuild Home Manager home: %s" $rebuild_home
   fi
 fi
 # Always edit and commit if commit message not empty
