@@ -9,6 +9,7 @@ SYSTEM_LOC="./system/"                          # System (NixOS) configuration
 HOME_LOC="./home/"                              # Home (Home Manager) config
 PRIVATE_LOC="./private/"                        # Private configuration location
 PUBLIC_LOC="./public/"                          # Public configuration location
+rebuild_home=false                              # Whether to rebuild the home
 
 show_help() {
   echo "Default: edit the configuration, amend or commit the changes, rebuild."
@@ -53,9 +54,6 @@ cfg_edit() {
   info 'Start default text editor'
   $EDITOR .
 }
-
-# Global argument
-rebuild_home=false # Whether to rebuild the home with $HOME_MANAGER_CMD
 
 cfg_commit() {
   amend='' # Whether to amend further commits to not create 3 same commits
@@ -177,7 +175,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 printf "Update Flake inputs: %s\n" $update_inputs
-printf "Rebuild NixOS system: %s\n" $rebuild_system
+printf "Rebuild NixOS system (explicitly): %s\n" $rebuild_system
 printf "Commit message: '%s'\n" "$commit_msg"
 printf "Commit type: '%s'\n" "$commit_type"
 printf "Push Git repositories: %s\n" $push_repositories
@@ -190,7 +188,11 @@ info 'Private: Pulling latest changes'
 cfg_pull -C $PRIVATE_LOC
 if $update_inputs; then
   info 'Public: Update flake %s inputs' $PUBLIC_LOC
-  nix flake update --flake $PUBLIC_LOC --commit-lock-file
+  if nix flake update --flake $PUBLIC_LOC --commit-lock-file; then
+    # TODO properly test if there were updates
+    rebuild_home=true
+    rebuild_system=true
+  fi
 fi
 # Always edit and commit if commit message not empty
 if [ -n "$commit_msg" ]; then
@@ -202,14 +204,14 @@ if [ -n "$commit_msg" ]; then
   # git -C $PRIVATE_LOC commit --all ${commit_msg:+--message "$commit_msg"}
 else # Defaults to try amending the uncommited changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
-    cfg_edit # Edit the configuration
+    cfg_edit # Edit the configuration if not doing other things explicitly
   fi
   info 'Public: Amend flake repository'
   cfg_amend -C $PUBLIC_LOC # Amend the commit if there’s unpushed commits,
   info 'Private: Amend flake repository'
   cfg_amend -C $PRIVATE_LOC # else create new commit
 fi
-info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private inputs
+info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public nf
 nix flake update --flake $PRIVATE_LOC --commit-lock-file || exit 1
 if $rebuild_system; then   # Always rebuild system if explicitly set
   rebuild_system || exit 1 # Don’t continue if the build failed
