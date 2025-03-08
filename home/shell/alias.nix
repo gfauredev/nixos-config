@@ -1,5 +1,6 @@
 { config, ... }:
 let
+  config_location = "~/.config/flake"; # TODO define in top level flake.nix
   eza_cfg = "eza --icons --git";
   # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
   common = {
@@ -9,6 +10,7 @@ let
     boot = "sudo bootctl";
     reboot = "systemctl reboot";
     off = "systemctl poweroff";
+    cfg = "cd ${config_location}; configure"; # Configure NixOS and Home Manager
     sys = "systemctl";
     jo = "sudo journalctl -xfe";
     gc = "nix-collect-garbage";

@@ -79,9 +79,7 @@
       name = "Bibata-Modern-Ice";
       size = 22;
     };
-    # targets.hyprlock.enable = false; # FIXME error empty config file
-    # FIXME ugly looking,
-    # see  https://github.com/chriskempson/base16/blob/main/styling.md
+    # FIXME ugly looking, https://github.com/chriskempson/base16/blob/main/styling.md
     targets.helix.enable = false; # FIXME color theme not compatible treesitter
   };
 

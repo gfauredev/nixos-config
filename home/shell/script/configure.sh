@@ -1,3 +1,4 @@
+# TODO make this script a package available in this flake’s nix dev environment
 # This script allows to easily manage a two-flakes system & home Nix config,
 # with one private config having as single input one public config,
 # which contains most of the configurations

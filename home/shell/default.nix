@@ -2,7 +2,8 @@
   imports = [ ./alias.nix ./nushell ./zsh.nix ./pulsemixer ];
 
   home.packages = let
-    dev-template = pkgs.writeScriptBin "dev" "${lib.readFile ./script/dev.sh}";
+    init-dev-env =
+      pkgs.writeScriptBin "dev" "${lib.readFile ./script/init-dev-env.sh}";
     smart-terminal =
       pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
     extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
@@ -10,9 +11,11 @@
     clean-archive = pkgs.writeScriptBin "cleanarchive"
       "${lib.readFile ./script/clean-archive.sh}";
     configure =
-      pkgs.writeScriptBin "cfg" "${lib.readFile ./script/configure.sh}";
-    smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/cmt.sh}";
-    date-edit = pkgs.writeScriptBin "de" "${lib.readFile ./script/de.sh}";
+      pkgs.writeScriptBin "configure" "${lib.readFile ./script/configure.sh}";
+    smart-commit =
+      pkgs.writeScriptBin "cmt" "${lib.readFile ./script/smart-commit.sh}";
+    date-edit =
+      pkgs.writeScriptBin "de" "${lib.readFile ./script/date-edit.sh}";
     present-pdf =
       pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
     xdg-open = pkgs.writeScriptBin "xopen" "${lib.readFile ./script/open.sh}";
@@ -25,7 +28,7 @@
       pkgs.writeScriptBin "unmtp" "${lib.readFile ./script/unmtp.sh}";
   in with pkgs; [
     # Custom scripts
-    dev-template # Initialize a Nix Flake based development environment
+    init-dev-env # Initialize a Nix Flake based development environment
     smart-terminal # Open a terminal quickly with first parameter always cd
     extract # Extract any compressed file
     backup # Backup with restic or rsync
