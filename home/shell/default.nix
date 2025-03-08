@@ -53,7 +53,6 @@
     sd # Intuitive find & replace
     grex # Regex generator from test cases
     moreutils # Additional Unix utilities
-    uv # Python package and project manager
     # rustdesk # Modern remote desktop
     kalker # Evaluate math expression
     nixpkgs-review # Quickly review pull requests to nixpkgs TEST
