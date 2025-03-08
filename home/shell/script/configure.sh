@@ -84,6 +84,10 @@ cfg_commit() {
 
 cfg_amend() {
   # Amend only if there’s unpushed commits
+  # rebuild_system=true # Rebuild system as changes have been made TODO
+  # state "Rebuild NixOS system (explicitly): %s" $rebuild_system TODO
+  # rebuild_home=true # Rebuild home as changes have been made TODO
+  # state "Rebuild Home Manager home: %s" $rebuild_home TODO
   if [ -n "$(git "$@" log --branches --not --remotes)" ]; then
     git "$@" commit --amend --all --no-edit || exit # Stop if no changes
   else
