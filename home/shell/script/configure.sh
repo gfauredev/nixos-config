@@ -1,4 +1,5 @@
 # TODO make this script a package available in this flake’s nix dev environment
+
 # This script allows to easily manage a two-flakes system & home Nix config,
 # with one private config having as single input one public config,
 # which contains most of the configurations
@@ -6,11 +7,12 @@ RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
 # -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
 NIXOS_REBUILD_CMD="systemd-inhibit sudo $RESOURCE_LIMIT nixos-rebuild"
 HOME_MANAGER_CMD='systemd-inhibit home-manager' # Set default params here
-SYSTEM_LOC="./system/"                          # System (NixOS) configuration
-HOME_LOC="./home/"                              # Home (Home Manager) config
-PRIVATE_LOC="./private/"                        # Private configuration location
-PUBLIC_LOC="./public/"                          # Public configuration location
+SYSTEM_LOC='./system'                           # System (NixOS) configuration
+HOME_LOC='./home'                               # Home (Home Manager) config
+PRIVATE_LOC='./private'                         # Private configuration location
+PUBLIC_LOC='./public'                           # Public configuration location
 rebuild_home=false                              # Whether to rebuild the home
+rebuild_system=false                            # Whether to rebuild the system
 
 show_help() {
   echo "Default: edit the configuration, amend or commit the changes, rebuild."
@@ -41,68 +43,112 @@ info() {
   printf '\033[0m\n\n' # End bold, newline
 }
 
-show_logs_status() {
+public_logs_status() {
   git -C $PUBLIC_LOC log --oneline || exit
   git -C $PUBLIC_LOC status || exit
 }
 
-cfg_pull() {
-  remote=$(git "$@" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
+# @1 sub-directory containing Git repository to pull (./public or ./private)
+pull_one() { # Git pull private or public config
+  remote=$(git -C "$1" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   info 'Test if remote %s is reachable (in less than %ss)' "$remote" 3
   if ping -c 1 -w 3 "$remote"; then
     info '%s reached, pull latest changes from it' "$remote"
-    git "$@" pull
+    git -C "$1" pull
   else
     info '%s non reachable, move on' "$remote"
   fi
 }
 
-cfg_edit() {
-  info 'Start default text editor'
-  $EDITOR .
+pull_both() { # Git pull both private and public config
+  info 'Public: Pulling latest changes'
+  pull_one $PUBLIC_LOC
+  info 'Private: Pulling latest changes'
+  pull_one $PRIVATE_LOC
 }
 
-amend='' # Whether to amend further commits to not create 3 same commits
+update_inputs() { # Update (public) config flake inputs
+  info 'Public: Update flake %s inputs' $PUBLIC_LOC
+  nix flake update --flake $PUBLIC_LOC --commit-lock-file
+  # Test if the last commit is an unpushed lockfile update
+  msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
+  if [ "$msg" = "flake.lock: Update" ]; then
+    rebuild_home=true # Rebuild home the flake inputs were update
+    state "Rebuild Home Manager home (inputs update): %s" $rebuild_home
+  fi
+}
 
-cfg_commit() {
-  if [ -d "$2/$SYSTEM_LOC" ] || [ -d "$2$HOME_LOC" ]; then
-    info 'Commit %s and flake.nix' $SYSTEM_LOC
-    if git "$1" "$2" commit $amend $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
-      rebuild_system=true # Rebuild system as changes have been made
-      state "Rebuild NixOS system (explicitly): %s" $rebuild_system
-      amend='--amend' # Amend following commits because there’s already it
+# @1 sub-directory containing Git repository to commit (./public or ./private)
+# @2 commit message, "--amend" to amend, empty to ask commit message with editor
+commit_one() { # Commit @1 config with message @2
+  if [ "$2" = "--amend" ]; then
+    param=$2 # Amend (modify) existing commit, no new one
+  else
+    param=${2:+--message "$2"} # Commit message if not empty
+  fi
+  info 'Commit %s flake.nix' "$param"
+  if git -C "$1" commit $param flake.nix; then
+    state 'Changes commited for the flake.nix file'
+    rebuild_home=true # Rebuild home as changes have been made
+    state 'Rebuild Home Manager home: %s' $rebuild_home
+    param='--amend --no-edit' # Prevent creating further identical commits
+  fi
+  if [ -d "$1/$SYSTEM_LOC" ]; then
+    info 'Commit %s %s' "$param" $SYSTEM_LOC
+    if git -C "$1" commit $param $SYSTEM_LOC; then
+      state 'Changes commited for NixOS system. Rebuild: %s' $rebuild_system
+      param='--amend --no-edit' # Prevent creating further identical commits
     fi
-    info 'Commit (or amend) %s' $HOME_LOC
-    if git "$1" "$2" commit $amend $HOME_LOC ${3:+--message "$3"}; then
+  fi
+  if [ -d "$1/$HOME_LOC" ]; then
+    info 'Commit %s %s' "$param" $HOME_LOC
+    if git -C "$1" commit $param $HOME_LOC; then
       rebuild_home=true # Rebuild home as changes have been made
-      state "Rebuild Home Manager home: %s" $rebuild_home
-      amend='--amend' # Amend following commits because there’s already it
+      state 'Changes commited for Home Manager home. Rebuild: %s' $rebuild_home
+      param='--amend --no-edit' # Prevent creating further identical commits
     fi
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
-  info 'Commit (or amend) all the remaining: %s' "$3"
-  git "$1" "$2" commit $amend --all ${3:+--message "$3"}
+  info 'Commit %s all the remaining. Message: "%s"' "$param" "$2"
+  git -C "$1" commit --all $param
 }
 
-cfg_amend() { # TODO factorize with cfg_commit
-  # Amend only if there’s unpushed commits
-  if [ -n "$(git "$@" log --branches --not --remotes)" ]; then
-    amend='--amend' cfg_commit "$@"
-    # git "$@" commit --amend --all --no-edit || exit # Stop if no changes
+commit_both() { # Git commit both private and public config
+  info 'Public: Commit flake repository'
+  commit_one $PUBLIC_LOC "$commit_msg"                # Commit public flake
+  info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public
+  nix flake update --flake $PRIVATE_LOC               # flake input
+  info 'Private: Commit flake repository (including public input update)'
+  commit_one $PRIVATE_LOC "$commit_msg" # Commit the private flake
+}
+
+# @1 sub-directory containing Git repository to commit (./public or ./private)
+amend_one() { # Amend public or private config
+  if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
+    commit_one "$1" --amend # Amend only if there’s unpushed commits
   else
     info 'All commits pushed, no one to amend, create new commit instead'
-    cfg_commit "$@" # Commit instead
+    commit_one "$1" # Create new commit instead
   fi
-  commit_msg=$(git log -1 --pretty=format:%s)
+  commit_msg=$(git -C "$1" log -1 --pretty=format:%s)
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
-  state "Commit type: '%s'" "$commit_type"
+  state "Commit type (edited interactively): '%s'" "$commit_type"
 }
 
-cfg_rebuild_system() {
+amend_both() { # Amend both public and private config
+  info 'Public: Amend flake repository'
+  amend_one $PUBLIC_LOC                               # May amend the public
+  info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public
+  nix flake update --flake $PRIVATE_LOC               # flake input
+  info 'Private: Amend flake repository'
+  amend_one $PRIVATE_LOC # Amend (if possible) or commit the private flake
+}
+
+rebuild_system_cmd() { # Rebuild the NixOS system
   info 'Mount /boot before system update'
-  sudo mount -v /boot || exit 1 # Use fstab
-  NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake private/"
-  info 'System: Update: "%s"' "$NIXOS_REBUILD_CMD"
+  sudo mount -v /boot || exit # Use fstab
+  NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake $PRIVATE_LOC"
+  info 'NixOS system rebuild: "%s"' "$NIXOS_REBUILD_CMD"
   if $NIXOS_REBUILD_CMD switch; then
     info 'Unmount /boot after update'
     sudo umount -v /boot # Unmount for security
@@ -113,21 +159,42 @@ cfg_rebuild_system() {
   fi
 }
 
-cfg_rebuild_home() {
-  info 'Remove .config/mimeapps.list'
-  rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake private/"
-  info 'Home: Update: "%s"' "$HOME_MANAGER_CMD"
+rebuild_home_cmd() { # Rebuild the Home Manager home
+  # info 'Remove .config/mimeapps.list'
+  # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
+  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake $PRIVATE_LOC"
+  info 'Home Manager home rebuild: "%s"' "$HOME_MANAGER_CMD"
   $HOME_MANAGER_CMD switch || return
 }
 
-# Go inside the config directory, start of the main script
-cd "$XDG_CONFIG_HOME/flake" || cd "$HOME/.config/flake" ||
-  cd /flake || cd /config ||
-  cd /etc/flake || cd /etc/nixos || exit 1
+rebase_both() { # Git rebase both public and private configs
+  info 'Public: Rebase flake repository'
+  git -C $PUBLIC_LOC rebase -i
+  info 'Private: Rebase flake repository'
+  msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
+  if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
+    [ -n "${git-C $PRIVATE_LOC log --branches --not --remotes}" ]; then
+    # Mirror last public’s Git commit message on private’s last commit
+    git -C $PRIVATE_LOC commit --amend --message "$msg"
+  fi
+  git -C $PRIVATE_LOC rebase -i
+}
+
+push_both() { # Git push both public and private configs
+  info 'Public: Push flake repository'
+  git -C $PUBLIC_LOC push
+  info 'Private: Push flake repository'
+  git -C $PRIVATE_LOC push
+}
+
+# Test if we are in the correct directory
+if ! [ -d $PUBLIC_LOC ] || ! [ -d $PRIVATE_LOC ]; then
+  printf 'This script should be executed from a directory'
+  printf 'with private and public configuration sub-directories'
+  exit 2
+fi
 
 update_inputs=false     # Whether to update flake inputs
-rebuild_system=false    # Whether to rebuild the system with $NIXOS_REBUILD_CMD
 commit_msg=""           # Message to be constructed with remaining arguments
 commit_type=""          # Type of commit, new feature, bugfix…
 push_repositories=false # Whether to push the Git repositories after update
@@ -141,12 +208,12 @@ while [ "$#" -gt 0 ]; do
   c | d | cd) # Directly open default shell into current working directory
     info 'You can exit the shell to get back to previous working directory'
     if [ "$2" = "public" ] || [ "$2" = "private" ]; then
-      cd "$2" || exit 1 # cd into sub-directory
+      cd "$2" || exit # cd into sub-directory
     fi
     exec $SHELL # Execute the default shell at the WD of this script
     ;;
   l | log | logs | stat | stats | status) # Show Git logs and status
-    show_logs_status                      # Directly show Git logs and status
+    public_logs_status                    # Directly show Git logs and status
     exit
     ;;
   u | up | update | upgrade) # Update the flake’s inputs, no rebuild by default
@@ -186,64 +253,36 @@ state "Commit type: '%s'" "$commit_type"
 state "Push Git repositories: %s" $push_repositories
 state "Power state change: '%s'" $power_state
 
-# Always pull the latest configuration before doing anything
-info 'Public: Pulling latest changes'
-cfg_pull -C $PUBLIC_LOC
-info 'Private: Pulling latest changes'
-cfg_pull -C $PRIVATE_LOC
+pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
-  info 'Public: Update flake %s inputs' $PUBLIC_LOC
-  if nix flake update --flake $PUBLIC_LOC --commit-lock-file; then
-    # TODO properly test if there were updates
-    rebuild_system=true
-    state "Rebuild NixOS system (explicitly): %s" $rebuild_system
-    rebuild_home=true
-    state "Rebuild Home Manager home: %s" $rebuild_home
-  fi
+  update_inputs
 fi
-# Always edit and commit if commit message not empty
+# Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
-  cfg_edit # Edit the configuration before commiting
-  info 'Public: Commit flake repository'
-  cfg_commit -C $PUBLIC_LOC "$commit_msg"             # Commit public
-  info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private input
-  nix flake update --flake $PRIVATE_LOC || exit 1
-  info 'Private: Commit flake repository (including public update)'
-  cfg_commit -C $PRIVATE_LOC "$commit_msg" # Commit private
-else                                       # Defaults to try amending changes
+  info 'Start default text editor'
+  $EDITOR .   # Edit the configuration before commiting,
+  commit_both # then commit public and private flakes
+else          # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     cfg_edit # Edit the configuration if not doing other things explicitly
   fi
-  info 'Public: Amend flake repository'
-  cfg_amend -C $PUBLIC_LOC                            # May amend the commit
-  info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private input
-  nix flake update --flake $PRIVATE_LOC --commit-lock-file || exit 1
-  info 'Private: Amend flake repository'
-  cfg_amend -C $PRIVATE_LOC # else create new commit
+  amend_both # Amend or commit public and private flakes
 fi
-if $rebuild_system; then       # Always rebuild system if explicitly set
-  cfg_rebuild_system || exit 1 # Don’t continue if the build failed
+if $rebuild_system; then     # Always rebuild system if explicitly set
+  rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
 if $rebuild_home && # Rebuild if home/ changed for a feat or a fix
   { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; }; then
-  cfg_rebuild_home || exit 1 # Don’t continue if the build failed
+  rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
-# Push repositories if explicit argument
-if $push_repositories; then
+if $push_repositories; then # Push repositories if explicit argument
   # Rebase interactively before pushing, if not doing any other operations
   if [ $rebuild_system = false ] && [ $rebuild_home = false ] &&
     [ $update_inputs = false ] &&
     [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
-    info 'Public: Rebase flake repository'
-    git -C $PUBLIC_LOC rebase -i || return
-    info 'Private: Rebase flake repository'
-    # TODO Automatically sync the private non-pushed commits with public ones
-    git -C $PRIVATE_LOC rebase -i || return # TODO stop that, annoying
+    rebase_both
   fi
-  info 'Public: Push flake repository'
-  git -C $PUBLIC_LOC push
-  info 'Private: Push flake repository'
-  git -C $PRIVATE_LOC push
+  push_both
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
   systemctl $power_state
