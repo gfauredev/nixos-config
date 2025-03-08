@@ -7,12 +7,13 @@ RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
 # -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
 NIXOS_REBUILD_CMD="systemd-inhibit sudo $RESOURCE_LIMIT nixos-rebuild"
 HOME_MANAGER_CMD='systemd-inhibit home-manager' # Set default params here
-SYSTEM_LOC='./system'                           # System (NixOS) configuration
-HOME_LOC='./home'                               # Home (Home Manager) config
-PRIVATE_LOC='./private'                         # Private configuration location
-PUBLIC_LOC='./public'                           # Public configuration location
-rebuild_home=false                              # Whether to rebuild the home
-rebuild_system=false                            # Whether to rebuild the system
+
+# SYSTEM_LOC='./system' # System (NixOS) configuration
+HOME_LOC='./home'       # Home (Home Manager) config
+PRIVATE_LOC='./private' # Private configuration location
+PUBLIC_LOC='./public'   # Public configuration location
+rebuild_home=false      # Whether to rebuild the home
+rebuild_system=false    # Whether to rebuild the system
 
 show_help() {
   echo "Default: edit the configuration, amend or commit the changes, rebuild."
@@ -34,13 +35,13 @@ show_help() {
 state() {
   printf '\033[3m' # Start italic
   printf "$@"
-  printf '\033[0m\n\n' # End italic, newline
+  printf '\033[0m\n' # End italic, newline
 }
 
 info() {
   printf '\033[1m' # Start bold
   printf "$@"
-  printf '\033[0m\n\n' # End bold, newline
+  printf '\033[0m\n' # End bold, newline
 }
 
 public_logs_status() {
@@ -61,10 +62,10 @@ pull_one() { # Git pull private or public config
 }
 
 pull_both() { # Git pull both private and public config
-  info 'Public: Pulling latest changes'
-  pull_one $PUBLIC_LOC
-  info '\nPrivate: Pulling latest changes'
-  pull_one $PRIVATE_LOC
+  info 'Public & Private: Pulling latest changes'
+  pull_one $PUBLIC_LOC &
+  pull_one $PRIVATE_LOC &
+  wait # Wait for background pulls to finish before moving ong
 }
 
 update_inputs() { # Update (public) config flake inputs
@@ -81,12 +82,12 @@ update_inputs() { # Update (public) config flake inputs
 # @1 sub-directory containing Git repository to commit (./public or ./private)
 # @2 commit message, "--amend" to amend, empty to ask commit message with editor
 commit_one() { # Commit @1 config with message @2
-  if [ "$2" = "--amend" ]; then
+  if [ "$2" = '--amend' ]; then
     param=$2 # Amend (modify) existing commit, no new one
   else
-    param=${2:+--message "$2"} # Commit message if not empty
+    param=${2:+--message \"$2\"} # Commit message if not empty
   fi
-  info 'Commit %s flake.nix' "$param"
+  info '❯ git -C %s commit %s flake.nix' "$1" "$param"
   if git -C "$1" commit $param flake.nix; then
     state 'Changes commited for the flake.nix file'
     rebuild_home=true # Rebuild home as changes have been made
@@ -94,7 +95,7 @@ commit_one() { # Commit @1 config with message @2
     param='--amend --no-edit' # Prevent creating further identical commits
   fi
   if [ -d "$1/$HOME_LOC" ]; then
-    info 'Commit %s %s' "$param" $HOME_LOC
+    info '\n❯ git -C %s commit %s flake.nix' "$1" "$param" $HOME_LOC
     if git -C "$1" commit $param $HOME_LOC; then
       rebuild_home=true # Rebuild home as changes have been made
       state 'Changes commited for Home Manager home. Rebuild: %s' $rebuild_home
@@ -102,7 +103,7 @@ commit_one() { # Commit @1 config with message @2
     fi
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
-  info 'Commit %s all the remaining. Message: "%s"' "$param" "$2"
+  info '\n❯ git -C %s commit --all %s' "$1" "$param"
   git -C "$1" commit --all $param
 }
 
@@ -174,10 +175,9 @@ rebase_both() { # Git rebase both public and private configs
 }
 
 push_both() { # Git push both public and private configs
-  info 'Public: Push flake repository'
-  git -C $PUBLIC_LOC push
-  info 'Private: Push flake repository'
-  git -C $PRIVATE_LOC push
+  info 'Public & Private: Pushing flake repository'
+  git -C $PUBLIC_LOC push &
+  git -C $PRIVATE_LOC push &
 }
 
 # Test if we are in the correct directory
@@ -188,10 +188,10 @@ if ! [ -d $PUBLIC_LOC ] || ! [ -d $PRIVATE_LOC ]; then
 fi
 
 update_inputs=false     # Whether to update flake inputs
-commit_msg=""           # Message to be constructed with remaining arguments
-commit_type=""          # Type of commit, new feature, bugfix…
+commit_msg=''           # Message to be constructed with remaining arguments
+commit_type=''          # Type of commit, new feature, bugfix…
 push_repositories=false # Whether to push the Git repositories after update
-power_state=""          # Whether to suspend, turn off or reboot the computer
+power_state=''          # Whether to suspend, turn off or reboot the computer
 while [ "$#" -gt 0 ]; do
   case "$1" in
   h | help | -h | --help)
@@ -236,15 +236,15 @@ while [ "$#" -gt 0 ]; do
   esac
   shift # Next argument
 done
-state "Rebuild Home Manager home: %s" $rebuild_home
-info "Initial state based on arguments"
-state "Update Flake inputs: %s" $update_inputs
-state "Rebuild NixOS system (explicitly): %s" $rebuild_system
-state "Commit message: '%s'" "$commit_msg"
+state 'Rebuild Home Manager home: %s' $rebuild_home
+info 'Initial state based on arguments'
+state 'Update Flake inputs: %s' $update_inputs
+state 'Rebuild NixOS system (explicitly): %s' $rebuild_system
+state 'Commit message: '%s'' "$commit_msg"
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
-state "Commit type: '%s'" "$commit_type"
-state "Push Git repositories: %s" $push_repositories
-state "Power state change: '%s'" $power_state
+state 'Commit type: '%s'' "$commit_type"
+state 'Push Git repositories: %s' $push_repositories
+state 'Power state change: '%s'\n' $power_state
 
 pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
