@@ -62,7 +62,7 @@ pull_one() { # Git pull private or public config
 }
 
 pull_both() { # Git pull both private and public config
-  info 'Public & Private: Pulling latest changes'
+  info 'Public & Private: Pulling latest changes (asynchronously)'
   pull_one $PUBLIC_LOC &
   pull_one $PRIVATE_LOC &
   wait # Wait for background pulls to finish before moving ong
@@ -79,42 +79,27 @@ update_inputs() { # Update (public) config flake inputs
   fi
 }
 
-# @1 sub-directory containing Git repository to commit (./public or ./private)
-# @2 commit message, "--amend" to amend, empty to ask commit message with editor
-commit_one() { # Commit @1 config with message @2
-  if [ "$2" = '--amend' ]; then
-    __amend=$2 # Amend (modify) existing commit, no new one
-  else
-    __message=${2:+--message} # Commit message if not empty
-    message="$2"
-  fi
-  info '❯ git -C %s commit %s flake.nix' "$1" "$__amend $__message $message"
-  if git -C "$1" commit "$__amend" "$__message" "$message" flake.nix; then
-    state 'Changes commited for the flake.nix file'
+# @1   sub-directory containing Git repository to commit (./public or ./private)
+# @all remaining parameters passed to Git (--amend, --message <string>)
+commit_one() {   # Commit @1 config with message @2
+  repo_path="$1" # Location of Git repository
+  shift          # Remove $1 from $@
+  if [ -n "$(git diff $HOME_LOC)" ]; then
     rebuild_home=true # Rebuild home as changes have been made
-    state 'Rebuild Home Manager home: %s' $rebuild_home
-    __amend='--amend --no-edit' # Prevent creating further identical commits
+    state "Rebuild Home Manager home (%s changed): %s" $HOME_LOC $rebuild_home
   fi
-  if [ -d "$1/$HOME_LOC" ]; then
-    info '\n❯ git -C %s commit %s flake.nix' "$1" "$__amend $__message $message" $HOME_LOC
-    if git -C "$1" commit "$__amend" "$__message" "$message" $HOME_LOC; then
-      rebuild_home=true # Rebuild home as changes have been made
-      state 'Changes commited for Home Manager home. Rebuild: %s' $rebuild_home
-      __amend='--amend --no-edit' # Prevent creating further identical commits
-    fi
-  fi
-  # Commit remaining changes, but don’t trigger a rebuild in these cases
-  info '\n❯ git -C %s commit --all %s' "$1" "$__amend $__message $message"
-  git -C "$1" commit --all "$__amend" "$__message" "$message"
+  # Commit all the changes
+  info '\n❯ git -C %s commit --all %s' "$repo_path" "$@"
+  git -C "$1" commit --all "$@"
 }
 
 commit_both() { # Git commit both private and public config
   info 'Public: Commit flake repository'
-  commit_one $PUBLIC_LOC "$commit_msg"                # Commit public flake
+  commit_one $PUBLIC_LOC --message "$commit_msg"      # Commit public flake
   info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public
   nix flake update --flake $PRIVATE_LOC               # flake input
   info 'Private: Commit flake repository (including public input update)'
-  commit_one $PRIVATE_LOC "$commit_msg" # Commit the private flake
+  commit_one $PRIVATE_LOC --message "$commit_msg" # Commit the private flake
 }
 
 # @1 sub-directory containing Git repository to commit (./public or ./private)
@@ -176,7 +161,7 @@ rebase_both() { # Git rebase both public and private configs
 }
 
 push_both() { # Git push both public and private configs
-  info 'Public & Private: Pushing flake repository'
+  info 'Public & Private: Pushing flake repository (asynchronously)'
   git -C $PUBLIC_LOC push &
   git -C $PRIVATE_LOC push &
 }
@@ -265,7 +250,7 @@ fi
 if $rebuild_system; then     # Always rebuild system if explicitly set
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
-if $rebuild_home && # Rebuild if home/ changed for a feat or a fix
+if $rebuild_home && # Rebuild home/ if new feat or a fix commit
   { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; }; then
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
@@ -276,8 +261,9 @@ if $push_repositories; then # Push repositories if explicit argument
     [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
     rebase_both
   fi
-  push_both
+  push_both # Push public and private repositories in the background
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
+  wait                         # Wait for eventual push to finish
   systemctl $power_state
 fi
