@@ -64,16 +64,19 @@
     ];
 
     # TODO cleaner with Nix modules, options
-    wayland.windowManager.hyprland.settings.env = [
-      "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
-      "TERM,${config.term.cmd}" # Default terminal
-      "TERM_EXEC,${config.term.exec}" # Default terminal run args
-      # FIX Set these variables again, home.sessionVariables don’t seem effective
-      "XDG_CONFIG_HOME,${config.home.sessionVariables.XDG_CONFIG_HOME}"
-      "SHELL,${config.home.sessionVariables.SHELL}" # Set Nushell as interactive shell
-      "EDITOR,${config.home.sessionVariables.EDITOR}" # Force default editor
-      "PAGER,${config.home.sessionVariables.PAGER}" # Force default pager
-      "PASSWORD_STORE_DIR,${config.home.sessionVariables.PASSWORD_STORE_DIR}"
-    ];
+    wayland.windowManager.hyprland.settings.env =
+      let var = config.home.sessionVariables;
+      in [
+        "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
+        "TERM,${config.term.cmd}" # Default terminal emulator
+        "TERM_EXEC,${config.term.exec}" # Default terminal exec command arg
+        # FIX Set these variables again FIXME home.sessionVariables don’t get passed to Nushell
+        "SHELL,${var.SHELL}" # Force default interactive shell
+        "XDG_CONFIG_HOME,${var.XDG_CONFIG_HOME}" # Force default config loc
+        "CONFIG_FLAKE,${var.CONFIG_FLAKE}" # System and home flake configs
+        "EDITOR,${var.EDITOR}" # Force default editor
+        "PAGER,${var.PAGER}" # Force default pager
+        "PASSWORD_STORE_DIR,${var.PASSWORD_STORE_DIR}" # passwords location
+      ];
   };
 }

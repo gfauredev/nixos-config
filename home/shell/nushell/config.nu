@@ -1,3 +1,8 @@
+# System config
+def --wrapped cfg [...rest: string] { # Configure NixOS and Home Manager
+  cd $env.CONFIG_FLAKE; configure ...$rest; cd -
+}
+
 # List
 def sl [] {ls | reverse}
 def lsd [] {ls | sort-by modified}

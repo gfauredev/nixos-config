@@ -1,6 +1,5 @@
 { config, ... }:
 let
-  config_location = "~/.config/flake"; # TODO define in top level flake.nix
   eza_cfg = "eza --icons --git";
   # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
   common = {
@@ -10,7 +9,6 @@ let
     boot = "sudo bootctl";
     reboot = "systemctl reboot";
     off = "systemctl poweroff";
-    cfg = "cd ${config_location}; configure"; # Configure NixOS and Home Manager
     sys = "systemctl";
     jo = "sudo journalctl -xfe";
     gc = "nix-collect-garbage";
@@ -85,6 +83,7 @@ in {
   programs.zsh.shellAliases = common // {
     # System
     re = "exec zsh";
+    cfg = "cd $CONFIG_FLAKE; configure"; # Configure NixOS and Home Manager
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";

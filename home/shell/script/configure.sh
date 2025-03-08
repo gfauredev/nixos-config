@@ -63,7 +63,7 @@ pull_one() { # Git pull private or public config
 pull_both() { # Git pull both private and public config
   info 'Public: Pulling latest changes'
   pull_one $PUBLIC_LOC
-  info 'Private: Pulling latest changes'
+  info '\nPrivate: Pulling latest changes'
   pull_one $PRIVATE_LOC
 }
 
@@ -92,13 +92,6 @@ commit_one() { # Commit @1 config with message @2
     rebuild_home=true # Rebuild home as changes have been made
     state 'Rebuild Home Manager home: %s' $rebuild_home
     param='--amend --no-edit' # Prevent creating further identical commits
-  fi
-  if [ -d "$1/$SYSTEM_LOC" ]; then
-    info 'Commit %s %s' "$param" $SYSTEM_LOC
-    if git -C "$1" commit $param $SYSTEM_LOC; then
-      state 'Changes commited for NixOS system. Rebuild: %s' $rebuild_system
-      param='--amend --no-edit' # Prevent creating further identical commits
-    fi
   fi
   if [ -d "$1/$HOME_LOC" ]; then
     info 'Commit %s %s' "$param" $HOME_LOC
