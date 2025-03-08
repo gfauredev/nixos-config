@@ -75,7 +75,7 @@ update_inputs() { # Update (public) config flake inputs
   msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
   if [ "$msg" = "flake.lock: Update" ]; then
     rebuild_home=true # Rebuild home the flake inputs were update
-    state "Rebuild Home Manager home (inputs update): %s" $rebuild_home
+    state "Rebuild Home Manager home (flake inputs update): %s" $rebuild_home
   fi
 }
 
@@ -84,7 +84,8 @@ update_inputs() { # Update (public) config flake inputs
 commit_one() {   # Commit @1 config with message @2
   repo_path="$1" # Location of Git repository
   shift          # Remove $1 from $@
-  if [ -n "$(git diff $HOME_LOC)" ]; then
+  if [ -n "$(git -C "$1" diff $HOME_LOC)" ] ||
+    [ -n "$(git -C "$1" diff flake.*)" ]; then
     rebuild_home=true # Rebuild home as changes have been made
     state "Rebuild Home Manager home (%s changed): %s" $HOME_LOC $rebuild_home
   fi
@@ -93,13 +94,14 @@ commit_one() {   # Commit @1 config with message @2
   git -C "$1" commit --all "$@"
 }
 
+# @1 Git commit message
 commit_both() { # Git commit both private and public config
   info 'Public: Commit flake repository'
-  commit_one $PUBLIC_LOC --message "$commit_msg"      # Commit public flake
+  commit_one $PUBLIC_LOC --message "$1"               # Commit public flake
   info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public
   nix flake update --flake $PRIVATE_LOC               # flake input
   info 'Private: Commit flake repository (including public input update)'
-  commit_one $PRIVATE_LOC --message "$commit_msg" # Commit the private flake
+  commit_one $PRIVATE_LOC --message "$1" # Commit the private flake
 }
 
 # @1 sub-directory containing Git repository to commit (./public or ./private)
@@ -226,11 +228,11 @@ state 'Rebuild Home Manager home: %s' $rebuild_home
 info 'Initial state based on arguments'
 state 'Update Flake inputs: %s' $update_inputs
 state 'Rebuild NixOS system (explicitly): %s' $rebuild_system
-state 'Commit message: '%s'' "$commit_msg"
+state 'Commit message: "%s"' "$commit_msg"
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
-state 'Commit type: '%s'' "$commit_type"
+state 'Commit type: "%s"' "$commit_type"
 state 'Push Git repositories: %s' $push_repositories
-state 'Power state change: '%s'\n' $power_state
+state 'Power state change: "%s"\n' $power_state
 
 pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
@@ -239,9 +241,9 @@ fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
   info 'Start default text editor'
-  $EDITOR .   # Edit the configuration before commiting,
-  commit_both # then commit public and private flakes
-else          # Defaults to try amending changes
+  $EDITOR .                 # Edit the configuration before commiting,
+  commit_both "$commit_msg" # then commit public and private flakes
+else                        # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     cfg_edit # Edit the configuration if not doing other things explicitly
   fi
