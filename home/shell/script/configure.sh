@@ -84,8 +84,8 @@ update_inputs() { # Update (public) config flake inputs
 commit_one() {   # Commit @1 config with message @2
   repo_path="$1" # Location of Git repository
   shift          # Remove $1 (repo path) from $@
-  if [ -n "$(git -C "$1" diff $HOME_LOC)" ] ||
-    [ -n "$(git -C "$1" diff flake.*)" ]; then
+  if [ -n "$(git -C "$repo_path" diff $HOME_LOC)" ] ||
+    [ -n "$(git -C "$repo_path" diff flake.*)" ]; then
     rebuild_home=true # Rebuild home as changes have been made
     state "Rebuild Home Manager home (%s changed): %s" $HOME_LOC $rebuild_home
   fi
@@ -93,10 +93,10 @@ commit_one() {   # Commit @1 config with message @2
   if [ "$1" = "--message" ]; then
     shift # Remove $1 "--message" from $*
     info '\n❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
-    git -C "$repo_path" commit --all --message "$*"
+    git -C "$repo_path" commit --all --message "$*" || return
   else
     info '\n❯ git -C %s commit --all %s' "$repo_path" "$@"
-    git -C "$repo_path" commit --all "$@"
+    git -C "$repo_path" commit --all "$@" || return
   fi
 }
 
@@ -114,10 +114,10 @@ commit_both() { # Git commit both private and public config
 # @1 sub-directory containing Git repository to commit (./public or ./private)
 amend_one() { # Amend public or private config
   if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
-    commit_one "$1" --amend # Amend only if there’s unpushed commits
+    commit_one "$1" --amend || return # Amend only if there’s unpushed commits
   else
     info 'All commits pushed, no one to amend, create new commit instead'
-    commit_one "$1" # Create new commit instead
+    commit_one "$1" || return # Create new commit instead
   fi
   commit_msg=$(git -C "$1" log -1 --pretty=format:%s)
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
