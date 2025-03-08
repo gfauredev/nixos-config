@@ -83,28 +83,29 @@ update_inputs() { # Update (public) config flake inputs
 # @2 commit message, "--amend" to amend, empty to ask commit message with editor
 commit_one() { # Commit @1 config with message @2
   if [ "$2" = '--amend' ]; then
-    param=$2 # Amend (modify) existing commit, no new one
+    __amend=$2 # Amend (modify) existing commit, no new one
   else
-    param=${2:+--message \"$2\"} # Commit message if not empty
+    __message=${2:+--message} # Commit message if not empty
+    message="$2"
   fi
-  info '❯ git -C %s commit %s flake.nix' "$1" "$param"
-  if git -C "$1" commit $param flake.nix; then
+  info '❯ git -C %s commit %s flake.nix' "$1" "$__amend $__message $message"
+  if git -C "$1" commit "$__amend" "$__message" "$message" flake.nix; then
     state 'Changes commited for the flake.nix file'
     rebuild_home=true # Rebuild home as changes have been made
     state 'Rebuild Home Manager home: %s' $rebuild_home
-    param='--amend --no-edit' # Prevent creating further identical commits
+    __amend='--amend --no-edit' # Prevent creating further identical commits
   fi
   if [ -d "$1/$HOME_LOC" ]; then
-    info '\n❯ git -C %s commit %s flake.nix' "$1" "$param" $HOME_LOC
-    if git -C "$1" commit $param $HOME_LOC; then
+    info '\n❯ git -C %s commit %s flake.nix' "$1" "$__amend $__message $message" $HOME_LOC
+    if git -C "$1" commit "$__amend" "$__message" "$message" $HOME_LOC; then
       rebuild_home=true # Rebuild home as changes have been made
       state 'Changes commited for Home Manager home. Rebuild: %s' $rebuild_home
-      param='--amend --no-edit' # Prevent creating further identical commits
+      __amend='--amend --no-edit' # Prevent creating further identical commits
     fi
   fi
   # Commit remaining changes, but don’t trigger a rebuild in these cases
-  info '\n❯ git -C %s commit --all %s' "$1" "$param"
-  git -C "$1" commit --all $param
+  info '\n❯ git -C %s commit --all %s' "$1" "$__amend $__message $message"
+  git -C "$1" commit --all "$__amend" "$__message" "$message"
 }
 
 commit_both() { # Git commit both private and public config
