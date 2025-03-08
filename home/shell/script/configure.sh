@@ -83,23 +83,30 @@ update_inputs() { # Update (public) config flake inputs
 # @all remaining parameters passed to Git (--amend, --message <string>)
 commit_one() {   # Commit @1 config with message @2
   repo_path="$1" # Location of Git repository
-  shift          # Remove $1 from $@
+  shift          # Remove $1 (repo path) from $@
   if [ -n "$(git -C "$1" diff $HOME_LOC)" ] ||
     [ -n "$(git -C "$1" diff flake.*)" ]; then
     rebuild_home=true # Rebuild home as changes have been made
     state "Rebuild Home Manager home (%s changed): %s" $HOME_LOC $rebuild_home
   fi
   # Commit all the changes
-  info '\n❯ git -C %s commit --all %s' "$repo_path" "$@"
-  git -C "$1" commit --all "$@"
+  if [ "$1" = "--message" ]; then
+    shift # Remove $1 "--message" from $*
+    info '\n❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
+    git -C "$1" commit --all --message "$*"
+  else
+    info '\n❯ git -C %s commit --all %s' "$repo_path" "$@"
+    git -C "$1" commit --all "$@"
+  fi
 }
 
 # @1 Git commit message
 commit_both() { # Git commit both private and public config
   info 'Public: Commit flake repository'
-  commit_one $PUBLIC_LOC --message "$1"               # Commit public flake
-  info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public
-  nix flake update --flake $PRIVATE_LOC               # flake input
+  if commit_one $PUBLIC_LOC --message "$1"; then # Commit the public flake
+    info 'Private: Update flake %s inputs' $PRIVATE_LOC
+    nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
+  fi
   info 'Private: Commit flake repository (including public input update)'
   commit_one $PRIVATE_LOC --message "$1" # Commit the private flake
 }
@@ -119,9 +126,10 @@ amend_one() { # Amend public or private config
 
 amend_both() { # Amend both public and private config
   info 'Public: Amend flake repository'
-  amend_one $PUBLIC_LOC                               # May amend the public
-  info 'Private: Update flake %s inputs' $PRIVATE_LOC # Update private’s public
-  nix flake update --flake $PRIVATE_LOC               # flake input
+  if amend_one $PUBLIC_LOC; then # May amend the public flake
+    info 'Private: Update flake %s inputs' $PRIVATE_LOC
+    nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
+  fi
   info 'Private: Amend flake repository'
   amend_one $PRIVATE_LOC # Amend (if possible) or commit the private flake
 }
