@@ -84,18 +84,20 @@ update_inputs() { # Update (public) config flake inputs
 commit_one() {   # Commit @1 config with message @2
   repo_path="$1" # Location of Git repository
   shift          # Remove $1 (repo path) from $@
-  if [ -n "$(git -C "$repo_path" diff $HOME_LOC)" ] ||
-    [ -n "$(git -C "$repo_path" diff flake.*)" ]; then
-    rebuild_home=true # Rebuild home as changes have been made
-    state "Rebuild Home Manager home (%s changed): %s" $HOME_LOC $rebuild_home
+  if [ -d $HOME_LOC ]; then
+    if [ -n "$(git -C "$repo_path" diff $HOME_LOC)" ] ||
+      [ -n "$(git -C "$repo_path" diff flake.*)" ]; then
+      rebuild_home=true # Rebuild home as changes have been made
+      state "  Rebuild Home Manager home (%s changed): %s" $HOME_LOC $rebuild_home
+    fi
   fi
   # Commit all the changes
   if [ "$1" = "--message" ]; then
     shift # Remove $1 "--message" from $*
-    info '\n❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
+    info '\n  ❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
     git -C "$repo_path" commit --all --message "$*" || return
   else
-    info '\n❯ git -C %s commit --all %s' "$repo_path" "$@"
+    info '\n  ❯ git -C %s commit --all %s' "$repo_path" "$@"
     git -C "$repo_path" commit --all "$@" || return
   fi
 }
@@ -114,24 +116,25 @@ commit_both() { # Git commit both private and public config
 # @1 sub-directory containing Git repository to commit (./public or ./private)
 amend_one() { # Amend public or private config
   if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
+    info '  Existing non pushed commit(s), amending'
     commit_one "$1" --amend || return # Amend only if there’s unpushed commits
   else
-    info 'All commits pushed, no one to amend, create new commit instead'
+    info '  All commits pushed, no one to amend, create new commit instead'
     commit_one "$1" || return # Create new commit instead
   fi
   commit_msg=$(git -C "$1" log -1 --pretty=format:%s)
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
-  state "Commit type (edited interactively): '%s'" "$commit_type"
+  state "  Commit type (edited interactively): '%s'" "$commit_type"
 }
 
 amend_both() { # Amend both public and private config
   info 'Public: Amend flake repository'
-  if amend_one $PUBLIC_LOC; then # May amend the public flake
+  if amend_one "$PUBLIC_LOC"; then # May amend the public flake
     info 'Private: Update flake %s inputs' $PRIVATE_LOC
     nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
   fi
   info 'Private: Amend flake repository'
-  amend_one $PRIVATE_LOC # Amend (if possible) or commit the private flake
+  amend_one "$PRIVATE_LOC" # Amend (if possible) or commit the private flake
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
@@ -261,13 +264,13 @@ if $rebuild_system; then     # Always rebuild system if explicitly set
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
 if $rebuild_home && # Rebuild home/ if new feat or a fix commit
-  { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; }; then
+  { [ "$commit_type" = 'feat' ] || [ "$commit_type" = 'fix' ]; }; then
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
 if $push_repositories; then # Push repositories if explicit argument
   # Rebase interactively before pushing, if not doing any other operations
-  if [ $rebuild_system = false ] && [ $rebuild_home = false ] &&
-    [ $update_inputs = false ] &&
+  if [ $rebuild_system = 'false' ] && [ $rebuild_home = 'false' ] &&
+    [ $update_inputs = 'false' ] &&
     [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
     rebase_both
   fi
