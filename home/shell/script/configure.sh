@@ -65,7 +65,7 @@ cfg_commit() {
   # amend='' # Whether to amend further commits to not create 3 same commits
   if [ -d "$2/$SYSTEM_LOC" ] || [ -d "$2$HOME_LOC" ]; then
     info 'Commit %s and flake.nix' $SYSTEM_LOC
-    if git "$1" "$2" commit $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
+    if git "$1" "$2" commit $amend $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
       rebuild_system=true # Rebuild system as changes have been made
       state "Rebuild NixOS system (explicitly): %s" $rebuild_system
       amend='--amend' # Amend following commits because there’s already it
