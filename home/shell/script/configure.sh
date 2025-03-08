@@ -62,7 +62,7 @@ cfg_edit() {
 }
 
 cfg_commit() {
-  amend='' # Whether to amend further commits to not create 3 same commits
+  # amend='' # Whether to amend further commits to not create 3 same commits
   if [ -d "$2/$SYSTEM_LOC" ] || [ -d "$2$HOME_LOC" ]; then
     info 'Commit %s and flake.nix' $SYSTEM_LOC
     if git "$1" "$2" commit $SYSTEM_LOC flake.nix ${3:+--message "$3"}; then
@@ -82,21 +82,18 @@ cfg_commit() {
   git "$1" "$2" commit $amend --all ${3:+--message "$3"}
 }
 
-cfg_amend() {
+cfg_amend() { # TODO factorize with cfg_commit
   # Amend only if there’s unpushed commits
-  # rebuild_system=true # Rebuild system as changes have been made TODO
-  # state "Rebuild NixOS system (explicitly): %s" $rebuild_system TODO
-  # rebuild_home=true # Rebuild home as changes have been made TODO
-  # state "Rebuild Home Manager home: %s" $rebuild_home TODO
   if [ -n "$(git "$@" log --branches --not --remotes)" ]; then
-    git "$@" commit --amend --all --no-edit || exit # Stop if no changes
+    amend='--amend' cfg_commit "$@"
+    # git "$@" commit --amend --all --no-edit || exit # Stop if no changes
   else
     info 'All commits pushed, no one to amend, create new commit instead'
     cfg_commit "$@" # Commit instead
-    commit_msg=$(git log -1 --pretty=format:%s)
-    commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
-    state "Commit type: '%s'" "$commit_type"
   fi
+  commit_msg=$(git log -1 --pretty=format:%s)
+  commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
+  state "Commit type: '%s'" "$commit_type"
 }
 
 cfg_rebuild_system() {
