@@ -46,31 +46,31 @@
             blur_passes = 2;
             blur_size = 3;
           }];
-          input-field = [{
-            size = "250, 50";
-            outline_thickness = 2;
-            dots_size = 0.35;
-            dots_spacing = 0.15;
-            dots_center = true;
-            dots_rounding = -1;
-            fade_on_empty = true;
-            fade_timeout = 2000;
-            placeholder_text = "Passphrase / Fingerprint";
-            hide_input = false;
-            fail_text = "$FAIL ($ATTEMPTS)";
-            fail_transition = 300;
-            capslock_color = -1;
-            numlock_color = -1;
-            bothlock_color = -1;
-            position = "0, 0";
-            halign = "center";
-            valign = "center";
-            # outer_color = "rgb(000000)"; # TODO Stylix
-            # inner_color = "rgb(000000)"; # TODO Stylix
-            # font_color = "rgb(ffddcc)"; # TODO Stylix
-            # check_color = "rgb(b6a482)"; # TODO Stylix
-            # fail_color = "rgb(fe4321)"; # TODO Stylix
-          }];
+          # input-field = [{
+          #   size = "250, 50";
+          #   outline_thickness = 2;
+          #   dots_size = 0.35;
+          #   dots_spacing = 0.15;
+          #   dots_center = true;
+          #   dots_rounding = -1;
+          #   fade_on_empty = true;
+          #   fade_timeout = 2000;
+          #   placeholder_text = "Passphrase / Fingerprint";
+          #   hide_input = false;
+          #   fail_text = "$FAIL ($ATTEMPTS)";
+          #   fail_transition = 300;
+          #   capslock_color = -1;
+          #   numlock_color = -1;
+          #   bothlock_color = -1;
+          #   position = "0, 0";
+          #   halign = "center";
+          #   valign = "center";
+          #   outer_color = "rgb(000000)"; # TODO Stylix
+          #   inner_color = "rgb(000000)"; # TODO Stylix
+          #   font_color = "rgb(ffddcc)"; # TODO Stylix
+          #   check_color = "rgb(b6a482)"; # TODO Stylix
+          #   fail_color = "rgb(fe4321)"; # TODO Stylix
+          # }];
         };
       };
       rofi.package = pkgs.rofi-wayland; # Set this for wayland
