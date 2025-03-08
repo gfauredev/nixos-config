@@ -93,10 +93,10 @@ commit_one() {   # Commit @1 config with message @2
   if [ "$1" = "--message" ]; then
     shift # Remove $1 "--message" from $*
     info '\n❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
-    git -C "$1" commit --all --message "$*"
+    git -C "$repo_path" commit --all --message "$*"
   else
     info '\n❯ git -C %s commit --all %s' "$repo_path" "$@"
-    git -C "$1" commit --all "$@"
+    git -C "$repo_path" commit --all "$@"
   fi
 }
 
