@@ -23,7 +23,6 @@
       wl-mirror # Mirror wayland output
       grim # Take screenshots
       slurp # Select a screen zone with mouse
-      wev # Evaluate inputs sent to wayland to debug
       libnotify # Notifications management
       hyprpicker # Better color picker
       wayland-utils # wayland info
@@ -32,20 +31,8 @@
     xdg.dataFile."icons/Bibata-Hypr-Ice".source =
       ./Bibata-Modern-Ice.hyprcursor;
 
-    # home.sessionVariables = {
-    #   HYPRCURSOR_THEME = "Bibata-Hypr-Ice"; # Modern cursor theme
-    #   HYPRCURSOR_SIZE = "22";
-    # };
-
     programs = {
       hyprlock.enable = true;
-      # hyprlock.settings = { TODO
-      #     background = [{
-      #       path = "screenshot";
-      #       blur_passes = 2;
-      #       blur_size = 3;
-      #     }];
-      #   };
       rofi.package = pkgs.rofi-wayland; # Set this for wayland
     };
 
@@ -59,7 +46,7 @@
         # NOTE hacky way to prevent sleep if eGPU connected,
         # because currently sleeping with eGPU crashes the system
         on-timeout =
-          "[ -e $XDG_CONFIG_HOME/hypr/egpu ] || ${config.wayland.suspend}";
+          "[ -L $XDG_CONFIG_HOME/hypr/egpu ] || ${config.wayland.suspend}";
       }
     ];
 

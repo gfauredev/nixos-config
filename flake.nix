@@ -162,6 +162,7 @@
             shellcheck # Shell script analysis
             shfmt # Shell script formater
             vscode-langservers-extracted # HTML/CSS/JS(ON)
+            wev # Evaluate inputs sent to wayland to debug
           ];
           # env = { }; # Environment variable
           # shellHook = ""; # Shell command(s) activated when entering dev env
