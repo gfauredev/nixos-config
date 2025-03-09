@@ -114,6 +114,9 @@ in {
         "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
         "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
       ];
+      workspace = [
+        "w[tv1], gapsout:0, gapsin:0, border:false, rounding:false" # Smart borders
+      ];
       bindd = [
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
         "$mod, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
