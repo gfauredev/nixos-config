@@ -19,8 +19,8 @@ for dev in $devs; do
     udisksctl mount -b "/dev/$dev" || return
   fi
 done
-if [ -e "/run/media/$USER" ]; then
+if [ -e "/run/media/$USER" ] && ! [ -h "$HOME/usb" ]; then
   ln -s "/run/media/$USER" "$HOME/usb" # Create USB link if needed
-else
-  [ -h "$HOME/usb" ] && rm "$HOME/usb" # Remove USB link if not needed anymore
+elif [ -h "$HOME/usb" ]; then
+  rm "$HOME/usb" # Remove USB link if not needed anymore
 fi
