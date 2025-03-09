@@ -92,7 +92,7 @@
     # Passwords & Secrets
     # bitwarden-cli # Modern password manager
     # keepass # Popular password manager TODO sync with phone
-    keepassxc # Password manager TEST
+    keepassxc # Password manager TEST me
     # keepass-keeagent # Keepass agent
     gitleaks # Better tool to discover secrets in Git repo
     git-filter-repo # Quickly rewrite history
