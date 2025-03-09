@@ -257,7 +257,8 @@ if [ -n "$commit_msg" ]; then
   commit_both "$commit_msg" # then commit public and private flakes
 else                        # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
-    cfg_edit # Edit the configuration if not doing other things explicitly
+    info 'Start default text editor'
+    $EDITOR . # Edit the configuration if not doing other tasks
   fi
   amend_both # Amend or commit public and private flakes
 fi
