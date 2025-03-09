@@ -7,9 +7,9 @@
   config.home.packages = with pkgs; [
     anki-bin # Memorisation
     # markdown-anki-decks
+    appflowy # Notion alternative
     # anytype # Knowledge base TEST
     # logseq # Knowledge base TEST
-    # appflowy # Notion alternative TEST
     # siyuan # Knowledge management # No p2p sync
     # silverbullet # Knowledge management # No p2p sync
     # affine # Knowledge base # No Android app
