@@ -48,6 +48,7 @@ let
     mix = "pulsemixer";
     scanpdf =
       "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
+    cmake = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # Always export includes
     # Git
     clone = "git clone -v";
     status = "git status";
