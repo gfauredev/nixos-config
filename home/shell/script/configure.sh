@@ -92,13 +92,13 @@ commit_one() {   # Commit @1 config with message @2
     fi
   fi
   # Commit all the changes
-  if [ "$1" = "--message" ]; then
+  if [ "$1" = "--message" ]; then # TEST if necessary for msg to stay one string
     shift # Remove $1 "--message" from $*
     info '\n  ❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
     git -C "$repo_path" commit --all --message "$*" || return
-  else
-    info '\n  ❯ git -C %s commit --all %s' "$repo_path" "$@"
-    git -C "$repo_path" commit --all "$@" || return
+  elif [ "$1" = "--amend" ]; then
+    info '\n  ❯ git -C %s commit --all --amend --no-edit' "$repo_path"
+    git -C "$repo_path" commit --all --amend --no-edit || return
   fi
 }
 
