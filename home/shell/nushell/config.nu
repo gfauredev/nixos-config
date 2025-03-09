@@ -3,6 +3,14 @@ def --wrapped cfg [...rest: string] { # Configure NixOS and Home Manager
   cd $env.CONFIG_FLAKE; configure ...$rest; cd -
 }
 
+# Mount usb and Android devices easily
+def --wrapped usb [...rest: string] { # USB removable devices
+  cd $env.CONFIG_FLAKE; mount-usb ...$rest; cd -
+}
+def --wrapped mtp [...rest: string] { # Android devices over USB
+  cd $env.CONFIG_FLAKE; mount-mtp ...$rest; cd -
+}
+
 # List
 def sl [] {ls | reverse}
 def lsd [] {ls | sort-by modified}
@@ -18,11 +26,6 @@ def upsub [] {git commit -am 'build: update submodule(s)'; git push}
 def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 
 # Clear screen and display contextual status if empty command line
-# TODO display battery info in on a laptop
-# TODO display ethernet info if connected over ethernet,
-#   if not, display wifi info if connected over wifi
-# TODO display connected bluetooth devices info
-# Actually run ENTER on empty command line Enter
 $env.config.hooks.pre_execution = (
   $env.config.hooks.pre_execution?
   | default []

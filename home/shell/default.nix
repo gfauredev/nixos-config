@@ -20,12 +20,8 @@
       pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
     xdg-open = pkgs.writeScriptBin "xopen" "${lib.readFile ./script/open.sh}";
     typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
-    usb-mount = pkgs.writeScriptBin "usb" "${lib.readFile ./script/usb.sh}";
-    usb-umount =
-      pkgs.writeScriptBin "unusb" "${lib.readFile ./script/unusb.sh}";
-    mtp-mount = pkgs.writeScriptBin "mtp" "${lib.readFile ./script/mtp.sh}";
-    mtp-umount =
-      pkgs.writeScriptBin "unmtp" "${lib.readFile ./script/unmtp.sh}";
+    usb-mount = pkgs.writeScriptBin "mount-usb" "${lib.readFile ./script/usb.sh}";
+    mtp-mount = pkgs.writeScriptBin "mount-mtp" "${lib.readFile ./script/mtp.sh}";
   in with pkgs; [
     # Custom scripts
     init-dev-env # Initialize a Nix Flake based development environment
