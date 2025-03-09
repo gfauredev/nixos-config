@@ -104,7 +104,6 @@ in {
       dwindle = {
         pseudotile = true; # master switch for pseudotiling TEST
         preserve_split = true; # you probably want this
-        # no_gaps_when_only = 1; # Disable gaps & borders for lone window
       };
       windowrulev2 = [
         # Thunderbird Reminders
@@ -115,7 +114,7 @@ in {
         "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
       ];
       workspace = [
-        "w[tv1], gapsout:0, gapsin:0, border:false, rounding:false" # Smart borders
+        "w[v1], gapsout:0, gapsin:0, border:false, rounding:false" # Smart borders
       ];
       bindd = [
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
@@ -282,10 +281,10 @@ in {
       ];
       bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
       general = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 2;
-        layout = "dwindle";
+        gaps_in = 0; # Keep only borders, spare screen surface
+        gaps_out = 0; # Keep only borders, spare screen surface
+        border_size = 2; # Keep only borders, spare screen surface
+        layout = "dwindle"; # Default new window placement algorithm
         "col.inactive_border" = lib.mkForce black; # Low-cost gaps
       };
       cursor = {
