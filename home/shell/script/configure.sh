@@ -84,7 +84,8 @@ update_inputs() { # Update (public) config flake inputs
 commit_one() {   # Commit @1 config with message @2
   repo_path="$1" # Location of Git repository
   shift          # Remove $1 (repo path) from $@
-  if [ -d $HOME_LOC ]; then
+  git -C "$repo_path" diff
+  if [ -d "$repo_path/$HOME_LOC" ]; then
     if [ -n "$(git -C "$repo_path" diff $HOME_LOC)" ] ||
       [ -n "$(git -C "$repo_path" diff flake.*)" ]; then
       rebuild_home=true # Rebuild home as changes have been made
@@ -93,7 +94,7 @@ commit_one() {   # Commit @1 config with message @2
   fi
   # Commit all the changes
   if [ "$1" = "--message" ]; then # TEST if necessary for msg to stay one string
-    shift # Remove $1 "--message" from $*
+    shift                         # Remove $1 "--message" from $*
     info '\n  ❯ git -C %s commit --all --message "%s"' "$repo_path" "$*"
     git -C "$repo_path" commit --all --message "$*" || return
   elif [ "$1" = "--amend" ]; then
