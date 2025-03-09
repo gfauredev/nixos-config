@@ -109,6 +109,7 @@
     # rpi-imager # Raspberry Pi OS generator
     # veracrypt # multiplatform encryption
     dislocker # decrypt bitlocker disks
+    smartmontools # Monitor health of drives
   ];
 
   services = {

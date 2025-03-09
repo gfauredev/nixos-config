@@ -103,6 +103,7 @@
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
     iperf3.enable = true; # Network testing
+    # smartd.enable = true; # TEST Drive health monitoring
   };
 
   location.provider = "geoclue2";
