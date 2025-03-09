@@ -8,10 +8,12 @@ fi
 for dev in $devs; do
   if findmnt "/dev/$dev"; then # If the device is mounted, unmount
     udisksctl unmount -b /dev/"$dev" || return
-    if [[ $(findmnt -n -o TARGET /dev/"$dev") == *"back"* ]]; then
-      printf '%s seems to be a backup device, SMART health test\n' "$dev"
-      sudo smartctl -x /dev/"$dev"
-    fi
+    case $(findmnt -n -o TARGET /dev/"$dev") in
+      *"back"*)
+        printf '%s seems to be a backup device, SMART health test\n' "$dev"
+        sudo smartctl -x /dev/"$dev"
+      ;;
+    esac
     udisksctl power-off -b /dev/"$dev"
   else # Else mount it
     udisksctl mount -b "/dev/$dev" || return
