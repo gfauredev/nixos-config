@@ -131,11 +131,11 @@
           timeout = "6s";
           origin = "bottom-right";
           # origin = "bottom-center";
-          # offset = "0x-28"; # Lowered to align with status bar
+          offset = "0x-28"; # Lowered to align with status bar
+          frame_width = 0; # No borders
+          corner_radius = 12; # Rounded corners
           # width = 400;
           # height = 100; # About the triple of status bar height
-          # frame_width = 0;
-          # corner_radius = 15;
         };
       };
     };
