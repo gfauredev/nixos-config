@@ -42,7 +42,7 @@ $env.config.hooks.pre_execution = (
   | append {
     if (commandline | is-empty) {
       clear --keep-scrollback
-      if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
+      if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 2min {
         fastfetch
       }
       print (ls | table)
