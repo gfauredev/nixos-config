@@ -48,9 +48,9 @@ $env.config.hooks.pre_execution = (
       } else {
         date now
       }
-      # TODO display hello message if session time less than 5 min (300s)
-      # if (w -h -s|head -n1|tr -s ' '|cut -d' ' -f3|into datetime) {
-      # }
+      if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
+        fastfetch
+      }
     }
   }
 )
