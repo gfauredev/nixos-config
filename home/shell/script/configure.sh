@@ -198,11 +198,8 @@ rebase_public_private() { # Git rebase both public and private configs
 
 push_public_private() { # Git push both public and private configs
   info 'Public & Private: Will push flake repository (asynchronously)'
-  info 'Press any key to cancel, 2 seconds remaining'
-  if read -r -t 2 -n 1; then # Read a single character, timeout after 2s
-    info '\tPublic & Private: Git push cancelled !'
-    exit
-  fi
+  info 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
+  sleep 3 || exit # Give the user 3 seconds to cancel the push if needed
   git -C $PUBLIC_LOC push &
   git -C $PRIVATE_LOC push &
 }
