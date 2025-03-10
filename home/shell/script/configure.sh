@@ -276,12 +276,12 @@ fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
   info 'Start default text editor'
-  $EDITOR .                           # Edit the configuration before commiting,
+  direnv exec . $EDITOR .             # Edit the configuration before commiting,
   commit_public_private "$commit_msg" # then commit public and private flakes
 else                                  # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     info 'Start default text editor'
-    $EDITOR . # Edit the configuration if not doing other tasks
+    direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
   fi
   amend_public_private # Amend or commit public and private flakes
 fi

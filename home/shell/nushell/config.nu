@@ -1,7 +1,8 @@
 # System config
 def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
   cd $env.CONFIG_FLAKE
-  direnv exec . configure ...$arg
+  # direnv exec .
+  configure ...$arg
 }
 
 # Mount usb and Android devices easily
