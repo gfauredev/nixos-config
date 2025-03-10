@@ -1,14 +1,28 @@
 # System config
-def --wrapped cfg [...rest: string] { # Configure NixOS and Home Manager
-  cd $env.CONFIG_FLAKE; configure ...$rest; cd -
+def --env --wrapped cfg [...arg] { # Configure NixOS and Home Manager
+  cd $env.CONFIG_FLAKE
+  configure ...$arg
+  cd -
 }
 
 # Mount usb and Android devices easily
-def --wrapped usb [...rest: string] { # USB removable devices
-  cd $env.CONFIG_FLAKE; mount-usb ...$rest; cd -
+def --env --wrapped usb [...arg] { # USB removable devices
+  cd ~ # Preventively change directory to home in case of unmount
+  mount-usb ...$arg
+  try {
+    cd ~/usb # Change to the mount directory, will fail if it was an unmount
+  } catch {
+    cd -
+  }
 }
-def --wrapped mtp [...rest: string] { # Android devices over USB
-  cd $env.CONFIG_FLAKE; mount-mtp ...$rest; cd -
+def --env --wrapped mtp [...arg] { # Android devices over USB
+  cd ~ # Preventively change directory to home in case of unmount
+  mount-mtp ...$arg
+  try {
+    cd ~/mtp # Change to the mount directory, will fail if it was an unmount
+  } catch {
+    cd -
+  }
 }
 
 # List
