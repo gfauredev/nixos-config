@@ -197,11 +197,12 @@ rebase_public_private() { # Git rebase both public and private configs
 }
 
 push_public_private() { # Git push both public and private configs
-  info 'Public & Private: Will push flake repository (asynchronously)'
-  info 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
-  sleep 3 || exit # Give the user 3 seconds to cancel the push if needed
-  git -C $PUBLIC_LOC push &
-  git -C $PRIVATE_LOC push &
+  # info 'Public & Private: Will push flake repository (asynchronously)'
+  info 'Public & Private: Push flake repository'
+  # info 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
+  # sleep 3 || exit # Give the user 3 seconds to cancel the push if needed
+  git -C $PUBLIC_LOC push
+  git -C $PRIVATE_LOC push
 }
 
 # Test if we are in the correct directory
