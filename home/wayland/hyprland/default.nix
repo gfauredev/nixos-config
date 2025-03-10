@@ -135,9 +135,11 @@ in {
         "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
         "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
         # No border for windows that are the only tiled window of the workspace
-        "noborder, floating:0, workspace:w[tv1]"
-        "norounding, floating:0, workspace:w[tv1]"
+        # "noborder, floating:0, workspace:w[tv1]" # FIXME
+        # "norounding, floating:0, workspace:w[tv1]" # FIXME
       ];
+      # No borders for workspaces with a single visible window
+      workspace = [ "w[v1], border:0" ]; # TODO replace with smarter windowrules
       bindd = [
         "$mod CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
         "$mod, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
