@@ -7,14 +7,14 @@ def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
 
 # Mount usb and Android devices easily
 def --env --wrapped usb [...arg] { # USB removable devices
-  cd ~ # Preventively change directory to home in case of unmount
+  cd ~; # Preventively change directory to home in case of unmount
   mount-usb ...$arg
   try {
     cd ~/usb # Change to the mount directory, will fail if it was an unmount
   } catch {cd -}
 }
 def --env --wrapped mtp [...arg] { # Android devices over USB
-  cd ~ # Preventively change directory to home in case of unmount
+  cd ~; # Preventively change directory to home in case of unmount
   mount-mtp ...$arg
   try {
     cd ~/mtp # Change to the mount directory, will fail if it was an unmount
@@ -42,14 +42,14 @@ $env.config.hooks.pre_execution = (
   | append {
     if (commandline | is-empty) {
       clear --keep-scrollback
+      if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
+        fastfetch
+      }
       print (ls | table)
       if (git status | complete | $in.exit_code == 0) {
         git status
       } else {
         date now
-      }
-      if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
-        fastfetch
       }
     }
   }
