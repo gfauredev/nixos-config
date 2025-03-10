@@ -1,5 +1,6 @@
 { lib, pkgs, config, ... }:
 let
+  # Aliases and utility functions
   active_win = ''
     $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
   active_ws = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
@@ -7,11 +8,11 @@ let
     "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   ifWorkspaceEmpty = { ws }:
     ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
+  # Tools definitions
   mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   monitor = # Monitoring
     "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
-  # Global opener command # FIXME cd for broot (br)
-  open =
+  open = # Global opener command # FIXME cd for broot (br)
     "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -c broot";
   picker = "hyprpicker --autocopy"; # Color picker
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
@@ -57,6 +58,27 @@ let
     dest-ws = "${location}/${timestamp}_${active_ws}.png";
     dest-zone = "${location}/${timestamp}_${active_win}.png";
   };
+  # Hyprland definitions
+  workspaces = [
+    {
+      key = "b"; # $mod+key: focus workspace, $mod+shift+key: move window to it
+      name = "web"; # Name of the workspace, better if replaced with an icon
+      # Command to execute if moved to the workspace and it’s empty
+      empty = config.home.sessionVariables.BROWSER;
+      # Command to execute if already focusing the workspace but $mod+key
+      already = config.home.sessionVariables.BROWSER_ALT;
+    }
+    {
+      key = "a"; # $mod+key: focus workspace, $mod+shift+key: move window to it
+      name = "art"; # Name of the workspace, better if replaced with an icon
+      # Command to execute if moved to the workspace and it’s empty
+      empty = "${config.launch.category} AudioVideo";
+      # Command to execute if already focusing the workspace but $mod+key
+      already = mixer;
+    }
+    # TODO other workspaces definitions …
+    # TODO build Hyprland config from these definitions with Nix functions
+  ];
 in {
   home.packages = with pkgs; [
     jq # Interpret `hyprctl -j` JSON in keybindings
