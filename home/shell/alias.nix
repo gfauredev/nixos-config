@@ -50,11 +50,11 @@ let
       "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
     cmake = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # Always export includes
     # Git
-    clone = "git clone -v";
-    status = "git status";
-    fetch = "git fetch -v";
+    clone = "git clone --verbose";
+    status = "git status --verbose --ignored";
+    fetch = "git fetch --verbose";
     pull = "git pull --recurse-submodules --jobs=8";
-    remote = "git remote -v";
+    remote = "git remote --verbose";
     checkout = "git checkout";
     gadd = "git add";
     commit = "git commit"; # Smarter function
@@ -65,7 +65,7 @@ let
     switch = "git switch";
     branch = "git branch";
     revert = "git revert";
-    clean = "git clean -idx";
+    clean = "git clean --interactive -dx";
     giff = "git diff";
     logg = "git log --oneline";
     unamend = "git reset --soft HEAD@{1}";
