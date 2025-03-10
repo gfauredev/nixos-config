@@ -1,5 +1,5 @@
 { lib, pkgs, ... }: {
-  imports = [ ./alias.nix ./nushell ./zsh.nix ./pulsemixer ];
+  imports = [ ./alias.nix ./xonsh.nix ./nushell ./zsh.nix ./pulsemixer ];
 
   home.packages = let
     init-dev-env =

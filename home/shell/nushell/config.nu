@@ -11,18 +11,14 @@ def --env --wrapped usb [...arg] { # USB removable devices
   mount-usb ...$arg
   try {
     cd ~/usb # Change to the mount directory, will fail if it was an unmount
-  } catch {
-    cd -
-  }
+  } catch {cd -}
 }
 def --env --wrapped mtp [...arg] { # Android devices over USB
   cd ~ # Preventively change directory to home in case of unmount
   mount-mtp ...$arg
   try {
     cd ~/mtp # Change to the mount directory, will fail if it was an unmount
-  } catch {
-    cd -
-  }
+  } catch {cd -}
 }
 
 # List
