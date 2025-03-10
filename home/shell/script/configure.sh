@@ -260,7 +260,6 @@ while [ "$#" -gt 0 ]; do
   shift # Next argument
 done
 state 'Rebuild Home Manager home: %s' $rebuild_home
-info 'Initial state based on arguments'
 state 'Update Flake inputs: %s' $update_inputs
 state 'Rebuild NixOS system (explicitly): %s' $rebuild_system
 state 'Commit message: "%s"' "$commit_msg"
