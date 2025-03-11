@@ -4,6 +4,34 @@ let
   active_win = ''
     $(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
   active_ws = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
+  # TODO pass custom keybinding for apps that support tabs natively…
+  tabbedApp = [
+    {
+      name = "brave";
+      bind = "ctrl+t";
+    }
+    {
+      name = "chromium";
+      bind = "ctrl+t";
+    }
+    {
+      name = "firefox";
+      bind = "ctrl+t";
+    }
+    {
+      name = "ghostty";
+      bind = "ctrl+t";
+    }
+    {
+      name = "alacritty";
+      bind = "ctrl+t"; # TODO
+    }
+    {
+      name = "foot";
+      bind = "ctrl+t"; # TODO
+    }
+  ];
+  # TODO … instead of grouping
   cycleOrToggleGroup =
     "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   ifWorkspaceEmpty = { ws }:
