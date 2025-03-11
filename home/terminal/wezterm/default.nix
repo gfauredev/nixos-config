@@ -2,6 +2,7 @@
   programs = {
     wezterm = {
       enable = true; # Modern terminal emulator
+      # enableFishIntegration = true;
       enableZshIntegration = true;
       # extraConfig = ''
       #   cfg = wezterm.config_builder() -- Base config

@@ -20,8 +20,10 @@
       pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
     xdg-open = pkgs.writeScriptBin "xopen" "${lib.readFile ./script/open.sh}";
     typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
-    usb-mount = pkgs.writeScriptBin "mount-usb" "${lib.readFile ./script/usb.sh}";
-    mtp-mount = pkgs.writeScriptBin "mount-mtp" "${lib.readFile ./script/mtp.sh}";
+    usb-mount =
+      pkgs.writeScriptBin "mount-usb" "${lib.readFile ./script/usb.sh}";
+    mtp-mount =
+      pkgs.writeScriptBin "mount-mtp" "${lib.readFile ./script/mtp.sh}";
   in with pkgs; [
     # Custom scripts
     init-dev-env # Initialize a Nix Flake based development environment
@@ -74,16 +76,19 @@
     starship = {
       enable = true; # Super prompt
       enableNushellIntegration = true;
+      # enableFishIntegration = true;
       enableZshIntegration = true;
     };
     zoxide = {
       enable = true; # Smart cd
       enableNushellIntegration = true;
+      # enableFishIntegration = true;
       enableZshIntegration = true;
     };
     broot = { # TODO organize
       enable = true; # Quick fuzzy file finder
       enableNushellIntegration = true;
+      # enableFishIntegration = true;
       enableZshIntegration = true;
       settings = {
         default_flags = "dgps";
@@ -112,12 +117,14 @@
     eza = {
       enable = true; # Better ls
       enableNushellIntegration = false;
+      # enableFishIntegration = true;
       enableZshIntegration = true;
     };
     gh = {
       enable = true; # GitHub official CLI
       # settings = { }; # TODO + credentials
     };
+    fish.enable = true; # Friendly shell, to provide completions to Nushell
     gh-dash.enable = true; # GitHub dashboard
     jq.enable = true; # JSON parsing and request tool
     translate-shell.enable = true; # Google Translate CLI

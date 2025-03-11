@@ -121,6 +121,7 @@
     gpg-agent = {
       enable = true;
       enableNushellIntegration = true;
+      # enableFishIntegration = true;
       enableZshIntegration = true;
       pinentryPackage = pkgs.pinentry-gnome3;
     };
@@ -148,6 +149,7 @@
       enable = true;
       nix-direnv.enable = true;
       enableNushellIntegration = true;
+      # enableFishIntegration = true;
       enableZshIntegration = true;
     };
     rbw = { # Unofficial Rust Bitwarden CLI
