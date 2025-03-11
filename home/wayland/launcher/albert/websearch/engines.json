@@ -237,7 +237,7 @@
         "id": "515389a6",
         "name": "Searchix (NixOS, Home Manager…)",
         "trigger": "nix",
-        "url": "https://searchix.alanpearce.eu/all/search?query=%s"
+        "url": "https://searchix.alanpearce.eu/?query=%s"
     },
     {
         "fallback": false,

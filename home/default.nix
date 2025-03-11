@@ -91,9 +91,9 @@
 
     # Passwords & Secrets
     # bitwarden-cli # Modern password manager
-    # keepass # Popular password manager TODO sync with phone
-    keepassxc # Password manager TEST me
-    # keepass-keeagent # Keepass agent
+    keepassxc # Password manager TEST
+    keepassxc-go # CLI to interacet with KeepassXC TEST
+    git-credential-keepassxc # Use KeepassXC with Git TEST
     gitleaks # Better tool to discover secrets in Git repo
     git-filter-repo # Quickly rewrite history
 
