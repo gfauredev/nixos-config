@@ -35,6 +35,8 @@
         (system: f { pkgs = import nixpkgs { inherit system; }; });
       # TODO common user config for system/ and home/ in the flake.nix,
       #      infer homeConfigurations of the form `user@machine` based on it
+      # home-manager = # FIXME
+      #   import home-manager { home-manager.backupFileExtension = ".bak"; };
     in {
       nixosModules = {
         # Laptops #
@@ -47,7 +49,7 @@
             lanzaboote.nixosModules.lanzaboote # TODO factorize, tie to system/default.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
             home-manager.nixosModules.home-manager
-            { home-manager.backupFileExtension = ".bak"; }
+            # { home-manager.backupFileExtension = ".bak"; }
           ];
         };
         chimera = { # Chimera, a flying creature
