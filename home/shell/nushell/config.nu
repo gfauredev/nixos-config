@@ -5,9 +5,6 @@ $env.config.hooks.pre_execution = (
   | append {
     if (commandline | is-empty) {
       clear --keep-scrollback
-      if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 2min {
-        fastfetch
-      }
       print (ls | table)
       if (git status | complete | $in.exit_code == 0) {
         git status
@@ -89,4 +86,9 @@ let external_completer = {|spans|
 $env.config.completions.external = {
   enable: true
   completer: $external_completer
+}
+
+# Display a welcome message for the first three minutes after login
+if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 3min {
+  fastfetch
 }
