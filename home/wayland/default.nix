@@ -56,6 +56,7 @@
       in [
         "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         "TERM,${config.term.cmd}" # Default terminal emulator
+        "TERMINAL,${config.term.cmd}" # Default terminal emulator
         "TERM_EXEC,${config.term.exec}" # Default terminal exec command arg
         # FIX Set these variables again FIXME home.sessionVariables don’t get passed to Nushell
         "SHELL,${var.SHELL}" # Force default interactive shell
