@@ -155,11 +155,11 @@
     };
     rbw = { # Rust Bitwarden CLI client
       enable = true;
-      settings = { # See https://git.tozt.net/rbw/about
-        # base_url = ""; # Self-hosted bitwarden URL
-        # identity_url = ""; #  Identity URL of self-hosted bitwarden
-        # email = ""; # Bitwarden account email
-      };
+      # settings = { # See https://git.tozt.net/rbw/about
+      #   base_url = ""; # Self-hosted bitwarden URL
+      #   identity_url = ""; # Identity URL of self-hosted bitwarden
+      #   email = ""; # Bitwarden account email
+      # };
     };
     password-store = {
       enable = true; # CLI standard password manager
