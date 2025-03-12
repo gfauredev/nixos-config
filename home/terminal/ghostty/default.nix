@@ -9,6 +9,7 @@
   programs.ghostty.settings = {
     keybind = [
       "ctrl+t=new_split:down"
+      "ctrl+shift+r=new_split:right"
       "ctrl+shift+t=new_tab"
       "ctrl+s=goto_split:next"
       "ctrl+shift+s=next_tab"
