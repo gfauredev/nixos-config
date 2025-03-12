@@ -61,10 +61,10 @@ let
     pull = "git pull --recurse-submodules --jobs=8";
     remote = "git remote --verbose";
     checkout = "git checkout";
-    gadd = "git add";
-    commit = "git commit"; # Smarter function
+    gadd = "git add --verbose";
+    commit = "git commit --verbose"; # Smarter function
     amend = "git commit --amend"; # Smarter function
-    push = "git push";
+    push = "git push --verbose";
     merge = "git merge";
     rebase = "git rebase";
     switch = "git switch";
