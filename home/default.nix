@@ -90,10 +90,11 @@
     # aichat # CLI LLM chat
 
     # Passwords & Secrets
-    # bitwarden-cli # Modern password manager
-    keepassxc # Password manager TEST
-    keepassxc-go # CLI to interacet with KeepassXC TEST
-    git-credential-keepassxc # Use KeepassXC with Git TEST
+    # bitwarden-cli # Modern password manager, replaced by rbw
+    bitwarden-desktop # TODO move password managing to it TEST replace by rbw
+    # keepassxc # Password manager
+    # keepassxc-go # CLI to interacet with KeepassXC
+    # git-credential-keepassxc # Use KeepassXC with Git
     gitleaks # Better tool to discover secrets in Git repo
     git-filter-repo # Quickly rewrite history
 
@@ -152,9 +153,13 @@
       # enableFishIntegration = true;
       enableZshIntegration = true;
     };
-    rbw = { # Unofficial Rust Bitwarden CLI
+    rbw = { # Rust Bitwarden CLI client
       enable = true;
-      # See: https://searchix.alanpearce.eu/options/home-manager/search?query=programs.rbw 
+      settings = { # See https://git.tozt.net/rbw/about
+        # base_url = ""; # Self-hosted bitwarden URL
+        # identity_url = ""; #  Identity URL of self-hosted bitwarden
+        # email = ""; # Bitwarden account email
+      };
     };
     password-store = {
       enable = true; # CLI standard password manager
