@@ -18,12 +18,11 @@
       pkgs.writeScriptBin "de" "${lib.readFile ./script/date-edit.sh}";
     present-pdf =
       pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
-    xdg-open = pkgs.writeScriptBin "xopen" "${lib.readFile ./script/open.sh}";
     typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
     usb-mount =
-      pkgs.writeScriptBin "mount-usb" "${lib.readFile ./script/usb.sh}";
+      pkgs.writeScriptBin "mount.usb" "${lib.readFile ./script/usb.sh}";
     mtp-mount =
-      pkgs.writeScriptBin "mount-mtp" "${lib.readFile ./script/mtp.sh}";
+      pkgs.writeScriptBin "mount.mtp" "${lib.readFile ./script/mtp.sh}";
   in with pkgs; [
     # Custom scripts
     init-dev-env # Initialize a Nix Flake based development environment
@@ -35,7 +34,6 @@
     smart-commit # Quickly commit or amend, lint message
     date-edit # Open text files, prepend current date to the first one
     present-pdf # Open detached pdfpc to present a PDF slide
-    xdg-open # xdg-open from the CLI
     typst-compile # Compile the latest edited Typst file in current dir
     usb-mount # Quickly mount or unmount a USB device in ~/usb
     mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp

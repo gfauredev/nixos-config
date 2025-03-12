@@ -47,7 +47,7 @@ def --env --wrapped usb [...arg] { # USB removable devices
   if ($env.PWD | str downcase | str ends-with "usb") {
     cd ~; # Change directory to home to let ~/usb/ alone
   }
-  mount-usb ...$arg # Mount or unmount USB device
+  mount.usb ...$arg # Mount or unmount USB device
   if ("~/usb" | path type) == "dir" {
     cd ~/usb # Change to the mount directory, will fail if it was an unmount
   }
@@ -56,7 +56,7 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
   if ($env.PWD | str downcase | str ends-with "mtp") {
     cd ~; # Change directory to home to let ~/mtp/ alone
   }
-  mount-mtp ...$arg # Mount or unmount Android device
+  mount.mtp ...$arg # Mount or unmount Android device
   if ("~/mtp" | path type) == "dir" {
     cd ~/mtp # Change to the mount directory, will fail if it was an unmount
   }
