@@ -10,7 +10,7 @@
 
           modules-left = [ "battery" "temperature" "cpu" "memory" "network" ];
           modules-center = [ "hyprland/workspaces" "hyprland/window" ];
-          modules-right = [ "tray" "pulseaudio" "mpris" "clock" ];
+          modules-right = [ "tray" "mpris" "pulseaudio" "clock" ];
 
           battery = {
             interval = 15;
