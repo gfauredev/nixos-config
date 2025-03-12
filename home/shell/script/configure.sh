@@ -109,8 +109,10 @@ commit_all() {   # Commit $1 config with message $2
     fi
   fi
   # Commit all the changes
-  info '\t❯ git -C %s commit --all %s' "$repo_path" "$@"
-  git -C "$repo_path" commit --all "$@" || return
+  info '\t❯ git -C %s add --verbose .' "$repo_path" "$@"
+  git -C "$repo_path" add --verbose .
+  info '\t❯ git -C %s commit %s' "$repo_path" "$@"
+  git -C "$repo_path" commit --verbose "$@" || return
 }
 
 # @param 1 Git commit message
