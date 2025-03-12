@@ -1,9 +1,9 @@
-# Clear screen and display contextual status if empty command line
 $env.config.hooks.pre_execution = (
   $env.config.hooks.pre_execution?
   | default []
-  | append {
-    if (commandline | is-empty) {
+  | append [
+    # Clear screen and display contextual status if empty command line
+    {if (commandline | is-empty) {
       clear --keep-scrollback
       print (ls | table)
       if (git status | complete | $in.exit_code == 0) {
@@ -11,8 +11,14 @@ $env.config.hooks.pre_execution = (
       } else {
         date now
       }
-    }
-  }
+    # Open editor if only dot "." or path to a directory ending with a dot "/."
+    } else if (commandline | str ends-with "/.") or (commandline) == "." {
+      run-external $env.EDITOR .
+    # Start with default handler if only a file or a symlink
+    } else if (commandline | path type) in [file symlink] {
+      start (commandline)
+    }}
+  ]
 )
 
 # System config
@@ -38,18 +44,22 @@ def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 
 # Mount usb and Android devices easily
 def --env --wrapped usb [...arg] { # USB removable devices
-  cd ~; # Preventively change directory to home in case of unmount
-  mount-usb ...$arg
-  try {
+  if ($env.PWD | str downcase | str ends-with "usb") {
+    cd ~; # Change directory to home to let ~/usb/ alone
+  }
+  mount-usb ...$arg # Mount or unmount USB device
+  if ("~/usb" | path type) == "dir" {
     cd ~/usb # Change to the mount directory, will fail if it was an unmount
-  } catch {cd -}
+  }
 }
 def --env --wrapped mtp [...arg] { # Android devices over USB
-  cd ~; # Preventively change directory to home in case of unmount
-  mount-mtp ...$arg
-  try {
+  if ($env.PWD | str downcase | str ends-with "mtp") {
+    cd ~; # Change directory to home to let ~/mtp/ alone
+  }
+  mount-mtp ...$arg # Mount or unmount Android device
+  if ("~/mtp" | path type) == "dir" {
     cd ~/mtp # Change to the mount directory, will fail if it was an unmount
-  } catch {cd -}
+  }
 }
 
 $env.config.hooks.command_not_found = {
