@@ -136,7 +136,6 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     wireshark.enable = true; # Network analysis
-    command-not-found.enable = true; # Propose a package providing it
     firejail = {
       enable = true; # TODO ensure apps are jailed
       wrappedBinaries = {

@@ -16,7 +16,7 @@ $env.config.hooks.pre_execution = (
       run-external $env.EDITOR .
     # Start with default handler if only a file or a symlink
     } else if (commandline | path type) in [file symlink] {
-      start (commandline)
+      start (commandline) # FIXME terminal default apps, especially text editor
     }}
   ]
 )
@@ -62,9 +62,9 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
   }
 }
 
-$env.config.hooks.command_not_found = {
-  |command_name| print (command-not-found $command_name | str trim)
-}
+# $env.config.hooks.command_not_found = {
+#   |command_name| print (command-not-found $command_name | str trim)
+# }
 
 # See https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
 let fish_completer = {|spans|
