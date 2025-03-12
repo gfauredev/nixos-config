@@ -32,4 +32,9 @@
     # archi # Archimate modeling tool
     # glib # GTK Tools, needed for logseq
   ];
+
+  config.programs = {
+    himalaya.enable = true;
+    khal.enable = true;
+  };
 }
