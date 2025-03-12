@@ -111,6 +111,9 @@
     # veracrypt # multiplatform encryption
     dislocker # decrypt bitlocker disks
     smartmontools # Monitor health of drives
+
+    # Misc
+    handlr-regex # Modern replacement of xdg-open TEST
   ];
 
   services = {

@@ -9,14 +9,14 @@ $env.config.hooks.pre_execution = (
       if (git status | complete | $in.exit_code == 0) {
         git status
       } else {
-        date now
+        print (date now)
       }
-    # Open editor if only dot "." or path to a directory ending with a dot "/."
-    } else if (commandline | str ends-with "/.") or (commandline) == "." {
-      run-external $env.EDITOR .
     # Start with default handler if only a file or a symlink
     } else if (commandline | path type) in [file symlink] {
-      start (commandline) # FIXME terminal default apps, especially text editor
+      start (commandline) # FIXME terminal default apps, especially text editors
+    # Open editor if path with a dot "/." # Do dir/to/edit; . instead
+    # } else if (commandline | str ends-with "/.") {
+    #   run-external $env.EDITOR (commandline)
     }}
   ]
 )

@@ -24,11 +24,16 @@ let
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
     # Files
-    ts = "trash -v";
     restore = "trash-restore";
     empty = "trash-empty -i";
     shred = "shred -vu";
     wx = "watchexec";
+    x = "xdg-open"; # Open with the default tool TEST handlr instead
+    ## Quickly launch default text editor
+    e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
+    "." = "${config.home.sessionVariables.EDITOR} ."; # Edit text in current dir
+    ## Quick smart file/directory copy
+    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
     ## Search
     bd = "br --sort-by-date";
     bs = "br --sort-by-size";
@@ -40,9 +45,9 @@ let
     http = "xh";
     https = "xh --https";
     # Media & Documents
-    pp = "playerctl play-pause";
-    next = "playerctl next";
-    prev = "playerctl previous";
+    # pp = "playerctl play-pause";
+    # next = "playerctl next";
+    # prev = "playerctl previous";
     clic = "klick --auto-connect --interactive";
     clicmap = "klick --auto-connect --tempo-map";
     mix = "pulsemixer";
@@ -71,13 +76,6 @@ let
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
-    # Open ONE LETTER
-    x = "xopen"; # xdg-open as separate process
-    a = "bat --force-colorization"; # --paging never"; # Better cat
-    p = "${config.home.sessionVariables.PAGER}"; # Default pager
-    # Edit ONE LETTER
-    e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
-    c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
   };
 in {
   # home.shellAliases = common; # Don’t works
@@ -87,6 +85,7 @@ in {
     cfg = "cd $CONFIG_FLAKE; configure"; # Configure NixOS and Home Manager
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
+    ts = "trash -v";
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
     mv = "mv -uv";
     # List
@@ -99,12 +98,13 @@ in {
     la = "${eza_cfg} -l --group -all";
     al = "${eza_cfg} -l --group -all --reverse";
     lt = "${eza_cfg} -l --tree";
-    # List & Search ONE LETTER
+    # List, single letter
     l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
     g = "\\rga --smart-case --color=always"; # Better grep
-    # Open ONE LETTER
-    o = "xopen"; # xdg-open as separate process
-    # Edit ONE LETTER
+    # Open, single letter
+    a = "bat --force-colorization"; # --paging never"; # Better cat
+    p = "${config.home.sessionVariables.PAGER}"; # Default pager
+    # Edit, single letter
     m = "mkdir -pv"; # mkdir with parents if needed
     # Git
     upsub = "git commit -am 'build: update submodule(s)'; git push";
@@ -112,18 +112,14 @@ in {
   };
   programs.nushell.shellAliases = common // {
     # System
-    re = "exec nu";
+    re = "exec nu"; # Restart a shell, replacing the current one
     # Files
-    rm = "rm --verbose"; # TODO trash by default
+    rm = "rm --verbose"; # Remove file(s) (thrash them)
+    m = "mkdir --verbose"; # Quickly create directory
     # List
-    l = "ls"; # Quick ls
-    ll = "ls --long"; # List all the data
+    l = "ls"; # Quickly list files in current directory
+    ll = "ls --long"; # List all the data of the files in current directory
     la = "ls --all --long"; # List all the data of all files, hidden included
-    # List & Search ONE LETTER
-    g = "rga --smart-case --color=always"; # Better grep
-    # Open ONE LETTER
-    o = "open"; # nushell’s open
-    # Edit ONE LETTER
-    m = "mkdir --verbose"; # Quick mkdir
+    g = "rga --smart-case --color=always"; # Search full text inside every file
   };
 }
