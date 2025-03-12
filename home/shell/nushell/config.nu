@@ -13,7 +13,9 @@ $env.config.hooks.pre_execution = (
         print (date now)
       }
     # Start with default handler if only a non executable file or a symlink
-    } else if (commandline | path type) in [file symlink] and not (ls --long (commandline) | get mode | str contains "x") {
+    } else if (commandline
+      | path type) in [file symlink] and not (ls --long (commandline)
+      | get mode | str contains "x") {
       start (commandline)
       # commandline edit ("start " + (commandline))
     # Open editor if path with a dot "/."
@@ -27,7 +29,7 @@ $env.config.hooks.pre_execution = (
   ]
 )
 
-# System config
+# Edit system and home config
 def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
   cd $env.CONFIG_FLAKE
   # direnv exec .
@@ -39,7 +41,6 @@ def sl [] {ls | reverse}
 def lsd [] {ls | sort-by modified}
 def sld [] {ls | sort-by modified | reverse}
 def al [] {ls --all --long | reverse}
-
 # Create a directory and cd into it
 # TODO if multiple directories, open terms inside them
 def --env md [newWorkingDir] {mkdir -v ($newWorkingDir); cd ($newWorkingDir)}
@@ -68,18 +69,15 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
   }
 }
 
-# $env.config.hooks.command_not_found = {
-#   |command_name| print (command-not-found $command_name | str trim)
-# }
-
-# See https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
-let fish_completer = {|spans|
+# Additional completers
+let zoxide_complete = {|spans|
+    $spans | skip 1 | zoxide query -l ...$in | lines
+    | where {|x| $x != $env.PWD}
+}
+let fish_complete = {|spans|
     fish --command $'complete "--do-complete=($spans | str join " ")"'
     | from tsv --flexible --noheaders --no-infer
     | rename value description
-}
-let zoxide_completer = {|spans|
-    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
 }
 let external_completer = {|spans|
     let expanded_alias = scope aliases
@@ -93,12 +91,12 @@ let external_completer = {|spans|
         $spans
     }
     match $spans.0 {
-        # use zoxide completions for zoxide commands
-        __zoxide_z | __zoxide_zi => $zoxide_completer
-        _ => $fish_completer
+        # Zoxide completions for zoxide commands
+        __zoxide_z | __zoxide_zi => $zoxide_complete
+        # Fish completions by default
+        _ => $fish_complete
     } | do $in $spans
 }
-
 $env.config.completions.external = {
   enable: true
   completer: $external_completer
