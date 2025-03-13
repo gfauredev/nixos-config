@@ -151,6 +151,7 @@
       enable = true;
       binfmt = true;
     };
+    xwayland.enable = false; # Use xwayland-satellite instead
     # uwsm.enable = true; # TEST wayland session manager
     hyprland = {
       enable = true; # Main Window Manager
@@ -172,6 +173,7 @@
 
   environment = {
     systemPackages = with pkgs; [ # TODO clean, remove unused, move some to home
+      xwayland-satellite # Wayland container that can run X11 apps
       lsof # list opened files
       zip # Universal compression
       unzip # Universal decompression
