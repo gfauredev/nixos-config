@@ -14,10 +14,9 @@ HOME_LOC='./home'       # Home (Home Manager) config
 PRIVATE_LOC='./private' # Private configuration location
 PUBLIC_LOC='./public'   # Public configuration location
 # Global variables
-rebuild_home=false   # Whether to rebuild the home
-rebuild_system=false # Whether to rebuild the system
-commit_msg=''        # Message to be constructed with remaining arguments
-commit_type=''       # Type of commit, new feature, bugfix…
+home_changed=false # Have changes been made to home config
+commit_msg=''      # Message to be constructed with remaining arguments
+commit_type=''     # Type of commit, new feature, bugfix…
 
 show_help() {
   echo "Default: edit the configuration, amend or commit the changes, rebuild."
@@ -75,15 +74,11 @@ pull_both() {
 }
 
 # Update (public) config flake inputs
-update_inputs() {
+update_inputs_cmd() {
   info 'Public: Update flake %s inputs' $PUBLIC_LOC
   nix flake update --flake $PUBLIC_LOC --commit-lock-file
   # Test if the last commit is an unpushed lockfile update
-  msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
-  if [ "$msg" = "flake.lock: Update" ]; then
-    rebuild_home=true # Rebuild home the flake inputs were update
-    state "Rebuild Home Manager home (flake inputs update): %s" $rebuild_home
-  fi
+  # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
 }
 
 # Return 0 if there are uncommited changes, 1 otherwise
@@ -104,9 +99,8 @@ commit_all() {   # Commit $1 config with message $2
   git -C "$repo_path" diff
   if [ -d "$repo_path/$HOME_LOC" ]; then
     if has_repo_changed "$repo_path" $HOME_LOC flake.nix flake.lock; then
-      rebuild_home=true # Rebuild home as changes have been made
-      state "\tRebuild Home Manager home: %s" $rebuild_home
-      state '\t\t(%s changed)' $HOME_LOC
+      home_changed=true # Rebuild home as changes have been made
+      state '\tChanges made in %s configuration' $HOME_LOC
     fi
   fi
   # Commit all the changes
@@ -216,6 +210,7 @@ if ! [ -d $PUBLIC_LOC ] || ! [ -d $PRIVATE_LOC ]; then
 fi
 
 update_inputs=false     # Whether to update flake inputs
+rebuild_system=false    # Has the user explicitly asked to rebuild the system
 push_repositories=false # Whether to push the Git repositories after update
 power_state=''          # Whether to suspend, turn off or reboot the computer
 while [ "$#" -gt 0 ]; do
@@ -262,9 +257,8 @@ while [ "$#" -gt 0 ]; do
   esac
   shift # Next argument
 done
-state 'Rebuild Home Manager home: %s' $rebuild_home
 state 'Update Flake inputs: %s' $update_inputs
-state 'Rebuild NixOS system (explicitly): %s' $rebuild_system
+state 'Rebuild NixOS system: %s' $rebuild_system
 state 'Commit message: "%s"' "$commit_msg"
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
 state 'Commit type: "%s"' "$commit_type"
@@ -273,7 +267,7 @@ state 'Power state change: "%s"\n' $power_state
 
 pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
-  update_inputs
+  update_inputs_cmd
 fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
@@ -290,14 +284,18 @@ fi
 if $rebuild_system; then     # Always rebuild system if explicitly set
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
-if $rebuild_home && # Rebuild home/ if new feat or fix commit
-  { [ "$commit_type" = 'feat' ] || [ "$commit_type" = 'fix' ]; }; then
+# Rebuild home/ if
+# - It was changed for a new feature of a bugfix
+# - Flake inputs are updated
+if [ $home_changed = true ] &&
+  { [ "$commit_type" = feat ] || [ "$commit_type" = fix ]; } ||
+  [ $update_inputs = true ]; then
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
 if $push_repositories; then # Push repositories if explicit argument
   # Rebase interactively before pushing, if not doing any other operations
-  if [ $rebuild_system = 'false' ] && [ $rebuild_home = 'false' ] &&
-    [ $update_inputs = 'false' ] &&
+  if [ $rebuild_system = false ] && [ $home_changed = false ] &&
+    [ $update_inputs = false ] &&
     [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
     rebase_public_private
   fi
