@@ -95,6 +95,7 @@ has_repo_changed() {
   [ -n "$(git -C "$repo_path" diff "$@")" ]
 }
 
+# Return the state of the commit
 # @param 1 sub-directory containing Git repo to commit (./public or ./private)
 # @param * remaining parameters passed to Git (--amend, --message <string>)
 commit_all() {   # Commit $1 config with message $2
