@@ -12,6 +12,10 @@ use_generic_name=true
 use_keywords=true
 use_non_localized_name=false
 
+[caffeine]
+enabled=true
+trigger="inhib "
+
 [calculator_qalculate]
 angle_unit=2
 enabled=true
