@@ -127,7 +127,7 @@
       enableNushellIntegration = true;
       # enableFishIntegration = true;
       enableZshIntegration = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentryPackage = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
     };
     dunst = {
       enable = true; # Notifications daemon
@@ -156,14 +156,7 @@
       # enableFishIntegration = true;
       enableZshIntegration = true;
     };
-    rbw = { # Rust Bitwarden CLI client
-      enable = true;
-      # settings = { # See https://git.tozt.net/rbw/about
-      #   base_url = ""; # Self-hosted bitwarden URL
-      #   identity_url = ""; # Identity URL of self-hosted bitwarden
-      #   email = ""; # Bitwarden account email
-      # };
-    };
+    rbw.enable = true; # CLI Bitwarden client
     password-store = {
       enable = true; # CLI standard password manager
       package =
