@@ -132,7 +132,7 @@ enabled=false
 enabled=true
 
 [python.pass]
-enabled=true
+enabled=false
 use_otp=true
 
 [python.pomodoro]
