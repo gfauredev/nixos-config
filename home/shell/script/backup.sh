@@ -38,7 +38,7 @@ if [ "$avail" -gt "$used" ]; then
     printf "%s contains boot: " "$1"
     printf "Backing up current life and project as well as bootables OSes\n"
     # TODO encrypted archive of $IMPORTANT dirs, excluing common and img
-    printf "TODO with a crossplatform encrypted archiver like 7zip"
+    printf "TODO with a crossplatform encrypted archiver like 7zip\n"
     rs --delete "$OS"/linux+bsd "$1"
     rs --delete "$OS"/windows "$1"
     ;;
@@ -56,7 +56,7 @@ else
   printf "%s seems almost full: " "$1"
   printf "Backing up life and project in encrypted archive\n"
   # TODO $IMPORTANT dirs encrypted archive, excluing common, img, *.large, *.git
-  printf "TODO with a crossplatform encrypted archiver like 7zip"
+  printf "TODO with a crossplatform encrypted archiver like 7zip\n"
 fi
 
-printf "Don’t forget to clean the ~/archive directory with cleanarchive"
+printf "Don’t forget to clean the ~/archive directory with cleanarchive\n"
