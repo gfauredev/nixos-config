@@ -101,7 +101,28 @@ enabled=true
 trigger="plug "
 
 [python]
-enabled=false
+enabled=true
+
+[python.arch_wiki]
+enabled=true
+
+[python.bitwarden]
+enabled=true
+
+[python.color]
+enabled=true
+
+[python.dice_roll]
+enabled=true
+
+[python.emoji]
+enabled=true
+
+[python.pomodoro]
+enabled=true
+
+[python.wikipedia]
+enabled=true
 
 [snippets]
 enabled=false
