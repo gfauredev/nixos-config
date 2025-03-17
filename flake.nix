@@ -43,7 +43,7 @@
           system = "x86_64-linux"; # PC architecture
           # specialArgs = { inherit inputs; };
           modules = [
-            ./system/pc/laptop/griffin
+            ./system/laptop/griffin
             { users.users.gf = users.gf; }
             self.nixosModules.overlay
           ];
@@ -51,18 +51,17 @@
         # Laptop: Chimera, a flying creature
         chimera = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # PC architecture
-          modules = [ self.nixosModules.chimera self.nixosModules.overlay ];
+          modules = [ ./system/laptop/chimera self.nixosModules.overlay ];
         };
         # Desktop: Muses, goddess of arts and music
-        # muses = nixpkgs.lib.nixosSystem {
-        #   system = "x86_64-linux"; # PC architecture
-        #   # specialArgs = { inherit inputs; };
-        #   modules = [ self.nixosModules.muses self.nixosModules.overlay ];
-        # };
+        muses = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux"; # PC architecture
+          modules = [ ./system/desktop/muses self.nixosModules.overlay ];
+        };
         # Server: Cerberus, a powerful creature with multiple heads 
         cerberus = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # Server architecture
-          modules = [ self.nixosModules.cerberus self.nixosModules.overlay ];
+          modules = [ ./system/server/cerberus self.nixosModules.overlay ];
         };
         # NixOS live (install) ISO image #
         live = nixpkgs.lib.nixosSystem {
@@ -94,6 +93,7 @@
           modules = [ ./home/gf self.nixosModules.overlay ];
         };
       };
+      # This configuration’s development shell, preferably enabled with direnv
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [

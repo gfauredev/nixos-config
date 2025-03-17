@@ -1,11 +1,12 @@
+# My main laptop, a Framework Laptop 13
 { pkgs, lanzaboote, hardware, ... }: {
   imports = [
     ./hardware.nix
     ../default.nix
-    ../../nvidia.nix
-    ./system/virtualization.nix # TODO as an option of module system/
-    ./system/pc/gaming.nix # TODO as an option of module system/pc/
-    lanzaboote.nixosModules.lanzaboote # TODO in system/default.nix
+    ../../module/nvidia.nix
+    ../../module/virtualization.nix
+    ../../module/gaming.nix
+    lanzaboote.nixosModules.lanzaboote # Secure boot
     hardware.nixosModules.framework-12th-gen-intel # The laptop
   ];
 
@@ -25,7 +26,7 @@
     };
   };
 
-  hardware.framework.enableKmod = false; # FIX bug in NixOS Hardware
+  # hardware.framework.enableKmod = false; # FIX bug in NixOS Hardware
 
   boot = {
     # extraModprobeConfig = ''
