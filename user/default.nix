@@ -2,6 +2,7 @@
 {
   # users.users.
   gf = {
+    name = "gf";
     isNormalUser = true;
     home = "/home/gf";
     homeMode = "700";
