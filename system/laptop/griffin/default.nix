@@ -1,8 +1,8 @@
 # My main laptop, a Framework Laptop 13
 { pkgs, ... }: {
   imports = [
+    ../.
     ./hardware.nix
-    ../default.nix
     ../../module/nvidia.nix
     ../../module/virtualization.nix
     ../../module/gaming.nix
