@@ -36,6 +36,11 @@ def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
   configure ...$arg
 }
 
+# Open in background with default app
+def x [target:string] {
+  dash -c $"xdg-open ($target)"
+}
+
 # List
 def sl [] {ls | reverse}
 def lsd [] {ls | sort-by modified}

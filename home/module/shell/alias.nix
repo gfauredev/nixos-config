@@ -28,7 +28,6 @@ let
     empty = "trash-empty -i";
     shred = "shred -vu";
     wx = "watchexec";
-    x = "xdg-open"; # Open with the default tool TEST handlr instead
     ## Quickly launch default text editor
     e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
     "." = "${config.home.sessionVariables.EDITOR} ."; # Edit text in current dir
@@ -104,6 +103,7 @@ in {
     # Open, single letter
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "${config.home.sessionVariables.PAGER}"; # Default pager
+    x = "xdg-open"; # Open with the default tool TEST handlr instead
     # Edit, single letter
     m = "mkdir -pv"; # mkdir with parents if needed
     # Git
