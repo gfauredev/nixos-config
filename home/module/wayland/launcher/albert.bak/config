@@ -1,0 +1,208 @@
+[General]
+memoryDecay=0.75
+showTray=false
+telemetry=true
+
+[applications]
+enabled=true
+ignore_show_in_keys=false
+terminal=com.mitchellh.ghostty
+trigger="app "
+use_generic_name=true
+use_keywords=true
+use_non_localized_name=false
+
+[caffeine]
+enabled=true
+trigger="inhib "
+
+[calculator_qalculate]
+angle_unit=2
+enabled=true
+
+[chromium]
+enabled=true
+trigger="bm "
+
+[clipboard]
+enabled=true
+
+[datetime]
+enabled=false
+show_date_on_empty_query=true
+trigger="date "
+
+[docs]
+enabled=true
+
+[fallback_order]
+1\extension=websearch
+1\fallback=5d9812ad
+2\extension=python.wikipediafb
+2\fallback=python.wikipedia
+3\extension=websearch
+3\fallback=870b38cf
+4\extension=websearch
+4\fallback=5eb8dc52
+5\extension=websearch
+5\fallback=e5f2a1af
+6\extension=websearch
+6\fallback=f0a6f22a
+7\extension=websearch
+7\fallback=e3091330
+size=7
+
+[files]
+enabled=false
+fs_browsers_match_case_sensitive=false
+fs_browsers_show_hidden=false
+home\gf\data.local\followSymlinks=false
+home\gf\data.local\indexhidden=false
+home\gf\data.local\maxDepth=255
+home\gf\data.local\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\data.local\nameFilters=@Invalid()
+home\gf\data.local\scanInterval=5
+home\gf\data.local\useFileSystemWatches=false
+home\gf\data\followSymlinks=false
+home\gf\data\indexhidden=false
+home\gf\data\maxDepth=255
+home\gf\data\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\data\nameFilters=@Invalid()
+home\gf\data\scanInterval=5
+home\gf\data\useFileSystemWatches=false
+home\gf\life\followSymlinks=false
+home\gf\life\indexhidden=false
+home\gf\life\maxDepth=255
+home\gf\life\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\life\nameFilters=@Invalid()
+home\gf\life\scanInterval=5
+home\gf\life\useFileSystemWatches=false
+home\gf\project\followSymlinks=false
+home\gf\project\indexhidden=false
+home\gf\project\maxDepth=255
+home\gf\project\mimeFilters=application/*, audio/*, video/*, image/*, text/*
+home\gf\project\nameFilters=@Invalid()
+home\gf\project\scanInterval=5
+home\gf\project\useFileSystemWatches=false
+paths=/home/gf/data, /home/gf/data.local, /home/gf/life, /home/gf/project
+trigger="file "
+
+[hash]
+enabled=true
+
+[inhibit_sleep]
+trigger="inhib "
+
+[mpris]
+enabled=false
+
+[path]
+enabled=true
+
+[pluginregistry]
+trigger="plug "
+
+[python]
+enabled=true
+
+[python.arch_wiki]
+enabled=true
+trigger="aw "
+
+[python.bitwarden]
+enabled=true
+
+[python.coingecko]
+enabled=true
+
+[python.color]
+enabled=false
+
+[python.dice_roll]
+enabled=true
+
+[python.emoji]
+enabled=true
+use_derived=true
+
+[python.goldendict]
+enabled=false
+
+[python.kill]
+enabled=true
+
+[python.pass]
+enabled=false
+use_otp=true
+
+[python.pomodoro]
+enabled=false
+
+[python.python_eval]
+enabled=true
+
+[python.syncthing]
+enabled=false
+
+[python.tex_to_unicode]
+enabled=true
+
+[python.translators]
+enabled=true
+lang=fr
+translator=google
+
+[python.unit_converter]
+enabled=false
+
+[python.wikipedia]
+enabled=true
+trigger="w "
+
+[snippets]
+enabled=false
+
+[system]
+command_poweroff=systemctl poweroff
+command_reboot=systemctl reboot
+enabled=true
+hibernate_enabled=false
+lock_enabled=false
+logout_enabled=false
+suspend_enabled=false
+title_poweroff=off
+title_reboot=boot
+trigger="sys "
+
+[timer]
+enabled=true
+trigger="time "
+
+[timezones]
+enabled=true
+
+[triggers]
+trigger="triggs "
+
+[urlhandler]
+enabled=false
+trigger="url "
+
+[websearch]
+enabled=true
+trigger="web "
+
+[widgetsboxmodel]
+alwaysOnTop=true
+clearOnHide=false
+clientShadow=false
+darkTheme=Spotlight Dark
+displayScrollbar=false
+followCursor=true
+hideOnFocusLoss=true
+historySearch=true
+itemCount=10
+lightTheme=Spotlight Dark
+quitOnClose=false
+showCentered=true
+systemShadow=false
