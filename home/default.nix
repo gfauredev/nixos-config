@@ -1,8 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, stylix, ... }: {
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
     ./module/shell # Interactive POSIX shell(s)
+    stylix.homeManagerModules.stylix # Color & fonts
   ];
 
   manual = {

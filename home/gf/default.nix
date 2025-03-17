@@ -1,11 +1,10 @@
-{ config, lib, stylix, user, ... }: {
+{ config, lib, user, ... }: {
   # TODO move most of this in home/default.nix
   imports = [
     ../default.nix
     ../module/terminal # Terminal emulators
     ../module/editor # CLI and GUI text editors
     ../module/media # Media consuming and editing
-    stylix.homeManagerModules.stylix # Color & fonts
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
