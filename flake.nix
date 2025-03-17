@@ -16,8 +16,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/b98df1827a48e"; # Hardware
-    # musnix.url = "github:musnix/musnix"; # Music production, audio optimizations
+    # musnix.url = "github:musnix/musnix"; # Music production, audio optim
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
 
@@ -42,13 +41,13 @@
         # Laptops #
         griffin = { # Griffin, a powerful and flying creature
           imports = [
-            ./system/pc/laptop/griffin # TODO use below options instead
-            ./system/user/gf.nix # TODO make it an option of module system/user/
-            ./system/virtualization.nix # TODO make it an option of module system/
-            ./system/pc/gaming.nix # TODO make it an option of module system/pc/
-            lanzaboote.nixosModules.lanzaboote # TODO factorize, tie to system/default.nix
+            ./system/pc/laptop/griffin
+            { users.users.gf = import ./user/gf.nix; }
+            ./system/virtualization.nix # TODO as an option of module system/
+            ./system/pc/gaming.nix # TODO as an option of module system/pc/
+            lanzaboote.nixosModules.lanzaboote # TODO in system/default.nix
             nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
-            home-manager.nixosModules.home-manager
+            # home-manager.nixosModules.home-manager
             # { home-manager.backupFileExtension = ".bak"; }
           ];
         };

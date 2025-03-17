@@ -130,6 +130,11 @@
 
   fonts.enableDefaultPackages = true; # Standard fonts
 
+  users.groups = {
+    mtp = { };
+    uinput = { };
+  };
+
   programs = {
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
