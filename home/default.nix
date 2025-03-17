@@ -82,6 +82,7 @@
     };
     # FIXME ugly looking, https://github.com/chriskempson/base16/blob/main/styling.md
     targets.helix.enable = false; # FIXME color theme not compatible treesitter
+    targets.firefox.enable = false; # FIX infinite recursion bug
   };
 
   home.packages = with pkgs; [ # TODO organize better, eventually in shell/
