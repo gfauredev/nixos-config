@@ -1,13 +1,11 @@
 # My main laptop, a Framework Laptop 13
-{ pkgs, lanzaboote, hardware, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hardware.nix
     ../default.nix
     ../../module/nvidia.nix
     ../../module/virtualization.nix
     ../../module/gaming.nix
-    lanzaboote.nixosModules.lanzaboote # Secure boot
-    hardware.nixosModules.framework-12th-gen-intel # The laptop
   ];
 
   nix = {

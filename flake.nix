@@ -46,6 +46,8 @@
             ./system/laptop/griffin
             { users.users.gf = users.gf; }
             self.nixosModules.overlay
+            lanzaboote.nixosModules.lanzaboote # Secure boot
+            hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
         };
         # Laptop: Chimera, a flying creature
@@ -85,7 +87,11 @@
             };
             user = users.gf;
           };
-          modules = [ ./home/gf/griffin.nix self.nixosModules.overlay ];
+          modules = [
+            ./home/gf/griffin.nix
+            self.nixosModules.overlay
+            stylix.homeManagerModules.stylix # Color & fonts
+          ];
         };
         "gf@chimera" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
