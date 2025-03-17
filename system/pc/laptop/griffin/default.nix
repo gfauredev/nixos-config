@@ -1,5 +1,13 @@
-{ pkgs, ... }: {
-  imports = [ ./hardware.nix ../default.nix ../../nvidia.nix ];
+{ pkgs, lanzaboote, hardware, ... }: {
+  imports = [
+    ./hardware.nix
+    ../default.nix
+    ../../nvidia.nix
+    ./system/virtualization.nix # TODO as an option of module system/
+    ./system/pc/gaming.nix # TODO as an option of module system/pc/
+    lanzaboote.nixosModules.lanzaboote # TODO in system/default.nix
+    hardware.nixosModules.framework-12th-gen-intel # The laptop
+  ];
 
   nix = {
     settings = {

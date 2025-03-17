@@ -12,89 +12,54 @@
       url = "github:nix-community/home-manager"; # Home manager
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
-
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
+    hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
     # musnix.url = "github:musnix/musnix"; # Music production, audio optim
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
 
-  outputs = { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, nixos-hardware
-    , stylix }:
+  outputs =
+    { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, hardware, stylix }:
     let
       supportedSystems = [
         "x86_64-linux" # 64-bit Intel/AMD Linux
         "aarch64-linux" # 64-bit ARM Linux
-        "x86_64-darwin" # 64-bit Intel macOS
-        "aarch64-darwin" # 64-bit ARM macOS
+        "riscv64-linux" # 64-bit RISC-V Linux
       ];
       forEachSupportedSystem = f:
         nixpkgs.lib.genAttrs supportedSystems
         (system: f { pkgs = import nixpkgs { inherit system; }; });
-      # TODO common user config for system/ and home/ in the flake.nix,
-      #      infer homeConfigurations of the form `user@machine` based on it
-      # home-manager = # FIXME
-      #   import home-manager { home-manager.backupFileExtension = ".bak"; };
+      users = import ./user; # Common users configurations
     in {
-      nixosModules = {
-        # Laptops #
-        griffin = { # Griffin, a powerful and flying creature
-          imports = [
-            ./system/pc/laptop/griffin
-            { users.users.gf = import ./user/gf.nix; }
-            ./system/virtualization.nix # TODO as an option of module system/
-            ./system/pc/gaming.nix # TODO as an option of module system/pc/
-            lanzaboote.nixosModules.lanzaboote # TODO in system/default.nix
-            nixos-hardware.nixosModules.framework-12th-gen-intel # The laptop
-            # home-manager.nixosModules.home-manager
-            # { home-manager.backupFileExtension = ".bak"; }
-          ];
-        };
-        chimera = { # Chimera, a flying creature
-          imports = [ ./system/pc/laptop/chimera ];
-        };
-        # Desktops #
-        # muses = { # Muses, nine goddesses of the arts and sciences
-        #   imports = [ ./system/pc/desktop/muses ];
-        # };
-        # Servers #
-        cerberus = { # Cerberus, a powerful creature with multiple heads
-          imports = [ ./system/server/cerberus ];
-        };
-        # NixOS live (install) ISO image #
-        live = {
-          imports = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            # "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
-            ./system/installer.nix # Bootable ISO used to install NixOS
-          ];
-        };
-        overlay = {
-          imports = [
-            (import ./overlay) # Changes made to nixpkgs globally
-          ];
-        };
+      nixosModules.overlay = {
+        imports = [
+          (import ./overlay) # Changes made to nixpkgs globally
+        ];
       };
       # NixOS config, enable: `nixos-rebuild --flake .#hostname`
       nixosConfigurations = {
-        # Laptops #
+        # Laptop: Griffin, a powerful flying creature
         griffin = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # PC architecture
           # specialArgs = { inherit inputs; };
-          modules = [ self.nixosModules.griffin self.nixosModules.overlay ];
+          modules = [
+            ./system/pc/laptop/griffin
+            { users.users.gf = users.gf; }
+            self.nixosModules.overlay
+          ];
         };
+        # Laptop: Chimera, a flying creature
         chimera = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # PC architecture
           modules = [ self.nixosModules.chimera self.nixosModules.overlay ];
         };
-        # Desktops #
+        # Desktop: Muses, goddess of arts and music
         # muses = nixpkgs.lib.nixosSystem {
         #   system = "x86_64-linux"; # PC architecture
         #   # specialArgs = { inherit inputs; };
         #   modules = [ self.nixosModules.muses self.nixosModules.overlay ];
         # };
-        # Servers #
+        # Server: Cerberus, a powerful creature with multiple heads 
         cerberus = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # Server architecture
           modules = [ self.nixosModules.cerberus self.nixosModules.overlay ];
@@ -103,28 +68,10 @@
         live = nixpkgs.lib.nixosSystem {
           # Build: nix build .#nixosConfigurations.live.config.system.build.isoImage
           system = "x86_64-linux"; # Target system architecture
-          modules = [ self.nixosModules.live self.nixosModules.overlay ];
-        };
-      };
-
-      homeModules = {
-        "gf@griffin" = {
-          imports = [
-            ./home/gf.nix # Myself, main user
-            ./home/wayland/griffin.nix # Griffin laptop’s GUI
-            ./home/terminal # Terminal emulators
-            ./home/editor # CLI and GUI text editors
-            ./home/media # Media consuming and editing
-            stylix.homeManagerModules.stylix # Color & fonts
-          ];
-        };
-        "gf@chimera" = {
-          imports = [
-            ./home/gf.nix # Myself, main user
-            ./home/wayland # Laptop GUI
-            ./home/terminal # Terminal emulators
-            ./home/editor # CLI and GUI text editors
-            ./home/media # Media consuming and editing
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            ./system/live # Bootable ISO used to install NixOS
+            self.nixosModules.overlay
           ];
         };
       };
@@ -133,17 +80,18 @@
         "gf@griffin" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {
-            stablepkgs = import pkgs24-11 { # TODO do this cleaner
+            stablepkgs = import pkgs24-11 { # TODO do this cleaner, generic
               system = "x86_64-linux"; # System architecture TODO factorize
               config.allowUnfree = true;
             };
+            user = users.gf;
           };
-          modules = [ self.homeModules."gf@griffin" self.nixosModules.overlay ];
+          modules = [ ./home/gf/griffin.nix self.nixosModules.overlay ];
         };
         "gf@chimera" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          # extraSpecialArgs = { inherit inputs; };
-          modules = [ self.homeModules."gf@chimera" self.nixosModules.overlay ];
+          extraSpecialArgs = { user = users.gf; };
+          modules = [ ./home/gf self.nixosModules.overlay ];
         };
       };
       devShells = forEachSupportedSystem ({ pkgs }: {

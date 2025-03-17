@@ -1,8 +1,15 @@
-{ config, lib, ... }: {
+{ config, lib, stylix, ... }: {
   # TODO move most of this in home/default.nix, this file should no be needed
   # TODO common user config for system/ and home/ in the flake.nix,
   #      infer homeConfigurations of the form `user@machine` based on it
-  imports = [ ./default.nix ];
+  imports = [
+    ./default.nix
+    ./home/wayland/griffin.nix # Griffin laptop’s GUI
+    ./home/terminal # Terminal emulators
+    ./home/editor # CLI and GUI text editors
+    ./home/media # Media consuming and editing
+    stylix.homeManagerModules.stylix # Color & fonts
+  ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
