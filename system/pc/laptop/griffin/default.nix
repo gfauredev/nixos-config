@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [ ./hardware.nix ../default.nix ../../nvidia.nix ];
 
   nix = {
@@ -46,6 +46,11 @@
     };
     wireguard.enable = true;
   };
+
+  environment.systemPackages = with pkgs;
+    [
+      framework-tool # Hardware related tools for framework laptops
+    ];
 
   # services = {
   #   fwupd = {
