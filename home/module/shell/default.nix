@@ -61,6 +61,7 @@
     pipectl # Named pipes management
     # Git
     gitlab-shell # GitLab CLI
+    gitmoji-cli # Use emojis in commit messages
     commitlint-rs # Be consistent in commit messages
   ];
 
