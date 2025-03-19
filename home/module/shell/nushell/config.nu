@@ -15,7 +15,7 @@ $env.config.hooks.pre_execution = (
     # Start with default handler if only a non executable file or a symlink
     } else if (commandline
       | path type) in [file symlink] and not (ls --long (commandline)
-      | get mode | str contains "x") {
+      | first | get mode | str contains "x") {
       start (commandline)
       # commandline edit ("start " + (commandline))
     # Open editor if path with a dot "/."
