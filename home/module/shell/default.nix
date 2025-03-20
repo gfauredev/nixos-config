@@ -1,6 +1,5 @@
 { lib, pkgs, ... }: {
   imports = [ ./alias.nix ./xonsh.nix ./nushell ./zsh.nix ./pulsemixer ];
-
   home.packages = let
     init-dev-env =
       pkgs.writeScriptBin "dev" "${lib.readFile ./script/init-dev-env.sh}";
@@ -66,6 +65,8 @@
   ];
 
   home.shell.enableShellIntegration = true;
+
+  services.pueue.enable = true; # Maybe necessary to add pkg
 
   programs = {
     fd.enable = true; # Better find
