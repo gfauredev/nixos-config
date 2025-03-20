@@ -37,8 +37,8 @@ def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
 }
 
 # Open in background with default app
-def x [target:string] {
-  dash -c $"xdg-open ($target) &"
+def x [file] {
+  dash -c $"xdg-open ($file) &"
 }
 
 # List
