@@ -1,8 +1,8 @@
-{ ... }: {
+{ pkgs, ... }: {
+  home.packages = [ pkgs.nu_scripts ];
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;
-    # FIXME plugins don’t build
     # plugins = with pkgs.nushellPlugins; [
     #   net # List network interfaces
     #   skim # Fuzzy finder
