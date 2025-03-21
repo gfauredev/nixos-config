@@ -16,11 +16,16 @@
       share = true;
     };
     historySubstringSearch.enable = true;
+  };
+  services = {
+    gpg-agent.enableZshIntegration = true;
+    # keychain.enableNushellIntegration = true; # TEST me
+  };
+  programs = {
     starship.enableZshIntegration = true;
     zoxide.enableZshIntegration = true;
     broot.enableZshIntegration = true;
     direnv.enableZshIntegration = true;
     eza.enableZshIntegration = true;
-    gpg-agent.enableZshIntegration = true;
   };
 }

@@ -12,15 +12,6 @@
       rm.always_trash = true;
       show_banner = false;
     };
-    starship.enableNushellIntegration = true;
-    zoxide.enableNushellIntegration = true;
-    broot.enableNushellIntegration = true;
-    atuin.enableNushellIntegration = true;
-    carapace.enableNushellIntegration = true;
-    direnv.enableNushellIntegration = true;
-    eza.enableNushellIntegration = false;
-    gpg-agent.enableNushellIntegration = true;
-    # keychain.enableNushellIntegration = true; # TEST me
     # plugins = with pkgs.nushellPlugins; [
     #   net # List network interfaces
     #   skim # Fuzzy finder
@@ -32,5 +23,18 @@
     #   formats # Convert eml, ics, ini, vcf to Nushell tables
     #   highlight # Syntax highlighting (like bat)
     # ];
+  };
+  services = {
+    gpg-agent.enableNushellIntegration = true;
+    # keychain.enableNushellIntegration = true; # TEST me
+  };
+  programs = {
+    starship.enableNushellIntegration = true;
+    zoxide.enableNushellIntegration = true;
+    broot.enableNushellIntegration = true;
+    atuin.enableNushellIntegration = true;
+    carapace.enableNushellIntegration = true;
+    direnv.enableNushellIntegration = true;
+    eza.enableNushellIntegration = false;
   };
 }
