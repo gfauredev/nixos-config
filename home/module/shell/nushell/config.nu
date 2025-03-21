@@ -75,37 +75,42 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 }
 
 # Additional completers
-# let zoxide_complete = {|spans|
-#     $spans | skip 1 | zoxide query -l ...$in | lines
-#     | where {|x| $x != $env.PWD}
-# }
-# let fish_complete = {|spans|
-#     fish --command $'complete "--do-complete=($spans | str join " ")"'
-#     | from tsv --flexible --noheaders --no-infer
-#     | rename value description
-# }
-# let external_completer = {|spans|
-#     let expanded_alias = scope aliases
-#     | where name == $spans.0
-#     | get -i 0.expansion
-#     let spans = if $expanded_alias != null {
-#         $spans
-#         | skip 1
-#         | prepend ($expanded_alias | split row ' ' | take 1)
-#     } else {
-#         $spans
-#     }
-#     match $spans.0 {
-#         # Zoxide completions for zoxide commands
-#         __zoxide_z | __zoxide_zi => $zoxide_complete
-#         # Fish completions by default
-#         _ => $fish_complete
-#     } | do $in $spans
-# }
-# $env.config.completions.external = {
-#   enable: true
-#   completer: $external_completer
-# }
+let carapace_complete = {|spans|
+    carapace $spans.0 nushell ...$spans | from json
+}
+let zoxide_complete = {|spans|
+    $spans | skip 1 | zoxide query -l ...$in | lines
+    | where {|x| $x != $env.PWD}
+}
+let fish_complete = {|spans|
+    fish --command $'complete "--do-complete=($spans | str join " ")"'
+    | from tsv --flexible --noheaders --no-infer
+    | rename value description
+}
+let external_complete = {|spans|
+    let expanded_alias = scope aliases
+    | where name == $spans.0
+    | get -i 0.expansion
+    let spans = if $expanded_alias != null {
+        $spans
+        | skip 1
+        | prepend ($expanded_alias | split row ' ' | take 1)
+    } else {
+        $spans
+    }
+    match $spans.0 {
+        # Fish completions for nu
+        nu => $fish_complete
+        # Zoxide completions for z and zi commands
+        __zoxide_z | __zoxide_zi => $zoxide_complete
+        # Carapace completions by default
+        _ => $carapace_complete
+    } | do $in $spans
+}
+$env.config.completions.external = {
+  enable: true
+  completer: $external_complete
+}
 
 # Display a welcome message for the first three minutes after login
 if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 3min {
