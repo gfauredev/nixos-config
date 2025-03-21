@@ -13,11 +13,11 @@
     };
     plugins = with pkgs.nushellPlugins;
       [
-        skim # Fuzzy finder
+        # skim # Fuzzy finder
+        query # Query JSON, XML, web data
         # net # List network interfaces
         # dbus # Communicate with D-BUS
         # units # Convert between units
-        # query # Query JSON, XML, web data
         # gstat # Git status
         # polars # Work with polars dataframes
         # formats # Convert eml, ics, ini, vcf to Nushell tables
