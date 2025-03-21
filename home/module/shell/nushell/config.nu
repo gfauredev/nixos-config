@@ -36,9 +36,8 @@ def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
   configure ...$arg
 }
 
-# Open in background with default app
-def x [file] {
-  dash -c $"xdg-open ($file) &"
+# Open in background with default app (uses pueue through task.nu)
+def start-bg [file] {  task spawn --immediate {start $file}
 }
 
 # List

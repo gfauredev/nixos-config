@@ -101,9 +101,10 @@ in {
     l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
     g = "\\rga --smart-case --color=always"; # Better grep
     # Open, single letter
+    x = "xdg-open"; # Open with the default tool
+    o = "xdg-open"; # Open with the default tool
     a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "${config.home.sessionVariables.PAGER}"; # Default pager
-    x = "xdg-open"; # Open with the default tool TEST handlr instead
     # Edit, single letter
     m = "mkdir -pv"; # mkdir with parents if needed
     # Git
@@ -116,6 +117,11 @@ in {
     # Files
     rm = "rm --verbose"; # Remove file(s) (thrash them)
     m = "mkdir --verbose"; # Quickly create directory
+    # Open, single letter
+    x = "start-bg"; # Open with the default tool
+    o = "start-bg"; # Open with the default tool
+    a = "bat --force-colorization"; # --paging never"; # Prettier cat
+    p = "${config.home.sessionVariables.PAGER}"; # Default pager (ov)
     # List
     l = "ls"; # Quickly list files in current directory
     ll = "ls --long"; # List all the data of the files in current directory
