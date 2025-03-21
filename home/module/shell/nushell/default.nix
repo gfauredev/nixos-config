@@ -33,7 +33,7 @@
     zoxide.enableNushellIntegration = true;
     broot.enableNushellIntegration = true;
     atuin.enableNushellIntegration = true;
-    carapace.enableNushellIntegration = false; # TODO configure, add to fish’s
+    carapace.enableNushellIntegration = true;
     direnv.enableNushellIntegration = true;
     eza.enableNushellIntegration = false;
   };
