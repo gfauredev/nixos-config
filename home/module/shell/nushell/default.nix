@@ -4,9 +4,9 @@
     enable = true;
     configFile.source = ./config.nu;
     # TODO configure importing `use task.nu`
-    extraConfig = ''
-      $env.NU_LIB_DIRS = ($env.NU_LIB_DIRS
-      | append ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/)'';
+    # extraConfig = ''
+    #   $env.NU_LIB_DIRS = ($env.NU_LIB_DIRS
+    #   | append ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/)'';
     settings = {
       rm.always_trash = true;
       show_banner = false;
