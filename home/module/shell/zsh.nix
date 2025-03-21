@@ -16,5 +16,11 @@
       share = true;
     };
     historySubstringSearch.enable = true;
+    starship.enableZshIntegration = true;
+    zoxide.enableZshIntegration = true;
+    broot.enableZshIntegration = true;
+    direnv.enableZshIntegration = true;
+    eza.enableZshIntegration = true;
+    gpg-agent.enableZshIntegration = true;
   };
 }

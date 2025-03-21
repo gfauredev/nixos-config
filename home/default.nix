@@ -118,20 +118,15 @@
   ];
 
   services = {
-    syncthing = {
-      enable = true; # Efficient P2P Syncing
-      extraOptions = [ "--no-default-folder" ];
-    };
+    syncthing.enable = true; # Efficient P2P Syncing
+    ollama.enable = true; # Large language model inference server
     # systembus-notify.enable = true; # TEST relevance
-    gpg-agent = {
-      enable = true;
-      enableNushellIntegration = true;
-      # enableFishIntegration = true;
-      enableZshIntegration = true;
-      pinentryPackage = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
-    };
+    gpg-agent.enable = true; # Keeps your gpg key loaded
+    dunst.enable = true; # Notifications daemon
+
+    syncthing.extraOptions = [ "--no-default-folder" ];
+    gpg-agent.pinentryPackage = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
     dunst = {
-      enable = true; # Notifications daemon
       settings = {
         global = {
           timeout = "6s";
@@ -145,26 +140,16 @@
         };
       };
     };
-    ollama.enable = true; # Large language model inference server
   };
 
   programs = {
-    gpg.enable = true; # Useful cryptography tool
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      enableNushellIntegration = true;
-      # enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
+    git.enable = true; # MANDATORY
     rbw.enable = true; # CLI Bitwarden client
-    password-store = {
-      enable = true; # CLI standard password manager
-      package =
-        pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
-    };
+    gpg.enable = true; # Useful cryptography tool
+    direnv.enable = true;
+    password-store.enable = true; # CLI standard password manager
+
     git = {
-      enable = true; # MANDATORY
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
       delta = {
@@ -216,6 +201,9 @@
         "*ignore*"
       ];
     };
+    direnv.nix-direnv.enable = true;
+    password-store.package =
+      pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
   };
 
   xdg = {

@@ -64,73 +64,49 @@
     commitlint-rs # Be consistent in commit messages
   ];
 
-  home.shell.enableShellIntegration = true;
+  # home.shell.enableShellIntegration = true;
 
   services.pueue.enable = true; # Maybe necessary to add pkg
 
   programs = {
+    starship.enable = true; # Smart prompt
+    zoxide.enable = true; # Smart cd
+    broot.enable = true; # Quick fuzzy file finder
+    atuin.enable = true; # Cross shell, smart command history
+    bat.enable = true; # Better cat with syntax highlighting
     fd.enable = true; # Better find
     ripgrep.enable = true; # Better grep
-    bat.enable = true; # Better cat with syntax highlighting
     bottom.enable = true; # Better top
-    starship = {
-      enable = true; # Super prompt
-      enableNushellIntegration = true;
-      # enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    zoxide = {
-      enable = true; # Smart cd
-      enableNushellIntegration = true;
-      # enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    broot = { # TODO organize
-      enable = true; # Quick fuzzy file finder
-      enableNushellIntegration = true;
-      # enableFishIntegration = true;
-      enableZshIntegration = true;
-      settings = {
-        default_flags = "dgps";
-        special_paths = lib.mkForce { }; # Remove them
-        verbs = [{
-          invocation = "edit";
-          key = "enter";
-          shortcut = "e";
-          external = "$EDITOR {file}:{line}";
-          apply_to = "text_file";
-          leave_broot = false;
-          set_working_dir = true;
-        }];
-      };
-    };
-    atuin = {
-      enable = true;
-      enableNushellIntegration = true;
-      settings = {
-        enter_accept = true; # Don’t currently work on Nushell
-        workspaces = true; # Filter commands executed in Git repo
-        ctrl_n_shortcuts = true; # Ctrl+[1-9] quickly select cmd
-        # filter_mode_shell_up_key_binding = "session";
-      };
-    };
-    eza = {
-      enable = true; # Better ls
-      enableNushellIntegration = false;
-      # enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    gh = {
-      enable = true; # GitHub official CLI
-      # settings = { }; # TODO + credentials
-    };
+    carapace.enable = true; # Cross shell completions
+    eza.enable = true; # Better ls
+    gh.enable = true; # GitHub official CLI
     fish.enable = true; # Friendly shell, to provide completions to Nushell
     gh-dash.enable = true; # GitHub dashboard
     jq.enable = true; # JSON parsing and request tool
     translate-shell.enable = true; # Google Translate CLI
     fastfetch.enable = true; # Quick system info
     less.enable = false; # Bugged, don’t respects lesskeys
-    lesspipe.enable = false;
+    lesspipe.enable = false; # TEST what’s this
+
+    broot.settings = {
+      default_flags = "dgps";
+      special_paths = lib.mkForce { }; # Remove them
+      verbs = [{
+        invocation = "edit";
+        key = "enter";
+        shortcut = "e";
+        external = "$EDITOR {file}:{line}";
+        apply_to = "text_file";
+        leave_broot = false;
+        set_working_dir = true;
+      }];
+    };
+    atuin.settings = {
+      enter_accept = true; # Don’t currently work on Nushell
+      workspaces = true; # Filter commands executed in Git repo
+      ctrl_n_shortcuts = true; # Ctrl+[1-9] quickly select cmd
+      # filter_mode_shell_up_key_binding = "session";
+    };
   };
 
   xdg.configFile = {
