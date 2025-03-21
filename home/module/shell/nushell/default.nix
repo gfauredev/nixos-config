@@ -11,17 +11,18 @@
       rm.always_trash = true;
       show_banner = false;
     };
-    # plugins = with pkgs.nushellPlugins; [
-    #   net # List network interfaces
-    #   skim # Fuzzy finder
-    #   dbus # Communicate with D-BUS
-    #   units # Convert between units
-    #   query # Query JSON, XML, web data
-    #   gstat # Git status
-    #   polars # Work with polars dataframes
-    #   formats # Convert eml, ics, ini, vcf to Nushell tables
-    #   highlight # Syntax highlighting (like bat)
-    # ];
+    plugins = with pkgs.nushellPlugins;
+      [
+        skim # Fuzzy finder
+        # net # List network interfaces
+        # dbus # Communicate with D-BUS
+        # units # Convert between units
+        # query # Query JSON, XML, web data
+        # gstat # Git status
+        # polars # Work with polars dataframes
+        # formats # Convert eml, ics, ini, vcf to Nushell tables
+        # highlight # Syntax highlighting (like bat)
+      ];
   };
   services = {
     gpg-agent.enableNushellIntegration = true;
@@ -32,7 +33,7 @@
     zoxide.enableNushellIntegration = true;
     broot.enableNushellIntegration = true;
     atuin.enableNushellIntegration = true;
-    # carapace.enableNushellIntegration = true; # TODO configure
+    carapace.enableNushellIntegration = false; # TODO configure, add to fish’s
     direnv.enableNushellIntegration = true;
     eza.enableNushellIntegration = false;
   };
