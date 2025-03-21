@@ -98,10 +98,10 @@ let external_complete = {|spans|
         $spans
     }
     match $spans.0 {
-        # Carapace completions by default (fallback)
-        _ => $carapace_complete
         # Zoxide completions for z quick cd
         __zoxide_z | z => $zoxide_complete
+        # Carapace completions by default (fallback)
+        _ => $carapace_complete
     } | do $in $spans
 }
 $env.config.completions.external = {
