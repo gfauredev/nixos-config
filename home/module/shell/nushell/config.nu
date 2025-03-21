@@ -81,11 +81,11 @@ let zoxide_complete = {|spans|
     $spans | skip 1 | zoxide query -l ...$in | lines
     | where {|x| $x != $env.PWD}
 }
-let fish_complete = {|spans|
-    fish --command $'complete "--do-complete=($spans | str join " ")"'
-    | from tsv --flexible --noheaders --no-infer
-    | rename value description
-}
+# let fish_complete = {|spans|
+#     fish --command $'complete "--do-complete=($spans | str join " ")"'
+#     | from tsv --flexible --noheaders --no-infer
+#     | rename value description
+# }
 let external_complete = {|spans|
     let expanded_alias = scope aliases
     | where name == $spans.0
@@ -98,12 +98,10 @@ let external_complete = {|spans|
         $spans
     }
     match $spans.0 {
-        # Fish completions for nu
-        nu => $fish_complete
-        # Zoxide completions for z and zi commands
-        __zoxide_z | __zoxide_zi => $zoxide_complete
-        # Carapace completions by default
+        # Carapace completions by default (fallback)
         _ => $carapace_complete
+        # Zoxide completions for z quick cd
+        __zoxide_z | z => $zoxide_complete
     } | do $in $spans
 }
 $env.config.completions.external = {
