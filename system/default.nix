@@ -238,7 +238,7 @@
       xh # User-friendly HTTP client similar to HTTPie
       # curl # Mythic HTTP client, maybe replaced by xh
       thc-hydra # Pentesting tool
-      # wireshark # Wireshark GUI TEST if needed with option
+      wireshark # Wireshark GUI
       # tshark # Wireshark CLI
       # termshark # Wireshark TUI
       # iperf # IP bandwidth measuring
