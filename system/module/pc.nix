@@ -141,6 +141,7 @@
     ssh.startAgent = true;
     adb.enable = true; # Talk to Android devices
     wireshark.enable = true; # Network analysis
+    ghidra.enable = true; # Reverse engineering tool
     firejail = {
       enable = true; # TODO ensure apps are jailed
       wrappedBinaries = {

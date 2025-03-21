@@ -26,20 +26,6 @@
     cointop # Cryptocurrencies monitor
     go-ethereum # Ethereum CLI
 
-    # Monitoring & Analysis
-    sherlock # Search social media accounts
-    nmap # scan ports
-    # rustscan # scan networks
-    xh # User-friendly HTTP client similar to HTTPie
-    # curl # Mythic HTTP client TEST xh only
-    # thc-hydra # Pentesting tool
-    # tshark # Wireshark CLI
-    wireshark # Wireshark GUI
-    # termshark # Wireshark TUI
-    # iperf # IP bandwidth measuring
-    # hping # Network monitoring tool
-    # kismet # Wireless network sniffer
-
     # Messaging
     simplex-chat-desktop # Super secure messaging
     element-desktop # Secure group messaging and calls
@@ -56,7 +42,7 @@
 
     # Misc
     lpac # Manage eSIMs in a chip (eUICC LPA)
-
+    sherlock # Search social media accounts
   ];
 
   programs = {

@@ -232,6 +232,18 @@
       inetutils # Things like FTP command
       age # Modern encryption
       ssh-to-age # Converter between SSH keys and age
+      # Monitoring & Analysis
+      nmap # scan ports
+      # rustscan # scan networks
+      xh # User-friendly HTTP client similar to HTTPie
+      # curl # Mythic HTTP client, maybe replaced by xh
+      thc-hydra # Pentesting tool
+      # wireshark # Wireshark GUI TEST if needed with option
+      # tshark # Wireshark CLI
+      # termshark # Wireshark TUI
+      # iperf # IP bandwidth measuring
+      # hping # Network monitoring tool
+      # kismet # Wireless network sniffer
     ];
   };
 }
