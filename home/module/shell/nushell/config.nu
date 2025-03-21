@@ -99,7 +99,8 @@ let external_complete = {|spans|
     }
     match $spans.0 {
         # Zoxide completions for z quick cd
-        __zoxide_z => $zoxide_complete,
+        # __zoxide_z => $zoxide_complete,
+        z => $zoxide_complete,
         # Carapace completions by default (fallback)
         _ => $carapace_complete
     } | do $in $spans
