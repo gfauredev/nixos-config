@@ -8,6 +8,7 @@ else
     git commit --amend --all --no-edit
   else
     # git commit --all
+    git add --all
     gitmoji commit # Interactively select an emoji commit message
     # $COMMITLINT_CMD || git reset HEAD^
   fi
