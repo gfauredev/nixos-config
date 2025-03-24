@@ -85,15 +85,26 @@ let zoxide_completer = {|spans|
 #     | from tsv --flexible --noheaders --no-infer
 #     | rename value description
 # }
-let multiple_completers = {|spans|
+let external_completer = {|spans|
+    let expanded_alias = scope aliases
+    | where name == $spans.0
+    | get -i 0.expansion
+    let spans = if $expanded_alias != null {
+        $spans
+        | skip 1
+        | prepend ($expanded_alias | split row ' ' | take 1)
+    } else {
+        $spans
+    }
     match $spans.0 {
-        z => $zoxide_completer   # Completer for z quick cd
-        _ => $carapace_completer # Defaults to carapace completer
+        # use zoxide completions for zoxide commands
+        __zoxide_z | __zoxide_zi => $zoxide_completer
+        _ => $carapace_completer # Defaults to carapace for completions
     } | do $in $spans
 }
 $env.config.completions.external = {
   enable: true
-  completer: $multiple_completers
+  completer: $external_completer
 }
 
 # Display a welcome message for the first three minutes after login
