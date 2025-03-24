@@ -74,40 +74,26 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 }
 
 # Additional completers
-let carapace_complete = {|spans|
+let carapace_completer = {|spans|
     carapace $spans.0 nushell ...$spans | from json
 }
-let zoxide_complete = {|spans|
-    $spans | skip 1 | zoxide query -l ...$in | lines
-    | where {|x| $x != $env.PWD}
+let zoxide_completer = {|spans|
+    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
 }
-# let fish_complete = {|spans|
+# let fish_completer = {|spans|
 #     fish --command $'complete "--do-complete=($spans | str join " ")"'
 #     | from tsv --flexible --noheaders --no-infer
 #     | rename value description
 # }
-let external_complete = {|spans|
-    let expanded_alias = scope aliases
-    | where name == $spans.0
-    | get -i 0.expansion
-    let spans = if $expanded_alias != null {
-        $spans
-        | skip 1
-        | prepend ($expanded_alias | split row ' ' | take 1)
-    } else {
-        $spans
-    }
+let multiple_completers = {|spans|
     match $spans.0 {
-        # Zoxide completions for z quick cd
-        # __zoxide_z => $zoxide_complete,
-        z => $zoxide_complete,
-        # Carapace completions by default (fallback)
-        _ => $carapace_complete
+        z => $zoxide_completer   # Completer for z quick cd
+        _ => $carapace_completer # Defaults to carapace completer
     } | do $in $spans
 }
 $env.config.completions.external = {
   enable: true
-  completer: $external_complete
+  completer: $multiple_completers
 }
 
 # Display a welcome message for the first three minutes after login
