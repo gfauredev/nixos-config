@@ -105,6 +105,7 @@ enabled=true
 
 [python.arch_wiki]
 enabled=true
+trigger="aw "
 
 [python.bitwarden]
 enabled=true
@@ -123,6 +124,7 @@ enabled=true
 
 [python.wikipedia]
 enabled=true
+trigger="w "
 
 [snippets]
 enabled=false
@@ -147,7 +149,7 @@ trigger="time "
 enabled=true
 
 [triggers]
-trigger="triggs "
+trigger="trigg "
 
 [urlhandler]
 enabled=false
