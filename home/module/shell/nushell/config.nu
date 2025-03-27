@@ -36,10 +36,10 @@ def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
   configure ...$arg
 }
 
-# Open in background with default app (uses pueue through task.nu)
+# Open in background with default app
 def start-bg [file] {
-  # use task # Module providing bindings to pueue for async FIXME
-  task spawn --immediate {start $file}
+  job spawn {start $file}
+  # task spawn --immediate {start $file}
 }
 
 # List

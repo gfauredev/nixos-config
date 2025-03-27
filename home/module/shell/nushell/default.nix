@@ -2,14 +2,14 @@
   home.packages = [ pkgs.nu_scripts ]; # Additional community scripts
   programs.nushell = {
     enable = true;
-    # configFile.source = ./config.nu;
+    configFile.source = ./config.nu;
     # extraConfig = ''
     #   use ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu
     # '';
-    configFile.text = ''
-      use ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu
-      ${builtins.readFile ./config.nu}
-    '';
+    # configFile.text = ''
+    #   use ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu
+    #   ${builtins.readFile ./config.nu}
+    # '';
     settings = {
       rm.always_trash = true;
       show_banner = false;
