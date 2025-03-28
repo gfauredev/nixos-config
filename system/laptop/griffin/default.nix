@@ -3,9 +3,9 @@
   imports = [
     ../.
     ./hardware.nix
-    ../../module/nvidia.nix
     ../../module/virtualization.nix
     ../../module/gaming.nix
+    # ../../module/nvidia.nix
   ];
 
   nix = {
