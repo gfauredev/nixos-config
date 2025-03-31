@@ -41,7 +41,7 @@
       pdf-sign # Automated PDF signing TODO config
       # pdfmixtool # Simple GUI to edit PDFs structure
       # naps2 # Scan PDFs FIX
-      # tesseract # OCR on PDF or images
+      tesseract # OCR on PDF or images
       # gnome.simple-scan # Document scanner
 
       # Audio & Music
