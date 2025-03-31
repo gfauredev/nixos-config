@@ -9,15 +9,16 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "albert"
-      "discord"
-      "vital"
-      "bespokesynth"
-      "bespokesynth-with-vst2"
-      "spotify"
-      "steam-unwrapped"
-      "steam"
+      "albert" # General launcher
+      "discord" # Messaging
+      "vital" # Synth
+      "bespokesynth" # Synth
+      "bespokesynth-with-vst2" # Synth
+      "spotify" # Music
+      "steam-unwrapped" # Videogames
+      "steam" # Videogames
       "libsciter" # Used by rustdesk
+      "ciscoPacketTracer8" # Network simulation
     ];
 
   home = {
