@@ -65,6 +65,14 @@
     },
     {
         "fallback": true,
+        "iconPath": ":default",
+        "id": "fe8298be",
+        "name": "Deepseek",
+        "trigger": "ds",
+        "url": "https://chat.deepseek.com/?q=%s"
+    },
+    {
+        "fallback": true,
         "iconPath": ":duckduckgo",
         "id": "f0a6f22a",
         "name": "DuckDuckGo",
@@ -158,6 +166,14 @@
         "name": "MDN",
         "trigger": "mdn",
         "url": "https://developer.mozilla.org/fr/search?q=%s"
+    },
+    {
+        "fallback": true,
+        "iconPath": ":default",
+        "id": "a1a8d54f",
+        "name": "Mistral",
+        "trigger": "mist",
+        "url": "https://chat.mistral.ai/chat/?q=%s"
     },
     {
         "fallback": false,
@@ -256,7 +272,7 @@
         "url": "https://www.wikipedia.org/w/index.php?search=%s"
     },
     {
-        "fallback": false,
+        "fallback": true,
         "iconPath": ":wolfram",
         "id": "14b59237",
         "name": "Wolfram Alpha",
