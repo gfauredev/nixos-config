@@ -9,6 +9,7 @@
       "steam-original" # Video games software
       "steam-unwrapped" # Video games software
       "steam-run" # Video games software
+      "ciscoPacketTracer8" # Network simulation
     ];
 
   nix = {
