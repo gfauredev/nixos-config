@@ -7,7 +7,7 @@ let
     # lsp-ai # Language server for language models
     helix-gpt # Add LLMs support through LSP
 
-    harper # Grammar and spell checker for text, documentation, and comments
+    # harper # Grammar and spell checker for text, documentation, and comments
     # vale # Linter for prose
     # vale-ls # LSP Vale implementation
     # languagetool # Advanced spell checking (Java, slow)
