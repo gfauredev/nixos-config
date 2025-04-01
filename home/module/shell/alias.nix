@@ -11,7 +11,8 @@ let
     off = "systemctl poweroff";
     sys = "systemctl";
     jo = "sudo journalctl -xfe";
-    gc = "nix-collect-garbage";
+    # gc = "nix-collect-garbage";
+    gc = "nix store gc";
     performance =
       "sudo cpupower frequency-set --governor performance"; # Performance mode
     powersave =
