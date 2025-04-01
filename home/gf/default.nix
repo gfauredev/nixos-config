@@ -19,6 +19,7 @@
       "steam" # Videogames
       "libsciter" # Used by rustdesk
       "ciscoPacketTracer8" # Network simulation
+      "deconz" # Manage ZigBee/Matter networks
     ];
 
   home = {

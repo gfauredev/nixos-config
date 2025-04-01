@@ -115,8 +115,6 @@
 
     # Misc
     # handlr-regex # Modern replacement of xdg-open TEST
-    # deconz # Manager ZigBee network CLOSED SOURCE
-    python-matter-server # Server to interact with Matter devices
   ];
 
   services = {
