@@ -8,6 +8,7 @@
     ./gaming.nix
     ./science.nix
     ./3d.nix
+    ./typst.nix
   ];
 
   options.media.favorite = lib.mkOption {
