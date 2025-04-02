@@ -64,9 +64,8 @@
     commitlint-rs # Be consistent in commit messages
   ];
 
-  # home.shell.enableShellIntegration = true;
-
-  services.pueue.enable = true; # Maybe necessary to add pkg
+  # home.shell.enableShellIntegration = true; # Default
+  # services.pueue.enable = true; # Maybe necessary to add pkg
 
   programs = {
     starship.enable = true; # Smart prompt
