@@ -246,7 +246,7 @@ in {
         "$mod, u, SUp / SUpplementary workspace, workspace, name:sup"
         "$mod, u, Launch an app on suplementary workspace, exec, ${
           ifWorkspaceEmpty { ws = "sup"; }
-        } ${config.launch.app}"
+        } ${config.launch.app}" # TODO make this the default for workspaces
         "$mod SHIFT, u, SUp / SUpplementary workspace, movetoworkspace, name:sup"
         "$mod, e, Etc (et cetera) workspace, workspace, name:etc"
         "$mod, e, Launch an app on etc workspace, exec, ${
