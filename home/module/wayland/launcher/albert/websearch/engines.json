@@ -24,6 +24,14 @@
         "url": "https://wiki.archlinux.org/index.php?title=Special:Search&search=%s"
     },
     {
+        "fallback": false,
+        "iconPath": ":default",
+        "id": "52304271",
+        "name": "Cdiscount",
+        "trigger": "cd",
+        "url": "https://www.cdiscount.com/search/10/%s"
+    },
+    {
         "fallback": true,
         "iconPath": ":gpt",
         "id": "5eb8dc52",
