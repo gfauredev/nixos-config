@@ -19,6 +19,7 @@
   config = {
     home.packages = with pkgs; [
       # Document & Spreadsheet & Presentation & Note
+      xournalpp # Handwriting notetaking
       # onlyoffice-bin # Full office suite
       onlyoffice-bin_latest # Full office suite
       libreoffice-fresh # Office suite
@@ -26,7 +27,6 @@
       # libreoffice # Office suite
       # libreoffice-fresh-unwrapped # Office suite
       # libreoffice-still # Office suite
-      # xournalpp # Notetaking with draw
 
       # PDF reading & editing
       # mupdf # Minimalist PDF reader
