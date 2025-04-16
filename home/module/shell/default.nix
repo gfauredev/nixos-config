@@ -22,6 +22,8 @@
       pkgs.writeScriptBin "mount.usb" "${lib.readFile ./script/usb.sh}";
     mtp-mount =
       pkgs.writeScriptBin "mount.mtp" "${lib.readFile ./script/mtp.sh}";
+    archive =
+      pkgs.writeScriptBin "archive" "${lib.readFile ./script/archive.sh}";
   in with pkgs; [
     # Custom scripts
     init-dev-env # Initialize a Nix Flake based development environment
@@ -36,6 +38,7 @@
     typst-compile # Compile the latest edited Typst file in current dir
     usb-mount # Quickly mount or unmount a USB device in ~/usb
     mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
+    archive # Quickly move a directory inside ~/archive/
     # Development and general CLI tools
     ov # Modern pager
     trash-cli # Manage a trash from CLI
