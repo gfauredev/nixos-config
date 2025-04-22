@@ -20,9 +20,9 @@ key remapping daemon, that allows me to define system-wide Vim-like motions.
 efficiently organize apps on monitors and workspace with the keyboard,
 complemented with **Waybar** (probably **Eww** in a close future).
 
-Physically, my keyboard looks like this
-[![Framework Laptop 13 keyboard](griffin-physical-keymap.png)](keyboard-layout-editor.com/#/gists/afaa8480eeb1b7cec95a0fbd7199ebd8),
-but this config has his bunch of remappings… TODO add keymaps with remaps.
+Physically, my keyboard looks like…
+[![Framework Laptop 13 keyboard](griffin-physical-keymap.png)](keyboard-layout-editor.com/#/gists/afaa8480eeb1b7cec95a0fbd7199ebd8)
+…but this config has his bunch of remappings… TODO add keymaps with remaps.
 
 [Nushell](https://www.nushell.sh) **interactive shell**, modern, working with
 structured data, allowing sophisticated pipelines on them. I use it along a lot
