@@ -21,7 +21,7 @@ efficiently organize apps on monitors and workspace with the keyboard,
 complemented with **Waybar** (probably **Eww** in a close future).
 
 Physically, my keyboard looks like…
-[![Framework Laptop 13 keyboard](griffin-physical-keymap.png)](keyboard-layout-editor.com/#/gists/afaa8480eeb1b7cec95a0fbd7199ebd8)
+[![Framework Laptop 13 keyboard](griffin-physical-keymap.png)](https://keyboard-layout-editor.com/#/gists/afaa8480eeb1b7cec95a0fbd7199ebd8)
 …but this config has his bunch of remappings… TODO add keymaps with remaps.
 
 [Nushell](https://www.nushell.sh) **interactive shell**, modern, working with
