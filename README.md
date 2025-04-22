@@ -11,14 +11,17 @@ the mouse is a chore, so I live mostly in the terminal and in keyboard-driven
 apps.
 
 First, I use the [bépo](https://bepo.fr) ergonomic **keyboard layout**, which is
-optimized for writing French, as well as english and code.
+optimized for writing French, as well as english and code. There are other
+optimized layouts worth considering, such as [Ergopti](https://ergopti.fr) or
+[Optimot](https://optimot.fr).
 
 Added to that, the amazing [keyd](https://github.com/rvaiya/keyd) kernel-level
-key remapping daemon, that allows me to define system-wide Vim-like motions.
+key remapping daemon, that allows me to define system-wide Vim-like motions and
+chords.
 
 [Hyprland](https://hyprland.org) dynamic wayland **window manager**, to
 efficiently organize apps on monitors and workspace with the keyboard,
-complemented with **Waybar** (probably **Eww** in a close future).
+complemented with **Waybar** (also considering **Eww**).
 
 Physically, my keyboard looks like…
 [![Framework Laptop 13 keyboard](griffin-physical-keymap.png)](https://keyboard-layout-editor.com/#/gists/afaa8480eeb1b7cec95a0fbd7199ebd8)
@@ -42,6 +45,7 @@ of other tools that make terminal life easier.
   batch of files.
 - [bottom](https://github.com/ClementTsang/bottom) to monitor system ressources
   with neat plots.
+- …
 
 Aditionnally, I use [Dash shell](http://gondor.apana.org.au/~herbert/dash) as my
 **login shell** and default scripts runner (`/bin/sh`), because it’s very fast,
@@ -57,11 +61,12 @@ quick and feature-complete, but I use [Alacritty](https://alacritty.org) as a
 fallback, which is less featurefull, but robust.
 
 [Albert](https://albertlauncher.github.io) is my general **launcher** with which
-I launch apps, do calculations, manage my `pass` passwords, search for emojies…
+I launch apps, web searches, do calculations, quickly copy passwords, search for
+emojies…
 
 [Thunderbird](https://www.thunderbird.net) for **personal information
 management**. Not exactly keyboard-driven, but very comprehensive and
-standards-based. I may drift to CLI tools such as
+standards-based. I’m considering CLI tools such as
 [Himalaya](https://github.com/pimalaya/himalaya) and
 [Khal](https://github.com/pimutils/khal).
 
@@ -70,8 +75,8 @@ favorite fonts and other style settings everywhere. To fully leverage OLED
 screens for power saving, I always set background to pitch black `#000000`.
 
 - [Catppuccin Mocha](https://catppuccin.com) colorscheme, with black background.
-- [Libre Baskerville]() Serif font, for writen documents…
-- [Nacelle]() Sans font, for slides…
+- [Libre Baskerville]() Serif font, for paragraphs…
+- [Nacelle]() Sans font, for titles, slides…
 - [JetBrainsMono]() or [FiraCode]() `Nerd Font` Mono font, for code, terminal…
 - [Noto Color Emoji]() for emoticons.
 - [Bibata Modern Ice]() cursor theme.
