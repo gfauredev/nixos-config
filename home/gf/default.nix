@@ -47,10 +47,17 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  programs = {
+  programs = let
+    name = user.description;
+    email = "pro@gfaure.eu";
+  in {
     git = {
-      userName = user.description;
-      userEmail = "pro@gfaure.eu";
+      userName = name;
+      userEmail = email;
+    };
+    jujutsu.settings.user = {
+      name = name;
+      email = email;
     };
   };
 

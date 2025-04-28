@@ -144,11 +144,11 @@
 
   programs = {
     git.enable = true; # MANDATORY
+    jujutsu.enable = true; # Git compatible simpler VCS
     rbw.enable = true; # CLI Bitwarden client
     gpg.enable = true; # Useful cryptography tool
     direnv.enable = true;
     password-store.enable = true; # CLI standard password manager
-
     git = {
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
