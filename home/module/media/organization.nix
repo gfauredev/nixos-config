@@ -27,6 +27,13 @@
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations
 
+    # Finance
+    actual-server # Finances managing app TEST ME
+    gnucash # Double entry accounting TEST ME
+    firefly-iii # Personal finances manager TEST ME
+    homebank # Easy accounting TEST ME
+    # maybe TEST
+
     # Misc
     gpxsee # GPS track viewer
     # archi # Archimate modeling tool
