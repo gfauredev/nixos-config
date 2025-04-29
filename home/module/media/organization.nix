@@ -28,11 +28,8 @@
     # hovercraft # impress.js presentations
 
     # Finance
-    actual-server # Finances managing app TEST ME
-    gnucash # Double entry accounting TEST ME
-    firefly-iii # Personal finances manager TEST ME
-    homebank # Easy accounting TEST ME
-    # maybe TEST
+    # gnucash # Double entry accounting TEST ME
+    # homebank # Easy accounting TEST ME
 
     # Misc
     gpxsee # GPS track viewer
