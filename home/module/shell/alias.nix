@@ -116,7 +116,7 @@ in {
     # System
     re = "exec nu"; # Restart a shell, replacing the current one
     # Files
-    rm = "rm --verbose"; # Remove file(s) (thrash them)
+    r = "rm --recursive --verbose"; # Remove file(s) (thrash them by default)
     m = "mkdir --verbose"; # Quickly create directory
     # Open, single letter
     x = "start-bg"; # Open with the default tool
