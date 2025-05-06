@@ -71,6 +71,7 @@ let
     branch = "git branch";
     revert = "git revert";
     clean = "git clean --interactive -dx";
+    stash = "git stash";
     giff = "git diff";
     logg = "git log --oneline";
     unamend = "git reset --soft HEAD@{1}";
