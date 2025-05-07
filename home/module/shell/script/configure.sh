@@ -4,7 +4,7 @@
 # with one private config having as single input one public config,
 # which contains most of the configurations
 RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
-# -p CPUQuota=666%' # Also limit CPU usage (Nix already limits to 8 threads)
+# -p CPUQuota=888%' # Also limit CPU usage (Nix already limits to 8 threads)
 NIXOS_REBUILD_CMD="systemd-inhibit sudo $RESOURCE_LIMIT nixos-rebuild"
 HOME_MANAGER_CMD='systemd-inhibit home-manager' # Set default params here
 

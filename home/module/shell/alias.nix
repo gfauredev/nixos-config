@@ -17,6 +17,10 @@ let
       "sudo cpupower frequency-set --governor performance"; # Performance mode
     powersave =
       "sudo cpupower frequency-set --governor powersave"; # Powersave mode
+    limit =
+      "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit ressources
+    restrict =
+      "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit ressources
     egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
     du = "dust";
     df = "duf -hide special";
