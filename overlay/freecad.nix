@@ -1,11 +1,4 @@
-(final: prev: {
-  freecad = prev.freecad-wayland.override {
-    extraPkgs = pkgs:
-      with pkgs; [
-        openscad # Programmatic "code first" 3D CAD
-        pip # Python package manager
-        python3 # Scripting language for addons
-        # venvShellHook # TEST if needed for Python
-      ];
-  };
-})
+# FIXME openscad executable is not found
+# FIXME python executable is not found
+# See https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/fr/freecad/package.nix
+(final: prev: { freecad = prev.freecad.override { }; })

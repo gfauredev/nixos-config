@@ -33,7 +33,7 @@
 # in
 {
   home.packages = with pkgs; [
-    freecad # Popular parametric 3D CAD
+    freecad-wayland # Popular parametric 3D CAD
     dune3d # New simple parametric CAD
     # solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system

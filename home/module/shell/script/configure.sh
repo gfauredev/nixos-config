@@ -99,6 +99,7 @@ commit_all() {   # Commit $1 config with message $2
   git -C "$repo_path" diff
   if [ -d "$repo_path/$HOME_LOC" ]; then
     if has_repo_changed "$repo_path" $HOME_LOC flake.nix flake.lock; then
+      # TODO set home_changed when amending changes too
       home_changed=true # Rebuild home as changes have been made
       state '\tChanges made in %s configuration' $HOME_LOC
     fi
