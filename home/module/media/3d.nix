@@ -33,9 +33,6 @@
 # in
 {
   home.packages = with pkgs; [
-    # openscad BROKEN # Parametric, programmatic 3D CAD
-    # cq-editor BROKEN # GUI for Python lib CadQuery
-
     freecad # Popular parametric 3D CAD
     dune3d # New simple parametric CAD
     # solvespace # Simple parametric 3D CAD
