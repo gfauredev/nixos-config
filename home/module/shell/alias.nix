@@ -31,6 +31,7 @@ let
     # Files
     restore = "trash-restore";
     empty = "trash-empty -i";
+    d = "rm --recursive --verbose"; # Remove file(s) (thrash them in Nushell)
     shred = "shred -vu";
     wx = "watchexec";
     ## Quickly launch default text editor
@@ -121,7 +122,6 @@ in {
     # System
     re = "exec nu"; # Restart a shell, replacing the current one
     # Files
-    r = "rm --recursive --verbose"; # Remove file(s) (thrash them by default)
     m = "mkdir --verbose"; # Quickly create directory
     # Open, single letter
     x = "start-bg"; # Open with the default tool
