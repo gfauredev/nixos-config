@@ -33,11 +33,11 @@
 # in
 {
   home.packages = with pkgs; [
-    # openscad # Parametric, programmatic 3D CAD
-    # cq-editor # GUI for Python lib CadQuery
+    # openscad BROKEN # Parametric, programmatic 3D CAD
+    # cq-editor BROKEN # GUI for Python lib CadQuery
 
-    dune3d # New parametric CAD
-    # freecad # Popular parametric 3D CAD
+    freecad # Popular parametric 3D CAD
+    dune3d # New simple parametric CAD
     # solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
 
@@ -49,6 +49,6 @@
     # cura # Popular 3D printer slicer
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
 
-    f3d # Minimalist 3D viewer
+    # f3d # Minimalist 3D viewer
   ];
 }
