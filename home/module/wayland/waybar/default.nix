@@ -32,20 +32,23 @@
             # max-length = 8;
           };
 
-          temperature =
-            # let
-            #   hwmon = "4"; # TODO Nixos module options or better, dynamic
-            #   temp = "1"; # TODO Nixos module options or better, dynamic
-            # in
-            {
-              # thermal-zone = 0;
-              # hwmon-path = "/sys/class/hwmon/hwmon${hwmon}/temp${temp}_input";
-              critical-threshold = "75";
-              format = "{icon} {temperatureC}";
-              format-icons = [ "" "" "" "" "" ]; # FA
-              tooltip = false;
-              # max-length = 6;
-            };
+          temperature = let
+            # hwmon = "4"; # TODO Nixos module options or better, dynamic
+            # temp = "1"; # TODO Nixos module options or better, dynamic
+            hwmon-paths = [
+              "/sys/class/hwmon/hwmon6/temp1_input"
+              "/sys/class/hwmon/hwmon4/temp1_input"
+            ];
+          in {
+            # thermal-zone = 0;
+            # hwmon-path = "/sys/class/hwmon/hwmon${hwmon}/temp${temp}_input";
+            hwmon-path = hwmon-paths;
+            critical-threshold = "75";
+            format = "{icon} {temperatureC}";
+            format-icons = [ "" "" "" "" "" ]; # FA
+            tooltip = false;
+            # max-length = 6;
+          };
 
           cpu = {
             states = {
