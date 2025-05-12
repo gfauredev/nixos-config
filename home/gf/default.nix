@@ -7,20 +7,27 @@
     ../module/media # Media consuming and editing
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "albert" # General launcher
-      "discord" # Messaging
-      "vital" # Synth
-      "bespokesynth" # Synth
-      "bespokesynth-with-vst2" # Synth
-      "spotify" # Music
-      "steam-unwrapped" # Videogames
-      "steam" # Videogames
-      "libsciter" # Used by rustdesk
-      "ciscoPacketTracer8" # Network simulation
-      "deconz" # Manage ZigBee/Matter networks
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "albert" # General launcher
+        "discord" # Messaging
+        "vital" # Synth
+        "bespokesynth" # Synth
+        "bespokesynth-with-vst2" # Synth
+        "spotify" # Music
+        "steam-unwrapped" # Videogames
+        "steam" # Videogames
+        "libsciter" # Used by rustdesk
+        "ciscoPacketTracer8" # Network simulation
+        "deconz" # Manage ZigBee/Matter networks
+        "ventoy" # Multiboot USB
+        "ventoy-1.1.05" # Multiboot USB
+      ];
+    permittedInsecurePackages = [
+      "ventoy-1.1.05" # Multiboot USB
     ];
+  };
 
   home = {
     username = user.name;
