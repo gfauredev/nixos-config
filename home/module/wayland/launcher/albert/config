@@ -116,6 +116,7 @@ enabled=true
 trigger="aw "
 
 [python.bitwarden]
+cache_timeout=5
 enabled=true
 
 [python.color]
