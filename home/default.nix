@@ -125,7 +125,7 @@
     dunst.enable = true; # Notifications daemon
 
     syncthing.extraOptions = [ "--no-default-folder" ];
-    gpg-agent.pinentryPackage = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
+    gpg-agent.pinentry.package = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
     dunst = {
       settings = {
         global = {
