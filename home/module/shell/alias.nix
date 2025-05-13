@@ -29,6 +29,7 @@ let
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
     # Files
+    a = "bat"; # Prettier cat to quickly display files in term
     restore = "trash-restore";
     empty = "trash-empty -i";
     d = "rm --recursive --verbose"; # Remove file(s) (thrash them in Nushell)
@@ -110,7 +111,6 @@ in {
     # Open, single letter
     x = "xdg-open"; # Open with the default tool
     o = "xdg-open"; # Open with the default tool
-    a = "bat --force-colorization"; # --paging never"; # Better cat
     p = "${config.home.sessionVariables.PAGER}"; # Default pager
     # Edit, single letter
     m = "mkdir -pv"; # mkdir with parents if needed
@@ -126,7 +126,6 @@ in {
     # Open, single letter
     x = "start-bg"; # Open with the default tool
     o = "start-bg"; # Open with the default tool
-    a = "bat --force-colorization"; # --paging never"; # Prettier cat
     p = "${config.home.sessionVariables.PAGER}"; # Default pager (ov)
     # List
     l = "ls"; # Quickly list files in current directory

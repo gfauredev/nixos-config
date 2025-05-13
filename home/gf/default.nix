@@ -40,6 +40,7 @@
       XDG_VIDEOS_DIR = "$HOME/dcim";
       XDG_DOWNLOAD_DIR = "$HOME/tmp";
       CONFIG_FLAKE = "~/.config/flake"; # System and home flake configs
+      BAT_PAGING = "never";
       SHELL = "nu"; # TEST if better with full paths
       PAGER = "ov"; # TEST if better with full paths
       BROWSER = "brave"; # TEST if better with full paths
