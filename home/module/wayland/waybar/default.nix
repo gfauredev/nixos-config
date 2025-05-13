@@ -34,9 +34,14 @@
 
           temperature = let # TODO Nixos module options or better, dynamic
             griffin.cpu-temps = [
+              "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input"
               "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input"
+              "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
               "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input"
+              "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+              "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
               "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+              "/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input"
             ];
           in {
             hwmon-path = griffin.cpu-temps;
