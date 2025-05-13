@@ -66,6 +66,7 @@
         "EDITOR,${var.EDITOR}" # Force default editor
         "PAGER,${var.PAGER}" # Force default pager
         "PASSWORD_STORE_DIR,${var.PASSWORD_STORE_DIR}" # passwords location
+        "BAT_PAGING,${var.BAT_PAGING}"
       ];
   };
 }
