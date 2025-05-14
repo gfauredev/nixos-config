@@ -1,5 +1,5 @@
 { pkgs, config, lib, ... }: {
-  imports = [ ./albert ./ulauncher ./rofi ./onagre ];
+  imports = [ ./albert ./ulauncher ./rofi ./onagre ./wox ];
 
   options.launch = {
     all = lib.mkOption {
