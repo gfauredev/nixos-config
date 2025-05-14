@@ -5,7 +5,7 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    initExtra = builtins.readFile ./zshrc.sh; # TODO this cleaner
+    initContent = builtins.readFile ./zshrc.sh; # TODO this cleaner
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
