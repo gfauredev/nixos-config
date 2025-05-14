@@ -12,6 +12,10 @@
       default = "rofi -show combi -combi-modes"; # Alternative, fallback
       description = "Alternative general launcher";
     };
+    alt2 = lib.mkOption {
+      default = "wox"; # Alternative, fallback
+      description = "Alternative general launcher";
+    };
     app = lib.mkOption {
       default = ''albert show "app "''; # Application launcher
       description = "Application launcer";
