@@ -101,6 +101,7 @@
 
     # Storage & Backup & Encryption
     restic # Efficient backup tool
+    rustic # Restic compatible pure Rust backup tool
     ventoy-full # create bootable keys
     testdisk # file recuperation
     exfatprogs # Tools for exfat fs
