@@ -42,14 +42,14 @@
     consoleLogLevel = 0; # Don’t clutter screen at boot
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = {
-      "kernel.sysrq" = 212;
-      # "vm.swappiness" = 50; # Reduce memory swap to disk (no swap partition anyway)
+      "kernel.sysrq" = 212; # kbd control, read-only remount, nicing, power
+      "vm.swappiness" = 50; # Reduce memory swap to disk
     };
     kernelPackages = lib.mkOverride 1001
       pkgs.linuxPackages_latest; # Latest Linux kernel by default
     kernelParams = [
-      "threadirqs" # Force threading interrupts TEST why
-      # "zswap.enabled=1" # TODO with encrypted swap partition for hibernation
+      "threadirqs" # Process interrupts asynchronously to reduce latency
+      "zswap.enabled=1" # TODO setup encrypted swap partition
     ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
