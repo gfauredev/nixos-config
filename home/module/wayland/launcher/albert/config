@@ -19,6 +19,9 @@ trigger="inhib "
 [calculator_qalculate]
 angle_unit=2
 enabled=true
+functions_in_global_query=true
+parsing_mode=2
+units_in_global_query=true
 
 [chromium]
 enabled=true
