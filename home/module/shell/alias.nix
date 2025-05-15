@@ -60,6 +60,7 @@ let
     scanpdf =
       "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
     cmake = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # Always export includes
+    calc = "kalker"; # Do calculations
     # Git
     clone = "git clone --verbose";
     status = "git status --verbose --ignored";
