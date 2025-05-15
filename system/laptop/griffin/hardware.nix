@@ -39,7 +39,17 @@
     fsType = "vfat";
   };
 
-  swapDevices = [ ];
+  # See https://nixos.wiki/wiki/Swap
+  # swapDevices = [{ # TODO encrypted, with zswap
+  #   device = "/dev/nvme0n1p2";
+  #   size = 16 * 1024 + 64;
+  #   encrypted = {
+  #     enable = true;
+  #     blkDev = "/dev/nvme0n1p2";
+  #     keyFile = "/mnt-root/root/.swapkey";
+  #     label = "cryptswap";
+  #   };
+  # }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

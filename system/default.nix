@@ -48,7 +48,8 @@
     kernelPackages = lib.mkOverride 1001
       pkgs.linuxPackages_latest; # Latest Linux kernel by default
     kernelParams = [
-      "threadirqs" # Force threading interrupts
+      "threadirqs" # Force threading interrupts TEST why
+      # "zswap.enabled=1" # TODO with encrypted swap partition for hibernation
     ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
