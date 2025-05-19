@@ -14,6 +14,7 @@
   news.display = "notify"; # Notify for new home manager options
 
   stylix = { # Manage all things style & appearance
+    enableReleaseChecks = false; # WARN, remove this
     enable = true;
     polarity = "dark";
     fonts = {
