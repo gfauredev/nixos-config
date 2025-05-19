@@ -28,6 +28,7 @@ let
     wcp = "wl-copy";
     wpt = "wl-paste";
     inhib = "systemd-inhibit sleep";
+    compose = "podman compose";
     # Files
     a = "bat"; # Prettier cat to quickly display files in term
     restore = "trash-restore";
