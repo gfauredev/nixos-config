@@ -200,50 +200,11 @@
           auto-format = true;
         }
       ];
-      language-server = let
-        ltex = {
-          command = "ltex-ls-plus";
-          config.ltex = {
-            completionEnable = true;
-            # language = "fr"; # "en-GB";
-            dictionary = let
-              common = [
-                "Griffin"
-                "Typhon"
-                "Shiba"
-                "Cerberus"
-                "HDD"
-                "SSD"
-                "UFS"
-                "SuperSpeed"
-                "SATA"
-                "CD-RW"
-                "Classic"
-                "Syncthing"
-                "Restic"
-                "rsync"
-                "udev"
-                "NixOS"
-                "Scaleway"
-                "Gandi"
-                "Adata"
-              ];
-            in {
-              fr = common // [ "mdr" ];
-              en = common;
-            };
-            additionalRules = {
-              enablePickyRules = true;
-              motherTongue = "fr";
-            };
-          };
-        };
-      in {
+      language-server = {
         dprint = {
           command = "dprint";
           args = [ "lsp" ];
         };
-        ltex-fr = ltex // { config.ltex.language = "fr"; };
         harper = {
           command = "harper-ls";
           args = [ "--stdio" ];
