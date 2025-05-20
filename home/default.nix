@@ -5,6 +5,11 @@
     ./module/shell # Interactive POSIX shell(s)
   ];
 
+  nix = {
+    package = pkgs.nix;
+    settings.max-jobs = 8; # Limit threads usage of nix builds
+  };
+
   manual = {
     html.enable = true;
     json.enable = true;
@@ -14,7 +19,7 @@
   news.display = "notify"; # Notify for new home manager options
 
   stylix = { # Manage all things style & appearance
-    enableReleaseChecks = false; # WARN, remove this
+    # enableReleaseChecks = false; # WARN, remove this
     enable = true;
     polarity = "dark";
     fonts = {

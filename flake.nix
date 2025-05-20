@@ -90,7 +90,7 @@
           modules = [
             ./home/gf/griffin.nix
             self.nixosModules.overlay
-            stylix.homeManagerModules.stylix # Color & fonts
+            stylix.homeModules.stylix # Color & fonts
           ];
         };
         "gf@chimera" = home-manager.lib.homeManagerConfiguration {
