@@ -8,6 +8,7 @@
   hardware = {
     uinput.enable = true;
     graphics.enable = true;
+    opentabletdriver.enable = true; # Open source graphic tablet driver
     # fancontrol = {
     #   enable = true;
     #   config = ''
