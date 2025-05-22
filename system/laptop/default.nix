@@ -20,7 +20,7 @@
   };
 
   hardware = {
-    sensor.iio.enable = lib.mkDefault true; # Auto brightness & orientation
+    # sensor.iio.enable = lib.mkDefault true; # Auto brightness & orientation
     # brillo.enable = true; # Keyboard brightness control
   };
 

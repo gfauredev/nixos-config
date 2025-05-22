@@ -126,7 +126,7 @@
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
-    ollama.enable = true; # Large language model inference server
+    # ollama.enable = true; # Large language model inference server
     # systembus-notify.enable = true; # TEST relevance
     gpg-agent.enable = true; # Keeps your gpg key loaded
     dunst.enable = true; # Notifications daemon

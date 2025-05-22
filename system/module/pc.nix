@@ -97,13 +97,13 @@
     };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
-    thermald.enable = lib.mkDefault true; # Keep cool
+    # thermald.enable = lib.mkDefault true; # Keep cool TEST if useful
     udisks2.enable = true; # Mount USB without privileges
     libinput.enable = true; # Enable touchpad support
-    hardware.bolt.enable = true; # Thunderbolt device manager (authorize eGPU…)
+    # hardware.bolt.enable = true; # Thunderbolt devs manager (authorize eGPU…)
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     gvfs.enable = true; # Samba client
-    iperf3.enable = true; # Network testing
+    # iperf3.enable = true; # Network testing
     # smartd.enable = true; # TEST Drive health monitoring
   };
 
