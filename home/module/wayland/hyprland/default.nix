@@ -149,7 +149,8 @@ in {
         repeat_rate = "50";
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad.natural_scroll = false;
+        touchpad.natural_scroll = false; # Going up goes up
+        tablet.output = "current";
       };
       dwindle = {
         pseudotile = true; # master switch for pseudotiling TEST
