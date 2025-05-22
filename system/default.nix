@@ -174,16 +174,6 @@
 
   services = {
     ntp.enable = lib.mkDefault true;
-    nfs.server.enable = lib.mkDefault true;
-    openssh = {
-      enable = lib.mkDefault true; # Do not enable the OpenSSH daemon by default
-      settings = {
-        PermitRootLogin = lib.mkDefault "no";
-        LogLevel = "VERBOSE"; # For fail2ban
-        PasswordAuthentication = lib.mkDefault true;
-      };
-    };
-    fail2ban.enable = lib.mkDefault true;
     # See https://wiki.nixos.org/wiki/Encrypted_DNS
     dnscrypt-proxy2 = {
       enable = true;
@@ -210,7 +200,7 @@
     };
   };
 
-  programs = { openvpn3.enable = lib.mkDefault true; };
+  programs.openvpn3.enable = lib.mkDefault true;
 
   i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
 
