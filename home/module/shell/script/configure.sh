@@ -117,12 +117,10 @@ commit_all() {   # Commit $1 config with message $2
   fi
   # Commit all the changes
   emph # Italic text
-  printf '\t❯ git -C %s add --verbose .' "$repo_path"
-  std # Standard text
+  printf '\t❯ git -C %s add --verbose . %s' "$repo_path" "$(std)"
   git -C "$repo_path" add --verbose .
   emph # Italic text
-  printf '\t❯ git -C %s commit %s' "$repo_path" "$@"
-  std # Standard text
+  printf '\t❯ git -C %s commit %s %s' "$repo_path" "$*" "$(std)"
   git -C "$repo_path" commit --verbose "$@" || return
 }
 
