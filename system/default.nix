@@ -1,4 +1,6 @@
 { lib, pkgs, ... }: {
+  # TODO find and possibly disable the Python 3.12 service launched at boot
+  # 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "nvidia-x11" # GPU drivers
