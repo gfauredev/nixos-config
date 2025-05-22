@@ -222,7 +222,7 @@
       lm_sensors # get temps
       acpi # Information about hardware
       sysstat # Monitoring CLI tools
-      procs # Better ps
+      # procs # Better ps
       powertop # Power usage analyzer
       nix-du # Determine which gc-roots take space
       wakelan # send magick packet to wake WoL devices
