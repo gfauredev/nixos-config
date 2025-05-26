@@ -199,6 +199,11 @@
           language-servers = [ "harper" "llm" ];
           auto-format = true;
         }
+        {
+          name = "sql";
+          language-servers = [ "sqls" ];
+          auto-format = true;
+        }
       ];
       language-server = {
         dprint = {
@@ -214,6 +219,7 @@
           command = "ruff";
           args = [ "server" ];
         };
+        sqls = { command = "sqls"; };
       };
     };
     themes = {
