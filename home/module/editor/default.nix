@@ -29,7 +29,7 @@ let
     # shellcheck # Shell script analysis
     # shfmt # Shell script formater
 
-    sqls # SQL language server
+    # sqls # SQL language server
     # vscode-langservers-extracted # HTML/CSS/JS(ON)
     marksman # Smart Markdown links
     # markdown-oxide # TEST Obsidian style PKM

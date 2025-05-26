@@ -121,6 +121,8 @@
     smartmontools # Monitor health of drives
 
     # Misc
+    sql-formatter # SQL formtter TEST
+    sqruff # SQL linter TEST
     # handlr-regex # Modern replacement of xdg-open TEST
   ];
 
