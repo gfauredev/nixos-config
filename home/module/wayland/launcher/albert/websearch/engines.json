@@ -275,9 +275,9 @@
         "fallback": false,
         "iconPath": ":default",
         "id": "91f61720",
-        "name": "Wikipedia",
-        "trigger": "wikipedia",
-        "url": "https://www.wikipedia.org/w/index.php?search=%s"
+        "name": "Wikipedia (FR)",
+        "trigger": "wf",
+        "url": "https://fr.wikipedia.org/w/index.php?search=%s"
     },
     {
         "fallback": true,
