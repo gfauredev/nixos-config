@@ -74,7 +74,7 @@
       defaultApplications =
         let # TODO should SSOT, maybe put in flake or modularize
           text = "Helix";
-          image = "imv";
+          image = "qimgv";
           audio = "mpv";
           video = "mpv";
           web = "brave-browser";
