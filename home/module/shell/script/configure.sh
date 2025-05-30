@@ -100,7 +100,9 @@ has_repo_changed() {
 # @param * remaining parameters passed to Git (--amend, --message <string>)
 commit_all() {   # Commit $1 config with message $2
   repo_path="$1" # Location of Git repository
-  shift          # Remove $1 (repo path) from $@
+  printf '\tDEBUG repo_path: %s' "$repo_path"
+  printf '\tDEBUG $*: %s (shift happening next)' "$*"
+  shift # Remove $1 (repo path) from $@
   # git -C "$repo_path" diff # FIXME Opens a pager: needs interaction
   # TODO set home_changed when amending changes too
   if has_repo_changed "$repo_path" $HOME_LOC; then
@@ -116,6 +118,8 @@ commit_all() {   # Commit $1 config with message $2
     std # Standard text
   fi
   # Commit all the changes
+  printf '\tDEBUG repo_path: %s' "$repo_path"
+  printf '\tDEBUG $*: %s' "$*"
   emph # Italic text
   printf '\t❯ git -C %s add --verbose . %s' "$repo_path" "$(std)"
   git -C "$repo_path" add --verbose .
@@ -361,10 +365,10 @@ if $rebuild_system; then     # Always rebuild system if explicitly set
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
 # Rebuild home/ if
-# - It was changed for a new feature of a bugfix
-# - Flake inputs are updated
+# - It was changed for a new feature or a bugfix
+# - Flake inputs were updated FIXME
 if [ $home_changed = true ] &&
-  { [ "$commit_type" = feat ] || [ "$commit_type" = fix ]; } ||
+  { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; } ||
   [ $update_inputs = true ]; then
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
