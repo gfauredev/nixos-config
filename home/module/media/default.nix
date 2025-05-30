@@ -9,6 +9,7 @@
     ./science.nix
     ./3d.nix
     ./typst.nix
+    ./qimgv
   ];
 
   options.media.favorite = lib.mkOption {
