@@ -222,7 +222,13 @@
           # exportPdf = "onType";
           # exportPdf = "onDocumentHasTitle";
           lint.enabled = true;
-          preview.background = { enabled = true; };
+          preview.background = {
+            enabled = true;
+            args =
+              [ "--data-plane-host=127.0.0.1:4321" "--invert-colors=never" ];
+          };
+          preview.browsing.args =
+            [ "--data-plane-host=127.0.0.1:4321" "--invert-colors=never" ];
         };
         ruff = {
           command = "ruff";
