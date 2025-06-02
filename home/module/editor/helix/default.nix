@@ -150,7 +150,10 @@
           name = "typst";
           language-servers = [ "tinymist" "ltex-fr" "llm" ];
           auto-format = true;
-          formatter.command = "typstyle";
+          formatter = {
+            command = "typstyle";
+            args = [ "--line-width" "80" "--indent-width" "2" "--wrap-text" ];
+          };
         }
         {
           name = "markdown";
