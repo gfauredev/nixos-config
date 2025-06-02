@@ -217,7 +217,13 @@
           command = "harper-ls";
           args = [ "--stdio" ];
         };
-        tinymist.config = { exportPdf = "onType"; };
+        tinymist.config = {
+          # projectResolution = "lockDatabase";
+          # exportPdf = "onType";
+          # exportPdf = "onDocumentHasTitle";
+          lint.enabled = true;
+          preview.background = { enabled = true; };
+        };
         ruff = {
           command = "ruff";
           args = [ "server" ];
