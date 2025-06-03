@@ -232,6 +232,10 @@
           #     "--invert-colors=never" # Real colors
           #   ];
           # };
+          preview.browsing.args = [
+            "--open" # Auto open in browser
+            "--invert-colors=never" # Real colors
+          ];
         };
         ruff = {
           command = "ruff";
