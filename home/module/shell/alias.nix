@@ -38,7 +38,7 @@ let
     wx = "watchexec";
     ## Quickly launch default text editor
     e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
-    "." = "${config.home.sessionVariables.EDITOR} ."; # Edit text in current dir
+    "." = "${config.home.sessionVariables.EDITOR} ."; # Open editor in work dir
     ## Quick smart file/directory copy
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
     ## Search

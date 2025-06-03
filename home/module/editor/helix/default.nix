@@ -223,17 +223,15 @@
           args = [ "--stdio" ];
         };
         tinymist.config = {
-          projectResolution = "lockDatabase"; # Compilation args, main file…
-          preview.background = {
-            enabled = true;
-            args = [
-              "--open" # Auto open in browser
-              "--invert-colors=never"
-              # "--data-plane-host=127.0.0.1:4321"
-            ];
-          };
           lint.enabled = true;
-          # exportPdf = "onSave"; "onType";
+          # projectResolution = "lockDatabase"; # TODO define project main file
+          # preview.background = {
+          #   enabled = true; # TODO when multifile project properly supported
+          #   args = [
+          #     "--open" # Auto open in browser
+          #     "--invert-colors=never" # Real colors
+          #   ];
+          # };
         };
         ruff = {
           command = "ruff";
