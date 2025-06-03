@@ -224,18 +224,18 @@
         };
         tinymist.config = {
           lint.enabled = true;
-          # projectResolution = "lockDatabase"; # TODO define project main file
-          # preview.background = {
-          #   enabled = true; # TODO when multifile project properly supported
-          #   args = [
-          #     "--open" # Auto open in browser
-          #     "--invert-colors=never" # Real colors
-          #   ];
-          # };
-          preview.browsing.args = [
-            "--open" # Auto open in browser
-            "--invert-colors=never" # Real colors
-          ];
+          projectResolution = "lockDatabase"; # FIXME define project main file
+          preview.background = {
+            enabled = true; # Preview the Typst file
+            args = [
+              "--open" # Auto open in browser
+              "--invert-colors=never" # Real colors
+            ];
+          };
+          # preview.browsing.args = [
+          #   "--open" # Auto open in browser
+          #   "--invert-colors=never" # Real colors
+          # ];
         };
         ruff = {
           command = "ruff";
