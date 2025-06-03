@@ -8,8 +8,11 @@
       editor = {
         auto-format = true;
         auto-save = {
-          focus-lost = true;
-          after-delay.enable = true;
+          # focus-lost = true;
+          after-delay = {
+            enable = true;
+            timeout = 3000;
+          };
         };
         soft-wrap.enable = true;
         line-number = "relative";
@@ -57,8 +60,9 @@
           "’" = "command_mode"; # : bépo quicker alternative
           "»" = "indent"; # > bépo quicker alternative
           "«" = "unindent"; # < bépo quicker alternative
-          ret = "open_below"; # o alternative (Return)
-          S-ret = "open_above"; # o alternative (Return)
+          ret = ":write"; # "open_below"; # Quickly write file (Return)
+          S-ret = ":write-quit!"; # "open_above"; # Force write & quit (Return)
+          C-ret = ":write-buffer-close!"; # Force write & quit buffer (Return)
           D = [ "extend_line_below" "delete_selection" ]; # Delete line
           space.t = "goto_word"; # Jump to a tag
           X = "keep_selections";
@@ -107,7 +111,7 @@
             l = "goto_declaration";
           };
           "#" = { # "#" sub mode (shell or files related commands)
-            # Open most recently edited PDF
+            # Open most recently edited PDF file
             p = ":run-shell-command xdg-open $(ls --sort=time *.pdf|head -n1)";
           };
           z = { # View mode
@@ -143,6 +147,7 @@
         }
         {
           name = "python";
+          # TODO add ty (type checker)
           language-servers = [ "ruff" "jedi" "pylsp" "harper" "llm" ];
           auto-format = true;
         }
@@ -152,7 +157,7 @@
           auto-format = true;
           formatter = {
             command = "typstyle";
-            args = [ "--line-width" "80" "--indent-width" "2" "--wrap-text" ];
+            args = [ "--line-width=80" "--indent-width=2" "--wrap-text" ];
           };
         }
         {
@@ -220,15 +225,18 @@
         tinymist.config = {
           # projectResolution = "lockDatabase";
           # exportPdf = "onType";
-          # exportPdf = "onDocumentHasTitle";
-          lint.enabled = true;
+          # exportPdf = "onDocumentHasTitle"; # DEPRECATED
+          # lint.enabled = true;
           preview.background = {
             enabled = true;
-            args =
-              [ "--data-plane-host=127.0.0.1:4321" "--invert-colors=never" ];
+            args = [
+              "--invert-colors=never"
+              "--open" # Auto open in browser
+              # "--data-plane-host=127.0.0.1:4321"
+            ];
           };
-          preview.browsing.args =
-            [ "--data-plane-host=127.0.0.1:4321" "--invert-colors=never" ];
+          # preview.browsing.args =
+          #   [ "--data-plane-host=127.0.0.1:4321" "--invert-colors=never" ];
         };
         ruff = {
           command = "ruff";
