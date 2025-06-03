@@ -43,7 +43,7 @@ strong() {
   printf '\033[1m' # Start bold
 }
 std() {
-  printf '\033[0m\n' # Standard text, remove any style
+  printf '\033[0m' # Standard text, remove any style
 }
 
 # Show public configuration Git logs and status
@@ -58,10 +58,10 @@ pull_one() { # Git pull private or public config
   emph # Italic text
   printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
   if ping -c 1 -w 3 "$remote"; then
-    printf '%s reached, pull latest changes from it' "$remote"
+    printf '%s reached, pull latest changes from it\n' "$remote"
     git -C "$1" pull
   else
-    printf '%s non reachable, move on' "$remote"
+    printf '%s non reachable, move on\n' "$remote"
   fi
   std # Return to normal text
 }
@@ -69,7 +69,7 @@ pull_one() { # Git pull private or public config
 # Git pull both private and public config
 pull_both() {
   emph # Italic text
-  printf 'Public & Private: Pulling latest changes (asynchronously)'
+  printf 'Public & Private: Pulling latest changes (asynchronously)\n'
   std # Normal text
   pull_one $PUBLIC_LOC &
   pull_one $PRIVATE_LOC &
@@ -79,7 +79,7 @@ pull_both() {
 # Update (public) config flake inputs
 update_inputs_cmd() {
   emph # Italic text
-  printf 'Public: Update flake %s inputs' $PUBLIC_LOC
+  printf 'Public: Update flake %s inputs\n' $PUBLIC_LOC
   std
   nix flake update --flake $PUBLIC_LOC --commit-lock-file
   # Test if the last commit is an unpushed lockfile update
@@ -100,47 +100,45 @@ has_repo_changed() {
 # @param * remaining parameters passed to Git (--amend, --message <string>)
 commit_all() {   # Commit $1 config with message $2
   repo_path="$1" # Location of Git repository
-  printf '\tDEBUG repo_path: %s' "$repo_path"
-  printf '\tDEBUG $*: %s (shift happening next)' "$*"
-  shift # Remove $1 (repo path) from $@
+  shift          # Remove $1 (repo path) from $@
   # git -C "$repo_path" diff # FIXME Opens a pager: needs interaction
   # TODO set home_changed when amending changes too
   if has_repo_changed "$repo_path" $HOME_LOC; then
     home_changed=true # Rebuild home as changes have been made
     strong            # Bold text
-    printf '\tChanges made in %s configuration' $HOME_LOC
+    printf '\tChanges made in %s configuration\n' $HOME_LOC
     std # Standard text
   # elif [ -d "$repo_path/$HOME_LOC" ]; then
   elif has_repo_changed "$repo_path" flake.nix flake.lock; then
     home_changed=true # Rebuild home as changes have been made
     strong            # Bold text
-    printf '\tChanges made in flake.nix / flake.lock'
+    printf '\tChanges made in flake.nix / flake.lock\n'
     std # Standard text
   fi
   # Commit all the changes
-  printf '\tDEBUG repo_path: %s' "$repo_path"
-  printf '\tDEBUG $*: %s' "$*"
   emph # Italic text
-  printf '\t❯ git -C %s add --verbose . %s' "$repo_path" "$(std)"
+  printf '\t❯ git -C %s add --verbose .\n' "$repo_path"
+  std
   git -C "$repo_path" add --verbose .
   emph # Italic text
-  printf '\t❯ git -C %s commit %s %s' "$repo_path" "$*" "$(std)"
+  printf '\t❯ git -C %s commit %s\n' "$repo_path" "$*"
+  std
   git -C "$repo_path" commit --verbose "$@" || return
 }
 
 # @param 1 Git commit message
 commit_public_private() { # Git commit both private and public config
   emph
-  printf 'Public: Commit flake repository'
+  printf 'Public: Commit flake repository\n'
   std
   if commit_all $PUBLIC_LOC --message "$1"; then # Commit the public flake
     emph
-    printf 'Private: Update flake %s inputs' $PRIVATE_LOC
+    printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
     std
     nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
   fi
   emph
-  printf 'Private: Commit flake repository (including public input update)'
+  printf 'Private: Commit flake repository (including public input update)\n'
   std
   commit_all $PRIVATE_LOC --message "$1" # Commit the private flake
 }
@@ -152,18 +150,18 @@ commit_public_private() { # Git commit both private and public config
 protected_amend() { # Amend public or private config
   if ! has_repo_changed "$1"; then
     emph
-    printf '\tNo non commited changes, not amending'
+    printf '\tNo non commited changes, not amending\n'
     std
     return 1 # There are no changes to amend, makes no sense, fail
   fi
   if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
     emph
-    printf '\tLast commit is not pushed, amending'
+    printf '\tLast commit is not pushed, amending\n'
     std
     commit_all "$1" --amend || return # Only if unpushed commits
   else
     emph
-    printf '\tAll commits pushed, no one to amend, create new commit instead'
+    printf '\tAll commits pushed, no one to amend, create new commit instead\n'
     std
     commit_all "$1" || return # Create new commit instead
   fi
@@ -174,44 +172,44 @@ last_commit_msg() {
   commit_msg=$(git -C "$1" log -1 --pretty=format:%s)
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
   strong                             # Bold text
-  printf '\tCommit type (edited interactively): "%s"' "$commit_type"
+  printf '\tCommit type (edited interactively): "%s"\n' "$commit_type"
   std # Standard text
 }
 
 amend_public_private() { # Amend both public and private config
   emph
-  printf 'Public: Amend flake repository'
+  printf 'Public: Amend flake repository\n'
   std
   if protected_amend "$PUBLIC_LOC"; then # May amend the public flake
     last_commit_msg $PUBLIC_LOC          # Set commit msg to the last one
     emph
-    printf 'Private: Update flake %s inputs' $PRIVATE_LOC
+    printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
     std
     nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
   fi
   emph
-  printf 'Private: Amend flake repository'
+  printf 'Private: Amend flake repository\n'
   std
   protected_amend "$PRIVATE_LOC" # Amend or commit the private flake if needed
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
   emph
-  printf 'Mount /boot before system update'
+  printf 'Mount /boot before system update\n'
   std
   sudo mount -v /boot || exit # Use fstab
   NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake $PRIVATE_LOC"
   emph
-  printf 'NixOS system rebuild: "%s"' "$NIXOS_REBUILD_CMD"
+  printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
   std
   if $NIXOS_REBUILD_CMD switch; then
     emph
-    printf 'Unmount /boot after update'
+    printf 'Unmount /boot after update\n'
     std
     sudo umount -v /boot # Unmount for security
   else
     emph
-    printf 'Failed update, unmount /home'
+    printf 'Failed update, unmount /home\n'
     std
     sudo umount -v /boot # Unmount for security
     return 1             # Failed update status
@@ -225,18 +223,18 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
   # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
   HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake $PRIVATE_LOC"
   emph
-  printf 'Home Manager home rebuild: "%s"' "$HOME_MANAGER_CMD"
+  printf 'Home Manager home rebuild: "%s"\n' "$HOME_MANAGER_CMD"
   std
   $HOME_MANAGER_CMD switch || return
 }
 
 rebase_public_private() { # Git rebase both public and private configs
   emph
-  printf 'Public: Rebase flake repository'
+  printf 'Public: Rebase flake repository\n'
   std
   git -C $PUBLIC_LOC rebase -i
   emph
-  printf 'Private: Rebase flake repository'
+  printf 'Private: Rebase flake repository\n'
   std
   msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
   if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
@@ -252,7 +250,7 @@ push_public_private() { # Git push both public and private configs
   # printf 'Public & Private: Will push flake repository (asynchronously)'
   # std
   emph
-  printf 'Public & Private: Push flake repository'
+  printf 'Public & Private: Push flake repository\n'
   std
   # emph
   # printf 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
@@ -265,9 +263,8 @@ push_public_private() { # Git push both public and private configs
 # Test if we are in the correct directory
 if ! [ -d $PUBLIC_LOC ] || ! [ -d $PRIVATE_LOC ]; then
   emph
-  printf 'This script should be executed from a directory with
+  printf 'This script should be executed from a directory with private and public configuration sub-directories\n'
   std
-  private and public configuration sub-directories'
   exit 2
 fi
 
@@ -283,7 +280,7 @@ while [ "$#" -gt 0 ]; do
     ;;
   c | d | cd) # Directly open default shell into current working directory
     emph
-    printf 'You can exit the shell to get back to previous working directory'
+    printf 'You can exit the shell to get back to previous working directory\n'
     std
     if [ "$2" = "public" ] || [ "$2" = "private" ]; then
       cd "$2" || exit # cd into sub-directory
@@ -322,20 +319,20 @@ while [ "$#" -gt 0 ]; do
   shift # Next argument
 done
 strong # Bold text
-printf 'Update Flake inputs: %s' $update_inputs
+printf 'Update Flake inputs: %s\n' $update_inputs
 std    # Standard text
 strong # Bold text
-printf 'Rebuild NixOS system: %s' $rebuild_system
+printf 'Rebuild NixOS system: %s\n' $rebuild_system
 std    # Standard text
 strong # Bold text
-printf 'Commit message: "%s"' "$commit_msg"
+printf 'Commit message: "%s"\n' "$commit_msg"
 std                                # Standard text
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
 strong                             # Bold text
-printf 'Commit type: "%s"' "$commit_type"
+printf 'Commit type: "%s"\n' "$commit_type"
 std    # Standard text
 strong # Bold text
-printf 'Push Git repositories: %s' $push_repositories
+printf 'Push Git repositories: %s\n' $push_repositories
 std    # Standard text
 strong # Bold text
 printf 'Power state change: "%s"\n' $power_state
@@ -348,14 +345,14 @@ fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
   emph
-  printf 'Start default text editor'
+  printf 'Start default text editor\n'
   std
   direnv exec . $EDITOR .             # Edit the configuration before commiting,
   commit_public_private "$commit_msg" # then commit public and private flakes
 else                                  # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     emph
-    printf 'Start default text editor'
+    printf 'Start default text editor\n'
     std
     direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
   fi
