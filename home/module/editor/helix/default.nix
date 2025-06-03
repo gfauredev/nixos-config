@@ -223,20 +223,17 @@
           args = [ "--stdio" ];
         };
         tinymist.config = {
-          # projectResolution = "lockDatabase";
-          # exportPdf = "onType";
-          # exportPdf = "onDocumentHasTitle"; # DEPRECATED
-          # lint.enabled = true;
+          projectResolution = "lockDatabase"; # Compilation args, main file…
           preview.background = {
             enabled = true;
             args = [
-              "--invert-colors=never"
               "--open" # Auto open in browser
+              "--invert-colors=never"
               # "--data-plane-host=127.0.0.1:4321"
             ];
           };
-          # preview.browsing.args =
-          #   [ "--data-plane-host=127.0.0.1:4321" "--invert-colors=never" ];
+          lint.enabled = true;
+          # exportPdf = "onSave"; "onType";
         };
         ruff = {
           command = "ruff";
