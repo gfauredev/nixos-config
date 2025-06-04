@@ -147,7 +147,6 @@
         }
         {
           name = "python";
-          # TODO add ty (type checker)
           language-servers = [ "ty" "ruff" "harper" "llm" ]; # "jedi" "pylsp"
           auto-format = true;
         }
@@ -237,8 +236,8 @@
           #   "--invert-colors=never" # Real colors
           # ];
         };
-        ty.args = [ "server" ];
-        ruff.args = [ "server" ];
+        ty = {command="ty"; args = [ "server" ];};
+        ruff = {command="ruff"; args = [ "server" ];};
         # sqls = { command = "sqls"; };
       };
     };
