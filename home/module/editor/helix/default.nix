@@ -147,7 +147,7 @@
         }
         {
           name = "python";
-          language-servers = [ "ty" "ruff" "harper" "llm" ]; # "jedi" "pylsp"
+          language-servers = [ "ty" "ruff" "pylsp" "harper" "llm" ]; # "jedi"
           auto-format = true;
         }
         {
@@ -236,8 +236,14 @@
           #   "--invert-colors=never" # Real colors
           # ];
         };
-        ty = {command="ty"; args = [ "server" ];};
-        ruff = {command="ruff"; args = [ "server" ];};
+        ty = {
+          command = "ty";
+          args = [ "server" ];
+        };
+        ruff = {
+          command = "ruff";
+          args = [ "server" ];
+        };
         # sqls = { command = "sqls"; };
       };
     };
