@@ -120,7 +120,7 @@ trigger="aw "
 
 [python.bitwarden]
 cache_timeout=5
-enabled=true
+enabled=false
 
 [python.color]
 enabled=true

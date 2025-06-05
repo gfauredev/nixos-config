@@ -208,6 +208,7 @@
         "build/"
         "public/"
         "*ignore*"
+        "!.gitignore"
       ];
     };
     direnv.nix-direnv.enable = true;
