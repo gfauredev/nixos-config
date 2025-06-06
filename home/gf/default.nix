@@ -23,6 +23,7 @@
         "deconz" # Manage ZigBee/Matter networks
         "ventoy" # Multiboot USB
         "ventoy-1.1.05" # Multiboot USB
+        "stm32cubemx" # STM32
       ];
     permittedInsecurePackages = [
       "ventoy-1.1.05" # Multiboot USB
