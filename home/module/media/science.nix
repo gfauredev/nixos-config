@@ -9,8 +9,8 @@
     # gnucap-full # Circuit analysis
     # ngspice # Electronic circuit simulator
     # scilab-bin # Scientific computations TODO install imperatively
-    stm32flash # Open source flash program for the STM32 ARM processors
-    stm32cubemx # Graphical tool for configuring STM32 microcontrollers
+    # stm32flash # Open source flash program for the STM32 ARM processors
+    # stm32cubemx # Graphical tool for configuring STM32 microcontrollers
   ];
 }
 
