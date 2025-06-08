@@ -17,7 +17,7 @@
             # global.layer_indicator = 1; # Turn on capslock led when layer
             main = {
               capslock = "overload(control, esc)";
-              space = "lettermod(spacemode, space, 150, 200)";
+              space = "lettermod(spacemode, space, 50, 200)";
             };
             "spacemode:C" = {
               # BÉPO Vim-like (Helix-like) motions
