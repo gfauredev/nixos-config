@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
   imports = [ ./hardware.nix ../default.nix ];
 
   # nix = {
@@ -26,7 +26,7 @@
   networking = {
     hostName = "chimera";
     firewall = {
-      enable = true;
+      enable = false;
       # Syncthing:22000,21027 | Vagrant:2049
       allowedTCPPorts = [ 22000 2049 ]; # Opened TCP ports
       allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports
@@ -44,6 +44,5 @@
     fprintd.enable = false;
   };
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }

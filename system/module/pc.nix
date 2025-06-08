@@ -167,7 +167,7 @@
     };
     niri = { # TEST window manager
       # See https://github.com/YaLTeR/niri
-      enable = true;
+      enable = false;
     };
   };
 

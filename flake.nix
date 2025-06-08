@@ -53,7 +53,12 @@
         # Laptop: Chimera, a flying creature
         chimera = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # PC architecture
-          modules = [ ./system/laptop/chimera self.nixosModules.overlay ];
+          modules = [
+            ./system/laptop/chimera
+            { users.users.gf = users.gf; }
+            self.nixosModules.overlay
+            # lanzaboote.nixosModules.lanzaboote # Secure boot
+          ];
         };
         # Desktop: Muses, goddess of arts and music
         muses = nixpkgs.lib.nixosSystem {
@@ -95,8 +100,18 @@
         };
         "gf@chimera" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { user = users.gf; };
-          modules = [ ./home/gf self.nixosModules.overlay ];
+          extraSpecialArgs = {
+            stablepkgs = import pkgs24-11 { # TODO do this cleaner, generic
+              system = "x86_64-linux"; # System architecture TODO factorize
+              config.allowUnfree = true;
+            };
+            user = users.gf;
+          };
+          modules = [
+            ./home/gf/chimera.nix
+            self.nixosModules.overlay
+            stylix.homeModules.stylix # Color & fonts
+          ];
         };
       };
       # This configuration’s development shell, preferably enabled with direnv
