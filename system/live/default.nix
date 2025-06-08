@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   # hardware.enableAllFirmware = true;
 
   boot = {
@@ -6,7 +6,11 @@
     kernel.sysctl = { "kernel.sysrq" = 212; };
     # kernelPackages = pkgs.linuxPackages; # Stable Linux kernel
     # kernelPackages = pkgs.linuxPackages_latest; # Latest Linux kernel (defined in default module)
-    supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
+    supportedFilesystems = {
+      bcachefs = true;
+      btrfs = true;
+      zfs = lib.mkForce false; # FIX broken
+    };
   };
 
   networking.wireless.enable = false;
@@ -42,6 +46,7 @@
 
   users.users.nixos = {
     password = "password"; # Directly able to login via SSH
+    initialHashedPassword = lib.mkForce null;
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
