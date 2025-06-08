@@ -103,7 +103,7 @@ effortlessly.
 Build a custom image with the
 [official method](https://nixos.org/manual/nixos/unstable/#sec-building-image),
 or directly from this flake with
-`nix build .#nixosConfigurations.installer.config.system.build.isoImage`.
+`nix build .#nixosConfigurations.live.config.system.build.isoImage`.
 
 Boot it from a bootable USB stick (preferably a multi-ISO one like with Ventoy).
 
