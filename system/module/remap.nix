@@ -8,11 +8,13 @@
 
   services = {
     keyd = {
+      # See man keyd(1)
       enable = true; # A key remapping daemon for linux (C)
       keyboards = {
         default = {
           ids = [ "*" ];
           settings = {
+            global.layer_indicator = 1; # Turn on capslock led when layer
             main = {
               capslock = "overload(control, esc)";
               space = "lettermod(spacemode, space, 150, 200)";
@@ -39,9 +41,6 @@
               s = "pageup";
               r = "end";
             };
-          };
-          global = {
-            layer_indicator = 1; # Turn capslock on when a layer is active
           };
         };
       };
