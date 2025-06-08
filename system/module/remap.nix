@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs;
     [
-      keyd # Access commands and man pages
-      # keymapper # Context-aware key remapper
-      # autokey # Desktop automation utility for Linux and X11
+      keyd # Package to access commands and man pages
+      # kanata-with-cmd # Package to access commands and man pages
+      # hyprkan # Not packaged yet, see https://github.com/mdSlash/hyprkan
     ];
 
   services = {
@@ -15,47 +15,48 @@
           settings = {
             main = {
               capslock = "overload(control, esc)";
-              space = "overloadt(spacemode, space, 200)";
+              space = "lettermod(spacemode, space, 150, 200)";
             };
             "spacemode:C" = {
+              # BÉPO Vim-like (Helix-like) motions
               h = "left";
               j = "down";
-              m = "pagedown";
               k = "up";
-              i = "pageup";
               l = "right";
               b = "C-left";
-              w = "C-right";
-              "0" = "home";
-              "4" = "end";
+              w = "C-right"; # TODO improve
+              e = "C-right"; # TODO improve
               enter = "menu";
-              shift = "oneshot(shift)";
+              # m = "pagedown";
+              # i = "pageup";
+              # "0" = "home";
+              # "4" = "end";
+              # shift = "oneshot(shift)";
             };
+            "spacemode+shift" = { # Big movements
+              c = "home";
+              t = "pagedown";
+              s = "pageup";
+              r = "end";
+            };
+          };
+          global = {
+            layer_indicator = 1; # Turn capslock on when a layer is active
           };
         };
       };
     };
+    kanata = {
+      enable = false; # Modern advanced keyboard remapping TEST me
+      # See https://github.com/jtroo/kanata/tree/main/docs
+      # keyboards.all = {
+      #   config = "";
+      #   extraDefCfg = "";
+      #   extraArgs = "";
+      #   port = null; # u16
+      # };
+    };
     input-remapper.enable = false; # Easy remap input device buttons (Python)
     evdevremapkeys.enable = false; # Daemon remap events input devices (Python)
-    # interception-tools = {
-    #   enable = false;
-    #   plugins = with pkgs; [ interception-tools-plugins.caps2esc ];
-    #   udevmonConfig = ''
-    #     - JOB: ${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE
-    #       DEVICE:
-    #         EVENTS:
-    #           EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-    #     #SHELL: [zsh, -c]
-    #     #---
-    #     #- CMD: ${pkgs.interception-tools}/bin/mux -c ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc
-    #     #- JOB: ${pkgs.interception-tools}/bin/mux -i ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | uinput -c /etc/nixos/keyboard.yaml
-    #     #- JOB: intercept -g $DEVNODE | ${pkgs.interception-tools}/bin/mux -o caps2esc
-    #     #  DEVICE:
-    #     #    LINK: /dev/input/by-path/platform-i8042-serio-0-event-kbd
-    #     #- JOB: intercept $DEVNODE | ${pkgs.interception-tools}/bin/mux -o caps2esc
-    #     #  DEVICE:
-    #     #    LINK: /dev/input/by-path/platform-i8042-serio-1-event-mouse
-    #   '';
-    # };
   };
 }
