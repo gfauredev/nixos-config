@@ -14,7 +14,7 @@
         default = {
           ids = [ "*" ];
           settings = {
-            global.layer_indicator = 1; # Turn on capslock led when layer
+            # global.layer_indicator = 1; # Turn on capslock led when layer
             main = {
               capslock = "overload(control, esc)";
               space = "lettermod(spacemode, space, 150, 200)";
