@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     # pkgs25-04.url = "github:nixos/nixpkgs/f6950e6"; # Commit before 25.05 Unstable
-    # pkgs25-05.url = "github:nixos/nixpkgs/nixos-25.05"; # 25.05 NixOS Stable
+    pkgs25-05.url = "github:nixos/nixpkgs/nixos-25.05"; # 25.05 NixOS Stable
     pkgs24-11.url = "github:nixos/nixpkgs/nixos-24.11"; # 24.11 NixOS Stable
     # pkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05"; # 24.05 NixOS Stable
 
@@ -18,8 +18,8 @@
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
 
-  outputs =
-    { self, nixpkgs, pkgs24-11, home-manager, lanzaboote, hardware, stylix }:
+  outputs = { self, nixpkgs, pkgs24-11, pkgs25-05, home-manager, lanzaboote
+    , hardware, stylix }:
     let
       supportedSystems = [
         "x86_64-linux" # 64-bit Intel/AMD Linux
@@ -71,13 +71,13 @@
           modules = [ ./system/server/cerberus self.nixosModules.overlay ];
         };
         # NixOS live (install) ISO image #
-        live = nixpkgs.lib.nixosSystem {
+        live = pkgs25-05.lib.nixosSystem {
           # Build: nix build .#nixosConfigurations.live.config.system.build.isoImage
           system = "x86_64-linux"; # Target system architecture
           modules = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${pkgs25-05}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live # Bootable ISO used to install NixOS
-            self.nixosModules.overlay
+            # self.nixosModules.overlay
           ];
         };
       };

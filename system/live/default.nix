@@ -40,16 +40,17 @@
     };
   };
 
-  # users.users.nixos = {
-  #   password = "password"; # Directly able to login via SSH
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ];
-  # };
+  users.users.nixos = {
+    password = "password"; # Directly able to login via SSH
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
 
   services = {
     openssh = {
       enable = true; # Enable the OpenSSH daemon
       settings.PermitRootLogin = "yes"; # Easily login as root via SSH
+      settings.PasswordAuthentication = true;
     };
     # nfs.server.enable = lib.mkDefault true;
   };
