@@ -67,6 +67,7 @@
           space.t = "goto_word"; # Jump to a tag
           X = "keep_selections";
           A-X = "remove_selections";
+          G = "goto_line";
         };
         window = { # Window sub mode
           c = "jump_view_left"; # h bépo equivalent
