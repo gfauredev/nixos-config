@@ -39,7 +39,7 @@
               # - press space, > 800ms, release space: noop
               # - press space, press a symbol: use a spacemode binding
               # - press a symbol, < 30ms, press space: type space
-              space = "overloadi(space, overloadt2(spacemode, space, 800), 30)";
+              space = "overloadi(space, overloadt2(spacemode, space, 150), 35)";
             };
             # Capslock within 80ms of previous capslock enables Helix mode
             # capslock.capslock = "toggle(helixmode)"; # TODO
