@@ -25,6 +25,8 @@
               f = "macro(right left C-S-right)"; # Select forward until space
               # TODO should select until letter preceded by space instead
               "]" = "macro(right left C-S-right)"; # Select forward until space
+              i = "macro(right left)"; # "insert" (deselects)
+              a = "left"; # "append" (deselects)
               # Other shortcuts
               "," = "oneshot(goto)"; # GO TO mode (g)
               enter = "menu";
@@ -35,10 +37,10 @@
             main = {
               capslock = "overload(control, esc)";
               # "overload(control, timeout(oneshot(capslock), 80, esc))";
-              # - press space, < 800ms, release space: type space
-              # - press space, > 800ms, release space: noop
+              # - press space, < 150ms, release space: type space
+              # - press space, > 150ms, release space: noop
               # - press space, press a symbol: use a spacemode binding
-              # - press a symbol, < 30ms, press space: type space
+              # - press a symbol, < 35ms, press space: type space
               space = "overloadi(space, overloadt2(spacemode, space, 150), 35)";
             };
             # Capslock within 80ms of previous capslock enables Helix mode
@@ -63,10 +65,18 @@
           # l = S-end  # Selects to the line’s end
           extraConfig = ''
             [spacemode+shift]
-            h=S-home
+            q=S-home
+            h=S-left
             j=pagedown
             k=pageup
+            l=S-right
+            f=S-end
+            ]=S-end
+            [goto+shift]
+            h=S-home
             l=S-end
+            ,=C-S-home
+            f=C-S-end
           '';
         };
       };

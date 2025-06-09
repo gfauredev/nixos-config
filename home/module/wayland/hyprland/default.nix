@@ -37,12 +37,13 @@ let
   ifWorkspaceEmpty = { ws }:
     ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
   # Tools definitions
-  mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
-  monitor = # Monitoring
-    "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
   open = # Global opener command # FIXME cd for broot (br)
     "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -c broot";
+  monitor = # Monitoring
+    "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
+  mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   picker = "hyprpicker --autocopy"; # Color picker
+  note = "anki"; # Note-taking app"
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
   timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')"; # Current date as string
   audio = {
@@ -145,7 +146,7 @@ in {
         # kb_options = "grp:shifts_toggle"; # Not working
         # kb_options = "grp:alts_toggle"; # Breaks AltGr
         kb_options = "grp:alt_altgr_toggle";
-        repeat_delay = "175";
+        repeat_delay = "185";
         repeat_rate = "50";
         follow_mouse = 1;
         sensitivity = 0;
@@ -273,7 +274,7 @@ in {
         "${mod}, n, Go to notetaking workspace, workspace, name:not"
         "${mod}, n, Open any document in main user folders, exec, ${
           ifWorkspaceEmpty { ws = "not"; }
-        } ${open}"
+        } ${note}"
         "${mod} SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:not"
         "${mod}, m, Go to messaging workspace, workspace, name:msg"
         "${mod}, m, Launch a messaging app, exec, ${
