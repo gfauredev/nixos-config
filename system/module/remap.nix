@@ -21,9 +21,10 @@
               j = "down";
               k = "up";
               l = "right";
-              q = "C-S-left"; # Selects backwards until a whitespace (b)
-              f = "C-S-right"; # Selects forwards until a whitespace (e)
-              "]" = "C-S-right"; # Should select until letter preceded by space
+              q = "macro(left right C-S-left)"; # Select backward until space
+              f = "macro(right left C-S-right)"; # Select forward until space
+              # TODO should select until letter preceded by space instead
+              "]" = "macro(right left C-S-right)"; # Select forward until space
               # Other shortcuts
               "," = "oneshot(goto)"; # GO TO mode (g)
               enter = "menu";
