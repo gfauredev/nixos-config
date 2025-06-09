@@ -13,36 +13,56 @@
       keyboards = {
         default = {
           ids = [ "*" ];
-          settings = {
-            # global.layer_indicator = 1; # Turn on capslock led when layer
-            main = {
-              capslock = "overload(control, esc)";
-              space = "overloadt(spacemode, space, 200)";
-              # space = "lettermod(spacemode, space, 25, 200)";
-            };
-            "spacemode:C" = {
-              # BÉPO Vim-like (Helix-like) motions
+          settings = let
+            binds = {
+              # Helix-like motions (adatpted to BÉPO keyboard layout)
               h = "left";
               j = "down";
               k = "up";
               l = "right";
-              b = "C-left";
-              w = "C-right"; # TODO improve
-              e = "C-right"; # TODO improve
+              b = "C-S-left"; # Selects backwards until a whitespace
+              e = "C-S-right"; # Selects forwards until a whitespace
+              w = "C-S-right"; # Should select until letter preceded by space
+              # Other shortcuts
+              g = "oneshot(goto)"; # GO TO mode
               enter = "menu";
-              # m = "pagedown";
-              # i = "pageup";
-              # "0" = "home";
-              # "4" = "end";
-              # shift = "oneshot(shift)";
+              # "/" = "C-f"; # Search
             };
-            "spacemode+shift" = { # Big movements
-              c = "home";
-              t = "pagedown";
-              s = "pageup";
-              r = "end";
+          in {
+            # global.layer_indicator = 1; # Turn on capslock led when layer
+            main = {
+              capslock = "overload(control, esc)";
+              # "overload(control, timeout(oneshot(capslock), 80, esc))";
+              space = "overloadt(spacemode, space, 200)";
+              # space = "lettermod(spacemode, space, 20, 200)";
+            };
+            # Capslock within 80ms of previous capslock enables Helix mode
+            # capslock.capslock = "toggle(helixmode)"; # TODO
+            spacemode = binds;
+            # helixmode = binds + {
+            #   # Exit this mode
+            #   i = "clear()"; # Return to insert mode (the default)
+            #   capslock = "clear()"; # Leave helix like mode (the default)
+            #   esc = "clear()"; # Leave helix like mode (the default)
+            # };
+            goto = {
+              c = "home"; # Go to the line’s beginning
+              r = "end"; # Go to the line’s end
+              g = "C-home"; # Go to the document’s beginning
+              e = "C-end"; # Go to the document’s end
             };
           };
+          # c = S-home # Selects to the line’s beginning
+          # t = pagedown # One screen down
+          # s = pageup # One screen up
+          # r = S-end  # Selects to the line’s end
+          extraConfig = ''
+            [spacemode+shift]
+            c = S-home
+            t = pagedown
+            s = pageup
+            r = S-end
+          '';
         };
       };
     };

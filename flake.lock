@@ -428,22 +428,6 @@
         "type": "github"
       }
     },
-    "pkgs24-11": {
-      "locked": {
-        "lastModified": 1749173751,
-        "narHash": "sha256-ENY3y3v6S9ZmLDDLI3LUT8MXmfXg/fSt2eA4GCnMVCE=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ed29f002b6d6e5e7e32590deb065c34a31dc3e91",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pkgs25-05": {
       "locked": {
         "lastModified": 1749237914,
@@ -492,7 +476,6 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_2",
-        "pkgs24-11": "pkgs24-11",
         "pkgs25-05": "pkgs25-05",
         "stylix": "stylix"
       }
