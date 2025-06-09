@@ -33,13 +33,15 @@
             main = {
               capslock = "overload(control, esc)";
               # "overload(control, timeout(oneshot(capslock), 80, esc))";
-              # space = "overloadt(spacemode, space, 200)";
-              # space = "lettermod(spacemode, space, 20, 200)";
-              space = "overloadi(space, overload(spacemode, space), 20)";
+              # - press space, < 250ms, release space: type space
+              # - press space, > 250ms, release space: noop
+              # - press space, press a symbol: use a spacemode binding
+              # - press a symbol, < 30ms, press space: type space
+              space = "overloadi(space, overloadt2(spacemode, space, 250), 30)";
             };
             # Capslock within 80ms of previous capslock enables Helix mode
             # capslock.capslock = "toggle(helixmode)"; # TODO
-            spacemode = binds;
+            spacemode = binds; # Maintain space
             helixmode = binds // {
               # Exit this mode
               i = "clear()"; # Return to insert mode (the default)
