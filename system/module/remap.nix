@@ -33,18 +33,19 @@
             main = {
               capslock = "overload(control, esc)";
               # "overload(control, timeout(oneshot(capslock), 80, esc))";
-              space = "overloadt(spacemode, space, 200)";
+              # space = "overloadt(spacemode, space, 200)";
               # space = "lettermod(spacemode, space, 20, 200)";
+              space = "overloadi(space, overload(spacemode, space), 20)";
             };
             # Capslock within 80ms of previous capslock enables Helix mode
             # capslock.capslock = "toggle(helixmode)"; # TODO
             spacemode = binds;
-            # helixmode = binds + {
-            #   # Exit this mode
-            #   i = "clear()"; # Return to insert mode (the default)
-            #   capslock = "clear()"; # Leave helix like mode (the default)
-            #   esc = "clear()"; # Leave helix like mode (the default)
-            # };
+            helixmode = binds // {
+              # Exit this mode
+              i = "clear()"; # Return to insert mode (the default)
+              capslock = "clear()"; # Leave helix like mode (the default)
+              esc = "clear()"; # Leave helix like mode (the default)
+            };
             goto = {
               c = "home"; # Go to the line’s beginning
               r = "end"; # Go to the line’s end
