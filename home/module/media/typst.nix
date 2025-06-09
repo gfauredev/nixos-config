@@ -12,9 +12,10 @@
     # gelasio # Serif Georgia replacement
     # noto-fonts-cjk-serif # Chinese, Japanese, Korean Serif
     ## Sans fonts
-    # fira-go # Great sans with icons
+    # aileron # Helvetica equivalent
     # nacelle # Helvetica equivalent
     # inter # Interesting sans font
+    # fira-go # Great sans with icons
     # carlito # Calibri equivalent
     # noto-fonts-cjk-sans # Chinese, Japanese, Korean Sans
     ## Mono fonts

@@ -28,12 +28,26 @@
         name = "Libertinus Serif";
         # package = pkgs.libre-baskerville;
         # name = "Libre Baskerville";
+        # package = pkgs.vollkorn;
+        # name = "Vollkorn";
+        # package = pkgs.merryweather;
+        # name = "Merryweather";
+        # package = pkgs.gelasio;
+        # name = "Gelasio";
       };
       sansSerif = {
-        package = pkgs.newcomputermodern;
-        name = "New Computer Modern";
+        package = pkgs.aileron;
+        name = "Aileron";
         # package = pkgs.nacelle;
         # name = "Nacelle";
+        # package = pkgs.inter;
+        # name = "Inter";
+        # package = pkgs.open-sans;
+        # name = "Open Sans";
+        # package = pkgs.fira-go;
+        # name = "FiraGO"; # Extended Fira Sans
+        # package = pkgs.dejavu_fonts;
+        # name = "DejaVu Sans";
       };
       # sans = sansSerif; # Alias
       monospace = {
@@ -46,10 +60,10 @@
       };
       # mono = monospace; # Alias
       emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-        # package = pkgs.nerd-fonts.symbols-only;
-        # name = "Symbols Nerd Font";
+        package = pkgs.nerd-fonts.symbols-only;
+        name = "Symbols Nerd Font";
+        # package = pkgs.noto-fonts-emoji;
+        # name = "Noto Color Emoji";
       };
     };
     # Based on Catppuccin Mocha, but with pitch black #000 background for OLED

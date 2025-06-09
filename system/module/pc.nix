@@ -130,7 +130,13 @@
     };
   };
 
-  fonts.enableDefaultPackages = true; # Standard fonts
+  # dejavu_fonts
+  # freefont_ttf
+  # gyre-fonts, TrueType substitutes
+  # liberation_ttf
+  # unifont
+  # noto-fonts-color-emoji
+  fonts.enableDefaultPackages = true;
 
   users.groups = {
     mtp = { };
