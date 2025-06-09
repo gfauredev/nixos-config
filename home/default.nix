@@ -24,12 +24,16 @@
     polarity = "dark";
     fonts = {
       serif = {
-        package = pkgs.libre-baskerville;
-        name = "Libre Baskerville";
+        package = pkgs.libertinus;
+        name = "Libertinus Serif";
+        # package = pkgs.libre-baskerville;
+        # name = "Libre Baskerville";
       };
       sansSerif = {
-        package = pkgs.nacelle;
-        name = "Nacelle";
+        package = pkgs.newcomputermodern;
+        name = "New Computer Modern";
+        # package = pkgs.nacelle;
+        # name = "Nacelle";
       };
       # sans = sansSerif; # Alias
       monospace = {
@@ -37,11 +41,15 @@
         name = "JetBrainsMono Nerd Font";
         # package = pkgs.nerd-fonts.fira-code;
         # name = "FiraCode Nerd Font";
+        # package = pkgs.dejavu_fonts;
+        # name = "DejaVu Sans Mono";
       };
       # mono = monospace; # Alias
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";
+        # package = pkgs.nerd-fonts.symbols-only;
+        # name = "Symbols Nerd Font";
       };
     };
     # Based on Catppuccin Mocha, but with pitch black #000 background for OLED
