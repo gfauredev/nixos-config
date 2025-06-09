@@ -145,7 +145,7 @@ in {
         # kb_options = "grp:shifts_toggle"; # Not working
         # kb_options = "grp:alts_toggle"; # Breaks AltGr
         kb_options = "grp:alt_altgr_toggle";
-        repeat_delay = "200";
+        repeat_delay = "175";
         repeat_rate = "50";
         follow_mouse = 1;
         sensitivity = 0;
