@@ -25,20 +25,20 @@
               f = "macro(right C-S-right)"; # Select forward until space
               # TODO should select until letter preceded by space instead
               "]" = "macro(right C-S-right)"; # Select forward until space
-              d = "left"; # "insert" (deselects)
-              a = "right"; # "append" (deselects)
             };
             control = {
-              # Other shortcuts
+              # Control shortcuts
               "," = "oneshot(goto)"; # GO TO mode (g)
               enter = "menu";
               # "/" = "C-f"; # Search
             };
             exit = {
               # Exit this mode
-              d = "clear()"; # Return to insert mode (the default)
+              d = "macro(left clear())"; # "insert" (deselects)
+              a = "macro(right clear())"; # "append" (deselects)
               capslock = "clear()"; # Leave helix like mode (the default)
               esc = "clear()"; # Leave helix like mode (the default)
+              space = "clear()"; # Leave helix like mode (the default)
             };
           in {
             # global.layer_indicator = 1; # Turn on capslock led when layer
@@ -47,7 +47,7 @@
               # "overload(control, timeout(oneshot(capslock), 80, esc))";
               # - press space, < 150ms, release space: type space
               # - press space, > 150ms, release space: noop
-              # - press space, press a symbol: use a spacemode binding
+              # - press space, press a symbol: use a helixmode binding
               # - press a symbol, < 35ms, press space: type space
               space = "overloadi(space, overloadt2(helixmode, space, 150), 35)";
             };
@@ -66,7 +66,7 @@
           # k = pageup # One screen up
           # l = S-end  # Selects to the line’s end
           extraConfig = ''
-            [spacemode+shift]
+            [helixmode+shift]
             q=S-home
             h=S-left
             j=pagedown
