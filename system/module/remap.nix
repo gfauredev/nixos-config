@@ -15,7 +15,7 @@
           ids = [ "*" ];
           settings = let
             # TODO BÉPO layout
-            binds = {
+            motionSelect = {
               # Helix-like motions (adapted to BÉPO keyboard layout)
               h = "left";
               j = "down";
@@ -27,10 +27,18 @@
               "]" = "macro(right C-S-right)"; # Select forward until space
               d = "left"; # "insert" (deselects)
               a = "right"; # "append" (deselects)
+            };
+            control = {
               # Other shortcuts
               "," = "oneshot(goto)"; # GO TO mode (g)
               enter = "menu";
               # "/" = "C-f"; # Search
+            };
+            exit = {
+              # Exit this mode
+              d = "clear()"; # Return to insert mode (the default)
+              capslock = "clear()"; # Leave helix like mode (the default)
+              esc = "clear()"; # Leave helix like mode (the default)
             };
           in {
             # global.layer_indicator = 1; # Turn on capslock led when layer
@@ -41,23 +49,17 @@
               # - press space, > 150ms, release space: noop
               # - press space, press a symbol: use a spacemode binding
               # - press a symbol, < 35ms, press space: type space
-              space = "overloadi(space, overloadt2(spacemode, space, 150), 35)";
+              space = "overloadi(space, overloadt2(helixmode, space, 150), 35)";
             };
             # Capslock within 80ms of previous capslock enables Helix mode
             # capslock.capslock = "toggle(helixmode)"; # TODO
-            spacemode = binds; # Maintain space
-            helixmode = binds // {
-              # Exit this mode
-              d = "clear()"; # Return to insert mode (the default)
-              capslock = "clear()"; # Leave helix like mode (the default)
-              esc = "clear()"; # Leave helix like mode (the default)
-            };
+            helixmode = motionSelect // control // exit;
             goto = {
               h = "home"; # Go to the line’s beginning
               l = "end"; # Go to the line’s end
               "," = "C-home"; # Go to the document’s beginning (g)
               f = "C-end"; # Go to the document’s end (e)
-            };
+            } // exit;
           };
           # h = S-home # Selects to the line’s beginning
           # j = pagedown # One screen down
