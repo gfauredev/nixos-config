@@ -21,12 +21,12 @@
               j = "down";
               k = "up";
               l = "right";
-              q = "macro(left right C-S-left)"; # Select backward until space
-              f = "macro(right left C-S-right)"; # Select forward until space
+              q = "macro(left C-S-left)"; # Select backward until space
+              f = "macro(right C-S-right)"; # Select forward until space
               # TODO should select until letter preceded by space instead
-              "]" = "macro(right left C-S-right)"; # Select forward until space
-              i = "macro(right left)"; # "insert" (deselects)
-              a = "left"; # "append" (deselects)
+              "]" = "macro(right C-S-right)"; # Select forward until space
+              d = "left"; # "insert" (deselects)
+              a = "right"; # "append" (deselects)
               # Other shortcuts
               "," = "oneshot(goto)"; # GO TO mode (g)
               enter = "menu";
@@ -72,6 +72,7 @@
             l=S-right
             f=S-end
             ]=S-end
+
             [goto+shift]
             h=S-home
             l=S-end
