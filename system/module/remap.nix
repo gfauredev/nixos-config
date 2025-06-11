@@ -30,7 +30,9 @@
               # Control shortcuts
               "," = "oneshot(goto)"; # GO TO mode (g)
               enter = "menu";
-              # "/" = "C-f"; # Search
+              "/" = "C-f"; # Search
+              d = "left"; # "insert" (deselects)
+              a = "right"; # "append" (deselects)
             };
             exit = {
               # Exit this mode
@@ -44,6 +46,7 @@
             # global.layer_indicator = 1; # Turn on capslock led when layer
             main = {
               capslock = "overload(control, esc)";
+              # TODO double tap toggle
               # "overload(control, timeout(oneshot(capslock), 80, esc))";
               # - press space, < 150ms, release space: type space
               # - press space, > 150ms, release space: noop
@@ -53,7 +56,7 @@
             };
             # Capslock within 80ms of previous capslock enables Helix mode
             # capslock.capslock = "toggle(helixmode)"; # TODO
-            helixmode = motionSelect // control // exit;
+            helixmode = motionSelect // control;
             goto = {
               h = "home"; # Go to the line’s beginning
               l = "end"; # Go to the line’s end
