@@ -89,7 +89,19 @@
     fastfetch.enable = true; # Quick system info
     less.enable = false; # Bugged, don’t respects lesskeys
     lesspipe.enable = false; # TEST what’s this
-
+    distrobox = {
+      enable = true; # Quick tightly integrated containers
+      enableSystemdUnit = true; # Auto rebuild containers
+      containers = {
+        "3d" = {
+          image = "archlinux:base-20250608.0.361578";
+          # image = "alpine:3";
+          # entry = true; # ?
+          additional_packages = "uv ruff python-lsp-server python-rope helix";
+          init_hooks = "uv add cadquery build123d yacv-server";
+        };
+      };
+    };
     broot.settings = {
       default_flags = "dgps";
       special_paths = lib.mkForce { }; # Remove them
