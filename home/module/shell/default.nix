@@ -94,11 +94,15 @@
       enableSystemdUnit = true; # Auto rebuild containers
       containers = {
         "3d" = {
-          image = "archlinux:base-20250608.0.361578";
+          image = "archlinux";
           # image = "alpine:3";
           # entry = true; # ?
           additional_packages = "uv ruff python-lsp-server python-rope helix";
-          init_hooks = "uv add cadquery build123d yacv-server";
+          init_hooks = ''
+            cd
+            uv init
+            uv add cadquery build123d yacv-server
+          '';
         };
       };
     };
