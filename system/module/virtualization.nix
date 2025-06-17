@@ -1,15 +1,22 @@
 { pkgs, ... }: {
   # networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
+  # environment.systemPackages = with pkgs;
+  #   [
+  #     virtiofsd # virtio-fs backend
+  #   ];
 
-  environment.systemPackages = with pkgs;
-    [
-      virtiofsd # virtio-fs backend
-    ];
-
+  # See https://search.nixos.org/options?channel=unstable&show=virtualisation.vlans&from=50&size=50&sort=relevance&type=packages&query=virtualisation
   virtualisation = {
     libvirtd = {
       enable = true;
-      qemu.ovmf.enable = true;
+      qemu = {
+        runAsRoot = false;
+        swtpm.enable = true; # Software emulated TMP
+        ovmf.enable = true; # UEFI implementation
+        vhostUserPackages = with pkgs; [ virtiofsd ];
+      };
+      onBoot = "ignore"; # Do not autostart by default
+      paralledShutdown = 4; # Shutdown up to 4 VMs in parallel
     };
     podman = {
       enable = true;
@@ -27,9 +34,8 @@
       enable = false;
       enableExtensionPack = false; # WARNING needs a lot of compilation
     };
-    vmware.host = {
-      enable = false; # PROPRIETARY
-    };
+    vmware.host.enable = false; # PROPRIETARY
+    # vlans = [ ];
     # sharedDirectories = {
     #   virt-share = {
     #     source = "/virt-share";
@@ -37,7 +43,5 @@
     #   };
     # };
   };
-
   programs.virt-manager.enable = true;
-  # TODO Vagrant
 }
