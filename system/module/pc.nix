@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   imports = [
     ./remap.nix # Remaps for PC usability
     ./print-scan.nix # Printing & scanning service
@@ -146,7 +146,7 @@
   programs = {
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
-    ssh.startAgent = true;
+    ssh.startAgent = !config.services.gnome.gnome-keyring.enable;
     adb.enable = true; # Talk to Android devices
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
