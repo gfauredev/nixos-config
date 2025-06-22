@@ -16,7 +16,7 @@
         vhostUserPackages = with pkgs; [ virtiofsd ];
       };
       onBoot = "ignore"; # Do not autostart by default
-      paralledShutdown = 4; # Shutdown up to 4 VMs in parallel
+      parallelShutdown = 4; # Shutdown up to 4 VMs in parallel
     };
     podman = {
       enable = true;
