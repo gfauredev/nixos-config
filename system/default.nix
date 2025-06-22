@@ -238,6 +238,7 @@
       # iperf # IP bandwidth measuring
       # hping # Network monitoring tool
       # kismet # Wireless network sniffer
+      nix-tree # Find Nix dependencies
     ];
   };
 }
