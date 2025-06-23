@@ -69,6 +69,7 @@
 
       # Misc
       exercism # CLI for the programming exercises website
+      localsend # Share files on local network
     ];
 
     services = {
