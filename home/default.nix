@@ -145,6 +145,7 @@
     # Misc
     sql-formatter # SQL formtter TEST
     sqruff # SQL linter TEST
+    quickemu # Quickly create optimized VMs
     # handlr-regex # Modern replacement of xdg-open TEST
   ];
 
