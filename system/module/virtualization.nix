@@ -15,6 +15,7 @@
         ovmf.enable = true; # UEFI implementation
         vhostUserPackages = with pkgs; [ virtiofsd ];
       };
+      spiceUSBRedirection.enable = true; # Allow pass USB devices to VM
       onBoot = "ignore"; # Do not autostart by default
       parallelShutdown = 4; # Shutdown up to 4 VMs in parallel
     };
@@ -43,5 +44,8 @@
     #   };
     # };
   };
+
+  services.spice-webdavd.enable = true; # WebDav daemon to share files with VMs
+
   programs.virt-manager.enable = true;
 }

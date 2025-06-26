@@ -93,11 +93,12 @@
       enable = true; # Quick tightly integrated containers
       enableSystemdUnit = true; # Auto rebuild containers
       containers = {
-        "3d" = {
+        cad = {
           image = "archlinux";
           # image = "alpine:3";
           # entry = true; # ?
-          additional_packages = "uv ruff python-lsp-server python-rope helix";
+          additional_packages =
+            "mesa uv ruff python-lsp-server python-rope helix";
           init_hooks = ''
             cd
             uv init
