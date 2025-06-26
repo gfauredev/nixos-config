@@ -28,6 +28,16 @@
       wayland-utils # wayland info
     ];
 
+    fonts.fontconfig = {
+      enable = true;
+      defaultFonts = {
+        serif = [ config.stylix.fonts.serif.name ];
+        sansSerif = [ config.stylix.fonts.sansSerif.name ];
+        monospace = [ config.stylix.fonts.monospace.name ];
+        emoji = [ config.stylix.fonts.emoji.name ];
+      };
+    };
+
     xdg.dataFile."icons/Bibata-Hypr-Ice".source =
       ./Bibata-Modern-Ice.hyprcursor;
 
