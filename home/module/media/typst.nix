@@ -26,7 +26,7 @@
     # liberation_ttf # ≃ Times New Roman, Arial, Courier New equivalents
     # noto-fonts # Google well internationalized fonts
     ## Symbols and emoticons
-    # nerd-fonts.symbols-only # Even more icons and symbols
+    nerd-fonts.symbols-only # Even more icons and symbols
     # font-awesome # Icons and symbols
     # noto-fonts-emoji # Emojis
   ];
