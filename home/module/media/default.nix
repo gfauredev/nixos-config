@@ -66,6 +66,7 @@
       # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
       wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
       winetricks # Execute Window$ programs (config tool)
+      bottles # Wine prefixes management
 
       # Misc
       exercism # CLI for the programming exercises website
