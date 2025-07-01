@@ -60,6 +60,8 @@
       mediainfo # info about audio or video
       yt-dlp # download videos from YouTube or other video site
       spotdl # download music and playlists from Spotify
+      mplayer # Video viewer TEST me
+      vlc # Video viewer TEST me
 
       # Emulation
       # wine # Execute Window$ programs
