@@ -140,7 +140,7 @@
       # See: https://developer.gnome.org/NetworkManager/stable/NetworkManager.html
       enable = lib.mkDefault true;
       # insertNameservers = config.networking.nameservers;
-      dns = "none"; # Static name servers, we don’t want DHCP ones
+      # dns = "none"; # Static name servers, we don’t want DHCP ones
       dispatcherScripts = [{
         source = pkgs.writeShellScript "09-timezone" ''
           case "$2" in
