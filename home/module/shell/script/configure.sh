@@ -198,21 +198,24 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   printf 'Mount /boot before system update\n'
   std
   sudo mount -v /boot || exit # Use fstab
-  NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake $PRIVATE_LOC"
+  cd $PRIVATE_LOC || exit
+  NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . switch"
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
   std
-  if $NIXOS_REBUILD_CMD switch; then
+  if $NIXOS_REBUILD_CMD; then
     emph
     printf 'Unmount /boot after update\n'
     std
     sudo umount -v /boot # Unmount for security
+    cd .. || exit
   else
     emph
     printf 'Failed update, unmount /home\n'
     std
     sudo umount -v /boot # Unmount for security
-    return 1             # Failed update status
+    cd .. || exit
+    return 1 # Failed update status
   fi
 }
 
@@ -221,11 +224,11 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
   # printf 'Remove .config/mimeapps.list'
   # std
   # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake $PRIVATE_LOC"
+  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake $PRIVATE_LOC switch"
   emph
   printf 'Home Manager home rebuild: "%s"\n' "$HOME_MANAGER_CMD"
   std
-  $HOME_MANAGER_CMD switch || return
+  $HOME_MANAGER_CMD || return
 }
 
 rebase_public_private() { # Git rebase both public and private configs
