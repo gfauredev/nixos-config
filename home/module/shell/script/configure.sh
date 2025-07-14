@@ -10,9 +10,9 @@ HOME_MANAGER_CMD='systemd-inhibit home-manager' # Set default params here
 
 # Global CONSTANTS
 # SYSTEM_LOC='./system' # System (NixOS) configuration
-HOME_LOC='./home'       # Home (Home Manager) config
-PRIVATE_LOC='./private' # Private configuration location
-PUBLIC_LOC='./public'   # Public configuration location
+HOME_LOC='./home/'       # Home (Home Manager) config
+PRIVATE_LOC='./private/' # Private configuration location
+PUBLIC_LOC='./public/'   # Public configuration location
 # Global variables
 home_changed=false # Have changes been made to home config
 commit_msg=''      # Message to be constructed with remaining arguments
