@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # Web browsing
     # nyxt # Keyboard driven lightweight web browser
@@ -14,7 +15,7 @@
     iroh # Efficient IPFS, p2p file sharing
     # calyx-vpn # (bitmask client) Free VPN service FIXME
     # riseup-vpn # (bitmask client) Free VPN service FIXME
-    # protonvpn-gui # Swiss VPN service (Python rewrite)
+    protonvpn-gui # Swiss VPN service (Python rewrite)
     wayback # Web archiving tool
     # bitcoin # Bitcoin Core
     lnd # Lightning Network Daemon
