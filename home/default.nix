@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   programs.home-manager.enable = true; # MANDATORY
 
   imports = [
@@ -18,7 +19,8 @@
 
   news.display = "notify"; # Notify for new home manager options
 
-  stylix = { # Manage all things style & appearance
+  stylix = {
+    # Manage all things style & appearance
     # enableReleaseChecks = false; # WARN, remove this
     enable = true;
     polarity = "dark";
@@ -67,7 +69,8 @@
       };
     };
     # Based on Catppuccin Mocha, but with pitch black #000 background for OLED
-    base16Scheme = { # https://catppuccin.com/palette
+    base16Scheme = {
+      # https://catppuccin.com/palette
       # base00 = "#1e1e2e"; # base, default background
       base00 = "#000000"; # pitch black, default background
       base01 = "#181825"; # mantle, alternate background
@@ -112,15 +115,17 @@
     targets.firefox.enable = false; # FIX infinite recursion bug
   };
 
-  home.packages = with pkgs; [ # TODO organize better, eventually in shell/
+  home.packages = with pkgs; [
+    # TODO organize better, eventually in shell/
     # Machine learning
     llama-cpp # Large language model server
     # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
 
     # Passwords & Secrets
+    proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
-    bitwarden-desktop # TODO move password managing to it TEST replace by rbw
+    # bitwarden-desktop
     # keepassxc # Password manager
     # keepassxc-go # CLI to interacet with KeepassXC
     # git-credential-keepassxc # Use KeepassXC with Git
@@ -236,8 +241,7 @@
       ];
     };
     direnv.nix-direnv.enable = true;
-    password-store.package =
-      pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
+    password-store.package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
   };
 
   xdg = {
@@ -253,7 +257,8 @@
 
   home.preferXdgDirectories = true;
 
-  gtk = { # TODO Stylix
+  gtk = {
+    # TODO Stylix
     enable = true;
     # Remove this from $HOME
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
