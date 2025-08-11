@@ -42,7 +42,7 @@
     # blenderWithPySlvs # Patched popular 3D, animation & video editor
     # meshlab # 3D mesh processing tool
 
-    bambu-studio # Bambu 3D printers’ slicer
+    # bambu-studio # Bambu 3D printers’ slicer
     # cura # Popular 3D printer slicer
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
 
