@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
-    heroic # Modern launcher supporting Gog and Epic Games
+    # heroic # Modern launcher supporting Gog and Epic Games
     # gogdl # Gog alternative
     # legendary-gl # Epic Games launcher alternative
 
