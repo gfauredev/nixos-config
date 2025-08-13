@@ -1,7 +1,6 @@
 { lib, pkgs, ... }:
 {
   # TODO find and possibly disable the Python 3.12 service launched at boot
-  #
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
@@ -220,37 +219,50 @@
     shells = with pkgs; [ dash ]; # Only allowed login shell
     binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
     systemPackages = with pkgs; [
+      # Shell utilities
       dash # Only login and script shell
+      ov # Modern pager
+      hexyl # hex viever
+      sd # Intuitive find & replace
+      grex # Regex generator from test cases
+      moreutils # Additional Unix utilities
+      gitlab-shell # GitLab CLI
+      gitmoji-cli # Use emojis in commit messages
+      # Hardware & disks monitoring
       lm_sensors # get temps
       acpi # Information about hardware
       sysstat # Monitoring CLI tools
+      nix-tree # Find Nix dependencies
+      duf # global disk usage
+      du-dust # detailed disk usage of a directory
+      bottom # Dashboard with hardware usage, processes…
       # procs # Better ps
       powertop # Power usage analyzer
       nix-du # Determine which gc-roots take space
-      wakelan # send magick packet to wake WoL devices
-      sshfs # browser ssh as directory
+      # Remote control
       rsync # cp through network & with superpowers
-      # doggo # Modern CLI DNS client
-      dig # DNS analyzer
+      browsh # 6ixel CLI web browser
+      sshfs # Mount ssh remote
+      wakelan # Send magick packet to wake WoL devices
+      # Network monitoring & Encryption
+      xh # User-friendly HTTP client similar to HTTPie/cURL
       gping # Ping with a graph
+      # hping # Network monitoring tool
+      # iperf # IP bandwidth measuring
       tcpdump # Dump network packets
       dhcpdump # DHCP debugging
       inetutils # Things like FTP command
-      age # Modern encryption
-      ssh-to-age # Converter between SSH keys and age
-      # Monitoring & Analysis
-      nmap # scan ports
-      # rustscan # scan networks
-      xh # User-friendly HTTP client similar to HTTPie
-      # curl # Mythic HTTP client, maybe replaced by xh
-      thc-hydra # Pentesting tool
+      nmap # Scan ports
+      # rustscan # Nmap wrapper
+      dig # DNS analyzer
+      # doggo # Modern CLI DNS client
       wireshark # Wireshark GUI
       # tshark # Wireshark CLI
       # termshark # Wireshark TUI
-      # iperf # IP bandwidth measuring
-      # hping # Network monitoring tool
       # kismet # Wireless network sniffer
-      nix-tree # Find Nix dependencies
+      thc-hydra # Pentesting tool
+      age # Modern encryption
+      ssh-to-age # Converter between SSH keys and age
     ];
   };
 }

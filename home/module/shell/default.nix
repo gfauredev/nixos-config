@@ -39,15 +39,8 @@
       mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
       archive # Quickly move a directory inside ~/archive/
       # Development and general CLI tools
-      ov # Modern pager
-      trash-cli # Manage a trash from CLI
+      trash-cli # Manage a trash from CLI # TEST if needed with Nushell
       ripgrep-all # ripgrep for non-text files
-      duf # global disk usage
-      du-dust # detailed disk usage of a directory
-      hexyl # hex viever
-      sd # Intuitive find & replace
-      grex # Regex generator from test cases
-      moreutils # Additional Unix utilities
       # rustdesk # Modern remote desktop
       kalker # Evaluate math expression
       nixpkgs-review # Quickly review pull requests to nixpkgs TEST
@@ -58,12 +51,8 @@
       hyperfine # Benchmark commands
       nickel # Modern configuration Nickel, Nix improvement
       cdrkit # ISO tools and misc
-      browsh # 6ixel CLI web browser
-      pipectl # Named pipes management
-      # Git
-      gitlab-shell # GitLab CLI
-      gitmoji-cli # Use emojis in commit messages
       commitlint-rs # Be consistent in commit messages
+      # pipectl # Named pipes management (probably replaced by Nu’s job)
     ];
 
   # home.shell.enableShellIntegration = true; # Default

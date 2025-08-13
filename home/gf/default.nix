@@ -1,4 +1,10 @@
-{ config, lib, user, ... }: {
+{
+  config,
+  lib,
+  user,
+  ...
+}:
+{
   # TODO move most of this in home/default.nix
   imports = [
     ../default.nix
@@ -8,7 +14,8 @@
   ];
 
   nixpkgs.config = {
-    allowUnfreePredicate = pkg:
+    allowUnfreePredicate =
+      pkg:
       builtins.elem (lib.getName pkg) [
         "albert" # General launcher
         "discord" # Messaging
@@ -33,8 +40,9 @@
   home = {
     username = user.name;
     homeDirectory = user.home;
-    sessionVariables = { # Maybe Nix modules and options are more appropriated
-      XDG_DESKTOP_DIR = "$HOME/data";
+    sessionVariables = {
+      # Maybe Nix modules and options are more appropriated
+      XDG_DESKTOP_DIR = "$HOME/data"; # FIXME not properly propagated to shell, wm…
       XDG_DOCUMENTS_DIR = "$HOME/data";
       XDG_MUSIC_DIR = "$HOME/data";
       XDG_PICTURES_DIR = "$HOME/dcim";
@@ -46,29 +54,30 @@
       PAGER = "ov"; # TEST if better with full paths
       BROWSER = "brave"; # TEST if better with full paths
       BROWSER_ALT = "firefox"; # TEST if better with full paths
-      PASSWORD_STORE_DIR =
-        "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
+      PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
     };
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "23.11";
+    stateVersion = "23.11"; # TODO update on clean install
   };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  programs = let
-    name = user.description;
-    email = "pro@gfaure.eu";
-  in {
-    git = {
-      userName = name;
-      userEmail = email;
+  programs =
+    let
+      name = user.description;
+      email = "pro@gfaure.eu";
+    in
+    {
+      git = {
+        userName = name;
+        userEmail = email;
+      };
+      jujutsu.settings.user = {
+        name = name;
+        email = email;
+      };
     };
-    jujutsu.settings.user = {
-      name = name;
-      email = email;
-    };
-  };
 
   xdg = {
     mimeApps = {
@@ -83,7 +92,8 @@
           explorer = "directory";
           document = "writer";
           spreadsheet = "calc";
-        in {
+        in
+        {
           # Text & Code
           "text/plain" = "${text}.desktop";
           "text/markdown" = "${text}.desktop";
@@ -91,8 +101,7 @@
           "inode/directory" = "${explorer}.desktop"; # Workspace
           # Document
           "application/vnd.oasis.opendocument.text" = "${document}.desktop";
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
-            "${spreadsheet}.desktop";
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
           "application/vnd.ms-excel" = "${spreadsheet}.desktop";
           "application/pdf" = "${pdf}.desktop";
           # "application/x-colpkg" = "anki.desktop";
