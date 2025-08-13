@@ -1,11 +1,12 @@
-{ ... }:
+{ config, ... }:
 {
   # See https://docs.helix-editor.com
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    extraPackages = config.editor.commonPackages;
     settings = {
-      theme = "catppuccin-trans"; # TODO Stylix
+      theme = "catppuccin-trans"; # TODO with Stylix
       editor = {
         auto-format = true;
         auto-save = {
@@ -170,14 +171,15 @@
             "pylsp"
             "harper"
             "llm"
-          ]; # "jedi"
+            # "jedi"
+          ];
           auto-format = true;
         }
         {
           name = "typst";
           language-servers = [
             "tinymist"
-            "ltex-fr"
+            "ltex"
             "llm"
           ];
           auto-format = true;
@@ -196,7 +198,7 @@
             "marksman"
             "markdown-oxide"
             "dprint"
-            "ltex-fr"
+            "ltex"
             "llm"
           ];
           auto-format = true;
@@ -290,9 +292,20 @@
           command = "harper-ls";
           args = [ "--stdio" ];
         };
+        # ltex = { # Defined in private config with dictionaries
+        #   command = "ltex-ls-plus";
+        #   config.ltex = {
+        #     language = "en-GB";
+        #     completionEnable = true;
+        #     additionalRules = {
+        #       enablePickyRules = true;
+        #       motherTongue = "fr";
+        #     };
+        #   };
+        # };
         tinymist.config = {
           lint.enabled = true;
-          # projectResolution = "lockDatabase"; # FIXME define project main file
+          projectResolution = "lockDatabase"; # FIXME define project main file
           preview.background = {
             enabled = true; # Preview the Typst file
             args = [

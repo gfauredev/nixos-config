@@ -1,8 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }:
+{
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;
     defaultEditor = false;
+    extraPackages = config.editor.commonPackages;
     # Generate a big init file with every module, may be done cleaner
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
@@ -152,7 +154,10 @@
     settings.Keywords = "text;editor;";
     settings."Keywords[fr]" = "texte;éditeur;";
     icon = "nvim";
-    categories = [ "Utility" "TextEditor" ];
+    categories = [
+      "Utility"
+      "TextEditor"
+    ];
     startupNotify = false;
     mimeType = [
       "text/english"
