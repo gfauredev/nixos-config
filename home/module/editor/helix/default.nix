@@ -297,15 +297,19 @@
             args = [ "--stdio" ];
           };
           ltex = {
+            # Disable for the rest of the document with a comment like below
+            # LTeX: enabled=false
             command = "ltex-ls-plus";
             config.ltex = {
+              # Change language for the rest of the document with a comment like
+              # LTeX: language=fr
               language = "en-GB";
               completionEnable = true;
               additionalRules = {
                 enablePickyRules = true;
                 motherTongue = "fr";
               };
-              ltex.configurationTarget = {
+              configurationTarget = {
                 dictionary = "userExternalFile";
                 disabledRules = "userExternalFile";
                 hiddenFalsePositives = "userExternalFile";
