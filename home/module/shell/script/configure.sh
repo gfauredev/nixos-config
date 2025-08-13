@@ -131,12 +131,14 @@ commit_public_private() { # Git commit both private and public config
   emph
   printf 'Public: Commit flake repository\n'
   std
-  if commit_all $PUBLIC_LOC --message "$1"; then # Commit the public flake
-    emph
-    printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
-    std
-    nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
-  fi
+  # Commit the public flake
+  commit_all $PUBLIC_LOC --message "$1"
+  # if commit_all $PUBLIC_LOC --message "$1"; then
+  emph
+  printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
+  std
+  nix flake update --flake $PRIVATE_LOC # Always update private’s public flake input
+  # fi
   emph
   printf 'Private: Commit flake repository (including public input update)\n'
   std
@@ -182,11 +184,11 @@ amend_public_private() { # Amend both public and private config
   std
   if protected_amend "$PUBLIC_LOC"; then # May amend the public flake
     last_commit_msg $PUBLIC_LOC          # Set commit msg to the last one
-    emph
-    printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
-    std
-    nix flake update --flake $PRIVATE_LOC # Update private’s public flake input
   fi
+  emph
+  printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
+  std
+  nix flake update --flake $PRIVATE_LOC # Always update private’s public flake input
   emph
   printf 'Private: Amend flake repository\n'
   std
