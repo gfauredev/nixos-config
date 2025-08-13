@@ -140,7 +140,7 @@ commit_public_private() { # Git commit both private and public config
   printf 'Public: Commit flake repository\n'
   std
   if commit_all_changes $PUBLIC_LOC --message "$1"; then # Commit the public flake
-    update_private_inputs
+    update_private_inputs                                # Update changed public
   fi
   emph
   printf 'Private: Commit flake repository (including eventual inputs update)\n'
@@ -173,7 +173,7 @@ protected_amend() { # Amend public or private config
 }
 
 # @param 1 sub-directory containing Git repo to commit (./public or ./private)
-last_commit_msg() {
+extract_last_commit_msg() {
   commit_msg=$(git -C "$1" log -1 --pretty=format:%s)
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
   strong                             # Bold text
@@ -185,10 +185,11 @@ amend_public_private() { # Amend both public and private config
   emph
   printf 'Public: Amend flake repository\n'
   std
-  update_private_inputs                  # Always update private inputs if amending TEST
   if protected_amend "$PUBLIC_LOC"; then # May amend the public flake
-    last_commit_msg $PUBLIC_LOC          # Set commit msg to the last one
+    extract_last_commit_msg $PUBLIC_LOC  # Set commit msg to the last one
+    update_private_inputs                # Update private inputs if amending
   fi
+  protected_amend "$PRIVATE_LOC"
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
