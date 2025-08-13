@@ -76,14 +76,22 @@ pull_both() {
   wait # Wait for background pulls to finish before moving ong
 }
 
-# Update (public) config flake inputs
-update_inputs_cmd() {
+# Update public config flake inputs
+update_global_inputs() {
   emph # Italic text
   printf 'Public: Update flake %s inputs\n' $PUBLIC_LOC
   std
   nix flake update --flake $PUBLIC_LOC --commit-lock-file
   # Test if the last commit is an unpushed lockfile update
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
+}
+
+# Update private config flake inputs
+update_private_inputs() {
+  emph # Italic text
+  printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
+  std
+  nix flake update --flake $PRIVATE_LOC # Always update private’s public flake input
 }
 
 # Return 0 if there are uncommited changes, 1 otherwise
@@ -98,9 +106,9 @@ has_repo_changed() {
 # Return the state of the commit
 # @param 1 sub-directory containing Git repo to commit (./public or ./private)
 # @param * remaining parameters passed to Git (--amend, --message <string>)
-commit_all() {   # Commit $1 config with message $2
-  repo_path="$1" # Location of Git repository
-  shift          # Remove $1 (repo path) from $@
+commit_all_changes() { # Commit $1 config with message $2
+  repo_path="$1"       # Location of Git repository
+  shift                # Remove $1 (repo path) from $@
   # git -C "$repo_path" diff # FIXME Opens a pager: needs interaction
   # TODO set home_changed when amending changes too
   if has_repo_changed "$repo_path" $HOME_LOC; then
@@ -131,18 +139,13 @@ commit_public_private() { # Git commit both private and public config
   emph
   printf 'Public: Commit flake repository\n'
   std
-  # Commit the public flake
-  commit_all $PUBLIC_LOC --message "$1"
-  # if commit_all $PUBLIC_LOC --message "$1"; then
+  if commit_all_changes $PUBLIC_LOC --message "$1"; then # Commit the public flake
+    update_private_inputs
+  fi
   emph
-  printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
+  printf 'Private: Commit flake repository (including eventual inputs update)\n'
   std
-  nix flake update --flake $PRIVATE_LOC # Always update private’s public flake input
-  # fi
-  emph
-  printf 'Private: Commit flake repository (including public input update)\n'
-  std
-  commit_all $PRIVATE_LOC --message "$1" # Commit the private flake
+  commit_all_changes $PRIVATE_LOC --message "$1" # Commit the private flake
 }
 
 # Add changes made in a Git repo to the last commit, but
@@ -160,12 +163,12 @@ protected_amend() { # Amend public or private config
     emph
     printf '\tLast commit is not pushed, amending\n'
     std
-    commit_all "$1" --amend || return # Only if unpushed commits
+    commit_all_changes "$1" --amend || return # Only if unpushed commits
   else
     emph
     printf '\tAll commits pushed, no one to amend, create new commit instead\n'
     std
-    commit_all "$1" || return # Create new commit instead
+    commit_all_changes "$1" || return # Create new commit instead
   fi
 }
 
@@ -182,17 +185,10 @@ amend_public_private() { # Amend both public and private config
   emph
   printf 'Public: Amend flake repository\n'
   std
+  update_private_inputs                  # Always update private inputs if amending TEST
   if protected_amend "$PUBLIC_LOC"; then # May amend the public flake
     last_commit_msg $PUBLIC_LOC          # Set commit msg to the last one
   fi
-  emph
-  printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
-  std
-  nix flake update --flake $PRIVATE_LOC # Always update private’s public flake input
-  emph
-  printf 'Private: Amend flake repository\n'
-  std
-  protected_amend "$PRIVATE_LOC" # Amend or commit the private flake if needed
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
@@ -345,7 +341,7 @@ std # Standard text
 
 pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
-  update_inputs_cmd
+  update_global_inputs
 fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
