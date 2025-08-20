@@ -8,7 +8,8 @@
     # pkgs24-11.url = "github:nixos/nixpkgs/nixos-24.11"; # 24.11 NixOS Stable
     # pkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05"; # 24.05 NixOS Stable
 
-    home-manager = { # Manage home configurations
+    home-manager = {
+      # Manage home configurations
       url = "github:nix-community/home-manager"; # Home manager
       inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
     };
@@ -19,18 +20,26 @@
   };
 
   outputs =
-    { self, nixpkgs, pkgs25-05, home-manager, lanzaboote, hardware, stylix }:
+    {
+      self,
+      nixpkgs,
+      pkgs25-05,
+      home-manager,
+      lanzaboote,
+      hardware,
+      stylix,
+    }:
     let
       supportedSystems = [
         "x86_64-linux" # 64-bit Intel/AMD Linux
         "aarch64-linux" # 64-bit ARM Linux
         "riscv64-linux" # 64-bit RISC-V Linux
       ];
-      forEachSupportedSystem = f:
-        nixpkgs.lib.genAttrs supportedSystems
-        (system: f { pkgs = import nixpkgs { inherit system; }; });
+      forEachSupportedSystem =
+        f: nixpkgs.lib.genAttrs supportedSystems (system: f { pkgs = import nixpkgs { inherit system; }; });
       users = import ./user; # Common users configurations
-    in {
+    in
+    {
       nixosModules.overlay = {
         imports = [
           (import ./overlay) # Changes made to nixpkgs globally
@@ -63,12 +72,18 @@
         # Desktop: Muses, goddess of arts and music
         muses = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # PC architecture
-          modules = [ ./system/desktop/muses self.nixosModules.overlay ];
+          modules = [
+            ./system/desktop/muses
+            self.nixosModules.overlay
+          ];
         };
-        # Server: Cerberus, a powerful creature with multiple heads 
+        # Server: Cerberus, a powerful creature with multiple heads
         cerberus = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # Server architecture
-          modules = [ ./system/server/cerberus self.nixosModules.overlay ];
+          modules = [
+            ./system/server/cerberus
+            self.nixosModules.overlay
+          ];
         };
         # NixOS live (install) ISO image #
         live = pkgs25-05.lib.nixosSystem {
@@ -86,7 +101,8 @@
         "gf@griffin" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {
-            stablepkgs = import pkgs25-05 { # TODO do this cleaner, generic
+            stablepkgs = import pkgs25-05 {
+              # TODO do this cleaner, generic
               system = "x86_64-linux"; # System architecture TODO factorize
               config.allowUnfree = true;
             };
@@ -101,7 +117,8 @@
         "gf@chimera" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {
-            stablepkgs = import pkgs25-05 { # TODO do this cleaner, generic
+            stablepkgs = import pkgs25-05 {
+              # TODO do this cleaner, generic
               system = "x86_64-linux"; # System architecture TODO factorize
               config.allowUnfree = true;
             };
@@ -115,28 +132,31 @@
         };
       };
       # This configuration’s development shell, preferably enabled with direnv
-      devShells = forEachSupportedSystem ({ pkgs }: {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
-            cachix # CLI for Nix binary cache
-            lorri # To TEST
-            nil # Nix LSP
-            niv # Dependency management
-            nixfmt # Formater
-            statix # Lints & suggestions for Nix
-            vulnix # NixOS vulnerability scanner
-            nls # Nickel LSP
-            yaml-language-server # YAML LSP
-            taplo # TOML LSP
-            bash-language-server # Bash, shell script LSP
-            shellcheck # Shell script analysis
-            shfmt # Shell script formater
-            vscode-langservers-extracted # HTML/CSS/JS(ON)
-            wev # Evaluate inputs sent to wayland to debug
-          ];
-          # env = { }; # Environment variable
-          # shellHook = ""; # Shell command(s) activated when entering dev env
-        };
-      });
+      devShells = forEachSupportedSystem (
+        { pkgs }:
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              cachix # CLI for Nix binary cache
+              lorri # To TEST
+              nil # Nix LSP
+              niv # Dependency management
+              nixfmt # Formater
+              statix # Lints & suggestions for Nix
+              vulnix # NixOS vulnerability scanner
+              nls # Nickel LSP
+              yaml-language-server # YAML LSP
+              taplo # TOML LSP
+              bash-language-server # Bash, shell script LSP
+              shellcheck # Shell script analysis
+              shfmt # Shell script formater
+              vscode-langservers-extracted # HTML/CSS/JS(ON)
+              wev # Evaluate inputs sent to wayland to debug
+            ];
+            # env = { }; # Environment variable
+            # shellHook = ""; # Shell command(s) activated when entering dev env
+          };
+        }
+      );
     };
 }

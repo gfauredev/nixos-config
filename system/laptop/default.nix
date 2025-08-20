@@ -1,6 +1,10 @@
 # Common configuration for laptops
-{ lib, pkgs, ... }: {
-  imports = [ ../default.nix ../module/pc.nix ];
+{ lib, pkgs, ... }:
+{
+  imports = [
+    ../default.nix
+    ../module/pc.nix
+  ];
 
   # Limit threads usage of nix builds
   nix.settings.max-jobs = lib.mkDefault 8;

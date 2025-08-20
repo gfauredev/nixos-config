@@ -1,11 +1,22 @@
 # I modified this file even if I was said to not
-{ config, lib, modulesPath, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "uas" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "usb_storage"
+    "uas"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -13,7 +24,11 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/3a770357-029a-4047-b1e5-3a9951e83f24";
     fsType = "btrfs";
-    options = [ "subvol=root" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=root"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   boot.initrd.luks.devices."cryptroot".device =
@@ -22,13 +37,21 @@
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/3a770357-029a-4047-b1e5-3a9951e83f24";
     fsType = "btrfs";
-    options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=nix"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/3a770357-029a-4047-b1e5-3a9951e83f24";
     fsType = "btrfs";
-    options = [ "subvol=home" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=home"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -47,6 +70,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

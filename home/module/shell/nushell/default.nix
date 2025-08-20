@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = [ pkgs.nu_scripts ]; # Additional community scripts
   programs.nushell = {
     enable = true;
@@ -14,18 +15,17 @@
       rm.always_trash = true;
       show_banner = false;
     };
-    plugins = with pkgs.nushellPlugins;
-      [
-        # skim # Fuzzy finder
-        query # Query JSON, XML, web data
-        # net # List network interfaces
-        # dbus # Communicate with D-BUS
-        # units # Convert between units
-        # gstat # Git status
-        # polars # Work with polars dataframes
-        # formats # Convert eml, ics, ini, vcf to Nushell tables
-        # highlight # Syntax highlighting (like bat)
-      ];
+    plugins = with pkgs.nushellPlugins; [
+      # skim # Fuzzy finder
+      query # Query JSON, XML, web data
+      # net # List network interfaces
+      # dbus # Communicate with D-BUS
+      # units # Convert between units
+      # gstat # Git status
+      # polars # Work with polars dataframes
+      # formats # Convert eml, ics, ini, vcf to Nushell tables
+      # highlight # Syntax highlighting (like bat)
+    ];
   };
   services = {
     gpg-agent.enableNushellIntegration = true;

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     # losslesscut-bin # Basic lossless video edditing using ffmpeg
 

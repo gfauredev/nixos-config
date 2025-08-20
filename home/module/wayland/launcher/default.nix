@@ -1,5 +1,15 @@
-{ pkgs, config, lib, ... }: {
-  imports = [ ./albert ./rofi ./wox ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+  imports = [
+    ./albert
+    ./rofi
+    ./wox
+  ];
 
   options.launch = {
     all = lib.mkOption {
@@ -34,8 +44,7 @@
     };
   };
 
-  config.home.packages = with pkgs;
-    [
-      libqalculate # Calculation library used by launchers
-    ];
+  config.home.packages = with pkgs; [
+    libqalculate # Calculation library used by launchers
+  ];
 }

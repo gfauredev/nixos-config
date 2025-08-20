@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # Overlays defined in individual files
   nixpkgs.overlays = [
     # (import ./freecad.nix)

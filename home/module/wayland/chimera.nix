@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [ ./default.nix ];
 
   wayland.windowManager.hyprland = {

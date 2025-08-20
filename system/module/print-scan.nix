@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   services = {
     printing = {
       enable = true; # Enable CUPS to print documents
@@ -20,12 +21,11 @@
   hardware = {
     sane = {
       enable = lib.mkDefault true;
-      extraBackends = with pkgs;
-        [
-          sane-airscan
-          # hplipWithPlugin
-          # sane-backends
-        ];
+      extraBackends = with pkgs; [
+        sane-airscan
+        # hplipWithPlugin
+        # sane-backends
+      ];
     };
   };
 }

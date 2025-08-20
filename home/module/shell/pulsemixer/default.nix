@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      pulsemixer # TUI to manage sound
-    ];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    pulsemixer # TUI to manage sound
+  ];
 
   xdg.configFile = {
     pulsemixer = {

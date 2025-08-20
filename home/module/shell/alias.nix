@@ -13,14 +13,10 @@ let
     jo = "sudo journalctl -xfe";
     # gc = "nix-collect-garbage";
     gc = "nix store gc";
-    performance =
-      "sudo cpupower frequency-set --governor performance"; # Performance mode
-    powersave =
-      "sudo cpupower frequency-set --governor powersave"; # Powersave mode
-    limit =
-      "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit ressources
-    restrict =
-      "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit ressources
+    performance = "sudo cpupower frequency-set --governor performance"; # Performance mode
+    powersave = "sudo cpupower frequency-set --governor powersave"; # Powersave mode
+    limit = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit ressources
+    restrict = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit ressources
     egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
     du = "dust";
     df = "duf -hide special";
@@ -58,8 +54,7 @@ let
     clic = "klick --auto-connect --interactive";
     clicmap = "klick --auto-connect --tempo-map";
     mix = "pulsemixer";
-    scanpdf =
-      "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
+    scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
     cmake = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # Always export includes
     calc = "kalker"; # Do calculations
     # Git
@@ -86,7 +81,8 @@ let
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
   };
-in {
+in
+{
   # home.shellAliases = common; # Don’t works
   programs.zsh.shellAliases = common // {
     # System

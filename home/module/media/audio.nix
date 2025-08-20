@@ -1,22 +1,32 @@
-{ pkgs, lib, stablepkgs, ... }: {
+{
+  pkgs,
+  lib,
+  stablepkgs,
+  ...
+}:
+{
   # See: https://wiki.archlinux.org/title/Professional_audio
 
-  home.sessionVariables = let
-    makePluginPath = format:
-      (lib.makeSearchPath format [
-        "$HOME/.nix-profile/lib"
-        "/run/current-system/sw/lib"
-        "/etc/profiles/per-user/$USER/lib"
-      ]) + ":$HOME/.${format}";
-  in {
-    CLAP_PATH = lib.mkDefault (makePluginPath "clap");
-    DSSI_PATH = lib.mkDefault (makePluginPath "dssi");
-    LADSPA_PATH = lib.mkDefault (makePluginPath "ladspa");
-    LV2_PATH = lib.mkDefault (makePluginPath "lv2");
-    LXVST_PATH = lib.mkDefault (makePluginPath "lxvst");
-    VST3_PATH = lib.mkDefault (makePluginPath "vst3");
-    VST_PATH = lib.mkDefault (makePluginPath "vst");
-  };
+  home.sessionVariables =
+    let
+      makePluginPath =
+        format:
+        (lib.makeSearchPath format [
+          "$HOME/.nix-profile/lib"
+          "/run/current-system/sw/lib"
+          "/etc/profiles/per-user/$USER/lib"
+        ])
+        + ":$HOME/.${format}";
+    in
+    {
+      CLAP_PATH = lib.mkDefault (makePluginPath "clap");
+      DSSI_PATH = lib.mkDefault (makePluginPath "dssi");
+      LADSPA_PATH = lib.mkDefault (makePluginPath "ladspa");
+      LV2_PATH = lib.mkDefault (makePluginPath "lv2");
+      LXVST_PATH = lib.mkDefault (makePluginPath "lxvst");
+      VST3_PATH = lib.mkDefault (makePluginPath "vst3");
+      VST_PATH = lib.mkDefault (makePluginPath "vst");
+    };
 
   home.packages = with pkgs; [
     klick # Metronome

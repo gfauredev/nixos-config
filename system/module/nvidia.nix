@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   hardware.graphics.enable = lib.mkForce true;
 
   # Apparently needed for Wayland too, and even with open driver

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./remap.nix # Remaps for PC usability
     ./print-scan.nix # Printing & scanning service
@@ -19,8 +25,7 @@
 
   systemd.services.unmount-boot = {
     description = "Unmount /boot at boot as useless once booted";
-    script =
-      "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
+    script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
     wantedBy = [ "multi-user.target" ];
   };
 
@@ -31,7 +36,8 @@
     # apparmor.enable = lib.mkDefault true; # TODO secure system
   };
 
-  security.pam.loginLimits = [ # Increased pam limits for audio group
+  security.pam.loginLimits = [
+    # Increased pam limits for audio group
     {
       domain = "@audio";
       item = "memlock";
@@ -109,7 +115,8 @@
 
   location.provider = "geoclue2";
 
-  i18n = { # FIXME
+  i18n = {
+    # FIXME
     # Locales internatinalization properties
     # extraLocales = [ "en_GB.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" ];
     # extraLocales = [ "fr_FR.UTF-8/UTF-8" ];
@@ -161,7 +168,8 @@
       };
     };
     nix-ld.enable = true; # Run binaries
-    appimage = { # Run not packaged appimages
+    appimage = {
+      # Run not packaged appimages
       enable = true;
       binfmt = true;
     };
@@ -171,7 +179,8 @@
       enable = true; # Main Window Manager
       # withUWSM = true; # TEST session manager
     };
-    niri = { # TEST window manager
+    niri = {
+      # TEST window manager
       # See https://github.com/YaLTeR/niri
       enable = false;
     };
@@ -186,7 +195,8 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [ # TODO clean, remove unused, move some to home
+    systemPackages = with pkgs; [
+      # TODO clean, remove unused, move some to home
       xwayland-satellite # Wayland container that can run X11 apps
       lsof # list opened files
       zip # Universal compression

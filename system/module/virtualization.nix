@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
   # environment.systemPackages = with pkgs;
   #   [
@@ -21,7 +22,11 @@
     podman = {
       enable = true;
       autoPrune.enable = true;
-      extraPackages = with pkgs; [ podman-compose gvisor dive ];
+      extraPackages = with pkgs; [
+        podman-compose
+        gvisor
+        dive
+      ];
       dockerSocket.enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;

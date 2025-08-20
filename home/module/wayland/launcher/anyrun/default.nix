@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      anyrun # Modern full-featured launcher
-    ];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    anyrun # Modern full-featured launcher
+  ];
 
   # programs.anyrun = {
   #   # DOC: https://github.com/Kirottu/anyrun

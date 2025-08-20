@@ -1,5 +1,16 @@
-{ pkgs, config, lib, ... }: {
-  imports = [ ./hyprland ./launcher ./waybar ./remap ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+  imports = [
+    ./hyprland
+    ./launcher
+    ./waybar
+    ./remap
+  ];
 
   options.wayland = {
     lock = lib.mkOption {
@@ -38,8 +49,7 @@
       };
     };
 
-    xdg.dataFile."icons/Bibata-Hypr-Ice".source =
-      ./Bibata-Modern-Ice.hyprcursor;
+    xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
 
     programs = {
       hyprlock.enable = true;
@@ -63,8 +73,10 @@
 
     # TODO cleaner with Nix modules, options
     wayland.windowManager.hyprland.settings.env =
-      let var = config.home.sessionVariables;
-      in [
+      let
+        var = config.home.sessionVariables;
+      in
+      [
         "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         "TERM,${config.term.cmd}" # Default terminal emulator
         "TERMINAL,${config.term.cmd}" # Default terminal emulator

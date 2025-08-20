@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # TODO confine additional fonts to Typst
   home.packages = with pkgs; [
     ## Typst tooling

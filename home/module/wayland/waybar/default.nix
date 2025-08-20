@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   programs = {
     waybar = {
       enable = true;
@@ -8,9 +9,23 @@
           position = "bottom";
           margin = "0";
 
-          modules-left = [ "battery" "temperature" "cpu" "memory" "network" ];
-          modules-center = [ "hyprland/workspaces" "hyprland/window" ];
-          modules-right = [ "tray" "mpris" "pulseaudio" "clock" ];
+          modules-left = [
+            "battery"
+            "temperature"
+            "cpu"
+            "memory"
+            "network"
+          ];
+          modules-center = [
+            "hyprland/workspaces"
+            "hyprland/window"
+          ];
+          modules-right = [
+            "tray"
+            "mpris"
+            "pulseaudio"
+            "clock"
+          ];
 
           battery = {
             interval = 15;
@@ -21,7 +36,18 @@
               warning = 25;
               critical = 15;
             };
-            format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰂀" "󰂁" "󰂂" "󰁹" ];
+            format-icons = [
+              "󰂎"
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
             # format-icons = [ "" "" "" "" "" ]; # FA
             # format-time = "{H}:{m}";
             format-critical = "{icon} {capacity} %";
@@ -32,25 +58,33 @@
             # max-length = 8;
           };
 
-          temperature = let # TODO Nixos module options or better, dynamic
-            griffin.cpu-temps = [
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
-              "/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input"
-            ];
-          in {
-            hwmon-path = griffin.cpu-temps;
-            critical-threshold = "75";
-            format = "{icon} {temperatureC}";
-            format-icons = [ "" "" "" "" "" ]; # FA
-            tooltip = false;
-            # max-length = 6;
-          };
+          temperature =
+            let # TODO Nixos module options or better, dynamic
+              griffin.cpu-temps = [
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+                "/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input"
+              ];
+            in
+            {
+              hwmon-path = griffin.cpu-temps;
+              critical-threshold = "75";
+              format = "{icon} {temperatureC}";
+              format-icons = [
+                ""
+                ""
+                ""
+                ""
+                ""
+              ]; # FA
+              tooltip = false;
+              # max-length = 6;
+            };
 
           cpu = {
             states = {
@@ -76,7 +110,13 @@
           network = {
             format = "󰈂 {ifname}";
             format-wifi = "{icon} {ipaddr}/{cidr}";
-            format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+            format-icons = [
+              "󰤯"
+              "󰤟"
+              "󰤢"
+              "󰤥"
+              "󰤨"
+            ];
             format-ethernet = "󰈀 {ipaddr}/{cidr}";
             format-disconnected = "󰤮 {ifname}";
             tooltip = false;
@@ -97,7 +137,11 @@
               phone = "";
               portable = "";
               car = "";
-              default = [ "" " " " " ];
+              default = [
+                ""
+                " "
+                " "
+              ];
             };
             tooltip = false;
             ignored-sinks = [ "Easy Effects Sink" ];

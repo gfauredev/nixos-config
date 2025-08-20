@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # home.packages = with pkgs; [
   #   weylus # Phone as graphic tablet
   # ];

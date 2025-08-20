@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     kicad # Elecronics (EDA) software
     horizon-eda # Modern EDA to develop printed circuit boards
@@ -13,4 +14,3 @@
     # stm32cubemx # Graphical tool for configuring STM32 microcontrollers
   ];
 }
-

@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      lapce # The Lapce editor
-    ];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    lapce # The Lapce editor
+  ];
 }

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [ ./hardware.nix ];
 
   boot = {
@@ -17,8 +18,18 @@
     hostName = "cerberus";
     # Syncthing:22000,21027 / Vagrant:2049
     firewall = {
-      allowedTCPPorts = [ 22 80 443 22000 2049 ]; # Opened TCP ports firewall
-      allowedUDPPorts = [ 22000 21027 2049 ]; # Open UDP ports firewall
+      allowedTCPPorts = [
+        22
+        80
+        443
+        22000
+        2049
+      ]; # Opened TCP ports firewall
+      allowedUDPPorts = [
+        22000
+        21027
+        2049
+      ]; # Open UDP ports firewall
     };
   };
 
@@ -31,7 +42,9 @@
         PasswordAuthentication = false;
       };
     };
-    fail2ban = { enable = true; };
+    fail2ban = {
+      enable = true;
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

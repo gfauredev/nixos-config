@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs = {
     wezterm = {
       enable = true; # Modern terminal emulator
@@ -29,7 +30,11 @@
       settings.Keywords = "shell;prompt;command;commandline;cmd;cli;";
       settings."Keywords[fr]" = "shell;prompt;commande;cmd;cli;";
       icon = "org.wezfurlong.wezterm";
-      categories = [ "Utility" "System" "TerminalEmulator" ];
+      categories = [
+        "Utility"
+        "System"
+        "TerminalEmulator"
+      ];
       startupNotify = false;
       settings.StartupWMClass = "org.wezfurlong.wezterm";
       mimeType = [ "application/x-shellscript" ];
@@ -47,7 +52,10 @@
       settings.Keywords = "directory;cli;";
       settings."Keywords[fr]" = "directory;cli;";
       icon = "org.wezfurlong.wezterm";
-      categories = [ "Utility" "System" ];
+      categories = [
+        "Utility"
+        "System"
+      ];
       startupNotify = false;
       settings.StartupWMClass = "terminal-directory";
       mimeType = [ "inode/directory" ];

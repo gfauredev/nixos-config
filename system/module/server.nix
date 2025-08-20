@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   services = {
     nfs.server.enable = lib.mkDefault true;
     openssh = {

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = [ pkgs.wox ]; # Cross-platform launcher that simply works
 
   xdg.configFile = {
@@ -18,4 +19,3 @@
     # };
   };
 }
-

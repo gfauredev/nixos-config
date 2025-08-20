@@ -3,7 +3,8 @@
 # then correct the resulting `/mnt/etc/nixos/hardware-config.nix`
 # to match this template (notably replace UUIDs)
 
-{ ... }: {
+{ ... }:
+{
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/UUID";
     fsType = "bcachefs";

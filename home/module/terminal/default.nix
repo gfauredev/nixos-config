@@ -1,7 +1,14 @@
-{ lib, ... }: { # Terminal emulators
-  imports = [ ./ghostty ./alacritty ./foot ]; # ./wezterm ];
+{ lib, ... }:
+{
+  # Terminal emulators
+  imports = [
+    ./ghostty
+    ./alacritty
+    ./foot
+  ]; # ./wezterm ];
   options.term = {
-    name = lib.mkOption { # Main, full-featured terminal
+    name = lib.mkOption {
+      # Main, full-featured terminal
       # type = lib.types.str;
       default = "ghostty";
       description = "terminal window title/class";
@@ -14,7 +21,8 @@
       default = "-e";
       description = "option to execute a command in place of terminal";
     };
-    alt = { # Alternative, fallback terminal
+    alt = {
+      # Alternative, fallback terminal
       name = lib.mkOption {
         default = "alacritty";
         description = "terminal window title/class";

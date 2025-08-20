@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Doc : https://nix-community.github.io/home-manager/options.html#opt-programs.vscode.extensions
   programs.vscode = {
     enable = true;

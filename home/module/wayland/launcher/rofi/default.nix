@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   programs = {
     rofi = {
       enable = true;
