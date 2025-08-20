@@ -101,6 +101,8 @@
               h = "hover"; # Show Help
               space = "command_palette"; # Show all the commands
               w = window;
+              # Print current line git blame
+              B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}";
             };
             g = {
               # GO TO
