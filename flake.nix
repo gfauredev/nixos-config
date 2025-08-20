@@ -141,7 +141,8 @@
               lorri # To TEST
               nil # Nix LSP
               niv # Dependency management
-              nixfmt # Formater
+              nixfmt # Formatter
+              nixfmt-tree # Format a whole directory of nix files
               statix # Lints & suggestions for Nix
               vulnix # NixOS vulnerability scanner
               nls # Nickel LSP
