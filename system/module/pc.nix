@@ -196,7 +196,7 @@
   environment = {
     systemPackages = with pkgs; [
       # TODO clean, remove unused, move some to home
-      xwayland-satellite # Wayland container that can run X11 apps
+      xwayland-satellite # Wayland container that can run X11 apps TEST if useful
       lsof # list opened files
       zip # Universal compression
       unzip # Universal decompression
@@ -211,7 +211,8 @@
       exfat # USB sticks filesystem
       ntfs3g # Window$s filesystem
       convmv # Converts filenames from one encoding to another
-      navi # Cheat sheet for CLIs
+      navi # Cheat sheet for CLIs TEST if useful
+      cpulimit # Limit CPU usage of a command
     ];
   };
 
