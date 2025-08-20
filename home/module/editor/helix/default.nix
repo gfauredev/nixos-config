@@ -32,6 +32,7 @@
           display-progress-messages = true;
           display-inlay-hints = true;
         };
+        mouse = false; # Disable mouse support, just annoying
       };
       keys =
         let
