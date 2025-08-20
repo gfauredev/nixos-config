@@ -103,7 +103,6 @@
     };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
-    # thermald.enable = lib.mkDefault true; # Keep cool TEST if useful
     udisks2.enable = true; # Mount USB without privileges
     libinput.enable = true; # Enable touchpad support
     # hardware.bolt.enable = true; # Thunderbolt devs manager (authorize eGPU…)
@@ -214,5 +213,11 @@
       convmv # Converts filenames from one encoding to another
       navi # Cheat sheet for CLIs
     ];
+  };
+
+  powerManagement = {
+    enable = true;
+    powertop.enable = true; # TEST vs powertop package
+    cpuFreqGovernor = lib.mkDefault "powersave";
   };
 }

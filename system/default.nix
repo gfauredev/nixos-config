@@ -237,7 +237,6 @@
       du-dust # detailed disk usage of a directory
       bottom # Dashboard with hardware usage, processes…
       # procs # Better ps
-      powertop # Power usage analyzer
       nix-du # Determine which gc-roots take space
       # Remote control
       rsync # cp through network & with superpowers
