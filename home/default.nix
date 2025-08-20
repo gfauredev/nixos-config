@@ -8,8 +8,10 @@
 
   nix = {
     package = pkgs.nix;
-    settings.max-jobs = 8; # Limit threads usage of nix builds
+    settings.max-jobs = 12; # Limit threads usage of nix builds
   };
+
+  # home-manager.backupFileExtension = "bak"; # FIXME
 
   manual = {
     html.enable = true;
