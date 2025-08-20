@@ -3,10 +3,10 @@
 # This script allows to easily manage a two-flakes system & home Nix config,
 # with one private config having as single input one public config,
 # which contains most of the configurations
-RESOURCE_LIMIT='systemd-run --scope -p MemoryHigh=66%'
-# -p CPUQuota=888%' # Also limit CPU usage (Nix already limits to 8 threads)
-NIXOS_REBUILD_CMD="systemd-inhibit sudo $RESOURCE_LIMIT nixos-rebuild"
-HOME_MANAGER_CMD='systemd-inhibit home-manager' # Set default params here
+CPU_LIMIT='cpulimit -l 888'     # Limit CPU usage to 888% accross threads
+MEM_LIMIT=$((10 * 1024 * 1024)) # Limit memory usage to 10 GB
+NIXOS_REBUILD_CMD="systemd-inhibit sudo $CPU_LIMIT nixos-rebuild"
+HOME_MANAGER_CMD="systemd-inhibit $CPU_LIMIT home-manager"
 
 # Global CONSTANTS
 # SYSTEM_LOC='./system' # System (NixOS) configuration
@@ -339,6 +339,11 @@ std    # Standard text
 strong # Bold text
 printf 'Power state change: "%s"\n' $power_state
 std # Standard text
+
+strong # Bold text
+printf 'Limiting memory usage to %s kb for the following commands\n' $MEM_LIMIT
+ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
+std                  # Back to standard text
 
 pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
