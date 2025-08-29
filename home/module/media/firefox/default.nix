@@ -10,7 +10,7 @@
     ];
     # See https://mozilla.github.io/policy-templates
     policies = {
-      BlockAboutConfig = true;
+      BlockAboutConfig = false; # FIXME set to true when finished config
       DefaultDownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
