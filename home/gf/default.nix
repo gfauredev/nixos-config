@@ -52,8 +52,8 @@
       BAT_PAGING = "never";
       SHELL = "nu"; # TEST if better with full paths
       PAGER = "ov"; # TEST if better with full paths
-      BROWSER = "brave"; # TEST if better with full paths
-      BROWSER_ALT = "firefox"; # TEST if better with full paths
+      BROWSER = "firefox"; # TEST if better with full paths
+      BROWSER_ALT = "brave"; # TEST if better with full paths
       PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
     };
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
@@ -87,7 +87,7 @@
           image = "qimgv";
           audio = "mpv";
           video = "mpv";
-          web = "brave-browser";
+          web = "firefox";
           pdf = "org.pwmt.zathura";
           explorer = "directory";
           document = "writer";

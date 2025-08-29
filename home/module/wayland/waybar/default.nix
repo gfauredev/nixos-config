@@ -188,10 +188,10 @@
               spotify = "";
               spotifyd = "";
               mpv = "";
-              brave = "󰖟";
               firefox = "";
-              nyxt = "󰖟";
+              brave = "󰖟";
               chromium = "";
+              nyxt = "󰖟";
             };
             status-icons = {
               stopped = "";
