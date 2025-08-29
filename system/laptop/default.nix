@@ -64,8 +64,10 @@
     };
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     logind = {
-      lidSwitch = "suspend";
-      extraConfig = "HandlePowerKey=suspend";
+      settings.Login = {
+        HandlePowerKey = "suspend";
+        HandleLidSwitch = "suspend";
+      };
     };
     # TODO link this to the actual login manager in home/wayland/
     getty.helpLine = ''
