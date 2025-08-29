@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  imports = [ ./firefox ];
+
   home.packages = with pkgs; [
     # Web browsing
     # nyxt # Keyboard driven lightweight web browser
@@ -47,46 +49,6 @@
   ];
 
   programs = {
-    firefox = {
-      enable = true; # Web browser
-      # profiles = { # TODO with custom userChrome.css + userContent.css
-      #   "user" = {
-      #     id = 0;
-      #     isDefault = true;
-      #     search.engines = {
-      #       "Nix Packages" = {
-      #         urls = [
-      #           {
-      #             template = "https://search.nixos.org/packages";
-      #             params = [
-      #               {
-      #                 name = "query";
-      #                 value = "{searchTerms}";
-      #               }
-      #             ];
-      #           }
-      #         ];
-      #         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      #         definedAliases = [ "@np" ];
-      #       };
-      #       "Nix Options" = {
-      #         definedAliases = [ "@no" ];
-      #         urls = [
-      #           {
-      #             template = "https://search.nixos.org/options";
-      #             params = [
-      #               {
-      #                 name = "query";
-      #                 value = "{searchTerms}";
-      #               }
-      #             ];
-      #           }
-      #         ];
-      #       };
-      #     };
-      #   };
-      # };
-    };
     chromium = {
       enable = true; # Web browser
       package = pkgs.brave; # Better privacy, security
