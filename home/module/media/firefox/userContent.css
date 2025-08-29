@@ -1,3 +1,16 @@
+/* TODO replace conditions
+@media -moz-pref("gwfox.plus") -> all
+@media -moz-pref("gwfox.plus_sc") -> all
+@media -moz-pref("gwfox.noborder") -> all
+@media -moz-pref("gwfox.atbc") -> all
+@media -moz-pref("gwfox.bms") -> not all
+TODO remove useless rules
+- @media (-moz-platform: windows) and other Windows related
+- @media not (-moz-platform: macos) and other macOS related
+- Colors when atbc is used
+- …
+*/
+
 :root {
   --in-content-page-background: light-dark(#fff, #191919) !important;
   --newtab-background-color: light-dark(#fff, #191919) !important;
