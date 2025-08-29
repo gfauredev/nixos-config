@@ -1,6 +1,7 @@
 # My main laptop, a Framework Laptop 13
 { pkgs, ... }:
 {
+  programs.openvpn3.enable = false; # FIXME temporary
   imports = [
     ../.
     ./hardware.nix
