@@ -121,7 +121,6 @@
             }
           ];
           definedAliases = [ "@pkg" ];
-          # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         };
         nixoptions = {
           urls = [
@@ -150,7 +149,6 @@
             }
           ];
           definedAliases = [ "@nw" ];
-          # iconMapObj."16" = "https://wiki.nixos.org/favicon.ico";
         };
         bing.metadata.hidden = true;
       };
@@ -167,13 +165,13 @@
         # "Arch Wiki" # TODO
       ];
       settings = {
-        "browser.policies.runOncePerModification.displayBookmarksToolbar" = "newtab";
         "browser.uiCustomization.navBarWhenVerticalTabs" = [
-          # "unified-extensions-button"
+          "vertical-spacer"
           "back-button"
           "forward-button"
-          "urlbar-container"
+          "reload-button"
           "vertical-spacer"
+          "urlbar-container"
           "ublock0_raymondhill_net-browser-action"
           "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action"
           "addon_darkreader_org-browser-action"
@@ -185,11 +183,13 @@
         "sidebar.notification.badge.aichat" = false;
         "sidebar.revamp" = true;
         "sidebar.verticalTabs" = true;
-        # Style settings from gwfox (Zen Browser like style)
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "svg.context-properties.content.enabled" = true;
-        "widget.gtk.rounded-bottom-corners.enabled" = true;
-        "sidebar.animation.enabled" = false;
+        "widget.gtk.rounded-bottom-corners.enabled" = true; # TEST if useful
+        "sidebar.animation.enabled" = false; # TEST if useful
+        "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+        # "browser.download.useDownloadDir" = false; # TEST
+        # "browser.policies.runOncePerModification.displayBookmarksToolbar" = "newtab";
         # "browser.startup.homepage" = "";
         # "browser.search.region" = "GB";
         # "browser.search.isUS" = false;
@@ -197,28 +197,8 @@
         # "general.useragent.locale" = "en-GB";
         # "browser.bookmarks.showMobileBookmarks" = true;
       };
-      userChrome = lib.readFile ./userChrome.css;
-      userContent = lib.readFile ./userContent.css;
-      # extensions = {
-      #   force = true; # WARN overrides stateful settings
-      #   packages = with pkgs.nur.repos.rycee.firefox-addons; [
-      #     ublock-origin
-      #     privacy-badger
-      #   ];
-      #   settings."uBlock0@raymondhill.net" = {
-      #     settings = {
-      #       selectedFilterLists = [
-      #         "ublock-filters"
-      #         "ublock-badware"
-      #         "ublock-privacy"
-      #         "ublock-unbreak"
-      #         "ublock-quick-fixes"
-      #       ];
-      #     };
-      #     # See https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions
-      #     permissions = [ "activeTab" ];
-      #   };
-      # };
+      userChrome = lib.readFile ./userChrome.css; # TEST ArcWTF
+      userContent = lib.readFile ./userContent.css; # TEST ArcWTF
     };
   };
 }
