@@ -4412,7 +4412,7 @@ position: fixed !important;
 }
 }
 
-@media /*-moz-pref("gwfox.noborder")*/ all {
+@media -moz-pref("gwfox.noborder") {
 :root:not([inDOMFullscreen], [chromehidden~="toolbar"]) {
 @media not -moz-pref("sidebar.verticalTabs") {
 #tabbrowser-tabbox browser {
