@@ -207,7 +207,7 @@
   left: 7px;
   top: 15.5px;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   left: unset;
   right: 0;
   top: 1px;
@@ -233,7 +233,7 @@
   grid-area: 2 / 1 / auto / auto;
   padding-left: 76px !important;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   padding-left: 0 !important;
 }
 }
@@ -248,7 +248,7 @@
   padding-inline-end: 77px !important;
   margin-bottom: 5.5px !important;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   padding-inline-end: 212px !important;
 @media (-moz-platform: linux) {
   padding-inline-end: 187px !important;
@@ -259,7 +259,7 @@
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   padding-inline-end: 111px !important;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   padding-inline-end: 246px !important;
 @media (-moz-platform: linux) {
   padding-inline-end: 221px !important;
@@ -277,7 +277,7 @@
   position: fixed;
   inset-inline-end: 3px;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   inset-inline-end: 138px;
 @media (-moz-platform: linux) {
   inset-inline-end: 113px;
@@ -290,7 +290,7 @@
   position: fixed;
   inset-inline-end: 43px;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
   inset-inline-end: 153px;
@@ -304,7 +304,7 @@
   display: flex !important;
   inset-inline-end: 43px;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
   inset-inline-end: 153px;
@@ -315,7 +315,7 @@
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   inset-inline-end: 77px;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   inset-inline-end: 212px;
 @media (-moz-platform: linux) {
   inset-inline-end: 187px;
@@ -1478,7 +1478,7 @@ tree {
 :root#main-window {
   min-width: 611px !important;
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
   min-width: 701px !important;
 }
 }
@@ -1525,7 +1525,7 @@ tree {
 }
 
 @media all {
-@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or /*-moz-pref("gwfox.plus_sc")*/ all {
 @media (max-width: 701px) {
 @media not -moz-pref("sidebar.verticalTabs") {
 #urlbar-container {
@@ -2464,7 +2464,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 
 @media /*-moz-pref("gwfox.plus")*/ all {
 :root[sidebar-expand-on-hover] {
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 .tabbrowser-tab[pinned] .tab-icon-image {
   margin-left: 6px;
 }
@@ -2531,7 +2531,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 #tabbrowser-tabs:is([orient="horizontal"], [expanded]):not([movingtab]) .tab-icon-stack {
 .tabbrowser-tab:hover .tab-content > &:not([pinned]) {
   display: none;
@@ -2871,7 +2871,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   background: transparent !important;
 }
 
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 .tabbrowser-tab .tab-label-container {
   margin-left: 1px;
 }
@@ -2938,7 +2938,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 :has(#tabbrowser-tabs[expanded]) {
   --padding: 0;
 
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 .tab-close-button {
   margin-inline-end: calc(-1 * var(--tab-close-button-padding)) !important;
 }
@@ -3015,7 +3015,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 }
 }
 
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 .tabbrowser-tab[pinned] .tab-content {
   margin-left: -6px !important;
@@ -3444,7 +3444,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   outline: .5px solid light-dark(#b3b3b3, transparent);
   outline-offset: -.5px;
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   background-color: transparent !important;
   outline: none;
 }
@@ -3467,7 +3467,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   margin-inline: 4px !important;
   border-radius: 50% !important;
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   padding: 2px !important;
   margin-inline: 2px !important;
   border-radius: 20% !important;
@@ -3483,7 +3483,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#e24138, transparent);
   outline-offset: -.5px;
-@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not /*-moz-pref("gwfox.plus_sc")*/ all) {
 .titlebar-buttonbox:hover & {
   fill: light-dark(#730000, #990000);
 &:active {
@@ -3495,7 +3495,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 3.5,3.01 a 0.5,0.5 0 0 0 -0.35,0.15 0.5,0.5 0 0 0 0,0.71 l 4.13,4.14 -4.14,4.13 a 0.5,0.5 0 0 0 0,0.71 0.5,0.5 0 0 0 0.71,0 L 8,8.71 12.14,12.85 a 0.5,0.5 0 0 0 0.71,0 0.5,0.5 0 0 0 0,-0.71 L 8.7,8 12.83,3.86 a 0.5,0.5 0 0 0 0,-0.71 0.5,0.5 0 0 0 -0.71,0 L 7.99,7.29 3.85,3.15 A 0.5,0.5 0 0 0 3.5,3.01 Z'/%3E%3C/svg%3E") !important;
   background-color: transparent !important;
@@ -3524,7 +3524,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#e19e0f, transparent);
   outline-offset: -.5px;
-@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not /*-moz-pref("gwfox.plus_sc")*/ all) {
 .titlebar-buttonbox:hover & {
   fill: #985600;
 &:active {
@@ -3536,7 +3536,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 3.5,7.5 A 0.5,0.5 0 0 0 3,8 0.5,0.5 0 0 0 3.5,8.5 h 9 A 0.5,0.5 0 0 0 13,8 0.5,0.5 0 0 0 12.5,7.5 Z'/%3E%3C/svg%3E") !important;
   background-color: transparent !important;
@@ -3565,7 +3565,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#0aaa21, transparent);
   outline-offset: -.5px;
-@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not /*-moz-pref("gwfox.plus_sc")*/ all) {
 .titlebar-buttonbox:hover & {
   fill: #006200;
 &:active {
@@ -3577,7 +3577,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 4.5,3 C 3.677,3 3,3.677 3,4.5 v 7 C 3,12.323 3.677,13 4.5,13 h 7 c 0.823,0 1.5,-0.677 1.5,-1.5 v -7 C 13,3.677 12.323,3 11.5,3 Z m 0,1 h 7 C 11.782,4 12,4.218 12,4.5 v 7 c 0,0.282 -0.218,0.5 -0.5,0.5 h -7 A 0.493,0.493 0 0 1 4,11.5 v -7 C 4,4.218 4.218,4 4.5,4 Z'/%3E%3C/svg%3E") !important;
   background-color: transparent !important;
@@ -3606,7 +3606,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#0aaa21, transparent);
   outline-offset: -.5px;
-@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not /*-moz-pref("gwfox.plus_sc")*/ all) {
 .titlebar-buttonbox:hover & {
   fill: #006200;
 &:active {
@@ -3618,7 +3618,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 5.5,4 h 5 A 1.5,1.5 0 0 1 12,5.5 v 5 a 1,1 0 0 0 1,-1 v -4 A 2.5,2.5 0 0 0 10.5,3 h -4 a 1,1 0 0 0 -1,1 z M 3,6.5 v 5 A 1.5,1.5 0 0 0 4.5,13 h 5 A 1.5,1.5 0 0 0 11,11.5 v -5 A 1.5,1.5 0 0 0 9.5,5 h -5 A 1.5,1.5 0 0 0 3,6.5 Z M 4.5,6 h 5 A 0.5,0.5 0 0 1 10,6.5 v 5 A 0.5,0.5 0 0 1 9.5,12 h -5 A 0.5,0.5 0 0 1 4,11.5 v -5 A 0.5,0.5 0 0 1 4.5,6 Z'/%3E%3C/svg%3E") !important;
   background-color: transparent !important;
@@ -3814,12 +3814,12 @@ tab-group[collapsed] > .tab-group-label-container > & {
 &:hover:active {
   --close-button-extra-background: var(--button-background-color-ghost-active) !important;
 }
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   left: 172px !important;
 }
 }
 
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
 .tabbrowser-tab[selected]:not([pinned]) .tab-content, .tab-content:not([pinned]):hover {
   margin-right: 20px !important;
 }
@@ -3829,7 +3829,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 .tabbrowser-tab .tab-label-container {
   margin-left: 1px;
 }
@@ -4009,7 +4009,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   left: 22px;
 }
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   top: 22px !important;
   left: 150px;
 }
@@ -4025,7 +4025,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   opacity: 1;
   transition: left .25s !important;
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   left: 8px;
 }
 }
@@ -4034,7 +4034,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 #back-button {
   left: 119px;
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   left: 47px;
 }
 }
@@ -4043,7 +4043,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 #forward-button {
   left: 153px;
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   left: 80px;
 }
 }
@@ -4053,7 +4053,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 #stop-button {
   left: 187px;
 @media all {
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
   left: 113px;
 }
 }
@@ -4217,7 +4217,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media not -moz-pref("gwfox.plus_sc") {
+@media not /*-moz-pref("gwfox.plus_sc")*/ all {
 .titlebar-buttonbox-container {
   left: 15px;
   top: 17.5px;
@@ -4333,7 +4333,7 @@ position: fixed !important;
 }
 }
 
-@media -moz-pref("gwfox.plus_sc") {
+@media /*-moz-pref("gwfox.plus_sc")*/ all {
 @media -moz-pref("sidebar.verticalTabs") {
 #toolbar-menubar {
 .titlebar-buttonbox-container {
