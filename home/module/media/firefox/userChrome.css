@@ -157,7 +157,7 @@
 
 }
 
-@media not -moz-pref("gwfox.atbc") {
+@media not /*-moz-pref("gwfox.atbc")*/ all {
 #PersonalToolbar, #TabsToolbar,
 #navigator-toolbox, #browser {
   background: transparent !important;
@@ -1940,7 +1940,7 @@ input {
 
 
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.atbc") {
+@media not /*-moz-pref("gwfox.atbc")*/ all {
 #browser, #navigator-toolbox {
   background: var(--bg1) !important;
 }
