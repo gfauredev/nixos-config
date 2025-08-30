@@ -29,10 +29,6 @@
   --bg4: light-dark(rgba(255, 255, 255, .75), rgba(15, 15, 12, .75));
   --bs1: 0 5px 15px rgba(0, 0, 0, .2), 0 0 0 .5px rgba(0, 0, 0, .15);
   --bs2: 0 5px 15px rgba(0, 0, 0, .25), 0 0 0 .5px rgba(0, 0, 0, .5);
-  @media (-moz-platform: windows) {
-  --bs1: 0 45px 65px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .17);
-  --bs2: 0 45px 65px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .15);    
-  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -263,11 +259,7 @@ body {
   display: none;
 }
 
-@media (-moz-platform: windows) {
-.search-handoff-button {
-  background-color: #2c2c2c !important;
-}
-}
+
 }
 
 @-moz-document url("about:newtab"), url("about:home") {
@@ -299,9 +291,7 @@ body {
   border-radius: 6px !important;
   padding: 6px !important;
   box-shadow: 0 5px 15px rgba(0, 0, 0, .2), 0 0 0 .5px rgba(0, 0, 0, .15) !important;
-@media (-moz-platform: windows) {
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 1px rgba(0, 0, 0, .17) !important;
-}
+
 }
 
 .context-menu > ul {
@@ -756,19 +746,7 @@ body {
   outline-offset: -1px !important;
 }
 
-@media (-moz-platform: windows) {
-.modal, .context-menu, .contentSearchSuggestionTable {
-  border: none !important;
-}
 
-.context-menu {
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 1px rgba(255, 255, 255, .15) !important;
-}
-
-.customize-menu {
-  outline: none !important;
-}
-}
 }
 }
 

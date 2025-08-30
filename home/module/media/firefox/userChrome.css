@@ -53,10 +53,7 @@
   --tab-icon-overlay-fill: light-dark(rgba(0, 0, 0, .8), rgba(225, 225, 225, .8)) !important;
   --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
   --toolbarbutton-active-background: color-mix(in srgb, currentColor 15%, transparent) !important;
-  @media (-moz-platform: windows) {
-  --bs1: 0 45px 65px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .17);
-  --bs2: 0 45px 65px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .15);    
-  }
+
   @media (-moz-platform: linux) {
   --bg1: light-dark(#f5f6f6, #28282c);
   --bg2: light-dark(#fff, #36363a);
@@ -133,9 +130,7 @@
 &[sidebar-panel-open] {
   margin-inline-end: 2px !important;
   margin-bottom: 2px !important;
-@media (-moz-platform: windows) {
-  margin-inline-end: 1px !important;
-}
+
 @media (-moz-platform: linux) {
   margin-inline-end: 0 !important;
 }
@@ -168,11 +163,7 @@
   padding-top: 2px !important;
   height: 47px !important;
   background: transparent !important;
-@media (-moz-platform: windows) {
-@media not -moz-pref("sidebar.verticalTabs") {
-  height: 48px !important;
-}
-}
+
 }
 
 @media not -moz-pref("gwfox.atbc") {
@@ -231,12 +222,7 @@
   left: unset;
   right: 0;
   top: 1px;
-@media (-moz-platform: windows) {
-.titlebar-button {
-  padding-top: 17px !important;
-  padding-bottom: 18px !important;
-}
-}
+
 @media (-moz-platform: linux) {
   top: 11px;
 }
@@ -634,18 +620,14 @@
   margin-top: 6.5px !important;
   border-radius: 6px;
   background: var(--button-active-bgcolor);
-@media (-moz-platform: windows) {
-  margin-top: 7.5px !important;
-}
+
 }
 
 :has(#urlbar[persistsearchterms]):not(:has(#urlbar[breakout][breakout-extend])) {
 #urlbar-container {
   background: none;
   margin-top: 7.5px !important;
-@media (-moz-platform: windows) {
-  margin-top: 8.5px !important;
-}
+
 }
 }
 }
@@ -725,11 +707,7 @@
 }
 
 @media not -moz-pref("sidebar.verticalTabs") {
-@media (-moz-platform: windows) {
-#urlbar:not([breakout][breakout-extend], [usertyping]) {
-  margin-top: .5px !important;
-}
-}
+
 }
 
 @media -moz-pref("gwfox.plus") or (not -moz-pref("sidebar.verticalTabs")) {
@@ -1401,7 +1379,7 @@ toolbarseparator::before {
 
 menuseparator::before {
   border-top: 1px solid var(--bg3) !important;
-@media not (-moz-platform: windows) {
+@media all {
   margin: 0 8px 0 !important;
 }
 }
@@ -1691,9 +1669,7 @@ richlistbox {
   background-color: var(--bg4) !important;
   backdrop-filter: blur(30px) !important;
   box-shadow: var(--bs1) !important;
-@media (-moz-platform: windows) {
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 .5px rgba(0, 0, 0, .15) !important;
-}
+
 @media (-moz-platform: linux) {
 @media not -moz-pref("gwfox.bms") {
   background-color: var(--bg2) !important;
@@ -1721,9 +1697,7 @@ richlistbox {
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1px !important;
   box-shadow: var(--bs2) !important;
-@media (-moz-platform: windows) {
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 .5px rgba(0, 0, 0, .5) !important;
-}
+
 }
 
 #identity-box:hover {
@@ -1974,82 +1948,7 @@ input {
 }
 }
 
-@media (-moz-platform: windows) {
-:root:-moz-window-inactive {--sidebar-background-color: transparent !important;}
 
-richlistitem[selected] {
-  background: none !important;
-}
-
-#downloadsListBox {
-  overflow-x: hidden;
-  border: 0 !important;
-}
-
-toolbarbutton:-moz-window-inactive {
-  opacity: 50% !important;
-}
-
-#editBookmarkPanel .expander-up,
-#editBookmarkPanel .expander-down {
-  border: none !important;
-}
-
-.urlbar-input-container > box {
-  -moz-window-dragging: no-drag !important;
-}
-
-menupopup, panel[type="arrow"] {
-  --panel-background: light-dark(rgba(255, 255, 255, .75), rgba(15, 15, 12, .75)) !important;
-  --panel-shadow-margin: 0px !important;
-}
-
-#context-navigation .menu-icon {
-  display: unset;
-}
-
-.findbar-container, #statuspanel-label {
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 1px rgba(0, 0, 0, .17) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-&:not(:-moz-window-inactive) {::selection { background: #416189 }}
-* {
-  --organizer-pane-background: #2d2d2d !important;
-  --organizer-toolbar-background: #333 !important;
-  --organizer-content-background: #333 !important;
-  --organizer-hover-background: #2e2e2f !important;
-  --organizer-selected-background: #2e2e2f !important;
-}
-
-#urlbar[breakout][breakout-extend] #urlbar-background,
-#urlbar[breakout][breakout-extend] .urlbar-background,
-.findbar-container, .dialogBox, #statuspanel-label {
-  outline: none !important;
-}
-
-.findbar-container, #statuspanel-label {
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .25), 0 0 0 1px rgba(255, 255, 255, .15) !important;
-}
-
-menupopup, panel[type="arrow"] {
-  --panel-border-color: rgba(255, 255, 255, .1) !important;
-  --arrowpanel-border-color: rgba(255, 255, 255, .1) !important;
-}
-
-.panel-arrowcontent {
-  border: 1px solid rgba(255, 255, 255, .1) !important;
-}
-
-treecol {
-  background-color: #333 !important;
-}
-
-richlistitem {
-  color: #fff !important;
-}
-}
-}
 
 @media (-moz-platform: linux) {
 @media not -moz-pref("gwfox.atbc") {
@@ -2478,9 +2377,7 @@ tab-group > .tabbrowser-tab,
 .tab-group-line {
 #tabbrowser-tabs & {
   inset-inline: 0 !important;
-@media (-moz-platform: windows) {
-  margin-inline-start: -.5px !important;
-}
+
 
 .tabbrowser-tab:first-of-type > .tab-stack > .tab-background > & {
   inset-block-start: 2px !important;
@@ -2547,17 +2444,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media (-moz-platform: windows) {
-:has(#tabbrowser-tabs[expanded]) {
-tab > stack {
-  margin: 0 .5px !important;
-}
-}
 
-.tab-group-label {
-  margin-left: .5px !important;
-}
-}
 
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 :has(#tabbrowser-tabs[expanded], #tabbrowser-tabs:not([expanded])) {
@@ -2804,9 +2691,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1px !important;
   box-shadow: var(--bs2) !important;
-@media (-moz-platform: windows) {
-  outline: none !important;
-}
+
 }
 }
 
@@ -2821,10 +2706,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 49.5px !important;
   width: calc(100% - 57.5px);
-@media (-moz-platform: windows) {
-  margin-left: 51px !important;
-  width: calc(100% - 59px);
-}
+
 @media (-moz-platform: linux) {
   margin-left: 55.5px !important;
   width: calc(100% - 63.5px);
@@ -2836,10 +2718,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 331px !important;
   width: calc(100% - 339px);
-@media (-moz-platform: windows) {
-  margin-left: 332px !important;
-  width: calc(100% - 340px);
-}
+
 @media (-moz-platform: linux) {
   margin-left: 336px !important;
   width: calc(100% - 344px);
@@ -2851,10 +2730,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 451px !important;
   width: calc(100% - 459px);
-@media (-moz-platform: windows) {
-  margin-left: 452px !important;
-  width: calc(100% - 460px);
-}
+
 @media (-moz-platform: linux) {
   margin-left: 456px !important;
   width: calc(100% - 464px);
@@ -2903,9 +2779,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #sidebar-box {
   margin-top: -39px !important;
   margin-bottom: 2px !important;
-@media (-moz-platform: windows) {
-  margin-top: -38px !important;
-}
+
 }
 
 .tools-and-extensions > moz-button {
@@ -3063,9 +2937,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #tabbrowser-tabpanels {
   margin-top: -39px;
   transition: .25s !important;
-@media (-moz-platform: windows) {
-  margin-top: -38px;
-}
+
 }
 
 :has(#nav-bar:hover) {
@@ -3152,9 +3024,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 :has(.titlebar-buttonbox:hover, #urlbar:hover, #back-button:hover, #forward-button:hover, #stop-reload-button:hover, #sidebar-button:hover) {
 #tabbrowser-tabpanels {
   margin-top: -39px;
-@media (-moz-platform: windows) {
-  margin-top: -38px;
-}
+
 }
 }
 
@@ -3216,10 +3086,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 81px !important;
   width: calc(100% - 89px);
-@media (-moz-platform: windows) {
-  margin-left: 81.5px !important;
-  width: calc(100% - 89.5px);
-}
+
 @media (-moz-platform: linux) {
   margin-left: 84px !important;
   width: calc(100% - 92px);
@@ -3242,10 +3109,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 363px !important;
   width: calc(100% - 371px);
-@media (-moz-platform: windows) {
-  margin-left: 362.5px !important;
-  width: calc(100% - 370.5px);
-}
+
 @media (-moz-platform: linux) {
   margin-left: 365px !important;
   width: calc(100% - 373px);
@@ -3264,10 +3128,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 483px !important;
   width: calc(100% - 491px);
-@media (-moz-platform: windows) {
-  margin-left: 482.5px !important;
-  width: calc(100% - 490.5px);
-}
+
 @media (-moz-platform: linux) {
   margin-left: 485px !important;
   width: calc(100% - 493px);
@@ -3390,9 +3251,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 :has(.titlebar-buttonbox:hover, #urlbar:hover) {
 #tabbrowser-tabpanels {
   margin-top: -39px;
-@media (-moz-platform: windows) {
-  margin-top: -38px;
-}
+
 }
 }
 
@@ -3432,9 +3291,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 
 #tabbrowser-tabpanels {
   margin-top: -39px !important;
-@media (-moz-platform: windows) {
-  margin-top: -38px !important;
-}
+
 }
 
 :has(#urlbar[breakout][breakout-extend], [usertyping]) {
@@ -3535,30 +3392,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media (-moz-platform: windows) {
-tab > stack {
-  margin: 0 .5px !important;
-}
 
-.tab-group-label {
-  margin-left: 10px !important;
-}
-
-.tab-group-line {
-#tabbrowser-tabs & {
-  margin-inline-start: 0 !important;
-}
-}
-
-.tab-background {
-  margin-left: .5px !important;
-}
-
-#tabs-newtab-button,
-#vertical-tabs-newtab-button {
-  margin-left: 9.5px !important;
-}
-}
 }
 
 :has(#urlbar:not([breakout][breakout-extend], [usertyping]):hover, #urlbar:not([breakout][breakout-extend], [usertyping]) #page-action-buttons > *:hover) {
@@ -3822,9 +3656,7 @@ tab > stack {
 #nav-bar {
   z-index: 10;
   margin-top: -39px !important;
-@media (-moz-platform: windows) {
-  margin-top: -38px !important;
-}
+
 }
 
 #reload-button,
@@ -4090,10 +3922,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   box-shadow: var(--bs1);
   overflow: unset !important;
   transition: .25s;
-@media (-moz-platform: windows) {
-  top: 9px;
-  height: calc(100% - 17px) !important;
-}
+
 @media (-moz-platform: linux) {
 @media not -moz-pref("gwfox.bms") {
   background-color: var(--bg2) !important;
@@ -4102,7 +3931,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 @media (prefers-color-scheme: dark) {
   box-shadow: var(--bs2) !important;
-@media not (-moz-platform: windows) {
+@media all {
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1px !important;
 }   
@@ -4188,9 +4017,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   left: 7px;
   opacity: 1;
   transition: left .25s !important;
-@media (-moz-platform: windows) {
-  left: 18px;
-}
+
 @media (-moz-platform: linux) {
   left: 22px;
 }
@@ -4327,9 +4154,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   height: 32px;
   border-radius: 8px;
   background: var(--button-active-bgcolor);
-@media (-moz-platform: windows) {
-  background: light-dark(rgba(120, 120, 120, .1), rgba(155, 155, 155, .2));
-}
+
 }
 
 :has(#urlbar[persistsearchterms]) {
@@ -4385,17 +4210,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 
-@media (-moz-platform: windows) {
-:root[inFullscreen] {
-.titlebar-buttonbox-container {
-  display: none !important;
-}
 
-#PersonalToolbar {
-  visibility: unset !important;
-}
-}
-}
 
 @media not (-moz-platform: macos) {
 #toolbar-menubar {
@@ -4431,9 +4246,7 @@ position: fixed !important;
   background-color: light-dark(#d6d6d6, #4c4c4c) !important;
   outline: .5px solid light-dark(#b3b3b3, transparent);
   outline-offset: -.5px;
-@media (-moz-platform: windows) {
-  background-color: light-dark(#bababa, #626262) !important;
-}
+
 }
 }
 }
@@ -4518,20 +4331,7 @@ position: fixed !important;
 }
 }
 
-@media (-moz-platform: windows) {
-@media -moz-pref("sidebar.verticalTabs") {
-.titlebar-buttonbox-container {
-  left: 12px;
-  top: 16px;
-}
 
-.titlebar-buttonbox {
-&::before {
-  z-index: -1;
-}
-}
-}
-}
 
 @media (-moz-platform: linux) {
 @media -moz-pref("sidebar.verticalTabs") {
@@ -4556,9 +4356,7 @@ position: fixed !important;
 
 .titlebar-buttonbox-container {
   position: unset !important;
-@media (-moz-platform: windows) {
-  margin-top: -1px !important;
-}
+
 @media (-moz-platform: linux) {
   padding-bottom: 2px;
 }
