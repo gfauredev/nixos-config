@@ -167,6 +167,20 @@
         # "Arch Wiki" # TODO
       ];
       settings = {
+        "browser.policies.runOncePerModification.displayBookmarksToolbar" = "newtab";
+        "browser.uiCustomization.navBarWhenVerticalTabs" = [
+          # "unified-extensions-button"
+          "back-button"
+          "forward-button"
+          "urlbar-container"
+          "vertical-spacer"
+          "ublock0_raymondhill_net-browser-action"
+          "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action"
+          "addon_darkreader_org-browser-action"
+          "_74145f27-f039-47ce-a470-a662b129930a_-browser-action"
+          "languagetool-webextension_languagetool_org-browser-action"
+          "firefox-view-button"
+        ];
         "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks";
         "sidebar.notification.badge.aichat" = false;
         "sidebar.revamp" = true;
