@@ -207,7 +207,7 @@
   left: 7px;
   top: 15.5px;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   left: unset;
   right: 0;
   top: 1px;
@@ -233,7 +233,7 @@
   grid-area: 2 / 1 / auto / auto;
   padding-left: 76px !important;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   padding-left: 0 !important;
 }
 }
@@ -248,7 +248,7 @@
   padding-inline-end: 77px !important;
   margin-bottom: 5.5px !important;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 212px !important;
 @media (-moz-platform: linux) {
   padding-inline-end: 187px !important;
@@ -259,7 +259,7 @@
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   padding-inline-end: 111px !important;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 246px !important;
 @media (-moz-platform: linux) {
   padding-inline-end: 221px !important;
@@ -277,7 +277,7 @@
   position: fixed;
   inset-inline-end: 3px;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 138px;
 @media (-moz-platform: linux) {
   inset-inline-end: 113px;
@@ -290,7 +290,7 @@
   position: fixed;
   inset-inline-end: 43px;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
   inset-inline-end: 153px;
@@ -304,7 +304,7 @@
   display: flex !important;
   inset-inline-end: 43px;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
   inset-inline-end: 153px;
@@ -315,7 +315,7 @@
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   inset-inline-end: 77px;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 212px;
 @media (-moz-platform: linux) {
   inset-inline-end: 187px;
@@ -646,7 +646,7 @@
   -moz-context-properties: fill, fill-opacity;
   fill: currentColor;
   fill-opacity: .69;
-@media (not -moz-pref("gwfox.plus")) or (not -moz-pref("sidebar.verticalTabs")) {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or (not -moz-pref("sidebar.verticalTabs")) {
   background-position: left 6px bottom 6px;
 }
 }
@@ -655,7 +655,7 @@
   text-align: left !important;
 }
 
-@media -moz-pref("gwfox.plus") {
+@media /*-moz-pref("gwfox.plus")*/ all {
 :has(#tabbrowser-tabs[orient="vertical"]:not([expanded])) {
 .urlbar-input-container {
   background-position: center;
@@ -699,7 +699,7 @@
 
 }
 
-@media -moz-pref("gwfox.plus") or (not -moz-pref("sidebar.verticalTabs")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("sidebar.verticalTabs")) {
 .urlbar-page-action:not(#star-button-box) {
   margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding));
   opacity: 0;
@@ -1478,7 +1478,7 @@ tree {
 :root#main-window {
   min-width: 611px !important;
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
   min-width: 701px !important;
 }
 }
@@ -1525,7 +1525,7 @@ tree {
 }
 
 @media all {
-@media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
+@media (not /*-moz-pref("gwfox.plus")*/ all) or -moz-pref("gwfox.plus_sc") {
 @media (max-width: 701px) {
 @media not -moz-pref("sidebar.verticalTabs") {
 #urlbar-container {
@@ -2011,7 +2011,7 @@ menuitem[type="radio"][disabled="true"] .menu-icon {
 }
 
 @media -moz-pref("sidebar.verticalTabs") {
-@media not -moz-pref("gwfox.plus") {
+@media not /*-moz-pref("gwfox.plus")*/ all {
 .titlebar-buttonbox-container {
   padding-bottom: 2px;
 }
@@ -2412,7 +2412,7 @@ tab-group > .tabbrowser-tab,
 }
 }
 
-@media not -moz-pref("gwfox.plus") {
+@media not /*-moz-pref("gwfox.plus")*/ all {
 @media -moz-pref("sidebar.visibility", "expand-on-hover") {
 tab-group {
 .tab-group-label {
@@ -2462,7 +2462,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 
 /* tweak */
 
-@media -moz-pref("gwfox.plus") {
+@media /*-moz-pref("gwfox.plus")*/ all {
 :root[sidebar-expand-on-hover] {
 @media not -moz-pref("gwfox.plus_sc") {
 .tabbrowser-tab[pinned] .tab-icon-image {
@@ -3483,7 +3483,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#e24138, transparent);
   outline-offset: -.5px;
-@media -moz-pref("gwfox.plus") or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
 .titlebar-buttonbox:hover & {
   fill: light-dark(#730000, #990000);
 &:active {
@@ -3524,7 +3524,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#e19e0f, transparent);
   outline-offset: -.5px;
-@media -moz-pref("gwfox.plus") or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
 .titlebar-buttonbox:hover & {
   fill: #985600;
 &:active {
@@ -3565,7 +3565,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#0aaa21, transparent);
   outline-offset: -.5px;
-@media -moz-pref("gwfox.plus") or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
 .titlebar-buttonbox:hover & {
   fill: #006200;
 &:active {
@@ -3606,7 +3606,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   fill: transparent;
   outline: .5px solid light-dark(#0aaa21, transparent);
   outline-offset: -.5px;
-@media -moz-pref("gwfox.plus") or (not -moz-pref("gwfox.plus_sc")) {
+@media /*-moz-pref("gwfox.plus")*/ all or (not -moz-pref("gwfox.plus_sc")) {
 .titlebar-buttonbox:hover & {
   fill: #006200;
 &:active {
