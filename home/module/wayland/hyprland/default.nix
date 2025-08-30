@@ -42,7 +42,7 @@ let
   open = # Global opener command # FIXME cd for broot (br)
     "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -c broot";
   monitor = # Monitoring
-    "${config.term.cmd} ${config.term.exec} btm --battery --enable_gpu";
+    "${config.term.cmd} ${config.term.exec} btm --battery";
   mixer = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   picker = "hyprpicker --autocopy"; # Color picker
   note = "anki"; # Note-taking app"
