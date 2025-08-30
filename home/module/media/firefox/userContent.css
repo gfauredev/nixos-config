@@ -221,7 +221,7 @@ body {
   border: none !important;
   fill: rgba(255, 255, 255, .7) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: #36363a !important;
   backdrop-filter: blur(0px) !important;
 }
@@ -347,7 +347,7 @@ body {
   opacity: 1 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, .15) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(#fff, #36363a) !important;
   backdrop-filter: blur(0px) !important;
 }
@@ -365,7 +365,7 @@ body {
   transition: background .5s !important;
   z-index: 1;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(#fff, #36363a) !important;
 }
 }
@@ -375,7 +375,7 @@ body {
   background-color: light-dark(rgba(255, 255, 255, .6), rgba(15, 15, 15, .8)) !important;
   transition: background .5s !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(rgba(255, 255, 255, .9), rgba(54, 54, 58, .9)) !important;
 }
 }
@@ -455,7 +455,7 @@ body {
 .tile, .context-menu-button.icon {
   background-color: rgba(255, 255, 255, .8) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: #fff !important;
 }
 }
@@ -464,7 +464,7 @@ body {
 .context-menu-button.icon:active {
   background-color: rgba(255, 255, 255, .6) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: rgba(255, 255, 255, .9) !important;
 }
 }
@@ -509,7 +509,7 @@ body {
 .lightWallpaper .tile:active {
   background-color: rgba(15, 15, 15, .8) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: #36363a !important;
 }
 }
@@ -518,7 +518,7 @@ body {
 .tile, .context-menu-button.icon {
   background-color: rgba(15, 15, 15, .7) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: #36363a !important;
 }
 }
@@ -527,7 +527,7 @@ body {
 .context-menu-button.icon:active {
   background-color: rgba(15, 15, 15, .8) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: rgba(54, 54, 58, .9) !important;
 }
 }
@@ -562,7 +562,7 @@ body {
   background-color: light-dark(rgba(255, 255, 255, .6), rgba(15, 15, 15, .8)) !important;
   transition: background .5s !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(rgba(255, 255, 255, .9), rgba(54, 54, 58, .9)) !important;
 }
 }
@@ -594,7 +594,7 @@ body {
   height: 96px !important;
   background-color: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(#fff, #36363a) !important;
 }
 }
@@ -646,7 +646,7 @@ body {
   animation-duration: 250ms;
   background-color: var(--bg4) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(#fff, #36363a) !important;
 }
 }
@@ -655,7 +655,7 @@ body {
 .modal, .tile, .context-menu-button.icon, .search-inner-wrapper {
   backdrop-filter: blur(30px) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   backdrop-filter: blur(0px) !important;
 }
 }
@@ -672,7 +672,7 @@ body {
   margin: 11px 11px 0 0 !important;
   height: 98% !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(#fff, #36363a) !important;
   backdrop-filter: blur(0px) !important;
 }
@@ -683,7 +683,7 @@ body {
   backdrop-filter: blur(30px) !important;
   background-color: var(--bg4) !important;
 @media (-moz-platform: linux) {
-@media not -moz-pref("gwfox.bms") {
+@media all {
   background-color: light-dark(#fff, #36363a) !important;
   backdrop-filter: blur(0px) !important;
 }
