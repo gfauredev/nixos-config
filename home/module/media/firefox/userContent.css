@@ -717,24 +717,6 @@ body {
   background-color: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
 }
 
-@media -moz-pref("widget.macos.native-context-menus") {
-.tile, .context-menu-button.icon, .search-inner-wrapper, .location-input-wrapper, .weatherInfoLink, .weatherButtonContextMenuWrapper, .weather .context-menu, .modal, .customize-menu, .top-site-outer .context-menu, .card-outer .context-menu, .contentSearchSuggestionTable {
-  background-color: light-dark(rgba(255, 255, 255, .55), rgba(25, 25, 25, .65)) !important;
-}
-
-@media (prefers-color-scheme: light) {
-.tile, .context-menu-button.icon {
-  background-color: rgba(255, 255, 255, .55) !important;
-}
-}
-
-@media (prefers-color-scheme: dark) {
-.tile, .context-menu-button.icon {
-  background-color: rgba(25, 25, 25, .65) !important;
-}
-}
-}
-
 @media (prefers-color-scheme: dark) {
 .modal, .contentSearchSuggestionTable {
   box-shadow: var(--bs2) !important;
@@ -745,8 +727,5 @@ body {
   outline: 1px solid rgba(235, 235, 235, .2) !important;
   outline-offset: -1px !important;
 }
-
-
 }
 }
-

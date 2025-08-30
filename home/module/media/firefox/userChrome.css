@@ -63,13 +63,6 @@
   }
 }
 
-:root[macOSNativeFullscreen] #navigator-toolbox {
-  transform: none !important;
-&.fullscreen-with-menubar {
-  box-shadow: none !important;
-}
-}
-
 #tabbrowser-tabbox {
   box-shadow: none !important;
   outline: none !important;
@@ -217,7 +210,7 @@
   position: fixed !important;
   left: 7px;
   top: 15.5px;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   left: unset;
   right: 0;
@@ -243,7 +236,7 @@
   width: fit-content !important;
   grid-area: 2 / 1 / auto / auto;
   padding-left: 76px !important;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-left: 0 !important;
 }
@@ -258,7 +251,7 @@
   grid-area: 2 / 2 / auto / auto;
   padding-inline-end: 77px !important;
   margin-bottom: 5.5px !important;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 212px !important;
 @media (-moz-platform: linux) {
@@ -269,7 +262,7 @@
 
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   padding-inline-end: 111px !important;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   padding-inline-end: 246px !important;
 @media (-moz-platform: linux) {
@@ -287,7 +280,7 @@
 #PanelUI-menu-button {
   position: fixed;
   inset-inline-end: 3px;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 138px;
 @media (-moz-platform: linux) {
@@ -300,7 +293,7 @@
 #nav-bar-overflow-button {
   position: fixed;
   inset-inline-end: 43px;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
@@ -314,7 +307,7 @@
   position: fixed;
   display: flex !important;
   inset-inline-end: 43px;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 178px;
 @media (-moz-platform: linux) {
@@ -325,7 +318,7 @@
 
 :has(#nav-bar-overflow-button:not(#nav-bar:not([overflowing], [nonemptyoverflow], [customizing]) > #nav-bar-overflow-button)) & {
   inset-inline-end: 77px;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   inset-inline-end: 212px;
 @media (-moz-platform: linux) {
@@ -1488,7 +1481,7 @@ tree {
 
 :root#main-window {
   min-width: 611px !important;
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
   min-width: 701px !important;
 }
@@ -1535,7 +1528,7 @@ tree {
 }
 }
 
-@media not (-moz-platform: macos) {
+@media all {
 @media (not -moz-pref("gwfox.plus")) or -moz-pref("gwfox.plus_sc") {
 @media (max-width: 701px) {
 @media not -moz-pref("sidebar.verticalTabs") {
@@ -2823,7 +2816,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
   border-radius: 8px;
   background: var(--button-active-bgcolor);
   pointer-events: none;
-@media not (-moz-platform: macos) {
+@media all {
   background: light-dark(rgba(120, 120, 120, .1), rgba(155, 155, 155, .2));
 }
 }
@@ -2909,7 +2902,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 503px !important;
   width: calc(100% - 511px);
-@media not (-moz-platform: macos) {
+@media all {
   margin-left: 502px !important;
   width: calc(100% - 510px);
 }
@@ -2920,7 +2913,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #PersonalToolbar {
   margin-left: 623px !important;
   width: calc(100% - 631px);
-@media not (-moz-platform: macos) {
+@media all {
   margin-left: 622px !important;
   width: calc(100% - 630px);
 }
@@ -3456,7 +3449,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   background-color: light-dark(#d6d6d6, #4c4c4c) !important;
   outline: .5px solid light-dark(#b3b3b3, transparent);
   outline-offset: -.5px;
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   background-color: transparent !important;
   outline: none;
@@ -3479,7 +3472,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   padding: 0 !important;
   margin-inline: 4px !important;
   border-radius: 50% !important;
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   padding: 2px !important;
   margin-inline: 2px !important;
@@ -3507,7 +3500,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 }
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 3.5,3.01 a 0.5,0.5 0 0 0 -0.35,0.15 0.5,0.5 0 0 0 0,0.71 l 4.13,4.14 -4.14,4.13 a 0.5,0.5 0 0 0 0,0.71 0.5,0.5 0 0 0 0.71,0 L 8,8.71 12.14,12.85 a 0.5,0.5 0 0 0 0.71,0 0.5,0.5 0 0 0 0,-0.71 L 8.7,8 12.83,3.86 a 0.5,0.5 0 0 0 0,-0.71 0.5,0.5 0 0 0 -0.71,0 L 7.99,7.29 3.85,3.15 A 0.5,0.5 0 0 0 3.5,3.01 Z'/%3E%3C/svg%3E") !important;
@@ -3548,7 +3541,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 }
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 3.5,7.5 A 0.5,0.5 0 0 0 3,8 0.5,0.5 0 0 0 3.5,8.5 h 9 A 0.5,0.5 0 0 0 13,8 0.5,0.5 0 0 0 12.5,7.5 Z'/%3E%3C/svg%3E") !important;
@@ -3589,7 +3582,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 }
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 4.5,3 C 3.677,3 3,3.677 3,4.5 v 7 C 3,12.323 3.677,13 4.5,13 h 7 c 0.823,0 1.5,-0.677 1.5,-1.5 v -7 C 13,3.677 12.323,3 11.5,3 Z m 0,1 h 7 C 11.782,4 12,4.218 12,4.5 v 7 c 0,0.282 -0.218,0.5 -0.5,0.5 h -7 A 0.493,0.493 0 0 1 4,11.5 v -7 C 4,4.218 4.218,4 4.5,4 Z'/%3E%3C/svg%3E") !important;
@@ -3630,7 +3623,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 }
 }
 }
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   order: unset !important;
   content: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='context-fill' fill-opacity='context-fill-opacity' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 5.5,4 h 5 A 1.5,1.5 0 0 1 12,5.5 v 5 a 1,1 0 0 0 1,-1 v -4 A 2.5,2.5 0 0 0 10.5,3 h -4 a 1,1 0 0 0 -1,1 z M 3,6.5 v 5 A 1.5,1.5 0 0 0 4.5,13 h 5 A 1.5,1.5 0 0 0 11,11.5 v -5 A 1.5,1.5 0 0 0 9.5,5 h -5 A 1.5,1.5 0 0 0 3,6.5 Z M 4.5,6 h 5 A 0.5,0.5 0 0 1 10,6.5 v 5 A 0.5,0.5 0 0 1 9.5,12 h -5 A 0.5,0.5 0 0 1 4,11.5 v -5 A 0.5,0.5 0 0 1 4.5,6 Z'/%3E%3C/svg%3E") !important;
@@ -4021,7 +4014,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 @media (-moz-platform: linux) {
   left: 22px;
 }
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   top: 22px !important;
   left: 150px;
@@ -4037,7 +4030,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
   left: 80px;
   opacity: 1;
   transition: left .25s !important;
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   left: 8px;
 }
@@ -4046,7 +4039,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 
 #back-button {
   left: 119px;
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   left: 47px;
 }
@@ -4055,7 +4048,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 
 #forward-button {
   left: 153px;
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   left: 80px;
 }
@@ -4065,7 +4058,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 #reload-button,
 #stop-button {
   left: 187px;
-@media not (-moz-platform: macos) {
+@media all {
 @media -moz-pref("gwfox.plus_sc") {
   left: 113px;
 }
@@ -4212,7 +4205,7 @@ tab-group[collapsed] > .tab-group-label-container > & {
 
 
 
-@media not (-moz-platform: macos) {
+@media all {
 #toolbar-menubar {
   position: fixed;
   top: 49px;
