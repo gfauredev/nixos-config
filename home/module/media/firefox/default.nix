@@ -10,8 +10,16 @@
     ];
     # See https://mozilla.github.io/policy-templates
     policies = {
+      AutofillAddressEnabled = false; # Use password manager instead
+      AutofillCreditCardEnabled = false; # Use password manager
+      BlockAboutAddons = false; # FIXME set to true when configured
       BlockAboutConfig = false; # FIXME set to true when finished config
+      BlockAboutProfiles = false; # FIXME set to true when configured
+      BlockAboutSupport = false; # FIXME set to true when configured
       DefaultDownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+      DisplayBookmarksToolbar = false;
+      DisplayMenuBar = false;
+      DontCheckDefaultBrowser = true;
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
@@ -44,6 +52,12 @@
           private_browsing = true;
         };
       };
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false; # Use password manager instead
+      OverrideFirstRunPage = "";
+      PasswordManagerEnabled = false; # Use extension instead
+      ShowHomeButton = false;
+      SkipTermsOfUse = true;
     };
     profiles.default = {
       id = 0;
