@@ -101,7 +101,13 @@
       relay.enable = false;
       openFirewall = false;
     };
-    protonmail-bridge.enable = true;
+    protonmail-bridge = {
+      enable = true;
+      path = with pkgs; [
+        gnome-keyring
+        # pass
+      ];
+    };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     udisks2.enable = true; # Mount USB without privileges
