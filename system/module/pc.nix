@@ -65,14 +65,6 @@
   ];
 
   services = {
-    geoclue2 = {
-      enable = true; # Location provider
-      submissionUrl = "https://beacondb.net/v2/geosubmit";
-      submitData = false; # Useless, laptop don’t have GPS
-      geoProviderUrl = "https://beacondb.net/v1/geolocate";
-      # geoProviderUrl =
-      #   "https://www.googleapis.com/geolocation/v1/geolocate?key=MY_KEY"; TODO store secretly
-    };
     pipewire = {
       enable = true; # Enable modern audio system PipeWire
       # audio.enable = true; # Enable modern audio system PipeWire
@@ -94,6 +86,14 @@
         DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
       ''; # TEST relevance of latter 3, used by musnix
     };
+    geoclue2 = {
+      enable = true; # Location provider
+      submissionUrl = "https://beacondb.net/v2/geosubmit";
+      submitData = false; # Useless, laptop don’t have GPS
+      geoProviderUrl = "https://beacondb.net/v1/geolocate";
+      # geoProviderUrl =
+      #   "https://www.googleapis.com/geolocation/v1/geolocate?key=MY_KEY"; TODO store secretly
+    };
     rustdesk-server = {
       enable = false; # TEST
       # See: https://rustdesk.com/docs/en/self-host
@@ -101,6 +101,7 @@
       relay.enable = false;
       openFirewall = false;
     };
+    protonmail-bridge.enable = true;
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     udisks2.enable = true; # Mount USB without privileges

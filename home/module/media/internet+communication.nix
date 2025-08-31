@@ -10,11 +10,11 @@
     # servo # New modular embeddable web engine
 
     # P2P & VPN & Web3
-    nym # Super-anonymous routing protocol FIXME lacks desktop apps
+    # nym # Super-anonymous routing protocol FIXME lacks desktop apps
     # mullvad # Anonymous VPN service
     transmission_4 # Bittorrent client
     qbittorrent # Bittorrent client
-    iroh # Efficient IPFS, p2p file sharing
+    # iroh # Efficient IPFS, p2p file sharing
     # calyx-vpn # (bitmask client) Free VPN service FIXME
     # riseup-vpn # (bitmask client) Free VPN service FIXME
     protonvpn-gui # Swiss VPN service (Python rewrite)
@@ -24,9 +24,9 @@
     monero-gui # Private cryptocurrency
     # monero-cli # Monero CLI
     electrum # Light Bitcoin Wallet
-    sparrow # Bitcoin wallet
-    ord # Ordinals CLI
-    cointop # Cryptocurrencies monitor
+    # sparrow # Bitcoin wallet
+    # ord # Ordinals CLI
+    # cointop # Cryptocurrencies monitor
     go-ethereum # Ethereum CLI
 
     # Messaging
@@ -35,12 +35,12 @@
     # element-web # Secure messaging and calls
     signal-desktop # Secure messaging
     # signal-cli # Secure messaging
-    olvid # French secure messaging
+    # olvid # French secure messaging
     discord # PROPRIETARY messaging and general communication
 
     # Social networks
-    nak # Nostr CLI
-    gossip # Nostr GUI
+    # nak # Nostr CLI
+    # gossip # Nostr GUI
     # nostr-rs-relay # Rust Nostr relay
 
     # Misc
