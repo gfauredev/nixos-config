@@ -8,7 +8,7 @@
 # Files corresponding to *.git/** or *.large should not be synced with lower capacity devices
 
 # Always backed up
-IMPORTANT="$HOME/life $HOME/project $HOME/.graph $XDG_CONFIG_HOME/Bitwarden"
+IMPORTANT="$HOME/life $HOME/project $HOME/.graph"
 DATA="$HOME/data"
 OS="$HOME/data/operatingSystems.large"
 ARCHIVE="$HOME/archive"
