@@ -244,6 +244,7 @@
       sshfs # Mount ssh remote
       wakelan # Send magick packet to wake WoL devices
       # Network monitoring & Encryption
+      wireguard-tools # CLI for WireGuard
       xh # User-friendly HTTP client similar to HTTPie/cURL
       gping # Ping with a graph
       # hping # Network monitoring tool

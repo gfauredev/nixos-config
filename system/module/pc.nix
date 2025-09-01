@@ -30,6 +30,12 @@
   };
 
   security = {
+    sudo.extraRules = [
+      {
+        groups = [ "wg" ];
+        commands = [ "${pkgs.wireguard-tools}/bin/wg-quick" ];
+      }
+    ];
     pam.services.hyprlock = { };
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
     rtkit.enable = true; # Tools for realtime (preemption)
