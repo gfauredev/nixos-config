@@ -36,7 +36,7 @@
         runAs = "root";
         commands = [
           {
-            command = "${pkgs.wireguard-tools}/bin/wg-quick";
+            command = "/run/current-system/sw/bin/wg-quick";
             options = [ "NOPASSWD" ];
           }
         ];
