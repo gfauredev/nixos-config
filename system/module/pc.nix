@@ -39,6 +39,10 @@
             command = "/run/current-system/sw/bin/wg-quick";
             options = [ "NOPASSWD" ];
           }
+          {
+            command = "/run/current-system/sw/bin/wg";
+            options = [ "NOPASSWD" ];
+          }
         ];
       }
     ];
