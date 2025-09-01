@@ -33,7 +33,13 @@
     sudo.extraRules = [
       {
         groups = [ "wg" ];
-        commands = [ "${pkgs.wireguard-tools}/bin/wg-quick" ];
+        runAs = "root";
+        commands = [
+          {
+            command = "${pkgs.wireguard-tools}/bin/wg-quick";
+            options = [ "NOPASSWD" ];
+          }
+        ];
       }
     ];
     pam.services.hyprlock = { };
