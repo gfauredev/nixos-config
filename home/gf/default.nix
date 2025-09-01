@@ -42,12 +42,12 @@
     homeDirectory = user.home;
     sessionVariables = {
       # Maybe Nix modules and options are more appropriated
-      XDG_DESKTOP_DIR = "$HOME/data"; # FIXME not properly propagated to shell, wm…
-      XDG_DOCUMENTS_DIR = "$HOME/data";
-      XDG_MUSIC_DIR = "$HOME/data";
-      XDG_PICTURES_DIR = "$HOME/dcim";
-      XDG_VIDEOS_DIR = "$HOME/dcim";
-      XDG_DOWNLOAD_DIR = "$HOME/tmp";
+      XDG_DESKTOP_DIR = "${user.home}/data"; # FIXME not properly propagated to shell, wm…
+      XDG_DOCUMENTS_DIR = "${user.home}/data";
+      XDG_MUSIC_DIR = "${user.home}/data";
+      XDG_PICTURES_DIR = "${user.home}/dcim";
+      XDG_VIDEOS_DIR = "${user.home}/dcim";
+      XDG_DOWNLOAD_DIR = "${user.home}/tmp";
       CONFIG_FLAKE = "~/.config/flake"; # System and home flake configs
       BAT_PAGING = "never";
       SHELL = "nu"; # TEST if better with full paths
