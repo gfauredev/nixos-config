@@ -160,6 +160,7 @@
   users.groups = {
     mtp = { };
     uinput = { };
+    wg = { };
   };
 
   programs = {
