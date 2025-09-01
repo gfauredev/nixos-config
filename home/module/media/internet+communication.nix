@@ -17,7 +17,8 @@
     # iroh # Efficient IPFS, p2p file sharing
     # calyx-vpn # (bitmask client) Free VPN service FIXME
     # riseup-vpn # (bitmask client) Free VPN service FIXME
-    protonvpn-gui # Swiss VPN service (Python rewrite)
+    protonvpn-cli_2 # Swiss VPN service (CLI)
+    protonvpn-gui # Swiss VPN service (Python GUI)
     wayback # Web archiving tool
     # bitcoin # Bitcoin Core
     lnd # Lightning Network Daemon
