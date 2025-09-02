@@ -188,7 +188,7 @@
     rbw.enable = true; # CLI Bitwarden client
     gpg.enable = true; # Useful cryptography tool
     direnv.enable = true;
-    password-store.enable = true; # CLI standard password manager
+    # password-store.enable = true; # CLI standard password manager
     git = {
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
@@ -243,7 +243,7 @@
       ];
     };
     direnv.nix-direnv.enable = true;
-    password-store.package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
+    # password-store.package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
   };
 
   xdg = {

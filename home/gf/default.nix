@@ -54,7 +54,7 @@
       PAGER = "ov"; # TEST if better with full paths
       BROWSER = "firefox"; # TEST if better with full paths
       BROWSER_ALT = "brave"; # TEST if better with full paths
-      PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
+      # PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
     };
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.11"; # TODO update on clean install
