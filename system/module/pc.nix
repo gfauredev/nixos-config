@@ -238,7 +238,7 @@
       navi # Cheat sheet for CLIs TEST if useful
       cpulimit # Limit CPU usage of a command
       # libsecret # Provides secret-tool, gnome-keyring CLI
-      protonmail-bridge-gui # GUI for ProtonMail Bridge
+      # protonmail-bridge-gui # GUI for ProtonMail Bridge
     ];
   };
 
