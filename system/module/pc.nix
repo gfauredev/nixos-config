@@ -237,6 +237,7 @@
       convmv # Converts filenames from one encoding to another
       navi # Cheat sheet for CLIs TEST if useful
       cpulimit # Limit CPU usage of a command
+      libsecret # Provides secret-tool, gnome-keyring CLI
     ];
   };
 
