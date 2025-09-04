@@ -37,6 +37,7 @@
       connect-timeout = 5; # Quickly go offline if substituters not reachable
       # log-lines = lib.mkDefault 25; # More logging
     };
+    allowedUsers = [ "@wheel" ];
   };
 
   boot = {
