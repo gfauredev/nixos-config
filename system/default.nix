@@ -219,6 +219,7 @@
   environment = {
     shells = with pkgs; [ dash ]; # Only allowed login shell
     binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
+    defaultPackages = lib.mkForce [ ];
     systemPackages = with pkgs; [
       # Shell utilities
       dash # Only login and script shell
