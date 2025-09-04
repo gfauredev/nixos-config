@@ -36,8 +36,8 @@
       auto-optimise-store = true;
       connect-timeout = 5; # Quickly go offline if substituters not reachable
       # log-lines = lib.mkDefault 25; # More logging
+      allowed-users = [ "@wheel" ];
     };
-    allowed-users = [ "@wheel" ];
   };
 
   boot = {
