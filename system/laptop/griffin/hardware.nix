@@ -31,6 +31,7 @@
       "subvol=root"
       "compress=zstd"
       "noatime"
+      "noexec"
     ];
   };
 
@@ -60,6 +61,9 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/F226-8C9D";
     fsType = "vfat";
+    options = [
+      "noexec"
+    ];
   };
 
   # See https://nixos.wiki/wiki/Swap
