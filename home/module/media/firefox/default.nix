@@ -261,8 +261,7 @@
         #   ];
         #   definedAliases = [ "@eb" ];
         # };
-        # Ecosia
-        ecosia = {
+        Ecosia = {
           urls = [
             {
               template = "https://www.ecosia.org/search";
@@ -707,10 +706,10 @@
             "@yt"
           ];
         };
-        bing.metadata.hidden = true; # Bing
+        # bing.metadata.hidden = true; # Bing
       };
-      search.default = "ecosia";
-      search.privateDefault = "ecosia";
+      search.default = "Ecosia";
+      search.privateDefault = "Ecosia";
       search.order = [
         "Tabs" # Builtin
         "Bookmarks" # Builtin
