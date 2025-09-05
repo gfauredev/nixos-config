@@ -210,7 +210,8 @@
           ];
           definedAliases = [ "@ds" ];
         };
-        DuckDuckGo = {
+        # DuckDuckGo
+        ddg = {
           urls = [
             {
               template = "https://duckduckgo.com/";
@@ -227,7 +228,8 @@
             "@ddg"
           ];
         };
-        eBay = {
+        # eBay
+        ebay = {
           urls = [
             {
               template = "https://www.ebay.fr/sch/i.html";
@@ -567,7 +569,8 @@
           ];
           definedAliases = [ "@typ" ];
         };
-        "Wikipedia (en)" = {
+        # Wikipedia (en)
+        wikipedia = {
           urls = [
             {
               template = "https://en.wikipedia.org/w/index.php";
@@ -635,7 +638,7 @@
             "@yt"
           ];
         };
-        Bing.metadata.hidden = true;
+        bing.metadata.hidden = true; # Bing
       };
       search.order = [
         "Tabs" # Integrated into Firefox
@@ -643,12 +646,12 @@
         "History" # Integrated into Firefox
         "Actions" # Integrated into Firefox
         "ecosia" # Default search engine
-        "Wikipedia (en)" # Integrated into Firefox
+        "wikipedia" # Wikipedia (en) # Integrated into Firefox
         "Wikipedia (fr)"
         "youtube"
         "nixWiki"
         "archWiki"
-        "DuckDuckGo" # Integrated into Firefox
+        "ddg" # DuckDuckGo # Integrated into Firefox
         "openStreetMaps"
         "nixPackages"
         "nixOptions"
