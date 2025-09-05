@@ -93,7 +93,7 @@
     "id": "c0021549",
     "name": "Ebay",
     "trigger": "eb",
-    "url": "http://www.ebay.com/sch/i.html?_nkw=%s"
+    "url": "https://www.ebay.fr/sch/i.html?_nkw=%s"
   },
   {
     "fallback": true,
