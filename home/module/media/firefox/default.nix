@@ -91,6 +91,7 @@
       };
       containersForce = true; # WARN force overrides containers config
       search.force = true; # WARN override stateful config
+      # TODO use this engines definition as SST (Albert config…)
       search.engines = {
         alternativeto = {
           name = "AlternativeTo";
