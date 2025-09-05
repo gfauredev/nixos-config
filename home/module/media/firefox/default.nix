@@ -134,7 +134,7 @@
               ];
             }
           ];
-          definedAliases = [ "@archwiki" ];
+          definedAliases = [ "@aw" ];
         };
         cdiscount = {
           urls = [
@@ -222,7 +222,10 @@
               ];
             }
           ];
-          definedAliases = [ "@dd" ];
+          definedAliases = [
+            "@dd"
+            "@ddg"
+          ];
         };
         ebay = {
           urls = [
@@ -250,7 +253,10 @@
               ];
             }
           ];
-          definedAliases = [ "@e" ];
+          definedAliases = [
+            "@e"
+            "@eco"
+          ];
         };
         fDroid = {
           urls = [
@@ -278,7 +284,10 @@
               ];
             }
           ];
-          definedAliases = [ "@gh" ];
+          definedAliases = [
+            "@gh"
+            "@git"
+          ];
         };
         gitLab = {
           urls = [
@@ -306,7 +315,10 @@
               ];
             }
           ];
-          definedAliases = [ "@g" ];
+          definedAliases = [
+            "@g"
+            "@ggl"
+          ];
         };
         googleMaps = {
           urls = [
@@ -314,7 +326,11 @@
               template = "https://www.google.com/maps/search/{searchTerms}/";
             }
           ];
-          definedAliases = [ "@gm" ];
+          definedAliases = [
+            "@gm"
+            "@map"
+            "@maps"
+          ];
         };
         googleScholar = {
           urls = [
@@ -384,7 +400,10 @@
               ];
             }
           ];
-          definedAliases = [ "@mist" ];
+          definedAliases = [
+            "@mist"
+            "@chat"
+          ];
         };
         nixOptions = {
           urls = [
@@ -560,7 +579,11 @@
               ];
             }
           ];
-          definedAliases = [ "@wf" ];
+          definedAliases = [
+            "@w"
+            "@wf"
+            "@wiki"
+          ];
         };
         wolframAlpha = {
           urls = [
@@ -574,7 +597,10 @@
               ];
             }
           ];
-          definedAliases = [ "@wa" ];
+          definedAliases = [
+            "@wa"
+            "@alpha"
+          ];
         };
         youtube = {
           urls = [
@@ -588,7 +614,10 @@
               ];
             }
           ];
-          definedAliases = [ "@y" ];
+          definedAliases = [
+            "@y"
+            "@yt"
+          ];
         };
         bing.metadata.hidden = true;
       };
