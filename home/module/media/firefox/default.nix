@@ -92,7 +92,8 @@
       containersForce = true; # WARN force overrides containers config
       search.force = true; # WARN override stateful config
       search.engines = {
-        AlternativeTo = {
+        alternativeto = {
+          name = "AlternativeTo";
           urls = [
             {
               template = "https://alternativeto.net/browse/search/";
@@ -106,7 +107,8 @@
           ];
           definedAliases = [ "@alt" ];
         };
-        Amazon = {
+        amazon = {
+          name = "Amazon";
           urls = [
             {
               template = "https://www.amazon.fr/s/";
@@ -123,7 +125,8 @@
             "@amz"
           ];
         };
-        ArchWiki = {
+        archwiki = {
+          name = "ArchLinux Wiki";
           urls = [
             {
               template = "https://wiki.archlinux.org/index.php?title=Special:Search";
@@ -137,7 +140,8 @@
           ];
           definedAliases = [ "@aw" ];
         };
-        Bluesky = {
+        bluesky = {
+          name = "Bluesky";
           urls = [
             {
               template = "https://bsky.app/search";
@@ -154,7 +158,8 @@
             "@bsky"
           ];
         };
-        CDiscount = {
+        cdiscount = {
+          name = "CDiscount";
           urls = [
             {
               template = "https://www.cdiscount.com/search/10/{searchTerms}";
@@ -162,7 +167,8 @@
           ];
           definedAliases = [ "@cd" ];
         };
-        ChatGPT = {
+        chatgpt = {
+          name = "ChatGPT";
           urls = [
             {
               template = "https://chat.openai.com/";
@@ -176,7 +182,8 @@
           ];
           definedAliases = [ "@gpt" ];
         };
-        DataSheetCatalog = {
+        datasheetcatalog = {
+          name = "DataSheetCatalog";
           urls = [
             {
               template = "https://search.datasheetcatalog.net/key/";
@@ -190,7 +197,8 @@
           ];
           definedAliases = [ "@dsc" ];
         };
-        DeepLEnFr = {
+        deepl-en-fr = {
+          name = "DeepL en->fr";
           urls = [
             {
               template = "https://www.deepl.com/translator#en/fr/{searchTerms}";
@@ -198,7 +206,8 @@
           ];
           definedAliases = [ "@en-fr" ];
         };
-        DeepLFrEn = {
+        deepl-fr-en = {
+          name = "DeepL fr->en";
           urls = [
             {
               template = "https://www.deepl.com/translator#fr/en/{searchTerms}";
@@ -206,7 +215,8 @@
           ];
           definedAliases = [ "@fr-en" ];
         };
-        DeepLFrEs = {
+        deepl-fr-es = {
+          name = "DeepL fr->es";
           urls = [
             {
               template = "https://www.deepl.com/translator#fr/es/{searchTerms}";
@@ -214,7 +224,8 @@
           ];
           definedAliases = [ "@fr-es" ];
         };
-        DeepSeek = {
+        deepseek = {
+          name = "DeepSeek";
           urls = [
             {
               template = "https://chat.deepseek.com/";
@@ -228,8 +239,8 @@
           ];
           definedAliases = [ "@ds" ];
         };
-        # DuckDuckGo, built-in Firefox, only supports adding an alias
         # ddg = {
+        # name = "DuckDuckGo" # Built-in Firefox, only supports adding an alias
         #   urls = [
         #     {
         #       template = "https://duckduckgo.com/";
@@ -246,8 +257,8 @@
         #     "@ddg"
         #   ];
         # };
-        # eBay, built-in Firefox, only supports adding an alias
         # ebay = {
+        # name = "eBay" # Built-in Firefox, only supports adding an alias
         #   urls = [
         #     {
         #       template = "https://www.ebay.fr/sch/i.html";
@@ -261,7 +272,8 @@
         #   ];
         #   definedAliases = [ "@eb" ];
         # };
-        Ecosia = {
+        ecosia = {
+          name = "Ecosia";
           urls = [
             {
               template = "https://www.ecosia.org/search";
@@ -278,7 +290,8 @@
             "@eco"
           ];
         };
-        FDroid = {
+        f-droid = {
+          name = "F-Droid";
           urls = [
             {
               template = "https://search.f-droid.org/";
@@ -292,7 +305,8 @@
           ];
           definedAliases = [ "@fdroid" ];
         };
-        GitHub = {
+        github = {
+          name = "GitHub";
           urls = [
             {
               template = "https://github.com/search";
@@ -309,7 +323,8 @@
             "@git"
           ];
         };
-        GitLab = {
+        gitlab = {
+          name = "GitLab";
           urls = [
             {
               template = "https://gitlab.com/search";
@@ -325,6 +340,7 @@
         };
         google.metaData.alias = "@g"; # Builtin, only supports adding an alias
         # google = {
+        # name = "Google";
         #   urls = [
         #     {
         #       template = "https://www.google.com/search";
@@ -341,7 +357,8 @@
         #     "@ggl"
         #   ];
         # };
-        GoogleMaps = {
+        googlemaps = {
+          name = "Google Maps";
           urls = [
             {
               template = "https://www.google.com/maps/search/{searchTerms}/";
@@ -353,7 +370,8 @@
             "@maps"
           ];
         };
-        GoogleScholar = {
+        googlescholar = {
+          name = "Google Scholar";
           urls = [
             {
               template = "https://scholar.google.com/scholar";
@@ -367,7 +385,8 @@
           ];
           definedAliases = [ "@gs" ];
         };
-        GoogleTranslate = {
+        googletranslate = {
+          name = "Google Translate";
           urls = [
             {
               template = "https://translate.google.com/";
@@ -381,7 +400,8 @@
           ];
           definedAliases = [ "@gt" ];
         };
-        HelixDocs = {
+        helixdocs = {
+          name = "Helix Docs";
           urls = [
             {
               template = "https://docs.helix-editor.com/";
@@ -395,7 +415,8 @@
           ];
           definedAliases = [ "@hx" ];
         };
-        LeBonCoin = {
+        leboncoin = {
+          name = "Le Bon Coin";
           urls = [
             {
               template = "https://www.leboncoin.fr/recherche";
@@ -410,6 +431,7 @@
           definedAliases = [ "@lbc" ];
         };
         mdn = {
+          # name = "mdn";
           urls = [
             {
               template = "https://developer.mozilla.org/fr/search";
@@ -423,7 +445,8 @@
           ];
           definedAliases = [ "@mdn" ];
         };
-        Mistral = {
+        mistral = {
+          name = "Mistral";
           urls = [
             {
               template = "https://chat.mistral.ai/chat/";
@@ -440,7 +463,8 @@
             "@chat"
           ];
         };
-        NixOptions = {
+        nixoptions = {
+          name = "NixOS Options";
           urls = [
             {
               template = "https://search.nixos.org/options";
@@ -454,7 +478,8 @@
           ];
           definedAliases = [ "@opt" ];
         };
-        NixWiki = {
+        nixwiki = {
+          name = "NixOS Wiki";
           urls = [
             {
               template = "https://wiki.nixos.org/w/index.php";
@@ -468,7 +493,8 @@
           ];
           definedAliases = [ "@nw" ];
         };
-        NixpkgsIssues = {
+        nixpkgsissues = {
+          name = "Nixpkgs Issues";
           urls = [
             {
               template = "https://github.com/NixOS/nixpkgs/issues";
@@ -482,7 +508,8 @@
           ];
           definedAliases = [ "@nissue" ];
         };
-        NixPackages = {
+        nixpackages = {
+          name = "Nix Packages";
           urls = [
             {
               template = "https://search.nixos.org/packages";
@@ -496,7 +523,8 @@
           ];
           definedAliases = [ "@pkg" ];
         };
-        NixVersions = {
+        nixversions = {
+          name = "Nix Packages Versions";
           urls = [
             {
               template = "https://lazamar.co.uk/nix-versions/";
@@ -510,7 +538,8 @@
           ];
           definedAliases = [ "@pkgv" ];
         };
-        NixPrTracker = {
+        nixprtracker = {
+          name = "Nix PRs Tracker";
           urls = [
             {
               template = "https://nixpk.gs/pr-tracker.html";
@@ -524,7 +553,8 @@
           ];
           definedAliases = [ "@nixpr" ];
         };
-        Noogle = {
+        noogle = {
+          name = "Noogle";
           urls = [
             {
               template = "https://noogle.dev/q";
@@ -538,7 +568,8 @@
           ];
           definedAliases = [ "@noo" ];
         };
-        NosToday = {
+        nostoday = {
+          name = "Nos.Today";
           urls = [
             {
               template = "https://nos.today/search";
@@ -552,7 +583,8 @@
           ];
           definedAliases = [ "@nos" ];
         };
-        NostrBand = {
+        nostrband = {
+          name = "Nostr.Band";
           urls = [
             {
               template = "https://nostr.band/";
@@ -566,7 +598,8 @@
           ];
           definedAliases = [ "@nostr" ];
         };
-        OpenStreetMaps = {
+        openstreetmaps = {
+          name = "Open Street Maps";
           urls = [
             {
               template = "https://www.openstreetmap.org/search";
@@ -580,7 +613,8 @@
           ];
           definedAliases = [ "@m" ];
         };
-        Searchix = {
+        searchix = {
+          name = "Searchix";
           urls = [
             {
               template = "https://searchix.alanpearce.eu/";
@@ -594,7 +628,8 @@
           ];
           definedAliases = [ "@nix" ];
         };
-        TypstDocs = {
+        typstdocs = {
+          name = "Typst Docs";
           urls = [
             {
               template = "https://typst.app/docs/{searchTerms}";
@@ -606,7 +641,8 @@
           ];
         };
         wikipedia.metaData.alias = "@w"; # Builtin, only supports adding alias
-        # WikipediaEn = {
+        # wikipedia = {
+        # name = "Wikipedia (en)";
         #   urls = [
         #     {
         #       template = "https://en.wikipedia.org/w/index.php";
@@ -623,7 +659,8 @@
         #     "@we"
         #   ];
         # };
-        WikipediaFr = {
+        wikipedia-fr = {
+          name = "Wikipedia (fr)";
           urls = [
             {
               template = "https://fr.wikipedia.org/w/index.php";
@@ -640,7 +677,8 @@
             "@wiki"
           ];
         };
-        WikiGrapher = {
+        wikigrapher = {
+          name = "WikiGrapher";
           urls = [
             {
               template = "https://wikigrapher.com/paths";
@@ -672,7 +710,8 @@
             "@wg"
           ];
         };
-        WolframAlpha = {
+        wolframalpha = {
+          name = "WolframAlpha";
           urls = [
             {
               template = "https://www.wolframalpha.com/input/";
@@ -689,7 +728,8 @@
             "@alpha"
           ];
         };
-        YouTube = {
+        youtube = {
+          name = "YouTube";
           urls = [
             {
               template = "https://www.youtube.com/results";
@@ -708,22 +748,22 @@
         };
         # bing.metadata.hidden = true; # Bing
       };
-      search.default = "Ecosia";
-      search.privateDefault = "Ecosia";
+      search.default = "ecosia";
+      search.privateDefault = "ddg";
       search.order = [
         "Tabs" # Builtin
         "Bookmarks" # Builtin
         "History" # Builtin
         "Actions" # Builtin
         "wikipedia" # Wikipedia (en), builtin
-        "WikipediaFr"
-        "YouTube"
-        "NixWiki"
-        "ArchWiki"
+        "wikipedia-fr"
+        "youtube"
+        "nixwiki"
+        "archwiki"
         "ddg" # DuckDuckGo # Builtin
-        "OpenStreetMaps"
-        "NixPackages"
-        "NixOptions"
+        "openstreetmaps"
+        "nixpackages"
+        "nixoptions"
       ];
       settings = {
         "browser.uiCustomization.navBarWhenVerticalTabs" = [
