@@ -154,138 +154,151 @@
       # See https://docs.helix-editor.com/languages.html
       # WARN keep up to date with upstream:
       # https://github.com/helix-editor/helix/blob/master/languages.toml
-      language = [
-        {
-          name = "nix";
-          language-servers = [
-            "nil"
-            "nixd"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-          formatter.command = "nixfmt";
-        }
-        {
-          name = "python";
-          language-servers = [
-            "ty"
-            "ruff"
-            "pylsp"
-            "harper"
-            "llm"
-            # "jedi"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "typst";
-          language-servers = [
-            "tinymist"
-            "ltex"
-            "llm"
-          ];
-          auto-format = true;
-          formatter = {
-            command = "typstyle";
-            args = [
-              "--line-width=80"
-              "--indent-width=2"
-              "--wrap-text"
-            ];
+      language =
+        let
+          ts-lsp = {
+            name = "typescript-language-server";
+            except-features = [ "format" ];
           };
-        }
-        {
-          name = "markdown";
-          language-servers = [
-            "marksman"
-            "markdown-oxide"
-            "dprint"
-            "ltex"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "c";
-          file-types = [
-            "c"
-            "h"
-          ];
-          language-servers = [
-            "clangd"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "java";
-          language-servers = [
-            "jdtls"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "bash";
-          language-servers = [
-            "bash-language-server"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "javascript";
-          language-servers = [
-            "typescript-language-server"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "typescript";
-          language-servers = [
-            "typescript-language-server"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "jsx";
-          language-servers = [
-            "typescript-language-server"
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "git-commit";
-          language-servers = [
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        {
-          name = "git-rebase";
-          language-servers = [
-            "harper"
-            "llm"
-          ];
-          auto-format = true;
-        }
-        # {
-        #   name = "sql";
-        #   language-servers = [ "sqls" ];
-        #   auto-format = true;
-        # }
-      ];
+          # dprint = {
+          #   command = "dprint";
+          #   args = [ "fmt" ];
+          # };
+        in
+        [
+          {
+            name = "nix";
+            language-servers = [
+              "nil"
+              "nixd"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+            formatter.command = "nixfmt";
+          }
+          {
+            name = "python";
+            language-servers = [
+              "ty"
+              "ruff"
+              "pylsp"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "typst";
+            language-servers = [
+              "tinymist"
+              "ltex"
+              "llm"
+            ];
+            auto-format = true;
+            formatter = {
+              command = "typstyle";
+              args = [
+                "--line-width=80"
+                "--indent-width=2"
+                "--wrap-text"
+              ];
+            };
+          }
+          {
+            name = "markdown";
+            language-servers = [
+              "marksman"
+              "markdown-oxide"
+              "ltex"
+              "dprint" # Formatter
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "c";
+            file-types = [
+              "c"
+              "h"
+            ];
+            language-servers = [
+              "clangd"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "java";
+            language-servers = [
+              "jdtls"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "bash";
+            language-servers = [
+              "bash-language-server"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "javascript";
+            language-servers = [
+              ts-lsp
+              "biome"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "typescript";
+            language-servers = [
+              ts-lsp
+              "biome"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "jsx";
+            language-servers = [
+              ts-lsp
+              "biome"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "git-commit";
+            language-servers = [
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
+            name = "git-rebase";
+            language-servers = [
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          # {
+          #   name = "sql";
+          #   language-servers = [ "sqls" ];
+          #   auto-format = true;
+          # }
+        ];
       language-server = {
         dprint = {
           command = "dprint";
@@ -342,6 +355,10 @@
         ruff = {
           command = "ruff";
           args = [ "server" ];
+        };
+        biome = {
+          command = "biome";
+          args = [ "lsp-proxy" ];
         };
         # sqls = { command = "sqls"; };
       };
