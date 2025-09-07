@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, stablepkgs, ... }:
 {
   # networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
   # environment.systemPackages = with pkgs;
@@ -21,6 +21,7 @@
     };
     podman = {
       enable = true;
+      package = stablepkgs.podman;
       autoPrune.enable = true;
       extraPackages = with pkgs; [
         podman-compose
