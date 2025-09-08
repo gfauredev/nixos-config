@@ -50,7 +50,7 @@
         # Laptop: Griffin, a powerful flying creature
         griffin = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux"; # PC architecture
-          # specialArgs = { inherit inputs; };
+          specialArgs = { inherit pkgs25-05; };
           modules = [
             ./system/laptop/griffin
             { users.users.gf = users.gf; }
