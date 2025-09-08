@@ -34,7 +34,7 @@
     element-desktop # Secure group messaging and calls
     # element-web # Secure messaging and calls
     signal-desktop # Secure messaging
-    # telegram-desktop # "Secure" messaging
+    telegram-desktop # "Secure" messaging
     # signal-cli # Secure messaging
     # olvid # French secure messaging
     discord # PROPRIETARY messaging and general communication
