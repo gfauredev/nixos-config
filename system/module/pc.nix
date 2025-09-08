@@ -124,10 +124,10 @@
         # pass
       ];
     };
-    changedetection-io = {
-      enable = true; # Monitor website changes
-      playwrightSupport = true;
-    };
+    # changedetection-io = {
+    #   enable = true; # Monitor website changes
+    #   playwrightSupport = true;
+    # };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     udisks2.enable = true; # Mount USB without privileges

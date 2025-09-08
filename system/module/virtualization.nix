@@ -1,4 +1,4 @@
-{ pkgs, pkgs25-05, ... }:
+{ pkgs, ... }:
 {
   # networking.firewall.enable = lib.mkForce false; # FIXME for virt nets
   # environment.systemPackages = with pkgs;
@@ -20,8 +20,7 @@
       parallelShutdown = 4; # Shutdown up to 4 VMs in parallel
     };
     podman = {
-      enable = true;
-      package = pkgs25-05.podman;
+      enable = false;
       autoPrune.enable = true;
       extraPackages = with pkgs; [
         podman-compose
