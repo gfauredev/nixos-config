@@ -139,6 +139,7 @@
           "x-scheme-handler/nntp" = "${config.organization.pim}.desktop";
           "x-scheme-handler/feed" = "${config.organization.pim}.desktop";
           "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
+          "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
           "application/rss+xml" = "${config.organization.pim}.desktop";
           "application/x-extension-rss" = "${config.organization.pim}.desktop";
           "application/x-extension-ics" = "${config.organization.pim}.desktop";
