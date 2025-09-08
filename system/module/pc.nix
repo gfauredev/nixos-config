@@ -126,6 +126,7 @@
     };
     changedetection-io = {
       enable = true; # Monitor website changes
+      playwrightSupport = true;
     };
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
