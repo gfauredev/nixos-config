@@ -126,7 +126,7 @@
               ];
             }
           ];
-          definedAliases = [ "@alt" ];
+          definedAliases = [ "alt" ];
         };
         amazon = {
           name = "Amazon";
@@ -142,8 +142,8 @@
             }
           ];
           definedAliases = [
-            "@am"
-            "@amz"
+            "am"
+            "amz"
           ];
         };
         archwiki = {
@@ -159,7 +159,7 @@
               ];
             }
           ];
-          definedAliases = [ "@aw" ];
+          definedAliases = [ "aw" ];
         };
         bluesky = {
           name = "Bluesky";
@@ -175,8 +175,8 @@
             }
           ];
           definedAliases = [
-            "@bs"
-            "@bsky"
+            "bs"
+            "bsky"
           ];
         };
         cdiscount = {
@@ -186,7 +186,7 @@
               template = "https://www.cdiscount.com/search/10/{searchTerms}";
             }
           ];
-          definedAliases = [ "@cd" ];
+          definedAliases = [ "cd" ];
         };
         chatgpt = {
           name = "ChatGPT";
@@ -201,7 +201,7 @@
               ];
             }
           ];
-          definedAliases = [ "@gpt" ];
+          definedAliases = [ "gpt" ];
         };
         datasheetcatalog = {
           name = "DataSheetCatalog";
@@ -216,7 +216,7 @@
               ];
             }
           ];
-          definedAliases = [ "@dsc" ];
+          definedAliases = [ "dsc" ];
         };
         deepl-en-fr = {
           name = "DeepL en->fr";
@@ -225,7 +225,7 @@
               template = "https://www.deepl.com/translator#en/fr/{searchTerms}";
             }
           ];
-          definedAliases = [ "@en-fr" ];
+          definedAliases = [ "en-fr" ];
         };
         deepl-fr-en = {
           name = "DeepL fr->en";
@@ -234,7 +234,7 @@
               template = "https://www.deepl.com/translator#fr/en/{searchTerms}";
             }
           ];
-          definedAliases = [ "@fr-en" ];
+          definedAliases = [ "fr-en" ];
         };
         deepl-fr-es = {
           name = "DeepL fr->es";
@@ -243,7 +243,7 @@
               template = "https://www.deepl.com/translator#fr/es/{searchTerms}";
             }
           ];
-          definedAliases = [ "@fr-es" ];
+          definedAliases = [ "fr-es" ];
         };
         deepseek = {
           name = "DeepSeek";
@@ -258,7 +258,7 @@
               ];
             }
           ];
-          definedAliases = [ "@ds" ];
+          definedAliases = [ "ds" ];
         };
         # ddg = {
         # name = "DuckDuckGo" # Built-in Firefox, only supports adding an alias
@@ -274,8 +274,8 @@
         #     }
         #   ];
         #   definedAliases = [
-        #     "@dd"
-        #     "@ddg"
+        #     "dd"
+        #     "ddg"
         #   ];
         # };
         # ebay = {
@@ -291,7 +291,7 @@
         #       ];
         #     }
         #   ];
-        #   definedAliases = [ "@eb" ];
+        #   definedAliases = [ "eb" ];
         # };
         ecosia = {
           name = "Ecosia";
@@ -307,8 +307,8 @@
             }
           ];
           definedAliases = [
-            "@e"
-            "@eco"
+            "e"
+            "eco"
           ];
         };
         f-droid = {
@@ -324,7 +324,7 @@
               ];
             }
           ];
-          definedAliases = [ "@fdroid" ];
+          definedAliases = [ "fdroid" ];
         };
         github = {
           name = "GitHub";
@@ -340,8 +340,8 @@
             }
           ];
           definedAliases = [
-            "@gh"
-            "@git"
+            "gh"
+            "git"
           ];
         };
         gitlab = {
@@ -357,9 +357,9 @@
               ];
             }
           ];
-          definedAliases = [ "@gl" ];
+          definedAliases = [ "gl" ];
         };
-        google.metaData.alias = "@g"; # Builtin, only supports adding an alias
+        google.metaData.alias = "g"; # Builtin, only supports adding an alias
         # google = {
         # name = "Google";
         #   urls = [
@@ -374,8 +374,8 @@
         #     }
         #   ];
         #   definedAliases = [
-        #     "@g"
-        #     "@ggl"
+        #     "g"
+        #     "ggl"
         #   ];
         # };
         googlemaps = {
@@ -386,9 +386,9 @@
             }
           ];
           definedAliases = [
-            "@gm"
-            "@map"
-            "@maps"
+            "gm"
+            "map"
+            "maps"
           ];
         };
         googlescholar = {
@@ -404,7 +404,7 @@
               ];
             }
           ];
-          definedAliases = [ "@gs" ];
+          definedAliases = [ "gs" ];
         };
         googletranslate = {
           name = "Google Translate";
@@ -419,7 +419,7 @@
               ];
             }
           ];
-          definedAliases = [ "@gt" ];
+          definedAliases = [ "gt" ];
         };
         helixdocs = {
           name = "Helix Docs";
@@ -434,7 +434,7 @@
               ];
             }
           ];
-          definedAliases = [ "@hx" ];
+          definedAliases = [ "hx" ];
         };
         leboncoin = {
           name = "Le Bon Coin";
@@ -449,7 +449,7 @@
               ];
             }
           ];
-          definedAliases = [ "@lbc" ];
+          definedAliases = [ "lbc" ];
         };
         mdn = {
           # name = "mdn";
@@ -464,7 +464,7 @@
               ];
             }
           ];
-          definedAliases = [ "@mdn" ];
+          definedAliases = [ "mdn" ];
         };
         mistral = {
           name = "Mistral";
@@ -480,8 +480,8 @@
             }
           ];
           definedAliases = [
-            "@mist"
-            "@chat"
+            "mist"
+            "chat"
           ];
         };
         nixoptions = {
@@ -497,7 +497,7 @@
               ];
             }
           ];
-          definedAliases = [ "@opt" ];
+          definedAliases = [ "opt" ];
         };
         nixwiki = {
           name = "NixOS Wiki";
@@ -512,7 +512,7 @@
               ];
             }
           ];
-          definedAliases = [ "@nw" ];
+          definedAliases = [ "nw" ];
         };
         nixpkgsissues = {
           name = "Nixpkgs Issues";
@@ -527,7 +527,7 @@
               ];
             }
           ];
-          definedAliases = [ "@nissue" ];
+          definedAliases = [ "nissue" ];
         };
         nixpackages = {
           name = "Nix Packages";
@@ -542,7 +542,7 @@
               ];
             }
           ];
-          definedAliases = [ "@pkg" ];
+          definedAliases = [ "pkg" ];
         };
         nixversions = {
           name = "Nix Packages Versions";
@@ -557,7 +557,7 @@
               ];
             }
           ];
-          definedAliases = [ "@pkgv" ];
+          definedAliases = [ "pkgv" ];
         };
         nixprtracker = {
           name = "Nix PRs Tracker";
@@ -572,7 +572,7 @@
               ];
             }
           ];
-          definedAliases = [ "@nixpr" ];
+          definedAliases = [ "nixpr" ];
         };
         noogle = {
           name = "Noogle";
@@ -587,7 +587,7 @@
               ];
             }
           ];
-          definedAliases = [ "@noo" ];
+          definedAliases = [ "noo" ];
         };
         nostoday = {
           name = "Nos.Today";
@@ -602,7 +602,7 @@
               ];
             }
           ];
-          definedAliases = [ "@nos" ];
+          definedAliases = [ "nos" ];
         };
         nostrband = {
           name = "Nostr.Band";
@@ -617,7 +617,7 @@
               ];
             }
           ];
-          definedAliases = [ "@nostr" ];
+          definedAliases = [ "nostr" ];
         };
         openstreetmaps = {
           name = "Open Street Maps";
@@ -632,7 +632,7 @@
               ];
             }
           ];
-          definedAliases = [ "@m" ];
+          definedAliases = [ "m" ];
         };
         searchix = {
           name = "Searchix";
@@ -647,7 +647,7 @@
               ];
             }
           ];
-          definedAliases = [ "@nix" ];
+          definedAliases = [ "nix" ];
         };
         typstdocs = {
           name = "Typst Docs";
@@ -657,11 +657,11 @@
             }
           ];
           definedAliases = [
-            "@typ"
-            "@typst"
+            "typ"
+            "typst"
           ];
         };
-        wikipedia.metaData.alias = "@w"; # Builtin, only supports adding alias
+        wikipedia.metaData.alias = "w"; # Builtin, only supports adding alias
         # wikipedia = {
         # name = "Wikipedia (en)";
         #   urls = [
@@ -676,8 +676,8 @@
         #     }
         #   ];
         #   definedAliases = [
-        #     "@w"
-        #     "@we"
+        #     "w"
+        #     "we"
         #   ];
         # };
         wikipedia-fr = {
@@ -694,8 +694,8 @@
             }
           ];
           definedAliases = [
-            "@wf"
-            "@wiki"
+            "wf"
+            "wiki"
           ];
         };
         wikigrapher = {
@@ -728,7 +728,7 @@
             }
           ];
           definedAliases = [
-            "@wg"
+            "wg"
           ];
         };
         wolframalpha = {
@@ -745,8 +745,8 @@
             }
           ];
           definedAliases = [
-            "@wa"
-            "@alpha"
+            "wa"
+            "alpha"
           ];
         };
         youtube = {
@@ -763,11 +763,15 @@
             }
           ];
           definedAliases = [
-            "@y"
-            "@yt"
+            "y"
+            "yt"
           ];
         };
-        # bing.metadata.hidden = true; # Bing
+        bing.metaData.hidden = true; # Bing
+        tabs.metaData.alias = "tb"; # Builtin, only supports adding alias
+        bookmarks.metaData.alias = "bm"; # Builtin, only supports adding alias
+        history.metaData.alias = "hist"; # Builtin, only supports adding alias
+        actions.metaData.alias = "act"; # Builtin, only supports adding alias
       };
       search.default = "ecosia";
       search.privateDefault = "ddg";
