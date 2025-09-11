@@ -15,7 +15,6 @@
       "ciscoPacketTracer8" # Network simulation
       "deconz" # Manage ZigBee/Matter networks
       "ventoy" # Multiboot USB
-      "ventoy-1.1.05" # Multiboot USB
     ];
 
   nix = {
