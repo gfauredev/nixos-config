@@ -159,13 +159,10 @@
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
-    # ollama.enable = true; # Large language model inference server
-    # systembus-notify.enable = true; # TEST relevance
-    gpg-agent.enable = true; # Keeps your gpg key loaded
     dunst.enable = true; # Notifications daemon
+    gpg-agent.enable = true; # Keeps your gpg key loaded
+    # ollama.enable = true; # Large language model inference server
 
-    syncthing.extraOptions = [ "--no-default-folder" ];
-    gpg-agent.pinentry.package = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
     dunst = {
       settings = {
         global = {
@@ -180,15 +177,16 @@
         };
       };
     };
+    gpg-agent.pinentry.package = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
   };
 
   programs = {
     git.enable = true; # MANDATORY
+    direnv.enable = true;
+    gpg.enable = true; # Useful cryptography tool
     jujutsu.enable = true; # Git compatible simpler VCS
     rbw.enable = true; # CLI Bitwarden client
-    gpg.enable = true; # Useful cryptography tool
-    direnv.enable = true;
-    # password-store.enable = true; # CLI standard password manager
+
     git = {
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
@@ -243,7 +241,6 @@
       ];
     };
     direnv.nix-direnv.enable = true;
-    # password-store.package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]); # Add OTP add-on
   };
 
   xdg = {
