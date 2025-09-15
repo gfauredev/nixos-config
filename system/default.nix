@@ -187,7 +187,7 @@
   services = {
     ntp.enable = lib.mkDefault true;
     # See https://wiki.nixos.org/wiki/Encrypted_DNS
-    dnscrypt-proxy2 = {
+    dnscrypt-proxy = {
       enable = true;
       settings = {
         sources.public-resolvers = {
