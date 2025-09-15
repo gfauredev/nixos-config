@@ -1,9 +1,4 @@
-{
-  pkgs,
-  stablepkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   # CLI and GUI text editors
   imports = [
@@ -31,7 +26,7 @@
       # hunspellDicts.en_GB-ise # British
       # hunspellDicts.es_ES # Spanish
 
-      stablepkgs.dprint # Pluggable code formatting platform
+      dprint # Pluggable code formatting platform
       # nil # Nix LSP
       # nixfmt # Nix formater
       # nls # Nickel LSP

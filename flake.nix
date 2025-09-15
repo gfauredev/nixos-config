@@ -2,28 +2,21 @@
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    # pkgs25-04.url = "github:nixos/nixpkgs/f6950e6"; # Commit before 25.05 Unstable
-    pkgs25-05.url = "github:nixos/nixpkgs/nixos-25.05"; # 25.05 NixOS Stable
-    # pkgs24-11.url = "github:nixos/nixpkgs/nixos-24.11"; # 24.11 NixOS Stable
-    # pkgs24-05.url = "github:nixos/nixpkgs/nixos-24.05"; # 24.05 NixOS Stable
-
-    home-manager = {
-      # Manage home configurations
-      url = "github:nix-community/home-manager"; # Home manager
-      inputs.nixpkgs.follows = "nixpkgs"; # Follow nixpkgs
-    };
-    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure boot
-    hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware
-    # musnix.url = "github:musnix/musnix"; # Music production, audio optim
+    stable.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable (25.05)
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    home-manager.url = "github:nix-community/home-manager"; # Home Manager
+    home-manager.inputs.nixpkgs.follows = "stable"; # Follows Stable Nixpkgs
+    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
+    hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
+    # musnix.url = "github:musnix/musnix"; # Music production, audio opti.
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
 
   outputs =
     {
       self,
-      nixpkgs,
-      pkgs25-05,
+      stable,
+      unstable,
       home-manager,
       lanzaboote,
       hardware,
@@ -31,103 +24,92 @@
     }:
     let
       supportedSystems = [
-        "x86_64-linux" # 64-bit Intel/AMD Linux
-        "aarch64-linux" # 64-bit ARM Linux
         "riscv64-linux" # 64-bit RISC-V Linux
+        "aarch64-linux" # 64-bit ARM Linux
+        "x86_64-linux" # 64-bit Intel/AMD Linux
       ];
       forEachSupportedSystem =
-        f: nixpkgs.lib.genAttrs supportedSystems (system: f { pkgs = import nixpkgs { inherit system; }; });
+        f:
+        unstable.lib.genAttrs supportedSystems (system: f { pkgs = import unstable { inherit system; }; });
+      system = "x86_64-linux"; # PC architecture
+      lib = stable.lib;
+      hm-lib = home-manager.lib;
+      pkgs = stable.legacyPackages.${system};
+      pkgs-unstable = unstable.legacyPackages.${system};
       users = import ./user; # Common users configurations
     in
     {
-      nixosModules.overlay = {
-        imports = [
-          (import ./overlay) # Changes made to nixpkgs globally
-        ];
-      };
       # NixOS config, enable: `nixos-rebuild --flake .#hostname`
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
-        griffin = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux"; # PC architecture
-          # specialArgs = { inherit pkgs25-05; }; # FIXME
+        griffin = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/griffin
             { users.users.gf = users.gf; }
-            self.nixosModules.overlay
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
         };
         # Laptop: Chimera, a flying creature
-        chimera = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux"; # PC architecture
+        chimera = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/chimera
             { users.users.gf = users.gf; }
-            self.nixosModules.overlay
-            # lanzaboote.nixosModules.lanzaboote # Secure boot
           ];
         };
         # Desktop: Muses, goddess of arts and music
-        muses = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux"; # PC architecture
+        muses = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/desktop/muses
-            self.nixosModules.overlay
           ];
         };
         # Server: Cerberus, a powerful creature with multiple heads
-        cerberus = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux"; # Server architecture
+        cerberus = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/server/cerberus
-            self.nixosModules.overlay
           ];
         };
         # NixOS live (install) ISO image #
-        live = pkgs25-05.lib.nixosSystem {
+        live = lib.nixosSystem {
           # Build: nix build .#nixosConfigurations.live.config.system.build.isoImage
-          system = "x86_64-linux"; # Target system architecture
+          inherit system;
+          specialArgs = { inherit pkgs-unstable; };
           modules = [
-            "${pkgs25-05}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live # Bootable ISO used to install NixOS
-            # self.nixosModules.overlay
           ];
         };
       };
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
-        "gf@griffin" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        "gf@griffin" = hm-lib.homeManagerConfiguration {
+          inherit pkgs;
           extraSpecialArgs = {
-            stablepkgs = import pkgs25-05 {
-              # TODO do this cleaner, generic
-              system = "x86_64-linux"; # System architecture TODO factorize
-              config.allowUnfree = true;
-            };
+            inherit pkgs-unstable;
             user = users.gf;
           };
           modules = [
             ./home/gf/griffin.nix
-            self.nixosModules.overlay
-            stylix.homeModules.stylix # Color & fonts
+            stylix.homeModules.stylix # Colors & Fonts
           ];
         };
-        "gf@chimera" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        "gf@chimera" = hm-lib.homeManagerConfiguration {
+          inherit pkgs;
           extraSpecialArgs = {
-            stablepkgs = import pkgs25-05 {
-              # TODO do this cleaner, generic
-              system = "x86_64-linux"; # System architecture TODO factorize
-              config.allowUnfree = true;
-            };
+            inherit pkgs-unstable;
             user = users.gf;
           };
           modules = [
             ./home/gf/chimera.nix
-            self.nixosModules.overlay
-            stylix.homeModules.stylix # Color & fonts
+            stylix.homeModules.stylix # Colors & Fonts
           ];
         };
       };
@@ -155,7 +137,7 @@
               wev # Evaluate inputs sent to wayland to debug
             ];
             # env = { }; # Environment variable
-            # shellHook = ""; # Shell command(s) activated when entering dev env
+            # shellHook = ""; # Shell commands activated when entering dev env
           };
         }
       );

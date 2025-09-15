@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  stablepkgs,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   # See: https://wiki.archlinux.org/title/Professional_audio
 
@@ -31,7 +26,7 @@
   home.packages = with pkgs; [
     klick # Metronome
     # Plugins hosts & Routers
-    stablepkgs.carla # VST Host & audio router
+    carla # VST Host & audio router
     cardinal # Plugin VCV Rack
     # ingen # Modular audio environment
     # giada # Live electronic music platform
@@ -44,7 +39,7 @@
     # VST Collections
     distrho-ports # Collection of audio plugins, contains Vitalium
     calf # Collection of audio plugins
-    stablepkgs.bristol # Synths
+    bristol # Synths
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins

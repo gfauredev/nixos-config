@@ -55,8 +55,7 @@
       BROWSER_ALT = "brave"; # TEST if better with full paths
       # PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_HOME}/password-store";
     };
-    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "23.11"; # TODO update on clean install
+    system.stateVersion = "25.05"; # TODO inherit from system
   };
 
   # Nicely reload system units when changing configs
