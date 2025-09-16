@@ -30,9 +30,23 @@
 
   services = {
     localtimed.enable = true;
+    auto-cpufreq.enable = false; # to TEST
     thermald.enable = lib.mkDefault true; # Keep CPU cool
+    tlp.enable = true; # Save battery
+    fprintd.enable = lib.mkDefault true; # Support fingerprint readers
+    auto-cpufreq = {
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+      };
+    };
     tlp = {
-      enable = true; # Save battery
       settings = {
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
@@ -49,20 +63,6 @@
         STOP_CHARGE_THRESH_BAT0 = 90; # 90 and above: don’t charge
       };
     };
-    auto-cpufreq = {
-      enable = false; # to TEST
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
-        };
-      };
-    };
-    fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     logind = {
       settings.Login = {
         HandlePowerKey = "suspend";

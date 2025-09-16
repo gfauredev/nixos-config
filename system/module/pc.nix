@@ -30,6 +30,10 @@
   };
 
   security = {
+    polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
+    rtkit.enable = true; # Tools for realtime (preemption)
+    # apparmor.enable = lib.mkDefault true; # TODO secure system
+    pam.services.hyprlock = { };
     sudo.extraRules = [
       {
         groups = [ "wg" ];
@@ -46,11 +50,9 @@
         ];
       }
     ];
-    pam.services.hyprlock = { };
-    polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
-    rtkit.enable = true; # Tools for realtime (preemption)
-    # apparmor.enable = lib.mkDefault true; # TODO secure system
   };
+
+  # TODO disable fprint for login but not for unlock and sudo
 
   security.pam.loginLimits = [
     # Increased pam limits for audio group
