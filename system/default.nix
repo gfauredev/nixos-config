@@ -189,6 +189,7 @@
   };
 
   programs.openvpn3.enable = lib.mkDefault true;
+  programs.amnezia-vpn.enable = lib.mkDefault true; # DPI resistant WireGuard
 
   i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
 
