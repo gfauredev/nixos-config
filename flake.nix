@@ -36,7 +36,7 @@
       hm-lib = home-manager.lib;
       pkgs = stable.legacyPackages.${system};
       pkgs-unstable = unstable.legacyPackages.${system};
-      users = import ./user; # Common users configurations
+      users = import ./user.nix; # Common users configurations
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname`
