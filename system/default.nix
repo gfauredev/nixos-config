@@ -240,6 +240,7 @@
       thc-hydra # Pentesting tool
       age # Modern encryption
       ssh-to-age # Converter between SSH keys and age
+      lynis # System security auditing
       # Storage
       zip # Universal compression
       unzip # Universal decompression
