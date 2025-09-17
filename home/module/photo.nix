@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    viu # CLI image viewer
+    qimgv # Another image viewer
+    imagemagick # CLI image edition
     # darktable # RAW pictures editor TODO reenable
     gimp-with-plugins # Raster image editor
     # inkscape # Vector image editor TODO reenable

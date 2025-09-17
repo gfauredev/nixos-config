@@ -1,6 +1,9 @@
 { pkgs, lib, ... }:
 {
-  # See: https://wiki.archlinux.org/title/Professional_audio
+  services = {
+    playerctld.enable = true;
+    mpris-proxy.enable = true;
+  };
 
   home.sessionVariables =
     let
@@ -24,6 +27,9 @@
     };
 
   home.packages = with pkgs; [
+    playerctl # MPRIS media players control
+    # spotify # PROPRIETARY music streaming
+    # spotdl # Download music and playlists from Spotify
     klick # Metronome
     # Plugins hosts & Routers
     carla # VST Host & audio router

@@ -1,11 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, ... }: # Additional fonts
 {
-  # TODO confine additional fonts to Typst
   home.packages = with pkgs; [
-    ## Typst tooling
-    typst # Advanced document processor
-    tinymist # Typst LSP
-    typstyle # Typst formatter
     ## Serif fonts
     libertinus
     libre-baskerville # Great, stylish serif

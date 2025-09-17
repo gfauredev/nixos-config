@@ -209,6 +209,10 @@
   };
 
   home.packages = with pkgs; [
+    mediainfo # info about audio or video
+    # exercism # CLI for the programming exercises website
+    # localsend # Share files on local network
+    # captive-browser # Browser for captive portals
     # Passwords & Secrets
     proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
@@ -227,13 +231,17 @@
     smartmontools # Monitor health of drives
     jmtpfs # Media transfer protocol with Android devices
     dislocker # Decrypt BitLocker disks
+    # Emulation & Compatibility
+    # wine # Execute Window$ programs
+    # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
+    wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
+    winetricks # Execute Window$ programs (config tool)
+    # bottles # Wine prefixes management TEST me
+    # quickemu # Quickly create optimized VMs
     # Machine learning
     # llama-cpp # Large language model server
     # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
-    # Misc
-    # quickemu # Quickly create optimized VMs
-    # captive-browser # Browser for captive portals
   ];
 
   services = {
