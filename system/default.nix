@@ -1,6 +1,5 @@
 { lib, pkgs, ... }:
 {
-  # TODO find and possibly disable the Python 3.12 service launched at boot
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
@@ -18,13 +17,6 @@
     ];
 
   nix = {
-    # Add each flake input as a registry.
-    # To make `nix3` commands consistent with flake.
-    # Registry = lib.mapAttrs (_: value: { flake = value; }) inputs; TEST relevance
-    # Add inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well
-    # `nixPath` = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") TEST relevance
-    #   config.nix.registry; TEST relevance
     gc = {
       automatic = lib.mkDefault true;
       dates = lib.mkDefault "weekly";
@@ -33,9 +25,8 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
-      connect-timeout = 5; # Quickly go offline if substituters not reachable
-      # log-lines = lib.mkDefault 25; # More logging
-      allowed-users = [ "@wheel" ];
+      connect-timeout = 3; # Quickly go offline if substitute not reachable
+      allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
     };
   };
 
@@ -55,10 +46,6 @@
     ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
-    # postBootCommands = '' # TEST relevance, used by musnix
-    #   ${pkgs.pciutils}/bin/setpci -v -d *:* latency_timer=b0
-    #   ${pkgs.pciutils}/bin/setpci -v -s ${cfg.soundcardPciId} latency_timer=ff
-    # '';
   };
 
   console.keyMap = lib.mkDefault "fr-bepo";
@@ -167,28 +154,17 @@
       };
     };
 
-  hardware = {
-    bluetooth = {
-      enable = lib.mkDefault true;
-      powerOnBoot = lib.mkDefault true;
-    };
-  };
-
-  security = {
-    sudo.enable = lib.mkDefault true;
-    # apparmor.enable = lib.mkDefault true; # TEST pertinence
-  };
+  security.sudo.enable = lib.mkDefault true;
 
   users = {
-    defaultUserShell = pkgs.dash; # Only allow shell, reduce attack surface
-    mutableUsers = lib.mkDefault true; # Set passwords imperatively
+    defaultUserShell = pkgs.dash; # Only allow dash shell, reduce attack surface
+    mutableUsers = lib.mkDefault false;
   };
 
   services = {
     ntp.enable = lib.mkDefault true;
-    # See https://wiki.nixos.org/wiki/Encrypted_DNS
     dnscrypt-proxy = {
-      enable = true;
+      enable = true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
       settings = {
         sources.public-resolvers = {
           urls = [
@@ -218,12 +194,12 @@
   environment = {
     shells = with pkgs; [ dash ]; # Only allowed login shell
     binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
-    defaultPackages = lib.mkForce [ ];
+    defaultPackages = lib.mkForce [ ]; # Remove default packages
     systemPackages = with pkgs; [
       # Shell utilities
       dash # Only login and script shell
       ov # Modern pager
-      hexyl # hex viever
+      hexyl # hex viewer
       sd # Intuitive find & replace
       grex # Regex generator from test cases
       moreutils # Additional Unix utilities
@@ -234,33 +210,27 @@
       acpi # Information about hardware
       sysstat # Monitoring CLI tools
       nix-tree # Find Nix dependencies
-      duf # global disk usage
-      du-dust # detailed disk usage of a directory
+      duf # Global disk usage
+      du-dust # Detailed disk usage of a directory
       bottom # Dashboard with hardware usage, processes…
-      # procs # Better ps
       nix-du # Determine which gc-roots take space
       # Remote control
-      rsync # cp through network & with superpowers
+      rsync # Copy through network & with superpowers
       browsh # 6ixel CLI web browser
       sshfs # Mount ssh remote
-      wakelan # Send magick packet to wake WoL devices
+      wakelan # Send magic packet to wake WoL devices
       # Network monitoring & Encryption
       wireguard-tools # CLI for WireGuard
       xh # User-friendly HTTP client similar to HTTPie/cURL
       gping # Ping with a graph
-      # hping # Network monitoring tool
-      # iperf # IP bandwidth measuring
       tcpdump # Dump network packets
       dhcpdump # DHCP debugging
       inetutils # Things like FTP command
       nmap # Scan ports
-      # rustscan # Nmap wrapper
       dig # DNS analyzer
-      # doggo # Modern CLI DNS client
-      wireshark # Wireshark GUI
-      # tshark # Wireshark CLI
-      # termshark # Wireshark TUI
-      # kismet # Wireless network sniffer
+      tshark # Wireshark CLI
+      termshark # Wireshark TUI
+      kismet # Wireless network sniffer
       thc-hydra # Pentesting tool
       age # Modern encryption
       ssh-to-age # Converter between SSH keys and age

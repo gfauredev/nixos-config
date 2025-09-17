@@ -14,13 +14,10 @@
   hardware = {
     uinput.enable = true;
     graphics.enable = true;
-    # opentabletdriver.enable = true; # Open source graphic tablet driver
-    # fancontrol = {
-    #   enable = true;
-    #   config = ''
-    #     # Configuration file for fancontrol
-    #   '';
-    # };
+    bluetooth = {
+      enable = lib.mkDefault true;
+      powerOnBoot = lib.mkDefault true;
+    };
   };
 
   systemd.services.unmount-boot = {
