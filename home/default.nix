@@ -46,6 +46,7 @@
   home = {
     username = user.name;
     homeDirectory = user.home;
+    # TODO better https://wiki.nixos.org/wiki/Environment_variables
     sessionVariables = {
       CONFIG_FLAKE = "~/.config/flake"; # System and home flake configs
       XDG_DESKTOP_DIR = "${user.home}/data"; # FIXME not properly propagated to shell, wm…
