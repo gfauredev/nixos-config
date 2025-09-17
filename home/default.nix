@@ -7,13 +7,17 @@
 }:
 {
   programs.home-manager.enable = true; # MANDATORY
-
-  imports = [
-    ./module/shell # Interactive POSIX shell(s)
-    ../module/terminal # Terminal emulators
-    ../module/editor # CLI and GUI text editors
-    ../module/media # Media consuming and editing
-  ];
+  news.display = "notify"; # Notify for new home manager options
+  nix = {
+    package = pkgs.nix; # TEST if necessary
+    settings.max-jobs = 12; # Limit threads usage of nix builds
+  };
+  # home-manager.backupFileExtension = "bak"; # FIXME
+  manual = {
+    html.enable = true;
+    json.enable = true;
+    manpages.enable = true;
+  };
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
@@ -32,6 +36,13 @@
       "ventoy" # Multiboot USB
       "stm32cubemx" # STM32
     ];
+
+  imports = [
+    ./module/shell # Interactive POSIX shell(s)
+    ./module/terminal # Terminal emulators
+    ./module/editor # CLI and GUI text editors
+    ./module/media # Media consuming and editing
+  ];
 
   home = {
     username = user.name;
@@ -52,9 +63,6 @@
     };
     system.stateVersion = "25.05"; # TODO inherit from system
   };
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
 
   programs = {
     git = {
@@ -136,77 +144,30 @@
     };
   };
 
-  # Old default
-
-  nix = {
-    package = pkgs.nix;
-    settings.max-jobs = 12; # Limit threads usage of nix builds
-  };
-
-  # home-manager.backupFileExtension = "bak"; # FIXME
-
-  manual = {
-    html.enable = true;
-    json.enable = true;
-    manpages.enable = true;
-  };
-
-  news.display = "notify"; # Notify for new home manager options
-
   stylix = {
-    # Manage all things style & appearance
-    # enableReleaseChecks = false; # WARN, remove this
-    enable = true;
+    enable = true; # Manage all things style & appearance
     polarity = "dark";
     fonts = {
       serif = {
         package = pkgs.libertinus;
         name = "Libertinus Serif";
-        # package = pkgs.libre-baskerville;
-        # name = "Libre Baskerville";
-        # package = pkgs.vollkorn;
-        # name = "Vollkorn";
-        # package = pkgs.merryweather;
-        # name = "Merryweather";
-        # package = pkgs.gelasio;
-        # name = "Gelasio";
       };
       sansSerif = {
         package = pkgs.aileron;
         name = "Aileron";
-        # package = pkgs.nacelle;
-        # name = "Nacelle";
-        # package = pkgs.inter;
-        # name = "Inter";
-        # package = pkgs.open-sans;
-        # name = "Open Sans";
-        # package = pkgs.fira-go;
-        # name = "FiraGO"; # Extended Fira Sans
-        # package = pkgs.dejavu_fonts;
-        # name = "DejaVu Sans";
       };
-      # sans = sansSerif; # Alias
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
-        # package = pkgs.nerd-fonts.fira-code;
-        # name = "FiraCode Nerd Font";
-        # package = pkgs.dejavu_fonts;
-        # name = "DejaVu Sans Mono";
       };
-      # mono = monospace; # Alias
       emoji = {
         package = pkgs.nerd-fonts.symbols-only;
         name = "Symbols Nerd Font";
-        # package = pkgs.noto-fonts-emoji;
-        # name = "Noto Color Emoji";
       };
     };
-    # Based on Catppuccin Mocha, but with pitch black #000 background for OLED
+    # Based on Catppuccin Mocha, but with pitch black #000 background for OLED, https://catppuccin.com/palette
     base16Scheme = {
-      # https://catppuccin.com/palette
-      # base00 = "#1e1e2e"; # base, default background
-      base00 = "#000000"; # pitch black, default background
+      base00 = "#000000"; # base00 = "#1e1e2e"; # pitch black, default background
       base01 = "#181825"; # mantle, alternate background
       base02 = "#313244"; # surface0, selection background
       base03 = "#45475a"; # surface1
@@ -244,18 +205,11 @@
       name = "Bibata-Modern-Ice";
       size = 22;
     };
-    # FIXME ugly looking, https://github.com/chriskempson/base16/blob/main/styling.md
-    targets.helix.enable = false; # FIXME color theme not compatible treesitter
-    targets.firefox.enable = false; # FIX infinite recursion bug
+    targets.helix.enable = false; # FIXME ugly looking with treesitter, https://github.com/chriskempson/base16/blob/main/styling.md
+    targets.firefox.enable = false; # FIXME infinite recursion bug
   };
 
   home.packages = with pkgs; [
-    # TODO organize better, eventually in shell/
-    # Machine learning
-    llama-cpp # Large language model server
-    # gpt4all # -cuda # TEST
-    # aichat # CLI LLM chat
-
     # Passwords & Secrets
     proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
@@ -265,36 +219,28 @@
     # git-credential-keepassxc # Use KeepassXC with Git
     gitleaks # Better tool to discover secrets in Git repo
     git-filter-repo # Quickly rewrite history
-
     # Storage & Backup & Encryption
     restic # Efficient backup tool
-    rustic # Restic compatible pure Rust backup tool
-    # ventoy-full # create bootable keys
-    testdisk # file recuperation
-    exfatprogs # Tools for exfat fs
-    jmtpfs # Media transfer protocol with Android devices
-    # tmsu # File tagging with virtual FS
-    # sendme # send files and directories p2p
-    # dcfldd # more powerful dd
-    # rpi-imager # Raspberry Pi OS generator
-    # veracrypt # multiplatform encryption
-    dislocker # decrypt bitlocker disks
+    rustic # Restic compatible pure Rust backup tool TEST me
+    # ventoy-full # Create bootable keys FIXME insecure
+    testdisk # Recover deleted files
+    exfatprogs # Tools for exfat FS
     smartmontools # Monitor health of drives
-
+    jmtpfs # Media transfer protocol with Android devices
+    dislocker # Decrypt BitLocker disks
+    # Machine learning
+    # llama-cpp # Large language model server
+    # gpt4all # -cuda # TEST
+    # aichat # CLI LLM chat
     # Misc
-    sql-formatter # SQL formtter TEST
-    sqruff # SQL linter TEST
-    quickemu # Quickly create optimized VMs
-    captive-browser # Browser for captive portals
-    # handlr-regex # Modern replacement of xdg-open TEST
+    # quickemu # Quickly create optimized VMs
+    # captive-browser # Browser for captive portals
   ];
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
-    # ollama.enable = true; # Large language model inference server
-
     dunst = {
       settings = {
         global = {
@@ -318,7 +264,6 @@
     gpg.enable = true; # Useful cryptography tool
     jujutsu.enable = true; # Git compatible simpler VCS
     rbw.enable = true; # CLI Bitwarden client
-
     git = {
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
@@ -377,19 +322,11 @@
 
   xdg = {
     enable = true;
-    # portal = {
-    #   enable = true; # TODO enable (uncomment)
-    #   extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
-    #   config.common.default = "*";
-    # };
     mime.enable = true;
     mimeApps.enable = true;
   };
 
-  home.preferXdgDirectories = true;
-
   gtk = {
-    # TODO Stylix
     enable = true;
     # Remove this from $HOME
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
@@ -398,9 +335,5 @@
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
-
-  qt = {
-    enable = true;
-    # platformTheme = "gtk"; # TEST relevance
-  };
+  qt.enable = true;
 }

@@ -1,12 +1,12 @@
 { ... }:
 {
+  programs.zsh.enable = true;
   programs.zsh = {
-    enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    initContent = builtins.readFile ./zshrc.sh; # TODO this cleaner
+    initContent = builtins.readFile ./zshrc.sh;
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
@@ -18,10 +18,7 @@
     };
     historySubstringSearch.enable = true;
   };
-  services = {
-    gpg-agent.enableZshIntegration = true;
-    # keychain.enableNushellIntegration = true; # TEST me
-  };
+  services.gpg-agent.enableZshIntegration = true;
   programs = {
     starship.enableZshIntegration = true;
     zoxide.enableZshIntegration = true;

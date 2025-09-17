@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = [ pkgs.nu_scripts ]; # Additional community scripts
+  programs.nushell.enable = true;
   programs.nushell = {
-    enable = true;
     configFile.source = ./config.nu;
     # extraConfig = ''
     #   use ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu
@@ -29,14 +29,14 @@
   };
   services = {
     gpg-agent.enableNushellIntegration = true;
-    # keychain.enableNushellIntegration = true; # TEST me
+    keychain.enableNushellIntegration = true;
   };
   programs = {
     starship.enableNushellIntegration = true;
     zoxide.enableNushellIntegration = true;
     broot.enableNushellIntegration = true;
     atuin.enableNushellIntegration = true;
-    carapace.enableNushellIntegration = false; # Buggy, prevents other completer
+    carapace.enableNushellIntegration = false; # FIXME prevents other completer
     direnv.enableNushellIntegration = true;
     eza.enableNushellIntegration = false;
   };

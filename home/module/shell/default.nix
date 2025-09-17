@@ -55,9 +55,6 @@
       # pipectl # Named pipes management (probably replaced by Nu’s job)
     ];
 
-  # home.shell.enableShellIntegration = true; # Default
-  # services.pueue.enable = true; # Maybe necessary to add pkg
-
   programs = {
     starship.enable = true; # Smart prompt
     zoxide.enable = true; # Smart cd
@@ -68,7 +65,7 @@
     ripgrep.enable = true; # Better grep
     bottom.enable = true; # Better top
     carapace.enable = true; # Cross shell completions
-    eza.enable = true; # Better ls
+    eza.enable = false; # Better ls
     gh.enable = true; # GitHub official CLI
     fish.enable = true; # Friendly shell, to provide completions to Nushell
     gh-dash.enable = true; # GitHub dashboard
@@ -76,9 +73,9 @@
     translate-shell.enable = true; # Google Translate CLI
     fastfetch.enable = true; # Quick system info
     less.enable = false; # Bugged, don’t respects lesskeys
-    lesspipe.enable = false; # TEST what’s this
+    lesspipe.enable = false;
+    distrobox.enable = false; # Quick tightly integrated containers
     distrobox = {
-      enable = true; # Quick tightly integrated containers
       enableSystemdUnit = true; # Auto rebuild containers
       containers = {
         cad = {
