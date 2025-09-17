@@ -47,7 +47,7 @@
           specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/griffin
-            { users.users.gf = users.gf; }
+            { users.users.gf = users.gf.config; }
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
@@ -58,7 +58,7 @@
           specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/chimera
-            { users.users.gf = users.gf; }
+            { users.users.gf = users.gf.config; }
           ];
         };
         # Desktop: Muses, goddess of arts and music
