@@ -14,26 +14,23 @@
   hardware = {
     uinput.enable = true;
     graphics.enable = true;
-    bluetooth = {
-      enable = lib.mkDefault true;
-      powerOnBoot = lib.mkDefault true;
-    };
+    bluetooth.enable = lib.mkDefault true;
+    bluetooth.powerOnBoot = lib.mkDefault true;
   };
 
   systemd.services.unmount-boot = {
-    description = "Unmount /boot at boot as useless once booted";
+    description = "Unmount /boot at boot as it’s useless once booted";
     script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
     wantedBy = [ "multi-user.target" ];
   };
 
   security = {
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
-    rtkit.enable = true; # Tools for realtime (preemption)
-    # apparmor.enable = lib.mkDefault true; # TODO secure system
+    rtkit.enable = lib.mkDefault true; # Tools for realtime (preemption)
     pam.services.hyprlock = { };
     sudo.extraRules = [
       {
-        groups = [ "wg" ];
+        groups = [ "wg" ]; # VPN without password
         runAs = "root";
         commands = [
           {
@@ -80,9 +77,18 @@
   ];
 
   services = {
+    fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
+    fwupd.enable = lib.mkDefault true; # Update firmwares
+    udisks2.enable = true; # Mount USB without privileges
+    libinput.enable = true; # Enable touchpad support
+    gnome.gnome-keyring.enable = true; # Manage secrets for apps
+    pipewire.enable = true; # Enable modern audio system PipeWire
+    geoclue2.enable = true; # Location provider
+    rustdesk-server.enable = false; # See https://rustdesk.com/docs/en/self-host
+    protonmail-bridge.enable = true; # Use Proton Mail inside client
+    hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
+    gvfs.enable = lib.mkDefault true; # Samba client
     pipewire = {
-      enable = true; # Enable modern audio system PipeWire
-      # audio.enable = true; # Enable modern audio system PipeWire
       wireplumber.enable = true;
       alsa.enable = true; # Support kernel audio
       alsa.support32Bit = true; # Support kernel audio
@@ -95,56 +101,28 @@
       ];
       extraRules = ''
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-
         KERNEL=="rtc0", GROUP="audio"
         KERNEL=="hpet", GROUP="audio"
         DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
       ''; # TEST relevance of latter 3, used by musnix
     };
     geoclue2 = {
-      enable = true; # Location provider
-      submissionUrl = "https://beacondb.net/v2/geosubmit";
       submitData = false; # Useless, laptop don’t have GPS
+      submissionUrl = "https://beacondb.net/v2/geosubmit";
       geoProviderUrl = "https://beacondb.net/v1/geolocate";
-      # geoProviderUrl =
-      #   "https://www.googleapis.com/geolocation/v1/geolocate?key=MY_KEY"; TODO store secretly
+      # geoProviderUrl="https://www.googleapis.com/geolocation/v1/geolocate?key=MY_KEY";
     };
+    protonmail-bridge.path = [ pkgs.gnome-keyring ];
     rustdesk-server = {
-      enable = false; # TEST
-      # See: https://rustdesk.com/docs/en/self-host
       signal.enable = false;
       relay.enable = false;
       openFirewall = false;
     };
-    protonmail-bridge = {
-      enable = true;
-      path = with pkgs; [
-        gnome-keyring
-        # pass
-      ];
-    };
-    # changedetection-io = {
-    #   enable = true; # Monitor website changes
-    #   playwrightSupport = true;
-    # };
-    fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
-    fwupd.enable = lib.mkDefault true; # Update firmwares
-    udisks2.enable = true; # Mount USB without privileges
-    libinput.enable = true; # Enable touchpad support
-    # hardware.bolt.enable = true; # Thunderbolt devs manager (authorize eGPU…)
-    gnome.gnome-keyring.enable = true; # Manage secrets for apps
-    gvfs.enable = true; # Samba client
-    # iperf3.enable = true; # Network testing
-    # smartd.enable = true; # TEST Drive health monitoring
   };
 
   location.provider = "geoclue2";
 
   i18n = {
-    # FIXME
-    # Locales internatinalization properties
-    # extraLocales = [ "en_GB.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" ];
-    # extraLocales = [ "fr_FR.UTF-8/UTF-8" ];
     defaultLocale = "en_GB.UTF-8"; # Set localization settings
     extraLocaleSettings = {
       LC_NUMERIC = "fr_FR.UTF-8";
@@ -162,12 +140,8 @@
     };
   };
 
-  # dejavu_fonts
-  # freefont_ttf
-  # gyre-fonts, TrueType substitutes
-  # liberation_ttf
-  # unifont
-  # noto-fonts-color-emoji
+  # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
+  # liberation_ttf, unifont, noto-fonts-color-emoji
   fonts.enableDefaultPackages = true;
 
   users.groups = {
@@ -177,77 +151,40 @@
   };
 
   programs = {
+    hyprland.enable = true; # Main Window Manager
+    xwayland.enable = false; # Use xwayland-satellite instead
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
     ssh.startAgent = !config.services.gnome.gnome-keyring.enable;
-    adb.enable = true; # Talk to Android devices
+    firejail.enable = true; # See https://wiki.nixos.org/wiki/Firejail TODO
+    adb.enable = lib.mkDefault true; # Talk to Android devices
+    appimage.enable = true;
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
-    firejail = {
-      enable = true; # TODO ensure apps are jailed
-      wrappedBinaries = {
-        # TODO wrap binaries properly, may need home-manager tweaks to apply to desktop apps
-        # brave = {
-        #   executable = "${pkgs.brave}/bin/brave";
-        #   profile = "${pkgs.firejail}/etc/firejail/brave-browser.profile";
-        # };
-      };
-    };
     nix-ld.enable = true; # Run binaries
-    appimage = {
-      # Run not packaged appimages
-      enable = true;
-      binfmt = true;
-    };
-    xwayland.enable = false; # Use xwayland-satellite instead
     # uwsm.enable = true; # TEST wayland session manager
-    hyprland = {
-      enable = true; # Main Window Manager
-      # withUWSM = true; # TEST session manager
-    };
-    niri = {
-      # TEST window manager
-      # See https://github.com/YaLTeR/niri
-      enable = false;
-    };
+    # niri.enable = true; # See https://github.com/YaLTeR/niri
   };
 
   documentation = {
-    nixos = {
-      enable = true;
-      includeAllModules = true;
-    };
+    nixos.enable = true;
     dev.enable = true;
+    nixos.includeAllModules = true;
   };
 
   environment = {
     systemPackages = with pkgs; [
-      # TODO clean, remove unused, move some to home
-      xwayland-satellite # Wayland container that can run X11 apps TEST if useful
-      lsof # list opened files
-      zip # Universal compression
-      unzip # Universal decompression
-      _7zz # Compression / Decompression (7zip)
-      # p7zip # Compression / Decompression compatible with 7zip
-      gzip # Compression / Decompression
-      bzip2 # Compression / Decompression
-      usbutils # lsusb
-      pciutils # lspci
-      man-pages # Documentation
-      man-pages-posix # Documentation
-      exfat # USB sticks filesystem
-      ntfs3g # Window$s filesystem
-      convmv # Converts filenames from one encoding to another
-      navi # Cheat sheet for CLIs TEST if useful
-      cpulimit # Limit CPU usage of a command
-      # libsecret # Provides secret-tool, gnome-keyring CLI
+      xwayland-satellite # Wayland container that can run X11 apps TEST relevance
       # protonmail-bridge-gui # GUI for ProtonMail Bridge
+      # man-pages # Documentation
+      # man-pages-posix # Documentation
+      # navi # Cheat sheet for CLIs
     ];
   };
 
   powerManagement = {
-    enable = true;
-    powertop.enable = true; # TEST vs powertop package
+    # enable = true; # TEST vs auto-cpufreq
+    # powertop.enable = true; # TEST vs auto-cpufreq
     cpuFreqGovernor = lib.mkDefault "powersave";
   };
 }

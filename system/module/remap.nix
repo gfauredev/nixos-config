@@ -1,21 +1,16 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  environment.systemPackages = with pkgs; [
-    keyd # Package to access commands and man pages
-    # kanata-with-cmd # Package to access commands and man pages
-    # hyprkan # Not packaged yet, see https://github.com/mdSlash/hyprkan
-  ];
-
   services = {
+    keyd.enable = true; # A key remapping daemon for Linux, see man keyd(1)
+    kanata.enable = false; # Modern advanced keyboard remapping, see https://github.com/jtroo/kanata/tree/main/docs TEST
+    input-remapper.enable = false; # Easy remap input device buttons (Python)
+    evdevremapkeys.enable = false; # Daemon remap events input devices (Python)
     keyd = {
-      # See man keyd(1)
-      enable = true; # A key remapping daemon for linux (C)
       keyboards = {
         default = {
           ids = [ "*" ];
           settings =
             let
-              # TODO BÉPO layout
               motionSelect = {
                 # Helix-like motions (adapted to BÉPO keyboard layout)
                 h = "left";
@@ -90,17 +85,5 @@
         };
       };
     };
-    kanata = {
-      enable = false; # Modern advanced keyboard remapping TEST me
-      # See https://github.com/jtroo/kanata/tree/main/docs
-      # keyboards.all = {
-      #   config = "";
-      #   extraDefCfg = "";
-      #   extraArgs = "";
-      #   port = null; # u16
-      # };
-    };
-    input-remapper.enable = false; # Easy remap input device buttons (Python)
-    evdevremapkeys.enable = false; # Daemon remap events input devices (Python)
   };
 }

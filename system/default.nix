@@ -155,6 +155,7 @@
     };
 
   security.sudo.enable = lib.mkDefault true;
+  security.apparmor.enable = lib.mkDefault true; # See https://search.nixos.org/options?channel=25.05&query=apparmor TODO configure
 
   users = {
     defaultUserShell = pkgs.dash; # Only allow dash shell, reduce attack surface
@@ -205,6 +206,8 @@
       moreutils # Additional Unix utilities
       gitlab-shell # GitLab CLI
       gitmoji-cli # Use emojis in commit messages
+      convmv # Converts filenames from one encoding to another
+      cpulimit # Limit CPU usage of a command
       # Hardware & disks monitoring
       lm_sensors # get temps
       acpi # Information about hardware
@@ -214,6 +217,9 @@
       du-dust # Detailed disk usage of a directory
       bottom # Dashboard with hardware usage, processes…
       nix-du # Determine which gc-roots take space
+      lsof # List opened files (remember, everything’s a file here)
+      usbutils # lsusb command
+      pciutils # lspci command
       # Remote control
       rsync # Copy through network & with superpowers
       browsh # 6ixel CLI web browser
@@ -234,6 +240,14 @@
       thc-hydra # Pentesting tool
       age # Modern encryption
       ssh-to-age # Converter between SSH keys and age
+      # Storage
+      zip # Universal compression
+      unzip # Universal decompression
+      _7zz # Compression / Decompression (7zip)
+      gzip # Compression / Decompression
+      bzip2 # Compression / Decompression
+      exfat # USB sticks filesystem
+      ntfs3g # Window$s filesystem
     ];
   };
 }
