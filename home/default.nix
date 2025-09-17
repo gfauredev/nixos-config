@@ -41,7 +41,6 @@
     ./module/shell # Interactive POSIX shell(s)
     ./module/terminal # Terminal emulators
     ./module/editor # CLI and GUI text editors
-    ./module/media # Media consuming and editing
   ];
 
   home = {
