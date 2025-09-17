@@ -46,10 +46,12 @@
     ];
   };
 
-  # TODO disable fprint for login but not for unlock and sudo
-
+  # TODO disable fprint for login, allow only for unlock and sudo
+  # See https://search.nixos.org/options?channel=unstable&query=security.pam
+  # See https://wiki.nixos.org/wiki/Fingerprint_scanner
+  # See https://wiki.archlinux.org/title/Fprint
   security.pam.loginLimits = [
-    # Increased pam limits for audio group
+    # Increased PAM limits for audio group, realtime
     {
       domain = "@audio";
       item = "memlock";
