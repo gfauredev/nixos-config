@@ -79,6 +79,11 @@
           #   installation_mode = "allow";
           #   private_browsing = true;
           # };
+          # "TODO https://faststream.online" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest//latest.xpi";
+          #   installation_mode = "allow";
+          #   private_browsing = true;
+          # };
         };
         NoDefaultBookmarks = true;
         OfferToSaveLogins = false; # Use password manager instead
