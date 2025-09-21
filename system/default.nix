@@ -31,7 +31,6 @@
   };
 
   boot = {
-    loader.systemd-boot.enable = lib.mkDefault true; # Light EFI boot loader
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
@@ -150,6 +149,17 @@
             '';
             type = "basic";
           }
+        ];
+      };
+      firewall = {
+        allowedTCPPorts = [
+          22000 # Syncthing
+          2049 # Vagrant
+        ];
+        allowedUDPPorts = [
+          22000 # Syncthing
+          21027 # Syncthing
+          2049 # Vagrant
         ];
       };
     };

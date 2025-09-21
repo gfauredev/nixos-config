@@ -1,10 +1,14 @@
-# My main laptop, a Framework Laptop 13
-{ pkgs, ... }:
+{ pkgs, ... }: # My main laptop, a Framework Laptop 13
 {
   imports = [
     ../.
     ./hardware.nix
-    ../../module/virtualization.nix
+  ];
+
+  networking.hostName = "griffin";
+
+  environment.systemPackages = with pkgs; [
+    framework-tool # Hardware related tools for framework laptops
   ];
 
   # nix = {
@@ -15,36 +19,6 @@
   #     ];
   #   };
   # };
-
-  boot = {
-    bootspec.enable = true;
-    loader.systemd-boot.enable = false; # Disabled for secure boot
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-  };
-
-  networking = {
-    hostName = "griffin";
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [
-        22000 # Syncthing
-        2049 # Vagrant
-      ];
-      allowedUDPPorts = [
-        22000 # Syncthing
-        21027 # Syncthing
-        2049 # Vagrant
-      ];
-    };
-    wireguard.enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    framework-tool # Hardware related tools for framework laptops
-  ];
 
   # services.fwupd = {
   #   extraRemotes = [ "lvfs-testing" ];

@@ -11,17 +11,20 @@
     ./loginManager # Launch graphical env at login
   ];
 
+  boot = {
+    bootspec.enable = true; # Secure Boot support
+    loader.systemd-boot.enable = lib.mkDefault false; # Disabled for secure boot
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+  };
+
   hardware = {
     uinput.enable = true;
     graphics.enable = true;
     bluetooth.enable = lib.mkDefault true;
     bluetooth.powerOnBoot = lib.mkDefault true;
-  };
-
-  systemd.services.unmount-boot = {
-    description = "Unmount /boot at boot as it’s useless once booted";
-    script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
-    wantedBy = [ "multi-user.target" ];
   };
 
   security = {
@@ -78,6 +81,12 @@
     }
   ];
 
+  users.groups = {
+    mtp = { };
+    uinput = { };
+    wg = { };
+  };
+
   services = {
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
@@ -124,6 +133,12 @@
 
   location.provider = "geoclue2";
 
+  systemd.services.unmount-boot = {
+    description = "Unmount /boot at boot as it’s useless once booted";
+    script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   i18n = {
     defaultLocale = "en_GB.UTF-8"; # Set localization settings
     extraLocaleSettings = {
@@ -145,12 +160,6 @@
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
   fonts.enableDefaultPackages = true;
-
-  users.groups = {
-    mtp = { };
-    uinput = { };
-    wg = { };
-  };
 
   programs = {
     hyprland.enable = true; # Main Window Manager
@@ -182,11 +191,26 @@
       # man-pages-posix # Documentation
       # navi # Cheat sheet for CLIs
     ];
+    persistence.persistent = {
+      hideMounts = true; # TODO configure Impermanence, see https://github.com/nix-community/impermanence?tab=readme-ov-file#system-setup
+      directories = [
+        # "/home"
+        "/var/lib/nixos"
+        "/var/lib/systemd/coredump"
+        "/var/log"
+        "/var/lib/bluetooth"
+        "/etc/NetworkManager/system-connections"
+      ];
+      files = [
+        "/etc/machine-id"
+      ];
+      # TODO ensure users homes are always persistent
+    };
   };
 
-  powerManagement = {
-    # enable = true; # TEST vs auto-cpufreq
-    # powertop.enable = true; # TEST vs auto-cpufreq
-    cpuFreqGovernor = lib.mkDefault "powersave";
-  };
+  # powerManagement = {
+  #   enable = true; # TEST vs auto-cpufreq
+  #   powertop.enable = true; # TEST vs auto-cpufreq
+  #   cpuFreqGovernor = lib.mkDefault "powersave";
+  # };
 }

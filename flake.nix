@@ -7,6 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "stable"; # Follows Stable Nixpkgs
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
+    impermanence.url = "github:nix-community/impermanence"; # Temporary root
     # musnix.url = "github:musnix/musnix"; # Music production, audio opti.
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
@@ -18,6 +19,7 @@
       home-manager,
       lanzaboote,
       hardware,
+      impermanence,
       stylix,
     }:
     let
@@ -47,6 +49,7 @@
             ./system/laptop/griffin
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
+            impermanence.nixosModules.impermanence # Temporary root FS
           ];
         };
         # Laptop: Chimera, a flying creature
