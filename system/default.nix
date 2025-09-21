@@ -189,8 +189,21 @@
     };
   };
 
-  programs.openvpn3.enable = lib.mkDefault true;
-  programs.amnezia-vpn.enable = lib.mkDefault true; # DPI resistant WireGuard
+  programs = {
+    git.enable = true; # MANDATORY
+    neovim.enable = false; # Use helix instead
+    openvpn3.enable = lib.mkDefault true;
+    amnezia-vpn.enable = lib.mkDefault true; # DPI resistant WireGuard
+    neovim = {
+      defaultEditor = lib.mkDefault true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    git = {
+      lfs.enable = true;
+      config.init.defaultBranch = "main";
+    };
+  };
 
   i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
 

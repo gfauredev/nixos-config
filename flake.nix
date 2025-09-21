@@ -71,10 +71,12 @@
         live = lib.nixosSystem {
           # Build: nix build .#nixosConfigurations.live.config.system.build.isoImage
           inherit system;
-          specialArgs = { inherit pkgs-unstable; };
+          specialArgs = {
+            user = users.gf;
+          };
           modules = [
             "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            ./system/live # Bootable ISO used to install NixOS
+            ./system/live.nix # Bootable ISO used to install NixOS
           ];
         };
       };
