@@ -49,6 +49,31 @@
             installation_mode = "normal_installed";
             private_browsing = false;
           };
+          "TODOtabBarColour" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "TODOautoma" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "TODObuster" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/buster/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "TODOdeepl" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/deepl/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "TODOfaststream" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
           "{74145f27-f039-47ce-a470-a662b129930a}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
             installation_mode = "allow";
@@ -59,31 +84,6 @@
             installation_mode = "allow";
             private_browsing = true;
           };
-          # "TODO https://github.com/easonwong-de/Adaptive-Tab-Bar-Colour" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest//latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
-          # "TODO https://www.automa.site" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest//latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
-          # "TODO https://github.com/dessant/buster" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest//latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
-          # "TODO https://deepl.com" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest//latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
-          # "TODO https://faststream.online" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest//latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
         };
         NoDefaultBookmarks = true;
         OfferToSaveLogins = false; # Use password manager instead
