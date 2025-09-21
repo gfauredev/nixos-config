@@ -1,18 +1,17 @@
 # TODO make this script a package available in this flake’s nix dev environment
 
-# This script allows to easily manage a two-flakes system & home Nix config,
-# with one private config having as single input one public config,
-# which contains most of the configurations
+# This script allows to easily manage Nix flakes system & home configs,
+# with one top level flake having a single `public` flake input,
+# which contains most of the configurations for homes and systems
 CPU_LIMIT='cpulimit -l 888'     # Limit CPU usage to 888% accross threads
 MEM_LIMIT=$((10 * 1024 * 1024)) # Limit memory usage to 10 GB
 NIXOS_REBUILD_CMD="systemd-inhibit sudo $CPU_LIMIT nixos-rebuild"
 HOME_MANAGER_CMD="systemd-inhibit $CPU_LIMIT home-manager"
 
 # Global CONSTANTS
-# SYSTEM_LOC='./system' # System (NixOS) configuration
-HOME_LOC='./home/'       # Home (Home Manager) config
-PRIVATE_LOC='./private/' # Private configuration location
-PUBLIC_LOC='./public/'   # Public configuration location
+PUBLIC_LOC='./public/' # Sub (public) flake location
+HOME_LOC='./home/'     # Home (Home Manager) configuration location
+# SYSTEM_LOC='./system' # System (NixOS) configuration location
 # Global variables
 home_changed=false # Have changes been made to home config
 commit_msg=''      # Message to be constructed with remaining arguments
@@ -52,7 +51,7 @@ public_logs_status() {
   git -C $PUBLIC_LOC status || exit
 }
 
-# @param 1 sub-directory containing Git repo to pull (./public or ./private)
+# @param 1 (sub)directory containing Git repo to pull
 pull_one() { # Git pull private or public config
   remote=$(git -C "$1" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   emph # Italic text
@@ -66,13 +65,13 @@ pull_one() { # Git pull private or public config
   std # Return to normal text
 }
 
-# Git pull both private and public config
+# Git pull both top-level and sub flake
 pull_both() {
   emph # Italic text
   printf 'Public & Private: Pulling latest changes (asynchronously)\n'
   std # Normal text
   pull_one $PUBLIC_LOC &
-  pull_one $PRIVATE_LOC &
+  pull_one . &
   wait # Wait for background pulls to finish before moving ong
 }
 
@@ -86,12 +85,12 @@ update_global_inputs() {
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
 }
 
-# Update private config flake inputs
+# Update top-level config flake inputs
 update_private_inputs() {
   emph # Italic text
-  printf 'Private: Update flake %s inputs\n' $PRIVATE_LOC
+  printf 'Private: Update %s flake inputs\n' "$(pwd)"
   std
-  nix flake update --flake $PRIVATE_LOC # Always update private’s public flake input
+  nix flake update --flake . # Always update private’s public flake input
 }
 
 # Return 0 if there are uncommited changes, 1 otherwise
@@ -145,7 +144,7 @@ commit_public_private() { # Git commit both private and public config
   emph
   printf 'Private: Commit flake repository (including eventual inputs update)\n'
   std
-  commit_all_changes $PRIVATE_LOC --message "$1" # Commit the private flake
+  commit_all_changes . --message "$1" # Commit the private flake
 }
 
 # Add changes made in a Git repo to the last commit, but
@@ -189,7 +188,7 @@ amend_public_private() { # Amend both public and private config
     extract_last_commit_msg $PUBLIC_LOC  # Set commit msg to the last one
     update_private_inputs                # Update private inputs if amending
   fi
-  protected_amend "$PRIVATE_LOC"
+  protected_amend .
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
@@ -197,7 +196,7 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   printf 'Mount /boot before system update\n'
   std
   sudo mount -v /boot || exit # Use fstab
-  cd $PRIVATE_LOC || exit
+  cd . || exit
   NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . switch"
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
@@ -223,7 +222,7 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
   # printf 'Remove .config/mimeapps.list'
   # std
   # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake $PRIVATE_LOC switch"
+  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake . switch"
   emph
   printf 'Home Manager home rebuild: "%s"\n' "$HOME_MANAGER_CMD"
   std
@@ -240,11 +239,11 @@ rebase_public_private() { # Git rebase both public and private configs
   std
   msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
   if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
-    [ -n "${git-C $PRIVATE_LOC log --branches --not --remotes}" ]; then
+    [ -n "${git log --branches --not --remotes}" ]; then
     # Mirror last public’s Git commit message on private’s last commit
-    git -C $PRIVATE_LOC commit --amend --message "$msg"
+    git commit --amend --message "$msg"
   fi
-  git -C $PRIVATE_LOC rebase -i
+  git rebase -i
 }
 
 push_public_private() { # Git push both public and private configs
@@ -259,15 +258,13 @@ push_public_private() { # Git push both public and private configs
   # std
   # sleep 3 || exit # Give the user 3 seconds to cancel the push if needed
   git -C $PUBLIC_LOC push
-  git -C $PRIVATE_LOC push
+  git push
 }
 
-# Test if we are in the correct directory
-if ! [ -d $PUBLIC_LOC ] || ! [ -d $PRIVATE_LOC ]; then
+if ! [ -d $PUBLIC_LOC ]; then # Test if there is a public config
   emph
-  printf 'This script should be executed from a directory with private and public configuration sub-directories\n'
+  printf 'No public config sub flake found in %s\n' "$(pwd)"
   std
-  exit 2
 fi
 
 update_inputs=false     # Whether to update flake inputs
@@ -284,7 +281,7 @@ while [ "$#" -gt 0 ]; do
     emph
     printf 'You can exit the shell to get back to previous working directory\n'
     std
-    if [ "$2" = "public" ] || [ "$2" = "private" ]; then
+    if [ "$2" = "public" ] || [ "$2" = "home" ] || [ "$2" = "system" ]; then
       cd "$2" || exit # cd into sub-directory
     fi
     exec $SHELL # Execute the default shell at the WD of this script
