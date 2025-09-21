@@ -1,4 +1,4 @@
-{ ... }: # Main user gf @ Secondary laptop Chimera
+{ ... }: # Secondary laptop Chimera
 {
   imports = [
     ../default.nix

@@ -1,4 +1,4 @@
-{ lib, ... }: # Main user gf @ Main laptop Griffin
+{ lib, ... }: # Main laptop Griffin
 {
   imports = [
     ../default.nix

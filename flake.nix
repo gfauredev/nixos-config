@@ -1,6 +1,5 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
-
   inputs = {
     stable.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable (25.05)
     unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
@@ -11,7 +10,6 @@
     # musnix.url = "github:musnix/musnix"; # Music production, audio opti.
     stylix.url = "github:danth/stylix"; # Manage color themes and fonts
   };
-
   outputs =
     {
       self,
@@ -47,7 +45,6 @@
           specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/griffin
-            { users.users.gf = users.gf.config; }
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
@@ -56,26 +53,19 @@
         chimera = lib.nixosSystem {
           inherit system;
           specialArgs = { inherit pkgs-unstable; };
-          modules = [
-            ./system/laptop/chimera
-            { users.users.gf = users.gf.config; }
-          ];
+          modules = [ ./system/laptop/chimera ];
         };
         # Desktop: Muses, goddess of arts and music
         muses = lib.nixosSystem {
           inherit system;
           specialArgs = { inherit pkgs-unstable; };
-          modules = [
-            ./system/desktop/muses
-          ];
+          modules = [ ./system/desktop/muses ];
         };
         # Server: Cerberus, a powerful creature with multiple heads
         cerberus = lib.nixosSystem {
           inherit system;
           specialArgs = { inherit pkgs-unstable; };
-          modules = [
-            ./system/server/cerberus
-          ];
+          modules = [ ./system/server/cerberus ];
         };
         # NixOS live (install) ISO image #
         live = lib.nixosSystem {
@@ -97,7 +87,7 @@
             user = users.gf;
           };
           modules = [
-            ./home/gf/griffin.nix
+            ./home/device/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
@@ -108,7 +98,7 @@
             user = users.gf;
           };
           modules = [
-            ./home/gf/chimera.nix
+            ./home/device/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
