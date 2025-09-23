@@ -1,17 +1,16 @@
+# This script allows to easily manage Nix Flake system & home configs.
+# It supports having a sub flake (eg. public) used as input by the top-level.
+
 # TODO make this script a package available in this flake’s nix dev environment
 
-# This script allows to easily manage Nix flakes system & home configs,
-# with one top level flake having a single `public` flake input,
-# which contains most of the configurations for homes and systems
 CPU_LIMIT='cpulimit -l 888'     # Limit CPU usage to 888% accross threads
 MEM_LIMIT=$((10 * 1024 * 1024)) # Limit memory usage to 10 GB
 NIXOS_REBUILD_CMD="systemd-inhibit sudo $CPU_LIMIT nixos-rebuild"
 HOME_MANAGER_CMD="systemd-inhibit $CPU_LIMIT home-manager"
 
 # Global CONSTANTS
-PUBLIC_LOC='./public/' # Sub (public) flake location
-HOME_LOC='./home/'     # Home (Home Manager) configuration location
-# SYSTEM_LOC='./system' # System (NixOS) configuration location
+SUBFLAKE='public' # Sub flake (usually public config) location
+HOME_CFG='home'   # Home (Manager) configuration location
 # Global variables
 home_changed=false # Have changes been made to home config
 commit_msg=''      # Message to be constructed with remaining arguments
@@ -47,12 +46,12 @@ std() {
 
 # Show public configuration Git logs and status
 public_logs_status() {
-  git -C $PUBLIC_LOC log --oneline || exit
-  git -C $PUBLIC_LOC status || exit
+  git -C $SUBFLAKE log --oneline || exit
+  git -C $SUBFLAKE status || exit
 }
 
 # @param 1 (sub)directory containing Git repo to pull
-pull_one() { # Git pull private or public config
+pull_one() { # Git pull a (sub)directory (eg. private or public config)
   remote=$(git -C "$1" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   emph # Italic text
   printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
@@ -65,22 +64,46 @@ pull_one() { # Git pull private or public config
   std # Return to normal text
 }
 
-# Git pull both top-level and sub flake
+# Pull the current Git repository, recursing into submodules
+pull_recurse() { # Git pull private or public config
+  remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
+  emph # Italic text
+  printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
+  if ping -c 1 -w 3 "$remote"; then
+    printf '%s reached, pull latest changes from it\n' "$remote"
+    git pull --recurse-submodules=yes
+  else
+    printf '%s non reachable, move on\n' "$remote"
+  fi
+  std # Return to normal text
+}
+
+# Git pull both top-level and sub flakes
 pull_both() {
   emph # Italic text
   printf 'Public & Private: Pulling latest changes (asynchronously)\n'
   std # Normal text
-  pull_one $PUBLIC_LOC &
-  pull_one . &
+  # pull_one $SUBFLAKE &
+  # pull_one . &
+  pull_recurse
   wait # Wait for background pulls to finish before moving ong
+}
+
+# Commit Git submodule TODO ensure this is used everywhere needed
+commit_submodule() {
+  emph # Italic text
+  printf 'Public: Commiting %s Git submodule\n' $SUBFLAKE
+  std
+  git commit --message "$SUBFLAKE: Update" $SUBFLAKE
 }
 
 # Update public config flake inputs
 update_global_inputs() {
   emph # Italic text
-  printf 'Public: Update flake %s inputs\n' $PUBLIC_LOC
+  printf 'Public: Update flake %s inputs\n' $SUBFLAKE
   std
-  nix flake update --flake $PUBLIC_LOC --commit-lock-file
+  nix flake update --flake $SUBFLAKE --commit-lock-file
+  commit_submodule # Commit the submodule change
   # Test if the last commit is an unpushed lockfile update
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
 }
@@ -110,10 +133,10 @@ commit_all_changes() { # Commit $1 config with message $2
   shift                # Remove $1 (repo path) from $@
   # git -C "$repo_path" diff # FIXME Opens a pager: needs interaction
   # TODO set home_changed when amending changes too
-  if has_repo_changed "$repo_path" $HOME_LOC; then
+  if has_repo_changed "$repo_path" $HOME_CFG; then
     home_changed=true # Rebuild home as changes have been made
     strong            # Bold text
-    printf '\tChanges made in %s configuration\n' $HOME_LOC
+    printf '\tChanges made in %s configuration\n' $HOME_CFG
     std # Standard text
   # elif [ -d "$repo_path/$HOME_LOC" ]; then
   elif has_repo_changed "$repo_path" flake.nix flake.lock; then
@@ -138,8 +161,8 @@ commit_public_private() { # Git commit both private and public config
   emph
   printf 'Public: Commit flake repository\n'
   std
-  if commit_all_changes $PUBLIC_LOC --message "$1"; then # Commit the public flake
-    update_private_inputs                                # Update changed public
+  if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the public flake
+    update_private_inputs # Update changed public
   fi
   emph
   printf 'Private: Commit flake repository (including eventual inputs update)\n'
@@ -184,8 +207,8 @@ amend_public_private() { # Amend both public and private config
   emph
   printf 'Public: Amend flake repository\n'
   std
-  if protected_amend "$PUBLIC_LOC"; then # May amend the public flake
-    extract_last_commit_msg $PUBLIC_LOC  # Set commit msg to the last one
+  if protected_amend "$SUBFLAKE"; then # May amend the public flake
+    extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
     update_private_inputs                # Update private inputs if amending
   fi
   protected_amend .
@@ -233,11 +256,11 @@ rebase_public_private() { # Git rebase both public and private configs
   emph
   printf 'Public: Rebase flake repository\n'
   std
-  git -C $PUBLIC_LOC rebase -i
+  git -C $SUBFLAKE rebase -i
   emph
   printf 'Private: Rebase flake repository\n'
   std
-  msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
+  msg=$(git -C $SUBFLAKE log --branches --not --remotes -1 --pretty=format:%s)
   if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
     [ -n "${git log --branches --not --remotes}" ]; then
     # Mirror last public’s Git commit message on private’s last commit
@@ -257,11 +280,11 @@ push_public_private() { # Git push both public and private configs
   # printf 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
   # std
   # sleep 3 || exit # Give the user 3 seconds to cancel the push if needed
-  git -C $PUBLIC_LOC push
+  git -C $SUBFLAKE push
   git push
 }
 
-if ! [ -d $PUBLIC_LOC ]; then # Test if there is a public config
+if ! [ -d $SUBFLAKE ]; then # Test if there is a public config
   emph
   printf 'No public config sub flake found in %s\n' "$(pwd)"
   std
