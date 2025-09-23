@@ -31,7 +31,7 @@
   };
 
   environment = {
-    etc.flake.source = self; # Put the actual Flake repo inside the ISO
+    # etc.flake.source = self; # Put the actual Flake repo inside the ISO
     systemPackages = [
       (pkgs.writeShellScriptBin "cfg" ''
         cd /etc/flake
