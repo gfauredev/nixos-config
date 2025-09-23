@@ -18,6 +18,8 @@
     };
   };
 
+  networking.wireless = false; # Prefer NetworkManager
+
   services = {
     openssh.enable = true; # Enable the OpenSSH daemon
     nfs.server.enable = true; # Share files across network
