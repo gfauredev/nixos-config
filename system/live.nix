@@ -3,6 +3,7 @@
   imports = [ ./default.nix ];
 
   networking.hostname = "LiveNixOS";
+  networking.hostId = "acabacab";
 
   users.extraUsers.root.password = "root";
   users.users.nixos.password = "nixos";

@@ -6,6 +6,7 @@
   ];
 
   networking.hostName = "griffin";
+  networking.hostId = "bbfdd0e2";
 
   environment.systemPackages = with pkgs; [
     framework-tool # Hardware related tools for framework laptops
