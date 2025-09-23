@@ -8,12 +8,6 @@
 
   networking.hostname = "LiveNixOS";
 
-  boot.supportedFilesystems = [
-    "btrfs"
-    "bcachefs"
-    "zfs"
-  ];
-
   # networking.wireless.enable = false;
 
   systemd = {

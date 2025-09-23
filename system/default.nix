@@ -41,13 +41,17 @@
       "kernel.sysrq" = 212; # kbd control, read-only remount, nicing, power
       "vm.swappiness" = 50; # Reduce memory swap to disk
     };
-    kernelPackages = lib.mkOverride 1001 pkgs.linuxPackages_latest; # Latest Linux kernel by default
+    # kernelPackages = lib.mkOverride 1001 pkgs.linuxPackages_latest; # Latest
     kernelParams = [
       "threadirqs" # Process interrupts asynchronously to reduce latency
       "zswap.enabled=1" # TODO setup encrypted swap partition
     ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
-    supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
+    supportedFilesystems = [
+      "bcachefs"
+      "btrfs"
+      "zfs"
+    ];
   };
 
   console.keyMap = "fr-bepo";
@@ -177,8 +181,8 @@
 
   services = {
     ntp.enable = lib.mkDefault true;
-    dnscrypt-proxy2.enable = true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
-    usbguard.enable = true; # TODO config
+    dnscrypt-proxy2.enable = lib.mkDefault true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
+    usbguard.enable = true; # TODO config it
     dnscrypt-proxy2 = {
       settings = {
         sources.public-resolvers = {
