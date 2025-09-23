@@ -18,7 +18,7 @@
     };
   };
 
-  networking.wireless = false; # Prefer NetworkManager
+  networking.wireless.enable = false; # Prefer NetworkManager
 
   services = {
     openssh.enable = true; # Enable the OpenSSH daemon
