@@ -9,15 +9,16 @@
     ./default.nix
   ];
 
-  boot.supportedFilesystems = {
-    btrfs = true;
-    # bcachefs = true;
-    # zfs = true;
-  };
+  boot.supportedFilesystems = [ "btrfs" ];
+  # {
+  #   btrfs = true;
+  #   bcachefs = true;
+  #   zfs = true;
+  # };
 
   networking.wireless.enable = false;
 
-  programs.git.config.user = {
+  programs.git.config."user" = {
     email = user.email;
     name = user.fullname;
   };
