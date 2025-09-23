@@ -47,10 +47,10 @@
         STOP_CHARGE_THRESH_BAT0 = 90; # 90 and above: don’t charge
       };
     };
-    logind.settings = {
+    logind = {
       powerKey = "suspend";
       lidSwitch = "suspend";
-      # Login = {
+      # settings.Login = {
       #   HandlePowerKey = "suspend";
       #   HandleLidSwitch = "suspend";
       # };
