@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ ../default.nix ];
+  imports = [ ./default.nix ];
 
   boot.supportedFilesystems = {
     btrfs = true;
