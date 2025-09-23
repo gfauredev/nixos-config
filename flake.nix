@@ -29,19 +29,25 @@
         "x86_64-linux" # 64-bit Intel/AMD Linux
       ];
       forEachSupportedSystem =
-        f: stable.lib.genAttrs systems (system: f { pkgs = import stable { inherit system; }; });
-      system = "x86_64-linux"; # PC architecture
+        f:
+        stable.lib.genAttrs systems (
+          system:
+          f {
+            pkgs = import stable { inherit system; };
+            pkgs-unstable = import unstable { inherit system; };
+          }
+        );
       lib = stable.lib;
       hm-lib = home-manager.lib;
-      pkgs = stable.legacyPackages.${system};
-      pkgs-unstable = unstable.legacyPackages.${system};
+      # system = "x86_64-linux"; # PC architecture
+      # pkgs = stable.legacyPackages.${system};
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
         griffin = lib.nixosSystem {
-          inherit system;
+          # inherit system;
           # specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/griffin
@@ -52,26 +58,20 @@
         };
         # Laptop: Chimera, a flying creature
         chimera = lib.nixosSystem {
-          inherit system;
-          # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/laptop/chimera ];
         };
         # Desktop: Muses, goddess of arts and music
         muses = lib.nixosSystem {
-          inherit system;
-          # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/desktop/muses ];
         };
         # Server: Cerberus, a powerful creature with multiple heads
         cerberus = lib.nixosSystem {
-          inherit system;
-          # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/server/cerberus ];
         };
         # NixOS live (install) ISO image:
         # nix build .#nixosConfigurations.live.config.system.build.isoImage
         live = lib.nixosSystem {
-          inherit system;
+          # inherit system;
           modules = [
             "${stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
@@ -81,7 +81,7 @@
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = stable.legacyPackages.x86_64-linux;
           # extraSpecialArgs = { inherit pkgs-unstable; };
           modules = [
             { home.system.stateVersion = "25.05"; }
@@ -90,8 +90,7 @@
           ];
         };
         "gf@chimera" = hm-lib.homeManagerConfiguration {
-          inherit pkgs;
-          # extraSpecialArgs = { inherit pkgs-unstable; };
+          pkgs = stable.legacyPackages.x86_64-linux;
           modules = [
             ./home/device/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
@@ -100,7 +99,7 @@
       };
       # This configuration’s development shell, preferably enabled with direnv
       devShells = forEachSupportedSystem (
-        { pkgs }:
+        { pkgs, pkgs-unstable }:
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
