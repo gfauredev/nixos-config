@@ -86,18 +86,17 @@ screens for power saving, I always set background to pitch black `#000000`.
 
 I also am a big fan of [direnv](https://direnv.net) along Nix Flake’s dev shells
 to manage all my development environments declaratively, and activate them
-effortlessly.
+effortlessly with my [dev](./home/module/shell/script/dev-env) script.
 
 ## Conventions of this repository
 
-- Files and directories names are `camelCase` and singular.
-- `system` contains configurations related to specific devices (hosts).
-  - Systems are generally named after a mythological entity.
+- Files and directories names are `camelCase` and singular
+- `system` contains (NixOS) configurations related to specific devices (hosts)
+  - Systems are named after a mythological entity
   - The `module` subdirectory contains Nix modules
-- `home` contains configuratons related to users homes.
-  - Users usernames are generally their initials.
+- `home` contains (Home-Manager) configuratons related to users’ homes
+  - Users usernames are their initials
   - The `module` subdirectory contains Nix modules
-- `template` contains dev environment flakes templates
 
 ## NixOS’ setup instructions
 
@@ -155,11 +154,11 @@ the command `cfg` (`cfg h` to display usage).
 Some other git repositories constitute configuration elements, but are not
 directly included in this flake:
 
-- My [Typst library](https://gitlab.com/gfauredev/typst-lib)
-  - Cloned at `$XDG_DATA_HOME/typst/packages/local`
 - My [dev environment templates](https://github.com/gfauredev/dev-templates)
   - Usually cloned at `$XDG_CONFIG_HOME/dev-templates`
   - Used with the alias `dev <stack>`
+- My [Typst library](https://gitlab.com/gfauredev/typst-lib)
+  - Cloned at `$XDG_DATA_HOME/typst/packages/local`
 
 ## Documentation and learning ressources
 
@@ -171,11 +170,9 @@ directly included in this flake:
 - [nix.dev](https://nix.dev)
 - [Vimjoyer YouTube channel](https://www.youtube.com/@vimjoyer)
 - [Global Nix options search engine](https://searchix.alanpearce.eu/all/search)
-- `manix` CLI Nix options search engine
+- [NixOS and Flakes](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-configuration-explained)
 - [NixOS starter flake configs](https://github.com/Misterio77/nix-starter-configs)
 - [hlissner’s config](https://github.com/hlissner/dotfiles)
-- [gvolpe’s config](https://github.com/gvolpe/nix-config/blob/master/flake.nix)
-- [gvolpe’s private flake article](https://gvolpe.com/blog/private-flake)
-- [yelite’s conf ex.](https://github.com/yelite/private-flake-example/blob/main/flake.nix)
+- [gvolpe’s flake article](https://gvolpe.com/blog/private-flake)
 - [yelite’s cfg article](https://greenfield.blog/posts/private-nix-flake-with-public-subtree)
 - [mitchellh’s config](https://github.com/mitchellh/nixos-config)
