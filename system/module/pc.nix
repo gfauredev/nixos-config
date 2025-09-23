@@ -139,25 +139,25 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  i18n.extraLocaleSettings =
-    let
-      fr = "fr_FR.UTF-8";
-    in
-    {
-      # LANG = fr;
-      # LANGUAGE = fr;
-      LC_ADDRESS = fr;
-      # LC_ALL = fr;
-      LC_IDENTIFICATION = fr;
-      # LC_MESSAGES = fr;
-      LC_MEASUREMENT = fr;
-      LC_MONETARY = fr;
-      LC_NAME = fr;
-      LC_NUMERIC = fr;
-      LC_PAPER = fr;
-      LC_TELEPHONE = fr;
-      LC_TIME = fr;
-    };
+  # i18n.extraLocaleSettings = TODO uncomment
+  #   let
+  #     fr = "fr_FR.UTF-8";
+  #   in
+  #   {
+  #     # LANG = fr;
+  #     # LANGUAGE = fr;
+  #     LC_ADDRESS = fr;
+  #     # LC_ALL = fr;
+  #     LC_IDENTIFICATION = fr;
+  #     # LC_MESSAGES = fr;
+  #     LC_MEASUREMENT = fr;
+  #     LC_MONETARY = fr;
+  #     LC_NAME = fr;
+  #     LC_NUMERIC = fr;
+  #     LC_PAPER = fr;
+  #     LC_TELEPHONE = fr;
+  #     LC_TIME = fr;
+  #   };
 
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
