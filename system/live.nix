@@ -1,8 +1,4 @@
-{
-  pkgs,
-  user,
-  ...
-}: # Live ISO to install NixOS
+{ pkgs, ... }: # Live ISO to install NixOS
 {
   imports = [ ./default.nix ];
 
@@ -28,11 +24,6 @@
       settings.PermitRootLogin = "yes"; # Easily login as root via SSH
       settings.PasswordAuthentication = true;
     };
-  };
-
-  programs.git.config."user" = {
-    email = user.email;
-    name = user.fullname;
   };
 
   # environment.systemPackages = [

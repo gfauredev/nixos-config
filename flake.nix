@@ -35,7 +35,6 @@
       hm-lib = home-manager.lib;
       pkgs = stable.legacyPackages.${system};
       pkgs-unstable = unstable.legacyPackages.${system};
-      users = import ./user.nix; # Common users configurations
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
@@ -73,9 +72,6 @@
         # nix build .#nixosConfigurations.live.config.system.build.isoImage
         live = lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            user = users.gf;
-          };
           modules = [
             "${stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
@@ -86,21 +82,16 @@
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            # inherit pkgs-unstable;
-            user = users.gf;
-          };
+          # extraSpecialArgs = { inherit pkgs-unstable; };
           modules = [
+            { home.system.stateVersion = "25.05"; }
             ./home/device/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
         "gf@chimera" = hm-lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            # inherit pkgs-unstable;
-            user = users.gf;
-          };
+          # extraSpecialArgs = { inherit pkgs-unstable; };
           modules = [
             ./home/device/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts

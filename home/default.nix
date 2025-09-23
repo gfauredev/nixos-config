@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  user,
   ...
 }:
 {
@@ -23,18 +22,18 @@
     pkg:
     builtins.elem (lib.getName pkg) [
       "albert" # General launcher
-      "discord" # Messaging
-      "vital" # Synth
       "bespokesynth" # Synth
       "bespokesynth-with-vst2" # Synth
-      "spotify" # Music
-      "steam-unwrapped" # Videogames
-      "steam" # Videogames
-      "libsciter" # Used by rustdesk
-      "ciscoPacketTracer8" # Network simulation
-      "deconz" # Manage ZigBee/Matter networks
+      # "ciscoPacketTracer8" # Network simulation
+      # "deconz" # Manage ZigBee/Matter networks
+      # "discord" # Messaging
+      # "libsciter" # Used by rustdesk
+      # "spotify" # Music
+      # "steam-unwrapped" # Videogames
+      # "steam" # Videogames
+      # "stm32cubemx" # STM32
+      "vital" # Synth
       "ventoy" # Multiboot USB
-      "stm32cubemx" # STM32
     ];
 
   imports = [
@@ -44,34 +43,33 @@
   ];
 
   home = {
-    username = user.config.name;
-    homeDirectory = user.config.home;
+    username = config.user.name;
+    homeDirectory = config.user.home;
     # TODO better https://wiki.nixos.org/wiki/Environment_variables
     sessionVariables = {
       CONFIG_FLAKE = "~/.config/flake"; # System and home flake configs
-      XDG_DESKTOP_DIR = "${user.config.home}/data"; # FIXME not properly propagated to shell, wm…
-      XDG_DOCUMENTS_DIR = "${user.config.home}/data";
-      XDG_MUSIC_DIR = "${user.config.home}/data";
-      XDG_PICTURES_DIR = "${user.config.home}/dcim";
-      XDG_VIDEOS_DIR = "${user.config.home}/dcim";
-      XDG_DOWNLOAD_DIR = "${user.config.home}/tmp";
+      XDG_DESKTOP_DIR = "${config.user.home}/data"; # FIXME not properly propagated to shell, wm…
+      XDG_DOCUMENTS_DIR = "${config.user.home}/data";
+      XDG_MUSIC_DIR = "${config.user.home}/data";
+      XDG_PICTURES_DIR = "${config.user.home}/dcim";
+      XDG_VIDEOS_DIR = "${config.user.home}/dcim";
+      XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
       BAT_PAGING = "never";
       SHELL = "nu"; # TEST if better with full paths
       PAGER = "ov"; # TEST if better with full paths
       BROWSER = "firefox"; # TEST if better with full paths
       BROWSER_ALT = "brave"; # TEST if better with full paths
     };
-    system.stateVersion = "25.05"; # TODO inherit from system
   };
 
   programs = {
     git = {
-      userName = user.fullname;
-      userEmail = user.email;
+      userName = config.user.description;
+      userEmail = config.user.email;
     };
     jujutsu.settings.user = {
-      name = user.fullname;
-      email = user.email;
+      name = config.user.description;
+      email = config.user.email;
     };
   };
 
