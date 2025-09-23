@@ -23,14 +23,13 @@
       stylix,
     }:
     let
-      supportedSystems = [
+      systems = [
         "riscv64-linux" # 64-bit RISC-V Linux
         "aarch64-linux" # 64-bit ARM Linux
         "x86_64-linux" # 64-bit Intel/AMD Linux
       ];
       forEachSupportedSystem =
-        f:
-        unstable.lib.genAttrs supportedSystems (system: f { pkgs = import unstable { inherit system; }; });
+        f: stable.lib.genAttrs systems (system: f { pkgs = import stable { inherit system; }; });
       system = "x86_64-linux"; # PC architecture
       lib = stable.lib;
       hm-lib = home-manager.lib;
@@ -118,7 +117,7 @@
               lorri # To TEST
               nil # Nix LSP
               niv # Dependency management
-              nixfmt # Formatter
+              pkgs-unstable.nixfmt # Formatter
               nixfmt-tree # Format a whole directory of nix files
               statix # Lints & suggestions for Nix
               vulnix # NixOS vulnerability scanner
