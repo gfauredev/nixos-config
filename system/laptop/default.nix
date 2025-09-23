@@ -15,7 +15,7 @@
   services = {
     auto-cpufreq.enable = lib.mkDefault true; # Save battery, smarter than TLP
     thermald.enable = lib.mkDefault true; # Keep CPU cool
-    tlp.enable = lib.mkDefault (!config.services.auto-cpufreq.enable); # Save battery
+    tlp.enable = (!config.services.auto-cpufreq.enable); # Save battery
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     localtimed.enable = lib.mkDefault true;
     # auto-cpufreq = {
