@@ -47,9 +47,13 @@
         STOP_CHARGE_THRESH_BAT0 = 90; # 90 and above: don’t charge
       };
     };
-    logind.settings.Login = {
-      HandlePowerKey = "suspend";
-      HandleLidSwitch = "suspend";
+    logind.settings = {
+      powerKey = "suspend";
+      lidSwitch = "suspend";
+      # Login = {
+      #   HandlePowerKey = "suspend";
+      #   HandleLidSwitch = "suspend";
+      # };
     };
     # getty.helpLine = ''
     #   tty1: Hyprland, on iGPU only (wayland window manager)
