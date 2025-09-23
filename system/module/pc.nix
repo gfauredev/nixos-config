@@ -191,7 +191,7 @@
       # man-pages-posix # Documentation
       # navi # Cheat sheet for CLIs
     ];
-    persistence.persistent = {
+    persistence."/persist" = {
       hideMounts = true; # TODO configure Impermanence, see https://github.com/nix-community/impermanence?tab=readme-ov-file#system-setup
       directories = [
         # "/home"
