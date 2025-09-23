@@ -3,16 +3,16 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "nvidia-x11" # GPU drivers
-      "nvidia-settings" # GPU drivers
-      "nvidia-persistenced" # GPU drivers
+      # "ciscoPacketTracer8" # Network simulation
+      # "deconz" # Manage ZigBee/Matter networks
       "hp" # Printer drivers
-      "steam" # Video games software
-      "steam-original" # Video games software
-      "steam-unwrapped" # Video games software
-      "steam-run" # Video games software
-      "ciscoPacketTracer8" # Network simulation
-      "deconz" # Manage ZigBee/Matter networks
+      # "nvidia-x11" # GPU drivers
+      # "nvidia-settings" # GPU drivers
+      # "nvidia-persistenced" # GPU drivers
+      # "steam" # Video games software
+      # "steam-original" # Video games software
+      # "steam-unwrapped" # Video games software
+      # "steam-run" # Video games software
       "ventoy" # Multiboot USB
     ];
 
@@ -23,7 +23,10 @@
       options = lib.mkDefault "--delete-older-than +3";
     };
     settings = {
-      experimental-features = "nix-command flakes";
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       connect-timeout = 3; # Quickly go offline if substitute not reachable
       allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
@@ -47,11 +50,11 @@
     supportedFilesystems = [ "bcachefs" ]; # Add support for bcachefs
   };
 
-  console.keyMap = lib.mkDefault "fr-bepo";
+  console.keyMap = "fr-bepo";
 
   time = {
     timeZone = lib.mkDefault "Europe/Paris";
-    hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Windows
+    hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Window$
   };
 
   networking =
@@ -200,8 +203,8 @@
   };
 
   programs = {
-    git.enable = true; # MANDATORY
-    neovim.enable = false; # Use helix instead
+    git.enable = lib.mkForce true; # MANDATORY
+    neovim.enable = lib.mkDefault false; # Use helix instead
     openvpn3.enable = lib.mkDefault true;
     amnezia-vpn.enable = lib.mkDefault true; # DPI resistant WireGuard
     neovim = {
@@ -215,14 +218,13 @@
     };
   };
 
-  # i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8"; TODO uncomment
-
   environment = {
     shells = with pkgs; [ dash ]; # Only allowed login shell
     binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
     defaultPackages = lib.mkForce [ ]; # Remove default packages
     systemPackages = with pkgs; [
       # Shell utilities
+      helix # Post-modern modal text editor
       dash # Only login and script shell
       ov # Modern pager
       hexyl # hex viewer

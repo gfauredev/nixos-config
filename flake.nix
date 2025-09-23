@@ -38,7 +38,7 @@
       users = import ./user.nix; # Common users configurations
     in
     {
-      # NixOS config, enable: `nixos-rebuild --flake .#hostname`
+      # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
         griffin = lib.nixosSystem {
@@ -69,9 +69,9 @@
           # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/server/cerberus ];
         };
-        # NixOS live (install) ISO image #
+        # NixOS live (install) ISO image:
+        # nix build .#nixosConfigurations.live.config.system.build.isoImage
         live = lib.nixosSystem {
-          # Build: nix build .#nixosConfigurations.live.config.system.build.isoImage
           inherit system;
           specialArgs = {
             user = users.gf;
