@@ -214,7 +214,6 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   printf 'Mount /boot before system update\n'
   std
   sudo mount -v /boot || exit # Use fstab
-  cd . || exit
   NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . switch"
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
