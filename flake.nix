@@ -77,7 +77,7 @@
             user = users.gf;
           };
           modules = [
-            "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
           ];
         };
