@@ -174,9 +174,9 @@
 
   services = {
     ntp.enable = lib.mkDefault true;
-    dnscrypt-proxy.enable = true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
+    dnscrypt-proxy2.enable = true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
     usbguard.enable = true; # TODO config
-    dnscrypt-proxy = {
+    dnscrypt-proxy2 = {
       settings = {
         sources.public-resolvers = {
           urls = [
