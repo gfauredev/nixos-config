@@ -1,12 +1,11 @@
 {
-  pkgs,
   lib,
   user,
   ...
 }:
 {
   imports = [
-    "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+    # "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
     ./default.nix
   ];
 

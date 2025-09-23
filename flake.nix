@@ -76,7 +76,10 @@
           specialArgs = {
             user = users.gf;
           };
-          modules = [ ./system/live.nix ];
+          modules = [
+            "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            ./system/live.nix
+          ];
         };
       };
       # home-manager config, enable: `home-manager --flake .#username@hostname`
