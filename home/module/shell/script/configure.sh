@@ -89,21 +89,16 @@ pull_both() {
   wait # Wait for background pulls to finish before moving ong
 }
 
-# Commit Git submodule TODO ensure this is used everywhere needed
-commit_submodule() {
-  emph # Italic text
-  printf 'Public: Commiting %s Git submodule\n' $SUBFLAKE
-  std
-  git commit --message "$SUBFLAKE: Update" $SUBFLAKE
-}
-
 # Update public config flake inputs
 update_subflake_inputs() {
   emph # Italic text
   printf 'Public: Update flake %s inputs\n' $SUBFLAKE
   std
   nix flake update --flake $SUBFLAKE --commit-lock-file
-  commit_submodule # "Update inputs" # Commit the submodule change
+  emph # Italic text
+  printf 'Public: Commiting %s Git submodule\n' $SUBFLAKE
+  std # TODO ensure submoduleis committed everywhere needed
+  git commit --message "$SUBFLAKE: Update inputs" $SUBFLAKE
   # Test if the last commit is an unpushed lockfile update
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
 }
