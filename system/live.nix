@@ -2,7 +2,7 @@
 {
   imports = [ ./default.nix ];
 
-  networking.hostname = "LiveNixOS";
+  networking.hostName = "LiveNixOS";
   networking.hostId = "acabacab";
 
   users.extraUsers.root.password = "root";
