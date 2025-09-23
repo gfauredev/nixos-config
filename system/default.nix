@@ -32,6 +32,14 @@
       allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
     };
   };
+  # nix = {
+  #   settings = {
+  #     substituters = [ "https://cache.nixos.org" ];
+  #     trusted-public-keys = [
+  #       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+  #     ];
+  #   };
+  # };
 
   boot = {
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs

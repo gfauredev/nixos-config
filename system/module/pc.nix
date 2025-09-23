@@ -11,6 +11,8 @@
     ./loginManager # Launch graphical env at login
   ];
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common
+
   boot = {
     bootspec.enable = true; # Secure Boot support
     loader.systemd-boot.enable = lib.mkDefault false; # Disabled for secure boot
@@ -86,6 +88,8 @@
     uinput = { };
     wg = { };
   };
+
+  networking.useDHCP = lib.mkDefault true;
 
   services = {
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
