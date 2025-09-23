@@ -49,18 +49,4 @@
       "noexec"
     ];
   };
-
-  # TODO See https://nixos.wiki/wiki/Swap, encrypted zswap, with hibernation
-  swapDevices = [
-    {
-      # device = "/dev/nvme0n1p2"; # TODO
-      # size = 16 * 1024 + 64; # A bit more than RAM size
-      # encrypted = {
-      #   enable = true;
-      #   blkDev = "/dev/nvme0n1p2";
-      #   keyFile = "/mnt-root/root/.swapkey";
-      #   label = "cryptswap";
-      # };
-    }
-  ];
 }
