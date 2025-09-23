@@ -98,12 +98,12 @@ commit_submodule() {
 }
 
 # Update public config flake inputs
-update_global_inputs() {
+update_subflake_inputs() {
   emph # Italic text
   printf 'Public: Update flake %s inputs\n' $SUBFLAKE
   std
   nix flake update --flake $SUBFLAKE --commit-lock-file
-  commit_submodule # Commit the submodule change
+  commit_submodule # "Update inputs" # Commit the submodule change
   # Test if the last commit is an unpushed lockfile update
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
 }
@@ -367,7 +367,7 @@ std                  # Back to standard text
 
 pull_both # Always pull the latest configuration before doing anything
 if $update_inputs; then
-  update_global_inputs
+  update_subflake_inputs
 fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
