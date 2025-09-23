@@ -1,10 +1,11 @@
-{ pkgs, ... }: # Live ISO to install NixOS
+{ self, pkgs, ... }: # Live ISO to install NixOS
 {
   imports = [ ./default.nix ];
 
   networking.hostname = "LiveNixOS";
 
-  # networking.wireless.enable = false;
+  users.extraUsers.root.password = "root";
+  users.users.nixos.password = "nixos";
 
   systemd = {
     services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
@@ -26,9 +27,13 @@
     };
   };
 
-  # environment.systemPackages = [
-  #   (pkgs.writeShellScriptBin "cfg" ''
-  #     git clone https://gitlab.com/gfauredev/nixos-config.git
-  #   '')
-  # ];
+  environment = {
+    etc.flake.source = self; # Put the actual Flake repo inside the ISO
+    systemPackages = [
+      (pkgs.writeShellScriptBin "cfg" ''
+        cd /etc/flake
+      '')
+      # git clone https://gitlab.com/gfauredev/nixos-config.git
+    ];
+  };
 }
