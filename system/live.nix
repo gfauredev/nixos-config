@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ ./default.nix ];
+  imports = [
+    "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+    ./default.nix
+  ];
 
   boot.supportedFilesystems = {
     btrfs = true;
@@ -20,11 +23,11 @@
     name = user.fullname;
   };
 
-  environment.systemPackages = [
-    (pkgs.writeShellScriptBin "cfg" ''
-      git clone https://gitlab.com/gfauredev/nixos-config.git
-    '')
-  ];
+  # environment.systemPackages = [
+  #   (pkgs.writeShellScriptBin "cfg" ''
+  #     git clone https://gitlab.com/gfauredev/nixos-config.git
+  #   '')
+  # ];
 
   services = {
     openssh = {

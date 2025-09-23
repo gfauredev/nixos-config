@@ -76,10 +76,7 @@
           specialArgs = {
             user = users.gf;
           };
-          modules = [
-            "${pkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            ./system/live.nix # Bootable ISO used to install NixOS
-          ];
+          modules = [ ./system/live.nix ];
         };
       };
       # home-manager config, enable: `home-manager --flake .#username@hostname`
