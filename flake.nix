@@ -43,7 +43,7 @@
         # Laptop: Griffin, a powerful flying creature
         griffin = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit pkgs-unstable; };
+          # specialArgs = { inherit pkgs-unstable; };
           modules = [
             ./system/laptop/griffin
             lanzaboote.nixosModules.lanzaboote # Secure boot
@@ -54,19 +54,19 @@
         # Laptop: Chimera, a flying creature
         chimera = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit pkgs-unstable; };
+          # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/laptop/chimera ];
         };
         # Desktop: Muses, goddess of arts and music
         muses = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit pkgs-unstable; };
+          # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/desktop/muses ];
         };
         # Server: Cerberus, a powerful creature with multiple heads
         cerberus = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit pkgs-unstable; };
+          # specialArgs = { inherit pkgs-unstable; };
           modules = [ ./system/server/cerberus ];
         };
         # NixOS live (install) ISO image #
@@ -87,7 +87,7 @@
         "gf@griffin" = hm-lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             user = users.gf;
           };
           modules = [
@@ -98,7 +98,7 @@
         "gf@chimera" = hm-lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             user = users.gf;
           };
           modules = [
