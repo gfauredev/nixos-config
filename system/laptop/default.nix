@@ -8,9 +8,8 @@
   imports = [
     ../default.nix
     ../module/pc.nix
+    ../module/i18n.nix
   ];
-
-  nix.settings.max-jobs = lib.mkDefault 8;
 
   services = {
     auto-cpufreq.enable = lib.mkDefault true; # Save battery, smarter than TLP

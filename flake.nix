@@ -71,7 +71,6 @@
         # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
         live = lib.nixosSystem {
           modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
             "${stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
           ];
@@ -92,8 +91,16 @@
         "gf@chimera" = hm-lib.homeManagerConfiguration {
           pkgs = stable.legacyPackages.x86_64-linux;
           modules = [
+            { home.system.stateVersion = "25.05"; }
             ./home/device/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
+          ];
+        };
+        "gf@live" = hm-lib.homeManagerConfiguration {
+          pkgs = stable.legacyPackages.x86_64-linux;
+          modules = [
+            { home.system.stateVersion = "25.05"; }
+            ./home/device/live.nix
           ];
         };
       };

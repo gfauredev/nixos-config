@@ -13,15 +13,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common
 
-  boot = {
-    bootspec.enable = true; # Secure Boot support
-    loader.systemd-boot.enable = lib.mkDefault false; # Disabled for secure boot
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-  };
-
   hardware = {
     uinput.enable = true;
     graphics.enable = true;
@@ -143,27 +134,6 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  i18n.defaultLocale = lib.mkDefault "en_GB.UTF-8";
-  i18n.extraLocaleSettings =
-    let
-      fr = "fr_FR.UTF-8";
-    in
-    {
-      # LANG = fr;
-      # LANGUAGE = fr;
-      LC_ADDRESS = fr;
-      # LC_ALL = fr;
-      LC_IDENTIFICATION = fr;
-      # LC_MESSAGES = fr;
-      LC_MEASUREMENT = fr;
-      LC_MONETARY = fr;
-      LC_NAME = fr;
-      LC_NUMERIC = fr;
-      LC_PAPER = fr;
-      LC_TELEPHONE = fr;
-      LC_TIME = fr;
-    };
-
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
   fonts.enableDefaultPackages = true;
@@ -198,21 +168,6 @@
       # man-pages-posix # Documentation
       # navi # Cheat sheet for CLIs
     ];
-    persistence."/persist" = {
-      hideMounts = true; # TODO configure Impermanence, see https://github.com/nix-community/impermanence?tab=readme-ov-file#system-setup
-      directories = [
-        # "/home"
-        "/var/lib/nixos"
-        "/var/lib/systemd/coredump"
-        "/var/log"
-        "/var/lib/bluetooth"
-        "/etc/NetworkManager/system-connections"
-      ];
-      files = [
-        "/etc/machine-id"
-      ];
-      # TODO ensure users homes are always persistent
-    };
   };
 
   # powerManagement = {

@@ -8,6 +8,7 @@
   imports = [
     ../.
     ./filesystem.nix
+    ../../module/secureboot.nix # Secure Boot (Lanzaboote)
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
