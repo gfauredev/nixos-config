@@ -104,8 +104,7 @@ effortlessly with my [dev](./home/module/shell/script/dev-env) script.
 
 ### _0._ Build the installer image
 
-Build a custom live NixOS ISO image from this flake with
-`nix build .#nixosConfigurations.live.config.system.build.isoImage`.
+Build a custom live NixOS ISO image from this flake with `nix build` (default).
 
 Boot it from a bootable USB stick (preferably a multi-ISO one like with Ventoy).
 

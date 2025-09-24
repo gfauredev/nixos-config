@@ -68,10 +68,8 @@
         cerberus = lib.nixosSystem {
           modules = [ ./system/server/cerberus ];
         };
-        # NixOS live (install) ISO image:
-        # nix build .#nixosConfigurations.live.config.system.build.isoImage
+        # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
         live = lib.nixosSystem {
-          # inherit system;
           modules = [
             { nixpkgs.hostPlatform = "x86_64-linux"; }
             "${stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
@@ -79,6 +77,7 @@
           ];
         };
       };
+      defaultPackage.x86_64-linux = self.nixosConfigurations.live.config.system.build.isoImage;
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
