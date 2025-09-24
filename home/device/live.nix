@@ -17,4 +17,8 @@
       description = "favorite media app";
     };
   };
+
+  config = {
+    home.sessionVariables.CONFIG_FLAKE = "/etc/flake"; # System and home flake configs
+  };
 }
