@@ -1,12 +1,24 @@
-{ self, pkgs, ... }: # Live ISO to install NixOS
+{ pkgs, ... }: # Live ISO to install NixOS
 {
   imports = [ ./default.nix ];
 
   networking.hostName = "LiveNixOS";
   networking.hostId = "acabacab";
 
-  users.extraUsers.root.password = "root";
-  users.users.nixos.password = "nixos";
+  users.extraUsers.root = rec {
+    initialHashedPassword = null;
+    hashedPassword = null;
+    initialPassword = "root";
+    password = initialPassword;
+    hashedPasswordFile = null;
+  };
+  users.users.nixos = rec {
+    initialHashedPassword = null;
+    hashedPassword = null;
+    initialPassword = "nixos";
+    password = initialPassword;
+    hashedPasswordFile = null;
+  };
 
   systemd = {
     services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
