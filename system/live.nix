@@ -43,10 +43,10 @@
   };
 
   environment = {
-    # etc.flake.source = self; # Put the actual Flake repo inside the ISO
+    shellAliases.cfg = "cd /etc/flake; configure";
     systemPackages = [
-      (pkgs.writeShellScriptBin "cfg" ''
-        cd /etc/flake
+      (pkgs.writeShellScriptBin "configure" ''
+        grep '### _1._' -A 31 public/README.md
       '')
       # git clone https://gitlab.com/gfauredev/nixos-config.git
     ];
