@@ -51,16 +51,16 @@
     # infamousPlugins # Collection of audio plugins
     musescore # Music writing
     # VST
-    vital # PROPRIETARY Spectral warping wavetable synth
+    # vital # PROPRIETARY Spectral warping wavetable synth
     # helm # Ancestor of Vital
-    # surge-XT # Great hybrid substractive synth TODO reenable
+    surge-XT # Great hybrid substractive synth
     # surge # Great hybrid substractive synth (old version)
-    # bespokesynth-with-vst2 # Software modular synth with controllers support TODO reenable
+    bespokesynth-with-vst2 # Software modular synth, controllers support
     drumgizmo # High quality drums sampler
     # Bridges & Drivers & Adapters
     # airwave # WINE-based VST bridge for Linux VST hosts
-    # yabridge # Use Windows VSTs with wine TODO reenable
-    # yabridgectl # Use Windows VSTs with wine TODO reenable
+    # yabridge # Use Windows VSTs with wine
+    # yabridgectl # Use Windows VSTs with wine
     # alsa-scarlett-gui
   ];
 }

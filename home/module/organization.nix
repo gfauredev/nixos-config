@@ -38,7 +38,6 @@
     # element-desktop # Secure group messaging and calls
     # element-web # Secure messaging and calls
     # telegram-desktop # "Secure" messaging
-    # discord # PROPRIETARY messaging and general communication
     # nak # Nostr CLI
     # gossip # Nostr GUI
     # nostr-rs-relay # Rust Nostr relay

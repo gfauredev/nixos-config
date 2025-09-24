@@ -4,11 +4,13 @@ lang: en
 
 # My NixOS Flake systems and homes configurations
 
-I use **NixOS** because it allows me to have a system tailored to my needs and
-expectations. I’m highly demandant on ergonomics, so I use a lot of tools that
-make interacting with the computer more efficient and comfortable. Having to use
-the mouse is a chore, so I live mostly in the terminal and in keyboard-driven
-apps.
+I use **NixOS** because it allows me to have a system perfectly tailored to my
+needs and expectations. I’m highly demandant on ergonomics, so I use a lot of
+tools that make interacting with the computer more efficient and comfortable.
+Having to use the mouse is a chore, so I live mostly in the terminal and in
+keyboard-driven apps. I also hate when choices are made for me, things like
+default (bloat) software or common configuration, and **NixOS** allows me to
+configure my system at the very level of detail I want.
 
 First, I use the [bépo](https://bepo.fr) ergonomic **keyboard layout**, which is
 optimized for writing French, as well as english and code. There are other
@@ -90,7 +92,7 @@ effortlessly with my [dev](./home/module/shell/script/dev-env) script.
 
 ## Conventions of this repository
 
-- Files and directories names are `camelCase` and singular
+- Files and directories names are `kebab-case` and singular
 - `system` contains (NixOS) configurations related to specific devices (hosts)
   - Systems are named after a mythological entity
   - The `module` subdirectory contains Nix modules
@@ -102,41 +104,35 @@ effortlessly with my [dev](./home/module/shell/script/dev-env) script.
 
 ### _0._ Build the installer image
 
-Build a custom image with the
-[official method](https://nixos.org/manual/nixos/unstable/#sec-building-image),
-or directly from this flake with
+Build a custom live NixOS ISO image from this flake with
 `nix build .#nixosConfigurations.live.config.system.build.isoImage`.
 
 Boot it from a bootable USB stick (preferably a multi-ISO one like with Ventoy).
 
-Once booted, get this git repo with the command `clone` (or `clone-ssh` if
-private key is availiable) that is built in the installer image.
+It should contain a `cfg` installation helper script that among other niceties
+brings you to this current flake copied in `/etc/flake`.
 
-### _1._ Partition, encrypt, format disks (according to partitioning/ templates)
-
-Use a tool like `fdisk` or `cfdisk` to partition and label disks :
-
-- `fdisk /dev/…` (interactive)
+### _1._ Partition, encrypt, format disks
 
 If the choosen file system doesn’t support its own encryption, use
-`cryptsetup …` to create an encrypted partition and mount it (for the root).
+`cryptsetup luksFormat /dev/…` to create an encrypted partition and
+`cryptsetup open /dev/… cryptroot` open (decrypt) it.
 
-Then, format the partitions :
+Partition the disks (and label them), like `fdisk /dev/mapper/cryptroot` or
+`cfdisk /dev/mapper/cryptroot` for the LUKS encrypted partition.
 
-- `mkfs.fat -F 32 /dev/… -n ESP` to host `/boot`
-- `mkfs.??? /dev/…` to host `/` (the system root)
+Format the partitions, like `mkfs.fat -F 32 /dev/… -n ESP` for the `/boot` one.
 
-Finaly, depending on the choosen(s) filesystem(s), continue formating or
-creating and mounting eventual **subvolumes** with appropriate commands.
+Consider creating and mountig **subvolumes** with file system specific commands
+and creating and setting a swap partition.
 
 ### _2._ Handle hardware configuration
 
 Run the command `nixos-generate-config --root /mnt --dir .` to create a hardware
-config in this directory.
+config in the working directory. Then, compare with choosen system hardware
+configuration and fix it if needed.
 
-Then, compare with choosen system hardware configuration and fix it if needed.
-
-Partitions UUIDs can be obtained with `lsblk -o NAME,SIZE,UUID,LABEL`.
+Set partitions UUIDs after obtaining them with `lsblk -o NAME,SIZE,UUID,LABEL`.
 
 ### _3._ Install from the Nix flake
 
@@ -145,9 +141,8 @@ to install the `$HOST` specific NixOS system from this flake.
 
 Then user home(s) can be installed with
 `home-manager switch --flake <path-to-flake>#$HOST@$USER`, and the system can be
-updated with `sudo nixos-rebuild --flake <path-to-flake> switch`, or better,
-with my custom helper tool located at `home/shell/configure.sh` and mapped to
-the command `cfg` (`cfg h` to display usage).
+updated with my custom helper tool located at `home/shell/configure.sh` and
+mapped to the command `cfg` (`cfg h` to display usage).
 
 ## Other configuration repositories
 
