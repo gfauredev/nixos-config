@@ -10,7 +10,7 @@
       "subvol=root"
       "compress=zstd"
       "noatime"
-      "noexec"
+      "noexec" # WARNING Some (glibc-locales) builds seemingly need to execute scripts outside /nix
     ];
   };
 
@@ -20,7 +20,7 @@
       "subvol=home"
       "compress=zstd"
       "noatime"
-      # "noexec"
+      "noexec"
     ];
   };
 
@@ -56,9 +56,19 @@
   fileSystems."/boot" = {
     fsType = "vfat";
     options = [
-      "noexec" # TODO harden
-      "fmask=0022"
+      "noexec"
+      "fmask=0022" # TODO may be hardenable
       "dmask=0022"
+    ];
+  };
+
+  fileSystems."/home/gf/code" = {
+    fsType = "btrfs";
+    options = [
+      "subvol=home/gf/code"
+      "compress=zstd"
+      "noatime"
+      "exec" # Allow gf to execute some code in his home
     ];
   };
 
