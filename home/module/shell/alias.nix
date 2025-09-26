@@ -130,5 +130,7 @@ in
     ll = "ls --long"; # List all the data of the files in current directory
     la = "ls --all --long"; # List all the data of all files, hidden included
     g = "rga --smart-case --color=always"; # Search full text inside every file
+    # Misc
+    "c++" = "c++ -std=c++23 -Wall -Wextra -Wpedantic"; # TODO in dev env
   };
 }
