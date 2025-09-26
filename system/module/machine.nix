@@ -86,6 +86,6 @@
         require_nofilter = true;
       };
     };
-    usbguard.IPCAllowedGroups = ["wheel"];
+    usbguard.IPCAllowedGroups = [ "wheel" ];
   };
 }
