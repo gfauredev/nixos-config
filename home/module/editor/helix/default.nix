@@ -307,13 +307,12 @@
         clangd = {
           command = "clangd";
           config = {
-            # TEST if this config works
-            CompileFlags.add = [
+            fallbackFlags = [
+              "-std=c++23" # TODO ensure both C and C++ work and latest version
               "-Wall"
               "-Wextra"
               "-Wpedantic"
             ];
-            # TODO ensure always the latest C and C++ versions (23) are used
           };
         };
         dprint = {
