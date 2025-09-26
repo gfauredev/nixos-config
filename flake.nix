@@ -1,6 +1,8 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
-  inputs = let stable = 25.05; in {
+  inputs =
+    let stable = "25.05"; in
+  {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     nixos2505.url = "github:nixos/nixpkgs/nixos-${stable}"; # NixOS Stable
     home-manager.url = "github:nix-community/home-manager/release-${stable}";
