@@ -302,6 +302,25 @@
             ];
             auto-format = true;
           }
+          {
+            name = "plantuml";
+            injection-regex = "plantuml";
+            file-types = [
+              "puml"
+              "uml"
+              "plantuml"
+            ];
+            comment-token = "'";
+            language-servers = [
+              "harper"
+              "llm"
+            ];
+            indent = {
+              tab-width = 2;
+              unit = "  ";
+            };
+            auto-format = true;
+          }
           # {
           #   name = "sql";
           #   language-servers = [ "sqls" ];
