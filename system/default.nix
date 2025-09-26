@@ -259,6 +259,7 @@
       lsof # List opened files (remember, everything’s a file here)
       usbutils # lsusb command
       pciutils # lspci command
+      sbctl # Secure Boot key manager, used for installing with Lanzaboote
       # Remote control
       rsync # Copy through network & with superpowers
       browsh # 6ixel CLI web browser

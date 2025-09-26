@@ -122,6 +122,7 @@
               yaml-language-server # YAML LSP
               taplo # TOML LSP
               bash-language-server # Bash, shell script LSP
+              sbctl # SecureBoot key manager, used for install with Lanzaboote
               shellcheck # Shell script analysis
               shfmt # Shell script formater
               vscode-langservers-extracted # HTML/CSS/JS(ON)
