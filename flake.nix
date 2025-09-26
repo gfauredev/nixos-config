@@ -83,7 +83,7 @@
           pkgs = nixos2505.legacyPackages.x86_64-linux;
           # extraSpecialArgs = { inherit pkgs-unstable; };
           modules = [
-            { home.system.stateVersion = "25.05"; }
+            { home.stateVersion = "25.05"; }
             ./home/device/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
@@ -91,16 +91,9 @@
         "gf@chimera" = hm-lib.homeManagerConfiguration {
           pkgs = nixos2505.legacyPackages.x86_64-linux;
           modules = [
-            { home.system.stateVersion = "25.05"; }
+            { home.stateVersion = "25.05"; }
             ./home/device/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
-          ];
-        };
-        "gf@live" = hm-lib.homeManagerConfiguration {
-          pkgs = nixos2505.legacyPackages.x86_64-linux;
-          modules = [
-            { home.system.stateVersion = "25.05"; }
-            ./home/device/live.nix
           ];
         };
       };
@@ -111,6 +104,7 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               # cachix # CLI for Nix binary cache
+              # pkgs.home-manager # FIXME Not the same version than pkgs’
               lorri # To TEST
               nil # Nix LSP
               niv # Dependency management

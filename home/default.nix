@@ -34,6 +34,7 @@
       # "stm32cubemx" # STM32
       "vital" # Synth
       "ventoy" # Multiboot USB
+      "vst2-sdk" # Some VSTs need it
     ];
 
   imports = [

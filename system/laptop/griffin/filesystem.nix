@@ -20,7 +20,7 @@
       "subvol=home"
       "compress=zstd"
       "noatime"
-      "noexec"
+      # "noexec"
     ];
   };
 
@@ -47,7 +47,7 @@
     fsType = "btrfs";
     options = [
       "subvol=swap"
-      "compress=lzo"
+      "compress=zstd"
       "noatime"
       "noexec"
     ];
@@ -56,14 +56,16 @@
   fileSystems."/boot" = {
     fsType = "vfat";
     options = [
-      "noexec"
+      "noexec" # TODO harden
+      "fmask=0022"
+      "dmask=0022"
     ];
   };
 
-  swapDevices = [
-    {
-      device = "/swap/swapfile"; # On the dedicated btrfs subvolume
-      size = 16 * 1024 + 64; # A bit more than RAM size
-    }
-  ];
+  # swapDevices = [ FIXME
+  #   {
+  #     device = "/swap/swapfile"; # On the dedicated btrfs subvolume
+  #     size = 16 * 1024 + 64; # A bit more than RAM size
+  #   }
+  # ];
 }

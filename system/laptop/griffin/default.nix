@@ -13,6 +13,14 @@
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
+  # users.extraUsers.root = rec {
+  #   initialHashedPassword = hashedPassword; # FIXME
+  #   hashedPassword = null;
+  #   initialPassword = password;
+  #   password = null;
+  #   hashedPasswordFile = null;
+  # };
+
   boot = {
     kernelModules = [ "kvm-intel" ];
     initrd = {
@@ -20,7 +28,7 @@
         "xhci_pci"
         "thunderbolt"
         "nvme"
-        "usb_storage"
+        # "usb_storage"
         "uas"
         "sd_mod"
       ];

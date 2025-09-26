@@ -1,17 +1,17 @@
 { ... }:
 {
   boot.initrd.luks.devices."cryptroot".device =
-    "/dev/disk/by-uuid/2965fedd-fe24-4b7d-90eb-1725ce0ffa32";
+    "/dev/disk/by-uuid/436884c6-7982-407c-b213-8d034a22f466";
 
-  fileSystems."/".device = "/dev/disk/by-uuid/3a770357-029a-4047-b1e5-3a9951e83f24";
+  fileSystems."/".device = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24";
 
-  fileSystems."/home".device = "/dev/disk/by-uuid/3a770357-029a-4047-b1e5-3a9951e83f24";
+  fileSystems."/home".device = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24";
 
-  fileSystems."/log".device = "/dev/disk/by-uuid/";
+  fileSystems."/log".device = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24";
 
-  fileSystems."/nix".device = "/dev/disk/by-uuid/3a770357-029a-4047-b1e5-3a9951e83f24";
+  fileSystems."/nix".device = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24";
 
-  fileSystems."/swap".device = "/dev/disk/by-uuid/";
+  fileSystems."/swap".device = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24";
 
-  fileSystems."/boot".device = "/dev/disk/by-uuid/F226-8C9D";
+  fileSystems."/boot".device = "/dev/disk/by-uuid/1D92-247E";
 }

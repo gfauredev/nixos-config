@@ -49,27 +49,27 @@
             installation_mode = "normal_installed";
             private_browsing = false;
           };
-          "TODOtabBarColour" = {
+          "ATBC@EasonWong" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          "TODOautoma" = {
+          "{26ef8318-6349-483c-affa-6c6db6d30517}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          "TODObuster" = {
+          "{ec800ab3-79f6-474a-80e5-117b5d57c8e2}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/buster/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          "TODOdeepl" = {
+          "{c8f79b34-c3ff-4ce4-bdf4-eefa15c87f98}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/deepl/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          "TODOfaststream" = {
+          "faststream@andrews" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
@@ -124,7 +124,7 @@
         };
         containersForce = true; # WARN force overrides containers config
         search.force = true; # WARN override stateful config
-        search.engines = import ../search.nix;
+        search.engines = import ../web/search.nix;
         search.default = "ecosia"; # Ecosia
         search.privateDefault = "ddg"; # DuckDuckGo
         search.order = [

@@ -14,6 +14,7 @@
       # "steam-unwrapped" # Video games software
       # "steam-run" # Video games software
       "ventoy" # Multiboot USB
+      "vst2-sdk" # Some VSTs need it
     ];
 
   nix = {
