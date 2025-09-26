@@ -46,7 +46,7 @@
       nixpkgs-review # Quickly review pull requests to nixpkgs TEST
       comma # Run any command from Nixpkgs
       # steam-run # Run in isolated FHS
-      manix # Nix documentation CLI
+      # manix # Nix documentation CLI
       watchexec # Run command when file changes
       hyperfine # Benchmark commands
       nickel # Modern configuration Nickel, Nix improvement

@@ -146,10 +146,10 @@
     ssh.startAgent = !config.services.gnome.gnome-keyring.enable;
     firejail.enable = true; # See https://wiki.nixos.org/wiki/Firejail TODO
     adb.enable = lib.mkDefault true; # Talk to Android devices
-    appimage.enable = true;
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
-    nix-ld.enable = true; # Run binaries
+    # appimage.enable = true; # Run appimages TEST if better way
+    # nix-ld.enable = true; # Run binaries, instead: https://nixos-and-flakes.thiscute.world/best-practices/run-downloaded-binaries-on-nixos
     # uwsm.enable = true; # TEST wayland session manager
     # niri.enable = true; # See https://github.com/YaLTeR/niri
   };

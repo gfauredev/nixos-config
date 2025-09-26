@@ -110,7 +110,7 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              cachix # CLI for Nix binary cache
+              # cachix # CLI for Nix binary cache
               lorri # To TEST
               nil # Nix LSP
               niv # Dependency management
