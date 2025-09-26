@@ -40,6 +40,7 @@
         ];
       }
     ];
+    sudo-rs.extraRules = config.security.sudo.extraRules; # To TEST
   };
 
   # TODO disable fprint for login, allow only for unlock and sudo

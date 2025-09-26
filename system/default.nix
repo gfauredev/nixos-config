@@ -179,6 +179,7 @@
     };
 
   security.sudo.enable = lib.mkDefault true;
+  # security.sudo-rs.enable = lib.mkDefault true; # To TEST
   security.apparmor.enable = lib.mkDefault true; # See https://search.nixos.org/options?channel=25.05&query=apparmor TODO configure
 
   users = {
