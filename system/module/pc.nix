@@ -8,7 +8,6 @@
   imports = [
     ./remap.nix # Remaps for PC usability
     ./print-scan.nix # Printing & scanning service
-    ./loginManager # Launch graphical env at login
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common

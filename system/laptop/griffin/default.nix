@@ -8,7 +8,8 @@
   imports = [
     ../.
     ./filesystem.nix
-    # ../../module/secureboot.nix # Secure Boot (Lanzaboote) FIXME configure
+    ../../module/loginManager # Launch graphical env at login
+    # ../../module/secureboot.nix # Secure Boot (Lanzaboote) FIXME setup
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
