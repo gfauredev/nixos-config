@@ -217,6 +217,15 @@
             auto-format = true;
           }
           {
+            name = "cpp";
+            language-servers = [
+              "clangd"
+              "harper"
+              "llm"
+            ];
+            auto-format = true;
+          }
+          {
             name = "c";
             file-types = [
               "c"
