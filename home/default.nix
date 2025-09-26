@@ -21,7 +21,7 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "albert" # General launcher
+      # "albert" # General launcher
       "bespokesynth" # Synth
       "bespokesynth-with-vst2" # Synth
       # "ciscoPacketTracer8" # Network simulation

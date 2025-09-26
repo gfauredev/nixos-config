@@ -6,9 +6,10 @@
 }:
 {
   imports = [
-    ./albert
-    ./rofi
-    ./wox
+    ./wox # To TEST
+    ./ulauncher # To TEST
+    ./rofi # To TEST, improve
+    # ./albert TODO find and configure alternatives
   ];
 
   options.launch = {
