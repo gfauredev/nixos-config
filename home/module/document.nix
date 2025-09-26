@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
     typst # Advanced document processor
     # mermaid-cli # Markdown-like diagrams
-    # plantuml-c4 # UML diagrams from text with additions
+    plantuml-c4 # UML diagrams from text with additions
     # plantuml # UML diagrams from text
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations

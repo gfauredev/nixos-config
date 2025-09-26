@@ -11,13 +11,13 @@ let
     off = "systemctl poweroff";
     sys = "systemctl";
     jo = "sudo journalctl -xfe";
-    # gc = "nix-collect-garbage";
     gc = "nix store gc";
+    # gc = "nix-collect-garbage";
     performance = "sudo cpupower frequency-set --governor performance"; # Performance mode
     powersave = "sudo cpupower frequency-set --governor powersave"; # Powersave mode
-    limit = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit ressources
-    restrict = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit ressources
-    egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
+    limit = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit resources
+    restrict = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit resources aggressively
+    # egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
     du = "dust";
     df = "duf -hide special";
     dfa = "duf -all";
@@ -57,6 +57,8 @@ let
     scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
     cmake = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # Always export includes
     calc = "kalker"; # Do calculations
+    uml = "plantuml -darkmode -gui"; # Generate UML diagrams
+    plantuml = "plantuml -tsvg -darkmode -filename diagram.svg";
     # Git
     clone = "git clone --verbose";
     status = "git status --verbose --ignored";
