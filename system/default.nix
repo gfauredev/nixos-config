@@ -40,6 +40,7 @@
   };
 
   boot = {
+    loader.systemd-boot.enable = lib.mkDefault true; # Lightweight boot manager
     # loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFI
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = {
