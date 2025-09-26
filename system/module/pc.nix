@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./machine.nix # Config for actual machines, not VMs, ISOs…
     ./remap.nix # Remaps for PC usability
     ./print-scan.nix # Printing & scanning service
   ];
