@@ -1,10 +1,10 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
-  inputs = {
+  inputs = let stable = 25.05; in {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    nixos2505.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable (25.05)
-    home-manager.url = "github:nix-community/home-manager"; # Home Manager
-    home-manager.inputs.nixpkgs.follows = "nixos2505"; # Follows Stable Nixpkgs
+    nixos2505.url = "github:nixos/nixpkgs/nixos-${stable}"; # NixOS Stable
+    home-manager.url = "github:nix-community/home-manager/release-${stable}";
+    home-manager.inputs.nixpkgs.follows = "nixos2505"; # Follow Stable Nixpkgs
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
     impermanence.url = "github:nix-community/impermanence"; # Temporary root
