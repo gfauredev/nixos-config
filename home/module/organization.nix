@@ -12,7 +12,7 @@
     anki-bin # Memorisation
     # markdown-anki-decks
     # Notes
-    xournalpp # Handwriting notetaking
+    # xournalpp # Handwriting notetaking FIXME
     # appflowy # Notion alternative
     # anytype # Knowledge base TEST
     # logseq # Knowledge base TEST

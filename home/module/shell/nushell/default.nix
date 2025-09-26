@@ -29,7 +29,7 @@
   };
   services = {
     gpg-agent.enableNushellIntegration = true;
-    keychain.enableNushellIntegration = true;
+    # keychain.enableNushellIntegration = true; FIXME
   };
   programs = {
     starship.enableNushellIntegration = true;
