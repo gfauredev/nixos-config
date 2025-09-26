@@ -48,13 +48,17 @@
     };
     kernelParams = [
       "threadirqs" # Process interrupts asynchronously to reduce latency
-      "zswap.enabled=1" # TODO setup encrypted swap partition
+      "zswap.enabled=1" # Compressed RAM cache for swap pages
+      "zswap.compressor=lz4" # Compression algorithm
+      "zswap.max_pool_percent=20" # Zswap allowed RAM%
+      "zswap.shrinker_enabled=1" # Shrink pool proactively on high memory demand
     ];
     supportedFilesystems = [
       "bcachefs"
       "btrfs"
       "zfs"
     ];
+    initrd.systemd.enable = lib.mkDefault true; # Necessary for lz4 in kernel
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     loader.systemd-boot.configurationLimit = lib.mkDefault 6; # Limit prev confs
     consoleLogLevel = 0; # Don’t clutter screen at boot

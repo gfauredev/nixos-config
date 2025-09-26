@@ -20,7 +20,7 @@
       "subvol=home"
       "compress=zstd"
       "noatime"
-      # "noexec"
+      "noexec"
     ];
   };
 
@@ -43,6 +43,16 @@
     ];
   };
 
+  fileSystems."/swap" = {
+    fsType = "btrfs";
+    options = [
+      "subvol=swap"
+      "compress=lzo"
+      "noatime"
+      "noexec"
+    ];
+  };
+
   fileSystems."/boot" = {
     fsType = "vfat";
     options = [
@@ -50,17 +60,10 @@
     ];
   };
 
-  # TODO See https://nixos.wiki/wiki/Swap, encrypted zswap, with hibernation
-  # swapDevices = [
-  #   {
-  #     device = "/dev/nvme0n1p2"; # TODO
-  #     size = 16 * 1024 + 64; # A bit more than RAM size
-  #     encrypted = {
-  #       enable = true;
-  #       blkDev = "/dev/nvme0n1p2";
-  #       keyFile = "/mnt-root/root/.swapkey";
-  #       label = "cryptswap";
-  #     };
-  #   }
-  # ];
+  swapDevices = [
+    {
+      device = "/swap/swapfile"; # On the dedicated btrfs subvolume
+      size = 16 * 1024 + 64; # A bit more than RAM size
+    }
+  ];
 }
