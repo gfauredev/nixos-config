@@ -1,10 +1,10 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
   inputs = {
-    stable.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable (25.05)
     unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    nixos2505.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable (25.05)
     home-manager.url = "github:nix-community/home-manager"; # Home Manager
-    home-manager.inputs.nixpkgs.follows = "stable"; # Follows Stable Nixpkgs
+    home-manager.inputs.nixpkgs.follows = "nixos2505"; # Follows Stable Nixpkgs
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
     impermanence.url = "github:nix-community/impermanence"; # Temporary root
@@ -14,7 +14,7 @@
   outputs =
     {
       self,
-      stable,
+      nixos2505,
       unstable,
       home-manager,
       lanzaboote,
@@ -30,14 +30,14 @@
       ];
       forEachSupportedSystem =
         f:
-        stable.lib.genAttrs systems (
+        nixos2505.lib.genAttrs systems (
           system:
           f {
-            pkgs = import stable { inherit system; };
+            pkgs = import nixos2505 { inherit system; };
             pkgs-unstable = import unstable { inherit system; };
           }
         );
-      lib = stable.lib;
+      lib = nixos2505.lib;
       hm-lib = home-manager.lib;
       # system = "x86_64-linux"; # PC architecture
       # pkgs = stable.legacyPackages.${system};
@@ -71,7 +71,7 @@
         # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
         live = lib.nixosSystem {
           modules = [
-            "${stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${nixos2505}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
           ];
         };
@@ -80,7 +80,7 @@
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
-          pkgs = stable.legacyPackages.x86_64-linux;
+          pkgs = nixos2505.legacyPackages.x86_64-linux;
           # extraSpecialArgs = { inherit pkgs-unstable; };
           modules = [
             { home.system.stateVersion = "25.05"; }
@@ -89,7 +89,7 @@
           ];
         };
         "gf@chimera" = hm-lib.homeManagerConfiguration {
-          pkgs = stable.legacyPackages.x86_64-linux;
+          pkgs = nixos2505.legacyPackages.x86_64-linux;
           modules = [
             { home.system.stateVersion = "25.05"; }
             ./home/device/chimera.nix
@@ -97,7 +97,7 @@
           ];
         };
         "gf@live" = hm-lib.homeManagerConfiguration {
-          pkgs = stable.legacyPackages.x86_64-linux;
+          pkgs = nixos2505.legacyPackages.x86_64-linux;
           modules = [
             { home.system.stateVersion = "25.05"; }
             ./home/device/live.nix
