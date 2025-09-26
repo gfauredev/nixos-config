@@ -8,6 +8,7 @@
     # lpac # Manage eSIMs in a chip (eUICC LPA)
     # sherlock # Search people on social media accounts
     # wayback # Web archiving tool
+    qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # Flashcards
     anki-bin # Memorisation
     # markdown-anki-decks
