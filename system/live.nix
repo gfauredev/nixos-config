@@ -48,9 +48,8 @@
   environment = {
     # TODO parametric, global Flake location (/etc/flake)
     # TODO configure.sh able to install NixOS from live ISO, autodect situation
-    loginShellInit = "cd /etc/flake; nixos-install-helper";
     # TODO proper shell login script, with GUI on TTY2/TTY3
-    shellAliases.nixos = config.environment.shellAliases.nixos;
+    loginShellInit = "cd /etc/flake; nixos-install-helper";
     systemPackages = [
       (pkgs.writeShellScriptBin "nixos-install-helper" ''
         grep '### _1._' -A 42 public/README.md
