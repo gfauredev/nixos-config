@@ -64,7 +64,7 @@
   services = {
     ntp.enable = lib.mkDefault true;
     dnscrypt-proxy2.enable = lib.mkDefault true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
-    usbguard.enable = true; # TODO config it
+    usbguard.enable = true;
     dnscrypt-proxy2 = {
       settings = {
         sources.public-resolvers = {
@@ -86,5 +86,6 @@
         require_nofilter = true;
       };
     };
+    usbguard.IPCAllowedGroups = ["wheel"];
   };
 }
