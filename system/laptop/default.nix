@@ -17,7 +17,7 @@
     tlp.enable = (!config.services.auto-cpufreq.enable); # Save battery
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     localtimed.enable = lib.mkDefault true;
-    # auto-cpufreq = {
+    # auto-cpufreq = { TODO
     #   settings = {
     #     battery = {
     #       governor = "powersave";

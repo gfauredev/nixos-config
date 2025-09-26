@@ -170,9 +170,9 @@
     ];
   };
 
-  # powerManagement = {
-  #   enable = true; # TEST vs auto-cpufreq
-  #   powertop.enable = true; # TEST vs auto-cpufreq
-  #   cpuFreqGovernor = lib.mkDefault "powersave";
-  # };
+  powerManagement = {
+    # enable = true; # TEST vs auto-cpufreq
+    powertop.enable = true;
+    # cpuFreqGovernor = lib.mkDefault "powersave";
+  };
 }

@@ -43,6 +43,7 @@
   # };
 
   boot = {
+    loader.systemd-boot.configurationLimit = lib.mkDefault 8; # Limit to 8 confs
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
