@@ -300,6 +300,22 @@
           # }
         ];
       language-server = {
+        biome = {
+          command = "biome";
+          args = [ "lsp-proxy" ];
+        };
+        clangd = {
+          command = "clangd";
+          config = {
+            # TEST if this config works
+            CompileFlags.add = [
+              "-Wall"
+              "-Wextra"
+              "-Wpedantic"
+            ];
+            # TODO ensure always the latest C and C++ versions (23) are used
+          };
+        };
         dprint = {
           command = "dprint";
           args = [ "lsp" ];
@@ -333,6 +349,11 @@
             # };
           };
         };
+        ruff = {
+          command = "ruff";
+          args = [ "server" ];
+        };
+        # sqls = { command = "sqls"; };
         tinymist.config = {
           lint.enabled = true;
           projectResolution = "lockDatabase"; # FIXME define project main file
@@ -352,15 +373,6 @@
           command = "ty";
           args = [ "server" ];
         };
-        ruff = {
-          command = "ruff";
-          args = [ "server" ];
-        };
-        biome = {
-          command = "biome";
-          args = [ "lsp-proxy" ];
-        };
-        # sqls = { command = "sqls"; };
       };
     };
     themes = {
