@@ -9,7 +9,7 @@
     ../.
     ./filesystem.nix
     ../../module/loginManager # Launch graphical env at login
-    # ../../module/secureboot.nix # Secure Boot (Lanzaboote) FIXME setup
+    ../../module/secureboot.nix # Secure Boot (Lanzaboote)
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
