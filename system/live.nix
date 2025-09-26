@@ -46,10 +46,12 @@
   };
 
   environment = {
-    shellAliases.cfg = "cd /etc/flake; configure";
+    # TODO parametric, global Flake location (/etc/flake)
+    # TODO configure.sh able to install NixOS from live ISO, autodect situation
+    shellAliases.nixos = "cd /etc/flake; nixos-install-helper";
     systemPackages = [
-      (pkgs.writeShellScriptBin "configure" ''
-        grep '### _1._' -A 31 public/README.md
+      (pkgs.writeShellScriptBin "nixos-install-helper" ''
+        grep '### _1._' -A 42 public/README.md
       '')
       # git clone https://gitlab.com/gfauredev/nixos-config.git
     ];

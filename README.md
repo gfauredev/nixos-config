@@ -133,15 +133,35 @@ configuration and fix it if needed.
 
 Set partitions UUIDs after obtaining them with `lsblk -o NAME,SIZE,UUID,LABEL`.
 
-### _3._ Install from the Nix flake
+### _3._ Install from the Nix Flake
 
-Use the command `nixos-install -v --root /mnt --flake '<path-to-flake>#$HOST'`
-to install the `$HOST` specific NixOS system from this flake.
+<!-- TODO parametric Flake path (/etc/flake) -->
+
+Use the command `nixos-install -v --root /mnt --flake '/etc/flake#HOST'` to
+install the `HOST` specific NixOS System from this Flake.
 
 Then user home(s) can be installed with
-`home-manager switch --flake <path-to-flake>#$HOST@$USER`, and the system can be
+`home-manager switch --flake /etc/flake#USER@HOST`, and the system can be
 updated with my custom helper tool located at `home/shell/configure.sh` and
 mapped to the command `cfg` (`cfg h` to display usage).
+
+### _5._ Set up Secure Boot
+
+Create Secure Boot keys with `sudo sbctl create-keys`, keeping them in the
+default `/var/lib/sbctl` place.
+
+Import the Secure Boot module into the system configuration by adding
+`system/module/secureboot.nix` to system `imports = [ ]`, then rebuild the
+system with this new configuration.
+
+Check if the machine is ready for Secure Boot enforcement with `sbctl verify`,
+if not (which should be the case if you are here, the system booted) reboot to
+the UEFI Setup, remove existing keys (Reset to Setup, Erase all Settings…), and
+make sure Secure Boot is enabled.
+
+Finally, enforce Secure Boot with `sudo sbctl enroll-keys`, then reboot (and
+definitevely enable Secure Boot in UEFI if needed). You can now check if Secure
+Boot is properly enabled with `bootctl status`.
 
 ## Other configuration repositories
 

@@ -2,18 +2,6 @@
 {
   imports = [ ./hardware.nix ];
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true; # Use the systemd-boot EFI boot loader
-      efi.efiSysMountPoint = "/boot"; # Separate efi executable
-    };
-    # kernelParams = [ TEST relevance of each
-    #   "quiet"
-    #   "udev.log_level=3"
-    #   "nvme.noacpi=1"
-    # ];
-  };
-
   networking = {
     hostName = "cerberus";
     # Syncthing:22000,21027 / Vagrant:2049

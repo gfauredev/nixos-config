@@ -40,25 +40,24 @@
   };
 
   boot = {
-    loader.systemd-boot.configurationLimit = lib.mkDefault 6; # Limit prev confs
-    loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
-    consoleLogLevel = 0; # Don’t clutter screen at boot
+    # loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFI
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = {
       "kernel.sysrq" = 212; # kbd control, read-only remount, nicing, power
-      "vm.swappiness" = 50; # Reduce memory swap to disk
+      "vm.swappiness" = 50; # Reduce memory swap to disk TEST relevance
     };
-    # kernelPackages = lib.mkOverride 1001 pkgs.linuxPackages_latest; # Latest
     kernelParams = [
       "threadirqs" # Process interrupts asynchronously to reduce latency
       "zswap.enabled=1" # TODO setup encrypted swap partition
     ];
-    swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
     supportedFilesystems = [
       "bcachefs"
       "btrfs"
       "zfs"
     ];
+    swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
+    loader.systemd-boot.configurationLimit = lib.mkDefault 6; # Limit prev confs
+    consoleLogLevel = 0; # Don’t clutter screen at boot
   };
 
   console.keyMap = "fr-bepo";
@@ -259,7 +258,7 @@
       lsof # List opened files (remember, everything’s a file here)
       usbutils # lsusb command
       pciutils # lspci command
-      sbctl # Secure Boot key manager, used for installing with Lanzaboote
+      # sbctl # Secure Boot key manager, used for installing with Lanzaboote
       # Remote control
       rsync # Copy through network & with superpowers
       browsh # 6ixel CLI web browser
