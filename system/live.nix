@@ -8,18 +8,18 @@
   networking.hostName = "LiveNixOS";
   networking.hostId = "acabacab";
 
-  users.extraUsers.root = rec {
-    # initialHashedPassword = null;
-    # hashedPassword = initialHashedPassword;
-    initialPassword = "root";
-    password = initialPassword;
+  users.extraUsers.root = {
+    # initialHashedPassword = hashedPassword;
+    hashedPassword = "$y$j9T$d/j70rU9JxnT/8yUV4ux9.$Qycf.xPtGwwn5lvzmaK22Y2PVE2DrYAfdNB86Dq01Z9";
+    # initialPassword = password;
+    # password = "root";
     # hashedPasswordFile = null;
   };
-  users.users.nixos = rec {
-    # initialHashedPassword = null;
-    # hashedPassword = initialHashedPassword;
-    initialPassword = "nixos";
-    password = initialPassword;
+  users.users.nixos = {
+    # initialHashedPassword = hashedPassword;
+    hashedPassword = "$y$j9T$awawzDaKh72uNNvtGmb1Z1$Mi8dpZRdMIozpJDqKx4vZr/3zn816HnEl1Bw7GW1BC9";
+    # initialPassword = password;
+    # password = "nixos";
     # hashedPasswordFile = null;
   };
 
