@@ -1,12 +1,9 @@
-{ pkgs, config, ... }: # Live ISO to install NixOS
+{ pkgs, ... }: # Live ISO to install NixOS
 {
-  imports = [
-    ./default.nix
-    ./module/pc.nix
-  ];
+  imports = [ ./default.nix ];
 
   networking.hostName = "LiveNixOS";
-  networking.hostId = "acabacab";
+  # networking.hostId = "acabacab";
 
   users.extraUsers.root = {
     # initialHashedPassword = hashedPassword;

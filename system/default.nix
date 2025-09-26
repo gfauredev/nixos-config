@@ -1,5 +1,7 @@
 { lib, pkgs, ... }:
 {
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common
+
   boot = {
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
     kernel.sysctl = {
@@ -9,7 +11,7 @@
     supportedFilesystems = [
       "bcachefs"
       "btrfs"
-      "zfs"
+      # "zfs"
     ];
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
   };
@@ -97,7 +99,6 @@
     in
     {
       nameservers = dns0.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
-      firewall.enable = lib.mkDefault true;
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         # See: https://developer.gnome.org/NetworkManager/stable/NetworkManager.html

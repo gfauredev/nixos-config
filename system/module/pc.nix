@@ -11,8 +11,6 @@
     ./print-scan.nix # Printing & scanning service
   ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common
-
   hardware = {
     uinput.enable = true;
     graphics.enable = true;
@@ -81,6 +79,7 @@
     wg = { };
   };
 
+  networking.firewall.enable = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
 
   services = {
