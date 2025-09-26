@@ -20,7 +20,7 @@
     gc = {
       automatic = lib.mkDefault true;
       dates = lib.mkDefault "weekly";
-      options = lib.mkDefault "--delete-older-than +3";
+      options = lib.mkDefault "--delete-older-than 15d"; # +3";
     };
     settings = {
       experimental-features = [
@@ -43,7 +43,7 @@
   # };
 
   boot = {
-    loader.systemd-boot.configurationLimit = lib.mkDefault 8; # Limit to 8 confs
+    loader.systemd-boot.configurationLimit = lib.mkDefault 6; # Limit prev confs
     loader.efi.canTouchEfiVariables = lib.mkDefault true; # Ok for proper UEFIs
     consoleLogLevel = 0; # Don’t clutter screen at boot
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
