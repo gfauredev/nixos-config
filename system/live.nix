@@ -10,16 +10,16 @@
 
   users.extraUsers.root = {
     # initialHashedPassword = hashedPassword;
-    hashedPassword = "$y$j9T$d/j70rU9JxnT/8yUV4ux9.$Qycf.xPtGwwn5lvzmaK22Y2PVE2DrYAfdNB86Dq01Z9";
+    # hashedPassword = null;
     # initialPassword = password;
-    # password = "root";
+    password = "root"; # FIXME
     # hashedPasswordFile = null;
   };
   users.users.nixos = {
     # initialHashedPassword = hashedPassword;
-    hashedPassword = "$y$j9T$awawzDaKh72uNNvtGmb1Z1$Mi8dpZRdMIozpJDqKx4vZr/3zn816HnEl1Bw7GW1BC9";
+    # hashedPassword = null;
     # initialPassword = password;
-    # password = "nixos";
+    password = "nixos"; # FIXME
     # hashedPasswordFile = null;
   };
 
