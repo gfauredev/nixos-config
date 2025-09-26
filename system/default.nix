@@ -273,7 +273,8 @@
       dhcpdump # DHCP debugging
       inetutils # Things like FTP command
       nmap # Scan ports
-      dig # DNS analyzer
+      dogdns # CLI DNS Client
+      # dig # CLI DNS Client
       tshark # Wireshark CLI
       termshark # Wireshark TUI
       kismet # Wireless network sniffer
