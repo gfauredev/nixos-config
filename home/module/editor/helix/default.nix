@@ -306,6 +306,7 @@
           }
           {
             name = "plantuml";
+            scope = "text.plantuml";
             injection-regex = "plantuml";
             file-types = [
               "puml"
