@@ -196,7 +196,7 @@
       size = 22;
     };
     targets.helix.enable = false; # FIXME ugly looking with treesitter, https://github.com/chriskempson/base16/blob/main/styling.md
-    targets.firefox.enable = false; # FIXME infinite recursion bug
+    targets.firefox.enable = false; # FIXME infinite recursion bug TODO style
   };
 
   home.packages = with pkgs; [

@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }: # TODO find a better name for this module
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}: # TODO find a better name for this module
 {
   options.organization.pim = lib.mkOption {
     default = "thunderbird";
@@ -60,7 +65,7 @@
     himalaya.enable = true; # TODO configure
     khal.enable = true; # TODO configure
     anki = {
-      addons = lib.mkForce null; # TODO with pkgs.ankiAddons; [ ];
+      # addons = with pkgs.ankiAddons; [ anki-connect ];
       answerKeys = [
         {
           ease = 1;

@@ -8,8 +8,9 @@
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
     # impermanence.url = "github:nix-community/impermanence"; # Amnesiac root
-    # musnix.url = "github:musnix/musnix"; # Music production, audio opti.
-    stylix.url = "github:danth/stylix"; # Manage color themes and fonts
+    # musnix.url = "github:musnix/musnix"; # Music production, audio perf
+    stylix.url = "github:danth/stylix/release-25.05"; # Color themes & fonts
+    stylix.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
   };
   outputs =
     {
@@ -44,7 +45,7 @@
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
         griffin = lib.nixosSystem {
-          # specialArgs = { inherit pkgs-unstable; };
+          # specialArgs = { inherit unstablepkgs; };
           modules = [
             ./system/laptop/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
