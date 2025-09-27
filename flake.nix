@@ -1,26 +1,24 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
-  inputs = # let stable = 25.05; in
-    {
-      unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-      nixos2505.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable
-      home-manager.url = "github:nix-community/home-manager/release-25.05";
-      home-manager.inputs.nixpkgs.follows = "nixos2505"; # Follow Stable Nixpkgs
-      lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
-      hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
-      impermanence.url = "github:nix-community/impermanence"; # Temporary root
-      # musnix.url = "github:musnix/musnix"; # Music production, audio opti.
-      stylix.url = "github:danth/stylix"; # Manage color themes and fonts
-    };
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable
+    unstablepkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
+    lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
+    hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
+    # impermanence.url = "github:nix-community/impermanence"; # Amnesiac root
+    # musnix.url = "github:musnix/musnix"; # Music production, audio opti.
+    stylix.url = "github:danth/stylix"; # Manage color themes and fonts
+  };
   outputs =
     {
       self,
-      nixos2505,
-      unstable,
+      nixpkgs,
+      unstablepkgs,
       home-manager,
       lanzaboote,
       hardware,
-      impermanence,
       stylix,
     }:
     let
@@ -31,17 +29,15 @@
       ];
       forEachSupportedSystem =
         f:
-        nixos2505.lib.genAttrs systems (
+        nixpkgs.lib.genAttrs systems (
           system:
           f {
-            pkgs = import nixos2505 { inherit system; };
-            pkgs-unstable = import unstable { inherit system; };
+            pkgs = import nixpkgs { inherit system; };
+            pkgs-unstable = import unstablepkgs { inherit system; };
           }
         );
-      lib = nixos2505.lib;
+      lib = nixpkgs.lib;
       hm-lib = home-manager.lib;
-      # system = "x86_64-linux"; # PC architecture
-      # pkgs = stable.legacyPackages.${system};
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
@@ -53,7 +49,6 @@
             ./system/laptop/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
-            impermanence.nixosModules.impermanence # Temporary root FS
           ];
         };
         # Laptop: Chimera, a flying creature
@@ -71,7 +66,7 @@
         # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
         live = lib.nixosSystem {
           modules = [
-            "${nixos2505}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
           ];
         };
@@ -80,10 +75,8 @@
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
-          pkgs = nixos2505.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {
-            pkgs-unstable = unstable.legacyPackages.x86_64-linux;
-          };
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs.pkgs-unstable = unstablepkgs.legacyPackages.x86_64-linux;
           modules = [
             { home.stateVersion = "25.05"; }
             ./home/device/griffin.nix
@@ -91,7 +84,7 @@
           ];
         };
         "gf@chimera" = hm-lib.homeManagerConfiguration {
-          pkgs = nixos2505.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             { home.stateVersion = "25.05"; }
             ./home/device/chimera.nix
