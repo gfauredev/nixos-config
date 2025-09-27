@@ -10,7 +10,7 @@
     # wayback # Web archiving tool
     qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # Flashcards
-    anki-bin # Memorisation
+    # anki-bin # Memorisation FIXME
     # markdown-anki-decks
     # Notes
     # xournalpp # Handwriting notetaking FIXME
