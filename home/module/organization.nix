@@ -15,6 +15,7 @@
     # wayback # Web archiving tool
     qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # Flashcards
+    anki # Best memorization tool
     # markdown-anki-decks
     # Notes
     # xournalpp # Handwriting notetaking FIXME
@@ -61,32 +62,32 @@
     go-ethereum # Ethereum CLI
   ];
   config.programs = {
-    anki.enable = true; # Best memorization
-    himalaya.enable = true; # TODO configure
-    khal.enable = true; # TODO configure
-    anki = {
-      # addons = with pkgs.ankiAddons; [ anki-connect ];
-      answerKeys = [
-        {
-          ease = 1;
-          key = "left";
-        }
-        {
-          ease = 2;
-          key = "up";
-        }
-        {
-          ease = 3;
-          key = "right";
-        }
-        {
-          ease = 4;
-          key = "down";
-        }
-      ];
-      spacebarRatesCard = true;
-      language = "fr_FR";
-      # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
-    };
+    himalaya.enable = true; # CLI email client
+    khal.enable = true; # CLI calendar client
+    # anki.enable = true; # Best memorization TODO 25.11
+    # anki = {
+    #   addons = with pkgs.ankiAddons; [ anki-connect ];
+    #   answerKeys = [
+    #     {
+    #       ease = 1;
+    #       key = "left";
+    #     }
+    #     {
+    #       ease = 2;
+    #       key = "up";
+    #     }
+    #     {
+    #       ease = 3;
+    #       key = "right";
+    #     }
+    #     {
+    #       ease = 4;
+    #       key = "down";
+    #     }
+    #   ];
+    #   spacebarRatesCard = true;
+    #   language = "fr_FR";
+    #   # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
+    # };
   };
 }
