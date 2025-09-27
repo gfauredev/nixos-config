@@ -238,6 +238,10 @@
     syncthing.enable = true; # Efficient P2P Syncing
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
+    syncthing = {
+      overrideDevices = lib.mkDefault false; # Allow imperative config
+      overrideFolders = lib.mkDefault false; # Allow imperative config
+    };
     dunst = {
       settings = {
         global = {

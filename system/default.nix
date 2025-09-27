@@ -132,7 +132,7 @@
       };
     };
 
-  services.syncthing.openDefaultPorts = true; # TEST if sufficient
+  services.syncthing.openDefaultPorts = lib.mkForce true; # TEST if sufficient
 
   security.sudo.enable = lib.mkDefault true;
   # security.sudo-rs.enable = lib.mkDefault true; # To TEST
