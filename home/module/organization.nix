@@ -57,6 +57,7 @@
     go-ethereum # Ethereum CLI
   ];
   config.programs = {
+    anki.enable = false; # Temporary FIXME
     himalaya.enable = true; # TODO configure
     khal.enable = true; # TODO configure
   };
