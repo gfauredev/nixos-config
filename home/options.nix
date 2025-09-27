@@ -3,7 +3,7 @@
   options = {
     user = lib.mkOption {
       default = { };
-      description = "Home’s user configuration";
+      description = "Home user definition (including email…)";
     };
     location = lib.mkOption {
       default = "${config.user.home}/code/config";
