@@ -2,7 +2,7 @@
 {
   options = {
     user = lib.mkOption {
-      default = { };
+      type = lib.types.attrsOf lib.types.anything; # TODO type more precisely
       description = "Home user definition (including email…)";
     };
     location = lib.mkOption {
