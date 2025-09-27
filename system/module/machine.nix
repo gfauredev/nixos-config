@@ -1,21 +1,6 @@
 { pkgs, lib, ... }: # Configuration for actual machines, not VMs or live ISOs
 {
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      # "ciscoPacketTracer8" # Network simulation
-      # "deconz" # Manage ZigBee/Matter networks
-      "hp" # Printer drivers
-      # "nvidia-x11" # GPU drivers
-      # "nvidia-settings" # GPU drivers
-      # "nvidia-persistenced" # GPU drivers
-      # "steam" # Video games software
-      # "steam-original" # Video games software
-      # "steam-unwrapped" # Video games software
-      # "steam-run" # Video games software
-      "ventoy" # Multiboot USB
-      "vst2-sdk" # Some VSTs need it
-    ];
+  imports = [ ./filesystem.nix ];
 
   nix = {
     gc = {
@@ -39,6 +24,22 @@
       ];
     };
   };
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      # "ciscoPacketTracer8" # Network simulation
+      # "deconz" # Manage ZigBee/Matter networks
+      "hp" # Printer drivers
+      # "nvidia-x11" # GPU drivers
+      # "nvidia-settings" # GPU drivers
+      # "nvidia-persistenced" # GPU drivers
+      # "steam" # Video games software
+      # "steam-original" # Video games software
+      # "steam-unwrapped" # Video games software
+      # "steam-run" # Video games software
+      "ventoy" # Multiboot USB
+      "vst2-sdk" # Some VSTs need it
+    ];
 
   boot = {
     loader.systemd-boot.enable = lib.mkDefault true; # Lightweight boot manager

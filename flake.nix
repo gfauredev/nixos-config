@@ -48,10 +48,9 @@
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
         griffin = lib.nixosSystem {
-          # inherit system;
           # specialArgs = { inherit pkgs-unstable; };
           modules = [
-            ./system/laptop/griffin
+            ./system/laptop/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
             impermanence.nixosModules.impermanence # Temporary root FS
@@ -59,16 +58,16 @@
         };
         # Laptop: Chimera, a flying creature
         chimera = lib.nixosSystem {
-          modules = [ ./system/laptop/chimera ];
+          modules = [ ./system/laptop/chimera.nix ];
         };
         # Desktop: Muses, goddess of arts and music
-        muses = lib.nixosSystem {
-          modules = [ ./system/desktop/muses ];
-        };
+        # muses = lib.nixosSystem {
+        #   modules = [ ./system/desktop/muses.nix ];
+        # };
         # Server: Cerberus, a powerful creature with multiple heads
-        cerberus = lib.nixosSystem {
-          modules = [ ./system/server/cerberus ];
-        };
+        # cerberus = lib.nixosSystem {
+        #   modules = [ ./system/server/cerberus.nix ];
+        # };
         # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
         live = lib.nixosSystem {
           modules = [
