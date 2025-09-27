@@ -31,7 +31,7 @@ $env.config.hooks.pre_execution = (
 
 # Edit system and home config
 def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
-  cd $env.CONFIG_FLAKE
+  cd ~/code/config/ # FIXME use config.location Nix option instead
   # direnv exec .
   configure ...$arg
 }

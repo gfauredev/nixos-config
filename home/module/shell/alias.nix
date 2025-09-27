@@ -89,7 +89,6 @@ in
   programs.zsh.shellAliases = common // {
     # System
     re = "exec zsh";
-    cfg = "cd $CONFIG_FLAKE; configure"; # Configure NixOS and Home Manager
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
     ts = "trash -v";

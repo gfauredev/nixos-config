@@ -1,4 +1,4 @@
-{ lib, ... }: # Main laptop Griffin
+{ ... }: # Main laptop Griffin
 {
   imports = [
     ../default.nix
@@ -10,15 +10,4 @@
     ../module/photo.nix
     ../module/qimgv # Fully-featured image and video viewer
   ];
-
-  options = {
-    user = lib.mkOption {
-      default = { };
-      description = "This home’s user";
-    };
-    media.favorite = lib.mkOption {
-      default = "spotify"; # Preferred media app
-      description = "favorite media app";
-    };
-  };
 }

@@ -84,11 +84,9 @@
         # FIX Set these variables again FIXME home.sessionVariables don’t get passed to Nushell
         "SHELL,${var.SHELL}" # Force default interactive shell
         "XDG_CONFIG_HOME,${var.XDG_CONFIG_HOME}" # Force default config loc
-        "CONFIG_FLAKE,${var.CONFIG_FLAKE}" # System and home flake configs
         "EDITOR,${var.EDITOR}" # Force default editor
         "PAGER,${var.PAGER}" # Force default pager
         "BAT_PAGING,${var.BAT_PAGING}"
-        # "PASSWORD_STORE_DIR,${var.PASSWORD_STORE_DIR}" # passwords location
       ];
   };
 }

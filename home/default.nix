@@ -38,6 +38,7 @@
     ];
 
   imports = [
+    ./options.nix # Homes default options
     ./module/shell # Interactive POSIX shell(s)
     ./module/terminal # Terminal emulators
     ./module/editor # CLI and GUI text editors
@@ -48,7 +49,6 @@
     homeDirectory = config.user.home;
     # TODO better https://wiki.nixos.org/wiki/Environment_variables
     sessionVariables = {
-      CONFIG_FLAKE = "~/.config/flake"; # System and home flake configs
       XDG_DESKTOP_DIR = "${config.user.home}/data"; # FIXME not properly propagated to shell, wm…
       XDG_DOCUMENTS_DIR = "${config.user.home}/data";
       XDG_MUSIC_DIR = "${config.user.home}/data";

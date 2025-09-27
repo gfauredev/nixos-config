@@ -1,4 +1,4 @@
-{ lib, ... }: # Live NixOS ISO
+{ ... }: # Live NixOS ISO
 {
   imports = [
     ../default.nix
@@ -6,19 +6,4 @@
     ../module/web # Browsers
     ../module/document.nix # Document, Spreadsheet, Presentation, PDF
   ];
-
-  options = {
-    user = lib.mkOption {
-      default = { };
-      description = "This home’s user";
-    };
-    media.favorite = lib.mkOption {
-      default = "spotify"; # Preferred media app
-      description = "favorite media app";
-    };
-  };
-
-  config = {
-    home.sessionVariables.CONFIG_FLAKE = "/etc/flake"; # System and home flake configs
-  };
 }
