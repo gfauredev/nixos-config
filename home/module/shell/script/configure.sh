@@ -107,7 +107,7 @@ update_toplevel_inputs() {
   emph # Italic text
   printf 'top-level: Update %s flake inputs\n' "$(pwd)"
   std
-  nix flake update --flake . # Always update top-level Flake submodules inputs
+  nix flake update # --flake . # Always update top-level Flake submodules inputs
 }
 
 # Return 0 if there are uncommited changes, 1 otherwise
@@ -160,7 +160,7 @@ commit_all() { # Git commit top-level and submodule flake repositories
   printf '%s: Commit flake repository\n' "$SUBFLAKE"
   std
   if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the sub flake
-    git -C $SUBFLAKE push &                            # Nix needs it pushed
+    git -C $SUBFLAKE push                              # Nix needs it pushed
     update_toplevel_inputs                             # Update changed sub
   fi
   emph
@@ -207,7 +207,7 @@ amend_all() { # Amend top-level and submodule flake repositories
   printf '%s: Amend flake repository\n' "$SUBFLAKE"
   std
   if protected_amend "$SUBFLAKE"; then # May amend the sub flake
-    git -C $SUBFLAKE push &            # Nix needs the sub flake pushed
+    git -C $SUBFLAKE push              # Nix needs the sub flake pushed
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
     update_toplevel_inputs             # Update private inputs if amending
   fi
@@ -355,6 +355,7 @@ if $update_inputs; then
 fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
+  wait # Wait for eventual pull or push to finish
   emph
   printf 'Start default text editor\n'
   std
@@ -362,6 +363,7 @@ if [ -n "$commit_msg" ]; then
   commit_all "$commit_msg" # then commit public and private flakes
 else                       # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
+    wait # Wait for eventual pull or push to finish
     emph
     printf 'Start default text editor\n'
     std
@@ -379,6 +381,7 @@ fi
 if [ $home_changed = true ] &&
   { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; } ||
   [ $update_inputs = true ]; then
+  wait                     # Wait for eventual pull or push to finish
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
 if $push_repositories; then # Push repositories if explicit argument
@@ -391,9 +394,9 @@ if $push_repositories; then # Push repositories if explicit argument
   emph
   printf 'top-level: Push flake repository (pushes submodules too)\n'
   std
-  git push
+  git push &
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
-  wait                         # Wait for eventual push to finish
+  wait                         # Wait for eventual pull or push to finish
   systemctl $power_state
 fi
