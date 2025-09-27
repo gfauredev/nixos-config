@@ -60,7 +60,7 @@
     himalaya.enable = true; # TODO configure
     khal.enable = true; # TODO configure
     anki = {
-      addons = [ ]; # TODO with pkgs.ankiAddons; [ ];
+      addons = lib.mkForce null; # TODO with pkgs.ankiAddons; [ ];
       answerKeys = [
         {
           ease = 1;
