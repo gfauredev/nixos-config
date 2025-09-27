@@ -81,9 +81,9 @@
   };
 
   swapDevices = [
-    {
-      device = "/swap/swapfile"; # On the dedicated btrfs subvolume
-      size = 16 * 1024 + 64; # Megabytes # A bit more than RAM size
-    }
+    # {
+    #   device = "/swap/swapfile"; # On the dedicated btrfs subvolume
+    #   size = 16 * 1024 + 64; # Megabytes # A bit more than RAM size
+    # }
   ];
 }
