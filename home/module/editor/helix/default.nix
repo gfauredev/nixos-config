@@ -1,10 +1,11 @@
-{ config, ... }:
+{ config, pkgs-unstable, ... }:
 {
   # See https://docs.helix-editor.com
   # TODO consider using mkOutOfStoreSymlink to make frequent changes easier
   # https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
   programs.helix = {
     enable = true;
+    package = pkgs-unstable.helix;
     defaultEditor = true;
     extraPackages = config.editor.commonPackages;
     settings = {
@@ -171,8 +172,8 @@
           {
             name = "nix";
             language-servers = [
-              "nil"
               "nixd"
+              # "nil"
               "harper"
               "llm"
             ];

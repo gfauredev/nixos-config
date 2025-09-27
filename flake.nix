@@ -1,7 +1,6 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
-  inputs =
-    # let stable = 25.05; in
+  inputs = # let stable = 25.05; in
     {
       unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
       nixos2505.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable
@@ -83,7 +82,9 @@
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
           pkgs = nixos2505.legacyPackages.x86_64-linux;
-          # extraSpecialArgs = { inherit pkgs-unstable; };
+          extraSpecialArgs = {
+            pkgs-unstable = unstable.legacyPackages.x86_64-linux;
+          };
           modules = [
             { home.stateVersion = "25.05"; }
             ./home/device/griffin.nix
@@ -107,13 +108,13 @@
             packages = with pkgs; [
               # cachix # CLI for Nix binary cache
               # pkgs.home-manager # FIXME Not the same version than pkgs’
-              lorri # To TEST
-              nil # Nix LSP
-              niv # Dependency management
+              # lorri # Your project's nix-env, to test
+              pkgs-unstable.nixd # "Official" Nix LSP
+              # nil # Nix LSP
+              # niv # Easy dependency management, to test
               pkgs-unstable.nixfmt # Formatter
-              nixfmt-tree # Format a whole directory of nix files
-              statix # Lints & suggestions for Nix
-              vulnix # NixOS vulnerability scanner
+              pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
+              # statix # Lints & suggestions for Nix, to test
               nls # Nickel LSP
               yaml-language-server # YAML LSP
               taplo # TOML LSP

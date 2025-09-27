@@ -29,7 +29,6 @@
       typstyle # Typst formatter
       marksman # Smart Markdown links, ToC
       # markdown-oxide # TEST Obsidian style PKM
-      # nil # Nix LSP
       # nls # Nickel LSP
       # yaml-language-server # YAML LSP
       # taplo # TOML LSP
@@ -40,10 +39,11 @@
       # vscode-langservers-extracted # HTML/CSS/JS(ON)
       # Formatters
       dprint # Pluggable code formatting platform
-      # nixfmt # Nix formater
-      # shfmt # Shell script formater
+      shfmt # Shell script formater
       # sql-formatter # SQL formatter
     ];
-    description = "Packages used by all the text editors";
+    description = ''
+      Packages available to all the text editors, everywhere on the system
+    '';
   };
 }

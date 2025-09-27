@@ -202,7 +202,8 @@
       thc-hydra # Pentesting tool
       age # Modern encryption
       ssh-to-age # Converter between SSH keys and age
-      lynis # System security auditing
+      lynis # System security auditing TEST me
+      vulnix # NixOS vulnerability scanner TEST me
       # Storage
       zip # Universal compression
       unzip # Universal decompression

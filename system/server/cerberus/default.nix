@@ -1,39 +1,8 @@
 { ... }:
 {
-  imports = [ ./hardware.nix ];
+  networking.hostName = "cerberus";
 
-  networking = {
-    hostName = "cerberus";
-    # Syncthing:22000,21027 / Vagrant:2049
-    firewall = {
-      allowedTCPPorts = [
-        22
-        80
-        443
-        22000
-        2049
-      ]; # Opened TCP ports firewall
-      allowedUDPPorts = [
-        22000
-        21027
-        2049
-      ]; # Open UDP ports firewall
-    };
-  };
-
-  services = {
-    openssh = {
-      enable = true; # Enable the OpenSSH daemon
-      settings = {
-        PermitRootLogin = "no";
-        LogLevel = "VERBOSE"; # So fail2ban can observe failed logins
-        PasswordAuthentication = false;
-      };
-    };
-    fail2ban = {
-      enable = true;
-    };
-  };
+  imports = [ ../module/server.nix ];
 
   system.stateVersion = "25.05";
 }

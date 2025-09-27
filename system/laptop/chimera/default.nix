@@ -4,6 +4,9 @@
   ...
 }: # My main laptop, a Framework Laptop 13
 {
+  networking.hostName = "chimera";
+  networking.hostId = "acabacab";
+
   imports = [
     ../.
     ./filesystem.nix
@@ -28,9 +31,6 @@
     };
   };
   hardware.cpu.intel.updateMicrocode = lib.mkDefault true; # Intel CPU…
-
-  networking.hostName = "chimera";
-  networking.hostId = "acabacab";
 
   services.fprintd.enable = false;
 
