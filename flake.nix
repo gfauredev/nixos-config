@@ -99,7 +99,7 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               # cachix # CLI for Nix binary cache
-              # pkgs.home-manager # FIXME Not the same version than pkgs’
+              pkgs.home-manager # FIXME Not nixpkgs’ version
               # lorri # Your project's nix-env, to test
               pkgs-unstable.nixd # "Official" Nix LSP
               # nil # Nix LSP
