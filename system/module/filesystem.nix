@@ -1,7 +1,16 @@
 { lib, ... }: # Default filesystems
 {
+  fileSystems."/boot" = {
+    device = lib.mkDefault "/dev/nvme0n1p1"; # WARN Replace by actual part UUID
+    fsType = "vfat";
+    options = [
+      "noexec"
+      "uid=0" # Ensure everything in the partition belongs to root
+      "gid=0" # Ensure everything in the partition belongs to root
+      "umask=077" # Make root the only one able to read or write into it
+    ];
+  };
   boot.initrd.luks.devices."cryptroot".device = lib.mkDefault "/dev/nvme0n1p2";
-
   fileSystems = {
     "/" = {
       device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
@@ -11,17 +20,6 @@
         "compress=zstd"
         "noatime"
         "noexec" # WARNING Some (glibc-locales) builds seemingly need to execute scripts outside /nix
-      ];
-    };
-
-    "/boot" = {
-      device = lib.mkDefault "/dev/nvme0n1p1"; # WARN Replace by machine’s UUIDs
-      fsType = "vfat";
-      options = [
-        "noexec"
-        "uid=0" # Ensure everything in the partition belongs to root
-        "gid=0" # Ensure everything in the partition belongs to root
-        "umask=077" # Make root the only one able to read or write into it
       ];
     };
 
@@ -65,6 +63,7 @@
         "subvol=nix"
         "compress=zstd"
         "noatime"
+        "exec" # Just to be explicit
       ];
     };
 

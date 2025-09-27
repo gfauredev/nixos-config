@@ -43,17 +43,19 @@
 
   fileSystems =
     let
-      samsung980ssd.p1 = "/dev/disk/by-uuid/1D92-247E";
-      samsung980ssd.p2 = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24";
+      nvme0n1 = {
+        p1 = "/dev/disk/by-uuid/1D92-247E"; # FAT 32
+        p2 = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24"; # btrfs
+      };
     in
     {
-      "/".device = samsung980ssd.p2;
-      "/home".device = samsung980ssd.p2;
-      "/log".device = samsung980ssd.p2;
-      "/nix".device = samsung980ssd.p2;
-      "/swap".device = samsung980ssd.p2;
-      "/boot".device = samsung980ssd.p1;
-      "/home/gf/code".device = samsung980ssd.p2;
+      "/".device = nvme0n1.p2; # System root
+      "/boot".device = nvme0n1.p1; # ESP
+      "/code".device = nvme0n1.p2; # Executable location for users
+      "/home".device = nvme0n1.p2; # Users homes
+      "/log".device = nvme0n1.p2; # Logs
+      "/nix".device = nvme0n1.p2; # Nix Store
+      "/swap".device = nvme0n1.p2; # Contains the swapfile
     };
 
   system.stateVersion = "25.05";
