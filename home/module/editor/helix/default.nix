@@ -258,7 +258,7 @@
               "llm"
             ];
             auto-format = true;
-            formatter.command = "shfmt";
+            # formatter.command = "shfmt";
           }
           {
             name = "javascript";

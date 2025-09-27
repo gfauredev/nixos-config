@@ -159,7 +159,7 @@ commit_all_changes() { # Commit $1 config with message $2
 
 # @param 1 Git commit message
 commit_public_private() { # Git commit both private and public config
-  emph # Italic text
+  emph                    # Italic text
   printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
   git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
   std
@@ -167,7 +167,7 @@ commit_public_private() { # Git commit both private and public config
   printf '%s: Commit flake repository\n' "$SUBFLAKE"
   std
   if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the public flake
-    update_private_inputs # Update changed public
+    update_private_inputs                              # Update changed public
   fi
   emph
   printf 'Top-Level: Commit flake repository (including eventual inputs update)\n'
@@ -214,7 +214,7 @@ amend_public_private() { # Amend both public and private config
   std
   if protected_amend "$SUBFLAKE"; then # May amend the public flake
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
-    update_private_inputs                # Update private inputs if amending
+    update_private_inputs              # Update private inputs if amending
   fi
   protected_amend .
 }
@@ -266,7 +266,7 @@ rebase_public_private() { # Git rebase both public and private configs
   std
   msg=$(git -C $SUBFLAKE log --branches --not --remotes -1 --pretty=format:%s)
   if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
-    [ -n "${git log --branches --not --remotes}" ]; then
+    [ -n "$(git log --branches --not --remotes)" ]; then
     # Mirror last public’s Git commit message on private’s last commit
     git commit --amend --message "$msg"
   fi

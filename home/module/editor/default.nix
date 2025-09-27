@@ -39,7 +39,7 @@
       # vscode-langservers-extracted # HTML/CSS/JS(ON)
       # Formatters
       dprint # Pluggable code formatting platform
-      shfmt # Shell script formater
+      # shfmt # Shell script formater # Bash LSP instead
       # sql-formatter # SQL formatter
     ];
     description = ''

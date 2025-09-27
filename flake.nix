@@ -120,7 +120,7 @@
               bash-language-server # Bash, shell script LSP
               sbctl # SecureBoot key manager, used for install with Lanzaboote
               shellcheck # Shell script analysis
-              shfmt # Shell script formater
+              # shfmt # Shell script formater # Bash LSP instead
               vscode-langservers-extracted # HTML/CSS/JS(ON)
               wev # Evaluate inputs sent to wayland to debug
             ];
