@@ -11,6 +11,7 @@ HOME_MANAGER_CMD="systemd-inhibit $CPU_LIMIT home-manager"
 # Global CONSTANTS
 SUBFLAKE='public' # Sub flake (usually public config) location
 HOME_CFG='home'   # Home (Manager) configuration location
+# ESP='/boot'     # EFI System Partition
 # Global variables
 home_changed=false # Have changes been made to home config
 commit_msg=''      # Message to be constructed with remaining arguments
@@ -66,6 +67,9 @@ pull_one() { # Git pull a (sub)directory (eg. private or public config)
 
 # Pull the current Git repository, recursing into submodules
 pull_recurse() { # Git pull private or public config
+  emph           # Italic text
+  printf 'top-level: Pull latest changes (pulls submodules too)\n'
+  std # Normal text
   remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   emph # Italic text
   printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
@@ -80,17 +84,6 @@ pull_recurse() { # Git pull private or public config
   std # Return to normal text
 }
 
-# Git pull both top-level and sub flakes
-pull_both() {
-  emph # Italic text
-  printf 'Top-Level & Submodule(s): Pull latest changes (asynchronously)\n'
-  std # Normal text
-  # pull_one $SUBFLAKE &
-  # pull_one . &
-  pull_recurse
-  wait # Wait for background pulls to finish before moving ong
-}
-
 # Update public config flake inputs
 update_subflake_inputs() {
   emph # Italic text
@@ -102,7 +95,7 @@ update_subflake_inputs() {
   std
   nix flake update --flake $SUBFLAKE --commit-lock-file
   emph # Italic text
-  printf 'Top-Level: Commit Git %s submodule\n' $SUBFLAKE
+  printf 'top-level: Commit Git %s submodule\n' $SUBFLAKE
   std # TODO ensure submodule is committed everywhere it might be edited
   git commit --message "$SUBFLAKE: Update inputs" $SUBFLAKE
   # Test if the last commit is an unpushed lockfile update
@@ -110,16 +103,16 @@ update_subflake_inputs() {
 }
 
 # Update top-level config flake inputs
-update_private_inputs() {
+update_toplevel_inputs() {
   emph # Italic text
-  printf 'Top-Level: Update %s flake inputs\n' "$(pwd)"
+  printf 'top-level: Update %s flake inputs\n' "$(pwd)"
   std
-  nix flake update --flake . # Always update private’s public flake input
+  nix flake update --flake . # Always update top-level Flake submodules inputs
 }
 
 # Return 0 if there are uncommited changes, 1 otherwise
-# @param 1 sub-directory containing Git repo to test (./public or ./private)
-# @param * eventual sub-directories to which restrict the test for changes
+# @param 1 (sub)directory containing Git repository to test
+# @param * eventual (sub)directories to which restrict the test for changes
 has_repo_changed() {
   repo_path="$1" # Location of Git repository
   shift          # Remove $1 (repo path) from $@
@@ -127,7 +120,7 @@ has_repo_changed() {
 }
 
 # Return the state of the commit
-# @param 1 sub-directory containing Git repo to commit (./public or ./private)
+# @param 1 (sub)directory containing Git repository to commit
 # @param * remaining parameters passed to Git (--amend, --message <string>)
 commit_all_changes() { # Commit $1 config with message $2
   repo_path="$1"       # Location of Git repository
@@ -158,19 +151,20 @@ commit_all_changes() { # Commit $1 config with message $2
 }
 
 # @param 1 Git commit message
-commit_public_private() { # Git commit both private and public config
-  emph                    # Italic text
+commit_all() { # Git commit top-level and submodule flake repositories
+  emph         # Italic text
   printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
   git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
   std
   emph # Italic text
   printf '%s: Commit flake repository\n' "$SUBFLAKE"
   std
-  if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the public flake
-    update_private_inputs                              # Update changed public
+  if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the sub flake
+    git -C $SUBFLAKE push &                            # Nix needs it pushed
+    update_toplevel_inputs                             # Update changed sub
   fi
   emph
-  printf 'Top-Level: Commit flake repository (including eventual inputs update)\n'
+  printf 'top-level: Commit flake repository (including eventual inputs update)\n'
   std
   commit_all_changes . --message "$1" # Commit the private flake
 }
@@ -178,8 +172,8 @@ commit_public_private() { # Git commit both private and public config
 # Add changes made in a Git repo to the last commit, but
 # - Fails (return 1) if there are no changes to be added to the last commit
 # - Redirect to commit_all() if commits already pushed, to prevent conflicts
-# @param 1 sub-directory containing Git repo to amend (./public or ./private)
-protected_amend() { # Amend public or private config
+# @param 1 (sub)directory containing Git repo to amend
+protected_amend() { # Amend top-level or submodule flake repositories
   if ! has_repo_changed "$1"; then
     emph
     printf '\tNo non commited changes, not amending\n'
@@ -199,7 +193,7 @@ protected_amend() { # Amend public or private config
   fi
 }
 
-# @param 1 sub-directory containing Git repo to commit (./public or ./private)
+# @param 1 sub-directory containing Git repository to commit
 extract_last_commit_msg() {
   commit_msg=$(git -C "$1" log -1 --pretty=format:%s)
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
@@ -208,22 +202,23 @@ extract_last_commit_msg() {
   std # Standard text
 }
 
-amend_public_private() { # Amend both public and private config
+amend_all() { # Amend top-level and submodule flake repositories
   emph
   printf '%s: Amend flake repository\n' "$SUBFLAKE"
   std
-  if protected_amend "$SUBFLAKE"; then # May amend the public flake
+  if protected_amend "$SUBFLAKE"; then # May amend the sub flake
+    git -C $SUBFLAKE push &            # Nix needs the sub flake pushed
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
-    update_private_inputs              # Update private inputs if amending
+    update_toplevel_inputs             # Update private inputs if amending
   fi
   protected_amend .
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
   # emph
-  # printf 'Mount /boot before system update\n'
+  # printf 'Mount ESP (%s) before system update\n' "$ESP"
   # std
-  # sudo mount -v /boot || exit # Use fstab
+  # sudo mount -v $ESP || exit # Use fstab
   if [ "$power_state" = "poweroff" ] || [ "$power_state" = "reboot" ]; then
     NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . boot" # Will reboot anyway
   else
@@ -232,20 +227,15 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
   std
-  if $NIXOS_REBUILD_CMD; then
+  if ! $NIXOS_REBUILD_CMD; then
     emph
-    printf 'Unmount /boot after update\n'
+    printf 'Failed update, exiting\n' # , unmount /home\n'
     std
-    sudo umount -v /boot # Unmount for security
-    cd .. || exit
-  else
-    emph
-    printf 'Failed update, unmount /home\n'
-    std
-    sudo umount -v /boot # Unmount for security
-    cd .. || exit
     return 1 # Failed update status
   fi
+  # printf 'Unmount ESP (%s) for security\n' "$ESP"
+  # sudo umount -v $ESP # Unmount for security
+  cd .. || exit
 }
 
 rebuild_home_cmd() { # Rebuild the Home Manager home
@@ -260,41 +250,27 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
   $HOME_MANAGER_CMD || return
 }
 
-rebase_public_private() { # Git rebase both public and private configs
+rebase_all() { # Git rebase top-level and submodule flake repositories
   emph
   printf '%s: Rebase flake repository\n' "$SUBFLAKE"
   std
   git -C $SUBFLAKE rebase -i
+  git -C $SUBFLAKE push & # Nix needs the sub flake repository pushed to build
   emph
-  printf 'Top-Level: Rebase flake repository\n'
+  printf 'top-level: Rebase flake repository\n'
   std
   msg=$(git -C $SUBFLAKE log --branches --not --remotes -1 --pretty=format:%s)
-  if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
+  if [ -n "$msg" ] || # If top and sub repos have unpushed commit(s),
     [ -n "$(git log --branches --not --remotes)" ]; then
-    # Mirror last public’s Git commit message on private’s last commit
+    # Mirror last submodule’s Git commit message on top-level’s last commit
     git commit --amend --message "$msg"
   fi
   git rebase -i
 }
 
-push_public_private() { # Git push both public and private configs
-  # emph
-  # printf 'Top-Level & Submodule(s): Will push flake repository (asynchronously)'
-  # std
+if ! [ -d $SUBFLAKE ]; then # Test if there is a sub flake (Git submodule)
   emph
-  printf 'Top-Level & Submodule(s): Push flake repository\n'
-  std
-  # emph
-  # printf 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
-  # std
-  # sleep 3 || exit # Give the user 3 seconds to cancel the push if needed
-  git -C $SUBFLAKE push
-  git push
-}
-
-if ! [ -d $SUBFLAKE ]; then # Test if there is a public config
-  emph
-  printf 'No public config sub flake found in %s\n' "$(pwd)"
+  printf 'No Git submodules found in %s\n' "$(pwd)"
   std
 fi
 
@@ -373,7 +349,7 @@ printf 'Limit memory usage to %s kb for the following commands\n' $MEM_LIMIT
 ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
 std                  # Back to standard text
 
-pull_both # Always pull the latest configuration before doing anything
+pull_recurse # Always pull the latest configuration before doing anything
 if $update_inputs; then
   update_subflake_inputs
 fi
@@ -382,18 +358,19 @@ if [ -n "$commit_msg" ]; then
   emph
   printf 'Start default text editor\n'
   std
-  direnv exec . $EDITOR .             # Edit the configuration before commiting,
-  commit_public_private "$commit_msg" # then commit public and private flakes
-else                                  # Defaults to try amending changes
+  direnv exec . $EDITOR .  # Edit the configuration before commiting,
+  commit_all "$commit_msg" # then commit public and private flakes
+else                       # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     emph
     printf 'Start default text editor\n'
     std
     direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
   fi
-  amend_public_private # Amend or commit public and private flakes
+  amend_all # Amend or commit public and private flakes
 fi
 if $rebuild_system; then     # Always rebuild system if explicitly set
+  wait                       # Wait for eventual pull or push to finish
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
 # Rebuild home/ if
@@ -409,9 +386,12 @@ if $push_repositories; then # Push repositories if explicit argument
   if [ $rebuild_system = false ] && [ $home_changed = false ] &&
     [ $update_inputs = false ] &&
     [ -z "$commit_msg" ] && [ -z "$power_state" ]; then
-    rebase_public_private
+    rebase_all
   fi
-  push_public_private # Push public and private repositories in the background
+  emph
+  printf 'top-level: Push flake repository (pushes submodules too)\n'
+  std
+  git push
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
   wait                         # Wait for eventual push to finish
