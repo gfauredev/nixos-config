@@ -10,7 +10,6 @@
     # wayback # Web archiving tool
     qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # Flashcards
-    # anki-bin # Memorisation FIXME
     # markdown-anki-decks
     # Notes
     # xournalpp # Handwriting notetaking FIXME
@@ -57,8 +56,32 @@
     go-ethereum # Ethereum CLI
   ];
   config.programs = {
-    anki.enable = false; # Temporary FIXME
+    anki.enable = true; # Best memorization
     himalaya.enable = true; # TODO configure
     khal.enable = true; # TODO configure
+    anki = {
+      addons = [ ]; # TODO with pkgs.ankiAddons; [ ];
+      answerKeys = [
+        {
+          ease = 1;
+          key = "left";
+        }
+        {
+          ease = 2;
+          key = "up";
+        }
+        {
+          ease = 3;
+          key = "right";
+        }
+        {
+          ease = 4;
+          key = "down";
+        }
+      ];
+      spacebarRatesCard = true;
+      language = "fr_FR";
+      # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
+    };
   };
 }
