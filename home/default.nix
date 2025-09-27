@@ -63,84 +63,74 @@
     };
   };
 
-  programs = {
-    git = {
-      userName = config.user.description;
-      userEmail = config.user.email;
-    };
-    jujutsu.settings.user = {
-      name = config.user.description;
-      email = config.user.email;
-    };
-  };
-
   xdg = {
-    mimeApps = {
-      defaultApplications =
-        let # TODO SSOT, maybe put in flake or modularize
-          text = "Helix";
-          image = "qimgv";
-          audio = "mpv";
-          video = "mpv";
-          web = "firefox";
-          pdf = "org.pwmt.zathura";
-          explorer = "directory";
-          document = "writer";
-          spreadsheet = "calc";
-        in
-        {
-          # Text & Code
-          "text/plain" = "${text}.desktop";
-          "text/markdown" = "${text}.desktop";
-          "text/code" = "${text}.desktop";
-          "inode/directory" = "${explorer}.desktop"; # Workspace
-          # Document
-          "application/vnd.oasis.opendocument.text" = "${document}.desktop";
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
-          "application/vnd.ms-excel" = "${spreadsheet}.desktop";
-          "application/pdf" = "${pdf}.desktop";
-          # "application/x-colpkg" = "anki.desktop";
-          # "application/x-apkg" = "anki.desktop";
-          # "application/x-ankiaddon" = "anki.desktop";
-          # "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
-          # Image
-          "image/avif" = "${image}.desktop";
-          "image/webp" = "${image}.desktop";
-          "image/png" = "${image}.desktop";
-          "image/jpg" = "${image}.desktop";
-          "image/jpeg" = "${image}.desktop";
-          "image/bmp" = "${image}.desktop";
-          "image/ico" = "${image}.desktop";
-          "image/gif" = "${image}.desktop";
-          # Audio
-          "audio/flac" = "${audio}.desktop";
-          "audio/ogg" = "${audio}.desktop";
-          "audio/wav" = "${audio}.desktop";
-          "audio/mp3" = "${audio}.desktop";
-          # Video
-          "video/mkv" = "${video}.desktop";
-          "video/mp4" = "${video}.desktop";
-          "video/avi" = "${video}.desktop";
-          # Web
-          "x-scheme-handler/https" = "${web}.desktop";
-          "x-scheme-handler/http" = "${web}.desktop";
-          # Email & Calendar
-          "x-scheme-handler/mailto" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/webcal" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/webcals" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/mid" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/news" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/snews" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/nntp" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/feed" = "${config.organization.pim}.desktop";
-          "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
-          "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
-          "application/rss+xml" = "${config.organization.pim}.desktop";
-          "application/x-extension-rss" = "${config.organization.pim}.desktop";
-          "application/x-extension-ics" = "${config.organization.pim}.desktop";
-          "text/calender" = "${config.organization.pim}.desktop";
-        };
-    };
+    enable = true;
+    mime.enable = true;
+    mimeApps.enable = true;
+    mimeApps.defaultApplications =
+      let # TODO SSOT, maybe put in flake or modularize
+        text = "Helix";
+        image = "qimgv";
+        audio = "mpv";
+        video = "mpv";
+        web = "firefox";
+        pdf = "org.pwmt.zathura";
+        explorer = "directory";
+        document = "writer";
+        spreadsheet = "calc";
+      in
+      {
+        # Text & Code
+        "text/plain" = "${text}.desktop";
+        "text/markdown" = "${text}.desktop";
+        "text/code" = "${text}.desktop";
+        "inode/directory" = "${explorer}.desktop"; # Workspace
+        # Document
+        "application/vnd.oasis.opendocument.text" = "${document}.desktop";
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
+        "application/vnd.ms-excel" = "${spreadsheet}.desktop";
+        "application/pdf" = "${pdf}.desktop";
+        # "application/x-colpkg" = "anki.desktop";
+        # "application/x-apkg" = "anki.desktop";
+        # "application/x-ankiaddon" = "anki.desktop";
+        # "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
+        # Image
+        "image/avif" = "${image}.desktop";
+        "image/webp" = "${image}.desktop";
+        "image/png" = "${image}.desktop";
+        "image/jpg" = "${image}.desktop";
+        "image/jpeg" = "${image}.desktop";
+        "image/bmp" = "${image}.desktop";
+        "image/ico" = "${image}.desktop";
+        "image/gif" = "${image}.desktop";
+        # Audio
+        "audio/flac" = "${audio}.desktop";
+        "audio/ogg" = "${audio}.desktop";
+        "audio/wav" = "${audio}.desktop";
+        "audio/mp3" = "${audio}.desktop";
+        # Video
+        "video/mkv" = "${video}.desktop";
+        "video/mp4" = "${video}.desktop";
+        "video/avi" = "${video}.desktop";
+        # Web
+        "x-scheme-handler/https" = "${web}.desktop";
+        "x-scheme-handler/http" = "${web}.desktop";
+        # Email & Calendar
+        "x-scheme-handler/mailto" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/webcal" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/webcals" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/mid" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/news" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/snews" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/nntp" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/feed" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
+        "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
+        "application/rss+xml" = "${config.organization.pim}.desktop";
+        "application/x-extension-rss" = "${config.organization.pim}.desktop";
+        "application/x-extension-ics" = "${config.organization.pim}.desktop";
+        "text/calender" = "${config.organization.pim}.desktop";
+      };
   };
 
   stylix = {
@@ -272,6 +262,8 @@
     jujutsu.enable = true; # Git compatible simpler VCS
     rbw.enable = true; # CLI Bitwarden client
     git = {
+      userName = config.user.description;
+      userEmail = config.user.email;
       package = pkgs.gitAndTools.gitFull; # Git with addons
       lfs.enable = true;
       delta = {
@@ -324,13 +316,11 @@
         "!.gitignore"
       ];
     };
+    jujutsu.settings.user = {
+      name = config.user.description;
+      email = config.user.email;
+    };
     direnv.nix-direnv.enable = true;
-  };
-
-  xdg = {
-    enable = true;
-    mime.enable = true;
-    mimeApps.enable = true;
   };
 
   gtk = {

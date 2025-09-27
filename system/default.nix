@@ -121,16 +121,18 @@
       };
       firewall = {
         allowedTCPPorts = [
-          22000 # Syncthing
+          # 22000 # Syncthing
           2049 # Vagrant
         ];
         allowedUDPPorts = [
-          22000 # Syncthing
-          21027 # Syncthing
+          # 22000 # Syncthing
+          # 21027 # Syncthing
           2049 # Vagrant
         ];
       };
     };
+
+  services.syncthing.openDefaultPorts = true; # TEST if sufficient
 
   security.sudo.enable = lib.mkDefault true;
   # security.sudo-rs.enable = lib.mkDefault true; # To TEST
