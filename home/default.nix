@@ -61,6 +61,7 @@
       BROWSER = "firefox"; # TEST if better with full paths
       BROWSER_ALT = "brave"; # TEST if better with full paths
     };
+    enableNixpkgsReleaseCheck = false; # I know the correct versions are pinned
   };
 
   xdg = {
