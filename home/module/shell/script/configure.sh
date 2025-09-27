@@ -1,4 +1,4 @@
-# This script allows to easily manage Nix Flake system & home configs.
+# This script allows to easily manage Nix flake system & home configs.
 # It supports having a sub flake (eg. public) used as input by the top-level.
 # TODO make this script able to install NixOS from live ISO, autodect situation
 # TODO make this script a package available in this flake’s nix dev environment
@@ -72,6 +72,8 @@ pull_recurse() { # Git pull private or public config
   if ping -c 1 -w 3 "$remote"; then
     printf '%s reached, pull latest changes from it\n' "$remote"
     git pull --recurse-submodules=yes
+    printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
+    git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
   else
     printf '%s non reachable, move on\n' "$remote"
   fi
@@ -81,7 +83,7 @@ pull_recurse() { # Git pull private or public config
 # Git pull both top-level and sub flakes
 pull_both() {
   emph # Italic text
-  printf 'Public & Private: Pulling latest changes (asynchronously)\n'
+  printf 'Top-Level & Submodule(s): Pull latest changes (asynchronously)\n'
   std # Normal text
   # pull_one $SUBFLAKE &
   # pull_one . &
@@ -92,12 +94,16 @@ pull_both() {
 # Update public config flake inputs
 update_subflake_inputs() {
   emph # Italic text
-  printf 'Public: Update flake %s inputs\n' $SUBFLAKE
+  printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
+  git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
+  std
+  emph # Italic text
+  printf '%s: Updat flake inputs\n' $SUBFLAKE
   std
   nix flake update --flake $SUBFLAKE --commit-lock-file
   emph # Italic text
-  printf 'Public: Commiting %s Git submodule\n' $SUBFLAKE
-  std # TODO ensure submoduleis committed everywhere needed
+  printf 'Top-Level: Commit Git %s submodule\n' $SUBFLAKE
+  std # TODO ensure submodule is committed everywhere it might be edited
   git commit --message "$SUBFLAKE: Update inputs" $SUBFLAKE
   # Test if the last commit is an unpushed lockfile update
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
@@ -106,7 +112,7 @@ update_subflake_inputs() {
 # Update top-level config flake inputs
 update_private_inputs() {
   emph # Italic text
-  printf 'Private: Update %s flake inputs\n' "$(pwd)"
+  printf 'Top-Level: Update %s flake inputs\n' "$(pwd)"
   std
   nix flake update --flake . # Always update private’s public flake input
 }
@@ -153,14 +159,18 @@ commit_all_changes() { # Commit $1 config with message $2
 
 # @param 1 Git commit message
 commit_public_private() { # Git commit both private and public config
-  emph
-  printf 'Public: Commit flake repository\n'
+  emph # Italic text
+  printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
+  git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
+  std
+  emph # Italic text
+  printf '%s: Commit flake repository\n' "$SUBFLAKE"
   std
   if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the public flake
     update_private_inputs # Update changed public
   fi
   emph
-  printf 'Private: Commit flake repository (including eventual inputs update)\n'
+  printf 'Top-Level: Commit flake repository (including eventual inputs update)\n'
   std
   commit_all_changes . --message "$1" # Commit the private flake
 }
@@ -200,7 +210,7 @@ extract_last_commit_msg() {
 
 amend_public_private() { # Amend both public and private config
   emph
-  printf 'Public: Amend flake repository\n'
+  printf '%s: Amend flake repository\n' "$SUBFLAKE"
   std
   if protected_amend "$SUBFLAKE"; then # May amend the public flake
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
@@ -248,11 +258,11 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
 
 rebase_public_private() { # Git rebase both public and private configs
   emph
-  printf 'Public: Rebase flake repository\n'
+  printf '%s: Rebase flake repository\n' "$SUBFLAKE"
   std
   git -C $SUBFLAKE rebase -i
   emph
-  printf 'Private: Rebase flake repository\n'
+  printf 'Top-Level: Rebase flake repository\n'
   std
   msg=$(git -C $SUBFLAKE log --branches --not --remotes -1 --pretty=format:%s)
   if [ -n "$msg" ] || # If public and private repos have unpushed commit(s),
@@ -265,10 +275,10 @@ rebase_public_private() { # Git rebase both public and private configs
 
 push_public_private() { # Git push both public and private configs
   # emph
-  # printf 'Public & Private: Will push flake repository (asynchronously)'
+  # printf 'Top-Level & Submodule(s): Will push flake repository (asynchronously)'
   # std
   emph
-  printf 'Public & Private: Push flake repository\n'
+  printf 'Top-Level & Submodule(s): Push flake repository\n'
   std
   # emph
   # printf 'You have THREE (3) SECONDS to cancel the git push with CTRL+C'
@@ -335,7 +345,7 @@ while [ "$#" -gt 0 ]; do
   shift # Next argument
 done
 strong # Bold text
-printf 'Update Flake inputs: %s\n' $update_inputs
+printf 'Update flake inputs: %s\n' $update_inputs
 std    # Standard text
 strong # Bold text
 printf 'Rebuild NixOS system: %s\n' $rebuild_system
@@ -355,7 +365,7 @@ printf 'Power state change: "%s"\n' $power_state
 std # Standard text
 
 strong # Bold text
-printf 'Limiting memory usage to %s kb for the following commands\n' $MEM_LIMIT
+printf 'Limit memory usage to %s kb for the following commands\n' $MEM_LIMIT
 ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
 std                  # Back to standard text
 
