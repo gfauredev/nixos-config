@@ -224,7 +224,11 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   # printf 'Mount /boot before system update\n'
   # std
   # sudo mount -v /boot || exit # Use fstab
-  NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . switch"
+  if [ "$power_state" = "poweroff" ] || [ "$power_state" = "reboot" ]; then
+    NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . boot" # Will reboot anyway
+  else
+    NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . switch"
+  fi
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
   std
