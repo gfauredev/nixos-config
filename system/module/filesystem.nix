@@ -19,8 +19,9 @@
       fsType = "vfat";
       options = [
         "noexec"
-        "fmask=0022" # TODO may be hardenable
-        "dmask=0022"
+        "uid=0" # Ensure everything in the partition belongs to root
+        "gid=0" # Ensure everything in the partition belongs to root
+        "umask=077" # Make root the only one able to read or write into it
       ];
     };
 
@@ -28,7 +29,7 @@
       device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
       fsType = "btrfs";
       options = [
-        "subvol=/code"
+        "subvol=code"
         "compress=zstd"
         "noatime"
         "exec" # Allow users to execute code somewhere (TODO individual dirs gen)

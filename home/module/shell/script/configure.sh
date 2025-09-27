@@ -210,10 +210,10 @@ amend_public_private() { # Amend both public and private config
 }
 
 rebuild_system_cmd() { # Rebuild the NixOS system
-  emph
-  printf 'Mount /boot before system update\n'
-  std
-  sudo mount -v /boot || exit # Use fstab
+  # emph
+  # printf 'Mount /boot before system update\n'
+  # std
+  # sudo mount -v /boot || exit # Use fstab
   NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . switch"
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"

@@ -128,11 +128,11 @@
 
   location.provider = "geoclue2";
 
-  systemd.services.unmount-boot = {
-    description = "Unmount /boot at boot as it’s useless once booted";
-    script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
-    wantedBy = [ "multi-user.target" ];
-  };
+  # systemd.services.unmount-boot = {
+  #   description = "Unmount /boot at boot as it’s useless once booted";
+  #   script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
+  #   wantedBy = [ "multi-user.target" ];
+  # };
 
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
