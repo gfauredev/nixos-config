@@ -1,6 +1,9 @@
 # This script allows to easily manage Nix flake system & home configs.
 # It supports having a sub flake (eg. public) used as input by the top-level.
-# TODO make this script able to install NixOS from live ISO, autodect situation
+# TODO make this script able to install NixOS from live ISO if autodected in
+#   this situation; clone the latest config (+ needed Git token)
+#   into the writeable /mnt/config and falls back to copying the
+#   readonly /etc/config-flake into /mnt/config after a 3s timeout
 # TODO make this script a package available in this flake’s nix dev environment
 
 CPU_LIMIT='cpulimit -l 888'     # Limit CPU usage to 888% accross threads

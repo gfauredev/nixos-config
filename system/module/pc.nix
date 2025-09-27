@@ -160,19 +160,10 @@
     nixos.includeAllModules = true;
   };
 
-  environment = {
-    systemPackages = with pkgs; [
-      xwayland-satellite # Wayland container that can run X11 apps TEST relevance
-      # protonmail-bridge-gui # GUI for ProtonMail Bridge
-      # man-pages # Documentation
-      # man-pages-posix # Documentation
-      # navi # Cheat sheet for CLIs
-    ];
-  };
-
-  powerManagement = {
-    # enable = true; # TEST vs auto-cpufreq
-    powertop.enable = true;
-    # cpuFreqGovernor = lib.mkDefault "powersave";
-  };
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite # Wayland container that can run X11 apps TEST relevance
+    # man-pages # Documentation
+    # man-pages-posix # Documentation
+    # navi # Cheat sheet for CLIs
+  ];
 }

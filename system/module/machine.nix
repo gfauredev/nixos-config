@@ -63,9 +63,37 @@
   };
 
   services = {
+    auto-cpufreq.enable = lib.mkDefault true; # Save battery, smarter than TLP
+    tlp.enable = false; # Not with auto-cpufreq
+    thermald.enable = lib.mkDefault true; # Keep CPU cool
+    localtimed.enable = lib.mkDefault true;
     ntp.enable = lib.mkDefault true;
     dnscrypt-proxy2.enable = lib.mkDefault true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
     usbguard.enable = true;
+    auto-cpufreq.settings = {
+      battery = {
+        governor = "powersave"; # Maximum battery savings
+        turbo = "never"; # Maximum battery savings
+      };
+      # charger = { };
+    };
+    tlp = {
+      settings = {
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 25;
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        PCIE_ASPM_ON_BAT = "powersupersave";
+        INTEL_GPU_MIN_FREQ_ON_AC = 500;
+        INTEL_GPU_MIN_FREQ_ON_BAT = 400;
+        START_CHARGE_THRESH_BAT0 = 30; # 30 and below: start to charge
+        STOP_CHARGE_THRESH_BAT0 = 90; # 90 and above: don’t charge
+      };
+    };
     dnscrypt-proxy2 = {
       settings = {
         sources.public-resolvers = {
