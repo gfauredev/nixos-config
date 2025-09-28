@@ -179,18 +179,18 @@ commit_all() { # Git commit top-level and submodule flake repositories
 protected_amend() { # Amend top-level or submodule flake repositories
   if ! has_repo_changed "$1"; then
     emph
-    printf '\tNo non commited changes, not amending\n'
+    printf '%s: No non commited changes, not amending\n' "$1"
     std
     return 1 # There are no changes to amend, makes no sense, fail
   fi
   if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
     emph
-    printf '\tLast commit is not pushed, amending\n'
+    printf '%s: Last commit is not pushed, amending\n' "$1"
     std
     commit_all_changes "$1" --amend || return # Only if unpushed commits
   else
     emph
-    printf '\tAll commits pushed, no one to amend, create new commit instead\n'
+    printf '%s: All commits pushed, no one to amend, create new commit instead\n' "$1"
     std
     commit_all_changes "$1" || return # Create new commit instead
   fi
@@ -206,9 +206,6 @@ extract_last_commit_msg() {
 }
 
 amend_all() { # Amend top-level and submodule flake repositories
-  emph
-  printf '%s: Amend flake repository\n' "$SUBFLAKE"
-  std
   if protected_amend "$SUBFLAKE"; then # May amend the sub flake
     git -C $SUBFLAKE push              # Nix needs the sub flake pushed
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
@@ -372,6 +369,7 @@ else                       # Defaults to try amending changes
     std
     direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
   fi
+  git -C $SUBFLAKE push # Nix needs it pushed
   amend_all # Amend or commit public and private flakes
 fi
 if $rebuild_system; then     # Always rebuild system if explicitly set
