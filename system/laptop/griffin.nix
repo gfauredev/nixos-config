@@ -4,6 +4,13 @@
   modulesPath,
   ...
 }: # My main laptop, a Framework Laptop 13
+let
+  nvme0n1 = {
+    p1 = "/dev/disk/by-uuid/1D92-247E"; # FAT 32
+    p2 = "/dev/disk/by-uuid/436884c6-7982-407c-b213-8d034a22f466"; # LUKS
+  };
+  cryptroot = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24"; # Btrfs
+in
 {
   networking.hostName = "griffin";
   networking.hostId = "bbfdd0e2";
@@ -16,7 +23,10 @@
   ];
 
   boot = {
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [
+      "kvm-intel"
+      "resume_offset=5776640"
+    ];
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -30,7 +40,9 @@
         "snd-seq" # TEST relevance, used by musnix
         "snd-rawmidi" # TEST relevance, used by musnix
       ];
+      luks.devices."cryptroot".device = nvme0n1.p2;
     };
+    resumeDevice = cryptroot;
   };
   hardware.cpu.intel.updateMicrocode = lib.mkDefault true; # Intel CPU…
 
@@ -38,25 +50,15 @@
     framework-tool # Hardware related tools for framework laptops
   ];
 
-  boot.initrd.luks.devices."cryptroot".device =
-    "/dev/disk/by-uuid/436884c6-7982-407c-b213-8d034a22f466";
-
-  fileSystems =
-    let
-      nvme0n1 = {
-        p1 = "/dev/disk/by-uuid/1D92-247E"; # FAT 32
-        p2 = "/dev/disk/by-uuid/7a87ac1f-33a3-415f-b339-2bba2c847c24"; # btrfs
-      };
-    in
-    {
-      "/".device = nvme0n1.p2; # System root
-      "/boot".device = nvme0n1.p1; # ESP
-      "/code".device = nvme0n1.p2; # Executable location for users
-      "/home".device = nvme0n1.p2; # Users homes
-      "/log".device = nvme0n1.p2; # Logs
-      "/nix".device = nvme0n1.p2; # Nix Store
-      "/swap".device = nvme0n1.p2; # Contains the swapfile
-    };
+  fileSystems = {
+    "/".device = cryptroot; # System root
+    "/boot".device = nvme0n1.p1; # ESP
+    "/code".device = cryptroot; # Executable location for users
+    "/home".device = cryptroot; # Users homes
+    "/log".device = cryptroot; # Logs
+    "/nix".device = cryptroot; # Nix Store
+    "/swap".device = cryptroot; # Contains the swapfile
+  };
 
   system.stateVersion = "25.05";
 }
