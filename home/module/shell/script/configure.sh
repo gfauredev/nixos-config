@@ -94,9 +94,9 @@ update_subflake_inputs() {
   git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
   std
   emph # Italic text
-  printf '%s: Updat flake inputs\n' $SUBFLAKE
+  printf '%s: Update flake inputs\n' $SUBFLAKE
   std
-  nix flake update --flake $SUBFLAKE --commit-lock-file
+  nix flake update --flake ./$SUBFLAKE --commit-lock-file
   emph # Italic text
   printf 'top-level: Commit Git %s submodule\n' $SUBFLAKE
   std # TODO ensure submodule is committed everywhere it might be edited
