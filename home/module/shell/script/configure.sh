@@ -235,7 +235,6 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   fi
   # printf 'Unmount ESP (%s) for security\n' "$ESP"
   # sudo umount -v $ESP # Unmount for security
-  cd .. || exit
 }
 
 rebuild_home_cmd() { # Rebuild the Home Manager home
