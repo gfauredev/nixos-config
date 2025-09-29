@@ -18,7 +18,7 @@
   '';
 
   services = {
-    power-profiles-daemon.enable = true; # Suspend the Hibernate
+    # power-profiles-daemon.enable = true; # Suspend the Hibernate
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     logind = {
       powerKey = "suspend";
