@@ -204,7 +204,7 @@
     # exercism # CLI for the programming exercises website
     # localsend # Share files on local network
     # captive-browser # Browser for captive portals
-    geteduroam-cli # CLI to configure Eduroam
+    # geteduroam-cli # CLI to configure Eduroam
     # Passwords & Secrets
     proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw

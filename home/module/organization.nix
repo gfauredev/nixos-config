@@ -65,8 +65,8 @@
     thunderbird.enable = true;
     # anki.enable = true; # Best memorization TODO 25.11
     himalaya.enable = true;
-    khal.enable = true;
-    khard.enable = false;
+    khal.enable = false; # FIXME seems to need an explicit config file
+    khard.enable = false; # FIXME seems to need an explicit config file
     # anki = {
     #   addons = with pkgs.ankiAddons; [ anki-connect ];
     #   answerKeys = [
