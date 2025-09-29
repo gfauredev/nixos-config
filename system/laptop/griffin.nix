@@ -48,10 +48,6 @@ in
   };
   hardware.cpu.intel.updateMicrocode = lib.mkDefault true; # Intel CPU…
 
-  environment.systemPackages = with pkgs; [
-    framework-tool # Hardware related tools for framework laptops
-  ];
-
   fileSystems = {
     "/".device = cryptroot; # System root
     "/boot".device = nvme0n1.p1; # ESP
@@ -61,6 +57,13 @@ in
     "/nix".device = cryptroot; # Nix Store
     "/swap".device = cryptroot; # Contains the swapfile
   };
+
+  services.fwupd.extraRemotes = [ "lvfs-testing" ]; # Necessary for Framework
+  services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
+
+  environment.systemPackages = with pkgs; [
+    framework-tool # Hardware related tools for framework laptops
+  ];
 
   system.stateVersion = "25.05";
 }
