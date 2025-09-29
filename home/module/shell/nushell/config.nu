@@ -35,7 +35,7 @@ def --env code [] {
     let MIRROR_DIR = [ project life ] 
     let FROM_HOME = pwd | path relative-to $nu.home-path | path split
     if $FROM_HOME.0 in $MIRROR_DIR {
-      echo We’re under $FROM_HOME.0, replicating file hierarchy into $CODE_DIR 
+      echo $"Under ($FROM_HOME.0), replicating file hierarchy to ($CODE_DIR)"
       let dst = $nu.home-path | path join | $CODE_DIR |
           path join ($FROM_HOME | slice 1.. | path join)
       if not ($dst | path exists) {
@@ -44,8 +44,8 @@ def --env code [] {
       cd $dst
       return
     }
-    if $FROM_HOME.0 == code {
-      echo We’re under code, going to equivalent dir under $MIRROR_DIR
+    if $FROM_HOME.0 == $CODE_DIR {
+      echo $"Under ($CODE_DIR), replicating file hierarchy to ($FROM_HOME.0)"
       for special_dir in $MIRROR_DIR {
         let origin_dir = $nu.home-path | path join $special_dir |
             path join $FROM_HOME | slice 1.. | path join
@@ -55,7 +55,7 @@ def --env code [] {
         }
       }
     }
-    echo We’re not under $FROM_HOME.0, going straight to $CODE_DIR 
+    echo $"Not under ($FROM_HOME.0) or ($CODE_DIR), simply go to it"
     cd $CODE_DIR
 }
 
