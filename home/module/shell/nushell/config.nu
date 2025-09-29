@@ -31,22 +31,31 @@ $env.config.hooks.pre_execution = (
 
 # Edit project’s of life’s code
 def --env code [] {
-    let CODE_DIR = $nu.home-path | path join code
+    let CODE_DIR = "code"
+    let MIRROR_DIR = [ project life ] 
     let FROM_HOME = pwd | path relative-to $nu.home-path | path split
-    let SPECIAL_DIRS = [ project life ] 
-    if $FROM_HOME.0 in $SPECIAL_DIRS {
-      let dst = $CODE_DIR | path join ($FROM_HOME | slice 1.. | path join)
-      mkdir $dst # Create same directory hierarchy under ~/code if needed
+    if $FROM_HOME.0 in $MIRROR_DIR {
+      echo We’re under $FROM_HOME.0, replicating file hierarchy into $CODE_DIR 
+      let dst = $nu.home-path | path join | $CODE_DIR |
+          path join ($FROM_HOME | slice 1.. | path join)
+      if not ($dst | path exists) {
+        mkdir --verbose $dst # Create same dir hierarchy under ~/code if needed
+      }
+      cd $dst
+      return
     }
     if $FROM_HOME.0 == code {
-      let dst = $FROM_HOME | slice 1.. | path join
-      for special_dir in $SPECIAL_DIRS {
-        if ($nu.home-path | path join $special_dir | path join $dst |
-            path type) == dir {
-          echo echo
+      echo We’re under code, going to equivalent dir under $MIRROR_DIR
+      for special_dir in $MIRROR_DIR {
+        let origin_dir = $nu.home-path | path join $special_dir |
+            path join $FROM_HOME | slice 1.. | path join
+        if ($origin_dir | path type) == dir {
+          cd $origin_dir
+          return
         }
       }
     }
+    echo We’re not under $FROM_HOME.0, going straight to $CODE_DIR 
     cd $CODE_DIR
 }
 
