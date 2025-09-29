@@ -13,7 +13,7 @@
   boot = {
     initrd.luks.devices."cryptroot".device = lib.mkDefault "/dev/nvme0n1p2";
     resumeDevice = lib.mkDefault "/dev/mapper/cryptroot"; # WARN use UUID=…
-    # WARN set the resume_offset kernel param to allow resuming from swapfile
+    # WARN set resume_offset in kernelParams to allow resuming from swapfile
   };
   fileSystems = {
     "/" = {

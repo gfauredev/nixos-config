@@ -25,6 +25,8 @@ in
   boot = {
     kernelModules = [
       "kvm-intel"
+    ];
+    kernelParams = [
       "resume_offset=5776640"
     ];
     initrd = {
