@@ -66,7 +66,7 @@
     # anki.enable = true; # Best memorization TODO 25.11
     himalaya.enable = true;
     khal.enable = true;
-    khard.enable = true;
+    khard.enable = false;
     # anki = {
     #   addons = with pkgs.ankiAddons; [ anki-connect ];
     #   answerKeys = [
