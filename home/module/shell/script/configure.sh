@@ -242,7 +242,7 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
   # printf 'Remove .config/mimeapps.list'
   # std
   # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake . switch"
+  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake . switch -b bak"
   emph
   printf 'Home Manager home rebuild: "%s"\n' "$HOME_MANAGER_CMD"
   std
@@ -358,6 +358,7 @@ if [ -n "$commit_msg" ]; then
   emph
   printf 'Start default text editor\n'
   std
+  # FIXME doesn’t seems to load the environment properly
   direnv exec . $EDITOR .  # Edit the configuration before commiting,
   commit_all "$commit_msg" # then commit public and private flakes
 else                       # Defaults to try amending changes
