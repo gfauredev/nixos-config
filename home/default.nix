@@ -204,6 +204,7 @@
     # exercism # CLI for the programming exercises website
     # localsend # Share files on local network
     # captive-browser # Browser for captive portals
+    geteduroam-cli # CLI to configure Eduroam
     # Passwords & Secrets
     proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
@@ -237,6 +238,7 @@
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
+    # restic.enable = true; # Efficient backup tool TEST service instead of CLI
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
     syncthing = {
@@ -265,6 +267,7 @@
     direnv.enable = true;
     gpg.enable = true; # Useful cryptography tool
     jujutsu.enable = true; # Git compatible simpler VCS
+    rclone.enable = true; # Backup using cloud services
     rbw.enable = true; # CLI Bitwarden client
     git = {
       userName = config.user.description;
