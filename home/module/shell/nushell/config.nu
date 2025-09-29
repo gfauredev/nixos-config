@@ -30,7 +30,7 @@ $env.config.hooks.pre_execution = (
 )
 
 # Edit project’s of life’s code
-def code [] {
+def --env code [] {
     let CODE_DIR = ($nu.home-path | path join "code")
     let WD = (pwd | path relative-to $nu.home-path | path split)
     mut target = $CODE_DIR # Directory to cd into
@@ -44,7 +44,7 @@ def code [] {
 # Edit system and home config
 def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
   cd ~/code/config/ # FIXME use config.location Nix option instead
-  # direnv exec .
+  # direnv exec . # FIXME doesn’t seems to use direnv properly inside editor
   configure ...$arg
 }
 
