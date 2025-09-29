@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-unstable,
+  config,
   lib,
   ...
 }: # TODO find a better name for this module
@@ -62,9 +62,11 @@
     go-ethereum # Ethereum CLI
   ];
   config.programs = {
-    himalaya.enable = true; # CLI email client
-    khal.enable = true; # CLI calendar client
+    thunderbird.enable = true;
     # anki.enable = true; # Best memorization TODO 25.11
+    himalaya.enable = true;
+    khal.enable = true;
+    khard.enable = true;
     # anki = {
     #   addons = with pkgs.ankiAddons; [ anki-connect ];
     #   answerKeys = [
@@ -89,5 +91,21 @@
     #   language = "fr_FR";
     #   # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
     # };
+    # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.thunderbird.profiles
+    thunderbird.profiles.default = {
+      isDefault = true; # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.thunderbird.profiles
+      search.engines = config.programs.firefox.profiles.default.search.engines;
+    };
+    khal.settings = {
+      default = {
+        default_calendar = "perso";
+        timedelta = "7d";
+      };
+    };
   };
+
+  # services = {
+  #   keybase.enable = true; # Identity and public key cryptography
+  #   kbfs.enable = true; # Keybase Filesystem
+  # };
 }
