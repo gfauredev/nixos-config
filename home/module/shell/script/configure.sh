@@ -242,7 +242,7 @@ rebuild_home_cmd() { # Rebuild the Home Manager home
   # printf 'Remove .config/mimeapps.list'
   # std
   # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
-  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake . switch -b bak"
+  HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake . switch -b backup"
   emph
   printf 'Home Manager home rebuild: "%s"\n' "$HOME_MANAGER_CMD"
   std
