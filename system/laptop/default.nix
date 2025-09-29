@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }: # Common configuration for laptops
 {
@@ -11,11 +10,20 @@
     ../module/i18n.nix
   ];
 
+  boot.kernelParams = [ "mem_sleep_default=deep" ]; # Suspend then Hibernate
+
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
+
   services = {
+    power-profiles-daemon.enable = true; # Suspend the Hibernate
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     logind = {
       powerKey = "suspend";
-      lidSwitch = "suspend";
+      powerKeyLongPress = "reboot";
+      lidSwitch = "suspend-then-hibernate";
       # settings.Login = {
       #   HandlePowerKey = "suspend";
       #   HandleLidSwitch = "suspend";
