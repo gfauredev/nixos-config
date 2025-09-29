@@ -345,6 +345,8 @@
               "-Wall"
               "-Wextra"
               "-Wpedantic"
+              # "-Wshadow"
+              # "-Wconversion"
             ];
           };
         };
