@@ -41,13 +41,12 @@
     sudo-rs.extraRules = config.security.sudo.extraRules; # To TEST
   };
 
-  # TODO fprint auth for unlock and sudo but not for first login
+  # fprint auth for unlock and sudo but not for login (to unlock keystore)
   security.pam.services.login.fprintAuth = false;
 
   security.pam.loginLimits = [
-    # Increased PAM limits for audio group, realtime
     {
-      domain = "@audio";
+      domain = "@audio"; # Increased PAM limits for audio group for realtime
       item = "memlock";
       type = "-";
       value = "unlimited";
