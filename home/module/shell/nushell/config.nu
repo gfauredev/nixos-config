@@ -32,31 +32,37 @@ $env.config.hooks.pre_execution = (
 # Edit project’s of life’s code
 def --env code [] {
     let CODE_DIR = "code"
-    let MIRROR_DIR = [ project life ] 
-    let FROM_HOME = pwd | path relative-to $nu.home-path | path split
-    if $FROM_HOME.0 in $MIRROR_DIR {
-      echo $"Under ($FROM_HOME.0), replicating file hierarchy to ($CODE_DIR)"
-      let dst = $nu.home-path | path join | $CODE_DIR |
-          path join ($FROM_HOME | slice 1.. | path join)
-      if not ($dst | path exists) {
-        mkdir --verbose $dst # Create same dir hierarchy under ~/code if needed
+    let MIRROR_DIRS = [ project life ] 
+    try { # Below line can fail if not under ~
+    let _WD_REL_TO_HOME = pwd | path relative-to $nu.home-path | path split
+    let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
+    let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # Rest
+    print --no-newline $"($HIERARCHY) found under ($HOME_CHILD) under home: "
+    if $HOME_CHILD in $MIRROR_DIRS {
+      let dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
+      if ($dest | path type) == dir {
+        print $"changing to correspondant ($CODE_DIR) subdir: ($dest)"
+      } else {
+        print $"replicating the file hierarchy into ($CODE_DIR): ($dest)"
+        mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
       }
-      cd $dst
-      return
-    }
-    if $FROM_HOME.0 == $CODE_DIR {
-      echo $"Under ($CODE_DIR), replicating file hierarchy to ($FROM_HOME.0)"
-      for special_dir in $MIRROR_DIR {
-        let origin_dir = $nu.home-path | path join $special_dir |
-            path join $FROM_HOME | slice 1.. | path join
-        if ($origin_dir | path type) == dir {
-          cd $origin_dir
-          return
+      cd $dest
+    } else if $HOME_CHILD == $CODE_DIR { # If you’re in ~/code
+      for mirror_dir in $MIRROR_DIRS {
+        let dest = $nu.home-path | path join $mirror_dir | path join $HIERARCHY
+        if ($dest | path type) == dir {
+          print $"changing to correspondant ($MIRROR_DIRS) subdir: ($dest)"
+        } else {
+          print $"replicating the file hierarchy into ($MIRROR_DIRS): ($dest)"
+          mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
         }
+        cd $dest
+        return
       }
     }
-    echo $"Not under ($FROM_HOME.0) or ($CODE_DIR), simply go to it"
-    cd $CODE_DIR
+    } # end try
+    print $"simply go to ($CODE_DIR) since not under one of ($MIRROR_DIRS)"
+    cd ($nu.home-path | path join $CODE_DIR)
 }
 
 # Edit system and home config
