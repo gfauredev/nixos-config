@@ -32,19 +32,21 @@ $env.config.hooks.pre_execution = (
 # Edit project’s of life’s code
 def --env code [] {
     let CODE_DIR = "code"
+    print --no-newline $"Code directory: ($CODE_DIR), "
     let MIRROR_DIRS = [ project life ] 
+    print $"Directories of which to mirror the hierarchy: ($MIRROR_DIRS)"
     mut dest = ($nu.home-path | path join $CODE_DIR) # Dir to change to
     try { # Below line can fail if not under ~
     let _WD_REL_TO_HOME = pwd | path relative-to $nu.home-path | path split
     let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
     let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # Rest
-    print --no-newline $"($HIERARCHY) found under ($HOME_CHILD) under home: "
+    print --no-newline $"Hierarchy ($HIERARCHY) of ~/($HOME_CHILD): "
     if $HOME_CHILD in $MIRROR_DIRS {
       $dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
       if ($dest | path type) == dir {
         print $"changing to correspondant ($CODE_DIR) subdir: ($dest)"
       } else if not ($dest | path exists) {
-        print $"replicating the file hierarchy into ($CODE_DIR): ($dest)"
+        print $"replicating dir hierarchy into ($CODE_DIR)"
         mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
       } else {
         print $"cannot change into ($dest) nor create a same named directory"
@@ -55,7 +57,7 @@ def --env code [] {
         if ($dest | path type) == dir {
           print $"changing to correspondant ($MIRROR_DIRS) subdir: ($dest)"
         } else if not ($dest | path exists) {
-          print $"replicating the file hierarchy into ($MIRROR_DIRS): ($dest)"
+          print $"replicating dir hierarchy into ($MIRROR_DIRS)"
           mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
         } else {
           print $"cannot change into ($dest) nor create a same named directory"
@@ -63,7 +65,6 @@ def --env code [] {
       }
     }
     } # end try
-    print $"simply go to ($CODE_DIR) since not under one of ($MIRROR_DIRS)"
     cd $dest
 }
 
