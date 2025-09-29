@@ -31,14 +31,23 @@ $env.config.hooks.pre_execution = (
 
 # Edit project’s of life’s code
 def --env code [] {
-    let CODE_DIR = ($nu.home-path | path join "code")
-    let WD = (pwd | path relative-to $nu.home-path | path split)
-    mut target = $CODE_DIR # Directory to cd into
-    if ($WD.0 in [ "project" "life" ]) {
-      $target = ($CODE_DIR | path join ($WD | slice 1.. | path join))
-      mkdir $target # Create same directory hierarchy under ~/code if needed
+    let CODE_DIR = $nu.home-path | path join code
+    let FROM_HOME = pwd | path relative-to $nu.home-path | path split
+    let SPECIAL_DIRS = [ project life ] 
+    if $FROM_HOME.0 in $SPECIAL_DIRS {
+      let dst = $CODE_DIR | path join ($FROM_HOME | slice 1.. | path join)
+      mkdir $dst # Create same directory hierarchy under ~/code if needed
     }
-    cd $target
+    if $FROM_HOME.0 == code {
+      let dst = $FROM_HOME | slice 1.. | path join
+      for special_dir in $SPECIAL_DIRS {
+        if ($nu.home-path | path join $special_dir | path join $dst |
+            path type) == dir {
+          echo echo
+        }
+      }
+    }
+    cd $CODE_DIR
 }
 
 # Edit system and home config
