@@ -64,6 +64,8 @@ def --env code [] {
           }
           break # Prevent for loop from mirorring hierarchy everywhere
         }
+      } else {
+        print $"not under ($MIRROR_DIRS | append $CODE_DIR), just go to ($dest)"
       }
     } # end try
     cd $dest
