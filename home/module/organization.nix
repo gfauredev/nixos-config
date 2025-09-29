@@ -96,12 +96,12 @@
       isDefault = true; # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.thunderbird.profiles
       search.engines = config.programs.firefox.profiles.default.search.engines;
     };
-    # khal.settings = {
-    #   default = {
-    #     default_calendar = "perso";
-    #     timedelta = "7d";
-    #   };
-    # };
+    khal.settings = {
+      default = {
+        default_calendar = "perso";
+        timedelta = "7d";
+      };
+    };
   };
 
   # services = {
