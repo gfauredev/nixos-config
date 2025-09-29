@@ -41,10 +41,9 @@
     sudo-rs.extraRules = config.security.sudo.extraRules; # To TEST
   };
 
-  # TODO disable fprint for login, allow only for unlock and sudo
-  # See https://search.nixos.org/options?channel=unstable&query=security.pam
-  # See https://wiki.nixos.org/wiki/Fingerprint_scanner
-  # See https://wiki.archlinux.org/title/Fprint
+  # TODO fprint auth for unlock and sudo but not for first login
+  security.pam.services.login.fprintAuth = false;
+
   security.pam.loginLimits = [
     # Increased PAM limits for audio group, realtime
     {
