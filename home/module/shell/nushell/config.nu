@@ -37,33 +37,34 @@ def --env code [] {
     print $"Directories of which to mirror the hierarchy: ($MIRROR_DIRS)"
     mut dest = ($nu.home-path | path join $CODE_DIR) # Dir to change to
     try { # Below line can fail if not under ~
-    let _WD_REL_TO_HOME = pwd | path relative-to $nu.home-path | path split
-    let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
-    let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # Rest
-    print --no-newline $"Hierarchy ($HIERARCHY) of ~/($HOME_CHILD): "
-    if $HOME_CHILD in $MIRROR_DIRS {
-      $dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
-      if ($dest | path type) == dir {
-        print $"changing to correspondant ($CODE_DIR) subdir: ($dest)"
-      } else if not ($dest | path exists) {
-        print $"replicating dir hierarchy into ($CODE_DIR)"
-        mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
-      } else {
-        print $"cannot change into ($dest) nor create a same named directory"
-      }
-    } else if $HOME_CHILD == $CODE_DIR { # If you’re in ~/code
-      for mirror_dir in $MIRROR_DIRS {
-        $dest = $nu.home-path | path join $mirror_dir | path join $HIERARCHY
+      let _WD_REL_TO_HOME = pwd | path relative-to $nu.home-path | path split
+      let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
+      let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # Rest
+      print --no-newline $"Hierarchy ($HIERARCHY) of ~/($HOME_CHILD): "
+      if $HOME_CHILD in $MIRROR_DIRS { # Could be factorized with below
+        $dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
         if ($dest | path type) == dir {
-          print $"changing to correspondant ($MIRROR_DIRS) subdir: ($dest)"
+          print $"changing to correspondant ($CODE_DIR) subdir: ($dest)"
         } else if not ($dest | path exists) {
-          print $"replicating dir hierarchy into ($MIRROR_DIRS)"
-          mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
+          print $"replicating dir hierarchy into ($CODE_DIR)"
+          mkdir --verbose $dest # Mirror dir hierarchy under ~/code if needed
         } else {
           print $"cannot change into ($dest) nor create a same named directory"
         }
+      } else if $HOME_CHILD == $CODE_DIR { # Could be factorized with above
+        for mirror_dir in $MIRROR_DIRS {
+          $dest = $nu.home-path | path join $mirror_dir | path join $HIERARCHY
+          if ($dest | path type) == dir {
+            print $"changing to correspondant ($MIRROR_DIRS) subdir: ($dest)"
+          } else if not ($dest | path exists) {
+            print $"replicating dir hierarchy into ($MIRROR_DIRS)"
+            mkdir --verbose $dest
+          } else {
+            print $"cannot change into ($dest) nor create a same named directory"
+          }
+          break # Prevent for loop from mirorring hierarchy everywhere
+        }
       }
-    }
     } # end try
     cd $dest
 }
