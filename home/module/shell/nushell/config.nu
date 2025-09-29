@@ -33,36 +33,38 @@ $env.config.hooks.pre_execution = (
 def --env code [] {
     let CODE_DIR = "code"
     let MIRROR_DIRS = [ project life ] 
+    mut dest = ($nu.home-path | path join $CODE_DIR) # Dir to change to
     try { # Below line can fail if not under ~
     let _WD_REL_TO_HOME = pwd | path relative-to $nu.home-path | path split
     let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
     let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # Rest
     print --no-newline $"($HIERARCHY) found under ($HOME_CHILD) under home: "
     if $HOME_CHILD in $MIRROR_DIRS {
-      let dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
+      $dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
       if ($dest | path type) == dir {
         print $"changing to correspondant ($CODE_DIR) subdir: ($dest)"
-      } else {
+      } else if not ($dest | path exists) {
         print $"replicating the file hierarchy into ($CODE_DIR): ($dest)"
         mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
+      } else {
+        print $"cannot change into ($dest) nor create a same named directory"
       }
-      cd $dest
     } else if $HOME_CHILD == $CODE_DIR { # If you’re in ~/code
       for mirror_dir in $MIRROR_DIRS {
-        let dest = $nu.home-path | path join $mirror_dir | path join $HIERARCHY
+        $dest = $nu.home-path | path join $mirror_dir | path join $HIERARCHY
         if ($dest | path type) == dir {
           print $"changing to correspondant ($MIRROR_DIRS) subdir: ($dest)"
-        } else {
+        } else if not ($dest | path exists) {
           print $"replicating the file hierarchy into ($MIRROR_DIRS): ($dest)"
           mkdir --verbose $dest # Create same dir hierarchy under ~/code if needed
+        } else {
+          print $"cannot change into ($dest) nor create a same named directory"
         }
-        cd $dest
-        return
       }
     }
     } # end try
     print $"simply go to ($CODE_DIR) since not under one of ($MIRROR_DIRS)"
-    cd ($nu.home-path | path join $CODE_DIR)
+    cd $dest
 }
 
 # Edit system and home config
