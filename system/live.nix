@@ -1,23 +1,25 @@
 { pkgs, ... }: # Live ISO to install NixOS
 {
-  imports = [ ./default.nix ];
-
   networking.hostName = "LiveNixOS";
   # networking.hostId = "acabacab";
 
-  users.extraUsers.root = {
-    # initialHashedPassword = hashedPassword;
-    # hashedPassword = null;
-    # initialPassword = password;
-    password = "root"; # FIXME
-    # hashedPasswordFile = null;
-  };
-  users.users.nixos = {
-    # initialHashedPassword = hashedPassword;
-    # hashedPassword = null;
-    # initialPassword = password;
-    password = "nixos"; # FIXME
-    # hashedPasswordFile = null;
+  imports = [ ./default.nix ];
+
+  users = {
+    extraUsers.root = {
+      # initialHashedPassword = hashedPassword;
+      # hashedPassword = null;
+      # initialPassword = password;
+      password = "root"; # FIXME
+      # hashedPasswordFile = null;
+    };
+    users.nixos = {
+      # initialHashedPassword = hashedPassword;
+      # hashedPassword = null;
+      # initialPassword = password;
+      password = "nixos"; # FIXME
+      # hashedPasswordFile = null;
+    };
   };
 
   systemd = {

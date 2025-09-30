@@ -3,12 +3,15 @@
   lib,
   pkgs,
   ...
-}:
+}: # Personal Computer
 {
   imports = [
     ./machine.nix # Config for actual machines, not VMs, ISOs…
+    ./loginManager # Launch graphical env at login
+    ./secureboot.nix # Secure Boot (Lanzaboote)
     ./remap.nix # Remaps for PC usability
     ./print-scan.nix # Printing & scanning service
+    ./i18n.nix # Internationalization
   ];
 
   hardware = {

@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   modulesPath,
   ...
 }: # My main laptop, a Framework Laptop 13
@@ -16,19 +15,14 @@ in
   networking.hostId = "bbfdd0e2";
 
   imports = [
-    ./.
-    ../module/loginManager # Launch graphical env at login
-    ../module/secureboot.nix # Secure Boot (Lanzaboote)
+    ./. # Systems defaults
+    ./module/laptop.nix # Laptops specifics
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
   boot = {
-    kernelModules = [
-      "kvm-intel"
-    ];
-    kernelParams = [
-      "resume_offset=5776640"
-    ];
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = [ "resume_offset=5776640" ];
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -46,7 +40,7 @@ in
     };
     resumeDevice = cryptroot;
   };
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault true; # Intel CPU…
+  hardware.cpu.intel.updateMicrocode = true; # Intel CPU…
 
   fileSystems = {
     "/".device = cryptroot; # System root
@@ -59,7 +53,7 @@ in
   };
 
   services.fwupd.extraRemotes = [ "lvfs-testing" ]; # Necessary for Framework
-  services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
+  # services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
 
   environment.systemPackages = with pkgs; [
     framework-tool # Hardware related tools for framework laptops

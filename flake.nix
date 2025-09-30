@@ -47,14 +47,14 @@
         griffin = lib.nixosSystem {
           # specialArgs = { inherit unstablepkgs; };
           modules = [
-            ./system/laptop/griffin.nix
+            ./system/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
         };
         # Laptop: Chimera, a flying creature
         chimera = lib.nixosSystem {
-          modules = [ ./system/laptop/chimera.nix ];
+          modules = [ ./system/chimera.nix ];
         };
         # Desktop: Muses, goddess of arts and music
         # muses = lib.nixosSystem {
@@ -85,16 +85,14 @@
             config.allowUnfree = true;
           };
           modules = [
-            { home.stateVersion = "25.05"; }
-            ./home/device/griffin.nix
+            ./home/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
         "gf@chimera" = hm-lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            { home.stateVersion = "25.05"; }
-            ./home/device/chimera.nix
+            ./home/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
