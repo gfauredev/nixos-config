@@ -1,6 +1,6 @@
 {
   pkgs,
-  config,
+  pkgs-unstable,
   lib,
   ...
 }: # TODO find a better name for this module
@@ -18,7 +18,7 @@
     anki # Best memorization tool
     # markdown-anki-decks
     # Notes
-    xournalpp # Handwriting notetaking FIXME
+    pkgs-unstable.xournalpp # Handwriting notetaking
     # appflowy # Notion alternative
     # anytype # Knowledge base TEST
     # logseq # Knowledge base TEST
