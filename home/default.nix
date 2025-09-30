@@ -45,7 +45,8 @@
       BROWSER_ALT = "brave"; # TEST if better with full paths
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
-    stateVersion = lib.mkDefault config.system.stateVersion;
+    stateVersion = lib.mkDefault "25.05";
+    # stateVersion = lib.mkDefault config.system.stateVersion; FIXME do this
   };
 
   xdg = {
