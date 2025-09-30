@@ -18,7 +18,7 @@
     anki # Best memorization tool
     # markdown-anki-decks
     # Notes
-    # xournalpp # Handwriting notetaking FIXME
+    xournalpp # Handwriting notetaking FIXME
     # appflowy # Notion alternative
     # anytype # Knowledge base TEST
     # logseq # Knowledge base TEST
