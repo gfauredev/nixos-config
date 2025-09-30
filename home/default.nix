@@ -22,7 +22,6 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "albert" # General launcher
       "bespokesynth" # Synth
       "bespokesynth-with-vst2" # Synth
       # "ciscoPacketTracer8" # Network simulation
@@ -36,6 +35,11 @@
       "vital" # Synth
       "ventoy" # Multiboot USB
       "vst2-sdk" # Some VSTs need it
+    ];
+  pkgs-unstable.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "albert" # General launcher
     ];
 
   imports = [
