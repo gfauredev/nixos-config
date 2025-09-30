@@ -242,8 +242,8 @@
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
     syncthing = {
-      overrideDevices = lib.mkDefault false; # Allow imperative config
-      overrideFolders = lib.mkDefault true; # Prevent imperative config
+      overrideDevices = lib.mkDefault true; # No imperative config
+      overrideFolders = lib.mkDefault true; # No imperative config
       settings = {
         options.relaysEnabled = true;
         options.localAnnounceEnabled = true;
