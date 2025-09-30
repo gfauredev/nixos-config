@@ -76,8 +76,12 @@
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = hm-lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs.pkgs-unstable = unstablepkgs.legacyPackages.x86_64-linux;
+          pkgs = import nixpkgs.legacyPackages.x86_64-linux {
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs.pkgs-unstable = import unstablepkgs.legacyPackages.x86_64-linux {
+            config.allowUnfree = true;
+          };
           modules = [
             { home.stateVersion = "25.05"; }
             ./home/device/griffin.nix

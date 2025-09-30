@@ -18,8 +18,8 @@
     json.enable = true;
     manpages.enable = true;
   };
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = _: true;
+  # nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfreePredicate = _: true;
   # pkg: builtins.elem (lib.getName pkg) [
   #   "albert" # General launcher
   #   "bespokesynth" # Synth
