@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  import = [
+    ./module/qimgv # Fully-featured image and video viewer
+  ];
   home.packages = with pkgs; [
     viu # CLI image viewer
     qimgv # Another image viewer
