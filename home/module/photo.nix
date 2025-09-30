@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  import = [
+  imports = [
     ./module/qimgv # Fully-featured image and video viewer
   ];
   home.packages = with pkgs; [
