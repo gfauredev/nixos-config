@@ -86,6 +86,7 @@
           };
           modules = [
             ./home/griffin.nix
+            ./overlay
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
