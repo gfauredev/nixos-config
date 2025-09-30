@@ -27,6 +27,7 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "albert" # General launcher
       # "ciscoPacketTracer8" # Network simulation
       # "deconz" # Manage ZigBee/Matter networks
       "hp" # Printer drivers

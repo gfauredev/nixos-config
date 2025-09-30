@@ -9,7 +9,7 @@
     ./wox # To TEST
     ./ulauncher # To TEST
     ./rofi # To TEST, improve
-    # ./albert TODO find and configure alternatives
+    ./albert
   ];
 
   options.launch = {

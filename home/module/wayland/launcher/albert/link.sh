@@ -1,4 +1,4 @@
-# TODO execute post-activation
-dir=$(realpath "$(dirname "$0")")
-ln --force --symbolic "$dir"/config "$XDG_CONFIG_HOME"/albert/config
-ln --force --symbolic "$dir"/websearch "$XDG_CONFIG_HOME"/albert/websearch
+# dir=$(realpath "$(dirname "$0")")
+DIR=$XDG_CONFIG_HOME/albert
+ln --force --symbolic $DIR/config.static $DIR/config
+ln --force --symbolic $DIR/websearch.static $DIR/websearch
