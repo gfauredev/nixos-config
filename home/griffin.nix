@@ -9,7 +9,6 @@
     ./module/audio.nix # Audio Production & Creation
     ./module/qimgv # Fully-featured image and video viewer
     ./module/photo.nix # Photo & Image Edition
-    ./module/misc.nix # Message, Transact, Exchange TODO organize better
   ];
 
   services = {
