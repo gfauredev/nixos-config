@@ -1,10 +1,5 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, ... }: # Audio production and edition
 {
-  services = {
-    playerctld.enable = true;
-    mpris-proxy.enable = true;
-  };
-
   home.sessionVariables =
     let
       makePluginPath =
@@ -27,10 +22,6 @@
     };
 
   home.packages = with pkgs; [
-    playerctl # MPRIS media players control
-    # spotify # PROPRIETARY music streaming
-    # spotdl # Download music and playlists from Spotify
-    klick # Metronome
     # Plugins hosts & Routers
     carla # VST Host & audio router
     cardinal # Plugin VCV Rack

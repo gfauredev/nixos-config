@@ -3,29 +3,26 @@
   pkgs-unstable,
   lib,
   ...
-}: # PIM, Notes
+}: # Email, Calendar, Task, Contact, Note
 {
   options.organization.pim = lib.mkOption {
     default = "thunderbird";
     description = "Main Personal Information Management app";
   };
   config.home.packages = with pkgs; [
-    # Flashcards
     anki # Best memorization tool
     # markdown-anki-decks
-    # Notes
     pkgs-unstable.xournalpp # Handwriting notetaking
     # appflowy # Notion alternative
-    # anytype # Knowledge base
+    # affine # Knowledge base # No Android app
     # logseq # Knowledge base
+    # anytype # Knowledge base
     # siyuan # Knowledge management # No p2p sync
     # silverbullet # Knowledge management # No p2p sync
-    # affine # Knowledge base # No Android app
     # mindforger # Outliner note taking
     # emanote # Structured view text notes
     # rnote # Note tool
     # memos # Atomic memo hub
-    # emacsPackages.org-roam-ui
   ];
   config.programs = {
     thunderbird.enable = true;
@@ -55,9 +52,8 @@
     #   ];
     #   spacebarRatesCard = true;
     #   language = "fr_FR";
-    #   # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
+    # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
     # };
-    # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.thunderbird.profiles
     thunderbird.profiles.default = {
       isDefault = true;
       # search.engines = config.programs.firefox.profiles.default.search.engines;

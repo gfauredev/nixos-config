@@ -180,10 +180,4 @@
       };
     };
   };
-  # home.packages = with pkgs; [
-  #   nyxt # Keyboard driven lightweight web browser
-  #   browsh # CLI web browser (added to default home)
-  #   brave # Blink based secure and private web browser
-  #   servo # New modular embeddable web engine
-  # ];
 }

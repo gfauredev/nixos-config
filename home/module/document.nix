@@ -3,26 +3,18 @@
   imports = [ ./font.nix ]; # Additional fonts
 
   home.packages = with pkgs; [
-    typst # Advanced document processor
-    # mermaid-cli # Markdown-like diagrams
-    plantuml-c4 # UML diagrams from text with additions
-    # plantuml # UML diagrams from text
-    # quarto # Scientific and technical publishing system
-    # hovercraft # impress.js presentations
     # calibre # Ebook management
     # Document & Spreadsheet & Presentation
+    typst # Advanced document processor
+    # quarto # Scientific and technical publishing system
+    # hovercraft # impress.js presentations
     onlyoffice-bin_latest # Full office suite
     libreoffice-fresh # Office suite
-    # PDF Reading & Editing
+    # PDF Reading & Editing & Scan
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
     poppler_utils # PDF metadata reading/editing
     qpdf # More modern CLI PDF manipulation
-    # pdftk # CLI PDF manipulation
-    # pdfrip # PDF password cracking
-    # pdf4qt # PDF edition
-    # xpdf # PDF reader
-    # pdf4qt # PDF editor
     # pdf-sign # Automated PDF signing TODO config
     # pdfmixtool # Simple GUI to edit PDFs structure
     # naps2 # Scan PDFs FIX
@@ -30,12 +22,15 @@
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
     # pdfpc # PDF Presentator Console
+    # Diagrams
+    # mermaid-cli # Markdown-like diagrams
+    plantuml-c4 # UML diagrams from text with additions
   ];
 
   programs = {
     zathura.enable = true; # Minimal PDF reader
     mpv.enable = true; # Audio and video player
-    imv.enable = true; # BUG Minimal image viewer
+    # imv.enable = true; # Minimal image viewer
     zathura = {
       extraConfig = ''
         set sandbox none
