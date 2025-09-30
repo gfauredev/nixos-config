@@ -7,9 +7,7 @@
 {
   imports = [
     ./hyprland
-    ./launcher
     ./waybar
-    ./remap
   ];
 
   options.wayland = {

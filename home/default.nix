@@ -23,6 +23,8 @@
     ./module/shell # Interactive POSIX shell(s)
     ./module/terminal # Terminal emulators
     ./module/editor # CLI and GUI text editors
+    ./module/remap # Ergonomy
+    ./module/launcher # Quick keyboard launcher(s)
   ];
 
   home = {
