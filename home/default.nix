@@ -12,27 +12,11 @@
     package = pkgs.nix; # TEST if necessary
     settings.max-jobs = 12; # Limit threads usage of nix builds
   };
-  # home-manager.backupFileExtension = "bak"; # FIXME
   manual = {
     html.enable = true;
     json.enable = true;
     manpages.enable = true;
   };
-  # nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.allowUnfreePredicate = _: true;
-  # pkg: builtins.elem (lib.getName pkg) [
-  #   "albert" # General launcher
-  #   "bespokesynth" # Synth
-  #   "bespokesynth-with-vst2" # Synth
-  #   # "ciscoPacketTracer8" # Network simulation
-  #   # "deconz" # Manage ZigBee/Matter networks
-  #   # "discord" # Messaging
-  #   # "libsciter" # Used by rustdesk
-  #   # "spotify" # Music
-  #   "vital" # Synth
-  #   "ventoy" # Multiboot USB
-  #   "vst2-sdk" # Some VSTs need it
-  # ];
 
   imports = [
     ./options.nix # Homes default options
