@@ -207,7 +207,7 @@
     # captive-browser # Browser for captive portals
     # geteduroam-cli # CLI to configure Eduroam
     # Passwords & Secrets
-    pkgs-unstable-proton-pass # Proton password manager
+    pkgs-unstable.proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
     # bitwarden-desktop
     # keepassxc # Password manager
