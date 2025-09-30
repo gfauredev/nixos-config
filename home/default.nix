@@ -18,29 +18,21 @@
     json.enable = true;
     manpages.enable = true;
   };
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "bespokesynth" # Synth
-      "bespokesynth-with-vst2" # Synth
-      # "ciscoPacketTracer8" # Network simulation
-      # "deconz" # Manage ZigBee/Matter networks
-      # "discord" # Messaging
-      # "libsciter" # Used by rustdesk
-      # "spotify" # Music
-      # "steam-unwrapped" # Videogames
-      # "steam" # Videogames
-      # "stm32cubemx" # STM32
-      "vital" # Synth
-      "ventoy" # Multiboot USB
-      "vst2-sdk" # Some VSTs need it
-    ];
-  pkgs-unstable.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "albert" # General launcher
-    ];
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
+  # pkg: builtins.elem (lib.getName pkg) [
+  #   "albert" # General launcher
+  #   "bespokesynth" # Synth
+  #   "bespokesynth-with-vst2" # Synth
+  #   # "ciscoPacketTracer8" # Network simulation
+  #   # "deconz" # Manage ZigBee/Matter networks
+  #   # "discord" # Messaging
+  #   # "libsciter" # Used by rustdesk
+  #   # "spotify" # Music
+  #   "vital" # Synth
+  #   "ventoy" # Multiboot USB
+  #   "vst2-sdk" # Some VSTs need it
+  # ];
 
   imports = [
     ./options.nix # Homes default options

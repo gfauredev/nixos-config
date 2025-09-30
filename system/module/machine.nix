@@ -27,9 +27,6 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "albert" # General launcher
-      # "ciscoPacketTracer8" # Network simulation
-      # "deconz" # Manage ZigBee/Matter networks
       "hp" # Printer drivers
       # "nvidia-x11" # GPU drivers
       # "nvidia-settings" # GPU drivers
@@ -39,7 +36,6 @@
       # "steam-unwrapped" # Video games software
       # "steam-run" # Video games software
       "ventoy" # Multiboot USB
-      "vst2-sdk" # Some VSTs need it
     ];
 
   boot = {
