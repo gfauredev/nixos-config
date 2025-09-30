@@ -94,7 +94,7 @@
     # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.thunderbird.profiles
     thunderbird.profiles.default = {
       isDefault = true; # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.thunderbird.profiles
-      search.engines = config.programs.firefox.profiles.default.search.engines;
+      # search.engines = config.programs.firefox.profiles.default.search.engines;
     };
     khal.settings = {
       default = {
