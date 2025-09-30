@@ -1,7 +1,9 @@
 { ... }: # Secondary laptop Chimera
 {
   imports = [
-    ./.
-    ./module/wayland/chimera.nix
+    ./. # Default home config
+    ./module/wayland/chimera.nix # Windows, Colors, Futile stuff
+    ./module/web # Browsers
+    ./module/document.nix # Document, Spreadsheet, Presentation, PDF
   ];
 }
