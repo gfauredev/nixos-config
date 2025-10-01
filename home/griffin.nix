@@ -9,7 +9,6 @@
     ./module/audio.nix # Audio Production & Creation
     ./module/qimgv # Fully-featured image and video viewer
     ./module/photo.nix # Photo & Image Edition
-    ./module/bambu.nix # Fix for Bambu Studio slicer
   ];
 
   services = {
@@ -48,7 +47,7 @@
     # blenderWithPySlvs # Patched popular 3D, animation & video editor
     # meshlab # 3D mesh processing tool
     # Slicing
-    # orca-slicer # G-code generator for 3D printers…
+    orca-slicer # G-code generator for 3D printers…
     # cura # Popular 3D printer slicer
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
     # Misc
