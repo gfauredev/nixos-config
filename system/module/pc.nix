@@ -82,6 +82,12 @@
 
   networking.firewall.enable = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
+  # FIX for Bambu 3D printer network plugin
+  networking.firewall.extraCommands = ''
+    iptables -I INPUT -m pkttype --pkt-type multicast -j ACCEPT
+    iptables -A INPUT -m pkttype --pkt-type multicast -j ACCEPT
+    iptables -I INPUT -p udp -m udp --match multiport --dports 1990,2021 -j ACCEPT
+  '';
 
   services = {
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
