@@ -13,6 +13,7 @@
     anki # Best memorization tool
     # markdown-anki-decks
     pkgs-unstable.xournalpp # Handwriting notetaking
+    rnote # Modern handwriten note taking app
     # appflowy # Notion alternative
     # affine # Knowledge base # No Android app
     # logseq # Knowledge base

@@ -35,8 +35,8 @@
       XDG_DESKTOP_DIR = "${config.user.home}/data"; # FIXME not properly propagated to shell, wm…
       XDG_DOCUMENTS_DIR = "${config.user.home}/data";
       XDG_MUSIC_DIR = "${config.user.home}/data";
-      XDG_PICTURES_DIR = "${config.user.home}/dcim";
-      XDG_VIDEOS_DIR = "${config.user.home}/dcim";
+      XDG_PICTURES_DIR = "${config.user.home}/image";
+      XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
       BAT_PAGING = "never";
       SHELL = "nu"; # TEST if better with full paths
@@ -46,7 +46,7 @@
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
     stateVersion = lib.mkDefault "25.05";
-    # stateVersion = lib.mkDefault config.system.stateVersion; FIXME do this
+    # stateVersion = lib.mkDefault config.system.stateVersion; TODO something like this
   };
 
   xdg = {
@@ -54,7 +54,7 @@
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications =
-      let # TODO SSOT, maybe put in flake or modularize
+      let # TODO make a SSOT for below, maybe nix option
         text = "Helix";
         image = "qimgv";
         audio = "mpv";
@@ -76,10 +76,10 @@
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
         "application/vnd.ms-excel" = "${spreadsheet}.desktop";
         "application/pdf" = "${pdf}.desktop";
-        # "application/x-colpkg" = "anki.desktop";
-        # "application/x-apkg" = "anki.desktop";
-        # "application/x-ankiaddon" = "anki.desktop";
-        # "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
+        "application/x-colpkg" = "anki.desktop";
+        "application/x-apkg" = "anki.desktop";
+        "application/x-ankiaddon" = "anki.desktop";
+        "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
         # Image
         "image/avif" = "${image}.desktop";
         "image/webp" = "${image}.desktop";
@@ -321,10 +321,8 @@
   };
 
   gtk = {
-    enable = true;
-    # Remove this from $HOME
+    enable = true; # Remove this from $HOME
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/settings";
-    # Dark theme everywhere
     gtk2.extraConfig = "gtk-application-prefer-dark-theme = 1";
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
