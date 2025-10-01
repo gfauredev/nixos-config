@@ -9,7 +9,7 @@ let
     sha256 = zipSha256;
   };
   appimagePath = "${srcZipped}/${appimageName}";
-  bambu-studio = pkgs.appimageTools.wrapType2 {
+  bambu-studio-appimage = pkgs.appimageTools.wrapType2 {
     name = "BambuStudio";
     pname = "bambustudio";
     inherit version;
@@ -42,7 +42,7 @@ let
   };
 in
 {
-  home.packages = [ bambu-studio ];
+  home.packages = [ bambu-studio-appimage ];
   home.file.".local/share/applications/bambustudio.desktop".text = ''
     [Desktop Entry]
     Name=BambuStudio
