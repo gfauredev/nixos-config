@@ -1,4 +1,4 @@
-{ pkgs, ... }: # Main laptop Griffin
+{ pkgs, pkgs-unstable, ... }: # Main laptop Griffin
 {
   imports = [
     ./. # Default home
@@ -47,7 +47,7 @@
     # blenderWithPySlvs # Patched popular 3D, animation & video editor
     # meshlab # 3D mesh processing tool
     # Slicing
-    orca-slicer # G-code generator for 3D printers…
+    pkgs-unstable.orca-slicer # G-code generator for 3D printers…
     # cura # Popular 3D printer slicer
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
     # Misc
