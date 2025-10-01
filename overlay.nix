@@ -1,4 +1,4 @@
-{ ... }: # FIXME make it work for both pkgs and pkgs-unstable
+{ ... }: # Doesn’t works for both pkgs and pkgs-unstable
 {
   nixpkgs.overlays = [
     # `self` and `super` to express the inheritance relationship
