@@ -31,13 +31,13 @@ let
         gst_all_1.gst-plugins-base
         gst_all_1.gst-plugins-good
         webkitgtk_4_1
-        pkgs.linuxPackages.nvidia_x11
         libglvnd
         fontconfig
         dejavu_fonts
         liberation_ttf
         libxkbcommon
         hack-font
+        # pkgs.linuxPackages.nvidia_x11
       ];
   };
 in
@@ -48,11 +48,12 @@ in
     Name=BambuStudio
     GenericName=3D Printing Software
     Icon=BambuStudio
-    Exec=GBM_BACKEND=dri bambustudio
+    Exec=bambustudio
     Terminal=false
     Type=Application
     MimeType=model/stl;model/3mf;application/vnd.ms-3mfdocument;application/prs.wavefront-obj;application/x-amf;x-scheme-handler/bambustudio;
     Categories=Graphics;3DGraphics;Engineering;
     StartupNotify=false
   '';
+  # Exec=GBM_BACKEND=dri bambustudio
 }
