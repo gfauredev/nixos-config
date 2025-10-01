@@ -3,6 +3,9 @@ memoryDecay=0.75
 showTray=false
 telemetry=true
 
+[application]
+enabled=true
+
 [applications]
 enabled=true
 ignore_show_in_keys=false
