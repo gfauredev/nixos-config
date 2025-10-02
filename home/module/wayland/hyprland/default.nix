@@ -233,7 +233,7 @@ in
           "${mod} SHIFT, comma, Suspend computer to sleep, exec, ${config.wayland.suspend}"
           "SUPER, j, Mirror output or region, exec, ${mirror.default}" # (F9 on Framework Laptop)
           "SUPER SHIFT, j, Freeze mirrored image, exec, ${mirror.freeze}"
-          "SUPER SHIFT, j, Change mirrored output or region, exec, ${mirror.region}"
+          "SUPER CONTROL, j, Change mirrored output or region, exec, ${mirror.region}"
           "${mod}, Super_L, Default launcher, exec, ${config.launch.all}"
           "${mod} SHIFT, Super_L, alternative/fallback launcher, exec, ${config.launch.alt2}"
           # "${mod} SHIFT, Super_L, alternative/fallback launcher, exec, [float; center; size 1337 800] ${config.launch.alt2}"
