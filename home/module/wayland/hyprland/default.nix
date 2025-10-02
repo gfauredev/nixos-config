@@ -43,7 +43,7 @@ let
   ];
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   # Tools definitions
-  open = "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -c broot";
+  open = "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -i -e broot"; # TODO options for -i -e
   monitor = "${config.term.cmd} ${config.term.exec} btm --battery";
   mix = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   pick = "hyprpicker --autocopy"; # Color picker

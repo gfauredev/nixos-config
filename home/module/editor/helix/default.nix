@@ -181,6 +181,24 @@
             formatter.command = "nixfmt";
           }
           {
+            name = "nu";
+            scope = "source.nu";
+            injection-regex = "nu";
+            file-types = [
+              "nu"
+              "nuon"
+              "nush"
+              "nushell"
+            ];
+            shebangs = [ "nu" ];
+            comment-token = "#";
+            indent = {
+              tab-width = 2;
+              unit = "  ";
+            };
+            language-servers = [ "nu-lsp" ];
+          }
+          {
             name = "python";
             language-servers = [
               "ty"
