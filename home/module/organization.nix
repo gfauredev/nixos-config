@@ -58,6 +58,7 @@
     thunderbird.profiles.default = {
       isDefault = true;
       # search.engines = config.programs.firefox.profiles.default.search.engines;
+      # TODO LanguageTool extension; en-GB, fr-FR, en-US languages packs (in this order)
     };
     khal.settings.default = {
       default_calendar = "perso";
