@@ -1,7 +1,7 @@
 { pkgs, ... }: # Photo & Image Edition
 {
   home.packages = with pkgs; [
-    gimp-with-plugins # Raster image editor
+    gimp3-with-plugins # Raster image editor
     # darktable # RAW pictures editor
     # inkscape # Vector image editor
     # krita # Raster image painting/drawing editor

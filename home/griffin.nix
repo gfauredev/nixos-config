@@ -39,7 +39,9 @@
     # stm32cubemx # Graphical tool for configuring STM32 microcontrollers
     # 3D CAD
     freecad-wayland # Popular parametric 3D CAD
-    dune3d # New simple parametric CAD
+    openscad-unstable # Code CAD
+    openscad-lsp # LSP
+    # dune3d # New simple parametric CAD
     # solvespace # Simple parametric 3D CAD
     # brlcad # Combinatorial solid modeling system
     # 3D Artistic
