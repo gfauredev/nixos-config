@@ -50,12 +50,12 @@
           };
           "faststream@andrews" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "normal_installed";
             private_browsing = true;
           };
           "ATBC@EasonWong" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "normal_installed";
             private_browsing = true;
           };
           # "DeepL" = {
