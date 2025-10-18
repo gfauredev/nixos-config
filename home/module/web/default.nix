@@ -141,17 +141,15 @@
           "nixoptions"
         ];
         settings = {
-          browser.download.dir = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
-          sidebar = {
-            revamp = true;
-            verticalTabs = true;
-            visibility = "expand-on-hover";
-            notification.badge.aichat = false;
-          };
-          toolkit.legacyUserProfileCustomizations.stylesheets = true; # Allow custom styles
-          browser.translations.neverTranslateLanguages = "en,fr,es";
-          services.sync.declinedEngines = "passwords,addresses,creditcards";
-          extensions.activeThemeID = "firefox-compact-dark@mozilla.org";
+          "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+          "sidebar.revamp" = true;
+          "sidebar.verticalTabs" = true;
+          "sidebar.visibility" = "expand-on-hover";
+          "sidebar.notification.badge.aichat" = false;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Allow custom styles
+          "browser.translations.neverTranslateLanguages" = "en,fr,es";
+          "services.sync.declinedEngines" = "passwords,addresses,creditcards";
+          "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         };
         userChrome = ''
           #navigator-toolbox:not(:hover) {
