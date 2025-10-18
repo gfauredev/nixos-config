@@ -155,7 +155,7 @@
         userChrome = ''
           #navigator-toolbox:not(:hover) {
             #nav-bar:not([customizing]),
-            #urlbar:not([breakout][breakout-extend], [focused], [open]),
+            #urlbar:not([breakout]):not([breakout-extend]):not([focused]):not([open]),
             #PersonalToolbar {
               opacity: 0 !important;
               height: 0 !important;
