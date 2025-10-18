@@ -162,19 +162,26 @@
               min-height: 3px !important;
             }
           }
-          #urlbar:is([focused], [open]) {
-            top: 20vh !important;
-            left: 18vw !important;
-            right: 18vw !important;
-            width: 64vw !important;
+          #navigator-toolbox, #nav-bar, #urlbar {
+            transition: min-height 0.1s ease !important;
+          }
+          #urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
             z-index: 1;
             position: fixed !important;
+            top: 25vh !important;
+            left: 20vw !important;
+            right: 20vw !important;
+            width: 60vw !important;
             padding-block: 12px!important;
             --urlbar-height: auto !important;
             bottom: auto !important;
             padding-left: 6px !important;
             padding-right: 8px !important;
             background-color: #toolbar-bgcolor !important;
+            #urlbar-input {
+              font-size: 16px !important;
+              text-align: left !important;
+            }
             #urlbar-input-container {
               height: auto !important;
               padding-block: var(--urlbar-block-padding) !important;
@@ -186,10 +193,19 @@
             & .urlbarView-results {
               margin-top: 12px !important;
               padding-block-start: 0px !important;
-            }   
+            }    
           }
-          #navigator-toolbox, #nav-bar, #urlbar {
-            transition: min-height 0.1s ease !important;
+          #nav-bar:has(#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused])):after {
+            content: "";
+            position: fixed;
+            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
+            top: 0px;
+            left: 0px;
+            background-color: #000000; !important;
+            opacity: 0.5;
+            backdrop-filter: blur(300px);
           }
         '';
         # userContent = lib.readFile ./firefox/content.css;
