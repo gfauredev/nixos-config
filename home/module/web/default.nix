@@ -166,12 +166,14 @@
             top: 25% !important;
             left: 25% !important;
             width: 50% !important;
-            #urlbar-input {
-              font-size: 16px !important;
-              text-align: center !important;
-            }
+            --urlbar-height: auto !important;
             #urlbar-input-container {
               height: auto !important;
+              padding-block: var(--urlbar-block-padding) !important;
+              padding-inline: var(--urlbar-inline-padding) !important;
+            }
+            #urlbar-go-button {
+              margin: auto !important;
             }
           }
           #navigator-toolbox, #nav-bar, #urlbar {
