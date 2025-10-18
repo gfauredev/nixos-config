@@ -153,27 +153,17 @@
         };
         userChrome = ''
           #navigator-toolbox:not(:hover) {
-            height: 4px !important;
+            #nav-bar:not([customizing]),
+            #urlbar:not([breakout][breakout-extend],
+            [breakout][usertyping][focused]) {
+              opacity: .5 !important;
+              height: 4px !important;
+            }
           }
-        ''
-        # + ''
-        #   #navigator-toolbox:not(:hover) {
-        #     #nav-bar:not([customizing]),
-        #     #urlbar:not([breakout][breakout-extend],
-        #     [breakout][usertyping][focused]) {
-        #       opacity: 0 !important;
-        #       height: 0 !important;
-        #       min-height: 8px !important;
-        #     }
-        #   }
-        #   #navigator-toolbox, #nav-bar, #urlbar {
-        #     transition: min-height 0.2s ease !important;
-        #   }
-        #   #navigator-toolbox {
-        #     background: var(--lwt-accent-color) !important;
-        #   }
-        # ''
-        ;
+          #navigator-toolbox, #nav-bar, #urlbar, #sidebar-main {
+            transition: 0.1s ease !important;
+          }
+        '';
         # userContent = lib.readFile ./firefox/content.css;
       };
     };
