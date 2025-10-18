@@ -48,8 +48,8 @@
             installation_mode = "force_installed";
             private_browsing = false;
           };
-          # "FIXME" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/FIXME/latest.xpi";
+          # "DeepL" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/…/latest.xpi";
           #   installation_mode = "force_installed";
           #   private_browsing = true;
           # };
@@ -142,19 +142,19 @@
           "nixoptions"
         ];
         settings = {
-          # "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR; # Redundant ?
+          # "browser.download.dir" = config.programs.firefox.policies.DefaultDownloadDirectory;
           "sidebar.revamp" = true;
           "sidebar.verticalTabs" = true;
           "sidebar.visibility" = "expand-on-hover";
           "sidebar.notification.badge.aichat" = false;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = false;
-          "browser.uiCustomization.navBarWhenVerticalTabs" = [
-            "urlbar-container"
-            "ublock0_raymondhill_net-browser-action" # uBlock Origin
-            "addon_darkreader_org-browser-action" # Dark Reader
-            "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" # Proton Pass
-          ];
-          "browser.translations.neverTranslateLanguages" = "fr,es";
+          "browser.translations.neverTranslateLanguages" = "en,fr,es";
+          # "browser.uiCustomization.navBarWhenVerticalTabs" = [
+          #   "urlbar-container"
+          #   "ublock0_raymondhill_net-browser-action" # uBlock Origin
+          #   "addon_darkreader_org-browser-action" # Dark Reader
+          #   "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" # Proton Pass
+          # ];
           # "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks";
           # "svg.context-properties.content.enabled" = true;
           # "browser.download.useDownloadDir" = false;
