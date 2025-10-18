@@ -18,6 +18,7 @@ echo "Available space on destination : ${avail}o"
 echo "Used space by important data :   ${used}o"
 
 rs() { # Custom rsync command
+  systemd-inhibit --what=shutdown:sleep --who=$0 --why=Backuping \
   rsync --verbose --archive --human-readable --partial --progress \
     --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
     --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img --exclude="*.large"
