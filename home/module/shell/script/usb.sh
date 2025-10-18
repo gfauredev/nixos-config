@@ -13,12 +13,13 @@ for dev in $devs; do
       sudo smartctl -x /dev/"$dev"
     fi
     udisksctl power-off -b /dev/"$dev"
+    if [ -h "$HOME/usb" ]; then
+      rm "$HOME/usb" # Remove USB link if not needed anymore
+    fi
   else # Else mount it
     udisksctl mount -b "/dev/$dev" || return
+    if [ -e "/run/media/$USER" ] && ! [ -h "$HOME/usb" ]; then
+      ln -s "/run/media/$USER" "$HOME/usb" # Create USB link if needed
+    fi
   fi
 done
-if [ -e "/run/media/$USER" ] && ! [ -h "$HOME/usb" ]; then
-  ln -s "/run/media/$USER" "$HOME/usb" # Create USB link if needed
-elif [ -h "$HOME/usb" ]; then
-  rm "$HOME/usb" # Remove USB link if not needed anymore
-fi
