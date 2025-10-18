@@ -145,6 +145,7 @@
           # "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR; # Redundant ?
           "sidebar.revamp" = true;
           "sidebar.verticalTabs" = true;
+          "sidebar.visibility" = "expand-on-hover";
           "sidebar.notification.badge.aichat" = false;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = false;
           "browser.uiCustomization.navBarWhenVerticalTabs" = [
@@ -153,7 +154,8 @@
             "addon_darkreader_org-browser-action" # Dark Reader
             "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" # Proton Pass
           ];
-          # "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks"; # To configure
+          "browser.translations.neverTranslateLanguages" = "fr,es";
+          # "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks";
           # "svg.context-properties.content.enabled" = true;
           # "browser.download.useDownloadDir" = false;
           # "widget.gtk.rounded-bottom-corners.enabled" = true;
