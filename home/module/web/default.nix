@@ -163,10 +163,18 @@
             }
           }
           #urlbar:is([focused], [open]) {
-            top: 25% !important;
-            left: 25% !important;
-            width: 50% !important;
+            top: 20vh !important;
+            left: 18vw !important;
+            right: 18vw !important;
+            width: 64vw !important;
+            z-index: 1;
+            position: fixed !important;
+            padding-block: 12px!important;
             --urlbar-height: auto !important;
+            bottom: auto !important;
+            padding-left: 6px !important;
+            padding-right: 8px !important;
+            background-color: #toolbar-bgcolor !important;
             #urlbar-input-container {
               height: auto !important;
               padding-block: var(--urlbar-block-padding) !important;
@@ -175,6 +183,10 @@
             #urlbar-go-button {
               margin: auto !important;
             }
+            & .urlbarView-results {
+              margin-top: 12px !important;
+              padding-block-start: 0px !important;
+            }   
           }
           #navigator-toolbox, #nav-bar, #urlbar {
             transition: min-height 0.1s ease !important;
