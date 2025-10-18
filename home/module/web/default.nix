@@ -165,47 +165,33 @@
           #navigator-toolbox, #nav-bar, #urlbar {
             transition: min-height 0.1s ease !important;
           }
-          #urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
-            z-index: 1;
-            position: fixed !important;
-            top: 25vh !important;
-            left: 20vw !important;
-            right: 20vw !important;
-            width: 60vw !important;
-            padding-block: 12px!important;
-            --urlbar-height: auto !important;
-            bottom: auto !important;
-            padding-left: 6px !important;
-            padding-right: 8px !important;
-            background-color: #toolbar-bgcolor !important;
-            #urlbar-input {
-              font-size: 16px !important;
-              text-align: left !important;
+          #urlbar {
+            transition: transform 0.3s ease-in-out !important;
+            height: auto !important;
+            &[open] {
+              --urlbarView-separator-color: transparent !important;
+              padding-top:3px !important;
+              & #urlbar-background,
+              & .urlbar-background {
+                box-shadow: var(--uc-box-shadow) !important;
+              }
             }
-            #urlbar-input-container {
-              height: auto !important;
-              padding-block: var(--urlbar-block-padding) !important;
-              padding-inline: var(--urlbar-inline-padding) !important;
+            &[breakout-extend] {
+              transform: translateY(20vh) scale(1.1);
+              @media (min-width: 1925px) { max-width:37vw !important; margin-left:1vw !important;}
+              @media (min-width: 2500px) { max-width:33vw !important; margin-left:9vw !important;}
             }
-            #urlbar-go-button {
-              margin: auto !important;
+            &:hover:not([open]) {
+              transition: transform 0.3s ease-in-out 5s !important;
+              transform: translateY(20vh) scale(1.2) !important;
             }
-            & .urlbarView-results {
-              margin-top: 12px !important;
-              padding-block-start: 0px !important;
-            }    
           }
-          #nav-bar:has(#urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused])):after {
-            content: "";
-            position: fixed;
-            pointer-events: none;
-            width: 100vw;
-            height: 100vh;
-            top: 0px;
-            left: 0px;
-            background-color: #000000; !important;
-            opacity: 0.5;
-            backdrop-filter: blur(300px);
+          :root:has(#urlbar-searchmode-switcher[open]) {
+            & #urlbar  {
+              padding-bottom:0px !important;
+              transition: transform 0.3s ease-in-out 5s !important;
+              transform: translateY(20vh) scale(1.2) !important;
+            }
           }
         '';
         # userContent = lib.readFile ./firefox/content.css;
