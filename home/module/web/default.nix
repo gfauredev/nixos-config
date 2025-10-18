@@ -145,7 +145,7 @@
           "sidebar.revamp" = true;
           "sidebar.verticalTabs" = true;
           "sidebar.visibility" = "expand-on-hover";
-          "sidebar.animation.expand-on-hover.duration-ms" = 100;
+          "sidebar.animation.enabled" = false; # Too slow
           "sidebar.notification.badge.aichat" = false;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Allow custom styles
           "browser.translations.neverTranslateLanguages" = "en,fr,es";
@@ -155,13 +155,15 @@
         userChrome = ''
           #navigator-toolbox:not(:hover) {
             #nav-bar:not([customizing]),
-            #urlbar:not([breakout][breakout-extend],
-            [breakout][usertyping][focused]),
+            #urlbar:not([breakout][breakout-extend], [focused], [open]),
             #PersonalToolbar {
-              opacity: .2 !important;
+              opacity: 0 !important;
               height: 0 !important;
               min-height: 3px !important;
             }
+          }
+          #urlbar:is([focused], [open]) {
+            top: 25% !important;
           }
           #navigator-toolbox, #nav-bar, #urlbar {
             transition: min-height 0.1s ease !important;
