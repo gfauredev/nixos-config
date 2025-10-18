@@ -163,35 +163,15 @@
             }
           }
           #navigator-toolbox, #nav-bar, #urlbar {
+            opacity: 0.8 !important;
             transition: min-height 0.1s ease !important;
           }
-          #urlbar {
-            transition: transform 0.3s ease-in-out !important;
+          #urlbar:is([focused], [open]) {
+            top: 25% !important;
+            left: 25% !important;
+            width: 50% !important;
             height: auto !important;
-            &[open] {
-              --urlbarView-separator-color: transparent !important;
-              padding-top:3px !important;
-              & #urlbar-background,
-              & .urlbar-background {
-                box-shadow: var(--uc-box-shadow) !important;
-              }
-            }
-            &[breakout-extend] {
-              transform: translateY(20vh) scale(1.1);
-              @media (min-width: 1925px) { max-width:37vw !important; margin-left:1vw !important;}
-              @media (min-width: 2500px) { max-width:33vw !important; margin-left:9vw !important;}
-            }
-            &:hover:not([open]) {
-              transition: transform 0.3s ease-in-out 5s !important;
-              transform: translateY(20vh) scale(1.2) !important;
-            }
-          }
-          :root:has(#urlbar-searchmode-switcher[open]) {
-            & #urlbar  {
-              padding-bottom:0px !important;
-              transition: transform 0.3s ease-in-out 5s !important;
-              transform: translateY(20vh) scale(1.2) !important;
-            }
+            min-height: fit-content !important;
           }
         '';
         # userContent = lib.readFile ./firefox/content.css;
