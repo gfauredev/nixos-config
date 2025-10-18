@@ -1,14 +1,13 @@
 {
   pkgs,
-  lib,
   config,
   ...
 }:
 {
   programs = {
-    firefox.enable = true; # Web browser
-    chromium.enable = true; # Web browser
-    chromium.package = pkgs.brave; # Better privacy, security
+    firefox.enable = true; # Gecko web browser
+    chromium.enable = true; # Blink web browser
+    chromium.package = pkgs.brave; # Better privacy and security than Chromium
     firefox = {
       languagePacks = [
         "en-GB"
@@ -18,12 +17,12 @@
       ];
       # See https://mozilla.github.io/policy-templates
       policies = {
-        AutofillAddressEnabled = false; # Use password manager instead
-        AutofillCreditCardEnabled = false; # Use password manager
-        BlockAboutAddons = false; # FIXME set to true when configured
-        BlockAboutConfig = false; # FIXME set to true when finished config
-        BlockAboutProfiles = false; # FIXME set to true when configured
-        BlockAboutSupport = false; # FIXME set to true when configured
+        AutofillAddressEnabled = false; # Use password manager extension instead
+        AutofillCreditCardEnabled = false; # Use password manager extension instead
+        BlockAboutAddons = false; # May be set to true when configured
+        BlockAboutConfig = false; # May be set to true when finished config
+        BlockAboutProfiles = false; # May be set to true when configured
+        BlockAboutSupport = false; # May be set to true when configured
         DefaultDownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
         DisplayBookmarksToolbar = false;
         DisplayMenuBar = false;
@@ -36,59 +35,59 @@
           };
           "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
-            installation_mode = "normal_installed";
+            installation_mode = "force_installed";
             private_browsing = true;
           };
           "addon@darkreader.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-            installation_mode = "normal_installed";
+            installation_mode = "force_installed";
             private_browsing = true;
           };
           "languagetool-webextension@languagetool.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
-            installation_mode = "normal_installed";
+            installation_mode = "force_installed";
             private_browsing = false;
-          };
-          "ATBC@EasonWong" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
-            installation_mode = "normal_installed";
-            private_browsing = true;
-          };
-          "{26ef8318-6349-483c-affa-6c6db6d30517}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
-            installation_mode = "normal_installed";
-            private_browsing = true;
-          };
-          "{ec800ab3-79f6-474a-80e5-117b5d57c8e2}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/buster/latest.xpi";
-            installation_mode = "normal_installed";
-            private_browsing = true;
           };
           "{c8f79b34-c3ff-4ce4-bdf4-eefa15c87f98}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/deepl/latest.xpi";
-            installation_mode = "normal_installed";
+            installation_mode = "force_installed";
             private_browsing = true;
           };
           "faststream@andrews" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
-            installation_mode = "normal_installed";
+            installation_mode = "force_installed";
             private_browsing = true;
           };
-          "{74145f27-f039-47ce-a470-a662b129930a}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
-            installation_mode = "allow";
-            private_browsing = false;
-          };
-          "jid1-MnnxcxisBPnSXQ@jetpack" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-            installation_mode = "allow";
+          "{ec800ab3-79f6-474a-80e5-117b5d57c8e2}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/buster/latest.xpi";
+            installation_mode = "force_installed";
             private_browsing = true;
           };
+          "ATBC@EasonWong" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
+            installation_mode = "force_installed";
+            private_browsing = true;
+          };
+          # "{26ef8318-6349-483c-affa-6c6db6d30517}" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
+          #   installation_mode = "allow";
+          #   private_browsing = true;
+          # };
+          # "jid1-MnnxcxisBPnSXQ@jetpack" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+          #   installation_mode = "allow";
+          #   private_browsing = true;
+          # };
+          # "{74145f27-f039-47ce-a470-a662b129930a}" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
+          #   installation_mode = "allow";
+          #   private_browsing = false;
+          # };
         };
         NoDefaultBookmarks = true;
-        OfferToSaveLogins = false; # Use password manager instead
+        OfferToSaveLogins = false; # Use password manager extension instead
         OverrideFirstRunPage = "";
-        PasswordManagerEnabled = false; # Use extension instead
+        PasswordManagerEnabled = false; # Use password manager extension instead
         ShowHomeButton = false;
         SkipTermsOfUse = true;
       };
@@ -122,8 +121,8 @@
             id = 4;
           };
         };
-        containersForce = true; # WARN force overrides containers config
-        search.force = true; # WARN override stateful config
+        containersForce = true; # Forces overrides containers config
+        search.force = true; # Forces overrides containers config
         search.engines = import ../web/search.nix;
         search.default = "ecosia"; # Ecosia
         search.privateDefault = "ddg"; # DuckDuckGo
@@ -143,27 +142,19 @@
           "nixoptions"
         ];
         settings = {
-          "browser.uiCustomization.navBarWhenVerticalTabs" = [
-            "vertical-spacer"
-            "back-button"
-            "forward-button"
-            "reload-button"
-            "vertical-spacer"
-            "urlbar-container"
-            "ublock0_raymondhill_net-browser-action"
-            "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action"
-            "addon_darkreader_org-browser-action"
-            "_74145f27-f039-47ce-a470-a662b129930a_-browser-action"
-            "languagetool-webextension_languagetool_org-browser-action"
-            "firefox-view-button"
-          ];
-          "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks";
-          "sidebar.notification.badge.aichat" = false;
+          # "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR; # Redundant ?
           "sidebar.revamp" = true;
           "sidebar.verticalTabs" = true;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          "svg.context-properties.content.enabled" = true;
-          "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+          "sidebar.notification.badge.aichat" = false;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = false;
+          "browser.uiCustomization.navBarWhenVerticalTabs" = [
+            "urlbar-container"
+            "ublock0_raymondhill_net-browser-action" # uBlock Origin
+            "addon_darkreader_org-browser-action" # Dark Reader
+            "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" # Proton Pass
+          ];
+          # "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks"; # To configure
+          # "svg.context-properties.content.enabled" = true;
           # "browser.download.useDownloadDir" = false;
           # "widget.gtk.rounded-bottom-corners.enabled" = true;
           # "sidebar.animation.enabled" = false;
