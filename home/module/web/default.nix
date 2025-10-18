@@ -48,11 +48,11 @@
             installation_mode = "force_installed";
             private_browsing = false;
           };
-          "{c8f79b34-c3ff-4ce4-bdf4-eefa15c87f98}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/deepl/latest.xpi";
-            installation_mode = "force_installed";
-            private_browsing = true;
-          };
+          # "FIXME" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/FIXME/latest.xpi";
+          #   installation_mode = "force_installed";
+          #   private_browsing = true;
+          # };
           "faststream@andrews" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
             installation_mode = "force_installed";
