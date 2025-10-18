@@ -48,18 +48,8 @@
             installation_mode = "force_installed";
             private_browsing = false;
           };
-          # "DeepL" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/…/latest.xpi";
-          #   installation_mode = "force_installed";
-          #   private_browsing = true;
-          # };
           "faststream@andrews" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
-            installation_mode = "force_installed";
-            private_browsing = true;
-          };
-          "{ec800ab3-79f6-474a-80e5-117b5d57c8e2}" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/buster/latest.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
           };
@@ -68,6 +58,16 @@
             installation_mode = "force_installed";
             private_browsing = true;
           };
+          # "DeepL" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/…/latest.xpi";
+          #   installation_mode = "force_installed";
+          #   private_browsing = true;
+          # };
+          # "Buster" = {
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/…/latest.xpi";
+          #   installation_mode = "force_installed";
+          #   private_browsing = true;
+          # };
           # "{26ef8318-6349-483c-affa-6c6db6d30517}" = {
           #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
           #   installation_mode = "allow";
