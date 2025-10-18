@@ -14,8 +14,7 @@
         "fr"
         "es-ES"
         "en-US"
-      ];
-      # See https://mozilla.github.io/policy-templates
+      ]; # See https://mozilla.github.io/policy-templates
       policies = {
         AutofillAddressEnabled = false; # Use password manager extension instead
         AutofillCreditCardEnabled = false; # Use password manager extension instead
@@ -142,33 +141,41 @@
           "nixoptions"
         ];
         settings = {
-          # "browser.download.dir" = config.programs.firefox.policies.DefaultDownloadDirectory;
-          "sidebar.revamp" = true;
-          "sidebar.verticalTabs" = true;
-          "sidebar.visibility" = "expand-on-hover";
-          "sidebar.notification.badge.aichat" = false;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = false;
-          "browser.translations.neverTranslateLanguages" = "en,fr,es";
-          # "browser.uiCustomization.navBarWhenVerticalTabs" = [
-          #   "urlbar-container"
-          #   "ublock0_raymondhill_net-browser-action" # uBlock Origin
-          #   "addon_darkreader_org-browser-action" # Dark Reader
-          #   "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" # Proton Pass
-          # ];
-          # "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks";
-          # "svg.context-properties.content.enabled" = true;
-          # "browser.download.useDownloadDir" = false;
-          # "widget.gtk.rounded-bottom-corners.enabled" = true;
-          # "sidebar.animation.enabled" = false;
-          # "browser.policies.runOncePerModification.displayBookmarksToolbar" = "newtab";
-          # "browser.startup.homepage" = "";
-          # "browser.search.region" = "GB";
-          # "browser.search.isUS" = false;
-          # "distribution.searchplugins.defaultLocale" = "en-GB";
-          # "general.useragent.locale" = "en-GB";
-          # "browser.bookmarks.showMobileBookmarks" = true;
+          browser.download.dir = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+          sidebar = {
+            revamp = true;
+            verticalTabs = true;
+            visibility = "expand-on-hover";
+            notification.badge.aichat = false;
+          };
+          toolkit.legacyUserProfileCustomizations.stylesheets = true; # Allow custom styles
+          browser.translations.neverTranslateLanguages = "en,fr,es";
+          services.sync.declinedEngines = "passwords,addresses,creditcards";
+          extensions.activeThemeID = "firefox-compact-dark@mozilla.org";
         };
-        # userChrome = lib.readFile ./firefox/chrome.css;
+        userChrome = ''
+          #navigator-toolbox:not(:hover) {
+            height: 4px !important;
+          }
+        ''
+        # + ''
+        #   #navigator-toolbox:not(:hover) {
+        #     #nav-bar:not([customizing]),
+        #     #urlbar:not([breakout][breakout-extend],
+        #     [breakout][usertyping][focused]) {
+        #       opacity: 0 !important;
+        #       height: 0 !important;
+        #       min-height: 8px !important;
+        #     }
+        #   }
+        #   #navigator-toolbox, #nav-bar, #urlbar {
+        #     transition: min-height 0.2s ease !important;
+        #   }
+        #   #navigator-toolbox {
+        #     background: var(--lwt-accent-color) !important;
+        #   }
+        # ''
+        ;
         # userContent = lib.readFile ./firefox/content.css;
       };
     };
