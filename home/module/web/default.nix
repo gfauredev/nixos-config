@@ -164,6 +164,15 @@
           }
           #urlbar:is([focused], [open]) {
             top: 25% !important;
+            left: 25% !important;
+            width: 50% !important;
+            #urlbar-input {
+              font-size: 16px !important;
+              text-align: center !important;
+            }
+            #urlbar-input-container {
+              height: auto !important;
+            }
           }
           #navigator-toolbox, #nav-bar, #urlbar {
             transition: min-height 0.1s ease !important;
