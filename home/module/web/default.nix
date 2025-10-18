@@ -163,10 +163,10 @@
           "sidebar.verticalTabs" = true;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "svg.context-properties.content.enabled" = true;
-          "widget.gtk.rounded-bottom-corners.enabled" = true; # TEST if useful
-          "sidebar.animation.enabled" = false; # TEST if useful
           "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
-          # "browser.download.useDownloadDir" = false; # TEST
+          # "browser.download.useDownloadDir" = false;
+          # "widget.gtk.rounded-bottom-corners.enabled" = true;
+          # "sidebar.animation.enabled" = false;
           # "browser.policies.runOncePerModification.displayBookmarksToolbar" = "newtab";
           # "browser.startup.homepage" = "";
           # "browser.search.region" = "GB";
@@ -175,8 +175,8 @@
           # "general.useragent.locale" = "en-GB";
           # "browser.bookmarks.showMobileBookmarks" = true;
         };
-        userChrome = lib.readFile ./firefox/userChrome.css; # TEST ArcWTF TODO with Stylix
-        userContent = lib.readFile ./firefox/userContent.css; # TEST ArcWTF TODO with Stylix
+        # userChrome = lib.readFile ./firefox/chrome.css;
+        # userContent = lib.readFile ./firefox/content.css;
       };
     };
   };
