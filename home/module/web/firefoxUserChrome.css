@@ -1,5 +1,32 @@
-#navigator-toolbox:not(:hover) {
+:root {
+  --urlbar-min-height: 24px !important;
+  --urlbarView-item-inline-padding: calc(1px + var(--uc-urlbar-inline-padding) + var(--uc-urlbar-icon-inline-padding)) !important;
+  --urlbar-icon-border-radius: 99px !important;
+  --urlbar-icon-padding: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
+  --urlbar-margin-inline: 2px !important;
+  --identity-box-margin-inline: 6px !important;
+  --uc-urlbar-icon-inline-padding: calc(var(--uc-toolbarbutton-inner-inline-padding));
+  --uc-urlbar-inline-padding: 6px;
+  --uc-urlbar-block-padding: 6px;
+  --uc-urlbar-shadow: 0 0 0px rgb(0 0 0 / .1);
+  --urlbarView-rich-suggestion-default-icon-size: 32px !important;
+  --uc-urlbar-open-border-radius: 8px !important;
+  & #urlbar-container {
+    --urlbar-container-height: calc(8px + 16px + var(--toolbarbutton-inner-padding) * 2) !important;
+  }
+  & #urlbar {
+    --urlbar-toolbar-height: calc(5px + 16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    --urlbar-height: calc(16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    --urlbar-min-height: calc(16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    font-size: 1em !important;
+  }
+  .urlbarView-row {
+    --urlbarView-icon-margin-start: 0px !important;
+    --urlbarView-icon-margin-end: calc(var(--uc-urlbar-icon-inline-padding) + var(--identity-box-margin-inline)) !important;
+  }
+}
 
+#navigator-toolbox:not(:hover) {
   #nav-bar:not([customizing]),
   #urlbar:not([breakout-extend]):not([focused]):not([open]),
   #PersonalToolbar {
@@ -9,17 +36,21 @@
   }
 }
 
-#navigator-toolbox,
-#nav-bar,
-#urlbar {
+#navigator-toolbox, #nav-bar, #urlbar {
   transition: min-height 0.1s ease !important;
 }
 
 #urlbar:is([focused], [open]) {
-  top: 25% !important;
-  left: 25% !important;
-  width: 50% !important;
-  height: auto !important;
-  min-height: fit-content !important;
+  position: fixed !important;
+  top: 20% !important;
+  left: 20% !important;
+  width: 60% !important;
   opacity: 0.9 !important;
+  /* height: auto !important; */
+  /* min-height: fit-content !important; */
+}
+
+#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+  border-top: 0 !important;
+  /* align: center !important; */
 }
