@@ -1,8 +1,3 @@
-/* FIX Make sure the search bar input stays at proper height when openned */
-:root #urlbar-container {
-  --urlbar-container-height: calc(22px + var(--toolbarbutton-inner-padding) * 2) !important;
-}
-
 /* Hide toolbox unless hovered */
 /* Annoying drop-down when unwanted hover of openned urlbar’s suggestions
    TODO never show if urlbar open (centered as below) even if hovered */
@@ -16,9 +11,15 @@
   }
 }
 
-/* Quick drop-down of toolbox */
+/* Quicken drop-down of toolbox */
 #navigator-toolbox, #nav-bar, #urlbar {
-  transition: min-height 0.1s, opacity 0.1s !important;
+  transition: min-height 0.1s/* , opacity 0.1s */ !important;
+}
+
+/* FIX Make sure the search bar input stays at proper height when openned */
+#urlbar-container {
+  height: 42px !important;
+  min-height: 36px !important;
 }
 
 /* "Center" search input and suggestions on the window */
