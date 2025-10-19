@@ -56,7 +56,7 @@
 
     services.hypridle.settings.listener = [
       {
-        timeout = 30; # Lock session (blur and dim screen) after 30 seconds
+        timeout = 42; # Lock session (blur and dim screen) after 42 seconds
         on-timeout = config.wayland.lock;
       }
       {
