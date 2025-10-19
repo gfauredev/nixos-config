@@ -4,7 +4,8 @@
 }
 
 /* Hide toolbox unless hovered */
-/* TODO don’t show when urlbar open (centered, see below) even if hovered */
+/* Annoying drop-down when unwanted hover of openned urlbar’s suggestions
+   TODO never show if urlbar open (centered as below) even if hovered */
 #navigator-toolbox:not(:hover) {
   #nav-bar:not([customizing]),
   #urlbar:not([open]):not([focused]):not([breakout-extend]),
@@ -17,15 +18,15 @@
 
 /* Quick drop-down of toolbox */
 #navigator-toolbox, #nav-bar, #urlbar {
-  transition: min-height 0.1s ease !important;
+  transition: min-height 0.1s, opacity 0.1s !important;
 }
 
 /* "Center" search input and suggestions on the window */
 /* Annoying need to esc twice TODO don’t show when just focused but not open */
 #urlbar:is([open] , [focused]) {
-  top: 20% !important;
+  top: 15% !important; /* Leave space for suggestions */
   left: 20% !important;
-  right: 20% !important;
+  /* right: 20% !important; */
   width: 60% !important;
   opacity: 0.9 !important;
 }
