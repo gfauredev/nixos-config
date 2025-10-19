@@ -152,30 +152,9 @@
           "services.sync.declinedEngines" = "passwords,addresses,creditcards";
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         };
-        userChrome = ''
-          #navigator-toolbox:not(:hover) {
-            #nav-bar:not([customizing]),
-            #urlbar:not([breakout-extend]):not([focused]):not([open]),
-            #PersonalToolbar {
-              opacity: 0 !important;
-              height: 0 !important;
-              min-height: 2px !important;
-            }
-          }
-          #navigator-toolbox, #nav-bar, #urlbar {
-            transition: min-height 0.1s ease !important;
-          }
-          #urlbar:is([focused], [open]) {
-            top: 25% !important;
-            left: 25% !important;
-            width: 50% !important;
-            height: auto !important;
-            min-height: fit-content !important;
-            opacity: 0.9 !important;
-          }
-        '';
-        # userContent = lib.readFile ./firefox/content.css;
       };
     };
   };
+  home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
 }
