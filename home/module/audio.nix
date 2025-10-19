@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }: # Audio production and edition
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}: # Audio production and edition
 {
   home.sessionVariables =
     let
@@ -22,32 +27,29 @@
     };
 
   home.packages = with pkgs; [
-    # Plugins hosts & Routers
+    ardour # Full fledged digital audio workstation
     carla # VST Host & audio router
-    cardinal # Plugin VCV Rack
+    pkgs-unstable.bespokesynth-with-vst2 # Software modular synth, controllers support
+    vcv-rack # Standalone modular synthesizer
     # ingen # Modular audio environment
     # giada # Live electronic music platform
     # helvum # PipeWire router
     # qpwgraph # PipeWire router
     # DAW & Editors
     # zrythm # Modern digital audio workstation
-    ardour # Full fledged digital audio workstation
     # audacity # Simple audio editor
-    # VST Collections
+    musescore # Music writing
+    # VST
     distrho-ports # Collection of audio plugins, contains Vitalium
+    surge-XT # Great hybrid substractive synth
     calf # Collection of audio plugins
     bristol # Synths
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
-    musescore # Music writing
-    # VST
-    # vital # PROPRIETARY Spectral warping wavetable synth
-    # helm # Ancestor of Vital
-    surge-XT # Great hybrid substractive synth
-    # surge # Great hybrid substractive synth (old version)
-    bespokesynth-with-vst2 # Software modular synth, controllers support
+    # cardinal # VCV rack as a VST
     drumgizmo # High quality drums sampler
+    # vital # PROPRIETARY Spectral warping wavetable synth
     # Bridges & Drivers & Adapters
     # airwave # WINE-based VST bridge for Linux VST hosts
     # yabridge # Use Windows VSTs with wine
