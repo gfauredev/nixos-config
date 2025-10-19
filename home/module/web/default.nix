@@ -159,11 +159,10 @@
             #PersonalToolbar {
               opacity: 0 !important;
               height: 0 !important;
-              min-height: 3px !important;
+              min-height: 2px !important;
             }
           }
           #navigator-toolbox, #nav-bar, #urlbar {
-            opacity: 0.8 !important;
             transition: min-height 0.1s ease !important;
           }
           #urlbar:is([focused], [open]) {
@@ -172,6 +171,7 @@
             width: 50% !important;
             height: auto !important;
             min-height: fit-content !important;
+            opacity: 0.9 !important;
           }
         '';
         # userContent = lib.readFile ./firefox/content.css;
