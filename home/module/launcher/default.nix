@@ -47,5 +47,6 @@
 
   config.home.packages = with pkgs; [
     libqalculate # Calculation library used by launchers
+    sherlock-launcher # App launcher for Wayland TEST
   ];
 }
