@@ -1,4 +1,7 @@
 { lib, ... }: # Default filesystems
+let
+  luksDev = "cryptroot";
+in
 {
   fileSystems."/boot" = {
     device = lib.mkDefault "/dev/nvme0n1p1"; # WARN Replace by actual part UUID
@@ -10,25 +13,35 @@
       "umask=077" # Make root the only one able to read or write into it
     ];
   };
+
   boot = {
-    initrd.luks.devices."cryptroot".device = lib.mkDefault "/dev/nvme0n1p2";
-    resumeDevice = lib.mkDefault "/dev/mapper/cryptroot"; # WARN use UUID=…
-    # WARN set resume_offset in kernelParams to allow resuming from swapfile
+    initrd.luks.devices.${luksDev}.device = lib.mkDefault "/dev/nvme0n1p2";
+    resumeDevice = lib.mkDefault "/dev/mapper/${luksDev}"; # Use UUID=… instead
+    # WARN Set resume_offset in kernelParams to allow resuming from swapfile
   };
+
   fileSystems = {
     "/" = {
-      device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=root"
         "compress=zstd"
         "noatime"
-        "noexec" # WARNING Some (glibc-locales) builds seemingly need to execute scripts outside /nix
+        "noexec"
       ];
     };
-
+    "/build" = {
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
+      fsType = "btrfs";
+      options = [
+        "subvol=build"
+        "noatime"
+        "exec" # WARN Some Nix builds seemingly need to exec things outside /nix
+      ];
+    };
     "/code" = {
-      device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=code"
@@ -37,9 +50,8 @@
         "exec" # Allow users to execute code somewhere (TODO individual dirs gen)
       ];
     };
-
     "/home" = {
-      device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=home"
@@ -48,9 +60,8 @@
         "noexec" # Security hardening
       ];
     };
-
     "/log" = {
-      device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=log"
@@ -59,9 +70,8 @@
         "noexec"
       ];
     };
-
     "/nix" = {
-      device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=nix"
@@ -70,9 +80,8 @@
         "exec" # Just to be explicit
       ];
     };
-
     "/swap" = {
-      device = lib.mkDefault "/dev/mapper/cryptroot"; # WARN Replace with UUID !
+      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=swap"
