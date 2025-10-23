@@ -2,18 +2,28 @@
 /* Annoying drop-down when unwanted hover of openned urlbar’s suggestions
    TODO never show if urlbar open (centered as below) even if hovered */
 #navigator-toolbox:not(:hover) {
+
   #nav-bar:not([customizing]),
   #urlbar:not([open]):not([focused]):not([breakout-extend]),
   #PersonalToolbar {
     opacity: 0 !important;
-    height: 0 !important;
-    min-height: 2px !important;
+    height: 2px !important;
+    min-height: 0 !important;
+  }
+
+  #urlbar:not([open]):not([focused]):not([breakout-extend]) {
+    width: 0 !important;
+    min-width: 0 !important;
   }
 }
 
-/* Quicken drop-down of toolbox */
-#navigator-toolbox, #nav-bar, #urlbar {
-  transition: min-height 0.1s/* , opacity 0.1s */ !important;
+/* Faster drop-down of toolbox */
+#navigator-toolbox,
+#nav-bar,
+#urlbar {
+  transition: min-height 0.1s
+    /* , opacity 0.1s */
+    !important;
 }
 
 /* FIX Make sure the search bar input stays at proper height when openned */
@@ -24,8 +34,9 @@
 
 /* "Center" search input and suggestions on the window */
 /* Annoying need to esc twice TODO don’t show when just focused but not open */
-#urlbar:is([open] , [focused]) {
-  top: 15% !important; /* Leave space for suggestions */
+#urlbar:is([open], [focused]) {
+  top: 15% !important;
+  /* Leave space for suggestions */
   left: 20% !important;
   /* right: 20% !important; */
   width: 60% !important;
@@ -33,6 +44,6 @@
 }
 
 /* Remove horizontal bar between input and suggestions */
-#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+#urlbar[open]>.urlbarView>.urlbarView-body-outer>.urlbarView-body-inner {
   border-top: 0 !important;
 }
