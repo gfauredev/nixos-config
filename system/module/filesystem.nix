@@ -28,18 +28,18 @@ in
         "subvol=root"
         "compress=zstd"
         "noatime"
-        "noexec"
+        "noexec" # WARN Some Nix builds seemingly need to exec things outside /nix
       ];
     };
-    "/build" = {
-      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
-      fsType = "btrfs";
-      options = [
-        "subvol=build"
-        "noatime"
-        "exec" # WARN Some Nix builds seemingly need to exec things outside /nix
-      ];
-    };
+    # "/build" = {
+    #   device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
+    #   fsType = "btrfs";
+    #   options = [
+    #     "subvol=build"
+    #     "noatime"
+    #     "exec"
+    #   ];
+    # };
     "/code" = {
       device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";

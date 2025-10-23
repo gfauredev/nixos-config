@@ -55,7 +55,7 @@
     # Misc
     # f3d # Minimalist 3D viewer
     # lpac # Manage eSIMs in a chip (eUICC LPA)
-    sherlock # Search people on social media accounts
+    # sherlock # Search people on social media accounts
     # wayback # Web archiving tool
     qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # VPN
