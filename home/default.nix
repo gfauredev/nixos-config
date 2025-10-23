@@ -207,7 +207,7 @@
     exfatprogs # Tools for exfat FS
     smartmontools # Monitor health of drives
     jmtpfs # Media transfer protocol with Android devices
-    dislocker # Decrypt BitLocker disks
+    # dislocker # Decrypt BitLocker disks
     # Emulation & Compatibility
     # wine # Execute Window$ programs
     # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
