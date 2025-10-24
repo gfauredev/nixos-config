@@ -25,6 +25,8 @@
       # hunspellDicts.en_GB-ise # British
       # hunspellDicts.es_ES # Spanish
       # Language Servers & Linters
+      pkgs-unstable.nixd # "Official" Nix LSP
+      pkgs-unstable.nixfmt # Formatter
       tinymist # Typst LSP
       typstyle # Typst formatter
       marksman # Smart Markdown links, ToC
