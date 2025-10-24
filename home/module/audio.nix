@@ -38,6 +38,7 @@
     # DAW & Editors
     # zrythm # Modern digital audio workstation
     # audacity # Simple audio editor
+    neothesia # MIDI piano roll player
     musescore # Music writing
     # VST
     distrho-ports # Collection of audio plugins, contains Vitalium
