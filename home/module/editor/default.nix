@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }: # CLI and GUI text editors
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}: # CLI and GUI text editors
 {
   imports = [
     ./helix
