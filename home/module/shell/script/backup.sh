@@ -21,12 +21,14 @@ _rsync() { # Custom rsync command
   systemd-inhibit --what=shutdown:sleep --who=$0 --why=Backuping \
   rsync --verbose --archive --human-readable --partial --progress \
     --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img
+    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img "$@"
 }
 
 _restic() { # Custom restic command
+  REPO="$1"
+  shift
   systemd-inhibit --what=shutdown:sleep --who=$0 --why=Backuping \
-  restic --repo "$1" --verbose backup --exclude-caches \
+  restic --repo "$REPO" --verbose backup --exclude-caches \
   --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common "$@"
 }
 
@@ -38,7 +40,7 @@ if [ "$avail" -gt "$used" ]; then
     printf "%s contains back: " "$1"
     printf "Backing up [%s %s %s] incrementally with restic\n" \
       "$IMPORTANT" "$DATA" "$ARCHIVE"
-    _restic $IMPORTANT "$DATA" "$ARCHIVE"
+    _restic "$1" $IMPORTANT "$DATA" "$ARCHIVE"
       
     ;;
   *boot*)
