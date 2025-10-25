@@ -176,20 +176,24 @@ commit_all() { # Git commit top-level and submodule flake repositories
 # - Redirect to commit_all() if commits already pushed, to prevent conflicts
 # @param 1 (sub)directory containing Git repo to amend
 protected_amend() { # Amend top-level or submodule flake repositories
+  DIR="$1"
+  if [ "$1" == "." ]; then
+    DIR="top-level"
+  fi
   if ! has_repo_changed "$1"; then
     emph
-    printf '%s: No non commited changes, not amending\n' "$1"
+    printf '%s: No non commited changes, not amending\n' "$DIR"
     std
     return 1 # There are no changes to amend, makes no sense, fail
   fi
   if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
     emph
-    printf '%s: Last commit is not pushed, amending\n' "$1"
+    printf '%s: Last commit is not pushed, amending\n' "$DIR"
     std
     commit_all_changes "$1" --amend || return # Only if unpushed commits
   else
     emph
-    printf '%s: All commits pushed, no one to amend, create new commit instead\n' "$1"
+    printf '%s: All commits pushed, no one to amend, create new commit instead\n' "$DIR"
     std
     commit_all_changes "$1" || return # Create new commit instead
   fi
