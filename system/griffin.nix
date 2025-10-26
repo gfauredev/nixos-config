@@ -17,6 +17,7 @@ in
   imports = [
     ./. # Systems defaults
     ./module/laptop.nix # Laptops specifics
+    ./module/virtualization.nix # Virtualization tools
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
