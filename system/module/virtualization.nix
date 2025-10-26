@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd.enable = true; # KVM/QEMU daemon
     podman.enable = false; # FIXME reenable
     docker.enable = false; # INSECURE
     virtualbox.host.enable = false; # SLOW
@@ -31,5 +31,5 @@
   };
 
   services.spice-webdavd.enable = true; # WebDav daemon to share files with VMs
-  programs.virt-manager.enable = true; # GUI for libvirt
+  programs.virt-manager.enable = false; # Libvirt GUI, prefer serial
 }

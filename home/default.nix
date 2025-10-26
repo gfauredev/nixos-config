@@ -202,14 +202,14 @@
     # Storage & Backup & Encryption
     restic # Efficient backup tool
     rustic # Restic compatible pure Rust backup tool TEST me
-    # ventoy-full # Create bootable keys FIXME insecure
+    # ventoy-full # Create bootable keys FIX disable as insecure/closed source blobs
     testdisk # Recover deleted files
     exfatprogs # Tools for exfat FS
     smartmontools # Monitor health of drives
     jmtpfs # Media transfer protocol with Android devices
     # dislocker # Decrypt BitLocker disks
     # Emulation & Compatibility
-    bottles # Easier wine management
+    # bottles # Easier wine management FIXME reenable
     quickemu # Quickly create optimized VMs
     # wine # Execute Window$ programs
     # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
@@ -258,6 +258,7 @@
     jujutsu.enable = true; # Git compatible simpler VCS
     rclone.enable = true; # Backup using cloud services
     rbw.enable = true; # CLI Bitwarden client
+    # looking-glass-client.enable = true; # Capture host display in VM
     git = {
       userName = config.user.description;
       userEmail = config.user.email;
