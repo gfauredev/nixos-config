@@ -2,7 +2,7 @@
 {
   virtualisation = {
     libvirtd.enable = true;
-    podman.enable = true;
+    podman.enable = false; # FIXME reenable
     docker.enable = false; # INSECURE
     virtualbox.host.enable = false; # SLOW
     vmware.host.enable = false; # PROPRIETARY
