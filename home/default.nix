@@ -209,13 +209,13 @@
     jmtpfs # Media transfer protocol with Android devices
     # dislocker # Decrypt BitLocker disks
     # Emulation & Compatibility
+    bottles # Easier wine management
+    quickemu # Quickly create optimized VMs
     # wine # Execute Window$ programs
     # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
-    wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
-    winetricks # Execute Window$ programs (config tool)
-    # bottles # Wine prefixes management TEST me
-    # quickemu # Quickly create optimized VMs
-    # Machine learning
+    # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
+    # winetricks # Execute Window$ programs (config tool)
+    # Machine learning & AI
     # llama-cpp # Large language model server
     # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
