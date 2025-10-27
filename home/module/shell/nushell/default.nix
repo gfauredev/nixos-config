@@ -1,16 +1,10 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   home.packages = [ pkgs.nu_scripts ]; # Additional community scripts
   programs.nushell.enable = true;
   programs.nushell = {
     configFile.source = ./config.nu;
-    # extraConfig = ''
-    #   use ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu
-    # '';
-    # configFile.text = ''
-    #   use ${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu
-    #   ${builtins.readFile ./config.nu}
-    # '';
+    environmentVariables = config.home.sessionVariables;
     settings = {
       rm.always_trash = true;
       show_banner = false;

@@ -32,15 +32,12 @@
     homeDirectory = config.user.home;
     # TODO better https://wiki.nixos.org/wiki/Environment_variables
     sessionVariables = {
-      XDG_DESKTOP_DIR = "${config.user.home}/data"; # FIXME not properly propagated to shell, wm…
+      XDG_DESKTOP_DIR = "${config.user.home}/data"; # FIXME not properly propagated to shell&wm
       XDG_DOCUMENTS_DIR = "${config.user.home}/data";
       XDG_MUSIC_DIR = "${config.user.home}/data";
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
-      BAT_PAGING = "never";
-      SHELL = "nu"; # TEST if better with full paths
-      PAGER = "ov"; # TEST if better with full paths
       BROWSER = "firefox"; # TEST if better with full paths
       BROWSER_ALT = "brave"; # TEST if better with full paths
     };
@@ -48,6 +45,8 @@
     stateVersion = lib.mkDefault "25.05";
     # stateVersion = lib.mkDefault config.system.stateVersion; TODO something like this
   };
+
+  systemd.user.sessionVariables = config.home.sessionVariables;
 
   xdg = {
     enable = true;

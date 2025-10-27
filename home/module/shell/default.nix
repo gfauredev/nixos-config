@@ -55,6 +55,20 @@
       # pipectl # Named pipes management (probably replaced by Nu’s job)
     ];
 
+  home = {
+    # TODO better https://wiki.nixos.org/wiki/Environment_variables
+    sessionVariables = {
+      SHELL = "nu";
+      BAT_PAGING = "never";
+      PAGER = "ov";
+    };
+    shell = {
+      enableShellIntegration = false; # Only for the following
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
+  };
+
   programs = {
     starship.enable = true; # Smart prompt
     zoxide.enable = true; # Smart cd
