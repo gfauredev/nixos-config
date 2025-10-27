@@ -66,23 +66,5 @@
         # on-timeout = "[ -L $XDG_CONFIG_HOME/hypr/egpu ] || ${config.wayland.suspend}";
       }
     ];
-
-    # TODO cleaner with Nix modules, options
-    wayland.windowManager.hyprland.settings.env =
-      let
-        var = config.home.sessionVariables;
-      in
-      [
-        "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
-        "TERM,${config.term.cmd}" # Default terminal emulator
-        "TERMINAL,${config.term.cmd}" # Default terminal emulator
-        "TERM_EXEC,${config.term.exec}" # Default terminal exec command arg
-        # FIX Set these variables again FIXME home.sessionVariables don’t get passed to Nushell
-        "SHELL,${var.SHELL}" # Force default interactive shell
-        "XDG_CONFIG_HOME,${var.XDG_CONFIG_HOME}" # Force default config loc
-        "EDITOR,${var.EDITOR}" # Force default editor
-        "PAGER,${var.PAGER}" # Force default pager
-        "BAT_PAGING,${var.BAT_PAGING}"
-      ];
   };
 }

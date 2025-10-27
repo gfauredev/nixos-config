@@ -445,6 +445,9 @@ in
           vfr = true; # Save power, less tearing
           background_color = lib.mkForce "0x000000"; # Stylix
         };
+        env = [
+          "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
+        ];
       };
   };
 

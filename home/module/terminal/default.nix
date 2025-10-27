@@ -36,4 +36,9 @@
       };
     };
   };
+  config.home.sessionVariables = {
+    TERM = config.term.cmd; # Default terminal emulator
+    TERMINAL = config.term.cmd; # Default terminal emulator
+    TERM_EXEC = config.term.exec; # Default terminal exec command arg
+  };
 }
