@@ -201,7 +201,7 @@
           };
 
           clock = {
-            # timezone = "Europe/Paris";
+            timezone = "Europe/Paris"; # TODO Use same timezone as system
             # format = "{: %H:%M  %a %d %b}";
             format = "{:%H:%M %a %d %b}";
             tooltip = false;
