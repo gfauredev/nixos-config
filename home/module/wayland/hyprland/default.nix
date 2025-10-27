@@ -448,7 +448,7 @@ in
         env = [
           "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         ]
-        ++ lib.mapAttrsToList (var: val: "${var},${val}") config.home.sessionVariables;
+        ++ lib.mapAttrsToList (var: val: "${var},${builtins.toString val}") config.home.sessionVariables;
       };
   };
 
