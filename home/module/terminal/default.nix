@@ -1,4 +1,4 @@
-{ lib, ... }: # Terminal emulators
+{ lib, config, ... }: # Terminal emulators
 {
   imports = [
     ./ghostty
