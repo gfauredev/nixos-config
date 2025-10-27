@@ -323,8 +323,23 @@
     ];
     definedAliases = [ "hx" ];
   };
+  homemanagerissues = {
+    name = "Home Manager Issues";
+    urls = [
+      {
+        template = "https://github.com/nix-community/home-manager/issues";
+        params = [
+          {
+            name = "q";
+            value = "is:issue+is:open+{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "hmissue" ];
+  };
   leboncoin = {
-    name = "Le Bon Coin";
+    name = "LeBonCoin";
     urls = [
       {
         template = "https://www.leboncoin.fr/recherche";

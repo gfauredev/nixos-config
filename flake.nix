@@ -23,20 +23,26 @@
       stylix,
     }:
     let
-      systems = [
-        "riscv64-linux" # 64-bit RISC-V Linux
-        "aarch64-linux" # 64-bit ARM Linux
-        "x86_64-linux" # 64-bit Intel/AMD Linux
-      ];
-      forEachSupportedSystem =
-        f:
-        nixpkgs.lib.genAttrs systems (
-          system:
-          f {
-            pkgs = import nixpkgs { inherit system; };
-            pkgs-unstable = import unstablepkgs { inherit system; };
-          }
-        );
+      eachSystem =
+        f: # TODO Use as well for Home configs and eventually NixOS configs
+        nixpkgs.lib.genAttrs
+          [
+            # "riscv64-linux" # 64-bit RISC-V Linux
+            "aarch64-linux" # 64-bit ARM Linux
+            "x86_64-linux" # 64-bit Intel/AMD Linux
+          ]
+          (
+            system:
+            f {
+              pkgs = import nixpkgs {
+                inherit system;
+                config.permittedInsecurePackages = [
+                  "python3.12-ecdsa-0.19.1" # FIXME remove
+                ];
+              };
+              pkgs-unstable = import unstablepkgs { inherit system; };
+            }
+          );
       lib = nixpkgs.lib;
       hm-lib = home-manager.lib;
     in
@@ -98,7 +104,7 @@
         };
       };
       # This configuration’s development shell, preferably enabled with direnv
-      devShells = forEachSupportedSystem (
+      devShells = eachSystem (
         { pkgs, pkgs-unstable }:
         {
           default = pkgs.mkShell {
