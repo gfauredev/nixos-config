@@ -34,12 +34,7 @@
           (
             system:
             f {
-              pkgs = import nixpkgs {
-                inherit system;
-                config.permittedInsecurePackages = [
-                  "python3.12-ecdsa-0.19.1" # FIXME remove
-                ];
-              };
+              pkgs = import nixpkgs { inherit system; };
               pkgs-unstable = import unstablepkgs { inherit system; };
             }
           );
@@ -84,11 +79,14 @@
         "gf@griffin" = hm-lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
-            config.allowUnfree = true;
+            config.allowUnfree = true; # WARN Allows every unfree package
+            config.permittedInsecurePackages = [
+              "python3.12-ecdsa-0.19.1" # FIXME REMOVE
+            ];
           };
           extraSpecialArgs.pkgs-unstable = import unstablepkgs {
             system = "x86_64-linux";
-            config.allowUnfree = true;
+            config.allowUnfree = true; # WARN Allows every unfree package
           };
           modules = [
             ./home/griffin.nix
