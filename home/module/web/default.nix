@@ -157,4 +157,8 @@
   };
   home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
+  home.sessionVariables = {
+    BROWSER = "firefox"; # Better with full paths ?
+    BROWSER_ALT = "brave";
+  };
 }
