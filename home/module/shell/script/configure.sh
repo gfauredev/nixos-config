@@ -177,7 +177,7 @@ commit_all() { # Git commit top-level and submodule flake repositories
 # @param 1 (sub)directory containing Git repo to amend
 protected_amend() { # Amend top-level or submodule flake repositories
   DIR="$1"
-  if [ "$1" == "." ]; then
+  if [ "$1" = "." ]; then
     DIR="top-level"
   fi
   if ! has_repo_changed "$1"; then
