@@ -43,7 +43,7 @@
     # stateVersion = lib.mkDefault config.system.stateVersion; TODO something like this
   };
 
-  systemd.user.sessionVariables = config.home.sessionVariables;
+  # systemd.user.sessionVariables = config.home.sessionVariables;
 
   xdg = {
     enable = true;
