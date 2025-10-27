@@ -30,7 +30,8 @@
     ardour # Full fledged digital audio workstation
     carla # VST Host & audio router
     pkgs-unstable.bespokesynth-with-vst2 # Software modular synth, controllers support
-    vcv-rack # Standalone modular synthesizer
+    cardinal # Standalone and VST modular synthesizer
+    # vcv-rack # Standalone modular synthesizer
     # ingen # Modular audio environment
     # giada # Live electronic music platform
     # helvum # PipeWire router
@@ -48,7 +49,6 @@
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
-    # cardinal # VCV rack as a VST
     drumgizmo # High quality drums sampler
     # vital # PROPRIETARY Spectral warping wavetable synth
     # Bridges & Drivers & Adapters
