@@ -80,9 +80,6 @@
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true; # WARN Allows every unfree package
-            config.permittedInsecurePackages = [
-              "python3.12-ecdsa-0.19.1" # FIXME REMOVE
-            ];
           };
           extraSpecialArgs.pkgs-unstable = import unstablepkgs {
             system = "x86_64-linux";

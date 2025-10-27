@@ -24,19 +24,15 @@
       ];
     };
   };
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "hp" # Printer drivers
-      # "nvidia-x11" # GPU drivers
-      # "nvidia-settings" # GPU drivers
-      # "nvidia-persistenced" # GPU drivers
-      # "steam" # Video games software
-      # "steam-original" # Video games software
-      # "steam-unwrapped" # Video games software
-      # "steam-run" # Video games software
-      "ventoy" # Multiboot USB
-    ];
+  # nixpkgs.config.allowUnfreePredicate =
+  #   pkg:
+  #   builtins.elem (lib.getName pkg) [
+  #     "hp" # Printer drivers
+  #     "nvidia-x11" # GPU drivers
+  #     "nvidia-settings" # GPU drivers
+  #     "nvidia-persistenced" # GPU drivers
+  #     "ventoy" # Multiboot USB
+  #   ];
 
   boot = {
     loader.systemd-boot.enable = lib.mkDefault true; # Lightweight boot manager

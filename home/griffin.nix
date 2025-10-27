@@ -83,7 +83,7 @@
     lnd # Lightning Network Daemon
     # monero-gui # Private cryptocurrency
     # monero-cli # Monero CLI
-    electrum # Light Bitcoin Wallet
+    # electrum # Light Bitcoin Wallet
     # sparrow # Bitcoin wallet
     # ord # Ordinals CLI
     # cointop # Cryptocurrencies monitor
