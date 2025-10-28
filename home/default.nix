@@ -32,7 +32,7 @@
     homeDirectory = config.user.home;
     sessionVariables = {
       XDG_DESKTOP_DIR = config.user.home;
-      XDG_DOCUMENTS_DIR = "${config.user.home}/life";
+      XDG_DOCUMENTS_DIR = "${config.user.home}/data";
       XDG_MUSIC_DIR = "${config.user.home}/data";
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
