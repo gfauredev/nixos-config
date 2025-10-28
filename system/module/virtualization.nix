@@ -26,7 +26,7 @@
   };
 
   services.spice-webdavd.enable = true; # WebDav daemon to share files with VMs
-  programs.virt-manager.enable = false; # Libvirt GUI, prefer serial
+  programs.virt-manager.enable = true; # Libvirt GUI, prefer serial
 
   # environment.systemPackages = with pkgs; [
   #   podman-compose # Use docker-compose YAML files with podman
