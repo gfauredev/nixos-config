@@ -28,18 +28,9 @@ in
         "subvol=root"
         "compress=zstd"
         "noatime"
-        "noexec" # WARN Some Nix builds seemingly need to exec things outside /nix
+        "noexec"
       ];
     };
-    # "/build" = {
-    #   device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
-    #   fsType = "btrfs";
-    #   options = [
-    #     "subvol=build"
-    #     "noatime"
-    #     "exec"
-    #   ];
-    # };
     "/code" = {
       device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
@@ -88,6 +79,18 @@ in
         "compress=zstd"
         "noatime"
         "noexec"
+      ];
+    };
+    "/tmp" = {
+      device = lib.mkDefault "tmpfs";
+      fsType = lib.mkDefault "tmpfs";
+      options = [
+        "defaults"
+        "exec" # For Nix builds
+        "nosuid"
+        "nodev"
+        "mode=1777"
+        "size=4G"
       ];
     };
   };

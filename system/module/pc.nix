@@ -83,9 +83,9 @@
   # Run non native binaries seamlessly
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
-    "wasm32-wasi"
-    "wasm64-wasi"
-    "x86_64-windows"
+    # "wasm32-wasi"
+    # "wasm64-wasi"
+    # "x86_64-windows"
   ];
 
   networking.firewall.enable = lib.mkDefault true;
@@ -157,7 +157,8 @@
     adb.enable = lib.mkDefault true; # Talk to Android devices
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
-    # appimage.enable = true; # Run appimages TEST if better way
+    # appimage.enable = true; # Run AppImages TEST if better way
+    # appimage.binfmt = true; # Run AppImages seamlessly
     # nix-ld.enable = true; # Run binaries, instead: https://nixos-and-flakes.thiscute.world/best-practices/run-downloaded-binaries-on-nixos
     # uwsm.enable = true; # TEST wayland session manager
     # niri.enable = true; # See https://github.com/YaLTeR/niri
