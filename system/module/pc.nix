@@ -83,9 +83,9 @@
   # Run non native binaries seamlessly
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
-    # "wasm32-wasi"
-    # "wasm64-wasi"
-    # "x86_64-windows"
+    "wasm32-wasi"
+    "wasm64-wasi"
+    "x86_64-windows"
   ];
 
   networking.firewall.enable = lib.mkDefault true;

@@ -90,7 +90,7 @@ in
         "nosuid"
         "nodev"
         "mode=1777"
-        "size=4G"
+        "size=6G"
       ];
     };
   };
