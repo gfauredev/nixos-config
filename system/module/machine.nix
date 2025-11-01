@@ -2,27 +2,18 @@
 {
   imports = [ ./filesystem.nix ];
 
-  nix = {
-    gc = {
-      automatic = lib.mkDefault true;
-      dates = lib.mkDefault "weekly";
-      options = lib.mkDefault "--delete-older-than 15d"; # +3";
-    };
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
-      connect-timeout = 3; # Quickly go offline if substitute not reachable
-      allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
-      max-jobs = lib.mkDefault 8; # Save some threads
-      extra-substituters = [ "https://nix-community.cachix.org" ];
-      extra-trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-      ];
-    };
+  nix.gc = {
+    automatic = lib.mkDefault true;
+    dates = lib.mkDefault "weekly";
+    options = lib.mkDefault "--delete-older-than 15d"; # +3";
+  };
+  nix.settings = {
+    auto-optimise-store = true; # Auto hard-link identical files in Nix store
+    connect-timeout = 3; # Quickly go offline if substitute not reachable
+    stalled-download-timeout = 10; # Quickly go offline if substitute not reachable
+    download-attempts = 3; # Quickly go offline if substitute not reachable
+    allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
+    download-buffer-size = 268435456; # 256MiB, increased to reduce build times
   };
   # nixpkgs.config.allowUnfreePredicate =
   #   pkg:

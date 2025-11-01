@@ -8,10 +8,8 @@
 {
   programs.home-manager.enable = true; # MANDATORY
   news.display = "notify"; # Notify for new home manager options
-  nix = {
-    package = pkgs.nix; # TEST if necessary
-    settings.max-jobs = 12; # Limit threads usage of nix builds
-  };
+  nix.settings.max-jobs = 12; # Limit threads usage of nix builds
+  # nix.package = pkgs.nix;
   manual = {
     html.enable = true;
     json.enable = true;

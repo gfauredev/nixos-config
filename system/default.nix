@@ -1,6 +1,18 @@
 { lib, pkgs, ... }:
 {
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    extra-substituters = [ "https://nix-community.cachix.org" ]; # May have additional binaries cached
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+    ];
+    max-jobs = lib.mkDefault 8; # Save some threads for rest of system
+  };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common TODO consider replacing with "eachSystem" in Flake
 
   boot = {
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)
