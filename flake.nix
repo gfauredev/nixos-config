@@ -7,10 +7,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
-    nixpak = {
-      url = "github:nixpak/nixpak"; # Declarative bubblewrap (sandboxing)
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixpak = {
+    #   url = "github:nixpak/nixpak"; # Declarative bubblewrap (sandboxing)
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # impermanence.url = "github:nix-community/impermanence"; # Amnesiac root
     # musnix.url = "github:musnix/musnix"; # Music production, audio perf
     stylix.url = "github:danth/stylix/release-25.05"; # Color themes & fonts
