@@ -26,9 +26,9 @@ in
       fsType = "btrfs";
       options = [
         "subvol=root"
-        "compress=zstd"
-        "noatime"
-        "noexec"
+        "noexec" # Security hardening
+        "noatime" # Reduce writes
+        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/code" = {
@@ -36,9 +36,10 @@ in
       fsType = "btrfs";
       options = [
         "subvol=code"
-        "compress=zstd"
-        "noatime"
         "exec" # Allow users to execute code somewhere (TODO individual dirs gen)
+        "nodev" # Security hardening
+        "noatime" # Reduce writes
+        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/home" = {
@@ -46,9 +47,11 @@ in
       fsType = "btrfs";
       options = [
         "subvol=home"
-        "compress=zstd"
-        "noatime"
         "noexec" # Security hardening
+        "nodev" # Security hardening
+        "nosuid" # Security hardening
+        "noatime" # Reduce writes
+        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/log" = {
@@ -56,9 +59,11 @@ in
       fsType = "btrfs";
       options = [
         "subvol=log"
-        "compress=zstd"
-        "noatime"
-        "noexec"
+        "noexec" # Security hardening
+        "nodev" # Security hardening
+        "nosuid" # Security hardening
+        "noatime" # Reduce writes
+        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/nix" = {
@@ -66,9 +71,11 @@ in
       fsType = "btrfs";
       options = [
         "subvol=nix"
-        "compress=zstd"
-        "noatime"
         "exec" # Just to be explicit
+        "nodev" # Security hardening
+        "nosuid" # Security hardening
+        "noatime" # Reduce writes
+        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/swap" = {
@@ -76,9 +83,11 @@ in
       fsType = "btrfs";
       options = [
         "subvol=swap"
-        "compress=zstd"
-        "noatime"
-        "noexec"
+        "noexec" # Security hardening
+        "nodev" # Security hardening
+        "nosuid" # Security hardening
+        "noatime" # Reduce writes
+        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/tmp" = {
@@ -87,8 +96,8 @@ in
       options = [
         "defaults"
         "exec" # For Nix builds
-        "nosuid"
-        "nodev"
+        "nodev" # Security hardening
+        "nosuid" # Security hardening
         "mode=1777"
         "size=6G"
       ];
