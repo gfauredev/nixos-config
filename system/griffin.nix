@@ -59,6 +59,4 @@ in
   environment.systemPackages = with pkgs; [
     framework-tool # Hardware related tools for framework laptops
   ];
-
-  system.stateVersion = "25.05";
 }

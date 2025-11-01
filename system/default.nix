@@ -12,7 +12,6 @@
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
   };
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux"; # Still the most common TODO consider replacing with "eachSystem" in Flake
 
   boot = {
     # Enable SysRq keys (reboot/off:128, kill:64, sync:16, kbdControl: 4)

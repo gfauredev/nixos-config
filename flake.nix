@@ -24,7 +24,7 @@
     }:
     let
       eachSystem =
-        f: # TODO Use as well for Home configs and eventually NixOS configs
+        f:
         nixpkgs.lib.genAttrs
           [
             # "riscv64-linux" # 64-bit RISC-V Linux
@@ -38,35 +38,57 @@
               pkgs-unstable = import unstablepkgs { inherit system; };
             }
           );
-      lib = nixpkgs.lib;
-      hm-lib = home-manager.lib;
+      system = nixpkgs.lib.nixosSystem;
+      home = home-manager.lib.homeManagerConfiguration;
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
-        griffin = lib.nixosSystem {
+        griffin = system {
           # specialArgs = { inherit unstablepkgs; };
           modules = [
+            {
+              system.stateVersion = "25.05";
+              nixpkgs.hostPlatform = "x86_64-linux";
+            }
             ./system/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
         };
         # Laptop: Chimera, a flying creature
-        chimera = lib.nixosSystem {
-          modules = [ ./system/chimera.nix ];
+        chimera = system {
+          modules = [
+            {
+              system.stateVersion = "25.11";
+              nixpkgs.hostPlatform = "x86_64-linux";
+            }
+            ./system/chimera.nix
+          ];
         };
         # Desktop: Muses, goddess of arts and music
-        # muses = lib.nixosSystem {
-        #   modules = [ ./system/desktop/muses.nix ];
+        # muses = system {
+        #   modules = [
+        #     {
+        #       system.stateVersion = "25.11";
+        #       nixpkgs.hostPlatform = "x86_64-linux";
+        #     }
+        #     ./system/desktop/muses.nix
+        #   ];
         # };
         # Server: Cerberus, a powerful creature with multiple heads
-        # cerberus = lib.nixosSystem {
-        #   modules = [ ./system/server/cerberus.nix ];
+        # cerberus = system {
+        #   modules = [
+        #     {
+        #       system.stateVersion = "25.11";
+        #       nixpkgs.hostPlatform = "x86_64-linux";
+        #     }
+        #     ./system/server/cerberus.nix
+        #   ];
         # };
         # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
-        live = lib.nixosSystem {
+        live = system {
           modules = [
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
@@ -76,23 +98,28 @@
       defaultPackage.x86_64-linux = self.nixosConfigurations.live.config.system.build.isoImage;
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
-        "gf@griffin" = hm-lib.homeManagerConfiguration {
+        "gf@griffin" = home {
           pkgs = import nixpkgs {
-            system = "x86_64-linux";
+            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
             config.allowUnfree = true; # WARN Allows every unfree package
           };
           extraSpecialArgs.pkgs-unstable = import unstablepkgs {
-            system = "x86_64-linux";
-            config.allowUnfree = true; # WARN Allows every unfree package
+            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            config.allowUnfree = true; # Allows every unfree package
           };
           modules = [
+            { home.stateVersion = "25.05"; } # TODO Define it from corresponding system.stateVersion
             ./home/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
-        "gf@chimera" = hm-lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        "gf@chimera" = home {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            config.allowUnfree = true; # Allows every unfree package
+          };
           modules = [
+            { home.stateVersion = "25.11"; } # TODO Define it from corresponding system.stateVersion
             ./home/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];

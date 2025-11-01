@@ -9,7 +9,7 @@
   programs.home-manager.enable = true; # MANDATORY
   news.display = "notify"; # Notify for new home manager options
   nix.settings.max-jobs = 12; # Limit threads usage of nix builds
-  # nix.package = pkgs.nix;
+  nix.package = pkgs.nix;
   manual = {
     html.enable = true;
     json.enable = true;
@@ -37,8 +37,6 @@
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
-    stateVersion = lib.mkDefault "25.05";
-    # stateVersion = lib.mkDefault config.system.stateVersion; TODO something like this
   };
 
   # systemd.user.sessionVariables = config.home.sessionVariables;

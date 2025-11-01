@@ -49,6 +49,4 @@ in
   };
 
   services.fprintd.enable = false;
-
-  system.stateVersion = "25.05";
 }
