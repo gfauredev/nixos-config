@@ -372,7 +372,7 @@
     name = "Mistral";
     urls = [
       {
-        template = "https://chat.mistral.ai/chat/";
+        template = "https://chat.mistral.ai/chat";
         params = [
           {
             name = "q";
@@ -384,6 +384,24 @@
     definedAliases = [
       "mist"
       "chat"
+    ];
+  };
+  mynixos = {
+    name = "MyNixOS";
+    urls = [
+      {
+        template = "https://mynixos.com/search";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [
+      "nix"
+      "mynix"
     ];
   };
   nixoptions = {
@@ -549,7 +567,7 @@
         ];
       }
     ];
-    definedAliases = [ "nix" ];
+    definedAliases = [ "six" ];
   };
   typstdocs = {
     name = "Typst Docs";
