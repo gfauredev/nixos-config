@@ -34,7 +34,7 @@
     # vcv-rack # Standalone modular synthesizer
     # ingen # Modular audio environment
     # giada # Live electronic music platform
-    # helvum # PipeWire router
+    patchance # JACK router
     # qpwgraph # PipeWire router
     # DAW & Editors
     # zrythm # Modern digital audio workstation
