@@ -132,13 +132,6 @@
     withRuby = true;
   };
 
-  home.file = {
-    dprint-config = {
-      target = ".dprint.json";
-      source = ./plugin/dprint.json;
-    };
-  };
-
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     genericName = "Text editor";

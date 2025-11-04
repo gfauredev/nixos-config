@@ -163,10 +163,6 @@
             name = "typescript-language-server";
             except-features = [ "format" ];
           };
-          # dprint = {
-          #   command = "dprint";
-          #   args = [ "fmt" ];
-          # };
         in
         [
           {
@@ -232,8 +228,8 @@
               "marksman"
               "markdown-oxide"
               "ltex"
-              "dprint" # Formatter
               "llm"
+              # "dprint" # Formatter
             ];
             auto-format = true;
           }

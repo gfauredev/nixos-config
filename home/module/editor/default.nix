@@ -10,6 +10,7 @@
     # ./zed
     ./neovim
   ];
+
   options.editor.commonPackages = lib.mkOption {
     default = with pkgs; [
       (tree-sitter.withPlugins (p: builtins.attrValues p)) # Every grammar
@@ -34,8 +35,9 @@
       pkgs-unstable.nixfmt # Formatter
       tinymist # Typst LSP
       typstyle # Typst formatter
-      marksman # Smart Markdown links, ToC
-      # markdown-oxide # TEST Obsidian style PKM
+      pkgs-unstable.rumdl # Fast markdown linter & formatter
+      # marksman # Wikilinks, ToC generation…
+      # markdown-oxide # PKM (links, tags, dates…)
       # nls # Nickel LSP
       # yaml-language-server # YAML LSP
       # taplo # TOML LSP
@@ -45,7 +47,7 @@
       # sqls # SQL language server
       # vscode-langservers-extracted # HTML/CSS/JS(ON)
       # Formatters
-      dprint # Pluggable code formatting platform
+      # dprint # Pluggable code formatting platform
       # shfmt # Shell script formater # Bash LSP instead
       # sql-formatter # SQL formatter
     ];
@@ -53,4 +55,11 @@
       Packages available to all the text editors, everywhere on the system
     '';
   };
+
+  # config.home.file = {
+  #   dprint-config = {
+  #     target = ".dprint.json";
+  #     source = ./dprint.json;
+  #   };
+  # };
 }
