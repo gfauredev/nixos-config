@@ -225,10 +225,11 @@
           {
             name = "markdown";
             language-servers = [
-              "marksman"
-              "markdown-oxide"
+              "rumdl"
               "ltex"
               "llm"
+              # "marksman"
+              # "markdown-oxide"
               # "dprint" # Formatter
             ];
             auto-format = true;
@@ -396,6 +397,10 @@
             #   en = [ ":${var.XDG_CONFIG_HOME}/ltex/en.dict" ];
             # };
           };
+        };
+        rumdl = {
+          command = "rumdl";
+          args = [ "server" ];
         };
         ruff = {
           command = "ruff";
