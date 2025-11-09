@@ -106,7 +106,7 @@
               space = "command_palette"; # Show all the commands
               w = window;
               # Print current line git blame
-              B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}";
+              B = ":echo %sh{git show --no-patch --format='%%h (%%an: %%ar): %%s' $(git blame -p %{buffer_name} -L%{cursor_line},+1 | head -1 | cut -d' ' -f1)}";
             };
             g = {
               # GO TO
