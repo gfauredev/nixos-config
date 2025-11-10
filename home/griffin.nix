@@ -24,6 +24,7 @@
     viu # CLI image viewer
     imagemagick # CLI image edition
     cheese # Webcam capture
+    meld # Graphical merge tool
     # Electronics
     # rpi-imager # Raspberry Pi OS imager
     # horizon-eda # Modern EDA to develop printed circuit boards
