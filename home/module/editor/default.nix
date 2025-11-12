@@ -20,6 +20,7 @@
       # tabby-agent # LSP agent for Tabby TODO configure
       # lsp-ai # Language server for language models
       helix-gpt # Add LLMs support through LSP
+      deno # Runtime for LSPs and formatters
       # Spell Checking
       harper # Grammar/spell checker LSP (Rust, fast)
       # vale # Linter for prose
@@ -48,7 +49,7 @@
       # sqls # SQL language server
       # vscode-langservers-extracted # HTML/CSS/JS(ON)
       # Formatters
-      dprint # Pluggable code formatting platform
+      # dprint # Pluggable code formatting platform
       # shfmt # Shell script formater # Bash LSP instead
       # sql-formatter # SQL formatter
     ];

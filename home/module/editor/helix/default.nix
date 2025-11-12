@@ -160,6 +160,15 @@
             name = "typescript-language-server";
             except-features = [ "format" ];
           };
+          deno-fmt = {
+            command = "deno";
+            args = [
+              "fmt"
+              "-"
+              "--ext"
+              "md"
+            ];
+          };
         in
         [
           {
@@ -222,7 +231,7 @@
           {
             name = "markdown";
             language-servers = [
-              "dprint" # Formatter
+              # "dprint"
               "ltex"
               "llm"
               "marksman"
@@ -230,6 +239,7 @@
               "rumdl"
             ];
             auto-format = true;
+            formatter = deno-fmt;
           }
           {
             name = "cpp";
