@@ -36,6 +36,11 @@
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
     };
+    file = {
+      # Force for reluctant apps
+      Documents.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOCUMENTS_DIR;
+      Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+    };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
   };
 
