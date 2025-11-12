@@ -1,4 +1,4 @@
-/* Hide toolbox unless hovered */
+/* Hide toolbox unless it’s hovered */
 /* Annoying drop-down when unwanted hover of openned urlbar’s suggestions
    TODO never show if urlbar open (centered as below) even if hovered */
 #navigator-toolbox:not(:hover) {

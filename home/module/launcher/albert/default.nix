@@ -1,15 +1,15 @@
 { pkgs-unstable, ... }:
 {
-  # TODO consider using mkOutOfStoreSymlink to make frequent changes easier
-  # https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
   home.packages = [ pkgs-unstable.albert ]; # Full-featured launcher
   xdg.configFile = {
     "albert/config.static" = {
       source = ./config;
+      # source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/albert/config";
     };
     "albert/websearch.static" = {
       recursive = true;
       source = ./websearch;
+      # source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/albert/websearch";
     };
   };
 }

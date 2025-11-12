@@ -1,8 +1,5 @@
 { config, pkgs-unstable, ... }:
 {
-  # See https://docs.helix-editor.com
-  # TODO consider using mkOutOfStoreSymlink to make frequent changes easier
-  # https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
   programs.helix = {
     enable = true;
     package = pkgs-unstable.helix;
