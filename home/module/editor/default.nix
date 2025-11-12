@@ -2,6 +2,7 @@
   pkgs,
   pkgs-unstable,
   lib,
+  config,
   ...
 }: # CLI and GUI text editors
 {
@@ -35,9 +36,9 @@
       pkgs-unstable.nixfmt # Formatter
       tinymist # Typst LSP
       typstyle # Typst formatter
-      pkgs-unstable.rumdl # Fast markdown linter & formatter
-      # marksman # Wikilinks, ToC generation…
+      marksman # Wikilinks, ToC generation…
       # markdown-oxide # PKM (links, tags, dates…)
+      # pkgs-unstable.rumdl # Fast markdown linter & formatter
       # nls # Nickel LSP
       # yaml-language-server # YAML LSP
       # taplo # TOML LSP
@@ -47,7 +48,7 @@
       # sqls # SQL language server
       # vscode-langservers-extracted # HTML/CSS/JS(ON)
       # Formatters
-      # dprint # Pluggable code formatting platform
+      dprint # Pluggable code formatting platform
       # shfmt # Shell script formater # Bash LSP instead
       # sql-formatter # SQL formatter
     ];
@@ -56,10 +57,6 @@
     '';
   };
 
-  # config.home.file = {
-  #   dprint-config = {
-  #     target = ".dprint.json";
-  #     source = ./dprint.json;
-  #   };
-  # };
+  # config.home.file.".dprint.jsonc".source =
+  #   config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/editor/dprint.jsonc";
 }

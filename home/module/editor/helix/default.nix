@@ -225,12 +225,12 @@
           {
             name = "markdown";
             language-servers = [
-              "rumdl"
+              "dprint" # Formatter
               "ltex"
               "llm"
-              # "marksman"
-              # "markdown-oxide"
-              # "dprint" # Formatter
+              "marksman"
+              "markdown-oxide"
+              "rumdl"
             ];
             auto-format = true;
           }
