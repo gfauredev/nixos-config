@@ -203,7 +203,7 @@
     # Emulation & Compatibility
     # bottles # Easier wine management FIXME reenable
     # quickemu # Quickly create optimized VMs
-    lima # Quickly create optimized VMs
+    # lima # Quickly create optimized VMs
     # wine # Execute Window$ programs
     # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
     # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
