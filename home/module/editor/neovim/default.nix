@@ -2,54 +2,17 @@
 {
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
     defaultEditor = false;
     extraPackages = config.editor.commonPackages;
-    # Generate a big init file with every module, may be done cleaner
     extraLuaConfig = ''
       ${builtins.readFile ./remap.lua}
       ${builtins.readFile ./opt.lua}
     '';
-    # ${builtins.readFile ./filetype.lua}
-    # ${builtins.readFile ./autocmd.lua}
-    # ${builtins.readFile ./theme.lua}
-    # ${builtins.readFile ./plugin/telescope.lua}
-    # ${builtins.readFile ./plugin/comment.lua}
-    # ${builtins.readFile ./plugin/treesitter.lua}
-    # ${builtins.readFile ./plugin/gitsigns.lua}
-    # ${builtins.readFile ./plugin/lsp.lua}
-    # ${builtins.readFile ./plugin/cmp.lua}
-    # ${builtins.readFile ./plugin/leap.lua}
-    # ${builtins.readFile ./plugin/trouble.lua}
-    # ${builtins.readFile ./plugin/autopair.lua}
-    # ${builtins.readFile ./plugin/indentline.lua}
-    # ${builtins.readFile ./plugin/format.lua}
-    # ${builtins.readFile ./plugin/copilot.lua}
-    # ${builtins.readFile ./plugin/maths.lua}
-    # ${builtins.readFile ./plugin/dap.lua}
-    # ${builtins.readFile ./plugin/lint.lua}
-    # ${builtins.readFile ./plugin/quarto.lua}
-    # ${builtins.readFile ./plugin/notify.lua}
-    # ${builtins.readFile ./plugin/image.lua}
-    # ${builtins.readFile ./plugin/dashboard.lua}
-    # extraLuaPackages = ps: [ ps.magick ];
     plugins = with pkgs.vimPlugins; [
-      ##### Libraries #####
       # plenary-nvim # Library
       # fuzzy-nvim # Library
       # nvim-nio # Async I/O
-
-      ##### Parsing #####
       nvim-treesitter.withAllGrammars # Parsing & text highlighting
-      # nvim-treesitter-parsers.markdown # Parsing & text highlighting
-      # nvim-treesitter-parsers.norg # Parsing & text highlighting
-      # nvim-treesitter-parsers.arduino # Parsing & text highlighting
-      # nvim-treesitter-textobjects # Parsing & text highlighting
-      # nvim-treesitter-textsubjects # Parsing & text highlighting
-      # nvim-treesitter-refactor # Parsing & text highlighting
-      # nvim-treesitter-context # Typically displays the function signature you’re in
-
-      ##### UI & Misc #####
       # nvim-web-devicons # Icons
       # gitsigns-nvim # Displays git related indications
       # comment-nvim # Comment/Uncomment easily
@@ -68,8 +31,6 @@
       # hologram-nvim # Image viewer
       # catppuccin-nvim # Pastel themes
       # dashboard-nvim # Better start screen
-
-      ##### Assistance & Completion #####
       nvim-lspconfig # Boilerplate to use language servers
       # nvim-cmp # Autocompletion for neovim
       # cmp_luasnip # LuaSnip as cmp source
@@ -98,31 +59,11 @@
       # cmp-fuzzy-buffer # Buffer content as cmp source
       # cmp-fuzzy-path # FS path as cmp source
       # cmp-dap # Debugging messages as cmp source
-
-      ##### Search & Move #####
       telescope-nvim # Fuzzy search & navigate files & code
       # leap-nvim # Navigate efficiently in code
       # telescope-fzf-native-nvim # Fuzzy search & navigate
       # telescope-media-files-nvim # Works with hacky ueberzug
       # hop-nvim # Navigate efficiently in code
-
-      ##### Techno & Language Specifics #####
-      # typst-vim # Typst
-      # nabla-nvim # Render maths formulas
-      # neorg # Modern oganization markup # Currently lacks a mobile app
-      # orgmode # Organization markup # Has Orgzly mobile app
-      # quarto-nvim # Publishing system
-      # nvim-jdtls # Java (Eclipse)
-      # go-nvim # Go
-      # vim-go # Go (Vimscript)
-      # grammar-guard-nvim
-      # zk-nvim # zk integration
-      # markdown-preview-nvim # Markdown previewing
-      # nvim-dap-python # Use dap with debugpy
-
-      ##### Deprecated #####
-      # none-ls-nvim # Reload of a deprecated plugin
-      # lsp-zero-nvim # Easier lsp config for neovim
     ];
     viAlias = true;
     vimAlias = true;
