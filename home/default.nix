@@ -251,23 +251,34 @@
 
   programs = {
     git.enable = true; # MANDATORY
-    direnv.enable = true;
+    direnv.enable = true; # Auto load nix shell when cd
     gpg.enable = true; # Useful cryptography tool
     jujutsu.enable = true; # Git compatible simpler VCS
+    mergiraf.enable = true; # Smart Git merge tool
     rclone.enable = true; # Backup using cloud services
-    rbw.enable = true; # CLI Bitwarden client
+    # rbw.enable = true; # CLI Bitwarden client
     # looking-glass-client.enable = true; # Capture host display in VM
     git = {
       userName = config.user.description;
       userEmail = config.user.email;
-      package = pkgs.gitAndTools.gitFull; # Git with addons
+      package = pkgs.gitAndTools.gitFull; # Git with add-ons
       lfs.enable = true;
       delta = {
         enable = true;
         options.navigate = true;
       };
+      attributes = [
+        "* merge=mergiraf"
+      ];
+      ignores = [
+        "*ignore*"
+        "!.gitignore"
+        # "*.pdf" "*.odt" "*.odf" "*.odp" "*.doc" "*.docx" "*.pptx"
+        # "*.jpg" "*.jpeg" "*.png" "*.webp" "*.avif" "*.avi" "*.mp4" "*.mkv"
+        # "*.wav" "*.mp3" "*.flac" "*.ogg"
+        # ".direnv/" ".venv/" ".vagrant/" "build/" "public/"
+      ];
       extraConfig = {
-        safe.directory = "/config"; # Flake configuration
         init.defaultBranch = "main";
         pull.rebase = false;
         lfs.locksverify = true;
@@ -282,35 +293,14 @@
           smudge = "git-lfs smudge -- %f";
           process = "git-lfs filter-process";
         };
-        merge.conflictstyle = "zdiff3";
+        merge = {
+          conflictstyle = "diff3";
+          mergiraf = {
+            name = "mergiraf";
+            driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
+          };
+        };
       };
-      ignores = [
-        "*.pdf"
-        "*.jpg"
-        "*.jpeg"
-        "*.png"
-        "*.webp"
-        "*.avif"
-        "*.avi"
-        "*.mp4"
-        "*.mkv"
-        "*.wav"
-        "*.mp3"
-        "*.flac"
-        "*.ogg"
-        "*.odt"
-        "*.odf"
-        "*.odp"
-        "*.doc"
-        "*.docx"
-        "*.pptx"
-        ".venv/"
-        ".vagrant/"
-        "build/"
-        "public/"
-        "*ignore*"
-        "!.gitignore"
-      ];
     };
     jujutsu.settings.user = {
       name = config.user.description;
