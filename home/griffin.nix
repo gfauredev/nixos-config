@@ -24,7 +24,14 @@
     viu # CLI image viewer
     imagemagick # CLI image edition
     cheese # Webcam capture
-    meld # Graphical merge tool
+    # meld # Graphical merge tool
+    # f3d # Minimalist 3D viewer
+    # lpac # Manage eSIMs in a chip (eUICC LPA)
+    sherlock # Search people on social media accounts
+    # wayback # Web archiving tool
+    qgis # Maps TODO https://www.mypermagarden.app/fr/download
+    sbcl # Common Lisp compiler and runtime
+    guile # Scheme compiler and runtime
     # Electronics
     # rpi-imager # Raspberry Pi OS imager
     # horizon-eda # Modern EDA to develop printed circuit boards
@@ -54,12 +61,6 @@
     orca-slicer # G-code generator for 3D printers…
     # cura # Popular 3D printer slicer
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
-    # Misc
-    # f3d # Minimalist 3D viewer
-    # lpac # Manage eSIMs in a chip (eUICC LPA)
-    sherlock # Search people on social media accounts
-    # wayback # Web archiving tool
-    qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # VPN
     protonvpn-gui # Swiss VPN service (Python GUI)
     # calyx-vpn # (bitmask client) Free VPN service
