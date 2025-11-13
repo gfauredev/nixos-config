@@ -30,8 +30,7 @@
     sherlock # Search people on social media accounts
     # wayback # Web archiving tool
     qgis # Maps TODO https://www.mypermagarden.app/fr/download
-    sbcl # Common Lisp compiler and runtime
-    guile # Scheme compiler and runtime
+    # guile # Scheme compiler and runtime
     # Electronics
     # rpi-imager # Raspberry Pi OS imager
     # horizon-eda # Modern EDA to develop printed circuit boards
