@@ -19,6 +19,7 @@
   home.packages = with pkgs; [
     # playerctl # MPRIS media players control TEST needed with playerctld?
     # spotify # PROPRIETARY music streaming
+    # spotube # Open source Spotify and more client
     # spotdl # Download music and playlists from Spotify
     klick # Metronome
     viu # CLI image viewer

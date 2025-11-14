@@ -27,29 +27,35 @@
     };
 
   home.packages = with pkgs; [
-    ardour # Full fledged digital audio workstation
-    carla # VST Host & audio router
+    # ardour # Full fledged digital audio workstation
     pkgs-unstable.bespokesynth-with-vst2 # Software modular synth, controllers support
+    carla # VST Host & audio router
     cardinal # Standalone and VST modular synthesizer
-    # vcv-rack # Standalone modular synthesizer
-    # ingen # Modular audio environment
     # giada # Live electronic music platform
+    glicol-cli # Music live coding
+    helio-workstation # Sequencer / DAW
+    # ingen # Modular audio environment
+    # ossia-score # Interactive sequencer
     patchance # JACK router
     # qpwgraph # PipeWire router
+    supercollider # Audio synthesis and algorithmic composition
+    # vcv-rack # Standalone modular synthesizer
     # DAW & Editors
-    # zrythm # Modern digital audio workstation
     # audacity # Simple audio editor
-    neothesia # MIDI piano roll player
     musescore # Music writing
-    # VST
+    neothesia # MIDI piano roll player
+    # zrythm # Modern digital audio workstation
+    # Plugin (VST…)
+    # bristol # Synths collection
+    # calf # Collection of audio plugins
     distrho-ports # Collection of audio plugins, contains Vitalium
+    # drumgizmo # High quality drums sampler
+    # iannix # Graphical sequencer
     surge-XT # Great hybrid substractive synth
-    calf # Collection of audio plugins
-    bristol # Synths
+    stochas # Polyrithmic sequencer
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
-    drumgizmo # High quality drums sampler
     # vital # PROPRIETARY Spectral warping wavetable synth
     # Bridges & Drivers & Adapters
     # airwave # WINE-based VST bridge for Linux VST hosts
