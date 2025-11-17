@@ -1,7 +1,7 @@
 *ignore*
-*.iso
-*.pdf
+
 result
 .direnv/
-.local
-.cache
+
+*.iso
+*.pdf
