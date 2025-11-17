@@ -35,6 +35,7 @@
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
+      CONFIG_LOCATION = config.location;
     };
     file = {
       # Force for reluctant apps

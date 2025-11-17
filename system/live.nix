@@ -45,9 +45,9 @@
   };
 
   environment = {
-    # TODO parametric, global Flake location (/etc/flake)
-    # TODO configure.sh able to install NixOS from live ISO, autodect situation
-    # TODO proper shell login script, with GUI on TTY2/TTY3
+    # Better if parametric, global Flake location (/etc/flake)
+    # TODO configure.sh able to install NixOS from live ISO, auto detect situation
+    # TODO proper shell login script, with GUI on TTY2 / TTY3
     shellAliases.cfg = "cd /etc/flake; nixos-install-helper";
     systemPackages = [
       (pkgs.writeShellScriptBin "nixos-install-helper" ''

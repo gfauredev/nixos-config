@@ -73,9 +73,9 @@ def --env code [] {
 
 # Edit system and home config
 def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
-  cd ~/code/config/ # FIXME use config.location Nix option instead
+  cd $env.CONFIG_LOCATION
   # direnv exec . # FIXME doesn’t seems to use direnv properly inside editor
-  configure ...$arg
+  systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring configure ...$arg
 }
 
 # Open in background with default app

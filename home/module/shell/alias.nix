@@ -4,17 +4,13 @@ let
   # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
   common = {
     # System
-    sudo = "sudo ";
-    se = "sudoedit ";
-    boot = "sudo bootctl";
+    boot = "bootctl";
     reboot = "systemctl reboot";
     off = "systemctl poweroff";
     sys = "systemctl";
-    jo = "sudo journalctl -xfe";
+    jo = "journalctl -xfe";
     gc = "nix store gc";
     # gc = "nix-collect-garbage";
-    performance = "sudo cpupower frequency-set --governor performance"; # Performance mode
-    powersave = "sudo cpupower frequency-set --governor powersave"; # Powersave mode
     limit = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit resources
     restrict = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit resources aggressively
     # egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
@@ -88,6 +84,8 @@ in
   # home.shellAliases = common; # Don’t works
   programs.zsh.shellAliases = common // {
     # System
+    sudo = "sudo ";
+    se = "sudoedit ";
     re = "exec zsh";
     # Files
     cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder

@@ -7,8 +7,8 @@
 # TODO make this script a package available in this flake’s nix dev environment
 CPU_LIMIT='cpulimit -l 888'     # Limit CPU usage to 888% accross threads
 MEM_LIMIT=$((10 * 1024 * 1024)) # Limit memory usage to 10 Go
-NIXOS_REBUILD_CMD="systemd-inhibit --what=shutdown:sleep --who=$0 --why=NixOS sudo $CPU_LIMIT nixos-rebuild"
-HOME_MANAGER_CMD="systemd-inhibit --what=shutdown:sleep --who=$0 --why=HomeManager $CPU_LIMIT home-manager"
+NIXOS_REBUILD_CMD="sudo $CPU_LIMIT nixos-rebuild"
+HOME_MANAGER_CMD="$CPU_LIMIT home-manager"
 
 # Global CONSTANTS
 SUBFLAKE='public' # Sub flake (usually public config) location
