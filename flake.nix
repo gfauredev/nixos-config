@@ -5,7 +5,7 @@
     unstablepkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
-    lanzaboote.url = "github:nix-community/lanzaboote/0bb6966a526f08f4f142840bfc3817c7f4e4a49e"; # Secure Boot
+    lanzaboote.url = "github:nix-community/lanzaboote/432cca54da42c1974d05a57ea0f3a427753a03f4"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
     # nixpak = {
     #   url = "github:nixpak/nixpak"; # Declarative bubblewrap (sandboxing)
