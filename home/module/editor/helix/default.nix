@@ -151,9 +151,7 @@
         };
     };
     languages = {
-      # See https://docs.helix-editor.com/languages.html
-      # WARN keep up to date with upstream:
-      # https://github.com/helix-editor/helix/blob/master/languages.toml
+      # Keep up to date with https://github.com/helix-editor/helix/blob/master/languages.toml
       language =
         let
           ts-lsp = {
@@ -175,7 +173,7 @@
             name = "nix";
             language-servers = [
               "nixd"
-              # "nil"
+              "nil"
               "harper"
               "llm"
             ];
@@ -198,7 +196,10 @@
               tab-width = 2;
               unit = "  ";
             };
-            language-servers = [ "nu-lsp" ];
+            language-servers = [
+              "nu-lsp"
+              "llm"
+            ];
           }
           {
             name = "python";
@@ -231,12 +232,11 @@
           {
             name = "markdown";
             language-servers = [
-              # "dprint"
-              "ltex"
-              "llm"
               "marksman"
               "markdown-oxide"
               "rumdl"
+              "ltex"
+              "llm"
             ];
             auto-format = true;
             formatter = deno-fmt;
