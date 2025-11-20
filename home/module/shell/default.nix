@@ -8,51 +8,44 @@
   ];
   home.packages =
     let
-      init-dev-env = pkgs.writeScriptBin "dev" "${lib.readFile ./script/init-dev-env.sh}";
-      smart-terminal = pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
-      extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
+      archive = pkgs.writeScriptBin "archive" "${lib.readFile ./script/archive.sh}";
       backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/backup.sh}";
-      clean-archive = pkgs.writeScriptBin "cleanarchive" "${lib.readFile ./script/clean-archive.sh}";
       configure = pkgs.writeScriptBin "configure" "${lib.readFile ./script/configure.sh}";
-      smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/smart-commit.sh}";
       date-edit = pkgs.writeScriptBin "de" "${lib.readFile ./script/date-edit.sh}";
+      extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
+      init-dev-env = pkgs.writeScriptBin "dev" "${lib.readFile ./script/init-dev-env.sh}";
+      mtp-mount = pkgs.writeScriptBin "mount.mtp" "${lib.readFile ./script/mtp.sh}";
       present-pdf = pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
+      smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/smart-commit.sh}";
+      smart-terminal = pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
       typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
       usb-mount = pkgs.writeScriptBin "mount.usb" "${lib.readFile ./script/usb.sh}";
-      mtp-mount = pkgs.writeScriptBin "mount.mtp" "${lib.readFile ./script/mtp.sh}";
-      archive = pkgs.writeScriptBin "archive" "${lib.readFile ./script/archive.sh}";
     in
     with pkgs;
     [
-      # Custom scripts
-      init-dev-env # Initialize a Nix Flake based development environment
-      smart-terminal # Open a terminal quickly with first parameter always cd
-      extract # Extract any compressed file
+      archive # Quickly move a directory inside ~/archive/
       backup # Backup with restic or rsync
-      clean-archive # Clean the ~/archive dir after a backup
       configure # Configure this flake config
-      smart-commit # Quickly commit or amend, lint message
       date-edit # Open text files, prepend current date to the first one
+      extract # Extract any compressed file
+      init-dev-env # Initialize a Nix Flake based development environment
+      mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
       present-pdf # Open detached pdfpc to present a PDF slide
+      smart-commit # Quickly commit or amend, lint message
+      smart-terminal # Open a terminal quickly with first parameter always cd
       typst-compile # Compile the latest edited Typst file in current dir
       usb-mount # Quickly mount or unmount a USB device in ~/usb
-      mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
-      archive # Quickly move a directory inside ~/archive/
       # Development and general CLI tools
-      trash-cli # Manage a trash from CLI # TEST if needed with Nushell
+      trash-cli # Manage a trash from CLI # Needed with Nushell ?
       ripgrep-all # ripgrep for non-text files
-      # rustdesk # Modern remote desktop
       kalker # Evaluate math expression
-      nixpkgs-review # Quickly review pull requests to nixpkgs TEST
+      nixpkgs-review # Quickly review pull requests to nixpkgs
       comma # Run any command from Nixpkgs
-      # steam-run # Run in isolated FHS
-      # manix # Nix documentation CLI
       watchexec # Run command when file changes
       hyperfine # Benchmark commands
       nickel # Modern configuration Nickel, Nix improvement
       cdrkit # ISO tools and misc
       commitlint-rs # Be consistent in commit messages
-      # pipectl # Named pipes management (probably replaced by Nu’s job)
     ];
 
   home = {
