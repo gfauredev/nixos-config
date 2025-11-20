@@ -2,16 +2,14 @@
 # 1. life records for important areas that need monitoring or documents that might be recurrently asked
 # 2. project, files that might be required to progress towards a final goal or a precise milestone
 # 3. graph, linked and non-hierarchical data related to projects, important life areas or anything else
-# 4. data, files that might become useful in a life area or in a project, or just be interesting or fun
-# 5. archive, definitively complete or discontinued project, expired or no longer useful files
+# 4. archive-project, definitively complete or discontinued project, expired or no longer useful files
+# 5. archive-life, definitively complete, discontinued or expired life area
 
-# Files corresponding to *.git/** or *.large should not be synced with lower capacity devices
+# *.git/**, *.large files should not be synced with lower capacity devices
 
-# Always backed up
-IMPORTANT="$HOME/life $HOME/project $HOME/.graph"
-DATA="$HOME/data"
+IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
 OS="$HOME/data/operatingSystems.large"
-ARCHIVE="$HOME/archive"
+ARCHIVE="$HOME/archive-life $HOME/archive-project"
 avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
 used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
 echo "Available space on destination : ${avail}o"
@@ -38,9 +36,8 @@ if [ "$avail" -gt "$used" ]; then
     # Backup everything incrementally with restic in backup drives
     # (which label contains "back")
     printf "%s contains back: " "$1"
-    printf "Backing up [%s %s %s] incrementally with restic\n" \
-      "$IMPORTANT" "$DATA" "$ARCHIVE"
-    _restic "$1" $IMPORTANT "$DATA" "$ARCHIVE"
+    printf "Backing up [%s %s %s] with restic\n" "$IMPORTANT" "$ARCHIVE"
+    _restic "$1" $IMPORTANT "$ARCHIVE"
       
     ;;
   *boot*)
@@ -64,9 +61,16 @@ if [ "$avail" -gt "$used" ]; then
 else
   # Don’t store large dirs/files in too small drives
   printf "%s doesn’t have enough available space: " "$1"
-    printf "Backing up [%s] in encrypted archive\n" "$IMPORTANT"
+  printf "Backing up [%s] in encrypted archive\n" "$IMPORTANT"
   printf "\nTODO with a crossplatform encrypted archiver (7zip, Veracrypt…)\n"
   _rsync --exclude="*.large" $IMPORTANT "$1" # Sync important dirs
 fi
 
-printf "\nDon’t forget to clean the ~/archive directory with cleanarchive\n"
+echo -n "Clean archive directories content ? (y to accept): "
+read -n 1 -r -t 5 shouldClean
+
+if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
+  printf "Trashing archive directories content\n"
+  trash --verbose "$HOME"/archive-project/*
+  trash --verbose "$HOME"/archive-life/*
+fi
