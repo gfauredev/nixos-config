@@ -264,6 +264,12 @@
         "*ignore*"
         "!.gitignore"
       ];
+      hooks = {
+        pre-commit = pkgs.writeShellScript "git-pre-commit" ''
+          set -e # Exit immediately on error
+          gitleaks dir --verbose # --redact
+        '';
+      };
       extraConfig = {
         init.defaultBranch = "main";
         pull.rebase = false;
