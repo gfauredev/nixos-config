@@ -56,13 +56,13 @@
 
     services.hypridle.settings.listener = [
       {
-        timeout = 42; # Lock session (blur and dim screen) after 42 seconds
+        timeout = 90; # Lock session (blur and dim screen) after 1min 30
         on-timeout = config.wayland.lock;
       }
       {
-        timeout = 120; # Put the computer to sleep after 2 minutes
+        timeout = 180; # Put the computer to sleep after 3 minutes
         on-timeout = config.wayland.suspend;
-        # NOTE hacky way to prevent sleep with eGPU (crashes the system)
+        # NOTE hacky way to prevent sleep with eGPU as it crashes the system
         # on-timeout = "[ -L $XDG_CONFIG_HOME/hypr/egpu ] || ${config.wayland.suspend}";
       }
     ];
