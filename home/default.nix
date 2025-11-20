@@ -257,8 +257,7 @@
     jujutsu.enable = true; # Git compatible simpler VCS
     mergiraf.enable = true; # Smart Git merge tool
     rclone.enable = true; # Backup using cloud services
-    # rbw.enable = true; # CLI Bitwarden client
-    # looking-glass-client.enable = true; # Capture host display in VM
+    radicle.enable = true; # Decentralized code collaboration
     git = {
       userName = config.user.description;
       userEmail = config.user.email;
