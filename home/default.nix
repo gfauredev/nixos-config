@@ -257,7 +257,7 @@
     jujutsu.enable = true; # Git compatible simpler VCS
     mergiraf.enable = true; # Smart Git merge tool
     rclone.enable = true; # Backup using cloud services
-    radicle.enable = true; # Decentralized code collaboration
+    # radicle.enable = true; # Decentralized code collaboration TODO 25.11
     git = {
       userName = config.user.description;
       userEmail = config.user.email;
