@@ -1,14 +1,6 @@
-# Directories under user $HOME, roughly in order of importance
-# 1. life records for important areas that need monitoring or documents that might be recurrently asked
-# 2. project, files that might be required to progress towards a final goal or a precise milestone
-# 3. graph, linked and non-hierarchical data related to projects, important life areas or anything else
-# 4. archive-project, definitively complete or discontinued project, expired or no longer useful files
-# 5. archive-life, definitively complete, discontinued or expired life area
-
-# *.git/**, *.large files should not be synced with lower capacity devices
-
+# Directories directly under user $HOME, as described in module/organization.nix
 IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
-OS="$HOME/data/operatingSystems.large"
+BOOTABLE="$HOME/data/operatingSystems.large"      # To copy on bootable drives
 ARCHIVE="$HOME/archive-life $HOME/archive-project"
 avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
 used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
@@ -16,7 +8,7 @@ echo "Available space on destination : ${avail}o"
 echo "Used space by important data :   ${used}o"
 
 _rsync() { # Custom rsync command
-  systemd-inhibit --what=shutdown:sleep --who=$0 --why=Backuping \
+  systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
   rsync --verbose --archive --human-readable --partial --progress \
     --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
     --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img "$@"
@@ -25,7 +17,7 @@ _rsync() { # Custom rsync command
 _restic() { # Custom restic command
   REPO="$1"
   shift
-  systemd-inhibit --what=shutdown:sleep --who=$0 --why=Backuping \
+  systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
   restic --repo "$REPO" --verbose backup --exclude-caches \
   --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common "$@"
 }
@@ -36,7 +28,7 @@ if [ "$avail" -gt "$used" ]; then
     # Backup everything incrementally with restic in backup drives
     # (which label contains "back")
     printf "%s contains back: " "$1"
-    printf "Backing up [%s %s %s] with restic\n" "$IMPORTANT" "$ARCHIVE"
+    printf "Backing up [%s %s] incrementally (restic)\n" "$IMPORTANT" "$ARCHIVE"
     _restic "$1" $IMPORTANT "$ARCHIVE"
       
     ;;
@@ -44,9 +36,9 @@ if [ "$avail" -gt "$used" ]; then
     # Store most important directories and OSes in large drives or sticks
     # (which label don’t contains "back" but contains "boot")
     printf "%s contains boot: " "$1"
-    printf "Backing up [%s] encrypted, as well as [%s]\n" "$IMPORTANT" "$OS"
+    printf "Backing up [%s] encrypted, as well as [%s]\n" "$IMPORTANT" "$BOOTABLE"
     printf "\nTODO with a crossplatform encrypted archiver (7zip, Veracrypt…)\n"
-    _rsync --delete $OS/ "$1" # Sync the content of $OS at the root of the drive
+    _rsync --delete $BOOTABLE/ "$1" # Sync the content of $OS at the root of the drive
     _rsync $IMPORTANT "$1" # Sync important dirs at the root of the drive
     ;;
   *)

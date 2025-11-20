@@ -2,12 +2,13 @@
   pkgs,
   lib,
   ...
-}: # Email, Calendar, Task, Contact, Note
+}: # Email, Calendar, Task, Contact, Note, Organization
 {
   options.organization.pim = lib.mkOption {
     default = "thunderbird";
     description = "Main Personal Information Management app";
   };
+
   config.home.packages = with pkgs; [
     anki # Best memorization tool
     # markdown-anki-decks
@@ -24,6 +25,7 @@
     # rnote # Note tool
     # memos # Atomic memo hub
   ];
+
   config.programs = {
     thunderbird.enable = true;
     # anki.enable = true; # Best memorization TODO 25.11
@@ -51,8 +53,7 @@
     #     }
     #   ];
     #   spacebarRatesCard = true;
-    #   language = "fr_FR";
-    # See https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
+    #   language = "fr_FR"; https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
     # };
     thunderbird.profiles.default = {
       isDefault = true;
@@ -64,4 +65,72 @@
       timedelta = "7d";
     };
   };
+
+  config.home.activation = {
+    # lib.hm.dag.entryAfter ensures it runs after necessary setup steps
+    home-folders = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir --mode=700 --parents --verbose ~/project ~/life
+      mkdir --mode=700 --parents --verbose ~/.camera ~/.screenshots
+      mkdir --mode=700 --parents --verbose ~/archive-project ~/archive-life
+
+      echo "Existence of Home folders (~/project, ~/life, …) ensured"
+      echo
+      echo "Subdirectories (mostly Projects and Life areas) naming convention :"
+      echo "- camelCase noun representing the thing(s) to improve or increase,"
+      echo "  or camelCase verb representing the action to do or get better at"
+      echo "  - Eventually, several related ones separated by + (NO SPACES)"
+      echo "- Eventual tag (or property) after the nouns, beginning with a ."
+      echo "  - Eventually, several ones separated by . (NO SPACES)"
+      echo "  - .git: It’s a Git repository, should not be synced otherwise"
+      echo "  - .large: Should not be synced with lower capacity devices"
+      echo "  - .local: Should not be synced at all, specific to this device"
+      echo "  - .byIssuer: Subdirectories are nouns representing data sources"
+      echo
+      echo "Subdirectories (Projects, Life areas, …) organization conventions :"
+      echo "- ~/life: Records of important areas needing continuous monitoring,"
+      echo "          or data that might be recurrently needed, throughout life"
+      echo "  - ~/archive-life: Expired or no longer useful documents"
+      echo "- ~/project: Data possibly required to progress towards an"
+      echo "             ultimate goal or a precise, defined milestone"
+      echo "  - ~/archive-project: Definitively complete or discontinued projects"
+      echo "- If some data might go to several (sub)directories"
+      echo "  - Put it in the most specific (often the less frequently used)"
+      echo "  - Eventually symlink it to other relevant (sub)directories"
+      echo
+    '';
+    # echo "- Graph: Linked and non-hierarchical data, typically managed through a dedicated app"
+  };
+
+  config.services.syncthing.settings.folders =
+    let
+      default = {
+        type = "sendreceive";
+        devices = [ "shiba" ];
+        versioning = {
+          type = "simple";
+          params.keep = "4";
+          params.cleanoutDays = "180";
+        };
+      };
+    in
+    {
+      "~/project" = default // {
+        id = "project";
+      };
+      "~/life" = default // {
+        id = "life";
+      };
+      "~/.camera" = default // {
+        id = "camera"; # Store picture when taken, synced with phone’s DCIM/Camera
+      };
+      "~/.screenshots" = default // {
+        id = "screenshots"; # Store screenshot when taken, synced with phone’s Pictures/Screenshots
+      };
+      "~/archive-project" = default // {
+        id = "archive-project";
+      };
+      "~/archive-life" = default // {
+        id = "archive-life";
+      };
+    };
 }

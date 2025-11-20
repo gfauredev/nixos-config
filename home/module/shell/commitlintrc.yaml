@@ -12,14 +12,14 @@ rules:
       - build    # Build tools, integration tools and pipelines, dependencies
       - ops      # Operation components, infrastructure, deployment pipelines
       - docs     # Documentation, code comments
-      - style    # Code formatting, typos, organisation, structure
+      - style    # Code formatting, typos, organization, structure
       - chore    # Other, gitignore, gitattributes, cleaning…
       - flake.lock # Nix Flake Updates
       # - ci     # Automated testing and analysis infrastructure
       # - cicd   # Not Angular covention
       # - doc    # Not Angular convention
       # - revert # Commit revert
-      # - refactor # Code organisation, structure
+      # - refactor # Code organization, structure
   # type-empty: # Type must be set
   #   level: error # TEST relevancy when defining types
   scope-empty: # Scope should be set

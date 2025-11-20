@@ -3,8 +3,13 @@
   pkgs-unstable,
   lib,
   ...
-}: # Audio production and edition
+}: # Audio and Music production and consumption
 {
+  services = {
+    playerctld.enable = true;
+    mpris-proxy.enable = true;
+  };
+
   home.sessionVariables =
     let
       makePluginPath =

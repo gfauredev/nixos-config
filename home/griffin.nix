@@ -11,11 +11,6 @@
     ./module/photo.nix # Photo & Image Edition
   ];
 
-  services = {
-    playerctld.enable = true;
-    mpris-proxy.enable = true;
-  };
-
   home.packages = with pkgs; [
     # playerctl # MPRIS media players control TEST needed with playerctld?
     # streamrip # Download music

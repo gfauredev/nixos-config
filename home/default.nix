@@ -38,14 +38,11 @@
       CONFIG_LOCATION = config.location;
     };
     file = {
-      # Force for reluctant apps
-      Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+      Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
       # Documents.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOCUMENTS_DIR;
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
   };
-
-  # systemd.user.sessionVariables = config.home.sessionVariables;
 
   xdg = {
     enable = true;
@@ -233,19 +230,12 @@
         options.localAnnounceEnabled = true;
       };
     };
-    dunst = {
-      settings = {
-        global = {
-          timeout = "6s";
-          origin = "bottom-right";
-          # origin = "bottom-center";
-          offset = "0x-28"; # Lowered to align with status bar
-          frame_width = 0; # No borders
-          corner_radius = 12; # Rounded corners
-          # width = 400;
-          # height = 100; # About the triple of status bar height
-        };
-      };
+    dunst.settings.global = {
+      timeout = "6s";
+      origin = "bottom-right";
+      offset = "0x-28"; # Lowered to align with status bar
+      frame_width = 0; # No borders
+      corner_radius = 12; # Rounded corners
     };
     gpg-agent.pinentry.package = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
   };
@@ -273,10 +263,6 @@
       ignores = [
         "*ignore*"
         "!.gitignore"
-        # "*.pdf" "*.odt" "*.odf" "*.odp" "*.doc" "*.docx" "*.pptx"
-        # "*.jpg" "*.jpeg" "*.png" "*.webp" "*.avif" "*.avi" "*.mp4" "*.mkv"
-        # "*.wav" "*.mp3" "*.flac" "*.ogg"
-        # ".direnv/" ".venv/" ".vagrant/" "build/" "public/"
       ];
       extraConfig = {
         init.defaultBranch = "main";
@@ -293,13 +279,7 @@
           smudge = "git-lfs smudge -- %f";
           process = "git-lfs filter-process";
         };
-        merge = {
-          conflictstyle = "diff3";
-          # mergiraf = {
-          #   name = "mergiraf";
-          #   driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
-          # };
-        };
+        merge.conflictstyle = "diff3";
       };
     };
     jujutsu.settings.user = {
