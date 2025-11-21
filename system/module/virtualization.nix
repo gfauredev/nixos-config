@@ -4,7 +4,7 @@
     libvirtd.enable = true; # KVM/QEMU daemon
     podman.enable = true;
     docker.enable = false; # INSECURE
-    virtualbox.host.enable = false; # SLOW
+    virtualbox.host.enable = true;
     vmware.host.enable = false; # PROPRIETARY
     spiceUSBRedirection.enable = true; # Allow pass USB devices to VM
     libvirtd = {
@@ -28,8 +28,8 @@
   services.spice-webdavd.enable = true; # WebDav daemon to share files with VMs
   programs.virt-manager.enable = true; # Libvirt GUI, prefer serial
 
-  environment.systemPackages = with pkgs; [
-    cloud-init # Cloud instance initialization tool
-    # podman-compose # Use docker-compose YAML files with podman
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   cloud-init # Cloud instance initialization tool
+  #   docker-compose # YAML files defining container(s)
+  # ];
 }
