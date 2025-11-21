@@ -61,7 +61,7 @@
   config.home.file.".dprint.jsonc".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/editor/dprint.jsonc";
 
-  config.eclipse = {
+  config.programs.eclipse = {
     enable = true;
     package = pkgs.eclipses.eclipse-embedcpp;
   };
