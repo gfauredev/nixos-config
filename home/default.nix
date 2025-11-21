@@ -184,7 +184,7 @@
     # exercism # CLI for the programming exercises website
     # localsend # Share files on local network
     # captive-browser # Browser for captive portals
-    # geteduroam-cli # CLI to configure Eduroam
+    adwaita-icon-theme # Icons for GTK
     # Passwords & Secrets
     pkgs-unstable.proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
