@@ -20,11 +20,17 @@
     bluetooth.enable = lib.mkDefault true;
     bluetooth.powerOnBoot = lib.mkDefault true;
   };
+  # Run non native binaries seamlessly
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "wasm32-wasi"
+    "wasm64-wasi"
+    "x86_64-windows"
+  ];
 
   security = {
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
     rtkit.enable = lib.mkDefault true; # Tools for realtime (preemption)
-    pam.services.hyprlock = { };
     sudo.extraRules = [
       {
         groups = [ "wg" ]; # VPN without password
@@ -43,54 +49,46 @@
     ];
     sudo-rs.extraRules = config.security.sudo.extraRules; # To TEST
   };
-
-  # fprint auth for unlock and sudo but not for login (to unlock keystore)
-  security.pam.services.login.fprintAuth = false;
-
-  security.pam.loginLimits = [
-    {
-      domain = "@audio"; # Increased PAM limits for audio group for realtime
-      item = "memlock";
-      type = "-";
-      value = "unlimited";
-    }
-    {
-      domain = "@audio";
-      item = "rtprio";
-      type = "-";
-      value = "99";
-    }
-    {
-      domain = "@audio";
-      item = "nofile";
-      type = "soft";
-      value = "99999";
-    }
-    {
-      domain = "@audio";
-      item = "nofile";
-      type = "hard";
-      value = "99999";
-    }
-  ];
-
+  security.pam = {
+    services = {
+      login.fprintAuth = false; # fprint auth for unlock, sudo … NOT for login (allow keystore unlock)
+      hyprlock = { }; # Hyprland screen locker
+    };
+    loginLimits = [
+      {
+        domain = "@audio"; # Increased PAM limits for audio group for realtime
+        item = "memlock";
+        type = "-";
+        value = "unlimited";
+      }
+      {
+        domain = "@audio";
+        item = "rtprio";
+        type = "-";
+        value = "99";
+      }
+      {
+        domain = "@audio";
+        item = "nofile";
+        type = "soft";
+        value = "99999";
+      }
+      {
+        domain = "@audio";
+        item = "nofile";
+        type = "hard";
+        value = "99999";
+      }
+    ];
+  };
   users.groups = {
     mtp = { };
     uinput = { };
     wg = { };
   };
 
-  # Run non native binaries seamlessly
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "wasm32-wasi"
-    "wasm64-wasi"
-    "x86_64-windows"
-  ];
-
   networking.firewall.enable = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
-
   services = {
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
@@ -134,19 +132,11 @@
       openFirewall = false;
     };
   };
-
   location.provider = "geoclue2";
-
-  # systemd.services.unmount-boot = {
-  #   description = "Unmount /boot at boot as it’s useless once booted";
-  #   script = "${pkgs.procps}/bin/pgrep nixos-rebuild || ${pkgs.util-linux}/bin/umount /boot";
-  #   wantedBy = [ "multi-user.target" ];
-  # };
 
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
   fonts.enableDefaultPackages = true;
-
   programs = {
     hyprland.enable = true; # Main Window Manager
     xwayland.enable = false; # Use xwayland-satellite instead
@@ -163,17 +153,7 @@
     # uwsm.enable = true; # TEST wayland session manager
     # niri.enable = true; # See https://github.com/YaLTeR/niri
   };
-
-  documentation = {
-    nixos.enable = true;
-    dev.enable = true;
-    nixos.includeAllModules = true;
-  };
-
   environment.systemPackages = with pkgs; [
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
-    # man-pages # Documentation
-    # man-pages-posix # Documentation
-    # navi # Cheat sheet for CLIs
   ];
 }

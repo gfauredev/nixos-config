@@ -169,6 +169,9 @@
     binsh = "${pkgs.dash}/bin/dash"; # Light POSIX shell
     defaultPackages = lib.mkForce [ ]; # Remove default packages
     systemPackages = with pkgs; [
+      man-pages # Documentation, maybe install only for users
+      man-pages-posix # Documentation, maybe install only for users
+      # navi # Cheat sheet for CLIs
       # Shell utilities
       helix # Post-modern modal text editor
       dash # Only login and script shell
