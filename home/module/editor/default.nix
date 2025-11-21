@@ -63,6 +63,6 @@
 
   config.eclipse = {
     enable = true;
-    package = eclipse-embedcpp;
+    package = pkgs.eclipses.eclipse-embedcpp;
   };
 }
