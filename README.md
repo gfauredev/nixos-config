@@ -4,6 +4,21 @@ lang: en
 
 # My NixOS Flake systems and homes configurations
 
+<!--toc:start-->
+
+- [My NixOS Flake systems and homes configurations](#my-nixos-flake-systems-and-homes-configurations)
+  - [Conventions of this repository](#conventions-of-this-repository)
+  - [NixOS’ setup instructions](#nixos-setup-instructions)
+    - [_0._ Build the installer image](#0-build-the-installer-image)
+    - [_1._ Partition, encrypt, format disks](#1-partition-encrypt-format-disks)
+    - [_2._ Handle hardware configuration](#2-handle-hardware-configuration)
+    - [_3._ Install from the Nix Flake](#3-install-from-the-nix-flake)
+    - [_5._ Set up Secure Boot](#5-set-up-secure-boot)
+  - [Other configuration repositories](#other-configuration-repositories)
+  - [Documentation and learning ressources](#documentation-and-learning-ressources)
+
+<!--toc:end-->
+
 I use **NixOS** because it allows me to have a system perfectly tailored to my
 needs and expectations. I’m highly demandant on ergonomics, so I use a lot of
 tools that make interacting with the computer more efficient and comfortable.
@@ -33,12 +48,12 @@ Physically, my keyboard looks like…
 structured data, allowing sophisticated pipelines on them. I use it along a lot
 of other tools that make terminal life easier.
 
-- [Starship](https://starship.rs) prompt to always know where you are and other
+- [starship](https://starship.rs) prompt to always know where you are and other
   useful status information using the shell.
-- [Broot](https://dystroy.org/broot) fast and ergonomic file fuzzy-finder.
-- [Zoxide](https://github.com/ajeetdsouza/zoxide) smater, faster cd alternative.
+- [broot](https://dystroy.org/broot) fast and ergonomic file fuzzy-finder.
+- [zoxide](https://github.com/ajeetdsouza/zoxide) smater, faster cd alternative.
 - [bat](https://github.com/sharkdp/bat) to display text files neatly.
-- [Atuin](https://atuin.sh) cross-terminal and cross-devices command history.
+- [atuin](https://atuin.sh) cross-terminal and cross-devices command history.
 - [ripgrep](https://github.com/BurntSushi/ripgrep) with
   [ripgrep-all](https://github.com/phiresky/ripgrep-all) to quickly search
   full-text inside any file.
@@ -69,8 +84,8 @@ emojies…
 [Thunderbird](https://www.thunderbird.net) for **personal information
 management**. Not exactly keyboard-driven, but very comprehensive and
 standards-based. I’m considering CLI tools such as
-[Himalaya](https://github.com/pimalaya/himalaya) and
-[Khal](https://github.com/pimutils/khal).
+[himalaya](https://github.com/pimalaya/himalaya) and
+[khal](https://github.com/pimutils/khal).
 
 [Stylix](https://stylix.danth.me) Flake to enforce my favorite color theme, my
 favorite fonts and other style settings everywhere. To fully leverage OLED
