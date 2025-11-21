@@ -204,7 +204,7 @@
     jmtpfs # Media transfer protocol with Android devices
     # dislocker # Decrypt BitLocker disks
     # Emulation & Compatibility
-    # bottles # Easier wine management FIXME reenable
+    bottles # Easier wine management
     # quickemu # Quickly create optimized VMs
     # lima # Quickly create optimized VMs
     # wine # Execute Window$ programs
