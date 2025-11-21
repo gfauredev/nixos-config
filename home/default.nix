@@ -56,7 +56,7 @@
         video = "mpv";
         web = "firefox";
         pdf = "org.pwmt.zathura";
-        explorer = "directory";
+        # term = "com.mitchellh.ghostty";
         document = "writer";
         spreadsheet = "calc";
       in
@@ -65,7 +65,7 @@
         "text/plain" = "${text}.desktop";
         "text/markdown" = "${text}.desktop";
         "text/code" = "${text}.desktop";
-        "inode/directory" = "${explorer}.desktop"; # Workspace
+        # "inode/directory" = "${term}.desktop"; # Use broot ?
         # Document
         "application/vnd.oasis.opendocument.text" = "${document}.desktop";
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
