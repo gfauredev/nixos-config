@@ -65,4 +65,8 @@
     enable = true;
     package = pkgs.eclipses.eclipse-embedcpp;
   };
+
+  config.packages = with pkgs; [
+    swt # Used by eclipse
+  ];
 }
