@@ -35,7 +35,7 @@ in
       device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
-        "subvol=code"
+        "subvol=code" # TODO rename to "executable" as also used for wine, tests
         "exec" # Allow users to execute code somewhere (TODO individual dirs gen)
         "nodev" # Security hardening
         "noatime" # Reduce writes
