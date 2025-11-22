@@ -71,8 +71,8 @@
     # lib.hm.dag.entryAfter ensures it runs after necessary setup steps
     home-folders = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir --mode=700 --parents --verbose ~/project ~/life
-      mkdir --mode=700 --parents --verbose ~/.camera ~/.screenshots
-      mkdir --mode=700 --parents --verbose ~/archive-project ~/archive-life
+      mkdir --mode=700 --parents --verbose ~/image/camera ~/image/screenshot
+      mkdir --mode=700 --parents --verbose ~/archive/project ~/archive/life
 
       echo "Existence of Home folders (~/project, ~/life, …) ensured"
       echo
@@ -90,10 +90,10 @@
       echo "Subdirectories (Projects, Life areas, …) organization conventions :"
       echo "- ~/life: Records of important areas needing continuous monitoring,"
       echo "          or data that might be recurrently needed, throughout life"
-      echo "  - ~/archive-life: Expired or no longer useful documents"
       echo "- ~/project: Data possibly required to progress towards an"
       echo "             ultimate goal or a precise, defined milestone"
-      echo "  - ~/archive-project: Definitively complete or discontinued projects"
+      echo "- ~/archive: Definitively complete or discontinued projects,"
+      echo               or expired or no longer useful documents"
       echo "- If some data might go to several (sub)directories"
       echo "  - Put it in the most specific (often the less frequently used)"
       echo "  - Eventually symlink it to other relevant (sub)directories"
