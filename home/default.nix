@@ -35,7 +35,6 @@
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
-      CONFIG_LOCATION = config.location;
     };
     file = {
       Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
@@ -49,22 +48,19 @@
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications =
-      let # TODO make a SSOT for below, maybe nix option
-        text = "Helix";
+      let
         image = "qimgv";
         audio = "mpv";
         video = "mpv";
-        web = "firefox";
         pdf = "org.pwmt.zathura";
-        # term = "com.mitchellh.ghostty";
         document = "writer";
         spreadsheet = "calc";
       in
       {
         # Text & Code
-        "text/plain" = "${text}.desktop";
-        "text/markdown" = "${text}.desktop";
-        "text/code" = "${text}.desktop";
+        "text/plain" = "${config.editor.desktop}.desktop";
+        "text/markdown" = "${config.editor.desktop}.desktop";
+        "text/code" = "${config.editor.desktop}.desktop";
         # "inode/directory" = "${term}.desktop"; # Use broot ?
         # Document
         "application/vnd.oasis.opendocument.text" = "${document}.desktop";
@@ -94,8 +90,8 @@
         "video/mp4" = "${video}.desktop";
         "video/avi" = "${video}.desktop";
         # Web
-        "x-scheme-handler/https" = "${web}.desktop";
-        "x-scheme-handler/http" = "${web}.desktop";
+        "x-scheme-handler/https" = "${config.browser.desktop}.desktop";
+        "x-scheme-handler/http" = "${config.browser.desktop}.desktop";
         # Email & Calendar
         "x-scheme-handler/mailto" = "${config.organization.pim}.desktop";
         "x-scheme-handler/webcal" = "${config.organization.pim}.desktop";
@@ -185,6 +181,13 @@
     # localsend # Share files on local network
     # captive-browser # Browser for captive portals
     adwaita-icon-theme # Icons for GTK
+    nixpkgs-review # Quickly review pull requests to nixpkgs
+    watchexec # Run command when file changes
+    hyperfine # Benchmark commands
+    nickel # Modern configuration Nickel, Nix improvement
+    commitlint-rs # Be consistent in commit messages
+    # kalker # Evaluate math expression
+    # comma # Run any command from Nixpkgs
     # Passwords & Secrets
     pkgs-unstable.proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
@@ -203,6 +206,7 @@
     smartmontools # Monitor health of drives
     jmtpfs # Media transfer protocol with Android devices
     # dislocker # Decrypt BitLocker disks
+    # cdrkit # ISO tools and misc
     # Emulation & Compatibility
     bottles # Easier wine management
     # quickemu # Quickly create optimized VMs

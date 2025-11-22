@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [
     ./alias.nix
@@ -7,21 +12,32 @@
     ./pulsemixer
   ];
   home.packages =
-    let
-      archive = pkgs.writeScriptBin "archive" "${lib.readFile ./script/archive.sh}";
-      backup = pkgs.writeScriptBin "back" "${lib.readFile ./script/backup.sh}";
-      configure = pkgs.writeScriptBin "configure" "${lib.readFile ./script/configure.sh}";
-      date-edit = pkgs.writeScriptBin "de" "${lib.readFile ./script/date-edit.sh}";
-      extract = pkgs.writeScriptBin "ex" "${lib.readFile ./script/extract.sh}";
-      init-dev-env = pkgs.writeScriptBin "dev" "${lib.readFile ./script/init-dev-env.sh}";
-      mtp-mount = pkgs.writeScriptBin "mount.mtp" "${lib.readFile ./script/mtp.sh}";
-      present-pdf = pkgs.writeScriptBin "present" "${lib.readFile ./script/present.sh}";
-      smart-commit = pkgs.writeScriptBin "cmt" "${lib.readFile ./script/smart-commit.sh}";
-      smart-terminal = pkgs.writeScriptBin "t" "${lib.readFile ./script/smart-terminal.sh}";
-      typst-compile = pkgs.writeScriptBin "typ" "${lib.readFile ./script/typ.sh}";
-      usb-mount = pkgs.writeScriptBin "mount.usb" "${lib.readFile ./script/usb.sh}";
-    in
     with pkgs;
+    with lib;
+    let
+      archive = writeScriptBin "archive" readFile ./script/archive.sh;
+      backup = writeScriptBin "back" readFile ./script/backup.sh;
+      # TODO make this script a package available in this flake’s nix shell (dev environment)
+      configure = writeScriptBin "cfg" ''
+        cd ${config.location}
+        # direnv exec . # FIXME Seems not using direnv properly inside editor, LSPs don’t always work
+        systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring ${
+          writeScript "configure" readFile ./script/configure.sh
+        }/configure "$@"
+      '';
+      date-edit = writeScriptBin "de" readFile ./script/date-edit.sh;
+      extract = writeScriptBin "ex" readFile ./script/extract.sh;
+      init-dev-env = writeScriptBin "dev" readFile ./script/init-dev-env.sh;
+      mtp-mount = writeScriptBin "mount.mtp" readFile ./script/mtp.sh;
+      present-pdf = writeScriptBin "present" readFile ./script/present.sh;
+      smart-commit = writeScriptBin "cmt" readFile ./script/smart-commit.sh;
+      smart-terminal = writeScriptBin "t" ''
+        TERM_EXEC=${config.term.exec}
+        ${readFile ./script/smart-terminal.sh}
+      '';
+      typst-compile = writeScriptBin "typ" readFile ./script/typ.sh;
+      usb-mount = writeScriptBin "mount.usb" readFile ./script/usb.sh;
+    in
     [
       archive # Quickly move a directory inside ~/archive/
       backup # Backup with restic or rsync
@@ -35,17 +51,8 @@
       smart-terminal # Open a terminal quickly with first parameter always cd
       typst-compile # Compile the latest edited Typst file in current dir
       usb-mount # Quickly mount or unmount a USB device in ~/usb
-      # Development and general CLI tools
-      trash-cli # Manage a trash from CLI # Needed with Nushell ?
       ripgrep-all # ripgrep for non-text files
-      kalker # Evaluate math expression
-      nixpkgs-review # Quickly review pull requests to nixpkgs
-      comma # Run any command from Nixpkgs
-      watchexec # Run command when file changes
-      hyperfine # Benchmark commands
-      nickel # Modern configuration Nickel, Nix improvement
-      cdrkit # ISO tools and misc
-      commitlint-rs # Be consistent in commit messages
+      trash-cli # Manage a trash from CLI # Needed with Nushell ?
     ];
 
   home = {

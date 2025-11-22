@@ -4,7 +4,6 @@
 #   this situation; clone the latest config (+ needed Git token)
 #   into the writeable /mnt/config and falls back to copying the
 #   readonly /etc/config-flake into /mnt/config after a 3s timeout
-# TODO make this script a package available in this flake’s nix dev environment
 CPU_LIMIT='cpulimit -l 888'     # Limit CPU usage to 888% accross threads
 MEM_LIMIT=$((10 * 1024 * 1024)) # Limit memory usage to 10 Go
 NIXOS_REBUILD_CMD="sudo $CPU_LIMIT nixos-rebuild"
@@ -290,10 +289,10 @@ while [ "$#" -gt 0 ]; do
     emph
     printf 'You can exit the shell to get back to previous working directory\n'
     std
-    if [ "$2" = "public" ] || [ "$2" = "home" ] || [ "$2" = "system" ]; then
+    if [ -d "$2" ]; then
       cd "$2" || exit # cd into sub-directory
     fi
-    exec $SHELL # Execute the default shell at the WD of this script
+    exec $SHELL # Execute the default shell in the WD of this script
     ;;
   l | log | logs | stat | stats | status) # Show Git logs and status
     public_logs_status                    # Directly show Git logs and status

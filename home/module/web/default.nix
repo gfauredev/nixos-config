@@ -1,10 +1,41 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
 {
-  programs = {
+  options.browser =
+    with lib;
+    let
+      str = types.str;
+    in
+    {
+      command = mkOption {
+        type = str;
+        default = "firefox"; # TODO Consider full path
+        description = "Main web browser command";
+      };
+      desktop = mkOption {
+        type = str;
+        default = "firefox";
+        description = "Main web browser desktop entry (without .desktop)";
+      };
+      alt = {
+        command = mkOption {
+          type = str;
+          default = "brave";
+          description = "Alternative web browser command";
+        };
+        desktop = mkOption {
+          type = str;
+          default = "brave-browser";
+          description = "Alternative web browser desktop entry (without .desktop)";
+        };
+      };
+    };
+
+  config.programs = {
     firefox.enable = true; # Gecko web browser
     chromium.enable = true; # Blink web browser
     chromium.package = pkgs.brave; # Better privacy and security than Chromium
@@ -155,10 +186,8 @@
       };
     };
   };
-  home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
+  config.home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
-  home.sessionVariables = {
-    BROWSER = "firefox"; # Better with full paths ?
-    BROWSER_ALT = "brave";
-  };
+
+  config.home.sessionVariables.BROWSER = config.browser.command; # Set default web browser
 }

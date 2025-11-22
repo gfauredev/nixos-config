@@ -72,14 +72,14 @@ def --env code [] {
 }
 
 # Edit system and home config
-def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
-  cd $env.CONFIG_LOCATION
-  # direnv exec . # FIXME doesn’t seems to use direnv properly inside editor, LSPs not worky
-  systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring configure ...$arg
-}
+# def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
+#   cd $env.CONFIG_LOCATION
+#   # direnv exec . # FIXME doesn’t seems to use direnv properly inside editor, LSPs not worky
+#   systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring configure ...$arg
+# }
 
 # Open in background with default app
-def start-bg [file] {
+def x [file] {
   job spawn {start $file}
   # task spawn --immediate {start $file}
 }

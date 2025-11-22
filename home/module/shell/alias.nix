@@ -121,8 +121,8 @@ in
     # Files
     m = "mkdir --verbose"; # Quickly create directory
     # Open, single letter
-    x = "start-bg"; # Open with the default tool
-    o = "start-bg"; # Open with the default tool
+    # x = "start-bg"; # Open with the default tool
+    o = "x"; # Open with the default tool
     p = "${config.home.sessionVariables.PAGER}"; # Default pager (ov)
     # List
     l = "ls"; # Quickly list files in current directory

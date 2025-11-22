@@ -13,6 +13,10 @@ let
   # TODO pass custom keybinding for apps that support tabs natively instead of grouping
   tabbedApp = [
     {
+      name = "alacritty";
+      bind = "ctrl+TODO";
+    }
+    {
       name = "brave";
       bind = "ctrl+t";
     }
@@ -23,10 +27,6 @@ let
     {
       name = "firefox";
       bind = "ctrl+t";
-    }
-    {
-      name = "alacritty";
-      bind = "ctrl+TODO";
     }
     {
       name = "foot";
@@ -65,9 +65,9 @@ let
     play.pause = "playerctl pause";
     play.next = "playerctl next";
     play.previous = "playerctl previous";
-    media.toggle = "playerctl play-pause -p ${config.media.favorite}";
-    media.next = "playerctl next -p ${config.media.favorite}";
-    media.previous = "playerctl previous -p ${config.media.favorite}";
+    # media.toggle = "playerctl play-pause -p ${config.media}";
+    # media.next = "playerctl next -p ${config.media}";
+    # media.previous = "playerctl previous -p ${config.media}";
   }; # TODO generate Hyprland 'bindl' binds from audio definitions
   brightness = {
     raise = "brightnessctl set 1%+"; # "light -A 1";
@@ -91,11 +91,11 @@ let
     b = {
       name = "web"; # Name of the workspace (replace with icon in status bar)
       # Command to execute if the workspace is empty when focusing it
-      empty = config.home.sessionVariables.BROWSER;
+      empty = config.browser.command;
       # Command to exec if $mod+attrName while non empty ws is already focused
-      already = config.home.sessionVariables.BROWSER_ALT;
+      already = config.browser.alt.command;
       # Command to execute if $mod+alt+attrName
-      alt = config.home.sessionVariables.BROWSER_ALT;
+      alt = config.browser.alt.command;
     };
     a = {
       name = "art";
@@ -145,12 +145,12 @@ let
     };
     d.name = "dpp"; # DisplayPort
     h.name = "hdm"; # HDMI
-    XF86AudioMedia = {
-      name = "med";
-      empty = config.media.favorite; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-    };
-    XF86Tools = XF86AudioMedia; # Sometimes the key is named differently
+    # XF86AudioMedia = {
+    #   name = "med";
+    #   empty = config.media; # Exec if focused + empty
+    #   already = config.launch.app; # If ws already focused + $mod+attrName
+    # };
+    # XF86Tools = XF86AudioMedia; # Sometimes the key is named differently
   };
   # TODO Generate Hyprland binds from workspaces definitions with Nix functions
   # bindd = [
@@ -275,12 +275,12 @@ in
           "${mod}, k, Pick a color anywhere on the screen, exec, ${pick}"
           # Workspaces
           # b (web)
-          "${mod} CONTROL, b, Open alternative/fallback browser 1, exec, ${config.home.sessionVariables.BROWSER_ALT}"
-          "${mod} CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${config.home.sessionVariables.BROWSER_ALT}"
+          "${mod} CONTROL, b, Open alternative/fallback browser 1, exec, ${config.browser.alt.command}"
+          "${mod} CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${config.browser.alt.command}"
           "${mod}, b, Web browsing workspace, workspace, name:web"
           "${mod}, b, Open browser in web workspace, exec, ${
             ifWorkspaceEmpty { ws = "web"; }
-          } ${config.home.sessionVariables.BROWSER}"
+          } ${config.browser.command}"
           "${mod} SHIFT, b, Move window to web workspace, movetoworkspace, name:web"
           "${mod} ALT, b, Move web workspace to monitor, focusworkspaceoncurrentmonitor, name:web"
           # a (art)
@@ -339,22 +339,26 @@ in
           "${mod}, m, Go to messaging workspace, workspace, name:msg"
           "${mod}, m, Launch a messaging app, exec, ${ifWorkspaceEmpty { ws = "msg"; }} ${config.launch.app}"
           # d (dpp)
-          "${mod}, d, Go to DisplayPort workspace, workspace, name:dpp" # FIXME right port
+          "${mod}, d, Go to DisplayPort workspace, workspace, name:dpp" # TODO Ensure right port
           "${mod} SHIFT, d, Move window to DisplayPort workspace, movetoworkspace, name:dpp"
           # h (hdm)
-          "${mod}, h, Go to HDMI workspace, workspace, name:hdm" # FIXME right port
+          "${mod}, h, Go to HDMI workspace, workspace, name:hdm" # TODO Ensure right port
           "${mod} SHIFT, h, Move window to HDMI workspace, movetoworkspace, name:hdm"
           # XF86AudioMedia/XF86Tools (media)
-          ", XF86AudioMedia, Go to media workspace, workspace, name:media"
-          ", XF86AudioMedia, Launch default media player, exec, ${
-            ifWorkspaceEmpty { ws = "media"; }
-          } ${config.media.favorite}"
-          ", XF86Tools, Go to media workspace, workspace, name:media"
-          ", XF86Tools, Launch default media player, exec, ${
-            ifWorkspaceEmpty { ws = "media"; }
-          } ${config.media.favorite}"
-          "SHIFT, XF86AudioMedia, Open quick mixer, exec, [float; center; size 888 420] ${mix}"
-          "SHIFT, XF86Tools, Open quick mixer, exec, [float; center; size 888 420] ${mix}"
+          # ", XF86AudioMedia, Go to media workspace, workspace, name:media"
+          # ", XF86AudioMedia, Quickly launch a media app, exec, ${
+          #   ifWorkspaceEmpty { ws = "media"; }
+          # } ${config.media}"
+          # ", XF86Tools, Go to media workspace, workspace, name:media"
+          # ", XF86Tools, Quickly launch a media app, exec, ${
+          #   ifWorkspaceEmpty { ws = "media"; }
+          # } ${config.media}"
+          ", XF86AudioMedia, Open audio mixer, exec, [float; center; size 888 420] ${mix}"
+          ", XF86Tools, Open audio mixer, exec, [float; center; size 888 420] ${mix}"
+          "SHIFT, XF86AudioMedia, Open bluetooth manager, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl"
+          "SHIFT, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
+          "CONTROL, XF86AudioMedia, Open bluetooth manager, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl"
+          "CONTROL, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
         ];
         binde = [
           "${mod} SHIFT, c, moveactive, -10 0" # Move left
