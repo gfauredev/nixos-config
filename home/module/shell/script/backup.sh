@@ -1,7 +1,7 @@
 # Directories directly under user $HOME, as described in module/organization.nix
 IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
 BOOTABLE="$HOME/data/operatingSystems.large"      # To copy on bootable drives
-ARCHIVE="$HOME/archive-life $HOME/archive-project"
+ARCHIVE="$HOME/archive/life $HOME/archive/project"
 avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
 used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
 echo "Available space on destination : ${avail}o"
@@ -63,6 +63,10 @@ read -n 1 -r -t 5 shouldClean
 
 if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
   printf "Trashing archive directories content\n"
-  trash --verbose "$HOME"/archive-project/*
-  trash --verbose "$HOME"/archive-life/*
+  find "$HOME"/archive/project/ -maxdepth 1 -type f -not -name ".stfolder" \
+    -not -name ".stignore" -not -name "stignore" -not -name "stignore.light" \
+    -not -name ".ventoyignore" -print0 | xargs -0 trash
+  find "$HOME"/archive/life/ -maxdepth 1 -type f -not -name ".stfolder" \
+    -not -name ".stignore" -not -name "stignore" -not -name "stignore.light" \
+    -not -name ".ventoyignore" -print0 | xargs -0 trash
 fi

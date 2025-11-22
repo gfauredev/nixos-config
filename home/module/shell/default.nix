@@ -20,7 +20,7 @@
       # TODO make this script a package available in this flake’s nix shell (dev environment)
       configure = writeScriptBin "cfg" ''
         cd ${config.location}
-        systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring ${writeScript "configure" (readFile ./script/configure.sh)}/configure "$@"
+        systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring ${writeScript "configure" (readFile ./script/configure.sh)} "$@"
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
