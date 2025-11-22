@@ -42,7 +42,7 @@ emph() {
 strong() {
   printf '\033[1m' # Start bold
 }
-std() {
+regular() {
   printf '\033[0m' # Standard text, remove any style
 }
 
@@ -63,14 +63,14 @@ pull_one() { # Git pull a (sub)directory (eg. private or public config)
   else
     printf '%s non reachable, move on\n' "$remote"
   fi
-  std # Return to normal text
+  regular # Return to normal text
 }
 
 # Pull the current Git repository, recursing into submodules
 pull_recurse() { # Git pull private or public config
   emph           # Italic text
   printf 'top-level: Pull latest changes (pulls submodules too)\n'
-  std # Normal text
+  regular # Normal text
   remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   emph # Italic text
   printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
@@ -82,7 +82,7 @@ pull_recurse() { # Git pull private or public config
   else
     printf '%s non reachable, move on\n' "$remote"
   fi
-  std # Return to normal text
+  regular # Return to normal text
 }
 
 # Update public config flake inputs
@@ -90,14 +90,14 @@ update_subflake_inputs() {
   emph # Italic text
   printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
   git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
-  std
+  regular
   emph # Italic text
   printf '%s: Update flake inputs\n' $SUBFLAKE
-  std
+  regular
   nix flake update --flake ./$SUBFLAKE --commit-lock-file
   emph # Italic text
   printf 'top-level: Commit Git %s submodule\n' $SUBFLAKE
-  std # TODO ensure submodule is committed everywhere it might be edited
+  regular # TODO ensure submodule is committed everywhere it might be edited
   git commit --message "$SUBFLAKE: Update inputs" $SUBFLAKE
   # Test if the last commit is an unpushed lockfile update
   # msg=$(git -C $PUBLIC_LOC log --branches --not --remotes -1 --pretty=format:%s)
@@ -107,7 +107,7 @@ update_subflake_inputs() {
 update_toplevel_inputs() {
   emph # Italic text
   printf 'top-level: Update %s flake inputs\n' "$(pwd)"
-  std
+  regular
   nix flake update # --flake . # Always update top-level Flake submodules inputs
 }
 
@@ -132,22 +132,22 @@ commit_all_changes() { # Commit $1 config with message $2
     home_changed=true # Rebuild home as changes have been made
     strong            # Bold text
     printf '\tChanges made in %s configuration\n' $HOME_CFG
-    std # Standard text
+    regular # Standard text
   # elif [ -d "$repo_path/$HOME_LOC" ]; then
   elif has_repo_changed "$repo_path" flake.nix flake.lock; then
     home_changed=true # Rebuild home as changes have been made
     strong            # Bold text
     printf '\tChanges made in flake.nix / flake.lock\n'
-    std # Standard text
+    regular # Standard text
   fi
   # Commit all the changes
   emph # Italic text
   printf '\t❯ git -C %s add --verbose .\n' "$repo_path"
-  std
+  regular
   git -C "$repo_path" add --verbose .
   emph # Italic text
   printf '\t❯ git -C %s commit %s\n' "$repo_path" "$*"
-  std
+  regular
   git -C "$repo_path" commit --verbose "$@" || return
 }
 
@@ -156,17 +156,17 @@ commit_all() { # Git commit top-level and submodule flake repositories
   emph         # Italic text
   printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
   git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
-  std
+  regular
   emph # Italic text
   printf '%s: Commit flake repository\n' "$SUBFLAKE"
-  std
+  regular
   if commit_all_changes $SUBFLAKE --message "$1"; then # Commit the sub flake
     git -C $SUBFLAKE push                              # Nix needs it pushed
     update_toplevel_inputs                             # Update changed sub
   fi
   emph
   printf 'top-level: Commit flake repository (including eventual inputs update)\n'
-  std
+  regular
   commit_all_changes . --message "$1" # Commit the private flake
 }
 
@@ -182,18 +182,18 @@ protected_amend() { # Amend top-level or submodule flake repositories
   if ! has_repo_changed "$1"; then
     emph
     printf '%s: No non commited changes, not amending\n' "$DIR"
-    std
+    regular
     return 1 # There are no changes to amend, makes no sense, fail
   fi
   if [ -n "$(git -C "$1" log --branches --not --remotes -1)" ]; then
     emph
     printf '%s: Last commit is not pushed, amending\n' "$DIR"
-    std
+    regular
     commit_all_changes "$1" --amend || return # Only if unpushed commits
   else
     emph
     printf '%s: All commits pushed, no one to amend, create new commit instead\n' "$DIR"
-    std
+    regular
     commit_all_changes "$1" || return # Create new commit instead
   fi
 }
@@ -204,7 +204,7 @@ extract_last_commit_msg() {
   commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on message
   strong                             # Bold text
   printf '\tCommit type (edited interactively): "%s"\n' "$commit_type"
-  std # Standard text
+  regular # Standard text
 }
 
 amend_all() { # Amend top-level and submodule flake repositories
@@ -219,7 +219,7 @@ amend_all() { # Amend top-level and submodule flake repositories
 rebuild_system_cmd() { # Rebuild the NixOS system
   # emph
   # printf 'Mount ESP (%s) before system update\n' "$ESP"
-  # std
+  # regular
   # sudo mount -v $ESP || exit # Use fstab
   if [ "$power_state" = "poweroff" ] || [ "$power_state" = "reboot" ]; then
     NIXOS_REBUILD_CMD="$NIXOS_REBUILD_CMD --flake . boot" # Will reboot anyway
@@ -228,11 +228,11 @@ rebuild_system_cmd() { # Rebuild the NixOS system
   fi
   emph
   printf 'NixOS system rebuild: "%s"\n' "$NIXOS_REBUILD_CMD"
-  std
+  regular
   if ! $NIXOS_REBUILD_CMD; then
     emph
     printf 'Failed update, exiting\n' # , unmount /home\n'
-    std
+    regular
     return 1 # Failed update status
   fi
   # printf 'Unmount ESP (%s) for security\n' "$ESP"
@@ -242,24 +242,24 @@ rebuild_system_cmd() { # Rebuild the NixOS system
 rebuild_home_cmd() { # Rebuild the Home Manager home
   # emph
   # printf 'Remove .config/mimeapps.list'
-  # std
+  # regular
   # rm -f "$XDG_CONFIG_HOME/mimeapps.list" # Some apps replace it
   HOME_MANAGER_CMD="$HOME_MANAGER_CMD --flake . switch -b backup"
   emph
   printf 'Home Manager home rebuild: "%s"\n' "$HOME_MANAGER_CMD"
-  std
+  regular
   $HOME_MANAGER_CMD || return
 }
 
 rebase_all() { # Git rebase top-level and submodule flake repositories
   emph
   printf '%s: Rebase flake repository\n' "$SUBFLAKE"
-  std
+  regular
   git -C $SUBFLAKE rebase -i
   git -C $SUBFLAKE push & # Nix needs the sub flake repository pushed to build
   emph
   printf 'top-level: Rebase flake repository\n'
-  std
+  regular
   msg=$(git -C $SUBFLAKE log --branches --not --remotes -1 --pretty=format:%s)
   if [ -n "$msg" ] || # If top and sub repos have unpushed commit(s),
     [ -n "$(git log --branches --not --remotes)" ]; then
@@ -272,7 +272,7 @@ rebase_all() { # Git rebase top-level and submodule flake repositories
 if ! [ -d $SUBFLAKE ]; then # Test if there is a sub flake (Git submodule)
   emph
   printf 'No Git submodules found in %s\n' "$(pwd)"
-  std
+  regular
 fi
 
 update_inputs=false     # Whether to update flake inputs
@@ -288,7 +288,7 @@ while [ "$#" -gt 0 ]; do
   c | d | cd) # Directly open default shell into current working directory
     emph
     printf 'You can exit the shell to get back to previous working directory\n'
-    std
+    regular
     if [ -d "$2" ]; then
       cd "$2" || exit # cd into sub-directory
     fi
@@ -327,28 +327,28 @@ while [ "$#" -gt 0 ]; do
 done
 strong # Bold text
 printf 'Update flake inputs: %s\n' $update_inputs
-std    # Standard text
+regular    # Standard text
 strong # Bold text
 printf 'Rebuild NixOS system: %s\n' $rebuild_system
-std    # Standard text
+regular    # Standard text
 strong # Bold text
 printf 'Commit message: "%s"\n' "$commit_msg"
-std                                # Standard text
+regular                                # Standard text
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
 strong                             # Bold text
 printf 'Commit type: "%s"\n' "$commit_type"
-std    # Standard text
+regular    # Standard text
 strong # Bold text
 printf 'Push Git repositories: %s\n' $push_repositories
-std    # Standard text
+regular    # Standard text
 strong # Bold text
 printf 'Power state change: "%s"\n' $power_state
-std # Standard text
+regular # Standard text
 
 strong # Bold text
 printf 'Limit memory usage to %s kb for the following commands\n' $MEM_LIMIT
 ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
-std                  # Back to standard text
+regular                  # Back to standard text
 
 pull_recurse # Always pull the latest configuration before doing anything
 if $update_inputs; then
@@ -359,16 +359,16 @@ if [ -n "$commit_msg" ]; then
   wait # Wait for eventual pull or push to finish
   emph
   printf 'Start default text editor\n'
-  std
-  # FIXME doesn’t seems to load the environment properly
-  direnv exec . $EDITOR .  # Edit the configuration before commiting,
+  regular
+  # FIXME Don’t load the environment properly, LSPs don’t reliably work
+  $EDITOR . # Edit the configuration before commiting,
   commit_all "$commit_msg" # then commit public and private flakes
 else                       # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
     wait # Wait for eventual pull or push to finish
     emph
     printf 'Start default text editor\n'
-    std
+    regular
     direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
   fi
   git -C $SUBFLAKE push # Nix needs it pushed
@@ -396,7 +396,7 @@ if $push_repositories; then # Push repositories if explicit argument
   fi
   emph
   printf 'top-level: Push flake repository (pushes submodules too)\n'
-  std
+  regular
   git push &
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations

@@ -15,28 +15,25 @@
     with pkgs;
     with lib;
     let
-      archive = writeScriptBin "archive" readFile ./script/archive.sh;
-      backup = writeScriptBin "back" readFile ./script/backup.sh;
+      archive = writeScriptBin "archive" (readFile ./script/archive.sh);
+      backup = writeScriptBin "back" (readFile ./script/backup.sh);
       # TODO make this script a package available in this flake’s nix shell (dev environment)
       configure = writeScriptBin "cfg" ''
         cd ${config.location}
-        # direnv exec . # FIXME Seems not using direnv properly inside editor, LSPs don’t always work
-        systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring ${
-          writeScript "configure" readFile ./script/configure.sh
-        }/configure "$@"
+        systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring ${writeScript "configure" (readFile ./script/configure.sh)}/configure "$@"
       '';
-      date-edit = writeScriptBin "de" readFile ./script/date-edit.sh;
-      extract = writeScriptBin "ex" readFile ./script/extract.sh;
-      init-dev-env = writeScriptBin "dev" readFile ./script/init-dev-env.sh;
-      mtp-mount = writeScriptBin "mount.mtp" readFile ./script/mtp.sh;
-      present-pdf = writeScriptBin "present" readFile ./script/present.sh;
-      smart-commit = writeScriptBin "cmt" readFile ./script/smart-commit.sh;
+      date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
+      extract = writeScriptBin "ex" (readFile ./script/extract.sh);
+      init-dev-env = writeScriptBin "dev" (readFile ./script/init-dev-env.sh);
+      mtp-mount = writeScriptBin "mount.mtp" (readFile ./script/mtp.sh);
+      present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
+      smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
       smart-terminal = writeScriptBin "t" ''
         TERM_EXEC=${config.term.exec}
         ${readFile ./script/smart-terminal.sh}
       '';
-      typst-compile = writeScriptBin "typ" readFile ./script/typ.sh;
-      usb-mount = writeScriptBin "mount.usb" readFile ./script/usb.sh;
+      typst-compile = writeScriptBin "typ" (readFile ./script/typ.sh);
+      usb-mount = writeScriptBin "mount.usb" (readFile ./script/usb.sh);
     in
     [
       archive # Quickly move a directory inside ~/archive/
