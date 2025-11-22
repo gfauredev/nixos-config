@@ -35,6 +35,7 @@
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
+      XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
     };
     file = {
       Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…

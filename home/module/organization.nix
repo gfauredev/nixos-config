@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: # Email, Calendar, Task, Contact, Note, Organization
 {
@@ -114,23 +115,25 @@
       };
     in
     {
-      "~/project" = default // {
-        id = "project";
+      project = default // {
+        path = "${config.user.home}/project";
       };
-      "~/life" = default // {
-        id = "life";
+      life = default // {
+        path = "${config.user.home}/life";
       };
-      "~/.camera" = default // {
-        id = "camera"; # Store picture when taken, synced with phone’s DCIM/Camera
+      camera = default // {
+        # Store picture when taken, synced with phone’s DCIM/Camera
+        path = "${config.home.sessionVariables.XDG_PICTURES_DIR}/camera";
       };
-      "~/.screenshots" = default // {
-        id = "screenshots"; # Store screenshot when taken, synced with phone’s Pictures/Screenshots
+      screenshots = default // {
+        # Store screenshot when taken, synced with phone’s Pictures/Screenshots
+        path = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot";
       };
-      "~/archive-project" = default // {
-        id = "archive-project";
+      projectArchive = default // {
+        path = "${config.user.home}/archive/project";
       };
-      "~/archive-life" = default // {
-        id = "archive-life";
+      lifeArchive = default // {
+        path = "${config.user.home}/archive/life";
       };
     };
 }

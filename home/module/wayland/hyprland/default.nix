@@ -49,7 +49,7 @@ let
   pick = "hyprpicker --autocopy"; # Color picker
   note = "anki"; # Note-taking app"
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
-  timestamp = "$(date +'%Y-%m-%d_%Hh%Mm%S')"; # Current date as string
+  timestamp = "$(date +'%Y-%m-%d-%Hh%Mm%S')"; # Current date as string
   audio = {
     speaker.toggle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
     speaker.raise = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; # Wireplumber
@@ -80,12 +80,11 @@ let
     region = "wl-present set-region"; # Change mirrored output or region
     freeze = "wl-present toggle-freeze"; # Freeze mirrored image
   };
-  screenshot = rec {
-    location = config.home.sessionVariables.XDG_PICTURES_DIR;
+  screenshot = {
     fullscreen = "grim";
     region = ''grim -g "$(slurp)"'';
-    dest-ws = "${location}/${timestamp}_${active_ws}.png";
-    dest-zone = "${location}/${timestamp}_${active_win}.png";
+    dest-ws = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_ws}${timestamp}.png";
+    dest-zone = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_win}${timestamp}.png";
   };
   workspace = rec {
     b = {
@@ -378,13 +377,13 @@ in
           "SHIFT, XF86AudioMicMute, exec, ${audio.speaker.toggle}"
           "CONTROL, XF86AudioMicMute, exec, ${audio.speaker.toggle}"
           ", XF86AudioPlay, exec, ${audio.play.toggle}"
-          "SHIFT, XF86AudioPlay, exec, ${audio.media.toggle}"
+          # "SHIFT, XF86AudioPlay, exec, ${audio.media.toggle}"
           ", XF86AudioPause, exec, ${audio.play.toggle}"
-          "SHIFT, XF86AudioPause, exec, ${audio.media.toggle}"
+          # "SHIFT, XF86AudioPause, exec, ${audio.media.toggle}"
           ", XF86AudioNext, exec, ${audio.play.next}"
-          "SHIFT, XF86AudioNext, exec, ${audio.media.next}"
+          # "SHIFT, XF86AudioNext, exec, ${audio.media.next}"
           ", XF86AudioPrev, exec, ${audio.play.previous}"
-          "SHIFT, XF86AudioPrev, exec, ${audio.media.previous}"
+          # "SHIFT, XF86AudioPrev, exec, ${audio.media.previous}"
           ", XF86RFKill, exec, ${plane-mode}"
         ];
         bindle = [

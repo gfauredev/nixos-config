@@ -86,6 +86,7 @@
     jq.enable = true; # JSON parsing and request tool
     translate-shell.enable = true; # Google Translate CLI
     fastfetch.enable = true; # Quick system info
+    yazi.enable = true;
     less.enable = false; # Bugged, don’t respects lesskeys
     lesspipe.enable = false;
     distrobox.enable = false; # Quick tightly integrated containers
@@ -125,6 +126,11 @@
       workspaces = true; # Filter commands executed in Git repo
       ctrl_n_shortcuts = true; # Ctrl+[1-9] quickly select cmd
       # filter_mode_shell_up_key_binding = "session";
+    };
+    yazi = {
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = false;
     };
   };
 
