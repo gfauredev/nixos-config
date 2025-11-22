@@ -93,7 +93,7 @@
       echo "- ~/project: Data possibly required to progress towards an"
       echo "             ultimate goal or a precise, defined milestone"
       echo "- ~/archive: Definitively complete or discontinued projects,"
-      echo               or expired or no longer useful documents"
+      echo "             or expired or no longer useful documents"
       echo "- If some data might go to several (sub)directories"
       echo "  - Put it in the most specific (often the less frequently used)"
       echo "  - Eventually symlink it to other relevant (sub)directories"
