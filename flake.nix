@@ -120,7 +120,6 @@
         "gf@chimera" = home {
           pkgs = import nixpkgs {
             system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
-            # config.allowUnfree = true;
           };
           modules = [
             { home.stateVersion = "25.11"; } # TODO Define it from corresponding system.stateVersion
@@ -135,23 +134,23 @@
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
+              bash-language-server # Bash, shell script LSP
               # cachix # CLI for Nix binary cache
               pkgs.home-manager # FIXME Not nixpkgs’ version
               # lorri # Your project's nix-env, to test
+              marksman # Wikilinks, ToC generation…
               pkgs-unstable.nixd # "Official" Nix LSP
-              pkgs-unstable.nil # Nix LSP
               # niv # Easy dependency management, to test
               pkgs-unstable.nixfmt # Formatter
               pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
+              # nls # Nickel LSP
               # statix # Lints & suggestions for Nix, to test
-              nls # Nickel LSP
-              yaml-language-server # YAML LSP
-              taplo # TOML LSP
-              bash-language-server # Bash, shell script LSP
               sbctl # SecureBoot key manager, used for install with Lanzaboote
               shellcheck # Shell script analysis
+              taplo # TOML LSP
               vscode-langservers-extracted # HTML/CSS/JS(ON)
               wev # Evaluate inputs sent to wayland to debug
+              yaml-language-server # YAML LSP
             ];
             # env = { }; # Environment variable
             # shellHook = ""; # Shell commands activated when entering dev env
