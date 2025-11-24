@@ -183,11 +183,15 @@ Boot is properly enabled with `bootctl status`.
 Some other git repositories constitute configuration elements, but are not
 directly included in this flake:
 
-- My [dev environment templates](https://github.com/gfauredev/dev-templates)
-  - Usually cloned at `$XDG_CONFIG_HOME/dev-templates`
-  - Used with the alias `dev <stack>`
+- My Nix flakes (development)
+  [environments templates](https://github.com/gfauredev/dev-templates)
+  - Used with the command `dev <stack>` (defined in `home/module/shell`)
 - My [Typst library](https://gitlab.com/gfauredev/typst-lib)
   - Cloned at `$XDG_DATA_HOME/typst/packages/local`
+
+Additionnally, I use a flake in a private repository for private configuration.
+It takes this (public) flake as input and extend it where private configuration
+is needed, as depicted for example in `private/`.
 
 ## Documentation and learning ressources
 
@@ -196,12 +200,12 @@ directly included in this flake:
 - [Home Manager options](https://nix-community.github.io/home-manager/options.html)
 - [The Nix Way Dev Templates](https://github.com/the-nix-way/dev-templates)
 - [NixOS Wiki](https://nixos.wiki)
-- [nix.dev](https://nix.dev)
+- [Nix.dev](https://nix.dev)
 - [Vimjoyer YouTube channel](https://www.youtube.com/@vimjoyer)
 - [Global Nix options search engine](https://searchix.alanpearce.eu/all/search)
 - [NixOS and Flakes](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-flake-configuration-explained)
 - [NixOS starter flake configs](https://github.com/Misterio77/nix-starter-configs)
-- [hlissner’s config](https://github.com/hlissner/dotfiles)
-- [gvolpe’s flake article](https://gvolpe.com/blog/private-flake)
-- [yelite’s cfg article](https://greenfield.blog/posts/private-nix-flake-with-public-subtree)
-- [mitchellh’s config](https://github.com/mitchellh/nixos-config)
+- [Hlissner’s config](https://github.com/hlissner/dotfiles)
+- [Gvolpe’s flake article](https://gvolpe.com/blog/private-flake)
+- [Yelite’s cfg article](https://greenfield.blog/posts/private-nix-flake-with-public-subtree)
+- [Mitchellh’s config](https://github.com/mitchellh/nixos-config)
