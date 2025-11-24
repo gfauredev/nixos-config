@@ -61,7 +61,6 @@
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
-    # vital # PROPRIETARY Spectral warping wavetable synth
     # Bridges & Drivers & Adapters
     # airwave # WINE-based VST bridge for Linux VST hosts
     # yabridge # Use Windows VSTs with wine

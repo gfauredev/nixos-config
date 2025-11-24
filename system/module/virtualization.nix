@@ -5,7 +5,6 @@
     podman.enable = true;
     docker.enable = false; # INSECURE
     virtualbox.host.enable = true;
-    vmware.host.enable = false; # PROPRIETARY
     spiceUSBRedirection.enable = true; # Allow pass USB devices to VM
     libvirtd = {
       qemu = {
