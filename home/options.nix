@@ -10,13 +10,13 @@
       };
       location = mkOption {
         type = str;
-        default = "${config.user.home}/code/config";
+        default = "${config.home.sessionVariables.CODE_DIR}/config";
         description = "Configuration Flake repository full path";
       };
-      # media = mkOption {
-      #   type = str;
-      #   default = "spotify"; # Preferred media app
-      #   description = "Command to quick launch with shortcut (like XF86AudioMedia)";
-      # };
+      dev-templates = mkOption {
+        type = str;
+        default = "${config.home.sessionVariables.CODE_DIR}/dev-templates";
+        description = "Dev environments templates Flake repository full path";
+      };
     };
 }

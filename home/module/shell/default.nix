@@ -24,7 +24,12 @@
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
-      init-dev-env = writeScriptBin "dev" (readFile ./script/init-dev-env.sh);
+      init-dev-env = writeScriptBin "dev" ''
+        LOCATION="${config.dev-templates}#$1"
+        shift
+        nix flake init --template "$LOCATION" "$@"
+        direnv allow
+      '';
       mtp-mount = writeScriptBin "mount.mtp" (readFile ./script/mtp.sh);
       present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
       smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
@@ -49,7 +54,7 @@
       typst-compile # Compile the latest edited Typst file in current dir
       usb-mount # Quickly mount or unmount a USB device in ~/usb
       ripgrep-all # ripgrep for non-text files
-      trash-cli # Manage a trash from CLI # Needed with Nushell ?
+      trash-cli # Manage a trash from CLI, used in scripts, not nush
     ];
 
   home = {
