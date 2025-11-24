@@ -27,7 +27,7 @@
       stylix,
     }:
     let
-      eachSystem =
+      systems =
         f:
         nixpkgs.lib.genAttrs
           [
@@ -44,6 +44,7 @@
           );
       system = nixpkgs.lib.nixosSystem;
       home = home-manager.lib.homeManagerConfiguration;
+      unfreepkgs = [ "albert" ];
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
@@ -105,10 +106,11 @@
         "gf@griffin" = home {
           pkgs = import nixpkgs {
             system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreepkgs;
           };
           extraSpecialArgs.pkgs-unstable = import unstablepkgs {
             system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
-            allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "albert" ];
+            allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreepkgs;
           };
           modules = [
             { home.stateVersion = "25.05"; } # TODO Define it from corresponding system.stateVersion
@@ -129,7 +131,7 @@
         };
       };
       # This configuration’s development shell, preferably enabled with direnv
-      devShells = eachSystem (
+      devShells = systems (
         { pkgs, pkgs-unstable }:
         {
           default = pkgs.mkShell {
@@ -138,7 +140,7 @@
               pkgs.home-manager # FIXME Not nixpkgs’ version
               # lorri # Your project's nix-env, to test
               pkgs-unstable.nixd # "Official" Nix LSP
-              # nil # Nix LSP
+              pkgs-unstable.nil # Nix LSP
               # niv # Easy dependency management, to test
               pkgs-unstable.nixfmt # Formatter
               pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
@@ -149,7 +151,6 @@
               bash-language-server # Bash, shell script LSP
               sbctl # SecureBoot key manager, used for install with Lanzaboote
               shellcheck # Shell script analysis
-              # shfmt # Shell script formater # Bash LSP instead
               vscode-langservers-extracted # HTML/CSS/JS(ON)
               wev # Evaluate inputs sent to wayland to debug
             ];
