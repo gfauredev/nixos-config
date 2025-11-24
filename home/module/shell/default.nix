@@ -133,6 +133,30 @@
       enableNushellIntegration = true;
       enableZshIntegration = true;
       enableFishIntegration = false;
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = [ "c" ];
+            run = "leave";
+            desc = "Parent directory";
+          }
+          {
+            on = [ "t" ];
+            run = "arrow next";
+            desc = "Next file";
+          }
+          {
+            on = [ "s" ];
+            run = "arrow prev";
+            desc = "Previous file";
+          }
+          {
+            on = [ "r" ];
+            run = "enter";
+            desc = "Child directory";
+          }
+        ];
+      };
     };
   };
 
