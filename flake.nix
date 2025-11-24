@@ -105,11 +105,10 @@
         "gf@griffin" = home {
           pkgs = import nixpkgs {
             system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
-            allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "albert" ];
           };
           extraSpecialArgs.pkgs-unstable = import unstablepkgs {
             system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
-            # config.allowUnfree = true;
+            allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "albert" ];
           };
           modules = [
             { home.stateVersion = "25.05"; } # TODO Define it from corresponding system.stateVersion
