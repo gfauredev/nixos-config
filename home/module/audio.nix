@@ -33,7 +33,7 @@
 
   home.packages = with pkgs; [
     # ardour # Full fledged digital audio workstation
-    pkgs-unstable.bespokesynth-with-vst2 # Software modular synth, controllers support
+    pkgs-unstable.bespokesynth # Software modular synth, controllers support
     carla # VST Host & audio router
     cardinal # Standalone and VST modular synthesizer
     # giada # Live electronic music platform
