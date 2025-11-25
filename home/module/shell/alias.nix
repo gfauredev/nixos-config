@@ -123,6 +123,7 @@ in
     # x = "start-bg"; # Open with the default tool
     o = "x"; # Open with the default tool
     p = "${config.home.sessionVariables.PAGER}"; # Default pager (ov)
+    uml = "job spawn {plantuml -darkmode -gui}"; # Generate UML diagrams
     # List
     l = "ls"; # Quickly list files in current directory
     ll = "ls --long"; # List all the data of the files in current directory

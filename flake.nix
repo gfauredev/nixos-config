@@ -136,7 +136,7 @@
             packages = with pkgs; [
               bash-language-server # Bash, shell script LSP
               # cachix # CLI for Nix binary cache
-              go # For Gitleaks
+              # go # For Gitleaks
               pkgs.home-manager # FIXME Not nixpkgs’ version
               # lorri # Your project's nix-env, to test
               marksman # Wikilinks, ToC generation…
