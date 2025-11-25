@@ -19,7 +19,7 @@ lang: en
 
 <!--toc:end-->
 
-I use **NixOS** because it allows me to have a system perfectly tailored to my
+**NixOS** allows me to have a system perfectly tailored to my
 needs and expectations. I’m highly demandant on ergonomics, so I use a lot of
 tools that make interacting with the computer more efficient and comfortable.
 Having to use the mouse is a chore, so I live mostly in the terminal and in
