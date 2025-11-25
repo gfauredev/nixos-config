@@ -273,7 +273,7 @@
       hooks = {
         pre-commit = pkgs.writeShellScript "git-pre-commit" ''
           set -e # Exit immediately on error
-          gitleaks dir --max-target-megabytes 1 --verbose # --redact
+          gitleaks dir --config ${./module/gitleaks.toml} --max-target-megabytes 1 --verbose # --redact
         '';
       };
       extraConfig = {
