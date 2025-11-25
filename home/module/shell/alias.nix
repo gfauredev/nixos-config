@@ -50,7 +50,7 @@ let
     clic = "klick --auto-connect --interactive";
     clicmap = "klick --auto-connect --tempo-map";
     mix = "pulsemixer";
-    scanpdf = "scanimage --format=pdf --batch --batch-prompt --mode Color --resolution 600";
+    scanpdf = "scanimage --format=pdf --batch --batch-prompt --progress --mode=color --resolution=400";
     compile-commands = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # For LSP
     calc = "kalker"; # Do calculations
     uml = "plantuml -darkmode -gui"; # Generate UML diagrams
