@@ -54,7 +54,6 @@ let
     compile-commands = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # For LSP
     calc = "kalker"; # Do calculations
     uml = "plantuml -darkmode -gui"; # Generate UML diagrams
-    plantuml = "plantuml -tsvg -darkmode -filename diagram.svg";
     # Git
     clone = "git clone --verbose";
     status = "git status --verbose --ignored";
