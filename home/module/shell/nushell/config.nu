@@ -29,10 +29,65 @@ $env.config.hooks.pre_execution = (
   ]
 )
 
-def --env code [] { # Quickly edit code related to projects or life areas
-    let CODE_DIR = "/code/gf"
+
+# A command to toggle between source directories and a mirror directory
+def --env mirror [
+    mirror_root: path,          # The destination mirror root (e.g. /mirror/me)
+    mirrored_roots: list<path>, # The source roots (e.g. [/home/me/proj])
+    ...files: path              # Optional files to move to the destination
+] {
+    let current_path = ($env.PWD | path expand)
+    let mirror_abs = ($mirror_root | path expand)
+    let sources_abs = ($mirrored_roots | each { |it| $it | path expand })
+    let move_files_to_dest = { |dest_path|
+        if not ($files | is-empty) {
+            for file in $files {
+                let file_abs = ($file | path expand)
+                if ($file_abs | path exists) {
+                    print $"Moving '($file)' to '($dest_path)'..."
+                    mv $file_abs $dest_path
+                } else {
+                    print $"(ansi yellow)Warning:(ansi reset) File '($file)' not found. Skipping."
+                }
+            }
+        }
+    }
+    let active_source = ($sources_abs | filter { |src| $current_path | str starts-with $src } | first)
+    if ($active_source != null) {
+        let relative_path = ($current_path | path relative-to $active_source)
+        let target_path = ($mirror_abs | path join $relative_path)
+        if not ($target_path | path exists) {
+            print $"Target path does not exist. Creating: ($target_path)"
+            mkdir $target_path
+        }
+        do $move_files_to_dest $target_path
+        cd $target_path
+        return
+    }
+    if ($current_path | str starts-with $mirror_abs) {
+        let relative_path = ($current_path | path relative-to $mirror_abs)
+        for source in $sources_abs {
+            let potential_target = ($source | path join $relative_path)
+            if ($potential_target | path exists) {
+                do $move_files_to_dest $potential_target
+                cd $potential_target
+                return
+            }
+        }
+        print $"(ansi yellow)Warning:(ansi reset) Path '($relative_path)' not found in any mirrored directory."
+        return
+    }
+    print $"(ansi red)Error:(ansi reset) Current path is neither in the mirror nor a source root."
+    print $"Current: ($current_path)"
+}
+
+def --env code [...files: path] { # Quickly edit code related to projects or life areas
+    print "TO IMPLEMENT" # FIXME
+    return
+    mirror "/code" [ "~/project" "~/life" ] ...$files
+    let CODE_DIR = "/code" | path join $env.USER
     print --no-newline $"Code directory: ($CODE_DIR), "
-    mut mirroredDirs = [ ~/project ~/life ] # Mirror from code, priority order
+    mut mirroredDirs = [ ("~/project" | path expand) ("~/life" | path expand) ] 
     print $"Mirrored directories: ($mirroredDirs)"
     let WD = (pwd --physical | path split)
     if false { # TODO not under mirrored or code dir
