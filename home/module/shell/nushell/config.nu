@@ -29,46 +29,36 @@ $env.config.hooks.pre_execution = (
   ]
 )
 
-# Edit project’s of life’s code
-def --env code [] {
+def --env code [] { # Quickly edit code related to projects or life areas
     let CODE_DIR = "code"
     print --no-newline $"Code directory: ($CODE_DIR), "
-    let MIRROR_DIRS = [ project life ] 
-    print $"Directories of which to mirror the hierarchy: ($MIRROR_DIRS)"
-    mut dest = ($nu.home-path | path join $CODE_DIR) # Dir to change to
-    try { # Below line can fail if not under ~
-      let _WD_REL_TO_HOME = pwd | path relative-to $nu.home-path | path split
-      let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
-      let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # Rest
-      print --no-newline $"Hierarchy ($HIERARCHY) of ~/($HOME_CHILD): "
-      if $HOME_CHILD in $MIRROR_DIRS { # Could be factorized with below
-        $dest = $nu.home-path | path join $CODE_DIR | path join $HIERARCHY
-        if ($dest | path type) == dir {
-          print $"changing to correspondant ($CODE_DIR) subdir: ($dest)"
-        } else if not ($dest | path exists) {
-          print $"replicating dir hierarchy into ($CODE_DIR)"
-          mkdir --verbose $dest # Mirror dir hierarchy under ~/code if needed
-        } else {
-          print $"cannot change into ($dest) nor create a same named directory"
-        }
-      } else if $HOME_CHILD == $CODE_DIR { # Could be factorized with above
-        for mirror_dir in $MIRROR_DIRS {
-          $dest = $nu.home-path | path join $mirror_dir | path join $HIERARCHY
-          if ($dest | path type) == dir {
-            print $"changing to correspondant ($MIRROR_DIRS) subdir: ($dest)"
-          } else if not ($dest | path exists) {
-            print $"replicating dir hierarchy into ($MIRROR_DIRS)"
-            mkdir --verbose $dest
-          } else {
-            print $"cannot change into ($dest) nor create a same named directory"
-          }
-          break # Prevent for loop from mirorring hierarchy everywhere
-        }
+    mut mirroredDirs = [ project life ] # Mirror from code, priority order
+    print $"Mirrored directories: ($mirroredDirs)"
+    let _WD_REL_TO_HOME = pwd --physical | path relative-to $nu.home-path | path split
+    let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
+    let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # rest
+    print --no-newline $"~/(ansi bold)($HOME_CHILD)(ansi reset)/($HIERARCHY): "
+    if $HOME_CHILD in $mirroredDirs {
+      $mirroredDirs = [$CODE_DIR] # Mirror into ~/code if in mirrored dirs
+    }
+    for mirror in $mirroredDirs {
+      let dest = $nu.home-path | path join $mirror | path join $HIERARCHY
+      if ($dest | path type) == dir {
+        print $"changing to correspondant ($mirroredDirs) subdir: ($dest)"
+        cd $dest
+        return
+      } else if not ($dest | path exists) {
+        print $"replicating dir hierarchy into ($mirroredDirs) and changing"
+        mkdir --verbose $dest
+        cd $dest
+        return
       } else {
-        print $"not under ($MIRROR_DIRS | append $CODE_DIR), just go to ($dest)"
+        print $"error: ($dest) already exists but is not a directory"
+        return
       }
-    } # end try
-    cd $dest
+    }
+    print $"not ($mirroredDirs | append $CODE_DIR), just go to ~/($CODE_DIR)"
+    cd ($nu.home-path | path join $CODE_DIR) # Change to ~/code
 }
 
 # Edit system and home config
