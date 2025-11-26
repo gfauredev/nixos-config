@@ -34,18 +34,16 @@ def --env code [] { # Quickly edit code related to projects or life areas
     print --no-newline $"Code directory: ($CODE_DIR), "
     mut mirroredDirs = [ ~/project ~/life ] # Mirror from code, priority order
     print $"Mirrored directories: ($mirroredDirs)"
-    mut _WD_REL_TO_HOME = []
-    try {
-      $_WD_REL_TO_HOME = (pwd --physical | path relative-to $nu.home-path | path split)
-    } catch {
-      print $"Not under ~, just go to ($CODE_DIR)"
+    let WD = (pwd --physical | path split)
+    if false { # TODO not under mirrored or code dir
+      print $"Not under ($mirroredDirs | append $CODE_DIR), just go to ($CODE_DIR)"
       cd $CODE_DIR # Change to ~/code
       return
     }
-    let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
-    let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # rest
-    print --no-newline $"~/(ansi default_bold)($HOME_CHILD)(ansi reset)/($HIERARCHY): "
-    if $HOME_CHILD in $mirroredDirs {
+    let MIRRORED_DIR = "TODO with WD" # Mirrored dir or code dir we’re under…
+    let HIERARCHY = ["TODO with WD"] | slice 1.. | path join # rest
+    print --no-newline $"(ansi default_bold)($MIRRORED_DIR)(ansi reset)/($HIERARCHY): "
+    if $MIRRORED_DIR in $mirroredDirs {
       $mirroredDirs = [$CODE_DIR] # Mirror into ~/code if in mirrored dirs
     }
     for mirror in $mirroredDirs {
@@ -64,8 +62,6 @@ def --env code [] { # Quickly edit code related to projects or life areas
         return
       }
     }
-    print $"not ($mirroredDirs | append $CODE_DIR), just go to ($CODE_DIR)"
-    cd $CODE_DIR # Change to ~/code
 }
 
 # Edit system and home config
