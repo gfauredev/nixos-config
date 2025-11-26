@@ -44,7 +44,7 @@ def --env code [] { # Quickly edit code related to projects or life areas
     }
     let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
     let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # rest
-    print --no-newline $"~/(ansi bold)($HOME_CHILD)(ansi reset)/($HIERARCHY): "
+    print --no-newline $"~/(ansi default_bold)($HOME_CHILD)(ansi reset)/($HIERARCHY): "
     if $HOME_CHILD in $mirroredDirs {
       $mirroredDirs = [$CODE_DIR] # Mirror into ~/code if in mirrored dirs
     }
