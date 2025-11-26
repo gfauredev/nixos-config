@@ -30,7 +30,7 @@ $env.config.hooks.pre_execution = (
 )
 
 def --env code [] { # Quickly edit code related to projects or life areas
-    let CODE_DIR = "/code"
+    let CODE_DIR = "/code/gf"
     print --no-newline $"Code directory: ($CODE_DIR), "
     mut mirroredDirs = [ ~/project ~/life ] # Mirror from code, priority order
     print $"Mirrored directories: ($mirroredDirs)"
