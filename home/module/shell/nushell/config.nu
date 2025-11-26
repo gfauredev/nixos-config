@@ -30,16 +30,16 @@ $env.config.hooks.pre_execution = (
 )
 
 def --env code [] { # Quickly edit code related to projects or life areas
-    let CODE_DIR = "code"
+    let CODE_DIR = "/code"
     print --no-newline $"Code directory: ($CODE_DIR), "
-    mut mirroredDirs = [ project life ] # Mirror from code, priority order
+    mut mirroredDirs = [ ~/project ~/life ] # Mirror from code, priority order
     print $"Mirrored directories: ($mirroredDirs)"
     mut _WD_REL_TO_HOME = []
     try {
       $_WD_REL_TO_HOME = (pwd --physical | path relative-to $nu.home-path | path split)
     } catch {
-      print $"Not under ~, just go to ~/($CODE_DIR)"
-      cd ($nu.home-path | path join $CODE_DIR) # Change to ~/code
+      print $"Not under ~, just go to ($CODE_DIR)"
+      cd $CODE_DIR # Change to ~/code
       return
     }
     let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
@@ -49,7 +49,7 @@ def --env code [] { # Quickly edit code related to projects or life areas
       $mirroredDirs = [$CODE_DIR] # Mirror into ~/code if in mirrored dirs
     }
     for mirror in $mirroredDirs {
-      let dest = $nu.home-path | path join $mirror | path join $HIERARCHY
+      let dest = $mirror | path join $HIERARCHY
       if ($dest | path type) == dir {
         print $"changing to correspondant ($mirroredDirs) subdir: ($dest)"
         cd $dest
@@ -64,8 +64,8 @@ def --env code [] { # Quickly edit code related to projects or life areas
         return
       }
     }
-    print $"not ($mirroredDirs | append $CODE_DIR), just go to ~/($CODE_DIR)"
-    cd ($nu.home-path | path join $CODE_DIR) # Change to ~/code
+    print $"not ($mirroredDirs | append $CODE_DIR), just go to ($CODE_DIR)"
+    cd $CODE_DIR # Change to ~/code
 }
 
 # Edit system and home config
