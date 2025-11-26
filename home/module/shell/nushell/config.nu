@@ -34,7 +34,14 @@ def --env code [] { # Quickly edit code related to projects or life areas
     print --no-newline $"Code directory: ($CODE_DIR), "
     mut mirroredDirs = [ project life ] # Mirror from code, priority order
     print $"Mirrored directories: ($mirroredDirs)"
-    let _WD_REL_TO_HOME = pwd --physical | path relative-to $nu.home-path | path split
+    mut _WD_REL_TO_HOME = []
+    try {
+      $_WD_REL_TO_HOME = (pwd --physical | path relative-to $nu.home-path | path split)
+    } catch {
+      print $"Not under ~, just go to ~/($CODE_DIR)"
+      cd ($nu.home-path | path join $CODE_DIR) # Change to ~/code
+      return
+    }
     let HOME_CHILD = $_WD_REL_TO_HOME.0 # Direct home child we’re under…
     let HIERARCHY = $_WD_REL_TO_HOME | slice 1.. | path join # rest
     print --no-newline $"~/(ansi bold)($HOME_CHILD)(ansi reset)/($HIERARCHY): "
