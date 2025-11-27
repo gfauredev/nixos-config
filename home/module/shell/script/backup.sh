@@ -29,7 +29,7 @@ if [ "$avail" -gt "$used" ]; then
     # (which label contains "back")
     printf "%s contains back: " "$1"
     printf "Backing up [%s %s] incrementally (restic)\n" "$IMPORTANT" "$ARCHIVE"
-    _restic "$1" $IMPORTANT "$ARCHIVE"
+    _restic "$1" $IMPORTANT $ARCHIVE
       
     ;;
   *boot*)
