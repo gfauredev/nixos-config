@@ -59,7 +59,7 @@ else
 fi
 
 echo -n "Clean archive directories content ? (y to accept): "
-read -n 1 -r -t 5 shouldClean
+read -r shouldClean # TODO Timeout after 5s in POSIX shell
 
 if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
   printf "Trashing archive directories content\n"
