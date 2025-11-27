@@ -1,6 +1,6 @@
 # Directories directly under user $HOME, as described in module/organization.nix
 IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
-BOOTABLE="$HOME/data/operatingSystems.large"      # To copy on bootable drives
+# BOOTABLE="$HOME/data/operatingSystems.large" # To copy on bootable drives TODO
 ARCHIVE="$HOME/archive/life $HOME/archive/project"
 avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
 used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
@@ -19,7 +19,7 @@ _restic() { # Custom restic command
   shift
   systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
   restic --repo "$REPO" --verbose backup --exclude-caches \
-  --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common "$@"
+  --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common "$@" # TODO Nix deriv
 }
 
 if [ "$avail" -gt "$used" ]; then
@@ -38,7 +38,7 @@ if [ "$avail" -gt "$used" ]; then
     printf "%s contains boot: " "$1"
     printf "Backing up [%s] encrypted, as well as [%s]\n" "$IMPORTANT" "$BOOTABLE"
     printf "\nTODO with a crossplatform encrypted archiver (7zip, Veracrypt…)\n"
-    _rsync --delete $BOOTABLE/ "$1" # Sync the content of $OS at the root of the drive
+    # _rsync --delete $BOOTABLE/ "$1" # Sync bootable files at root of the drive
     _rsync $IMPORTANT "$1" # Sync important dirs at the root of the drive
     ;;
   *)
@@ -63,10 +63,9 @@ read -n 1 -r -t 5 shouldClean
 
 if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
   printf "Trashing archive directories content\n"
-  find "$HOME"/archive/project/ -maxdepth 1 -type f -not -name ".stfolder" \
-    -not -name ".stignore" -not -name "stignore" -not -name "stignore.light" \
-    -not -name ".ventoyignore" -print0 | xargs -0 trash
-  find "$HOME"/archive/life/ -maxdepth 1 -type f -not -name ".stfolder" \
-    -not -name ".stignore" -not -name "stignore" -not -name "stignore.light" \
-    -not -name ".ventoyignore" -print0 | xargs -0 trash
+  for dir in $ARCHIVE; do
+    find "$dir"/ -maxdepth 1 -type f -not -name ".stfolder" \
+      -not -name ".stignore" -not -name "stignore" -not -name "stignore.light" \
+      -not -name ".ventoyignore" -print0 | xargs -0 trash
+  done
 fi
