@@ -348,11 +348,11 @@
             };
             auto-format = true;
           }
-          # {
-          #   name = "sql";
-          #   language-servers = [ "sqls" ];
-          #   auto-format = true;
-          # }
+          {
+            name = "verilog";
+            language-servers = [ "svls" ];
+            auto-format = true;
+          }
         ];
       language-server = {
         biome = {
@@ -413,7 +413,7 @@
           command = "ruff";
           args = [ "server" ];
         };
-        # sqls = { command = "sqls"; };
+        svls.command = "svls";
         tinymist.config = {
           lint.enabled = true;
           projectResolution = "lockDatabase"; # FIXME define project main file
