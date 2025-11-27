@@ -64,8 +64,8 @@ read -r shouldClean # TODO Timeout after 5s in POSIX shell
 if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
   printf "Trashing archive directories content\n"
   for dir in $ARCHIVE; do
-    find "$dir"/ -maxdepth 1 -type f -not -name ".stfolder" \
-      -not -name ".stignore" -not -name "stignore" -not -name "stignore.light" \
-      -not -name ".ventoyignore" -print0 | xargs -0 trash
+    find "$dir"/ -maxdepth 1 -mindepth 1 -not -name '.stfolder' \
+      -not -name '.stignore' -not -name 'stignore' -not -name 'stignore.light' \
+      -exec trash --verbose {} +
   done
 fi
