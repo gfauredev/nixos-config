@@ -32,7 +32,6 @@
     # Electronics
     # rpi-imager # Raspberry Pi OS imager
     # horizon-eda # Modern EDA to develop printed circuit boards
-    # quartus-prime-lite # Intel FPGA design software
     # kicad # Electronics (EDA) software BUG building
     # librepcb # Modern EDA software
     # fritzing # Elecronics (EDA) software
