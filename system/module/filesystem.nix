@@ -36,7 +36,7 @@ in
       fsType = "btrfs";
       options = [
         "subvol=code" # TODO rename to "executable" as also used for wine, tests
-        "exec" # Allow users to execute code somewhere (TODO individual dirs gen)
+        "exec" # Allow users to execute code somewhere (TODO under user homes)
         "nodev" # Security hardening
         "noatime" # Reduce writes
         "compress=zstd" # Reduce writes and space usage
