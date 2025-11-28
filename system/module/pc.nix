@@ -112,12 +112,22 @@
       packages = [
         pkgs.android-udev-rules # Talk to Android devices
       ];
+      # 1. Uinput device for virtual input (keyboards, mice…)
+      # 2. Used in Musnix for audio latency reduction
+      # 3. USB Blaster for FPGA programming
       extraRules = ''
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+
         KERNEL=="rtc0", GROUP="audio"
         KERNEL=="hpet", GROUP="audio"
         DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
-      ''; # TEST relevance of latter 3, used by musnix
+
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0666"
+      '';
     };
     geoclue2 = {
       submitData = false; # Useless, laptop don’t have GPS
