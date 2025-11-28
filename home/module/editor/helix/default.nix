@@ -333,9 +333,8 @@
             scope = "text.plantuml";
             injection-regex = "plantuml";
             file-types = [
+              "pu"
               "puml"
-              "uml"
-              "plantuml"
             ];
             comment-token = "'";
             language-servers = [

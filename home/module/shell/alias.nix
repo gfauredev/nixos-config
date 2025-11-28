@@ -53,7 +53,7 @@ let
     scanpdf = "scanimage --format=pdf --batch --batch-prompt --progress --mode=color --resolution=400";
     compile-commands = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # For LSP
     calc = "kalker"; # Do calculations
-    uml = "plantuml -darkmode -gui"; # Generate UML diagrams
+    uml = "plantuml -gui"; # Generate UML diagrams
     # Git
     clone = "git clone --verbose";
     status = "git status --verbose --ignored";
@@ -123,7 +123,7 @@ in
     # x = "start-bg"; # Open with the default tool
     o = "x"; # Open with the default tool
     p = "${config.home.sessionVariables.PAGER}"; # Default pager (ov)
-    uml = "job spawn {plantuml -darkmode -gui}"; # Generate UML diagrams
+    uml = "job spawn {plantuml -gui}"; # Generate UML diagrams
     # List
     l = "ls"; # Quickly list files in current directory
     ll = "ls --long"; # List all the data of the files in current directory
