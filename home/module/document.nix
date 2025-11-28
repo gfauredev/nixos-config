@@ -5,7 +5,7 @@
   home.packages = with pkgs; [
     # calibre # Ebook management
     # Document & Spreadsheet & Presentation
-    typst # Advanced document processor
+    typst # Advanced document processor TODO Typst packages nixpkgs
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations
     onlyoffice-bin_latest # Full office suite
@@ -25,6 +25,7 @@
     # Diagrams
     # mermaid-cli # Markdown-like diagrams
     plantuml-c4 # UML diagrams from text with additions
+    plantuml-server # Server for PlantUML
   ];
 
   programs = {
