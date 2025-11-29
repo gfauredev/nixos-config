@@ -223,6 +223,9 @@
     # aichat # CLI LLM chat
   ];
 
+  # home.file.".local/share/bottles".source = TODO Bottles in executable
+  #   config.lib.file.mkOutOfStoreSymlink "${config.user.home}/code/bottles/";
+
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
     # restic.enable = true; # Efficient backup tool TEST service instead of CLI

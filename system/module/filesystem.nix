@@ -27,18 +27,18 @@ in
       options = [
         "subvol=root"
         "noexec" # Security hardening
-        "noatime" # Reduce writes
+        "noatime" # Reduce writes (preserve SSDs)
         "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/code" = {
       device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
-      fsType = "btrfs";
+      fsType = "btrfs"; # TODO Individual executable subvols per user
       options = [
-        "subvol=code" # TODO rename to "executable" as also used for wine, tests
-        "exec" # Allow users to execute code somewhere (TODO under user homes)
+        "subvol=code" # TODO rename to "executable" as also used by wine, apps…
+        "exec" # Allow users to execute code somewhere
         "nodev" # Security hardening
-        "noatime" # Reduce writes
+        "noatime" # Reduce writes (preserve SSDs)
         "compress=zstd" # Reduce writes and space usage
       ];
     };
@@ -50,7 +50,7 @@ in
         "noexec" # Security hardening
         "nodev" # Security hardening
         "nosuid" # Security hardening
-        "noatime" # Reduce writes
+        "noatime" # Reduce writes (preserve SSDs)
         "compress=zstd" # Reduce writes and space usage
       ];
     };
@@ -62,7 +62,7 @@ in
         "noexec" # Security hardening
         "nodev" # Security hardening
         "nosuid" # Security hardening
-        "noatime" # Reduce writes
+        "noatime" # Reduce writes (preserve SSDs)
         "compress=zstd" # Reduce writes and space usage
       ];
     };
@@ -74,7 +74,7 @@ in
         "exec" # Just to be explicit
         "nodev" # Security hardening
         "nosuid" # Security hardening
-        "noatime" # Reduce writes
+        "noatime" # Reduce writes (preserve SSDs)
         "compress=zstd" # Reduce writes and space usage
       ];
     };
@@ -86,7 +86,7 @@ in
         "noexec" # Security hardening
         "nodev" # Security hardening
         "nosuid" # Security hardening
-        "noatime" # Reduce writes
+        "noatime" # Reduce writes (preserve SSDs)
         "compress=zstd" # Reduce writes and space usage
       ];
     };
@@ -95,7 +95,7 @@ in
       fsType = lib.mkDefault "tmpfs";
       options = [
         "defaults"
-        "exec" # For Nix builds
+        "exec" # For Nix builds or tests
         "nodev" # Security hardening
         "nosuid" # Security hardening
         "mode=1777"
