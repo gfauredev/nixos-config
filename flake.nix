@@ -1,9 +1,9 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # NixOS Stable
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # NixOS Stable
     unstablepkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
@@ -13,7 +13,7 @@
     # };
     # impermanence.url = "github:nix-community/impermanence"; # Amnesiac root
     # musnix.url = "github:musnix/musnix"; # Music production, audio perf
-    stylix.url = "github:danth/stylix/release-25.05"; # Color themes & fonts
+    stylix.url = "github:danth/stylix/release-25.11"; # Color themes & fonts
     stylix.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
   };
   outputs =
