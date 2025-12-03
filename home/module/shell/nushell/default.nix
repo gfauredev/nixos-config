@@ -34,4 +34,5 @@
     direnv.enableNushellIntegration = true;
     eza.enableNushellIntegration = false;
   };
+  home.sessionVariables.SHELL = "${pkgs.nushell}/bin/nu"; # Make it the default
 }

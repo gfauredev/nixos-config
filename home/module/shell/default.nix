@@ -61,7 +61,6 @@
   home = {
     # TODO better https://wiki.nixos.org/wiki/Environment_variables
     sessionVariables = {
-      SHELL = "${pkgs.shell}/bin/nu";
       BAT_PAGING = "never";
       PAGER = "${pkgs.ov}/bin/ov";
     };
