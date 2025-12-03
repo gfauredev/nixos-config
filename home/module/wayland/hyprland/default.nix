@@ -184,7 +184,6 @@ in
         monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
         debug.disable_logs = false; # Enable logs
         xwayland.force_zero_scaling = true;
-        gestures.workspace_swipe = false;
         exec-once = [
           "waybar" # Status bar
           "albert" # General quick launcher
