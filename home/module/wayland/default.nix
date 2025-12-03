@@ -49,10 +49,7 @@
 
     xdg.dataFile."icons/Bibata-Hypr-Ice".source = ./Bibata-Modern-Ice.hyprcursor;
 
-    programs = {
-      hyprlock.enable = true;
-      rofi.package = pkgs.rofi-wayland; # Set this for wayland
-    };
+    programs.hyprlock.enable = true;
 
     services.hypridle.settings.listener = [
       {
