@@ -49,7 +49,7 @@
     thermald.enable = lib.mkDefault true; # Keep CPU cool
     localtimed.enable = lib.mkDefault true;
     ntp.enable = lib.mkDefault true;
-    dnscrypt-proxy2.enable = lib.mkDefault true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
+    dnscrypt-proxy.enable = true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
     usbguard.enable = true;
     logind = {
       powerKey = "hibernate";
@@ -82,7 +82,7 @@
       START_CHARGE_THRESH_BAT0 = 30; # 30 and below: start to charge
       STOP_CHARGE_THRESH_BAT0 = 90; # 90 and above: don’t charge
     };
-    dnscrypt-proxy2.settings = {
+    dnscrypt-proxy.settings = {
       sources.public-resolvers = {
         urls = [
           "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
