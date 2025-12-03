@@ -13,7 +13,7 @@
     # PDF Reading & Editing & Scan
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
-    poppler_utils # PDF metadata reading/editing
+    # poppler-utils # PDF metadata reading/editing
     qpdf # More modern CLI PDF manipulation
     # pdf-sign # Automated PDF signing TODO config
     # pdfmixtool # Simple GUI to edit PDFs structure
