@@ -109,9 +109,7 @@
       pulse.enable = true; # Support previous audio system
     };
     udev = {
-      packages = [
-        pkgs.android-udev-rules # Talk to Android devices
-      ];
+      # packages = [ pkgs.android-udev-rules ]; # Talk to Android devices
       # 1. Uinput device for virtual input (keyboards, mice…)
       # 2. Used in Musnix for audio latency reduction
       # 3. USB Blaster for FPGA programming
