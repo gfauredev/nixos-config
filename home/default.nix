@@ -260,7 +260,6 @@
     git = {
       userName = config.user.description;
       userEmail = config.user.email;
-      package = pkgs.gitAndTools.gitFull; # Git with add-ons
       lfs.enable = true;
       delta = {
         enable = true;
