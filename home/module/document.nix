@@ -8,7 +8,7 @@
     typst # Advanced document processor TODO Typst packages nixpkgs
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations
-    onlyoffice-bin_latest # Full office suite
+    onlyoffice-bin # Full office suite
     libreoffice-fresh # Office suite
     # PDF Reading & Editing & Scan
     # mupdf # Minimalist PDF reader
