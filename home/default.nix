@@ -256,15 +256,10 @@
     jujutsu.enable = true; # Git compatible simpler VCS
     mergiraf.enable = true; # Smart Git merge tool
     rclone.enable = true; # Backup using cloud services
+    delta.enable = true; # Better diff view (integrates with Git)
     # radicle.enable = true; # Decentralized code collaboration TODO 25.11
     git = {
-      userName = config.user.description;
-      userEmail = config.user.email;
       lfs.enable = true;
-      delta = {
-        enable = true;
-        options.navigate = true;
-      };
       attributes = [
         "* merge=mergiraf"
       ];
@@ -278,7 +273,9 @@
           gitleaks dir --config ${./module/gitleaks.toml} --max-target-megabytes 1 --verbose # --redact
         '';
       };
-      extraConfig = {
+      settings = {
+        user.email = config.user.email;
+        user.name = config.user.description;
         init.defaultBranch = "main";
         pull.rebase = false;
         lfs.locksverify = true;
@@ -301,6 +298,10 @@
       email = config.user.email;
     };
     direnv.nix-direnv.enable = true;
+    delta = {
+      enableGitIntegration = true;
+      options.navigate = true;
+    };
   };
 
   gtk = {
