@@ -164,6 +164,7 @@
     # niri.enable = true; # See https://github.com/YaLTeR/niri
   };
   environment.systemPackages = with pkgs; [
+    minicom # Connect to serial
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
   ];
 }
