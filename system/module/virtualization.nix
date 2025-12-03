@@ -10,7 +10,6 @@
       qemu = {
         runAsRoot = false;
         swtpm.enable = true; # Software emulated TMP
-        ovmf.enable = true; # UEFI implementation
         vhostUserPackages = with pkgs; [ virtiofsd ];
       };
       onBoot = "ignore"; # Do not auto start by default
