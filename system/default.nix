@@ -190,7 +190,7 @@
       sysstat # Monitoring CLI tools
       nix-tree # Find Nix dependencies
       duf # Global disk usage
-      du-dust # Detailed disk usage of a directory
+      dust # Detailed disk usage of a directory
       bottom # Dashboard with hardware usage, processes…
       nix-du # Determine which gc-roots take space
       lsof # List opened files (remember, everything’s a file here)
