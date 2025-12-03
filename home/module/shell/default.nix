@@ -18,6 +18,7 @@
       archive = writeScriptBin "archive" (readFile ./script/archive.sh);
       backup = writeScriptBin "back" (readFile ./script/backup.sh);
       # TODO make this script a package available in this flake’s nix shell (dev environment)
+      # FIXME allow the script itself to sleep / poweroff / reboot
       configure = writeScriptBin "cfg" ''
         cd ${config.location}
         systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring ${writeScript "configure" (readFile ./script/configure.sh)} "$@"
