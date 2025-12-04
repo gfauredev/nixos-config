@@ -5,9 +5,9 @@
       "nix-command"
       "flakes"
     ];
-    extra-substituters = [ "https://nix-community.cachix.org" ]; # May have additional binaries cached
+    # extra-substituters = [ "https://nix-community.cachix.org" ]; # FIXME
     extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
