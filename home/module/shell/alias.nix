@@ -54,6 +54,7 @@ let
     compile-commands = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # For LSP
     calc = "kalker"; # Do calculations
     uml = "plantuml -gui"; # Generate UML diagrams
+    rs = "rust-script"; # Quickly run Rust file
     # Git
     clone = "git clone --verbose";
     status = "git status --verbose --ignored";
