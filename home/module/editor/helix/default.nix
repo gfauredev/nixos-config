@@ -360,14 +360,13 @@
         };
         clangd = {
           command = "clangd";
+          args = [ "--query-driver=/nix/store/**/*" ];
           config = {
             fallbackFlags = [
-              "-std=c++23" # TODO ensure both C and C++ work and latest version
+              "-std=c++23"
               "-Wall"
               "-Wextra"
               "-Wpedantic"
-              # "-Wshadow"
-              # "-Wconversion"
             ];
           };
         };
