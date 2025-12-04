@@ -29,7 +29,7 @@
   ];
 
   programs = {
-    zathura.enable = true; # Minimal PDF reader
+    # zathura.enable = true; # Minimal PDF reader
     mpv.enable = true; # Audio and video player
     # imv.enable = true; # Minimal image viewer
     zathura = {

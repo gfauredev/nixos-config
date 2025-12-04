@@ -54,9 +54,11 @@
         image = "qimgv";
         audio = "mpv";
         video = "mpv";
-        pdf = "org.pwmt.zathura";
+        web = config.browser.desktop;
+        pdf = web; # "org.pwmt.zathura";
         document = "writer";
         spreadsheet = "calc";
+        pim = config.organization.pim;
       in
       {
         # Text & Code
@@ -69,10 +71,6 @@
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
         "application/vnd.ms-excel" = "${spreadsheet}.desktop";
         "application/pdf" = "${pdf}.desktop";
-        "application/x-colpkg" = "anki.desktop";
-        "application/x-apkg" = "anki.desktop";
-        "application/x-ankiaddon" = "anki.desktop";
-        "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
         # Image
         "image/avif" = "${image}.desktop";
         "image/webp" = "${image}.desktop";
@@ -92,23 +90,28 @@
         "video/mp4" = "${video}.desktop";
         "video/avi" = "${video}.desktop";
         # Web
-        "x-scheme-handler/https" = "${config.browser.desktop}.desktop";
-        "x-scheme-handler/http" = "${config.browser.desktop}.desktop";
+        "x-scheme-handler/https" = "${web}.desktop";
+        "x-scheme-handler/http" = "${web}.desktop";
         # Email & Calendar
-        "x-scheme-handler/mailto" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/webcal" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/webcals" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/mid" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/news" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/snews" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/nntp" = "${config.organization.pim}.desktop";
-        "x-scheme-handler/feed" = "${config.organization.pim}.desktop";
+        "x-scheme-handler/mailto" = "${pim}.desktop";
+        "x-scheme-handler/webcal" = "${pim}.desktop";
+        "x-scheme-handler/webcals" = "${pim}.desktop";
+        "x-scheme-handler/mid" = "${pim}.desktop";
+        "x-scheme-handler/news" = "${pim}.desktop";
+        "x-scheme-handler/snews" = "${pim}.desktop";
+        "x-scheme-handler/nntp" = "${pim}.desktop";
+        "x-scheme-handler/feed" = "${pim}.desktop";
+        "application/rss+xml" = "${pim}.desktop";
+        "application/x-extension-rss" = "${pim}.desktop";
+        "application/x-extension-ics" = "${pim}.desktop";
+        "text/calender" = "${pim}.desktop";
+        # App Specific
         "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
         "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
-        "application/rss+xml" = "${config.organization.pim}.desktop";
-        "application/x-extension-rss" = "${config.organization.pim}.desktop";
-        "application/x-extension-ics" = "${config.organization.pim}.desktop";
-        "text/calender" = "${config.organization.pim}.desktop";
+        "application/x-colpkg" = "anki.desktop";
+        "application/x-apkg" = "anki.desktop";
+        "application/x-ankiaddon" = "anki.desktop";
+        "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
       };
   };
 

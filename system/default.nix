@@ -218,6 +218,7 @@
       thc-hydra # Pentesting tool
       age # Modern encryption
       ssh-to-age # Converter between SSH keys and age
+      socat # Multipurpose relay (like netcat but better)
       lynis # System security auditing TEST me
       vulnix # NixOS vulnerability scanner TEST me
       # Storage
