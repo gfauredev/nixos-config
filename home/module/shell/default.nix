@@ -56,6 +56,7 @@
       usb-mount # Quickly mount or unmount a USB device in ~/usb
       ripgrep-all # ripgrep for non-text files
       trash-cli # Manage a trash from CLI, used in scripts, not nush
+      rust-script # Use Rust in single file scripts
     ];
 
   home = {

@@ -49,6 +49,7 @@
         pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
         # nls # Nickel LSP
         # pkgs-unstable.rumdl # Fast markdown linter & formatter
+        rust-analyzer # Globally for rust-script
         # statix # Lints & suggestions for Nix, to test
         sbctl # SecureBoot key manager, used for install with Lanzaboote
         shellcheck # Shell script analysis
