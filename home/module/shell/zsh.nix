@@ -6,7 +6,11 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     enableCompletion = true;
-    initContent = builtins.readFile ./zshrc.sh;
+    initContent = ''
+      md() { # Make directory(ies) & cd into it (the first)
+        mkdir -pv "$@" && cd "$1" || return
+      }
+    '';
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;

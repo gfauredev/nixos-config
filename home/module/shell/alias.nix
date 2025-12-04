@@ -1,7 +1,5 @@
 { config, ... }:
 let
-  eza_cfg = "eza --icons --git";
-  # commitlint_cfg = "commitlint --config ~/.config/commitlintrc.yaml";
   common = {
     # System
     boot = "bootctl";
@@ -93,17 +91,15 @@ in
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
     mv = "mv -uv";
     # List
-    ls = "${eza_cfg}";
-    sl = "${eza_cfg} --reverse";
-    lsd = "${eza_cfg} -l --no-permissions --sort=age";
-    sld = "${eza_cfg} -l --no-permissions --sort=age --reverse";
-    lss = "${eza_cfg} -l --no-permissions --time-style full-iso";
-    ll = "${eza_cfg} -l --group";
-    la = "${eza_cfg} -l --group -all";
-    al = "${eza_cfg} -l --group -all --reverse";
-    lt = "${eza_cfg} -l --tree";
+    sl = "ls --reverse";
+    lsd = "ls -l -h --sort=time";
+    sld = "ls -l -h --sort=time --reverse";
+    ll = "ls -l -h";
+    la = "ls -l -h --almost-all";
+    al = "ls -l -h --almost-all --reverse";
+    lt = "ls -l -h";
     # List, single letter
-    l = "${eza_cfg} -l --no-permissions --no-user"; # Better ls
+    l = "ls -l -h"; # Better ls
     g = "\\rga --smart-case --color=always"; # Better grep
     # Open, single letter
     x = "xdg-open"; # Open with the default tool
