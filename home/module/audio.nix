@@ -40,6 +40,7 @@
     # giada # Live electronic music platform
     glicol-cli # Music live coding
     helio-workstation # Sequencer / DAW
+    helvum # Modular audio environment
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
     patchage # JACK router
