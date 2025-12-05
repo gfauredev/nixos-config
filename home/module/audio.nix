@@ -43,9 +43,9 @@
     helvum # Modular audio environment
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
-    patchage # JACK router
+    # patchage # JACK router
     # qpwgraph # PipeWire router
-    supercollider # Audio synthesis and algorithmic composition
+    # supercollider # Audio synthesis and algorithmic composition
     # vcv-rack # Standalone modular synthesizer
     # DAW & Editors
     # audacity # Simple audio editor
@@ -59,7 +59,7 @@
     # drumgizmo # High quality drums sampler
     # iannix # Graphical sequencer
     surge-XT # Great hybrid substractive synth
-    stochas # Polyrithmic sequencer
+    # stochas # Polyrithmic sequencer
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
     # infamousPlugins # Collection of audio plugins
