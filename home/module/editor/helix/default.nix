@@ -207,7 +207,6 @@
               "ty"
               "ruff"
               "pylsp"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -245,7 +244,6 @@
             name = "cpp";
             language-servers = [
               "clangd"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -258,7 +256,6 @@
             ];
             language-servers = [
               "clangd"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -267,7 +264,6 @@
             name = "java";
             language-servers = [
               "jdtls"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -287,7 +283,6 @@
             language-servers = [
               ts-lsp
               "biome"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -297,7 +292,6 @@
             language-servers = [
               ts-lsp
               "biome"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -307,7 +301,6 @@
             language-servers = [
               ts-lsp
               "biome"
-              "harper"
               "llm"
             ];
             auto-format = true;
@@ -338,7 +331,6 @@
             ];
             comment-token = "'";
             language-servers = [
-              "harper"
               "llm"
             ];
             indent = {
