@@ -42,7 +42,7 @@
     helio-workstation # Sequencer / DAW
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
-    patchance # JACK router
+    patchage # JACK router
     # qpwgraph # PipeWire router
     supercollider # Audio synthesis and algorithmic composition
     # vcv-rack # Standalone modular synthesizer
