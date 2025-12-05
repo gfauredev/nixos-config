@@ -200,7 +200,7 @@
     # keepassxc # Password manager
     # keepassxc-go # CLI to interacet with KeepassXC
     # git-credential-keepassxc # Use KeepassXC with Git
-    gitleaks # Better tool to discover secrets in Git repo
+    gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
     git-filter-repo # Quickly rewrite history
     # Storage & Backup & Encryption
     restic # Efficient backup tool
@@ -270,12 +270,10 @@
         "*ignore*"
         "!.gitignore"
       ];
-      hooks = {
-        pre-commit = pkgs.writeShellScript "git-pre-commit" ''
-          set -e # Exit immediately on error
-          gitleaks dir --config ${./module/gitleaks.toml} --max-target-megabytes 1 --verbose # --redact
-        '';
-      };
+      # hooks.pre-commit = pkgs.writeShellScript "git-pre-commit" '' # FIX Prevents LFS to install
+      #   set -e # Exit immediately on error
+      #   gitleaks dir --config ${./module/gitleaks.toml} --max-target-megabytes 1 --verbose # --redact
+      # '';
       settings = {
         user.email = config.user.email;
         user.name = config.user.description;
