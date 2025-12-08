@@ -203,7 +203,7 @@
       sshfs # Mount ssh remote
       wakelan # Send magic packet to wake WoL devices
       # Network monitoring & Encryption
-      wireguard-tools # CLI for WireGuard
+      amneziawg-tools # CLI for Amnezia VPN
       xh # User-friendly HTTP client similar to HTTPie/cURL
       gping # Ping with a graph
       tcpdump # Dump network packets
@@ -221,6 +221,7 @@
       socat # Multipurpose relay (like netcat but better)
       lynis # System security auditing TEST me
       vulnix # NixOS vulnerability scanner TEST me
+      # wireguard-tools # CLI for WireGuard
       # Storage
       zip # Universal compression
       unzip # Universal decompression

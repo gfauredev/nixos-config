@@ -58,6 +58,7 @@
     # cura # Popular 3D printer slicer
     # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
     # VPN
+    # amnezia-vpn # Anonymous VPN service
     protonvpn-gui # Swiss VPN service (Python GUI)
     # calyx-vpn # (bitmask client) Free VPN service
     # riseup-vpn # (bitmask client) Free VPN service
