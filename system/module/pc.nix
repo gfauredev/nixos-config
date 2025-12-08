@@ -162,9 +162,9 @@
     # niri.enable = true; # See https://github.com/YaLTeR/niri
   };
   environment.systemPackages = with pkgs; [
-    minicom # Serial TODO keep only one
-    picocom # Serial
-    screen # Serial
+    # minicom # Serial TODO keep only one
+    # picocom # Serial
+    # screen # Serial
     tio # Serial
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
   ];
