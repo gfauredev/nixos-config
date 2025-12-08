@@ -47,6 +47,7 @@
     # qpwgraph # PipeWire router
     # supercollider # Audio synthesis and algorithmic composition
     # vcv-rack # Standalone modular synthesizer
+    vmpk # Virtual keyboard
     # DAW & Editors
     # audacity # Simple audio editor
     musescore # Music writing
