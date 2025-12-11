@@ -55,8 +55,9 @@
       typst-compile # Compile the latest edited Typst file in current dir
       usb-mount # Quickly mount or unmount a USB device in ~/usb
       ripgrep-all # ripgrep for non-text files
-      trash-cli # Manage a trash from CLI, used in scripts, not nush
       rust-script # Use Rust in single file scripts
+      teamtype # Local text file collaboration
+      trash-cli # Manage a trash from CLI, used in scripts, not nush
     ];
 
   home = {
