@@ -13,23 +13,23 @@
 
   home.sessionVariables =
     let
-      makePluginPath =
-        format:
-        (lib.makeSearchPath format [
-          "$HOME/.nix-profile/lib"
-          "/run/current-system/sw/lib"
-          "/etc/profiles/per-user/$USER/lib"
-        ])
-        + ":$HOME/.${format}";
+      pluginPath =
+        dir:
+        "${config.user.home}/.${dir}:"
+        + (lib.makeSearchPath dir [
+          "${config.user.home}/.nix-profile/lib"
+          # "/run/current-system/sw/lib"
+          # "/etc/profiles/per-user/${config.user.name}/lib"
+        ]);
     in
     {
-      CLAP_PATH = lib.mkDefault (makePluginPath "clap");
-      DSSI_PATH = lib.mkDefault (makePluginPath "dssi");
-      LADSPA_PATH = lib.mkDefault (makePluginPath "ladspa");
-      LV2_PATH = lib.mkDefault (makePluginPath "lv2");
-      LXVST_PATH = lib.mkDefault (makePluginPath "lxvst");
-      VST3_PATH = lib.mkDefault (makePluginPath "vst3");
-      VST_PATH = lib.mkDefault (makePluginPath "vst");
+      CLAP_PATH = lib.mkDefault (pluginPath "clap");
+      DSSI_PATH = lib.mkDefault (pluginPath "dssi");
+      LADSPA_PATH = lib.mkDefault (pluginPath "ladspa");
+      LV2_PATH = lib.mkDefault (pluginPath "lv2");
+      LXVST_PATH = lib.mkDefault (pluginPath "lxvst");
+      VST3_PATH = lib.mkDefault (pluginPath "vst3");
+      VST_PATH = lib.mkDefault (pluginPath "vst");
     };
 
   home.packages = with pkgs; [
@@ -47,7 +47,7 @@
     # qpwgraph # PipeWire router
     # supercollider # Audio synthesis and algorithmic composition
     # vcv-rack # Standalone modular synthesizer
-    vmpk # Virtual keyboard
+    # vmpk # Virtual keyboard
     # DAW & Editors
     # audacity # Simple audio editor
     musescore # Music writing
