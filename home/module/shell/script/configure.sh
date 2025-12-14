@@ -346,7 +346,7 @@ printf 'Power state change: "%s"\n' $power_state
 regular # Standard text
 
 strong # Bold text
-printf 'Limit memory usage to %s kb for the following commands\n' $MEM_LIMIT
+printf 'Limit memory usage to %skb for the following commands\n' $MEM_LIMIT
 ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
 regular                  # Back to standard text
 

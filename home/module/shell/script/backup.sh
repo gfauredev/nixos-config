@@ -4,8 +4,8 @@ IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
 ARCHIVE="$HOME/archive/life $HOME/archive/project"
 avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
 used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
-echo "Available space on destination : ${avail}o"
-echo "Used space by important data :   ${used}o"
+echo "Available space on destination : ${avail}B"
+echo "Used space by important data :   ${used}B"
 
 _rsync() { # Custom rsync command
   systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
