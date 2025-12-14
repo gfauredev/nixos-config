@@ -31,23 +31,12 @@ in
         "compress=zstd" # Reduce writes and space usage
       ];
     };
-    "/code" = {
-      device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
-      fsType = "btrfs"; # TODO Individual executable subvols per user
-      options = [
-        "subvol=code" # TODO rename to "executable" as also used by wine, apps…
-        "exec" # Allow users to execute code somewhere
-        "nodev" # Security hardening
-        "noatime" # Reduce writes (preserve SSDs)
-        "compress=zstd" # Reduce writes and space usage
-      ];
-    };
     "/home" = {
       device = lib.mkDefault "/dev/mapper/${luksDev}"; # WARN Replace with UUID!
       fsType = "btrfs";
       options = [
         "subvol=home"
-        "noexec" # Security hardening
+        "noexec" # Security hardening NOTE Use bind mounts to allow users to exec
         "nodev" # Security hardening
         "nosuid" # Security hardening
         "noatime" # Reduce writes (preserve SSDs)

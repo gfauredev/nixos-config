@@ -43,15 +43,47 @@ in
   };
   hardware.cpu.intel.updateMicrocode = true; # Intel CPU…
 
-  fileSystems = {
-    "/".device = cryptroot; # System root
-    "/boot".device = nvme0n1.p1; # ESP
-    "/code".device = cryptroot; # Executable location for users
-    "/home".device = cryptroot; # Users homes
-    "/log".device = cryptroot; # Logs
-    "/nix".device = cryptroot; # Nix Store
-    "/swap".device = cryptroot; # Contains the swapfile
-  };
+  fileSystems =
+    let
+      execHomes = [ "/home/gf" ];
+      execDirs = [
+        "dev"
+        ".swt"
+        ".eclipse"
+        ".local/share/bottles"
+      ];
+      execBind = path: {
+        depends = [ "/home" ];
+        device = path;
+        fsType = "none"; # Bind mount
+        options = [
+          "bind" # Mount the directory on itself
+          "exec" # Overrides 'noexec' from /home
+          "nodev" # Security hardening
+          "nosuid" # Security hardening
+          "noatime" # Reduce writes (preserve SSDs)
+          "nofail" # Don't fail if not present
+          "compress=zstd" # Reduce writes and space usage
+        ];
+      };
+    in
+    {
+      "/".device = cryptroot; # System root
+      "/boot".device = nvme0n1.p1; # ESP
+      "/home".device = cryptroot; # Users homes
+      "/log".device = cryptroot; # Logs
+      "/nix".device = cryptroot; # Nix Store
+      "/swap".device = cryptroot; # Contains the swapfile
+    }
+    // (builtins.listToAttrs (
+      builtins.concatMap (
+        home:
+        map (dir: {
+          name = "${home}/${dir}";
+          value = execBind "${home}/${dir}";
+        }) execDirs
+      ) execHomes
+    ));
 
   services.fwupd.extraRemotes = [ "lvfs-testing" ]; # Necessary for Framework
   # services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;

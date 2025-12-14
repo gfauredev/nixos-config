@@ -41,7 +41,6 @@ in
   fileSystems = {
     "/".device = cryptroot; # System root
     "/boot".device = nvme0n1.p1; # ESP
-    "/code".device = cryptroot; # Executable location for users
     "/home".device = cryptroot; # Users homes
     "/log".device = cryptroot; # Logs
     "/nix".device = cryptroot; # Nix Store

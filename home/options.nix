@@ -13,10 +13,10 @@
         default = "${config.home.sessionVariables.CODE_DIR}/config";
         description = "Configuration Flake repository full path";
       };
-      dev-templates = mkOption {
-        type = str;
-        default = "${config.home.sessionVariables.CODE_DIR}/dev-templates";
-        description = "Dev environments templates Flake repository full path";
-      };
+      # dev-templates = mkOption {
+      #   type = str; # Hardcoded in config.nu TODO Use this in nushell, not via env var
+      #   default = "${config.home.sessionVariables.CODE_DIR}/dev-templates";
+      #   description = "Dev environments templates Flake repository full path";
+      # };
     };
 }

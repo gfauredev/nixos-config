@@ -32,7 +32,7 @@ $env.config.hooks.pre_execution = (
 
 # A command to toggle between source directories and a mirror directory
 def --env mirror [
-    mirror_root: path,          # The destination mirror root (eg. /code/me)
+    mirror_root: path,          # The destination mirror root (eg. /dev/me)
     mirrored_roots: list<path>, # The source roots (eg. ["/home/me/project"])
     ...files: path              # Optional files to move to the destination
 ] {
@@ -82,8 +82,14 @@ def --env mirror [
   print $"($wd_abs) (ansi red)not found(ansi reset) in any of ($mirrored_roots | append $mirror_root)"
 }
 
-def --env code [...files: path] { # Quickly edit code related to project/life
-  mirror "~/code" [ "~/project" "~/life" ] ...$files
+def --env dev [...args: path] { # Quickly edit code related to project/life or dev env
+  if not ($args | is-empty) {
+    if not ($args.0 | path exists) { # An argument that’s not a file is certainly a stack 
+      nix flake init --template $"~/dev/dev-templates#($args.0)" ...($args | skip 1)
+      return
+    }
+  }
+  mirror "~/dev" [ "~/project" "~/life" ] ...$args
 }
 
 # Edit system and home config

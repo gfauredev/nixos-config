@@ -36,7 +36,7 @@
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
       XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
-      CODE_DIR = "${config.user.home}/code";
+      CODE_DIR = "${config.user.home}/dev";
     };
     file = {
       Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
@@ -225,9 +225,6 @@
     # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
   ];
-
-  # home.file.".local/share/bottles".source = TODO Bottles in executable
-  #   config.lib.file.mkOutOfStoreSymlink "${config.user.home}/code/bottles/";
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing

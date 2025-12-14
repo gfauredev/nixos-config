@@ -25,12 +25,12 @@
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
-      init-dev-env = writeScriptBin "dev" ''
-        LOCATION="${config.dev-templates}#$1"
-        shift
-        nix flake init --template "$LOCATION" "$@"
-        direnv allow
-      '';
+      # init-dev-env = writeScriptBin "dev-env" ''
+      #   stack="${config.dev-templates}#$1"
+      #   shift
+      #   nix flake init --template "$stack" "$@"
+      #   direnv allow
+      # '';
       mtp-mount = writeScriptBin "mount.mtp" (readFile ./script/mtp.sh);
       present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
       smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
@@ -47,7 +47,6 @@
       configure # Configure this flake config
       date-edit # Open text files, prepend current date to the first one
       extract # Extract any compressed file
-      init-dev-env # Initialize a Nix Flake based development environment
       mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
       present-pdf # Open detached pdfpc to present a PDF slide
       smart-commit # Quickly commit or amend, lint message
