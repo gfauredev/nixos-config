@@ -449,6 +449,7 @@ in
         };
         env = [
           "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
+          "GTK_IM_MODULE,simple" # Simple GTK input method (use builtin deadkeys)
         ]
         ++ lib.mapAttrsToList (var: val: "${var},${builtins.toString val}") config.home.sessionVariables;
       };
