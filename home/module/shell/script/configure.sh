@@ -401,5 +401,5 @@ if $push_repositories; then # Push repositories if explicit argument
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
   wait                         # Wait for eventual pull or push to finish
-  exec systemctl $power_state
+  (sleep 1; systemctl $power_state) & # Bypass systemd-inhibit to change power state
 fi
