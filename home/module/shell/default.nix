@@ -21,9 +21,8 @@
       # FIXME allow the script itself to sleep / poweroff / reboot
       configure = writeScriptBin "cfg" ''
         cd ${config.location}
-        systemd-inhibit --what=shutdown:sleep --who=cfg \
-        --why=Configuring ${writeScript "configure" (readFile ./script/configure.sh)} \
-        --mode=block "$@"
+        systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring --mode=block \
+        ${writeScript "configure" (readFile ./script/configure.sh)} "$@"
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
