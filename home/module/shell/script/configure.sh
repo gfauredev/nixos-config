@@ -401,5 +401,5 @@ if $push_repositories; then # Push repositories if explicit argument
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
   wait                         # Wait for eventual pull or push to finish
-  systemctl $power_state
+  exec systemctl $power_state
 fi
