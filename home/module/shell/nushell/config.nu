@@ -85,7 +85,7 @@ def --env mirror [
 def --env dev [...args: path] { # Quickly edit code related to project/life or dev env
   if not ($args | is-empty) {
     if not ($args.0 | path exists) { # An argument that’s not a file is certainly a stack 
-      nix flake init --template $"~/dev/dev-templates#($args.0)" ...($args | skip 1)
+      nix flake init --template $"($env.HOME)/dev/dev-templates#($args.0)" ...($args | skip 1)
       return
     }
   }
