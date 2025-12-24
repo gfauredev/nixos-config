@@ -12,7 +12,7 @@
     aileron # Helvetica equivalent
     # nacelle # Helvetica equivalent
     inter # Interesting sans font
-    fira-go # Great sans with icons
+    # fira-go # Great sans with icons
     # carlito # Calibri equivalent
     # noto-fonts-cjk-sans # Chinese, Japanese, Korean Sans
     ## Mono fonts
