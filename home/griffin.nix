@@ -30,6 +30,7 @@
     pre-commit # Git hook manager
     # pre-pre-commit-hook-ensure-sops # Ensure sops is used for secrets
     # Electronics
+    dfu-util # Device Firmware Upgrade USB utility
     # rpi-imager # Raspberry Pi OS imager
     # horizon-eda # Modern EDA to develop printed circuit boards
     kicad # Electronics (EDA) software BUG building
