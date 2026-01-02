@@ -23,7 +23,7 @@
     # gnome.simple-scan # Document scanner
     # pdfpc # PDF Presentator Console
     # Diagrams
-    # mermaid-cli # Markdown-like diagrams
+    mermaid-cli # Markdown-like diagrams
     plantuml-c4 # UML diagrams from text with additions
     plantuml-server # Server for PlantUML
   ];
