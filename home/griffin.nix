@@ -25,6 +25,7 @@
     # lpac # Manage eSIMs in a chip (eUICC LPA)
     sherlock # Search people on social media accounts
     # wayback # Web archiving tool
+    drawio # Diagramming software
     qgis # Maps TODO https://www.mypermagarden.app/fr/download
     # guile # Scheme compiler and runtime
     pre-commit # Git hook manager
