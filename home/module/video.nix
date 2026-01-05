@@ -12,7 +12,7 @@
     # flowblade # non linear video editor
     # olive-editor # non linear video editor
     # obs-wlrobs
-    obs-studio-plugins.wlrobs # OBS for Wayland
-    obs-studio # Screen recorder and streaming
+    # obs-studio-plugins.wlrobs # OBS for Wayland
+    # obs-studio # Screen recorder and streaming
   ];
 }
