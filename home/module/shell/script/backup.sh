@@ -25,13 +25,13 @@ _restic() { # Custom restic command
 if [ "$avail" -gt "$used" ]; then
   case "$1" in
   *drive*)
-    # Backup everything "incrementally" with rclone in remote drives
+    # Backup everything in remote drive with rclone, putting deleted aside
     for dir in $IMPORTANT; do
       dirname=$(basename "$dir")
       rclone sync --progress \
       --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
       --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
-      --backup-dir proton:"$USER-trash/$(date +%Y-%m-%d-%Hh%Mm%S)/$dirname" \
+      --backup-dir "$1:$USER-trash/$(date +%Y-%m-%d-%H)/$dirname" \
       "$dir" "$1:$USER-back/$dirname" 
     done
     for dir in $ARCHIVE; do
