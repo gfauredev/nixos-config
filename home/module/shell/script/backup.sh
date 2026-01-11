@@ -24,6 +24,24 @@ _restic() { # Custom restic command
 
 if [ "$avail" -gt "$used" ]; then
   case "$1" in
+  *drive*)
+    # Backup everything "incrementally" with rclone in remote drives
+    for dir in $IMPORTANT; do
+      dirname=$(basename "$dir")
+      rclone sync --progress \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
+      --backup-dir proton:"$USER-trash/$(date +%Y-%m-%d-%Hh%Mm%S)/$dirname" \
+      "$dir" "$1:$USER-back/$dirname" 
+    done
+    for dir in $ARCHIVE; do
+      dirname=$(basename "$dir")
+      rclone copy --progress \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
+      "$dir" "$1:$USER-back/archive/$dirname" 
+    done
+    ;;
   *back*)
     # Backup everything incrementally with restic in backup drives
     # (which label contains "back")
