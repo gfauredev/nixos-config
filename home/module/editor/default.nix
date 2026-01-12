@@ -25,7 +25,7 @@
         deno # Runtime for LSPs and formatters
         # Language Models
         helix-gpt # Add LLMs support through LSP
-        copilot-language-server # GitHub Copilot LSP
+        # copilot-language-server # GitHub Copilot LSP
         # lsp-ai # Language server for language models
         # tabby # Self-hosted AI code assistant
         # Spell Checking
