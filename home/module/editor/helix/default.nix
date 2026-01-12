@@ -353,14 +353,11 @@
         clangd = {
           command = "clangd";
           args = [ "--query-driver=/nix/store/**/*" ];
-          config = {
-            fallbackFlags = [
-              "-std=c++23"
-              "-Wall"
-              "-Wextra"
-              "-Wpedantic"
-            ];
-          };
+          config.fallbackFlags = [
+            "-Wall"
+            "-Wextra"
+            "-Wpedantic"
+          ];
         };
         dprint = {
           command = "dprint";
