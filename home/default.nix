@@ -119,7 +119,7 @@
       "hyprland"
       "gtk"
     ];
-    xdgOpenUsePortal = true;
+    portal.xdgOpenUsePortal = true;
   };
 
   stylix = {
