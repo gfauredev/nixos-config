@@ -208,22 +208,19 @@ in
           pseudotile = true; # master switch for pseudotiling TEST
           preserve_split = true; # you probably want this
         };
-        windowrulev2 = [
-          # Thunderbird Reminders
-          "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
-          "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
-          "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
-          "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
-          "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
-          # Wox Launcher
-          "float, class:com.github.com.woxlauncer.wox, title:Wox"
-          "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
-          # No border for windows that are the only tiled window of the workspace
-          # "noborder, floating:0, workspace:w[tv1]" # FIXME
-          # "norounding, floating:0, workspace:w[tv1]" # FIXME
-        ];
+        # windowrulev2 = [
+        #   # Thunderbird Reminders
+        #   "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
+        #   "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
+        #   "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
+        #   "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
+        #   "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
+        #   # Wox Launcher
+        #   "float, class:com.github.com.woxlauncer.wox, title:Wox"
+        #   "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
+        # ];
         # No borders for workspaces with a single visible window
-        workspace = [ "w[v1], border:0" ]; # TODO replace with smarter windowrules
+        workspace = [ "w[v1], border:0" ]; # TODO apply independently for floating and tiled
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
@@ -236,7 +233,7 @@ in
           "${mod} SHIFT, Super_L, alternative/fallback launcher, exec, ${config.launch.alt2}"
           # "${mod} SHIFT, Super_L, alternative/fallback launcher, exec, [float; center; size 1337 800] ${config.launch.alt2}"
           "${mod}, SPACE, alternative/fallback launcher, exec, ${config.launch.alt}"
-          "${mod} CONTROL, SPACE, Quick calculator, exec, [float; center; size 888 420] ${config.launch.calc}"
+          "${mod} CONTROL, SPACE, Quick calculator, exec, ${config.launch.calc}"
           "${mod} SHIFT, SPACE, Quick password manager, exec, ${config.launch.pass}"
           ", Menu, Open launcher with media key, exec, ${config.launch.all}"
           ", XF86MenuKB, Open launcher with media key, exec, ${config.launch.all}"
@@ -244,9 +241,9 @@ in
           ", XF86Calculator, Quick calculator with media key, exec, ${config.launch.calc}"
           ", XF86Search, Quick search with media key, exec, ${config.launch.all}"
           "${mod}, RETURN, Open a default terminal, exec, ${config.term.cmd}"
-          "${mod} SHIFT, RETURN, Open a floating default terminal, exec, [float; center; size 888 420] ${config.term.cmd}"
+          "${mod} SHIFT, RETURN, Open a floating default terminal, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL}" # FIX Bare ghostty command refuses to be launched tiled
           "${mod} CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}"
-          "${mod} CONTROL SHIFT, Open floating alt terminal, RETURN, exec, [float; center; size 888 420] ${config.term.alt.cmd}"
+          "${mod} CONTROL SHIFT, Open floating alt terminal, RETURN, exec, [float; center; size 888 420] ${config.term.alt.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL}" # FIX Bare ghostty command refuses to be launched tiled
           "${mod}, f, Toggle window floating, togglefloating,"
           "${mod}, w, Toggle window fullscreen, fullscreen,"
           "${mod}, q, Close current window, killactive,"

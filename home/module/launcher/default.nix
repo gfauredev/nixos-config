@@ -40,7 +40,7 @@
       description = "Quick password manager";
     };
     calc = lib.mkOption {
-      default = "${config.term.cmd} ${config.term.exec} kalker";
+      default = ''albert show "= "''; # Quick calculator
       description = "Quick calculator";
     };
   };

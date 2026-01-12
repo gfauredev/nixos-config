@@ -47,6 +47,7 @@
 
   xdg = {
     enable = true;
+    portal.enable = true;
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications =
@@ -113,6 +114,12 @@
         "application/x-ankiaddon" = "anki.desktop";
         "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
       };
+    portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    portal.config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
+    xdgOpenUsePortal = true;
   };
 
   stylix = {
