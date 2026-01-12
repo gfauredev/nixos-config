@@ -280,9 +280,8 @@ in
           "${mod} ALT, b, Move web workspace to monitor, focusworkspaceoncurrentmonitor, name:web"
           # a (art)
           "${mod}, a, Audio workspace, workspace, name:art"
-          "${mod}, a, Launch Audio/Video app, exec, ${
-            ifWorkspaceEmpty { ws = "art"; }
-          } ${config.launch.category} AudioVideo"
+          "${mod}, a, Launch Audio/Video app, exec, ${ifWorkspaceEmpty { ws = "art"; }} ${config.launch.app}"
+          # } ${config.launch.category} AudioVideo"
           "${mod} SHIFT, a, Move window to audio workspace, movetoworkspace, name:art"
           # p/XF86Mail (pim)
           "${mod}, p, Go to Personal Information Management workspace, workspace, name:pim"
