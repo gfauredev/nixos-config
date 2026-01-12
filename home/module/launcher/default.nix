@@ -6,9 +6,9 @@
 }:
 {
   imports = [
-    ./wox # To TEST
-    ./ulauncher # To TEST
-    ./rofi # To TEST, improve
+    # ./wox
+    # ./ulauncher
+    # ./rofi
     ./albert
   ];
 
