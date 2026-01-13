@@ -119,7 +119,7 @@
       "hyprland"
       "gtk"
     ];
-    portal.xdgOpenUsePortal = true;
+    # portal.xdgOpenUsePortal = true; # Always prompt for which app to use
   };
 
   stylix = {
