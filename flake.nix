@@ -44,7 +44,10 @@
           );
       system = nixpkgs.lib.nixosSystem;
       home = home-manager.lib.homeManagerConfiguration;
-      unfreepkgs = [ "albert" ];
+      unfreepkgs = [
+        "albert"
+        "github-copilot-cli"
+      ];
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
