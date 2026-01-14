@@ -229,7 +229,7 @@
     # winetricks # Execute Window$ programs (config tool)
     # Machine learning & AI
     gemini-cli # Google Gemini CLI
-    copilot-cli # GitHub Copilot CLI
+    github-copilot-cli # GitHub Copilot CLI
     # llama-cpp # Large language model server
     # gpt4all # -cuda # TEST
     # aichat # CLI LLM chat
