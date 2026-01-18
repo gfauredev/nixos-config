@@ -8,18 +8,20 @@ if [ ! -e "$TARGET_PATH" ]; then # Ensure file exists
     echo "Error: '$TARGET_PATH' does not exist"
     exit 1
 fi
-if [[ "$TARGET_PATH" != "$HOME"* ]]; then # Ensure file is inside HOME
+case "$TARGET_PATH" in
+  "$HOME"*)
     echo "Error: Target must be under your home directory ($HOME)"
     exit 1
-fi
+    ;;
+esac
 REL_PATH_FROM_HOME="${TARGET_PATH#"$HOME"/}"
 HOME_DIRECT_CHILD="${REL_PATH_FROM_HOME%%/*}"
-if [ "$REL_PATH_FROM_HOME" == "$HOME_DIRECT_CHILD" ]; then
+if [ "$REL_PATH_FROM_HOME" = "$HOME_DIRECT_CHILD" ]; then
     echo "Error: Cannot archive direct child of Home, must be in a subdirectory"
     exit 1 # Prevent archiving root items
 fi
 INNER_PATH="${REL_PATH_FROM_HOME#"$HOME_DIRECT_CHILD"/}"
-ARCHIVE_ROOT="$HOME/archive-$HOME_DIRECT_CHILD"
+ARCHIVE_ROOT="$HOME/archive/$HOME_DIRECT_CHILD"
 DEST_PATH="$ARCHIVE_ROOT/$INNER_PATH"
 DEST_DIR=$(dirname "$DEST_PATH")
 echo "Archiving: $TARGET_PATH -> $DEST_PATH"
