@@ -38,26 +38,17 @@
     let
       # TODO ensure DoH, DoT or better ODoH is used
       # See https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
-      dns0.open = [
+      dns4eu.open = [
         # Unfiltered modern European public DNS
-        "2a0f:fc80::ffff" # open.dns0.eu" # IPv6
-        "193.110.81.254" # open.dns0.eu" # IPv4
-        "2a0f:fc81::ffff" # open.dns0.eu" # IPv6
-        "185.253.5.254" # open.dns0.eu" # IPv4
+        "86.54.11.100" # IPv4
       ];
-      dns0.normal = [
+      dns4eu.normal = [
         # Modern European public DNS
-        "2a0f:fc80::" # dns0.eu" # IPv6
-        "193.110.81.0" # dns0.eu" # IPv4
-        "2a0f:fc81::" # dns0.eu" # IPv6
-        "185.253.5.0" # dns0.eu" # IPv4
+        "86.54.11.1" # IPv4
       ];
-      dns0.hard = [
+      dns4eu.hard = [
         # Hardened modern European public DNS
-        "2a0f:fc80::9" # zero.dns0.eu" # IPv6
-        "193.110.81.9" # zero.dns0.eu" # IPv4
-        "2a0f:fc81::9" # zero.dns0.eu" # IPv6
-        "185.253.5.9" # zero.dns0.eu" # IPv4
+        "86.54.11.13" # IPv4
       ];
       fdn.open = [
         # Non-profit public DNS
@@ -109,7 +100,8 @@
       ];
     in
     {
-      nameservers = dns0.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
+      nameservers =
+        dns4eu.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         # See: https://developer.gnome.org/NetworkManager/stable/NetworkManager.html
