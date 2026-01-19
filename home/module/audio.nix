@@ -38,14 +38,14 @@
   #   };
 
   home.packages = with pkgs; [
-    # ardour # Full fledged digital audio workstation
+    ardour # Full fledged digital audio workstation
     pkgs-unstable.bespokesynth # Software modular synth, controllers support
     carla # VST Host & audio router
     cardinal # Standalone and VST modular synthesizer
     # giada # Live electronic music platform
     glicol-cli # Music live coding
     helio-workstation # Sequencer / DAW
-    helvum # Modular audio environment
+    helvum # Audio patchbay
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
     # patchage # JACK router
