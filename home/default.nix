@@ -228,8 +228,9 @@
     testdisk # Recover deleted files
     exfatprogs # Tools for exfat FS
     smartmontools # Monitor health of drives
-    jmtpfs # Media transfer protocol with Android devices
-    mtpfs
+    android-file-android-file-transfer # Media Transfer Protocol (Android…)
+    jmtpfs # Media Transfer Protocol (Android…) BUG
+    mtpfs # Media Transfer Protocol (Android…) BUG
     # dislocker # Decrypt BitLocker disks
     # cdrkit # ISO tools and misc
     # Emulation & Compatibility
