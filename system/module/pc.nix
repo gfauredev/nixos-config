@@ -159,11 +159,13 @@
     adb.enable = lib.mkDefault true; # Talk to Android devices
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
+    fuse.enable = true;
     # appimage.enable = true; # Run AppImages TEST if better way
     # appimage.binfmt = true; # Run AppImages seamlessly
     # nix-ld.enable = true; # Run binaries, instead: https://nixos-and-flakes.thiscute.world/best-practices/run-downloaded-binaries-on-nixos
     # uwsm.enable = true; # TEST wayland session manager
     # niri.enable = true; # See https://github.com/YaLTeR/niri
+    fuse.userAllowOther = true;
   };
   environment.systemPackages = with pkgs; [
     # minicom # Serial TODO keep only one
