@@ -57,8 +57,6 @@
         video = "mpv";
         web = config.browser.desktop;
         pdf = web; # "org.pwmt.zathura";
-        document = "writer";
-        spreadsheet = "calc";
         pim = config.organization.pim;
       in
       {
@@ -67,10 +65,24 @@
         "text/markdown" = "${config.editor.desktop}.desktop";
         "text/code" = "${config.editor.desktop}.desktop";
         # "inode/directory" = "${term}.desktop"; # Use broot ?
+        # Document (Open)
+        "application/vnd.oasis.opendocument.text" = "writer.desktop";
+        "application/vnd.oasis.opendocument.spreadsheet" = "calc.desktop";
+        "application/vnd.oasis.opendocument.presentation" = "impress.desktop";
+        "application/vnd.oasis.opendocument.graphics" = "draw.desktop";
+        "application/vnd.oasis.opendocument.chart" = "calc.desktop";
+        "application/vnd.oasis.opendocument.formula" = "math.desktop";
+        "application/vnd.oasis.opendocument.image" = "draw.desktop";
         # Document
-        "application/vnd.oasis.opendocument.text" = "${document}.desktop";
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "${spreadsheet}.desktop";
-        "application/vnd.ms-excel" = "${spreadsheet}.desktop";
+        "application/msword" = "onlyoffice-desktopeditors.desktop";
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
+          "onlyoffice-desktopeditors.desktop";
+        "application/vnd.ms-excel" = "onlyoffice-desktopeditors.desktop";
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
+          "onlyoffice-desktopeditors.desktop";
+        "application/vnd.ms-powerpoint" = "onlyoffice-desktopeditors.desktop";
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
+          "onlyoffice-desktopeditors.desktop";
         "application/pdf" = "${pdf}.desktop";
         # Image
         "image/avif" = "${image}.desktop";
