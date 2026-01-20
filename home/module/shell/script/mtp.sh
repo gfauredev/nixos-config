@@ -4,5 +4,5 @@ if [ -d $HOME/mtp ]; then
   rmdir $HOME/mtp
 else
   mkdir $HOME/mtp
-  jmtpfs $HOME/mtp
+  aft-mtp-mount $HOME/mtp
 fi
