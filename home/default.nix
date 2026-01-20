@@ -229,6 +229,7 @@
     exfatprogs # Tools for exfat FS
     smartmontools # Monitor health of drives
     jmtpfs # Media transfer protocol with Android devices
+    mtpfs
     # dislocker # Decrypt BitLocker disks
     # cdrkit # ISO tools and misc
     # Emulation & Compatibility
