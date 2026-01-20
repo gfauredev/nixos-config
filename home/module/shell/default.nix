@@ -32,7 +32,6 @@
       #   nix flake init --template "$stack" "$@"
       #   direnv allow
       # '';
-      mtp-mount = writeScriptBin "mount.mtp" (readFile ./script/mtp.sh);
       present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
       smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
       smart-terminal = writeScriptBin "t" ''
@@ -48,7 +47,7 @@
       configure # Configure this flake config
       date-edit # Open text files, prepend current date to the first one
       extract # Extract any compressed file
-      mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
+      # mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
       present-pdf # Open detached pdfpc to present a PDF slide
       smart-commit # Quickly commit or amend, lint message
       smart-terminal # Open a terminal quickly with first parameter always cd

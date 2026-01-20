@@ -42,9 +42,7 @@ let
     http = "xh";
     https = "xh --https";
     # Media & Documents
-    # pp = "playerctl play-pause";
-    # next = "playerctl next";
-    # prev = "playerctl previous";
+    mtp = "aft-mtp-cli";
     clic = "klick --auto-connect --interactive";
     clicmap = "klick --auto-connect --tempo-map";
     mix = "pulsemixer";
