@@ -208,17 +208,19 @@ in
           pseudotile = true; # master switch for pseudotiling TEST
           preserve_split = true; # you probably want this
         };
-        # windowrulev2 = [
-        #   # Thunderbird Reminders
-        #   "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
-        #   "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
-        #   "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
-        #   "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
-        #   "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
-        #   # Wox Launcher
-        #   "float, class:com.github.com.woxlauncer.wox, title:Wox"
-        #   "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
-        # ];
+        windowrule = [
+          "idleinhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
+          "idleinhibit fullscreen, workspace:name:dpp" # Inhibit while presenting
+          # Thunderbird Reminders
+          # "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
+          # "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
+          # "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
+          # "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
+          # "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
+          # Wox Launcher
+          # "float, class:com.github.com.woxlauncer.wox, title:Wox"
+          # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
+        ];
         # No borders for workspaces with a single visible window
         workspace = [ "w[v1], border:0" ]; # TODO apply independently for floating and tiled
         bindd = [
