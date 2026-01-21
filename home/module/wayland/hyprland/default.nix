@@ -87,69 +87,84 @@ let
     dest-zone = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_win}${timestamp}.png";
   };
   workspace = rec {
-    b = {
-      name = "web"; # Name of the workspace (replace with icon in status bar)
-      # Command to execute if the workspace is empty when focusing it
-      empty = config.browser.command;
-      # Command to exec if $mod+attrName while non empty ws is already focused
-      already = config.browser.alt.command;
-      # Command to execute if $mod+alt+attrName
-      alt = config.browser.alt.command;
-    };
+    # Worskpaces management (Key refers to workspace key): $mod (SUPER) + …
+    # - Key (another WS focused): move focus to Key workspace (WS)
+    #   - Key WS empty: launch default "empty" app for that WS
+    # - Key (Key WS focused): launch alternative "already" app for that WS
+    # - SHIFT + Key (another WS focused): focus Key WS pulling focused window
+    # - SHIFT + Key (Key WS focused): cycle Key WS among monitors
     a = {
-      name = "art";
+      name = "art"; # Artistic creation
       empty = "${config.launch.category} AudioVideo"; # Exec if focused + empty
       already = "[float; center; size 888 420] ${mix}"; # Already focusing ws
+      icon = "";
     };
-    p = {
-      name = "pim";
-      empty = config.organization.pim; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
+    b = {
+      name = "web"; # weB Browsing
+      empty = config.browser.command; # Exec if workspace empty when focusing it
+      already = config.browser.alt.command; # Exec if $mod+attrName + WS focused
+      icon = "";
     };
-    XF86Mail = p;
-    o = {
-      name = "opn";
-      empty = open; # Exec if focused + empty
-      already = open; # Execute if already focusing the workspace + $mod+attrName
-    };
-    i = {
-      name = "inf";
-      empty = monitor; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-    };
-    u = {
-      name = "sup";
-      empty = config.launch.app; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
+    d = {
+      name = "dpp"; # Displayport video output
+      monitor = lib.mkDefault "DP-1"; # Monitor to which this workspace is tied
+      icon = "󰍹";
     };
     e = {
-      name = "ext";
+      name = "etc"; # Et cetera (anything)
       empty = config.launch.app; # Exec if focused + empty
       already = config.launch.app; # If ws already focused + $mod+attrName
+      icon = "";
+    };
+    h = {
+      name = "hdm"; # Hdmi video output
+      monitor = lib.mkDefault "DP-3"; # Monitor to which this workspace is tied
+      icon = "󰍹";
+    };
+    i = {
+      name = "int"; # Internal video output WARN Previously known as inf (monitoring)
+      monitor = lib.mkDefault "eDP-1"; # Monitor to which this workspace is tied
+      icon = "󰍹";
     };
     l = {
-      name = "cli";
+      name = "cli"; # command Line (terminaLs)
       empty = config.term.cmd; # Exec if focused + empty
       already = config.term.cmd; # Execute if already focusing workspace
-    };
-    n = {
-      name = "not";
-      empty = note; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
+      icon = "";
     };
     m = {
-      name = "msg";
+      name = "mon"; # system Monitoring WARN Previously known as msg (messaging)
+      empty = monitor; # Exec if focused + empty
+      already = config.launch.app; # If ws already focused + $mod+attrName
+      icon = "󱕍";
+    };
+    n = {
+      name = "not"; # Note taking and reviewing
+      empty = note; # Exec if focused + empty
+      already = config.launch.app; # If ws already focused + $mod+attrName
+      icon = "";
+    };
+    o = {
+      name = "opn"; # file Opening
+      empty = open; # Exec if focused + empty
+      already = open; # Execute if already focusing the workspace + $mod+attrName
+      icon = "";
+    };
+    p = {
+      name = "pim"; # Personal information management
+      empty = config.organization.pim; # Exec if focused + empty
+      already = config.launch.app; # If ws already focused + $mod+attrName
+      icon = "";
+    };
+    XF86Mail = p;
+    x = {
+      name = "ext"; # eXtra (anything)
       empty = config.launch.app; # Exec if focused + empty
       already = config.launch.app; # If ws already focused + $mod+attrName
+      icon = "";
     };
-    d.name = "dpp"; # DisplayPort
-    h.name = "hdm"; # HDMI
-    # XF86AudioMedia = {
-    #   name = "med";
-    #   empty = config.media; # Exec if focused + empty
-    #   already = config.launch.app; # If ws already focused + $mod+attrName
-    # };
-    # XF86Tools = XF86AudioMedia; # Sometimes the key is named differently
+    # Still usable on right hand: ^ v z ç ’
+    # Still usable on left hand: é è u ê à y .
   };
   # TODO Generate Hyprland binds from workspaces definitions with Nix functions
   # bindd = [
@@ -166,7 +181,7 @@ in
     hyprutils # Hypr ecosystem utilities
     hyprpolkitagent # Hypr Polkit auth agent
     hyprcursor # Modern cursor engine
-    # xcur2png # Convert X cursor to PNG, needed for hyprcursor
+    hyprshell # Window switcher & application launcher TODO configure
   ];
 
   wayland.windowManager.hyprland = {
@@ -249,6 +264,8 @@ in
           "${mod}, f, Toggle window floating, togglefloating,"
           "${mod}, w, Toggle window fullscreen, fullscreen,"
           "${mod}, q, Close current window, killactive,"
+          "${mod}, BackSpace, Close current window, killactive,"
+          "${mod}, Delete, Close current window, killactive,"
           "${mod} CONTROL, q, Close another window by clicking it, exec, hyprctl kill," # FIXME
           "${mod}, c, Focus the window on the left, movefocus, l"
           "${mod}, t, Focus the window below, movefocus, d"
