@@ -237,7 +237,7 @@ in
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
         # No borders for workspaces with a single visible window
-        workspace = [ "w[v1], border:0" ]; # TODO apply independently for floating and tiled
+        # workspace = [ "w[v1], border:0" ]; # TODO apply independently for floating and tiled
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
