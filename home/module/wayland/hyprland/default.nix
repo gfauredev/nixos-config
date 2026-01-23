@@ -223,9 +223,13 @@ in
           pseudotile = true; # master switch for pseudotiling TEST
           preserve_split = true; # you probably want this
         };
+        # No borders for the only tiled window of the workspace
+        workspace = [ "w[tg1], border:0" ];
         windowrule = [
-          "idleinhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
+          # "noborder, floating:0, onworkspace:w[tg1]" # Noborder only tiled
           "idleinhibit fullscreen, workspace:name:dpp" # Inhibit while presenting
+          "idleinhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
+          "idleinhibit fullscreen, workspace:name:int" # Inhibit while presenting
           # Thunderbird Reminders
           # "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
           # "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
@@ -236,8 +240,6 @@ in
           # "float, class:com.github.com.woxlauncer.wox, title:Wox"
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
-        # No borders for workspaces with a single visible window
-        # workspace = [ "w[v1], border:0" ]; # TODO apply independently for floating and tiled
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
