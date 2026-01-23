@@ -6,10 +6,8 @@
 }:
 let
   mod = "SUPER"; # Main modifier, SUPER
-  # Aliases and utility functions
   active_win = ''$(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
   active_ws = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
-  ifWorkspaceEmpty = { ws }: ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
   # TODO pass custom keybinding for apps that support tabs natively instead of grouping
   tabbedApp = [
     {
@@ -42,12 +40,7 @@ let
     }
   ];
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
-  # Tools definitions
-  open = "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -i -e br"; # TODO options for -i -e
-  monitor = "${config.term.cmd} ${config.term.exec} btm --battery";
-  mix = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   pick = "hyprpicker --autocopy"; # Color picker
-  note = "anki"; # Note-taking app"
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
   timestamp = "$(date +'%Y-%m-%d-%Hh%Mm%S')"; # Current date as string
   audio = {
@@ -86,94 +79,6 @@ let
     dest-ws = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_ws}${timestamp}.png";
     dest-zone = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_win}${timestamp}.png";
   };
-  workspace = rec {
-    # Worskpaces management (Key refers to workspace key): $mod (SUPER) + …
-    # - Key (another WS focused): move focus to Key workspace (WS)
-    #   - Key WS empty: launch default "empty" app for that WS
-    # - Key (Key WS focused): launch alternative "already" app for that WS
-    # - SHIFT + Key (another WS focused): focus Key WS pulling focused window
-    # - SHIFT + Key (Key WS focused): cycle Key WS among monitors
-    a = {
-      name = "art"; # Artistic creation
-      empty = "${config.launch.category} AudioVideo"; # Exec if focused + empty
-      already = "[float; center; size 888 420] ${mix}"; # Already focusing ws
-      icon = "";
-    };
-    b = {
-      name = "web"; # weB Browsing
-      empty = config.browser.command; # Exec if workspace empty when focusing it
-      already = config.browser.alt.command; # Exec if $mod+attrName + WS focused
-      icon = "";
-    };
-    d = {
-      name = "dpp"; # Displayport video output
-      monitor = lib.mkDefault "DP-1"; # Monitor to which this workspace is tied
-      icon = "󰍹";
-    };
-    e = {
-      name = "etc"; # Et cetera (anything)
-      empty = config.launch.app; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-      icon = "";
-    };
-    h = {
-      name = "hdm"; # Hdmi video output
-      monitor = lib.mkDefault "DP-3"; # Monitor to which this workspace is tied
-      icon = "󰍹";
-    };
-    i = {
-      name = "int"; # Internal video output WARN Previously known as inf (monitoring)
-      monitor = lib.mkDefault "eDP-1"; # Monitor to which this workspace is tied
-      icon = "󰍹";
-    };
-    l = {
-      name = "cli"; # command Line (terminaLs)
-      empty = config.term.cmd; # Exec if focused + empty
-      already = config.term.cmd; # Execute if already focusing workspace
-      icon = "";
-    };
-    m = {
-      name = "mon"; # system Monitoring WARN Previously known as msg (messaging)
-      empty = monitor; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-      icon = "󱕍";
-    };
-    n = {
-      name = "not"; # Note taking and reviewing
-      empty = note; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-      icon = "";
-    };
-    o = {
-      name = "opn"; # file Opening
-      empty = open; # Exec if focused + empty
-      already = open; # Execute if already focusing the workspace + $mod+attrName
-      icon = "";
-    };
-    p = {
-      name = "pim"; # Personal information management
-      empty = config.organization.pim; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-      icon = "";
-    };
-    XF86Mail = p;
-    x = {
-      name = "ext"; # eXtra (anything)
-      empty = config.launch.app; # Exec if focused + empty
-      already = config.launch.app; # If ws already focused + $mod+attrName
-      icon = "";
-    };
-    # Still usable on right hand: ^ v z ç ’
-    # Still usable on left hand: é è u ê à y .
-  };
-  # TODO Generate Hyprland binds from workspaces definitions with Nix functions
-  # bindd = [
-  # "${mod}, ${key}, Focus ${name} workspace, workspace, name:${name}"
-  # "${mod} CONTROL, ${key}, Move ${name} workspace to current monitor, focusworkspaceoncurrentmonitor, name:${name}"
-  # "${mod} SHIFT, ${key}, Move focused window to ${name} workspace, movetoworkspace, name:${name}"
-  # "${mod} ALT, ${key}, Open ${alt} in ${name} workspace, exec, ${alt}"
-  # ''${mod}, ${key}, Open ${empty} in ${name} workspace, exec, hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${name}")' || ${empty}''
-  # ''${mod}, ${key}, Open ${already} in ${name} workspace, exec, hyprctl clients -j | jq -e TODO ${already}''
 in
 {
   home.packages = with pkgs; [
@@ -185,7 +90,7 @@ in
   ];
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = true; # See https://wiki.hyprland.org/Configuring
     systemd.enable = true;
     xwayland.enable = true; # Backwards compatibility
     settings =
@@ -195,7 +100,6 @@ in
         black = "rgb(000000)"; # Pitch black background for OLED
       in
       {
-        # See https://wiki.hyprland.org/Configuring/
         monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
         debug.disable_logs = false; # Enable logs
         xwayland.force_zero_scaling = true;
@@ -207,11 +111,7 @@ in
         input = {
           kb_layout = "fr,us";
           kb_variant = "bepo_afnor,";
-          # kb_options = "grp:ctrls_toggle"; # Not working
-          # kb_options = "grp:alt_shift_toggle"; # Annoying
-          # kb_options = "grp:shifts_toggle"; # Not working
-          # kb_options = "grp:alts_toggle"; # Breaks AltGr
-          kb_options = "grp:alt_altgr_toggle";
+          kb_options = "grp:alt_altgr_toggle"; # ctrls_toggle alt_shift_toggle shifts_toggle alts_toggle
           repeat_delay = "190";
           repeat_rate = "50";
           follow_mouse = 1;
@@ -223,8 +123,6 @@ in
           pseudotile = true; # master switch for pseudotiling TEST
           preserve_split = true; # you probably want this
         };
-        # No borders for the only tiled window of the workspace
-        # workspace = [ "w[tg1], border:0" ];
         windowrule = [
           "noborder, floating:0, onworkspace:w[t1]" # No border for single tiled
           "idleinhibit fullscreen, workspace:name:dpp" # Inhibit while presenting
@@ -238,6 +136,7 @@ in
           # "float, class:com.github.com.woxlauncer.wox, title:Wox"
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
+        bind = import ./workspaces.nix;
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
@@ -248,7 +147,6 @@ in
           "SUPER CONTROL, j, Change mirrored output or region, exec, ${mirror.region}"
           "${mod}, Super_L, Default launcher, exec, ${config.launch.all}"
           "${mod} SHIFT, Super_L, alternative/fallback launcher, exec, ${config.launch.alt2}"
-          # "${mod} SHIFT, Super_L, alternative/fallback launcher, exec, [float; center; size 1337 800] ${config.launch.alt2}"
           "${mod}, SPACE, alternative/fallback launcher, exec, ${config.launch.alt}"
           "${mod} CONTROL, SPACE, Quick calculator, exec, ${config.launch.calc}"
           "${mod} SHIFT, SPACE, Quick password manager, exec, ${config.launch.pass}"
@@ -287,87 +185,8 @@ in
           "CONTROL, Print, Copy screen zone to clipboard, exec, ${screenshot.region} - | wl-copy"
           "SHIFT, Print, Full screenshot, exec, ${screenshot.fullscreen} ${screenshot.dest-ws}"
           "${mod}, k, Pick a color anywhere on the screen, exec, ${pick}"
-          # Workspaces
-          # b (web)
-          "${mod} CONTROL, b, Open alternative/fallback browser 1, exec, ${config.browser.alt.command}"
-          "${mod} CONTROL SHIFT, b, Open alternative/fallback browser 2, exec, ${config.browser.alt.command}"
-          "${mod}, b, Web browsing workspace, workspace, name:web"
-          "${mod}, b, Open browser in web workspace, exec, ${
-            ifWorkspaceEmpty { ws = "web"; }
-          } ${config.browser.command}"
-          "${mod} SHIFT, b, Move window to web workspace, movetoworkspace, name:web"
-          "${mod} ALT, b, Move web workspace to monitor, focusworkspaceoncurrentmonitor, name:web"
-          # a (art)
-          "${mod}, a, Audio workspace, workspace, name:art"
-          "${mod}, a, Launch Audio/Video app, exec, ${ifWorkspaceEmpty { ws = "art"; }} ${config.launch.app}"
-          # } ${config.launch.category} AudioVideo"
-          "${mod} SHIFT, a, Move window to audio workspace, movetoworkspace, name:art"
-          # p/XF86Mail (pim)
-          "${mod}, p, Go to Personal Information Management workspace, workspace, name:pim"
-          "${mod}, p, Open Personal Information Management software, exec, ${
-            ifWorkspaceEmpty { ws = "pim"; }
-          } ${config.organization.pim}"
-          ", XF86Mail, Go to Personal Information Management workspace, workspace, name:pim"
-          ", XF86Mail, Open Personal Information Management software, exec, ${
-            ifWorkspaceEmpty { ws = "pim"; }
-          } ${config.organization.pim}"
-          "${mod} SHIFT, p, Move window to PIM workspace, movetoworkspace, name:pim"
-          # o (opn)
-          "${mod}, o, Open any file on dedicated workspace, workspace, name:opn"
-          "${mod}, o, Open any file on dedicated workspace, exec, ${ifWorkspaceEmpty { ws = "opn"; }} ${open}"
-          # i (inf)
-          "${mod}, i, Informations / monItorIng workspace, workspace, name:inf"
-          "${mod}, i, Open monitoring software, exec, ${ifWorkspaceEmpty { ws = "inf"; }} ${monitor}"
-          # u (sup)
-          "${mod}, u, SUp / SUpplementary workspace, workspace, name:sup"
-          "${mod}, u, Launch an app on suplementary workspace, exec, ${
-            ifWorkspaceEmpty { ws = "sup"; }
-          } ${config.launch.app}" # TODO make this the default for workspaces
-          "${mod} SHIFT, u, SUp / SUpplementary workspace, movetoworkspace, name:sup"
-          # e (etc)
-          "${mod}, e, Etc (et cetera) workspace, workspace, name:etc"
-          "${mod}, e, Launch an app on etc workspace, exec, ${
-            ifWorkspaceEmpty { ws = "etc"; }
-          } ${config.launch.app}"
-          "${mod} SHIFT, e, Move window to etc workspace, movetoworkspace, name:etc"
-          # x (ext)
-          "${mod}, x, eXt / eXtra workspace, workspace, name:ext"
-          "${mod}, x, Launch an app on ext workspace, exec, ${
-            ifWorkspaceEmpty { ws = "ext"; }
-          } ${config.launch.app}"
-          "${mod} SHIFT, x, Move window to ext workspace, movetoworkspace, name:ext"
-          # l (cli)
-          "${mod}, l, cLi / terminaL workspace, workspace, name:cli"
-          "${mod}, l, Open a terminal on cli workspace, exec, ${
-            ifWorkspaceEmpty { ws = "cli"; }
-          } ${config.term.cmd}"
-          "${mod} SHIFT, l, Move window to cli workspace, movetoworkspace, name:cli"
-          # n (not)
-          "${mod}, n, Go to notetaking workspace, workspace, name:not"
-          "${mod}, n, Open any document in main user folders, exec, ${
-            ifWorkspaceEmpty { ws = "not"; }
-          } ${note}"
-          "${mod} SHIFT, n, Move window to notetaking workspace, movetoworkspace, name:not"
-          # m (msg)
-          "${mod}, m, Go to messaging workspace, workspace, name:msg"
-          "${mod}, m, Launch a messaging app, exec, ${ifWorkspaceEmpty { ws = "msg"; }} ${config.launch.app}"
-          # d (dpp)
-          "${mod}, d, Go to DisplayPort workspace, workspace, name:dpp" # TODO Ensure right port
-          "${mod} SHIFT, d, Move window to DisplayPort workspace, movetoworkspace, name:dpp"
-          # h (hdm)
-          "${mod}, h, Go to HDMI workspace, workspace, name:hdm" # TODO Ensure right port
-          "${mod} SHIFT, h, Move window to HDMI workspace, movetoworkspace, name:hdm"
-          # XF86AudioMedia/XF86Tools (media)
-          # ", XF86AudioMedia, Go to media workspace, workspace, name:media"
-          # ", XF86AudioMedia, Quickly launch a media app, exec, ${
-          #   ifWorkspaceEmpty { ws = "media"; }
-          # } ${config.media}"
-          # ", XF86Tools, Go to media workspace, workspace, name:media"
-          # ", XF86Tools, Quickly launch a media app, exec, ${
-          #   ifWorkspaceEmpty { ws = "media"; }
-          # } ${config.media}"
-          ", XF86AudioMedia, Open audio mixer, exec, [float; center; size 888 420] ${mix}"
-          ", XF86Tools, Open audio mixer, exec, [float; center; size 888 420] ${mix}"
+          ", XF86AudioMedia, Open audio mixer, exec, [float; center; size 888 420] ${config.launch.mix}"
+          ", XF86Tools, Open audio mixer, exec, [float; center; size 888 420] ${config.launch.mix}"
           "SHIFT, XF86AudioMedia, Open bluetooth manager, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl"
           "SHIFT, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
           "CONTROL, XF86AudioMedia, Open bluetooth manager, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl"
@@ -466,7 +285,7 @@ in
           "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
           "GTK_IM_MODULE,simple" # Simple GTK input method (use builtin deadkeys)
         ]
-        ++ lib.mapAttrsToList (var: val: "${var},${builtins.toString val}") config.home.sessionVariables;
+        ++ lib.mapAttrsToList (var: val: "${var},${toString val}") config.home.sessionVariables;
       };
   };
 

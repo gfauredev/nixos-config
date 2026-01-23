@@ -43,6 +43,7 @@
       default = ''albert show "= "''; # Quick calculator
       description = "Quick calculator";
     };
+    mix = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
   };
 
   config.home.packages = with pkgs; [
