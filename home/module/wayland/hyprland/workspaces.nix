@@ -53,13 +53,11 @@ let
     m = {
       name = "mon"; # system Monitoring WARN Previously known as msg (messaging)
       empty = monitor; # Exec if focused + empty
-      # already = config.launch.app; # If ws already focused + $mod+attrName
       icon = "󱕍";
     };
     n = {
       name = "not"; # Note taking and reviewing
       empty = note; # Exec if focused + empty
-      # already = config.launch.app; # If ws already focused + $mod+attrName
       icon = "";
     };
     o = {
@@ -71,24 +69,21 @@ let
     p = {
       name = "pim"; # Personal information management
       empty = config.organization.pim; # Exec if focused + empty
-      # already = config.launch.app; # If ws already focused + $mod+attrName
       icon = "";
     };
     XF86Mail = p;
     x = {
       name = "ext"; # eXtra (anything)
-      # empty = config.launch.app; # Exec if focused + empty
-      # already = config.launch.app; # If ws already focused + $mod+attrName
       icon = "";
     };
     # Still usable on right hand: ^ v z ç ’
     # Still usable on left hand: é è u ê à y .
   };
-  ifWsEmpty = { ws }: ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
-  example = "SUPER, b, Open browser in WEB, exec, ${ifWsEmpty { ws = "web"; }} ${config.browser.command}";
   genBinds =
     workspaceSet:
     let
+      empty = { ws }: ''hyprctl clients -j | jq -e 'any(.[]; .workspace.name == "${ws}")' ||'';
+      example = "SUPER, b, Open browser in WEB, exec, ${empty { ws = "web"; }} ${config.browser.command}";
       # Logic for $mod + Key
       focusCmd = ws: ''
         focused=$(hyprctl activeworkspace -j | jq -r '.name')
