@@ -61,6 +61,7 @@
       # search.engines = config.programs.firefox.profiles.default.search.engines;
       # TODO LanguageTool extension; en-GB, fr-FR, en-US languages packs (in this order)
     };
+    thunderbird.package = pkgs.thunderbird-bin;
     khal.settings.default = {
       default_calendar = "perso";
       timedelta = "7d";
