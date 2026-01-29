@@ -136,7 +136,7 @@ in
           # "float, class:com.github.com.woxlauncer.wox, title:Wox"
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
-        bind = import ./workspaces.nix;
+        # bind = import ./workspaces.nix; # TODO
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
