@@ -8,37 +8,6 @@ let
   mod = "SUPER"; # Main modifier, SUPER
   active_win = ''$(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
   active_ws = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
-  # TODO pass custom keybinding for apps that support tabs natively instead of grouping
-  tabbedApp = [
-    {
-      name = "alacritty";
-      bind = "ctrl+TODO";
-    }
-    {
-      name = "brave";
-      bind = "ctrl+t";
-    }
-    {
-      name = "chromium";
-      bind = "ctrl+t";
-    }
-    {
-      name = "firefox";
-      bind = "ctrl+t";
-    }
-    {
-      name = "foot";
-      bind = "ctrl+TODO";
-    }
-    {
-      name = "ghostty";
-      bind = "ctrl+t";
-    }
-    {
-      name = "wezterm";
-      bind = "ctrl+TODO";
-    }
-  ];
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   pick = "hyprpicker --autocopy"; # Color picker
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
@@ -136,7 +105,7 @@ in
           # "float, class:com.github.com.woxlauncer.wox, title:Wox"
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
-        # bind = import ./workspaces.nix; # TODO
+        bind = (import ./lib.nix).genBinds (import ./workspaces.nix);
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
