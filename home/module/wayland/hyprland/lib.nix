@@ -18,7 +18,7 @@
         "${mod}, ${key}, exec, ${ws.alreadyWinRules or ":;"} ${
           ifFocus ws (ws.already or config.launch.app)
         }"
-        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws}; sleep 0.125; ${empty ws}"
+        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws} & (sleep 0.25; ${empty ws})"
         "${mod} SHIFT, ${key}, execr, ${shift ws}"
         "${mod} SHIFT, ${key}, movetoworkspace, name:${ws.name}"
       ]) workspaceSet
