@@ -24,8 +24,7 @@
     in
     lib.concatLists (
       lib.mapAttrsToList (key: ws: [
-        # "${mod}, ${key}, exec, ${toggleCmd ws}" FIXME
-        "${mod}, ${key}, workspace, ${ws.name}" # Temporary FIX
+        "${mod}, ${key}, exec, ${toggleCmd ws}"
         "${mod} SHIFT, ${key}, exec, ${shiftCmd ws}"
         "${mod} SHIFT, ${key}, movetoworkspace, name:${ws.name}"
       ]) workspaceSet
