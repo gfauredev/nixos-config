@@ -105,7 +105,9 @@ in
           # "float, class:com.github.com.woxlauncer.wox, title:Wox"
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
-        bind = (import ./lib.nix).genBinds (import ./workspaces.nix);
+        bind = (import ./lib.nix { inherit lib config; }).genBinds (
+          import ./workspaces.nix { inherit lib config; }
+        );
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, config, ... }:
 let
   open = "${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL} -i -e br"; # TODO options for -i -e
   monitor = "${config.term.cmd} ${config.term.exec} btm --battery";
@@ -7,7 +7,7 @@ let
   # - Key (another WS focused): move focus to Key workspace (WS)
   #   - Key WS empty: launch default "empty" app for that WS
   # - Key (Key WS focused): launch alternative "already" app for that WS
-  # - SHIFT + Key (another WS focused): focus Key WS pulling focused window
+  # - SHIFT + Key (another WS focused): move focused window to key WS
   # - SHIFT + Key (Key WS focused): cycle Key WS among monitors
 in
 rec {
