@@ -15,7 +15,7 @@ rec {
     name = "art"; # Artistic creation
     empty = "${config.launch.category} AudioVideo"; # Exec if focused + empty
     already = "[float; center; size 888 420] ${config.launch.mix}"; # Already focusing ws
-    icon = "";
+    icon = ""; # TODO Use it in waybar identified by name
   };
   b = {
     name = "web"; # weB Browsing
