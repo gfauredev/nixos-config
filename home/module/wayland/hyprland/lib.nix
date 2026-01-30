@@ -5,27 +5,19 @@
     let
       mod = "SUPER"; # Main modifier, SUPER
       windowCount =
-        ws: "hyprctl workspaces -j | jq -r '.[] | select(.name == \"${ws}\") | .windows // 0'";
-      empty = ws: "[ $(${windowCount ws}) -eq 0 ] &&";
-      focused = ws: "[ $(hyprctl activeworkspace -j | jq -r '.name') = '${ws}' ] &&";
+        ws: "hyprctl workspaces -j | jq -r '.[] | select(.name == \"${ws.name}\") | .windows // 0'";
+      ifFocus = ws: cmd: "[ $(hyprctl activeworkspace -j | jq -r '.name') = '${ws.name}' ] && ${cmd}";
       # Logic for $mod + Key
-      toggleCmd =
-        ws:
-        let
-          cmdAlready = ws.already or config.launch.app;
-          cmdEmpty = ws.empty or config.launch.app;
-          exec = "hyprctl dispatch exec";
-          workspace = "hyprctl dispatch workspace";
-        in
-        # FIXME Works in shell but not in Hyprland’s exec
-        "${focused ws.name} ${exec} '${cmdAlready}' || ${workspace} name:${ws.name} && ${empty ws.name} ${exec} '${cmdEmpty}'";
+      ifEmpty = ws: cmd: "[ $(${windowCount ws}) -eq 0 ] && exec ${cmd}";
+      workspace = name: "hyprctl dispatch workspace name:${name}";
+      already = ws: ifFocus ws (ws.already or config.launch.app);
       # Logic for $mod + SHIFT + Key
-      shiftCmd = ws: "${focused ws.name} && hyprctl dispatch movecurrentworkspacetomonitor +1";
+      shift = ws: ifFocus ws "hyprctl dispatch movecurrentworkspacetomonitor +1";
     in
     lib.concatLists (
       lib.mapAttrsToList (key: ws: [
-        "${mod}, ${key}, exec, ${toggleCmd ws}"
-        "${mod} SHIFT, ${key}, exec, ${shiftCmd ws}"
+        "${mod}, ${key}, exec, ${workspace ws.name}; ${ifEmpty ws (ws.empty or config.launch.app)}"
+        "${mod} SHIFT, ${key}, exec, ${shift ws}"
         "${mod} SHIFT, ${key}, movetoworkspace, name:${ws.name}"
       ]) workspaceSet
     );
