@@ -2,7 +2,6 @@
 local mapopt = { noremap = true, silent = true }
 local map = vim.keymap.set
 local lsp = require "lspconfig"
-
 -- normal mode       = n
 -- insert mode       = i
 -- visual mode       = v
@@ -108,13 +107,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, mapopt)
   end,
 })
-
--- Language selection for ltex-ls
-vim.api.nvim_create_user_command("Ltlang", function(opt) -- FIXME
-    for _, client in ipairs(vim.lsp.get_clients({ name = "ltex" })) do
-      client.notify("workspace/didChangeConfiguration",
-        { settings = { ltex = { language = opt.fargs[1] } } }
-      )
-    end
-  end,
-  { nargs = 1 })

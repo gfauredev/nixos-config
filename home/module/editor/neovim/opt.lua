@@ -1,6 +1,5 @@
 -- -- -- -- -- Options -- -- -- -- --
 local opt = vim.opt
-
 -- Files & OS
 opt.backup = false            -- creates a backup file
 opt.swapfile = true           -- creates swapfile
@@ -37,23 +36,3 @@ opt.tabstop = 2        -- insert 2 spaces for a tab
 -- Netrw file manager
 vim.g.netrw_banner = 0    -- disable anoying Netrw banner
 vim.g.netrw_liststyle = 3 -- treeview
--- vim.g.netrw_altv = 1          -- open splits to the right
--- vim.g.netrw_browser_split = 4 -- open in a prior window
-
--- Deprecated
--- opt.completeopt = { "menu", "menuone", "noselect" }
--- opt.conceallevel = 0    -- so that `` is visible in markdown files
--- opt.splitbelow = true  -- force horizontal splits to go below current window
--- opt.splitright = true  -- force vertical splits to go to the right
--- opt.timeoutlen = 1000     -- milisecs to wait for a mapped sequence to complete
--- opt.laststatus = 3
--- opt.showcmd = false
--- opt.ruler = false
--- opt.numberwidth = 3    -- set number column width
--- opt.shortmess:append "c"
--- opt.whichwrap:append("<,>,[,],h,l")
--- opt.iskeyword:append("-")
--- opt.fillchars.eob = " "
--- opt.guifont = "monospace:h17" -- font used in graphical neovim applications
--- opt.foldmethod = "expr"                     -- Treesitter folding
--- opt.foldexpr = "nvim_treesitter#foldexpr()" -- Treesitter folding
