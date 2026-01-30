@@ -19,27 +19,15 @@
         # ", 1920x1080, -114x-1080, 1"
         # ", 1920x1200, -114x-1200, 1"
       ];
-      # See https://wiki.hyprland.org/Configuring/Workspace-Rules
       # Griffin (Framework Laptop 13) workspaces
       workspace = [
-        # Note: Every port is considered DP on Framework Laptop 13
-        "name:sup, monitor:eDP-1, default:true" # FW13’s internal monitor
+        # Note: Every port is DP through USB-C on Framework Laptop 13
+        # TODO declaratively with ./hyprland/workspaces.nix
         "name:dpp, monitor:DP-1, default:true" # Desk monitor, Hub, eGPU…
-        # "name:dpp, monitor:DP-4, default:true" # Desk monitor, Hub, eGPU…
-        # "name:dpp, monitor:DP-5, default:true" # Desk monitor, Hub, eGPU…
-        # "name:dpp, monitor:DP-6, default:true" # Desk monitor, Hub, eGPU…
-        # "name:dpp, monitor:DP-7, default:true" # Desk monitor, Hub, eGPU…
-        # "name:dpp, monitor:DP-8, default:true" # Desk monitor, Hub, eGPU…
-        # "name:hdm, monitor:DP-2, default:true" # TV, Video projector
         "name:hdm, monitor:DP-3, default:true" # TV, Video projector
+        "name:int, monitor:eDP-1, default:true" # FW13’s internal monitor
       ];
-      env = [
-        # Launch on eGPU if available, integrated one instead
-        # Depends on stateful configurations, find a cleaner (Nixier) way :
-        ## ln -sf /dev/dri/by-path/pci-0000:00:02.0-card .config/hypr/igpu
-        ## ln -sf /dev/dri/by-path/pci-0000:7f:00.0-card .config/hypr/egpu
-        "GDK_SCALE,1.25" # Set scaling on Xwayland
-      ];
+      env = [ "GDK_SCALE,1.25" ]; # Set scaling on Xwayland
     };
   };
 }
