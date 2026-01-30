@@ -3,7 +3,7 @@
   genBinds =
     workspaceSet:
     let
-      notEmpty = ws: "hyprctl clients -j | jq -e 'any(.[]; .workspace.name == '${ws}')'";
+      notEmpty = ws: "hyprctl clients -j | jq -e 'any(.[]; .workspace.name == \"${ws}\")'";
       focused = ws: "[ $(hyprctl activeworkspace -j | jq -r '.name') = '${ws}' ]";
       mod = "SUPER"; # Main modifier, SUPER
       # Logic for $mod + Key
