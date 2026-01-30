@@ -20,7 +20,7 @@
     lib.concatLists (
       lib.mapAttrsToList (key: ws: [
         "${mod}, ${key}, exec, ${ws.alreadyWinRules or ":;"} ${ifFocus ws} || ${workspace ws} && ${ifEmpty ws}"
-        "${mod} SHIFT, ${key}, exec, ${shift ws}"
+        "${mod} SHIFT, ${key}, execr, ${shift ws}"
         "${mod} SHIFT, ${key}, movetoworkspace, name:${ws.name}"
       ]) workspaceSet
     );
