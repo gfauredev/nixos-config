@@ -14,7 +14,7 @@
     in
     lib.concatLists (
       lib.mapAttrsToList (key: ws: [
-        "${mod}, ${key}, exec, ${alreadyFocusedCmd ws}"
+        # "${mod}, ${key}, exec, ${alreadyFocusedCmd ws}" FIXME Always executed
         "${mod}, ${key}, workspace, name:${ws.name}"
         "${mod}, ${key}, exec, ${notEmptyCmd ws}"
         "${mod} SHIFT, ${key}, exec, ${shiftCmd ws}"
