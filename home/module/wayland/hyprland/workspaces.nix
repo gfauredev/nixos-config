@@ -14,7 +14,8 @@ rec {
   a = {
     name = "art"; # Artistic creation
     empty = "${config.launch.category} AudioVideo"; # Exec if focused + empty
-    already = "[float; center; size 888 420] ${config.launch.mix}"; # Already focusing ws
+    alreadyWinRules = "float; center; size 888 420"; # TODO Cleaner
+    already = config.launch.mix; # Already focusing ws
     icon = ""; # TODO Use it in waybar identified by name
   };
   b = {
