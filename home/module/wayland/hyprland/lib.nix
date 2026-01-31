@@ -17,7 +17,7 @@
           ifFocus ws (ws.already or config.launch.app)
         }"
         # FIXME Windows often opening on the previous workspace, even if appearing way after having moved
-        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws} & (sleep 0.5; ${empty ws})"
+        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws}; sleep 0.5; ${empty ws}"
         "${mod} SHIFT, ${key}, execr, ${ifFocus ws "hyprctl dispatch movecurrentworkspacetomonitor +1"} || ${movetoworkspace ws}"
       ]) workspaceSet
     );

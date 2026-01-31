@@ -151,8 +151,8 @@
           "hyprland/workspaces" = {
             on-click = null;
             all-outputs = false;
-            # format = "{name}";
             format = "{icon}";
+            # TODO Declaratively from ../hyprland/workspaces.nix
             format-icons = {
               art = "";
               web = "";
@@ -160,11 +160,11 @@
               etc = "";
               hdm = "";
               int = "";
-              cli = ""; # "❯"; # ""; # "";
+              cli = ""; # ❯  
               mon = "󱕍";
               not = "";
-              opn = ""; # "󰥨";
-              pim = ""; # "󰸍";
+              opn = "󰥨"; # 
+              pim = ""; # 󰸍
               ext = "";
             };
           };
