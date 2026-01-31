@@ -9,15 +9,17 @@
       ifFocus = ws: cmd: "[ $(hyprctl activeworkspace -j | jq -r '.name') = '${ws.name}' ] && ${cmd}";
       workspace = ws: "hyprctl dispatch workspace name:${ws.name}";
       movetoworkspace = ws: "hyprctl dispatch movetoworkspace name:${ws.name}";
-      empty = ws: "[ $(${windowCount ws}) -eq 0 ] && ${ws.empty or config.launch.app}";
+      launchOnWs = ws: cmd: "hyprctl dispatch exec '[workspace name:${ws.name}] ${cmd}'";
+      empty = ws: cmd: "[ $(${windowCount ws}) -eq 0 ] && ${cmd}";
     in
     lib.concatLists (
       lib.mapAttrsToList (key: ws: [
         "${mod}, ${key}, exec, ${ws.alreadyWinRules or ":;"} ${
-          ifFocus ws (ws.already or config.launch.app)
+          ifFocus ws (launchOnWs ws (ws.already or config.launch.app))
         }"
-        # FIXME Windows often opening on the previous workspace, even if appearing way after having moved
-        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws}; sleep 0.5; ${empty ws}"
+        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws}; sleep 0.5; ${
+          empty ws (launchOnWs ws (ws.empty or config.launch.app))
+        }"
         "${mod} SHIFT, ${key}, execr, ${ifFocus ws "hyprctl dispatch movecurrentworkspacetomonitor +1"} || ${movetoworkspace ws}"
       ]) workspaceSet
     );
