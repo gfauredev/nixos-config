@@ -17,7 +17,7 @@
         "${mod}, ${key}, exec, ${ws.alreadyWinRules or ":;"} ${
           ifFocus ws (launchOnWs ws (ws.already or config.launch.app))
         }"
-        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws}; sleep 0.5; ${
+        "${mod}, ${key}, exec, ${ws.emptyWinRules or ":;"} sleep 0.0625; ${workspace ws}; ${
           empty ws (launchOnWs ws (ws.empty or config.launch.app))
         }"
         "${mod} SHIFT, ${key}, execr, ${ifFocus ws "hyprctl dispatch movecurrentworkspacetomonitor +1"} || ${movetoworkspace ws}"
