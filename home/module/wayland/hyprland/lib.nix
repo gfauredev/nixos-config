@@ -21,7 +21,7 @@
           empty = ws.empty or config.launch.app;
         in
         [
-          "${mod}, ${key}, Focus workspace ${ws.name}, execr, ${ifFocus ws (exec "workspace name:${ws.name}${alreadyRule ws}" already)} || ${workspace ws} && ${ifEmpty ws (exec "workspace name:${ws.name}${emptyRule ws}" empty)}"
+          "${mod}, ${key}, Focus workspace ${ws.name}, execr, ${ifFocus ws (exec "workspace name:${ws.name}${alreadyRule ws}" already)} || (${workspace ws} && ${ifEmpty ws (exec "workspace name:${ws.name}${emptyRule ws}" empty)})"
           "${mod} SHIFT, ${key}, Move focused window to ${ws.name} workspace, execr, ${ifFocus ws "hyprctl dispatch movecurrentworkspacetomonitor +1"} || ${movetoWs ws}"
         ]
       ) workspaceSet
