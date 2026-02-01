@@ -8,13 +8,8 @@
       ifFocus = ws: cmd: "[ $(hyprctl activeworkspace -j | jq -r '.name') = '${ws.name}' ] && ${cmd}";
       ifEmpty = ws: cmd: "[ $(${windowCount ws}) -eq 0 ] && ${cmd}";
       exec = rules: cmd: "hyprctl dispatch exec '[${rules}] ${cmd}'";
-      alreadyRule =
-        ws:
-        lib.optionalString (
-          ws.alreadyWinRules != null && ws.alreadyWinRules != ""
-        ) "; ${ws.alreadyWinRules}";
-      emptyRule =
-        ws: lib.optionalString (ws.emptyWinRules != null && ws.emptyWinRules != "") "; ${ws.emptyWinRules}";
+      alreadyRule = ws: lib.optionalString (ws ? alreadyWinRules) "; ${ws.alreadyWinRules}";
+      emptyRule = ws: lib.optionalString (ws ? emptyWinRules) "; ${ws.emptyWinRules}";
       workspace = ws: "hyprctl dispatch workspace name:${ws.name}";
       movetoWs = ws: "hyprctl dispatch movetoworkspace name:${ws.name}";
     in
