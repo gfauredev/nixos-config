@@ -14,7 +14,7 @@ rec {
   a = {
     name = "art"; # Artistic creation
     # empty = "${config.launch.category} AudioVideo"; # Uses rofi
-    alreadyWinRules = "[float; center; size 888 420]"; # TODO Cleaner
+    alreadyRule = "float; center; size 888 420";
     already = config.launch.mix; # Already focusing ws
     icon = ""; # TODO Use it in waybar identified by name
   };
