@@ -6,8 +6,6 @@
 }:
 let
   mod = "SUPER"; # Main modifier, SUPER
-  active_win = ''$(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
-  active_ws = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   pick = "hyprpicker --autocopy"; # Color picker
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
@@ -23,30 +21,29 @@ let
     mic.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"; # Wireplumber
     mic.lower = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"; # Wireplumber
     mic.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"; # Wireplumber
-    play.toggle = "playerctl play-pause";
-    play.pause = "playerctl pause";
-    play.next = "playerctl next";
+    play.toggle = "playerctl play-pause"; # -p ${config.media}";
+    play.pause = "playerctl pause"; # -p ${config.media}";
+    play.next = "playerctl next"; # -p ${config.media}";
     play.previous = "playerctl previous";
-    # media.toggle = "playerctl play-pause -p ${config.media}";
-    # media.next = "playerctl next -p ${config.media}";
-    # media.previous = "playerctl previous -p ${config.media}";
-  }; # TODO generate Hyprland 'bindl' binds from audio definitions
+  };
   brightness = {
     raise = "brightnessctl set 1%+"; # "light -A 1";
     RAISE = "brightnessctl set 5%+"; # "light -A 5";
     lower = "brightnessctl set 1%-"; # "light -U 1";
     LOWER = "brightnessctl set 5%-"; # "light -U 5";
-  }; # TODO generate Hyprland 'bindle' binds from brithness definitions
+  };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
     region = "wl-present set-region"; # Change mirrored output or region
     freeze = "wl-present toggle-freeze"; # Freeze mirrored image
   };
-  screenshot = {
+  screenshot = rec {
+    activeWin = ''$(hyprctl activewindow -j | jq -r '.["title"]' | tr '/|\\ ' '\n' | tail -n1)'';
+    activeWs = ''$(hyprctl activeworkspace -j | jq -r '.["name"]')'';
     fullscreen = "grim";
     region = ''grim -g "$(slurp)"'';
-    dest-ws = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_ws}${timestamp}.png";
-    dest-zone = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${active_win}${timestamp}.png";
+    dest-ws = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${activeWs}${timestamp}.png";
+    dest-zone = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot/${activeWin}${timestamp}.png";
   };
 in
 {
@@ -105,9 +102,6 @@ in
           # "float, class:com.github.com.woxlauncer.wox, title:Wox"
           # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
         ];
-        bind = (import ./lib.nix { inherit lib config; }).genBinds (
-          import ./workspaces.nix { inherit lib config; }
-        );
         bindd = [
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
@@ -135,7 +129,7 @@ in
           "${mod}, q, Close current window, killactive,"
           "${mod}, BackSpace, Close current window, killactive,"
           "${mod}, Delete, Close current window, killactive,"
-          "${mod} CONTROL, q, Close another window by clicking it, exec, hyprctl kill," # FIXME
+          "${mod} CONTROL, q, Close another window by clicking it, execr, hyprctl kill"
           "${mod}, c, Focus the window on the left, movefocus, l"
           "${mod}, t, Focus the window below, movefocus, d"
           "${mod}, s, Focus the window above, movefocus, u"
@@ -162,7 +156,10 @@ in
           "SHIFT, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
           "CONTROL, XF86AudioMedia, Open bluetooth manager, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl"
           "CONTROL, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
-        ];
+        ]
+        ++ (import ./lib.nix { inherit lib config; }).genBinds mod (
+          import ./workspaces.nix { inherit lib config; }
+        );
         binde = [
           "${mod} SHIFT, c, moveactive, -10 0" # Move left
           "${mod} SHIFT, t, moveactive, 0 10" # Move down
