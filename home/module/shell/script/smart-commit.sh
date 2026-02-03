@@ -1,6 +1,8 @@
-case "$0" in
+alias=$0
+case $alias in
   feat:|fix:|doc:|docs:|style:|refactor:|perf:|test:|chore:|build:|ci:|revert:|wip:)
-    git commit --all --message "$0 $*"
+  printf "Committing with type %s\n" "$alias"
+    git commit --all --message "$alias $*"
     exit 0
     ;;
 esac
