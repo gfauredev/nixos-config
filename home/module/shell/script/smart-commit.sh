@@ -1,4 +1,4 @@
-switch "$0" in
+case "$0" in
   feat:|fix:|doc:|docs:|style:|refactor:|perf:|test:|chore:|build:|ci:|revert:|wip:)
     git commit --all --message "$0 $*"
     exit 0
