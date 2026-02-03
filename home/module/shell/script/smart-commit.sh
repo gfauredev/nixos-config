@@ -1,4 +1,9 @@
-# COMMITLINT_CMD="commitlint --config $XDG_CONFIG_HOME/commitlintrc.yaml"
+switch "$0" in
+  feat:|fix:|doc:|docs:|style:|refactor:|perf:|test:|chore:|build:|ci:|revert:|wip:)
+    git commit --all --message "$0 $*"
+    exit 0
+    ;;
+esac
 if [ -n "$*" ]; then
   # echo "$*" | $COMMITLINT_CMD &&
   git commit --all --message "$*"
