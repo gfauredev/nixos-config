@@ -60,14 +60,6 @@ let
     checkout = "git checkout";
     gadd = "git add --verbose";
     commit = "git commit --verbose"; # Smarter function
-    "feat:" = "cmt"; # Smart Commit
-    "fix:" = "cmt"; # Smart Commit
-    "refactor:" = "cmt"; # Smart Commit
-    "style:" = "cmt"; # Smart Commit
-    "doc:" = "cmt"; # Smart Commit
-    "chore:" = "cmt"; # Smart Commit
-    "perf:" = "cmt"; # Smart Commit
-    "test:" = "cmt"; # Smart Commit
     amend = "git commit --amend"; # Smarter function
     push = "git push --verbose";
     merge = "git merge";

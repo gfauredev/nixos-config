@@ -1,8 +1,6 @@
-alias=$0
-printf "alias: %s\n" "$alias"
-case $alias in
+case $0 in
   feat:|fix:|doc:|docs:|style:|refactor:|perf:|test:|chore:|build:|ci:|revert:|wip:)
-    git commit --all --message "$alias $*"
+    git commit --all --message "$0 $*" # TODO
     exit 0
     ;;
 esac
