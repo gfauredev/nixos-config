@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
@@ -13,8 +14,8 @@
   config.home.packages = with pkgs; [
     anki # Best memorization tool
     # markdown-anki-decks
-    xournalpp # Handwriting notetaking
-    rnote # Modern handwriten note taking app
+    pkgs-unstable.xournalpp # Handwriting notetaking
+    pkgs-unstable.rnote # Modern handwriten note taking app
     # appflowy # Notion alternative
     # affine # Knowledge base # No Android app
     # logseq # Knowledge base
