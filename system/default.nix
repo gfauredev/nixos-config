@@ -104,7 +104,6 @@
         dns4eu.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
-        ensureProfiles.enabled = true;
         enable = lib.mkDefault true;
         # insertNameservers = config.networking.nameservers;
         # dns = "none"; # Static name servers, we don’t want DHCP ones
