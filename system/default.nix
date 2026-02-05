@@ -107,19 +107,17 @@
         enable = lib.mkDefault true;
         # insertNameservers = config.networking.nameservers;
         # dns = "none"; # Static name servers, we don’t want DHCP ones
-        dispatcherScripts = [
-          {
-            source = pkgs.writeShellScript "09-timezone" ''
-              case "$2" in
-              # connectivity-change) # Prevent change with VPNs
-              up)
-                timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
-                ;;
-              esac
-            '';
-            type = "basic";
-          }
-        ];
+        # dispatcherScripts = [{ FIXME dispatcher /etc/NetworkManager/dispatcher.d/03userscript0001 failed (exec failed): Failed to execute child process “/etc/NetworkManager/dispatcher.d/03userscript0001” (Permission denied)
+        #   source = pkgs.writeShellScript "09-timezone" ''
+        #     case "$2" in
+        #     # connectivity-change) # Prevent change with VPNs
+        #     up)
+        #       timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+        #       ;;
+        #     esac
+        #   '';
+        #   type = "basic";
+        # }];
       };
       firewall = {
         allowedTCPPorts = [
