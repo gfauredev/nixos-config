@@ -22,9 +22,11 @@
       # Griffin (Framework Laptop 13) workspaces
       workspace = [
         # Note: Every port is DP through USB-C on Framework Laptop 13
-        # TODO declaratively with ./hyprland/workspaces.nix
-        "name:dpp, monitor:DP-1, default:true" # Desk monitor, Hub, eGPU…
-        "name:hdm, monitor:DP-3, default:true" # TV, Video projector
+        # TODO Declaratively from ./hyprland/workspaces.nix
+        # "name:, monitor:DP-1, default:true" # Top Right port
+        # "name:, monitor:DP-2, default:true" # Bottom Right port
+        "name:hdm, monitor:DP-3, default:true" # Bottom Left: TV, Projector…
+        "name:dpp, monitor:DP-4, default:true" # Top Left: Desk monitor, Hub…
         "name:int, monitor:eDP-1, default:true" # FW13’s internal monitor
       ];
       env = [ "GDK_SCALE,1.25" ]; # Set scaling on Xwayland
