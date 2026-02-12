@@ -245,9 +245,10 @@
     pkgs-unstable.gemini-cli # Google Gemini CLI
     pkgs-unstable.github-copilot-cli # GitHub Copilot CLI
     whisper-cpp # STT
-    # llama-cpp # Large language model server
-    # gpt4all # -cuda # TEST
-    # aichat # CLI LLM chat
+    aichat # CLI LLM chat TEST me
+    opencode # CLI to query LLMs and code generators TEST me
+    ollama # LLM server with GPU support
+    vllm # Efficient LLM server with GPU support TEST me
   ];
 
   services = {
