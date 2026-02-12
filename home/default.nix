@@ -251,7 +251,7 @@
     vllm # Efficient LLM server with GPU support TEST me
   ];
 
-  config.home.file.".gemini/GEMINI.md".source =
+  home.file.".gemini/GEMINI.md".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/GEMINI.md";
 
   services = {
