@@ -30,7 +30,7 @@
     zoxide.enableNushellIntegration = true;
     broot.enableNushellIntegration = true;
     atuin.enableNushellIntegration = true;
-    carapace.enableNushellIntegration = false; # FIXME prevents other completer
+    carapace.enableNushellIntegration = true;
     direnv.enableNushellIntegration = true;
     eza.enableNushellIntegration = false;
   };

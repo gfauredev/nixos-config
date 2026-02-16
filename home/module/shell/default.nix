@@ -57,6 +57,7 @@
       rust-script # Use Rust in single file scripts
       teamtype # Local text file collaboration
       trash-cli # Manage a trash from CLI, used in scripts, not nush
+      inshellisense # Command line autocomplete
     ];
 
   home = {
