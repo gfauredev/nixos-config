@@ -285,7 +285,7 @@
     mergiraf.enable = true; # Smart Git merge tool
     rclone.enable = true; # Backup using cloud services
     delta.enable = true; # Better diff view (integrates with Git)
-    # radicle.enable = true; # Decentralized code collaboration TODO 25.11
+    radicle.enable = true; # Decentralized code collaboration
     git = {
       lfs.enable = true;
       attributes = [
