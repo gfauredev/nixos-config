@@ -37,6 +37,7 @@
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
       XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
       CODE_DIR = "${config.user.home}/dev";
+      CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
     };
     file = {
       Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
