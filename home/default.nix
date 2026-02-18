@@ -213,6 +213,7 @@
     commitlint-rs # Be consistent in commit messages
     # kalker # Evaluate math expression
     # comma # Run any command from Nixpkgs
+    czkawka # Duplicate file finder, image deduplicator, and more
     # Passwords & Secrets
     pkgs-unstable.proton-pass # Proton password manager
     # bitwarden-cli # Modern password manager, replaced by rbw
