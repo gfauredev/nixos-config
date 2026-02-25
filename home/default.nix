@@ -38,6 +38,7 @@
       XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
       CODE_DIR = "${config.user.home}/dev";
       CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
+      GEMINI_SANDBOX = true;
     };
     file = {
       Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
@@ -244,13 +245,14 @@
     # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
     # winetricks # Execute Window$ programs (config tool)
     # Machine learning & AI
-    pkgs-unstable.gemini-cli # Google Gemini CLI
-    pkgs-unstable.github-copilot-cli # GitHub Copilot CLI
+    pkgs-unstable.opencode # Any LLM Open Source Agent CLI
+    pkgs-unstable.gemini-cli # Google Gemini Agent CLI
+    pkgs-unstable.codex # OpenAI Codex Agent CLI
+    pkgs-unstable.github-copilot-cli # GitHub Copilot Agent CLI
+    # aichat # Any LLM Agent CLI
+    # ollama # LLM server with GPU support
+    # vllm # Efficient LLM server with GPU support
     whisper-cpp # STT
-    aichat # CLI LLM chat TEST me
-    opencode # CLI to query LLMs and code generators TEST me
-    ollama # LLM server with GPU support
-    vllm # Efficient LLM server with GPU support TEST me
   ];
 
   home.file.".gemini/GEMINI.md".source =
