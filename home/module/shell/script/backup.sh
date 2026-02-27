@@ -59,6 +59,10 @@ case "$1" in
 
     for drive_dest in "$@"; do
       case "$drive_dest" in
+      *:) # Sync rclone configured dir to cloud provider
+        echo "--- Syncing restic repo from $LOCAL_REPO to $drive_dest ---"
+        rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest$USER-restic" &
+        ;;
       *drive*) # Sync restic dir to cloud provider
         echo "--- Syncing restic repo from $LOCAL_REPO to $drive_dest ---"
         rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest:$USER-restic" &
