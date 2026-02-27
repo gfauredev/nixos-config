@@ -38,7 +38,7 @@
       XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
       CODE_DIR = "${config.user.home}/dev";
       CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
-      GEMINI_SANDBOX = "podman";
+      # GEMINI_SANDBOX = "podman"; # Hangs the CLI
     };
     file = {
       Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
@@ -256,7 +256,9 @@
   ];
 
   home.file.".gemini/GEMINI.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/GEMINI.md";
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/GEMINI.md";
+  home.file.".gemini/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/settings.json";
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing

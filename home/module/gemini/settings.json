@@ -1,0 +1,13 @@
+{
+  "sandbox": "podman",
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "context": {
+    "fileFiltering": {
+      "respectGitIgnore": false
+    }
+  }
+}
