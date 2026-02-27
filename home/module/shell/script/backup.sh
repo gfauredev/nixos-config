@@ -23,7 +23,7 @@ case "$1" in
 *drive*)
   # Backup everything in remote drive with rclone, putting deleted aside
   for dest in "$@"; do
-    echo "--- Starting backup to $dest ---"
+    printf "Starting backup to %s" "$dest"
     for dir in $IMPORTANT; do
       dirname=$(basename "$dir")
       rclone sync --progress \
@@ -39,14 +39,14 @@ case "$1" in
       --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
       "$dir" "$dest:$USER-back/archive/$dirname"
     done
-    echo "--- Finished backup to $dest ---"
+    printf "Finished backup to %s" "$dest"
   done
   ;;
 *back*)
   avail=$(\df -k --output=avail "$1" | tail -n1)    # Available destination
   used=$(\du -skc $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
-  echo "Available space on destination : ${avail}B"
-  echo "Used space by important data :   ${used}B"
+  printf "Available space on destination : %sB" "$avail"
+  printf "Used space by important data : %sB" "$used"
 
   if [ "$avail" -gt "$used" ]; then
     # Backup everything incrementally with restic in backup drives
@@ -60,16 +60,16 @@ case "$1" in
     for drive_dest in "$@"; do
       case "$drive_dest" in
       *:) # Sync rclone configured dir to cloud provider
-        echo "--- Syncing restic repo from $LOCAL_REPO to $drive_dest ---"
+        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
         rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest$USER-restic" &
         ;;
       *drive*) # Sync restic dir to cloud provider
-        echo "--- Syncing restic repo from $LOCAL_REPO to $drive_dest ---"
+        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
         rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest:$USER-restic" &
         ;;
       esac
     done
-    echo "Cloud syncs started in background. They will continue even if you close the terminal."
+    printf "Cloud syncs started in background, will outlive terminal\n"
   else
     # Don’t store large dirs/files in too small drives
     printf "%s doesn’t have enough available space: " "$1"
