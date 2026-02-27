@@ -91,6 +91,7 @@ in
         };
         windowrule = [
           "noborder, floating:0, onworkspace:w[t1]" # No border for single tiled
+          "noborder, title:Albert" # No border for launcher
           "idleinhibit fullscreen, workspace:name:dpp" # Inhibit while presenting
           "idleinhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
           "idleinhibit fullscreen, workspace:name:int" # Inhibit while presenting

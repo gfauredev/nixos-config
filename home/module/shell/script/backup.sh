@@ -2,10 +2,6 @@
 IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
 # BOOTABLE="$HOME/data/operatingSystems.large" # To copy on bootable drives TODO
 ARCHIVE="$HOME/archive/life $HOME/archive/project"
-avail=$(\df -k --output=avail "$1" | tail -n1)    # Available destination
-used=$(\du -skc $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
-echo "Available space on destination : ${avail}B"
-echo "Used space by important data :   ${used}B"
 
 _rsync() { # Custom rsync command
   systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
@@ -26,36 +22,50 @@ _restic() { # Custom restic command
 case "$1" in
 *drive*)
   # Backup everything in remote drive with rclone, putting deleted aside
-  for dir in $IMPORTANT; do
-    dirname=$(basename "$dir")
-    rclone sync --progress \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
-    --backup-dir "$1:$USER-trash/$(date +%Y-%m-%d-%H)/$dirname" \
-    "$dir" "$1:$USER-back/$dirname" 
-  done
-  for dir in $ARCHIVE; do
-    dirname=$(basename "$dir")
-    rclone copy --progress \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
-    "$dir" "$1:$USER-back/archive/$dirname" 
+  for dest in "$@"; do
+    echo "--- Starting backup to $dest ---"
+    for dir in $IMPORTANT; do
+      dirname=$(basename "$dir")
+      rclone sync --progress \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
+      --backup-dir "$dest:$USER-trash/$(date +%Y-%m-%d-%H)/$dirname" \
+      "$dir" "$dest:$USER-back/$dirname"
+    done
+    for dir in $ARCHIVE; do
+      dirname=$(basename "$dir")
+      rclone copy --progress \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
+      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
+      "$dir" "$dest:$USER-back/archive/$dirname"
+    done
+    echo "--- Finished backup to $dest ---"
   done
   ;;
 *back*)
+  avail=$(\df -k --output=avail "$1" | tail -n1)    # Available destination
+  used=$(\du -skc $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
+  echo "Available space on destination : ${avail}B"
+  echo "Used space by important data :   ${used}B"
+
   if [ "$avail" -gt "$used" ]; then
     # Backup everything incrementally with restic in backup drives
-    # (which label contains "back")
     printf "%s contains back: " "$1"
     printf "Backing up [%s %s] incrementally (restic)\n" "$IMPORTANT" "$ARCHIVE"
     _restic "$1" $IMPORTANT $ARCHIVE
-    while [ "$#" -gt 0 ]; do
-      case "$2" in
-      *drive*) # Sync restic dir to cloud provider TODO periodically with Nix
-        rclone sync --progress --fast-list --drive-chunk-size 128M "$1" "$2:$USER-restic" &
+
+    LOCAL_REPO="$1"
+    shift # Consume local repo path from arguments
+
+    for drive_dest in "$@"; do
+      case "$drive_dest" in
+      *drive*) # Sync restic dir to cloud provider
+        echo "--- Syncing restic repo from $LOCAL_REPO to $drive_dest ---"
+        rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest:$USER-restic" &
+        ;;
       esac
-      shift # Next argument
     done
+    echo "Cloud syncs started in background. They will continue even if you close the terminal."
   else
     # Don’t store large dirs/files in too small drives
     printf "%s doesn’t have enough available space: " "$1"
@@ -83,8 +93,8 @@ case "$1" in
   ;;
 esac
 
-echo -n "Clean archive directories content ? (y to accept): "
-read -r shouldClean # TODO Timeout after 5s in POSIX shell
+echo -n "Clean archive directories content? (y/N, auto-cancels in 5s): "
+read -r shouldClean # -t 5
 
 if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
   printf "Trashing archive directories content\n"
