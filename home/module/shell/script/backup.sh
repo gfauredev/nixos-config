@@ -2,8 +2,8 @@
 IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
 # BOOTABLE="$HOME/data/operatingSystems.large" # To copy on bootable drives TODO
 ARCHIVE="$HOME/archive/life $HOME/archive/project"
-avail=$(\df --output=avail "$1" | tail -n1)    # Available destination
-used=$(\du -c $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
+avail=$(\df -k --output=avail "$1" | tail -n1)    # Available destination
+used=$(\du -skc $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
 echo "Available space on destination : ${avail}B"
 echo "Used space by important data :   ${used}B"
 
@@ -52,7 +52,7 @@ case "$1" in
     while [ "$#" -gt 0 ]; do
       case "$2" in
       *drive*) # Sync restic dir to cloud provider TODO periodically with Nix
-        rclone sync --progress "$1" "$2:$USER-restic" &
+        rclone sync --progress --fast-list --drive-chunk-size 128M "$1" "$2:$USER-restic" &
       esac
       shift # Next argument
     done
