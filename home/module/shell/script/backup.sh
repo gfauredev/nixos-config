@@ -97,8 +97,20 @@ case "$1" in
   ;;
 esac
 
+wait # Wait for background processes to finish before asking about cleaning
+printf "\n"
 echo -n "Clean archive directories content? (y/N, auto-cancels in 5s): "
-read -r shouldClean # -t 5
+# dash-compatible timeout (read -t is bash-only) TEST me
+shouldClean=$( (
+  stty_orig=$(stty -g)
+  stty raw -echo
+  # Wait for 1 char or timeout
+  dd bs=1 count=1 2>/dev/null <<EOF &
+$(sleep 5; kill $! 2>/dev/null)
+EOF
+  stty "$stty_orig"
+) )
+read -r shouldClean
 
 if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
   printf "Trashing archive directories content\n"
