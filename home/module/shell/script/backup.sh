@@ -1,131 +1,124 @@
-# Directories directly under user $HOME, as described in module/organization.nix
-IMPORTANT="$HOME/life $HOME/project $HOME/.graph" # Always backed up
-# BOOTABLE="$HOME/data/operatingSystems.large" # To copy on bootable drives TODO
+#!/bin/sh
+set -eu
+
+# Directories directly under user $HOME
+IMPORTANT="$HOME/life $HOME/project $HOME/.graph"
 ARCHIVE="$HOME/archive/life $HOME/archive/project"
+# BOOTABLE="$HOME/data/operatingSystems.large" # TODO: Integrate when needed
 
-_rsync() { # Custom rsync command
-  systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
-  rsync --verbose --archive --human-readable --partial --progress \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
-    --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img "$@"
+_inhibit() {
+  systemd-inhibit --what=shutdown:sleep --who="backup.sh" --why="Backup in progress" "$@"
 }
 
-_restic() { # Custom restic command
-  REPO="$1"
+_rsync() {
+  _inhibit rsync --verbose --archive --human-readable --partial --progress \
+    --exclude-from="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/common" \
+    --exclude-from="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/img" "$@"
+}
+
+_restic() {
+  repo="$1"
   shift
-  systemd-inhibit --what=shutdown:sleep --who="$0" --why=Backuping \
-  restic --repo "$REPO" --verbose backup --exclude-caches \
-  --exclude-file="$XDG_CONFIG_HOME"/backup-exclude/common "$@" \
-  --pack-size=128 # Less chunks for drives # TODO Nix deriv
+  _inhibit restic --repo "$repo" --verbose backup --exclude-caches \
+    --exclude-file="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/common" "$@" \
+    --pack-size=128
+  
+  # Maintenance: Keep a sensible history
+  _inhibit restic --repo "$repo" forget --keep-last 10 --keep-daily 7 --keep-monthly 12 --prune
 }
 
-# TODO inhibit sleep
-
-case "$1" in
+case "${1:-}" in
 *drive*)
-  # Backup everything in remote drive with rclone, putting deleted aside
   for dest in "$@"; do
-    printf "Starting backup to %s" "$dest"
+    printf "Starting backup to %s\n" "$dest"
     for dir in $IMPORTANT; do
       dirname=$(basename "$dir")
       rclone sync --progress \
-      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
-      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
-      --backup-dir "$dest:$USER-trash/$(date +%Y-%m-%d-%H)/$dirname" \
-      "$dir" "$dest:$USER-back/$dirname"
+        --exclude-from="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/common" \
+        --exclude-from="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/img" \
+        --backup-dir "$dest:$USER-trash/$(date +%Y-%m-%d-%H)/$dirname" \
+        "$dir" "$dest:$USER-back/$dirname"
     done
     for dir in $ARCHIVE; do
       dirname=$(basename "$dir")
       rclone copy --progress \
-      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/common \
-      --exclude-from="$XDG_CONFIG_HOME"/backup-exclude/img \
-      "$dir" "$dest:$USER-back/archive/$dirname"
+        --exclude-from="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/common" \
+        --exclude-from="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/img" \
+        "$dir" "$dest:$USER-back/archive/$dirname"
     done
-    printf "Finished backup to %s" "$dest"
+    printf "Finished backup to %s\n" "$dest"
   done
   ;;
+
 *back*)
-  avail=$(\df -k --output=avail "$1" | tail -n1)    # Available destination
-  used=$(\du -skc $IMPORTANT | tail -n1 | cut -f1) # Used by important dirs
-  printf "Available space on destination : %sB" "$avail"
-  printf "Used space by important data : %sB" "$used"
+  avail=$(df -k --output=avail "$1" | tail -n1)
+  used=$(du -skc $IMPORTANT | tail -n1 | cut -f1)
+  printf "Available: %sB, Used: %sB\n" "$avail" "$used"
 
   if [ "$avail" -gt "$used" ]; then
-    # Backup everything incrementally with restic in backup drives
-    printf "%s contains back: " "$1"
-    printf "Backing up [%s %s] incrementally (restic)\n" "$IMPORTANT" "$ARCHIVE"
+    printf "Backing up incrementally to %s (restic)\n" "$1"
     _restic "$1" $IMPORTANT $ARCHIVE
 
     LOCAL_REPO="$1"
-    shift # Consume local repo path from arguments
+    shift
 
     for drive_dest in "$@"; do
+      printf "Syncing restic repo to %s\n" "$drive_dest"
       case "$drive_dest" in
-      *proton*: | *pdrive*:) # Sync rclone configured dir to cloud provider
-        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
+      *proton*: | *pdrive*:)
         rclone sync --progress --protondrive-replace-existing-draft --transfers 1 --retries 5 "$LOCAL_REPO" "$drive_dest$USER-restic" &
         ;;
-      *proton* | *pdrive*) # Sync restic dir to cloud provider
-        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
+      *proton* | *pdrive*)
         rclone sync --progress --protondrive-replace-existing-draft --transfers 1 --retries 5 "$LOCAL_REPO" "$drive_dest:$USER-restic" &
         ;;
-      *:) # Sync rclone configured dir to cloud provider
-        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
+      *:)
         rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest$USER-restic" &
         ;;
-      *drive*) # Sync restic dir to cloud provider
-        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
+      *drive*)
         rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest:$USER-restic" &
         ;;
       esac
     done
-    printf "Cloud syncs started in background, will outlive terminal\n"
+    printf "Cloud syncs backgrounded.\n"
   else
-    # Don’t store large dirs/files in too small drives
-    printf "%s doesn’t have enough available space: " "$1"
-    printf "Backing up [%s] in encrypted archive\n" "$IMPORTANT"
-    printf "\nTODO with a crossplatform encrypted archiver (7zip, Veracrypt…)\n"
-    _rsync --exclude="*.large" $IMPORTANT "$1" # Sync important dirs
+    printf "Space low on %s. Using rsync fallback.\n" "$1"
+    _rsync --exclude="*.large" $IMPORTANT "$1/"
   fi
   ;;
-*boot*)
-  # Store most important directories and OSes in large drives or sticks
-  # (which label don’t contains "back" but contains "boot")
-  printf "%s contains boot: " "$1"
-  printf "Backing up [%s] encrypted, as well as [%s]\n" "$IMPORTANT" "$BOOTABLE"
-  printf "\nTODO with a crossplatform encrypted archiver (7zip, Veracrypt…)\n"
-  # _rsync --delete $BOOTABLE/ "$1" # Sync bootable files at root of the drive
-  _rsync $IMPORTANT "$1" # Sync important dirs at the root of the drive
-  ;;
+
 *)
-  # Store only most important directories in large drives or sticks
-  # (which label don’t contains "back" nor "boot")
-  printf "%s don’t contains back: " "$1"
-  printf "Backing up [%s] in encrypted archive\n" "$IMPORTANT"
-  printf "\nTODO with a crossplatform encrypted archiver (7zip, Veracrypt…)\n"
-  _rsync $IMPORTANT "$1" # Sync important dirs at the root of the drive
+  if [ -z "${1:-}" ]; then
+    printf "Usage: %s <destination_path> [cloud_destinations...]\n" "$0"
+    exit 1
+  fi
+  # Default/Bootable behavior
+  printf "Backing up %s to %s\n" "$IMPORTANT" "$1"
+  _rsync $IMPORTANT "$1/"
   ;;
 esac
 
-wait # Wait for background processes to finish before asking about cleaning
-printf "\n"
-echo -n "Clean archive directories content? (y/N, auto-cancels in 5s): "
-# dash-compatible timeout (read -t is bash-only) TEST me
-shouldClean=$( (
-  stty_orig=$(stty -g)
-  stty raw -echo
-  # Wait for 1 char or timeout
-  dd bs=1 count=1 2>/dev/null <<EOF &
-$(sleep 5; kill $! 2>/dev/null)
-EOF
-  stty "$stty_orig"
-) )
-read -r shouldClean
+wait
 
-if [ "$shouldClean" = "y" ] || [ "$shouldClean" = "Y" ]; then
-  printf "Trashing archive directories content\n"
+printf "\nClean archive directories? (y/N, 5s timeout): "
+shouldClean="n"
+
+# Use 'timeout' utility (standard on Linux) to wrap the 'read' command
+if command -v timeout >/dev/null 2>&1; then
+  # We read from /dev/tty to ensure input is captured correctly
+  if timeout 5 sh -c 'read -r response < /dev/tty; case "$response" in [yY]*) exit 0 ;; *) exit 1 ;; esac'; then
+    shouldClean="y"
+  fi
+else
+  # Fallback for systems without 'timeout'
+  read -r response
+  case "$response" in [yY]*) shouldClean="y" ;; esac
+fi
+
+if [ "$shouldClean" = "y" ]; then
+  printf "Trashing archive contents...\n"
   for dir in $ARCHIVE; do
-    find "$dir"/ -maxdepth 1 -mindepth 1 -not -name '.stfolder' \
+    [ -d "$dir" ] || continue
+    find "$dir/" -maxdepth 1 -mindepth 1 -not -name '.stfolder' \
       -not -name '.stignore' -not -name 'stignore' -not -name 'stignore.light' \
       -exec trash --verbose {} +
   done
