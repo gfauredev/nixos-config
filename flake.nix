@@ -151,6 +151,7 @@
               # statix # Lints & suggestions for Nix, to test
               sbctl # SecureBoot key manager, used for install with Lanzaboote
               shellcheck # Shell script analysis
+              shfmt # Shell script formatter
               taplo # TOML LSP
               vscode-langservers-extracted # HTML/CSS/JS(ON)
               wev # Evaluate inputs sent to wayland to debug

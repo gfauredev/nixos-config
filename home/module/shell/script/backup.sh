@@ -22,7 +22,6 @@ _restic() {
   _inhibit restic --repo "$repo" --verbose backup --exclude-caches \
     --exclude-file="${XDG_CONFIG_HOME:-$HOME/.config}/backup-exclude/common" "$@" \
     --pack-size=128
-  
   # Maintenance: Keep a sensible history
   _inhibit restic --repo "$repo" forget --keep-last 10 --keep-daily 7 --keep-monthly 12 --prune
 }

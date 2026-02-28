@@ -54,6 +54,7 @@
         # statix # Lints & suggestions for Nix, to test
         sbctl # SecureBoot key manager, used for install with Lanzaboote
         shellcheck # Shell script analysis
+        shfmt # Shell script formatter
         taplo # TOML LSP
         tinymist # Typst LSP
         typstyle # Typst formatter
