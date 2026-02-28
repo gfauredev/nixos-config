@@ -19,6 +19,8 @@ _restic() { # Custom restic command
   --pack-size=128 # Less chunks for drives # TODO Nix deriv
 }
 
+# TODO inhibit sleep
+
 case "$1" in
 *drive*)
   # Backup everything in remote drive with rclone, putting deleted aside
@@ -59,6 +61,14 @@ case "$1" in
 
     for drive_dest in "$@"; do
       case "$drive_dest" in
+      *proton*: | *pdrive*:) # Sync rclone configured dir to cloud provider
+        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
+        rclone sync --progress --protondrive-replace-existing-draft --transfers 1 --retries 5 "$LOCAL_REPO" "$drive_dest$USER-restic" &
+        ;;
+      *proton* | *pdrive*) # Sync restic dir to cloud provider
+        printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
+        rclone sync --progress --protondrive-replace-existing-draft --transfers 1 --retries 5 "$LOCAL_REPO" "$drive_dest:$USER-restic" &
+        ;;
       *:) # Sync rclone configured dir to cloud provider
         printf "Syncing restic repo from %s to %s" "$LOCAL_REPO" "$drive_dest"
         rclone sync --progress --fast-list --drive-chunk-size 128M "$LOCAL_REPO" "$drive_dest$USER-restic" &
