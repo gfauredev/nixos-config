@@ -69,7 +69,7 @@ case "${1:-}" in
     for drive_dest in "$@"; do
       printf "Syncing restic repo to %s\n" "$drive_dest"
       case "$drive_dest" in
-      *proton* | *pdrive*) flags="--protondrive-replace-existing-draft --transfers 1 --retries 5" ;;
+      *proton* | *pdrive*) flags="--transfers 1 --checkers 1 --tpslimit 1 --retries 20 --low-level-retries 10 --protondrive-replace-existing-draft" ;;
       *) flags="--fast-list --drive-chunk-size 128M" ;;
       esac
       case "$drive_dest" in
