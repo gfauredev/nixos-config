@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-unstable,
-  lib,
   config,
   ...
 }: # Audio and Music production and consumption
@@ -53,6 +52,8 @@
     # supercollider # Audio synthesis and algorithmic composition
     # vcv-rack # Standalone modular synthesizer
     # vmpk # Virtual keyboard
+    knobkraft-orm # MIDI SysEx librarian
+    # TODO Package https://github.com/eclab/edisyn
     # DAW & Editors
     # audacity # Simple audio editor
     musescore # Music writing
