@@ -162,7 +162,10 @@
     fuse.enable = true;
     # appimage.enable = true; # Run AppImages TEST if better way
     # appimage.binfmt = true; # Run AppImages seamlessly
-    # nix-ld.enable = true; # Run binaries, instead: https://nixos-and-flakes.thiscute.world/best-practices/run-downloaded-binaries-on-nixos
+    nix-ld.enable = true; # Run binaries, see: https://nixos-and-flakes.thiscute.world/best-practices/run-downloaded-binaries-on-nixos
+    nix-ld.libraries = with pkgs; [
+      alsa-lib
+    ];
     # uwsm.enable = true; # TEST wayland session manager
     # niri.enable = true; # See https://github.com/YaLTeR/niri
     fuse.userAllowOther = true;
