@@ -24,6 +24,9 @@
       "btrfs"
       # "zfs"
     ];
+    extraModprobeConfig = ''
+      options kvm ignore_msrs=1
+    '';
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
   };
 
