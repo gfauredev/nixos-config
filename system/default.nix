@@ -5,10 +5,14 @@
       "nix-command"
       "flakes"
     ];
-    # extra-substituters = [ "https://nix-community.cachix.org" ]; # FIXME
+    extra-substituters = [
+      "https://cache.garnix.io"
+      # "https://nix-community.cachix.org"
+    ];
     extra-trusted-public-keys = [
-      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
   };
