@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
@@ -37,9 +38,11 @@
 
   config.programs = {
     firefox.enable = true; # Gecko web browser
+    firefoxpwa.enable = true; # Gecko web browser PWA support
     chromium.enable = true; # Blink web browser
     chromium.package = pkgs.brave; # Better privacy and security than Chromium
     firefox = {
+      package = pkgs-unstable.firefox;
       languagePacks = [
         "en-GB"
         "fr"
@@ -185,6 +188,8 @@
         };
       };
     };
+    firefoxpwa.package = pkgs-unstable.firefoxpwa; # Gecko web browser PWA support
+
   };
   config.home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
