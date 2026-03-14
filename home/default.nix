@@ -298,19 +298,22 @@
         "* merge=mergiraf"
       ];
       ignores = [
-        "*ignore*"
-        "!.gitignore"
+        "*.ignore"
+        "*.ignore.*"
       ];
-      # hooks.pre-commit = pkgs.writeShellScript "git-pre-commit" '' # FIX Prevents LFS to install
-      #   set -e # Exit immediately on error
-      #   gitleaks dir --config ${./module/gitleaks.toml} --max-target-megabytes 1 --verbose # --redact
-      # '';
       settings = {
         user.email = config.user.email;
         user.name = config.user.description;
         init.defaultBranch = "main";
-        pull.rebase = false;
+        pull.rebase = true;
+        fetch.prune = true;
+        fetch.pruneTags = true;
+        push.autoSetupRemote = true;
+        push.followTags = true;
         lfs.locksverify = true;
+        diff.algorithm = "histogram";
+        diff.colorMoved = "plain";
+        diff.mnemonicPrefix = true;
         submodule = {
           recurse = true;
           fetchjobs = 8;
@@ -322,18 +325,22 @@
           smudge = "git-lfs smudge -- %f";
           process = "git-lfs filter-process";
         };
-        merge.conflictstyle = "diff3";
+        merge.conflictstyle = "zdiff3";
       };
+      settings.alias = {
+        lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
+      };
+    };
+    delta = {
+      enableGitIntegration = true;
+      options.navigate = true;
+      options.side-by-side = true;
     };
     jujutsu.settings.user = {
       name = config.user.description;
       email = config.user.email;
     };
     direnv.nix-direnv.enable = true;
-    delta = {
-      enableGitIntegration = true;
-      options.navigate = true;
-    };
   };
 
   gtk = {
