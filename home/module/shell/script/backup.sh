@@ -22,8 +22,6 @@ _restic() {
   LAST_RESTIC_REPO="$repo"
   _inhibit restic --repo "$repo" --verbose backup --exclude-caches \
     --exclude-file="$EXCLUDE_COMMON" "$@" --pack-size=128
-  # Maintenance: Keep a sensible history
-  _inhibit restic --repo "$repo" forget --keep-last 10 --keep-daily 7 --keep-monthly 12 --prune
 }
 
 _prompt() {
@@ -76,7 +74,7 @@ case "${1:-}" in
       *:) rclone_dest="$drive_dest$USER-restic" ;;
       *) rclone_dest="$drive_dest:$USER-restic" ;;
       esac
-      rclone sync --progress $flags "$local_repo" "$rclone_dest" &
+      rclone sync --verbose --stats 30s $flags "$local_repo" "$rclone_dest" &
     done
     printf "Cloud syncs backgrounded.\n"
   else
