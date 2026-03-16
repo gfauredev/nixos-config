@@ -130,7 +130,7 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
   }
 }
 
-alias agent = with-env { GEMINI_SANDBOX: "podman" } { gemini }
+alias agent = with-env { GEMINI_SANDBOX: "podman" } { gemini --yolo }
 
 # Display a welcome message for the first five minutes after login
 if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
