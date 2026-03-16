@@ -286,7 +286,7 @@
   };
 
   programs = {
-    gemini-cli.enable = true;
+    # gemini-cli.enable = true; # Breaks sandbox
     git.enable = true; # MANDATORY
     direnv.enable = true; # Auto load nix shell when cd
     gpg.enable = true; # Useful cryptography tool
