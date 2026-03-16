@@ -20,5 +20,8 @@
     "hideBanner": true,
     "showUserIdentity": false,
     "showShortcutsHint": false
+  },
+  "experimental": {
+    "modelSteering": true
   }
 }

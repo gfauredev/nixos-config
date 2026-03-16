@@ -29,7 +29,6 @@ $env.config.hooks.pre_execution = (
   ]
 )
 
-
 # A command to toggle between source directories and a mirror directory
 def --env mirror [
     mirror_root: path,          # The destination mirror root (eg. /dev/me)
@@ -92,13 +91,6 @@ def --env dev [...args: path] { # Quickly edit code related to project/life or d
   mirror "~/dev" [ "~/project" "~/life" ] ...$args
 }
 
-# Edit system and home config
-# def --wrapped cfg [...arg] { # Configure NixOS and Home Manager
-#   cd $env.CONFIG_LOCATION
-#   # direnv exec . # FIXME doesn’t seems to use direnv properly inside editor, LSPs not worky
-#   systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring configure ...$arg
-# }
-
 # Open in background with default app
 def x [file] {
   job spawn {start $file}
@@ -137,6 +129,8 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
     cd ~/mtp # Change to the mount directory, will fail if it was an unmount
   }
 }
+
+alias agent = with-env { GEMINI_SANDBOX: "runsc" } { gemini }
 
 # Display a welcome message for the first five minutes after login
 if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
