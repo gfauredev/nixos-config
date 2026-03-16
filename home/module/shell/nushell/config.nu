@@ -135,7 +135,7 @@ def agent [...args] {
       GEMINI_SANDBOX: "podman"
       SANDBOX_SET_UID_GID: false
       NO_BROWSER: true
-      SANDBOX_FLAGS:"-e HOME=/home/node"
+      SANDBOX_FLAGS:"-e HOME=/home/node -v /nix/store:/nix/store:ro"
     } { gemini --yolo ...$args }
 }
 
