@@ -264,6 +264,7 @@
     # restic.enable = true; # Efficient backup tool TEST service instead of CLI
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
+    podman.enable = true; # Containerization for development and more
     syncthing = {
       overrideDevices = lib.mkDefault true; # No imperative config
       overrideFolders = lib.mkDefault true; # No imperative config
@@ -279,6 +280,7 @@
       frame_width = 0; # No borders
       corner_radius = 12; # Rounded corners
     };
+    podman.settings.containers.userns = "keep-id";
     gpg-agent.pinentry.package = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
   };
 
