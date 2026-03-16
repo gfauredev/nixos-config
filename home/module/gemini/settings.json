@@ -1,7 +1,7 @@
 {
   "security": {
     "auth": {
-      "selectedType": "api-key"
+      "selectedType": "gemini-api-key"
     }
   },
   "context": {
