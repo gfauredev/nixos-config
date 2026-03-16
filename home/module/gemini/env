@@ -1,0 +1,3 @@
+GEMINI_SANDBOX=podman
+SANDBOX_SET_UID_GID=false
+# SANDBOX_FLAGS="--userns=keep-id"
