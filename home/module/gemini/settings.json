@@ -1,9 +1,4 @@
 {
-  "security": {
-    "auth": {
-      "selectedType": "gemini-api-key"
-    }
-  },
   "context": {
     "fileFiltering": {
       "respectGitIgnore": false

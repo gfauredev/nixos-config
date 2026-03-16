@@ -131,7 +131,12 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 }
 
 def agent [...args] {
-    with-env { GEMINI_SANDBOX: "podman" } { gemini --yolo ...$args }
+    with-env {
+      GEMINI_SANDBOX: "podman"
+      SANDBOX_SET_UID_GID: false
+      NO_BROWSER: true
+      SANDBOX_FLAGS:"-v /home/gf/.gemini:/home/node/.gemini:Z -e HOME=/home/node"
+    } { gemini --yolo ...$args }
 }
 
 # Display a welcome message for the first five minutes after login
