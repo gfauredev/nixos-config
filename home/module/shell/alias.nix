@@ -1,6 +1,7 @@
 { config, ... }:
 let
   common = {
+    gemi = "GEMINI_SANDBOX=runsc gemini";
     # System
     boot = "bootctl";
     reboot = "systemctl reboot";
