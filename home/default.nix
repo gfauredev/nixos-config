@@ -201,6 +201,7 @@
   };
 
   home.packages = with pkgs; [
+    fuc # Perf cpz rmz
     mediainfo # info about audio or video
     # exercism # CLI for the programming exercises website
     # localsend # Share files on local network
