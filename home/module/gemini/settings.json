@@ -15,5 +15,10 @@
       "maxAge": "30d",
       "warningAcknowledged": true
     }
+  },
+  "ui": {
+    "hideBanner": true,
+    "showUserIdentity": false,
+    "showShortcutsHint": false
   }
 }
