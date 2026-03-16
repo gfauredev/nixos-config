@@ -255,11 +255,10 @@
     whisper-cpp # STT
   ];
 
-  home.file.".gemini/GEMINI.md".source =
+  home.file.".gemini/GEMINI.link.md".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/GEMINI.md";
-  home.file.".gemini/settings.json".source =
+  home.file.".gemini/settings.link.json".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/settings.json";
-  # home.file.".gemini/.env".source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/env";
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
@@ -287,6 +286,7 @@
   };
 
   programs = {
+    gemini-cli.enable = true;
     git.enable = true; # MANDATORY
     direnv.enable = true; # Auto load nix shell when cd
     gpg.enable = true; # Useful cryptography tool
@@ -344,6 +344,26 @@
       email = config.user.email;
     };
     direnv.nix-direnv.enable = true;
+    # gemini-cli = {
+    #   settings = {
+    #     context.fileFiltering.respectGitIgnore = false;
+    #     general = {
+    #       sessionRetention = {
+    #         enabled = true;
+    #         maxAge = "30d";
+    #         warningAcknowledged = true;
+    #       };
+    #       plan.directory = "";
+    #     };
+    #     ui = {
+    #       hideBanner = true;
+    #       showUserIdentity = false;
+    #       showShortcutsHint = false;
+    #     };
+    #     experimental.modelSteering = true;
+    #     security.auth.selectedType = "oauth-personal";
+    #   };
+    # };
   };
 
   gtk = {
