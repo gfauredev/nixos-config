@@ -255,10 +255,14 @@
     whisper-cpp # STT
   ];
 
-  home.file.".gemini/GEMINI.link.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/GEMINI.md";
   home.file.".gemini/settings.link.json".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/settings.json";
+  home.file.".gemini/env.link".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/env";
+  home.file.".gemini/sandbox.Dockerfile".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/sandbox.Dockerfile";
+  home.file.".gemini/GEMINI.link.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/GEMINI.md";
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing

@@ -12,7 +12,8 @@
     },
     "plan": {
       "directory": ""
-    }
+    },
+   "enableAutoUpdate": false
   },
   "ui": {
     "hideBanner": true,
@@ -26,5 +27,16 @@
     "auth": {
       "selectedType": "oauth-personal"
     }
+  },
+  "tools": {
+    "allowed": [
+      "glob",
+      "grep_search",
+      "list_directory",
+      "read_file",
+      "read_many_files",
+      "get_internal_docs",
+      "google_web_search"
+    ]
   }
 }

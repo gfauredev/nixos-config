@@ -1,4 +1,5 @@
-NO_BROWSER=true
-SANDBOX_SET_UID_GID=false
-GEMINI_SANDBOX=podman
-SANDBOX_FLAGS="-v /home/gf/.gemini:/home/node/.gemini:Z -e HOME=/home/node"
+# NO_BROWSER=true
+SANDBOX_SET_UID_GID=true
+SANDBOX_FLAGS="-v /nix/store:/nix/store:O"
+# SANDBOX_FLAGS="--security-opt label=disable -v /nix/store:/nix/store:O"
+# SANDBOX_FLAGS="-e HOME=/home/node -v /nix:/nix:ro -v /etc/nix:/etc/nix:ro -v /run/current-system/sw:/run/current-system/sw:ro -e PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/run/current-system/sw/bin"
