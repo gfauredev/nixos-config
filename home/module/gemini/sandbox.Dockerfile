@@ -9,4 +9,4 @@ RUN echo 'if [ -z "$HAS_ENTERED_NIX_DEVELOP" ]; then \
             exec nix develop; \
           fi' >> /root/.bashrc
 WORKDIR /workspace
-CMD ["sleep", "infinity"]
+CMD ["/bin/sh", "-c", "sleep infinity"]
