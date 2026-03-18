@@ -4,15 +4,16 @@
     experimental-features = [
       "nix-command"
       "flakes"
+      "ca-derivations"
     ];
     substituters = [
-      "https://cache.nixos.org"
       "https://cache.garnix.io"
+      # "https://cache.nixos.org" # Always added
       # "https://hydra.nixos.org"
     ];
     trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
