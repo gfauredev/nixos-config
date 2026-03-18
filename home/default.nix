@@ -255,13 +255,6 @@
     whisper-cpp # STT
   ];
 
-  home.file.".gemini/settings.link.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/settings.json";
-  home.file.".gemini/link.env".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/env.sh";
-  home.file.".gemini/GEMINI.link.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/GEMINI.md";
-
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
     # restic.enable = true; # Efficient backup tool TEST service instead of CLI
