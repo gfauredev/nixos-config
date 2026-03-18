@@ -1,11 +1,15 @@
 # NO_BROWSER=true
 # GEMINI_SANDBOX_IMAGE=gemini-sandbox
 SANDBOX_SET_UID_GID=true
-SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/db:/nix/var/nix/db:O --volume /nix/var/nix/profiles:/nix/var/nix/profiles:O --volume /nix/var/nix/temproots:/nix/var/nix/temproots:O --volume /nix/var/nix/gcroots:/nix/var/nix/gcroots:O --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/npm-global/bin:/run/current-system/sw/bin"
+SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --tmpfs /nix/var/nix:rw,exec,mode=1777 --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/npm-global/bin:/run/current-system/sw/bin"
 # --security-opt label=disable
 # --volume /nix:/nix:O
-# --volume /etc/nix:/etc/nix:O
+# --volume /nix/var/nix/db:/nix/var/nix/db:O
+# --volume /nix/var/nix/profiles:/nix/var/nix/profiles:O
+# --volume /nix/var/nix/temproots:/nix/var/nix/temproots:O
+# --volume /nix/var/nix/gcroots:/nix/var/nix/gcroots:O
 # --volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:ro
+# --volume /etc/nix:/etc/nix:O
 # --volume /etc/ssl/certs:/etc/ssl/certs:ro
 # --volume /etc/static/ssl:/etc/static/ssl:ro
 # --volume /run/current-system/sw:/run/current-system/sw:ro
