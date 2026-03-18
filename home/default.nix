@@ -261,6 +261,8 @@
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/env.sh";
   home.file.".gemini/GEMINI.link.md".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/GEMINI.md";
+  home.file.".gemini/applyLinkedConf.sh".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/gemini/applyLinkedConf.sh";
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing

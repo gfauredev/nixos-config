@@ -133,9 +133,7 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 def agent [...args] {
     with-env {
       GEMINI_SANDBOX: "podman"
-      SANDBOX_SET_UID_GID: false
       NO_BROWSER: true
-      SANDBOX_FLAGS: "-e HOME=/home/node -v /nix:/nix:ro -v /etc/nix:/etc/nix:ro -v /run/current-system/sw:/run/current-system/sw:ro -e PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/run/current-system/sw/bin"
     } { gemini --yolo ...$args }
 }
 
