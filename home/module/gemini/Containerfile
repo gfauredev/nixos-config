@@ -1,4 +1,8 @@
-FROM nixos/nix:latest
+# FROM nixos/nix
+FROM gemini-cli-sandbox
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y nix
 RUN echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
 RUN mkdir -p /bin && \
     ln -sf $(which bash) /bin/bash && \
