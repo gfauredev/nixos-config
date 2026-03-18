@@ -1,7 +1,7 @@
 # NO_BROWSER=true
 # GEMINI_SANDBOX_IMAGE=gemini-sandbox
 SANDBOX_SET_UID_GID=true
-SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/db:/nix/var/nix/db:O --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro"
+SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/db:/nix/var/nix/db:O --volume /nix/var/nix/profiles:/nix/var/nix/profiles:O --volume /nix/var/nix/temproots:/nix/var/nix/temproots:O --volume /nix/var/nix/gcroots:/nix/var/nix/gcroots:O --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/npm-global/bin:/run/current-system/sw/bin"
 # --security-opt label=disable
 # --volume /nix:/nix:O
 # --volume /etc/nix:/etc/nix:O
@@ -12,9 +12,9 @@ SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/db:/nix/va
 # --volume $HOME/.gemini:/workspace/.gemini:rw
 # --volume $PWD:/workspace:rw
 # --userns=keep-id
-# -w /workspace
+# --workdir /workspace
 # --tmpfs /tmp
-# -env HOME=/workspace
-# -env HOME=/home/node
+# --env HOME=/workspace
+# --env HOME=/home/node
 # --env PATH=$PATH:/run/current-system/sw/bin
 # --env PATH="$(dirname $(readlink -f $(which nix)))":/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
