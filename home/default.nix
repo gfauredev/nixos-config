@@ -339,7 +339,7 @@
     delta = {
       enableGitIntegration = true;
       options.navigate = true;
-      options.side-by-side = true;
+      # options.side-by-side = true;
     };
     jujutsu.settings.user = {
       name = config.user.description;
