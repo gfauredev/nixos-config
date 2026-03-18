@@ -15,6 +15,12 @@
       # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
+    cores = lib.mkDefault 8; # Save some threads for rest of system
+    min-free = "4G";
+    max-free = "16G";
+    allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
+    trusted-users = [ "root" ]; # No trusted users
+    download-buffer-size = 268435456; # 256MiB, increased to reduce build times
   };
 
   boot = {
