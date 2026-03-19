@@ -17,7 +17,7 @@
     # streamrip # Download music
     # spotdl # Download music and playlists from Spotify
     spotube # Open source Spotify and more client
-    widevine-cdm
+    # widevine-cdm
     klick # Metronome
     viu # CLI image viewer
     imagemagick # CLI image edition
