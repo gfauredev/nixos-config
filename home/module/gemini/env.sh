@@ -1,7 +1,7 @@
 # NO_BROWSER=true
 # GEMINI_SANDBOX_IMAGE=gemini-sandbox
 SANDBOX_SET_UID_GID=true
-SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw --env NIX_REMOTE=daemon --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/npm-global/bin:/run/current-system/sw/bin --env NIX_CONFIG=accept-flake-config=true"
+SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw --env NIX_REMOTE=daemon --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/npm-global/bin:/run/current-system/sw/bin --env NIX_CONFIG=\"accept-flake-config = true\""
 # --security-opt label=disable
 # --volume /nix:/nix:O
 # --volume /nix/var/nix/db:/nix/var/nix/db:O
