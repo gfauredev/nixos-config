@@ -135,8 +135,7 @@ def agent [...args] {
       GEMINI_SANDBOX: "podman"
       NO_BROWSER: true
       NIX_REMOTE: "daemon"
-      NIX_CONFIG: "accept-flake-config = true"
-      # NIX_CONFIG: "experimental-features = nix-command flakes\naccept-flake-config = true"
+      NIX_CONFIG: "experimental-features = nix-command flakes\naccept-flake-config = true"
       # NIX_PATH: "nixpkgs=flake:nixpkgs"
     } { gemini --yolo ...$args }
 }
