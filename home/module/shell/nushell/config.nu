@@ -134,6 +134,9 @@ def agent [...args] {
     with-env {
       GEMINI_SANDBOX: "podman"
       NO_BROWSER: true
+      NIX_REMOTE: "daemon --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro"
+      NIX_CONFIG: "accept-flake-config = true"
+      PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/npm-global/bin:/run/current-system/sw/bin"
     } { gemini --yolo ...$args }
 }
 
