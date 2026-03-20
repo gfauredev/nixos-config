@@ -20,3 +20,7 @@ stopping. It should always compile without errors, preferably without warnings.
 Depending on the project, it should launch so you can quickly test it, or pass
 all the automated tests without errors, lint without errors… If there’s
 automated tests, we at least want to maintain coverage above 80 %.
+
+I use NixOS and most of my projects use a `flake.nix`, being the main source
+of tooling if present. You’re likely sandboxed inside a Podman container,
+there are not many tools except the ones provided by the flake anyway.
