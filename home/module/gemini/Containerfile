@@ -1,12 +1,12 @@
-# nixos/nix:latest
-FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.33.1
+FROM nixos/nix:latest
+# FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.33.1
 
-USER root
+# USER root
 
-RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> /etc/bashrc
-RUN echo '  export NIX_DEV_ENTERED=1;' >> /etc/bashrc
-RUN echo '  exec nix develop;' >> /etc/bashrc
-RUN echo 'fi' >> /etc/bashrc
+# RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> /etc/bashrc
+# RUN echo '  export NIX_DEV_ENTERED=1;' >> /etc/bashrc
+# RUN echo '  exec nix develop;' >> /etc/bashrc
+# RUN echo 'fi' >> /etc/bashrc
 # RUN mkdir -m 0755 /nix && chown node:node /nix
 # RUN apt-get update
 # RUN apt-get upgrade -y
@@ -16,14 +16,14 @@ ENV USER=node
 
 # RUN sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
 # RUN mkdir --parents --verbose /home/node/.cache/host-nix
-RUN mkdir --parents --verbose /home/node/.config/nix
-RUN echo "experimental-features = nix-command flakes" >> /home/node/.config/nix/nix.conf
+# RUN mkdir --parents --verbose /home/node/.config/nix
+# RUN echo "experimental-features = nix-command flakes" >> /home/node/.config/nix/nix.conf
 # RUN echo "substituters = local?root=/home/node/.cache/host-nix https://cache.nixos.org" >> /home/node/.config/nix/nix.conf
 # RUN echo "require-sigs = false" >> /home/node/.config/nix/nix.conf
 # ENV PATH="/home/node/.nix-profile/bin:$PATH"
 # RUN echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
 
-RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> /home/node/.bashrc
-RUN echo '  export NIX_DEV_ENTERED=1;' >> /home/node/.bashrc
-RUN echo '  exec nix develop;' >> /home/node/.bashrc
-RUN echo 'fi' >> /home/node/.bashrc
+# RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> /home/node/.bashrc
+# RUN echo '  export NIX_DEV_ENTERED=1;' >> /home/node/.bashrc
+# RUN echo '  exec nix develop;' >> /home/node/.bashrc
+# RUN echo 'fi' >> /home/node/.bashrc
