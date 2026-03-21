@@ -131,13 +131,29 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 }
 
 def agent [...args] {
+    let paths = [
+        "/usr/local/sbin"
+        "/usr/local/bin"
+        "/usr/sbin"
+        "/usr/bin"
+        "/sbin"
+        "/bin"
+        "/usr/local/share/npm-global/bin"
+        "/run/current-system/sw/bin"
+    ]
+    let nix_settings = [
+        "experimental-features = nix-command flakes"
+        "accept-flake-config = true"
+    ]
     with-env {
-      GEMINI_SANDBOX: "podman"
-      NO_BROWSER: true
-      NIX_REMOTE: "daemon"
-      NIX_CONFIG: "experimental-features = nix-command flakes\naccept-flake-config = true"
-      # NIX_PATH: "nixpkgs=flake:nixpkgs"
-    } { gemini --yolo ...$args }
+        GEMINI_SANDBOX: "podman"
+        NO_BROWSER: true
+        NIX_REMOTE: "daemon"
+        NIX_CONFIG: ($nix_settings | str join "\n")
+        PATH: ($paths | append $env.PATH)
+    } { 
+        gemini --yolo ...$args 
+    }
 }
 
 # Display a welcome message for the first five minutes after login
