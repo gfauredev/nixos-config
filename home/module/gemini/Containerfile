@@ -2,10 +2,11 @@
 FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.33.1
 
 USER root
-# RUN mkdir -m 0755 /nix && chown node:node /nix
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y direnv fd-find ripgrep sd xz-utils
+RUN mkdir --mode 755 --parents /home/node
+RUN chown node:users /home/node
 # RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> /etc/bashrc
 # RUN echo '  export NIX_DEV_ENTERED=1;' >> /etc/bashrc
 # RUN echo '  exec nix develop;' >> /etc/bashrc
@@ -13,7 +14,7 @@ RUN apt-get install -y direnv fd-find ripgrep sd xz-utils
 
 USER node
 ENV USER=node
-ENV HOME=/home/node
+# ENV HOME=/home/node
 
 # RUN curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --no-daemon
 # RUN mkdir --parents --verbose $HOME/.cache/host-nix

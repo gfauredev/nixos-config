@@ -3,8 +3,8 @@
 # NO_BROWSER=true
 GEMINI_SANDBOX_IMAGE=gemini-sandbox
 SANDBOX_SET_UID_GID=true
-SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --volume /home/gf/.cargo:O --env PATH --env NIX_REMOTE --env NIX_CONFIG"
-# TODO Variabilise home dir, use it for .cargo
+SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --volume /home/gf/.cargo:/home/node/.cargo:O --volume /home/gf/.android:/home/node/.android:O --env PATH --env NIX_REMOTE --env NIX_CONFIG"
+# TODO Variabilise home dir, use it for .cargo , .android…
 # --security-opt label=disable
 # --userns=keep-id
 # --workdir /workspace
