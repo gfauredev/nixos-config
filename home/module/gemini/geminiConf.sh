@@ -1,4 +1,4 @@
-# podman build --tag gemini-sandbox .
+podman build --tag gemini-sandbox . # TODO Only rebuild if changed
 cp --update --verbose ./settings.json ~/.gemini/settings.json &&
   cp --update --verbose ~/.gemini/settings.json ./settings.json
 cp --update --verbose ./env.sh ~/.gemini/.env &&
