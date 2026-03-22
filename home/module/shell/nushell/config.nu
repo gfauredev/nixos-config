@@ -151,7 +151,7 @@ def agent [...args] {
         NIX_REMOTE: "daemon"
         NIX_CONFIG: ($nix_settings | str join "\n")
         PATH: ($paths | append $env.PATH)
-        HOME: "/home/node"
+        # HOME: "/home/node"
     } { 
         gemini --yolo ...$args 
     }
