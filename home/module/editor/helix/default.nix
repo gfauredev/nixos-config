@@ -379,17 +379,33 @@
             completionEnable = true;
             additionalRules = {
               enablePickyRules = true;
-              motherTongue = "fr";
+              # motherTongue = "fr";
             };
             # configurationTarget = {
             #   dictionary = "userExternalFile";
             #   disabledRules = "userExternalFile";
             #   hiddenFalsePositives = "userExternalFile";
             # };
-            # dictionary = {
-            #   fr = [ ":${var.XDG_CONFIG_HOME}/ltex/fr.dict" ];
-            #   en = [ ":${var.XDG_CONFIG_HOME}/ltex/en.dict" ];
-            # };
+            dictionary = {
+              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.dict" ];
+              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.dict" ];
+              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.dict" ];
+            };
+            disabledRules = {
+              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.disabled" ];
+              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.disabled" ];
+              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.disabled" ];
+            };
+            enabledRules = {
+              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.enabled" ];
+              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.enabled" ];
+              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.enabled" ];
+            };
+            hiddenFalsePositives = {
+              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.false" ];
+              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.false" ];
+              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.false" ];
+            };
           };
         };
         rumdl = {
