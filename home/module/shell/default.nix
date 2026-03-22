@@ -111,7 +111,7 @@
       };
     };
     broot.settings = {
-      default_flags = "dgps";
+      default_flags = "g"; # Git
       special_paths = lib.mkForce { }; # Remove them
       verbs = [
         {
