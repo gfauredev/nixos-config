@@ -4,7 +4,7 @@ FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.33.1
 USER root
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y direnv fd-find ripgrep sd xz-utils
+RUN apt-get install -y direnv xz-utils # fd-find ripgrep sd
 # RUN mkdir --mode 755 --parents /home/node
 # RUN chown node:users /home/node
 # RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> /etc/bashrc

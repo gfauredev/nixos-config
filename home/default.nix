@@ -255,6 +255,10 @@
     whisper-cpp # STT
   ];
 
+  home.file.".gemini/tmp/bin/rg".source = "${pkgs.ripgrep}/bin/rg";
+  home.file.".gemini/tmp/bin/fd".source = "${pkgs.fd}/bin/fd";
+  home.file.".gemini/tmp/bin/sd".source = "${pkgs.sd}/bin/sd";
+
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
     # restic.enable = true; # Efficient backup tool TEST service instead of CLI
