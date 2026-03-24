@@ -206,6 +206,7 @@
     # exercism # CLI for the programming exercises website
     # localsend # Share files on local network
     # captive-browser # Browser for captive portals
+    scc # Better alternative to cloc for counting lines of code
     adwaita-icon-theme # Icons for GTK
     nixpkgs-review # Quickly review pull requests to nixpkgs
     watchexec # Run command when file changes
