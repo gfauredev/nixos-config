@@ -30,13 +30,6 @@
         # tabby # Self-hosted AI code assistant
         # Spell Checking
         harper # Grammar/spell checker LSP (Rust, fast)
-        # hunspell # Classic spell checker
-        # hunspellDicts.fr-any # French
-        # hunspellDicts.en_US # American
-        # hunspellDicts.en_GB-ise # British
-        # hunspellDicts.es_ES # Spanish
-        ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
-        # vale # Linter for prose
         # vale-ls # LSP Vale implementation
         # Language Servers & Linters
         bash-language-server # Bash, shell script LSP

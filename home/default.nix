@@ -254,6 +254,14 @@
     # ollama # LLM server with GPU support
     # vllm # Efficient LLM server with GPU support
     whisper-cpp # STT
+    # Spell Checking
+    # hunspell # Classic spell checker
+    # hunspellDicts.fr-any # French
+    # hunspellDicts.en_US # American
+    # hunspellDicts.en_GB-ise # British
+    # hunspellDicts.es_ES # Spanish
+    ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
+    # vale # Linter for prose
   ];
 
   home.file.".gemini/tmp/bin/rg".source = "${pkgs.ripgrep}/bin/rg";
