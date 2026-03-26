@@ -46,6 +46,7 @@
       home = home-manager.lib.homeManagerConfiguration;
       unfreepkgs = [
         "albert"
+        "crush" # FSL
         "github-copilot-cli" # "github-copilot-cli-0.0.362"
       ];
     in
