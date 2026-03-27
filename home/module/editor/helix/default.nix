@@ -376,47 +376,46 @@
           # Disable for the rest of the document with a comment like below
           # LTeX: enabled=false
           command = "${pkgs.ltex-ls-plus}/bin/ltex-ls-plus";
-          config.ltex =
-            let
-              ltexConfig = "${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex";
-            in
-            {
-              # Change language for the rest of the document with a comment like
-              # LTeX: language=fr
-              # language = "en-GB";
-              # language = "fr";
-              # completionEnable = true;
-              # additionalRules = {
-              #   enablePickyRules = true;
-              #   motherTongue = "fr";
-              # };
-              # configurationTarget = {
-              #   dictionary = "userExternalFile";
-              #   disabledRules = "userExternalFile";
-              #   hiddenFalsePositives = "userExternalFile";
-              # };
-              dictionary = {
-                fr = [ ":${ltexConfig}/fr.dict" ];
-                es = [ ":${ltexConfig}/es.dict" ];
-                en-GB = [ ":${ltexConfig}/en-GB.dict" ];
-                en-US = [ ":${ltexConfig}/en-US.dict" ];
-              };
-              # disabledRules = {
-              #   fr = [ ":${ltexConfig}/fr.disabled" ];
-              #   en-GB = [ ":${ltexConfig}/en.disabled" ];
-              #   en-US = [ ":${ltexConfig}/en.disabled" ];
-              # };
-              # enabledRules = {
-              #   fr = [ ":${ltexConfig}/fr.enabled" ];
-              #   en-GB = [ ":${ltexConfig}/en.enabled" ];
-              #   en-US = [ ":${ltexConfig}/en.enabled" ];
-              # };
-              # hiddenFalsePositives = {
-              #   fr = [ ":${ltexConfig}/fr.false" ];
-              #   en-GB = [ ":${ltexConfig}/en.false" ];
-              #   en-US = [ ":${ltexConfig}/en.false" ];
-              # };
-            };
+          # config.ltex =
+          #   let
+          #     ltexConfig = "${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex";
+          #   in
+          #   {
+          #     # Change language for the rest of the document with a comment like
+          #     # LTeX: language=fr
+          #     language = "fr";
+          #     completionEnable = true;
+          #     additionalRules = {
+          #       enablePickyRules = true;
+          #       motherTongue = "fr";
+          #     };
+          #     configurationTarget = {
+          #       dictionary = "userExternalFile";
+          #       disabledRules = "userExternalFile";
+          #       hiddenFalsePositives = "userExternalFile";
+          #     };
+          #     dictionary = {
+          #       fr = [ ":${ltexConfig}/fr.dict" ];
+          #       es = [ ":${ltexConfig}/es.dict" ];
+          #       en-GB = [ ":${ltexConfig}/en-GB.dict" ];
+          #       en-US = [ ":${ltexConfig}/en-US.dict" ];
+          #     };
+          #     disabledRules = {
+          #       fr = [ ":${ltexConfig}/fr.disabled" ];
+          #       en-GB = [ ":${ltexConfig}/en.disabled" ];
+          #       en-US = [ ":${ltexConfig}/en.disabled" ];
+          #     };
+          #     enabledRules = {
+          #       fr = [ ":${ltexConfig}/fr.enabled" ];
+          #       en-GB = [ ":${ltexConfig}/en.enabled" ];
+          #       en-US = [ ":${ltexConfig}/en.enabled" ];
+          #     };
+          #     hiddenFalsePositives = {
+          #       fr = [ ":${ltexConfig}/fr.false" ];
+          #       en-GB = [ ":${ltexConfig}/en.false" ];
+          #       en-US = [ ":${ltexConfig}/en.false" ];
+          #     };
+          #   };
         };
         rumdl = {
           command = "rumdl";
