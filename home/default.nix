@@ -261,6 +261,7 @@
     # hunspellDicts.en_US # American
     # hunspellDicts.en_GB-ise # British
     # hunspellDicts.es_ES # Spanish
+    ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
     ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
     # vale # Linter for prose
   ];
