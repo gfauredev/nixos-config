@@ -375,12 +375,12 @@
             # Change language for the rest of the document with a comment like
             # LTeX: language=fr
             # language = "en-GB";
-            language = "fr";
-            completionEnable = true;
-            additionalRules = {
-              enablePickyRules = true;
-              # motherTongue = "fr";
-            };
+            # language = "fr";
+            # completionEnable = true;
+            # additionalRules = {
+            #   enablePickyRules = true;
+            #   motherTongue = "fr";
+            # };
             # configurationTarget = {
             #   dictionary = "userExternalFile";
             #   disabledRules = "userExternalFile";
