@@ -397,8 +397,9 @@
               # };
               dictionary = {
                 fr = [ ":${ltexConfig}/fr.dict" ];
-                en-GB = [ ":${ltexConfig}/en.dict" ];
-                en-US = [ ":${ltexConfig}/en.dict" ];
+                es = [ ":${ltexConfig}/es.dict" ];
+                en-GB = [ ":${ltexConfig}/en-GB.dict" ];
+                en-US = [ ":${ltexConfig}/en-US.dict" ];
               };
               # disabledRules = {
               #   fr = [ ":${ltexConfig}/fr.disabled" ];
