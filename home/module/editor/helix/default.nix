@@ -1,4 +1,9 @@
-{ config, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 {
   programs.helix = {
     enable = true;
@@ -232,8 +237,8 @@
             name = "markdown";
             language-servers = [
               "marksman"
-              "markdown-oxide"
-              "rumdl"
+              # "markdown-oxide"
+              # "rumdl"
               "ltex"
               "llm"
             ];
@@ -370,48 +375,7 @@
         ltex = {
           # Disable for the rest of the document with a comment like below
           # LTeX: enabled=false
-          command = "ltex-ls";
-          config.ltex = {
-            # Change language for the rest of the document with a comment like
-            # LTeX: language=fr
-            # language = "en-GB";
-            # language = "fr";
-            # completionEnable = true;
-            # additionalRules = {
-            #   enablePickyRules = true;
-            #   motherTongue = "fr";
-            # };
-            # configurationTarget = {
-            #   dictionary = "userExternalFile";
-            #   disabledRules = "userExternalFile";
-            #   hiddenFalsePositives = "userExternalFile";
-            # };
-            dictionary = {
-              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.dict" ];
-              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.dict" ];
-              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.dict" ];
-            };
-            disabledRules = {
-              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.disabled" ];
-              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.disabled" ];
-              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.disabled" ];
-            };
-            enabledRules = {
-              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.enabled" ];
-              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.enabled" ];
-              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.enabled" ];
-            };
-            hiddenFalsePositives = {
-              fr = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/fr.false" ];
-              en-GB = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.false" ];
-              en-US = [ ":${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex/en.false" ];
-            };
-          };
-        };
-        ltex-plus = {
-          # Disable for the rest of the document with a comment like below
-          # LTeX: enabled=false
-          command = "ltex-ls-plus";
+          command = "${pkgs.ltex-ls-plus}/bin/ltex-ls-plus";
           config.ltex = {
             # Change language for the rest of the document with a comment like
             # LTeX: language=fr
