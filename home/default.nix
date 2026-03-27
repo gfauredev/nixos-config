@@ -133,6 +133,13 @@
       "gtk"
     ];
     # portal.xdgOpenUsePortal = true; # Always prompt for which app to use
+    configFile = {
+      "ltex/fr.dict".source = config.lib.file.mkOutOfStoreSymlink "${config.location}/home/ltex/fr.dict";
+      "ltex/en-GB.dict".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.location}/home/ltex/en.dict";
+      "ltex/en-US.dict".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.location}/home/ltex/en.dict";
+    };
   };
 
   stylix = {
