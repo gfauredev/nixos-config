@@ -231,7 +231,6 @@
       # Storage
       zip # Universal compression
       unzip # Universal decompression
-      unrar # Compression / Decompression (RAR)
       _7zz # Compression / Decompression (7zip)
       gzip # Compression / Decompression
       bzip2 # Compression / Decompression
