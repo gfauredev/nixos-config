@@ -208,7 +208,7 @@
   };
 
   home.packages = with pkgs; [
-    unrar # Compression / Decompression (RAR)
+    pkgs-unstable.unrar # Compression / Decompression (RAR)
     fuc # Perf cpz rmz
     mediainfo # info about audio or video
     # exercism # CLI for the programming exercises website
