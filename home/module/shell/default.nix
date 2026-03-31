@@ -74,7 +74,6 @@
   };
 
   programs = {
-    starship.enable = true; # Smart prompt
     zoxide.enable = true; # Smart cd
     broot.enable = true; # Quick fuzzy file finder
     atuin.enable = true; # Cross shell, smart command history

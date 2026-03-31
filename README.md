@@ -48,8 +48,6 @@ Physically, my keyboard looks like…
 structured data, allowing sophisticated pipelines on them. I use it along a lot
 of other tools that make terminal life easier.
 
-- [starship](https://starship.rs) prompt to always know where you are and other
-  useful status information using the shell.
 - [broot](https://dystroy.org/broot) fast and ergonomic file fuzzy-finder.
 - [zoxide](https://github.com/ajeetdsouza/zoxide) smater, faster cd alternative.
 - [bat](https://github.com/sharkdp/bat) to display text files neatly.

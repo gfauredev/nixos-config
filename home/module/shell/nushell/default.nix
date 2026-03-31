@@ -26,7 +26,6 @@
     # keychain.enableNushellIntegration = true; FIXME
   };
   programs = {
-    starship.enableNushellIntegration = true;
     zoxide.enableNushellIntegration = true;
     broot.enableNushellIntegration = true;
     atuin.enableNushellIntegration = true;

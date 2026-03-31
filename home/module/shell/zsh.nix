@@ -24,7 +24,6 @@
   };
   services.gpg-agent.enableZshIntegration = true;
   programs = {
-    starship.enableZshIntegration = true;
     zoxide.enableZshIntegration = true;
     broot.enableZshIntegration = true;
     direnv.enableZshIntegration = true;
