@@ -28,8 +28,11 @@
     "x86_64-windows"
   ];
   boot.kernel.sysctl = {
-    "vm.dirty_background_ratio" = 5; # Prioritize responsiveness
-    "vm.dirty_ratio" = 10; # Prioritize responsiveness
+    "vm.dirty_background_bytes" = 268435456; # 256 MB
+    "vm.dirty_bytes" = 536870912; # 512 MB
+    "vm.dirty_expire_centisecs" = 1000; # Repulse data from RAM after 10s
+    # "vm.dirty_background_ratio" = 5; # Prioritize responsiveness
+    # "vm.dirty_ratio" = 10; # Prioritize responsiveness
   };
 
   security = {
