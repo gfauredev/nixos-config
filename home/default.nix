@@ -247,12 +247,14 @@
     # cdrkit # ISO tools and misc
     # Emulation & Compatibility
     # bottles # Easier wine management
+    umu-launcher # Easier wine management
     quickemu # Quickly create optimized VMs
     # lima # Quickly create optimized VMs
     # wine # Execute Window$ programs
     # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
     # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
     # winetricks # Execute Window$ programs (config tool)
+    winboat # Seamless Windows VM app Linux
     # Machine learning & AI
     pkgs-unstable.opencode # Any LLM Open Source Agent CLI
     pkgs-unstable.crush # Any LLM Open Source Agent CLI
