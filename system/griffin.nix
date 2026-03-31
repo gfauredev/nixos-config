@@ -51,6 +51,7 @@ in
         ".arduinoIDE"
         "dev"
         # ".eclipse" ".swt" ".local/share/bottles"
+        ".local/share/umu"
       ];
       execBind = path: {
         depends = [ "/home" ];
