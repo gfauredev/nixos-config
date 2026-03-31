@@ -57,6 +57,7 @@
         BlockAboutProfiles = false; # May be set to true when configured
         BlockAboutSupport = false; # May be set to true when configured
         DefaultDownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+        DownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
         DisplayBookmarksToolbar = false;
         DisplayMenuBar = false;
         DontCheckDefaultBrowser = true;
@@ -123,6 +124,19 @@
         PasswordManagerEnabled = false; # Use password manager extension instead
         ShowHomeButton = false;
         SkipTermsOfUse = true;
+        Preferences = {
+          "browser.download.folderList" = 2;
+          "browser.download.useDownloadDir" = true;
+          # "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+          # "browser.download.lastDir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+          "sidebar.revamp" = true;
+          "sidebar.verticalTabs" = true;
+          "sidebar.visibility" = "always-show";
+          "sidebar.expandOnHover" = false; # Buggy
+          "sidebar.notification.badge.aichat" = false;
+          "sidebar.main.expanded" = true;
+          "sidebar.animation.enabled" = false; # Too slow
+        };
       };
       profiles.default = {
         id = 0;
@@ -175,12 +189,6 @@
           "nixoptions"
         ];
         settings = {
-          "browser.download.dir" = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
-          "sidebar.revamp" = true;
-          "sidebar.verticalTabs" = true;
-          "sidebar.visibility" = "expand-on-hover";
-          "sidebar.animation.enabled" = false; # Too slow
-          "sidebar.notification.badge.aichat" = false;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Allow custom styles
           "browser.translations.neverTranslateLanguages" = "en,fr,es";
           "services.sync.declinedEngines" = "passwords,addresses,creditcards";
