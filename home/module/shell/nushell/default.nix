@@ -4,7 +4,9 @@
   programs.nushell.enable = true;
   programs.nushell = {
     configFile.source = ./config.nu;
-    environmentVariables = config.home.sessionVariables;
+    environmentVariables = config.home.sessionVariables // {
+      PROMPT_COMMAND_RIGHT = ""; # Remove date & time from Nushell prompt
+    };
     settings = {
       rm.always_trash = true;
       show_banner = false;

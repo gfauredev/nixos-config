@@ -9,8 +9,9 @@ $env.config.hooks.pre_execution = (
       print (ls | table)
       if (git status | complete | $in.exit_code == 0) {
         git status
+        print
       } else {
-        print (date now)
+        print (date now) "\n"
       }
     # Start with default handler if only a non executable file or a symlink
     } else if (commandline
