@@ -27,6 +27,10 @@
     "wasm64-wasi"
     "x86_64-windows"
   ];
+  boot.kernel.sysctl = {
+    "vm.dirty_background_ratio" = 5; # Prioritize responsiveness
+    "vm.dirty_ratio" = 10; # Prioritize responsiveness
+  };
 
   security = {
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
@@ -150,6 +154,28 @@
     };
   };
   location.provider = "geoclue2";
+  systemd.oomd = {
+    enable = true;
+    enableRootSlice = true;
+    enableUserSlices = true;
+  };
+  systemd.user.slices = {
+    "app" = {
+      description = "User Applications";
+      sliceConfig = {
+        CPUWeight = 100; # Standard priority
+        IOWeight = 100; # Standard priority
+        MemoryHigh = "80%"; # Limit memory standard apps can hoard for caching
+      };
+    };
+    "session" = {
+      description = "Desktop Session"; # TEST It’s properly applied to Hyprland
+      sliceConfig = {
+        CPUWeight = 500; # 5x the CPU and I/O priority of standard apps
+        IOWeight = 500; # 5x the CPU and I/O priority of standard apps
+      };
+    };
+  };
 
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
