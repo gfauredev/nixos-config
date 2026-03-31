@@ -31,6 +31,7 @@ let
     "." = "${config.home.sessionVariables.EDITOR} ."; # Open editor in work dir
     ## Quick smart file/directory copy
     c = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P";
+    slowc = "systemd-inhibit rsync -v --recursive --update --mkpath --perms -h -P --bwlimit=10000";
     ## Search
     bd = "br --sort-by-date";
     bs = "br --sort-by-size";

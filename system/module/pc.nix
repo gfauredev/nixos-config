@@ -101,6 +101,11 @@
     protonmail-bridge.enable = true; # Use Proton Mail inside client
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
+    ananicy.enable = true;
+    ananicy = {
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos; # Highly optimized CachyOS rule set
+    };
     pipewire = {
       wireplumber.enable = true;
       alsa.enable = true; # Support kernel audio
