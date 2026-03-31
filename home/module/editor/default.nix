@@ -9,7 +9,7 @@
   imports = [
     ./helix
     ./neovim
-    # ./zed
+    ./zed
   ];
 
   options.editor = with lib; {
