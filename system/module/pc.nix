@@ -171,9 +171,8 @@
     fuse.userAllowOther = true;
   };
   environment.systemPackages = with pkgs; [
-    # minicom # Serial TODO keep only one
-    # picocom # Serial
-    # screen # Serial
+    hydra-cli # CLI for Hydra CI
+    hydra-check # Quickly check derivation status in Hydra
     tio # Serial
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
   ];
