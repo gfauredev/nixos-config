@@ -8,7 +8,6 @@
 {
   imports = [
     ./helix
-    ./neovim
     ./zed
   ];
 

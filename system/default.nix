@@ -156,14 +156,9 @@
 
   programs = {
     git.enable = lib.mkForce true; # MANDATORY
-    neovim.enable = lib.mkDefault false; # Use helix instead
+    neovim.enable = lib.mkDefault false; # Helix instead
     openvpn3.enable = lib.mkDefault true;
     amnezia-vpn.enable = lib.mkDefault true; # DPI resistant WireGuard
-    neovim = {
-      defaultEditor = lib.mkDefault true;
-      viAlias = true;
-      vimAlias = true;
-    };
     git = {
       lfs.enable = true;
       config.init.defaultBranch = "main";
