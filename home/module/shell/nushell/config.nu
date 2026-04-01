@@ -20,9 +20,7 @@ $env.config.hooks.command_not_found = (
   | default [] 
   | append { |cmd_name|
     if ($cmd_name | path exists) and ($cmd_name | path type) in [file symlink] {
-      return $"start ($cmd_name)"
-    } else if ($cmd_name == ".") or ($cmd_name | str ends-with "/.") {
-      return $"($env.EDITOR) ($cmd_name | str replace -r '/\.$' '')"
+      return $"start ($cmd_name)" # FIXME
     } else {
       return null 
     }
