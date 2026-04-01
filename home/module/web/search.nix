@@ -338,6 +338,21 @@
     ];
     definedAliases = [ "hmissue" ];
   };
+  idealo = {
+    name = "Idealo";
+    urls = [
+      {
+        template = "https://www.idealo.fr/prechcat.html";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "idea" ];
+  };
   leboncoin = {
     name = "LeBonCoin";
     urls = [
