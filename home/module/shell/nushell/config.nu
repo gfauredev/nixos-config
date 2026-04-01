@@ -25,7 +25,7 @@ $env.config.keybindings = (
         mode: [emacs, vi_normal, vi_insert]
         event: [
             { send: executehostcommand, cmd: "smart-enter" }
-            { send: enter }
+            { send: submit }
         ]
     }
 )
