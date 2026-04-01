@@ -15,13 +15,13 @@
       show_banner = false;
     };
     plugins = with pkgs.nushellPlugins; [
-      # skim # Fuzzy finder
+      skim # Fuzzy finder
       query # Query JSON, XML, web data
       # net # List network interfaces
       # dbus # Communicate with D-BUS
-      units # Convert between units
+      # units # Convert between units
       gstat # Git status
-      # polars # Work with polars dataframes
+      polars # Work with polars dataframes
       formats # Convert eml, ics, ini, vcf to Nushell tables
       # highlight # Syntax highlighting (like bat)
     ];
