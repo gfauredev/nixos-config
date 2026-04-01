@@ -3,20 +3,18 @@ def smart-enter [] {
     if ($cmd | is-empty) {
         clear --keep-scrollback
         print (ls | table)
-        if (git status | complete | $in.exit_code == 0) {
+        if (git rev-parse --is-inside-work-tree | complete | $in.exit_code == 0) {
             git status
             print ""
         } else {
             print (date now) ""
         }
         commandline edit --replace ""
-    } 
-    else if ($cmd | path exists) and ($cmd | path type) in [file symlink] {
+    } else if ($cmd | path exists) and ($cmd | path type) in [file symlink] {
         commandline edit --replace $"start ($cmd)"
-    } 
-    else if ($cmd | path exists) and ($cmd | path type) == dir {
-        commandline edit --replace $"($env.EDITOR) ($cmd)"
-    } 
+    } else if ($cmd == ".") or ($cmd | str ends-with "/.") {
+        commandline edit --replace $"($env.EDITOR) ($cmd | str replace -r '/\.$' '')"
+    }
 }
 
 $env.config.keybindings = (
