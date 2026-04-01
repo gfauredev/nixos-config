@@ -156,6 +156,13 @@ def agent [...args] {
 }
 
 # Display a welcome message for the first five minutes after login
-if (date now) - (who -H|from ssv|get TIME|first|into datetime) < 5min {
+if (date now) - (who -H | from ssv | get TIME | first | into datetime) < 5min {
   fastfetch
 }
+
+if ("~/Downloads" | path type) == "dir" {
+  rmdir ~/Downloads # GTK apps keep recreating it, annoying
+} 
+if ("~/thunderbird" | path type) == "dir" {
+  rmdir ~/thunderbird # Thunderbird keep recreating it, annoying
+} 
