@@ -2,7 +2,8 @@ $env.config.hooks.pre_execution = (
   $env.config.hooks.pre_execution?
   | default []
   | append {
-    if (commandline | is-empty) {
+    let cmd = (commandline)
+    if ($cmd | is-empty) {
       clear --keep-scrollback
       print (ls | table)
       if (git rev-parse --is-inside-work-tree | complete | $in.exit_code == 0) {
@@ -11,18 +12,9 @@ $env.config.hooks.pre_execution = (
         print (date now)
       }
       print ""
-    }
-  }
-)
-
-$env.config.hooks.command_not_found = (
-  $env.config.hooks.command_not_found? 
-  | default [] 
-  | append { |cmd_name|
-    if ($cmd_name | path exists) and ($cmd_name | path type) in [file symlink] {
-      return $"start ($cmd_name)" # FIXME
-    } else {
-      return null 
+    } else if ($cmd | path exists) and ($cmd | path type) in [file symlink] {
+      print $"Opening ($cmd) with default app, but Nushell will complain command not found"
+      start $cmd
     }
   }
 )
