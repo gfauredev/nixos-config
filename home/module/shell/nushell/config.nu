@@ -1,33 +1,35 @@
-$env.config.hooks.pre_execution = (
-  $env.config.hooks.pre_execution?
-  | default []
-  | append [
-    # Clear screen and display contextual status if empty command line
-    {
-    if (commandline | is-empty) {
-      clear --keep-scrollback
-      print (ls | table)
-      if (git status | complete | $in.exit_code == 0) {
-        git status
-        print ""
-      } else {
-        print (date now) ""
-      }
-    # Start with default handler if only a non executable file or a symlink
-    } else if (commandline
-      | path type) in [file symlink] and not (ls --long (commandline)
-      | first | get mode | str contains "x") {
-      start (commandline)
-      # commandline edit ("start " + (commandline))
-    # Open editor if path with a dot "/."
-    } else if (commandline) == "." {
-      run-external $env.EDITOR .
-    } else if (commandline | str ends-with "/.") {
-      run-external $env.EDITOR (commandline | str substring 0..-3)
-      # commandline edit ($env.EDITOR + " " + (commandline|str substring 0..-3))
+def smart-enter [] {
+    let cmd = (commandline)
+    if ($cmd | is-empty) {
+        clear --keep-scrollback
+        print (ls | table)
+        if (git status | complete | $in.exit_code == 0) {
+            git status
+            print ""
+        } else {
+            print (date now) ""
+        }
+        commandline edit --replace ""
+    } 
+    else if ($cmd | path exists) and ($cmd | path type) in [file symlink] {
+        commandline edit --replace $"start ($cmd)"
+    } 
+    else if ($cmd | path exists) and ($cmd | path type) == dir {
+        commandline edit --replace $"($env.EDITOR) ($cmd)"
+    } 
+}
+
+$env.config.keybindings = (
+    $env.config.keybindings | append {
+        name: smart_enter
+        modifier: none
+        keycode: enter
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+            { send: executehostcommand, cmd: "smart-enter" }
+            { send: enter }
+        ]
     }
-    }
-  ]
 )
 
 # A command to toggle between source directories and a mirror directory

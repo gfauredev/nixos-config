@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
-  home.packages = [ pkgs.nu_scripts ]; # Additional community scripts
+  home.packages = with pkgs; [
+    nu_scripts # Additional community scripts
+    nufmt # Nushell formatter
+  ];
   programs.nushell.enable = true;
   programs.nushell = {
     configFile.source = ./config.nu;
@@ -16,10 +19,10 @@
       query # Query JSON, XML, web data
       # net # List network interfaces
       # dbus # Communicate with D-BUS
-      # units # Convert between units
-      # gstat # Git status
+      units # Convert between units
+      gstat # Git status
       # polars # Work with polars dataframes
-      # formats # Convert eml, ics, ini, vcf to Nushell tables
+      formats # Convert eml, ics, ini, vcf to Nushell tables
       # highlight # Syntax highlighting (like bat)
     ];
   };
