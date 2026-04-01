@@ -1,33 +1,32 @@
-def smart-enter [] {
-    let cmd = (commandline)
-    if ($cmd | is-empty) {
-        clear --keep-scrollback
-        print (ls | table)
-        if (git rev-parse --is-inside-work-tree | complete | $in.exit_code == 0) {
-            git status
-            print ""
-        } else {
-            print (date now) ""
-        }
-        commandline edit --replace ""
-    } else if ($cmd | path exists) and ($cmd | path type) in [file symlink] {
-        commandline edit --replace $"start ($cmd)"
-    } else if ($cmd == ".") or ($cmd | str ends-with "/.") {
-        commandline edit --replace $"($env.EDITOR) ($cmd | str replace -r '/\.$' '')"
+$env.config.hooks.pre_execution = (
+  $env.config.hooks.pre_execution?
+  | default []
+  | append {
+    if (commandline | is-empty) {
+      clear --keep-scrollback
+      print (ls | table)
+      if (git rev-parse --is-inside-work-tree | complete | $in.exit_code == 0) {
+        git status
+      } else {
+        print (date now)
+      }
+      print ""
     }
-}
+  }
+)
 
-$env.config.keybindings = (
-    $env.config.keybindings | append {
-        name: smart_enter
-        modifier: none
-        keycode: enter
-        mode: [emacs, vi_normal, vi_insert]
-        event: [
-            { send: executehostcommand, cmd: "smart-enter" }
-            { send: submit }
-        ]
+$env.config.hooks.command_not_found = (
+  $env.config.hooks.command_not_found? 
+  | default [] 
+  | append { |cmd_name|
+    if ($cmd_name | path exists) and ($cmd_name | path type) in [file symlink] {
+      return $"start ($cmd_name)"
+    } else if ($cmd_name == ".") or ($cmd_name | str ends-with "/.") {
+      return $"($env.EDITOR) ($cmd_name | str replace -r '/\.$' '')"
+    } else {
+      return null 
     }
+  }
 )
 
 # A command to toggle between source directories and a mirror directory
