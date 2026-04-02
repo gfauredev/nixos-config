@@ -12,7 +12,7 @@ $env.config.hooks.pre_execution = (
         print (date now)
       }
       print ""
-    } else if ($cmd | path exists) and ($cmd | path type) in [file symlink] {
+    } else if ($cmd | path exists) and ($cmd | path type) in [file symlink] and not (ls -l $cmd | get 0.mode | str contains x) {
       print $"Opening ($cmd) with default app, but Nushell will complain command not found"
       start $cmd
     }
