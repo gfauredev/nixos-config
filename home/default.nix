@@ -208,6 +208,7 @@
   };
 
   home.packages = with pkgs; [
+    pkgs-unstable.actual-server # Finance
     pkgs-unstable.unrar # Compression / Decompression (RAR)
     fuc # Perf cpz rmz
     mediainfo # info about audio or video
