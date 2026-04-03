@@ -97,6 +97,7 @@
   networking.firewall.enable = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
   services = {
+    actual.enable = true; # Finances software, see https://search.nixos.org/options?channel=unstable&query=services.actual&show=services.actual.enable
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     udisks2.enable = true; # Mount USB without privileges
