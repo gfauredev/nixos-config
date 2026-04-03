@@ -97,8 +97,6 @@ def al [] {ls --all --long | reverse}
 def --env md [newWorkingDir] {mkdir -v ($newWorkingDir); cd ($newWorkingDir)}
 
 # Git
-def upsub [] {git commit -am 'build: update submodule(s)'; git push}
-def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 def commit_with_scope [type: string, args: list<string>] {
     let raw = ($args | str join ' ') # Join args into string
     # Everything before first colon is 'scope', everything after is 'msg'
@@ -134,6 +132,8 @@ def sec [...message: string] { commit_with_scope 'sec' $message }
 def style [...message: string] { commit_with_scope 'style' $message }
 def test [...message: string] { commit_with_scope 'test' $message }
 def wip [...message: string] { commit_with_scope 'wip' $message }
+def upsub [] {git commit -am 'chore: update submodule(s)'; git push}
+# def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 
 # Mount usb and Android devices easily
 def --env --wrapped usb [...arg] { # USB removable devices
