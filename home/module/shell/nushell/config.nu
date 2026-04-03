@@ -99,14 +99,20 @@ def --env md [newWorkingDir] {mkdir -v ($newWorkingDir); cd ($newWorkingDir)}
 # Git
 def upsub [] {git commit -am 'build: update submodule(s)'; git push}
 def pupu [] {git pull --recurse-submodules --jobs=8; git push}
+# TODO Consider generating those programatically
 def "feat:" [...message: string] {git commit -am $"feat: (...$message)"}
 def "fix:" [...message: string] {git commit -am $"fix: (...$message)"}
+def "perf:" [...message: string] {git commit -am $"perf: (...$message)"}
 def "refactor:" [...message: string] {git commit -am $"refactor: (...$message)"}
 def "chore:" [...message: string] {git commit -am $"chore: (...$message)"}
 def "docs:" [...message: string] {git commit -am $"docs: (...$message)"}
 def "doc:" [...message: string] {git commit -am $"docs: (...$message)"}
 def "style:" [...message: string] {git commit -am $"style: (...$message)"}
 def "test:" [...message: string] {git commit -am $"test: (...$message)"}
+def "build:" [...message: string] {git commit -am $"build: (...$message)"}
+def "cicd:" [...message: string] {git commit -am $"cicd: (...$message)"}
+def "ci:" [...message: string] {git commit -am $"ci: (...$message)"}
+def "cd:" [...message: string] {git commit -am $"cd: (...$message)"}
 
 # Mount usb and Android devices easily
 def --env --wrapped usb [...arg] { # USB removable devices
