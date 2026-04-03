@@ -99,20 +99,41 @@ def --env md [newWorkingDir] {mkdir -v ($newWorkingDir); cd ($newWorkingDir)}
 # Git
 def upsub [] {git commit -am 'build: update submodule(s)'; git push}
 def pupu [] {git pull --recurse-submodules --jobs=8; git push}
-# TODO Consider generating those programatically
-def "feat:" [...message: string] {git commit -am $"feat: (...$message)"}
-def "fix:" [...message: string] {git commit -am $"fix: (...$message)"}
-def "perf:" [...message: string] {git commit -am $"perf: (...$message)"}
-def "refactor:" [...message: string] {git commit -am $"refactor: (...$message)"}
-def "chore:" [...message: string] {git commit -am $"chore: (...$message)"}
-def "docs:" [...message: string] {git commit -am $"docs: (...$message)"}
-def "doc:" [...message: string] {git commit -am $"docs: (...$message)"}
-def "style:" [...message: string] {git commit -am $"style: (...$message)"}
-def "test:" [...message: string] {git commit -am $"test: (...$message)"}
-def "build:" [...message: string] {git commit -am $"build: (...$message)"}
-def "cicd:" [...message: string] {git commit -am $"cicd: (...$message)"}
-def "ci:" [...message: string] {git commit -am $"ci: (...$message)"}
-def "cd:" [...message: string] {git commit -am $"cd: (...$message)"}
+def commit_with_scope [type: string, args: list<string>] {
+    let raw = ($args | str join ' ') # Join args into string
+    # Everything before first colon is 'scope', everything after is 'msg'
+    let parsed = ($raw | parse -r '^(?P<scope>[^:]+):(?P<msg>.*)$')
+    let commit_msg = if ($parsed | is-empty) {
+        $"($type): ($raw)" # If no colon, fallback to standard format
+    } else {
+        # Extract and trim spaces around the scope and message
+        let scope_raw = ($parsed.scope | first | str trim)
+        let msg_raw = ($parsed.msg | first | str trim)
+        # Check if the scope ends with the breaking change indicator (!)
+        if ($scope_raw | str ends-with '!') {
+            let clean_scope = ($scope_raw | str replace -r '!$' '' | str trim)
+            # Using `str join` here avoids escaping issues with literal parentheses
+            [$type '(' $clean_scope ')!: ' $msg_raw] | str join
+        } else {
+            [$type '(' $scope_raw '): ' $msg_raw] | str join
+        }
+    }
+    git commit -am $commit_msg
+}
+def feat [...message: string] { commit_with_scope 'feat' $message }
+def fix [...message: string] { commit_with_scope 'fix' $message }
+def build [...message: string] { commit_with_scope 'build' $message }
+def ci [...message: string] { commit_with_scope 'ci' $message }
+def chore [...message: string] { commit_with_scope 'chore' $message }
+def doc [...message: string] { commit_with_scope 'docs' $message }
+def docs [...message: string] { commit_with_scope 'docs' $message }
+def ops [...message: string] { commit_with_scope 'ops' $message }
+def perf [...message: string] { commit_with_scope 'perf' $message }
+def refactor [...message: string] { commit_with_scope 'refactor' $message }
+def sec [...message: string] { commit_with_scope 'sec' $message }
+def style [...message: string] { commit_with_scope 'style' $message }
+def test [...message: string] { commit_with_scope 'test' $message }
+def wip [...message: string] { commit_with_scope 'wip' $message }
 
 # Mount usb and Android devices easily
 def --env --wrapped usb [...arg] { # USB removable devices

@@ -54,6 +54,7 @@ let
     uml = "plantuml -gui"; # Generate UML diagrams
     rs = "rust-script"; # Quickly run Rust file
     # Git
+    ginit = "git init"; # TODO Conventional "init: …" message
     clone = "git clone --verbose";
     status = "git status --verbose --ignored";
     fetch = "git fetch --verbose";
@@ -68,11 +69,14 @@ let
     rebase = "git rebase";
     switch = "git switch";
     branch = "git branch";
-    revert = "git revert";
+    revert = "git revert"; # TODO Conventional "revert: …" message
     clean = "git clean --interactive -dx";
     stash = "git stash";
     giff = "git diff";
+    worktree = "git worktree";
     logg = "git log --oneline";
+    graph = "git log --graph --oneline --all --decorate";
+    geset = "git reset";
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
