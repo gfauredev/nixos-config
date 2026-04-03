@@ -25,12 +25,12 @@
       alt = {
         command = mkOption {
           type = str;
-          default = "brave";
+          default = "chromium";
           description = "Alternative web browser command";
         };
         desktop = mkOption {
           type = str;
-          default = "brave-browser";
+          default = "chromium";
           description = "Alternative web browser desktop entry (without .desktop)";
         };
       };
@@ -40,7 +40,8 @@
     firefox.enable = true; # Gecko web browser
     firefoxpwa.enable = true; # Gecko web browser PWA support
     chromium.enable = true; # Blink web browser
-    chromium.package = pkgs.brave; # Better privacy and security than Chromium
+    # chromium.package = pkgs.brave; # Better privacy and security than Chromium
+    chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
       package = pkgs-unstable.firefox;
       languagePacks = [
