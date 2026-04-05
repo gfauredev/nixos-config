@@ -207,75 +207,172 @@
     targets.firefox.enable = false; # FIXME infinite recursion bug TODO style
   };
 
-  home.packages = with pkgs; [
-    # pkgs-unstable.actual-server # Finance
-    pkgs-unstable.unrar # Compression / Decompression (RAR)
-    fuc # Perf cpz rmz
-    mediainfo # info about audio or video
-    # exercism # CLI for the programming exercises website
-    # localsend # Share files on local network
-    # captive-browser # Browser for captive portals
-    scc # Better alternative to cloc for counting lines of code
-    adwaita-icon-theme # Icons for GTK
-    nixpkgs-review # Quickly review pull requests to nixpkgs
-    watchexec # Run command when file changes
-    hyperfine # Benchmark commands
-    nickel # Modern configuration Nickel, Nix improvement
-    commitlint-rs # Be consistent in commit messages
-    # kalker # Evaluate math expression
-    # comma # Run any command from Nixpkgs
-    czkawka # Duplicate file finder, image deduplicator, and more
+  home.packages =
+    with pkgs;
+    [
+      # streamrip # Download music
+      # spotdl # Download music and playlists from Spotify
+      spotube # Open source Spotify and more client
+      # widevine-cdm
+      klick # Metronome
+      # viu # CLI image viewer
+      imagemagick # CLI image edition
+      cheese # Webcam capture
+      # meld # Graphical merge tool
+      # f3d # Minimalist 3D viewer
+      # lpac # Manage eSIMs in a chip (eUICC LPA)
+      sherlock # Search people on social media accounts
+      # wayback # Web archiving tool
+      # drawio # Diagramming software
+      # qgis # Maps TODO https://www.mypermagarden.app/fr/download
+      # guile # Scheme compiler and runtime
+      pre-commit # Git hook manager
+      # pre-pre-commit-hook-ensure-sops # Ensure sops is used for secrets
+      pkgs-unstable.unrar # Compression / Decompression (RAR)
+      fuc # Perf cpz rmz
+      mediainfo # info about audio or video
+      # exercism # CLI for the programming exercises website
+      # localsend # Share files on local network
+      # captive-browser # Browser for captive portals
+      scc # Better alternative to cloc for counting lines of code
+      adwaita-icon-theme # Icons for GTK
+      nixpkgs-review # Quickly review pull requests to nixpkgs
+      watchexec # Run command when file changes
+      hyperfine # Benchmark commands
+      # nickel # Modern configuration Nickel, Nix improvement
+      commitlint-rs # Be consistent in commit messages
+      # kalker # Evaluate math expression
+      # comma # Run any command from Nixpkgs
+      # czkawka # Duplicate file finder, image deduplicator, and more
+    ]
     # Passwords & Secrets
-    pkgs-unstable.proton-pass # Proton password manager
-    # bitwarden-cli # Modern password manager, replaced by rbw
-    # bitwarden-desktop
-    # keepassxc # Password manager
-    # keepassxc-go # CLI to interacet with KeepassXC
-    # git-credential-keepassxc # Use KeepassXC with Git
-    gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
-    git-filter-repo # Quickly rewrite history
+    ++ [
+      pkgs-unstable.proton-pass # Proton password manager
+      # bitwarden-cli # Modern password manager, replaced by rbw
+      # bitwarden-desktop
+      # keepassxc # Password manager
+      # keepassxc-go # CLI to interacet with KeepassXC
+      # git-credential-keepassxc # Use KeepassXC with Git
+      gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
+      git-filter-repo # Quickly rewrite history
+    ]
     # Storage & Backup & Encryption
-    restic # Efficient backup tool
-    rustic # Restic compatible pure Rust backup tool TEST me
-    # ventoy-full # Create bootable keys FIX disable as insecure/closed source blobs
-    testdisk # Recover deleted files
-    exfatprogs # Tools for exfat FS
-    smartmontools # Monitor health of drives
-    android-file-transfer # Media Transfer Protocol (Android…)
-    # jmtpfs # Media Transfer Protocol (Android…)
-    # mtpfs # Media Transfer Protocol (Android…)
-    # dislocker # Decrypt BitLocker disks
-    # cdrkit # ISO tools and misc
+    ++ [
+      restic # Efficient backup tool
+      rustic # Restic compatible pure Rust backup tool TEST me
+      # ventoy-full # Multiboot keys FIX disable as insecure/closed source blobs
+      testdisk # Recover deleted files
+      exfatprogs # Tools for exfat FS
+      smartmontools # Monitor health of drives
+      android-file-transfer # Media Transfer Protocol (Android…)
+      # jmtpfs # Media Transfer Protocol (Android…)
+      # mtpfs # Media Transfer Protocol (Android…)
+      # dislocker # Decrypt BitLocker disks
+      # cdrkit # ISO tools and misc
+    ]
     # Emulation & Compatibility
-    # bottles # Easier wine management
-    umu-launcher # Easier wine management
-    quickemu # Quickly create optimized VMs
-    # lima # Quickly create optimized VMs
-    # wine # Execute Window$ programs
-    # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
-    # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
-    # winetricks # Execute Window$ programs (config tool)
-    winboat # Seamless Windows VM app Linux
+    ++ [
+      # bottles # Easier wine management
+      umu-launcher # Easier wine management
+      quickemu # Quickly create optimized VMs
+      # lima # Quickly create optimized VMs
+      # wine # Execute Window$ programs
+      # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
+      # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
+      # winetricks # Execute Window$ programs (config tool)
+      winboat # Seamless Windows VM app Linux
+    ]
     # Machine learning & AI
-    pkgs-unstable.opencode # Any LLM Open Source Agent CLI
-    pkgs-unstable.crush # Any LLM Open Source Agent CLI
-    pkgs-unstable.gemini-cli-bin # Google Gemini Agent CLI
-    pkgs-unstable.github-copilot-cli # GitHub Copilot Agent CLI
-    # pkgs-unstable.codex # OpenAI Codex Agent CLI
-    # aichat # Any LLM Agent CLI
-    # ollama # LLM server with GPU support
-    # vllm # Efficient LLM server with GPU support
-    whisper-cpp # STT
+    ++ [
+      pkgs-unstable.opencode # Any LLM Open Source Agent CLI
+      pkgs-unstable.crush # Any LLM Open Source Agent CLI
+      pkgs-unstable.gemini-cli-bin # Google Gemini Agent CLI
+      pkgs-unstable.github-copilot-cli # GitHub Copilot Agent CLI
+      # pkgs-unstable.codex # OpenAI Codex Agent CLI
+      # aichat # Any LLM Agent CLI
+      # ollama # LLM server with GPU support
+      # vllm # Efficient LLM server with GPU support
+      whisper-cpp # STT
+    ]
     # Spell Checking
-    # hunspell # Classic spell checker
-    # hunspellDicts.fr-any # French
-    # hunspellDicts.en_US # American
-    # hunspellDicts.en_GB-ise # British
-    # hunspellDicts.es_ES # Spanish
-    ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
-    ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
-    # vale # Linter for prose
-  ];
+    ++ [
+      # hunspell # Classic spell checker
+      # hunspellDicts.fr-any # French
+      # hunspellDicts.en_US # American
+      # hunspellDicts.en_GB-ise # British
+      # hunspellDicts.es_ES # Spanish
+      ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
+      ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
+      # vale # Linter for prose
+    ]
+    # Electronics
+    ++ [
+      dfu-util # Device Firmware Upgrade USB utility
+      # rpi-imager # Raspberry Pi OS imager
+      # horizon-eda # Modern EDA to develop printed circuit boards
+      # kicad # Electronics (EDA) software BUG building
+      # librepcb # Modern EDA software
+      # fritzing # Elecronics (EDA) software
+      # xschem # Schematic editor TODO imperative install
+      # xyce # -parallel # Analog circuit simulator TODO imperative install
+      # gnucap-full # Circuit analysis
+      # ngspice # Electronic circuit simulator
+      # scilab-bin # Scientific computations TODO install imperatively
+      # stm32flash # Open source flash program for the STM32 ARM processors
+      # stm32cubemx # Graphical tool for configuring STM32 microcontrollers
+    ]
+    # 3D (CAD, Engineering, Artistic, Animation, Slicing)
+    ++ [
+      freecad-wayland # Popular parametric 3D CAD
+      openscad-unstable # Code CAD
+      openscad-lsp # LSP
+      # dune3d # New simple parametric CAD
+      # solvespace # Simple parametric 3D CAD
+      # brlcad # Combinatorial solid modeling system
+      # blender # Most popular 3D, animation & video editor
+      # blenderWithPySlvs # Patched popular 3D, animation & video editor
+      # meshlab # 3D mesh processing tool
+      orca-slicer # G-code generator for 3D printers…
+      # cura # Popular 3D printer slicer
+      # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
+    ]
+    # VPN
+    ++ [
+      # amnezia-vpn # Anonymous VPN service
+      protonvpn-gui # Swiss VPN service (Python GUI)
+      # calyx-vpn # (bitmask client) Free VPN service
+      # riseup-vpn # (bitmask client) Free VPN service
+      # nym # Super-anonymous routing protocol FIXME lacks desktop apps
+      # mullvad # Anonymous VPN service
+    ]
+    # Messaging & Social
+    ++ [
+      signal-desktop # Secure messaging
+      # signal-cli # Secure messaging
+      # simplex-chat-desktop # Anonymous secure messaging
+      # olvid # French anonymous secure messaging
+      # element-desktop # Secure group messaging and calls
+      # element-web # Secure messaging and calls
+      # telegram-desktop # "Secure" messaging
+      # nak # Nostr CLI
+      # gossip # Nostr GUI
+      # nostr-rs-relay # Rust Nostr relay
+    ]
+    # P2P & Web3
+    ++ [
+      qbittorrent # Bittorrent client
+      # transmission_4 # Bittorrent client
+      # iroh # Efficient IPFS, p2p file sharing
+      # bitcoin # Bitcoin Core
+      lnd # Lightning Network Daemon
+      # monero-gui # Private cryptocurrency
+      # monero-cli # Monero CLI
+      # electrum # Light Bitcoin Wallet
+      # sparrow # Bitcoin wallet
+      # ord # Ordinals CLI
+      # cointop # Cryptocurrencies monitor
+      go-ethereum # Ethereum CLI
+    ];
 
   home.file.".gemini/tmp/bin/rg".source = "${pkgs.ripgrep}/bin/rg";
   home.file.".gemini/tmp/bin/fd".source = "${pkgs.fd}/bin/fd";
