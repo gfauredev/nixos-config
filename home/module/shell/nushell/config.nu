@@ -92,9 +92,9 @@ def sl [] {ls | reverse}
 def lsd [] {ls | sort-by modified}
 def sld [] {ls | sort-by modified | reverse}
 def al [] {ls --all --long | reverse}
-# Create a directory and cd into it
-# TODO if multiple directories, open terms inside them
-def --env md [newWorkingDir] {mkdir -v ($newWorkingDir); cd ($newWorkingDir)}
+# Create a directory and cd into it TODO open terms inside each dir if several
+def --env md [dir: path] {mkdir -v ($dir); cd ($dir)}
+def img [dir: path = "."] { job spawn { qimgv ($dir | path expand) } }
 
 # Git
 def commit_with_scope [type: string, args: list<string>] {
