@@ -170,6 +170,7 @@ def agent [...args] {
         "experimental-features = nix-command flakes"
         "accept-flake-config = true"
     ]
+    let processed_args = ($args | str replace --regex '^\./' '@')
     with-env {
         GEMINI_SANDBOX: "podman"
         NO_BROWSER: true
@@ -178,7 +179,7 @@ def agent [...args] {
         PATH: ($paths | append $env.PATH)
         # HOME: "/home/node"
     } { 
-        gemini --yolo ...$args 
+        gemini --yolo ...$processed_args 
     }
 }
 
