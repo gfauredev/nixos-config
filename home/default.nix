@@ -210,6 +210,7 @@
   home.packages =
     with pkgs;
     [
+      nix-update # Auto update flakes, FODs hashes…
       # streamrip # Download music
       # spotdl # Download music and playlists from Spotify
       spotube # Open source Spotify and more client
