@@ -157,14 +157,14 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 
 def agent [...args] {
     let paths = [
+        "/run/current-system/sw/bin"
+        "/usr/local/share/npm-global/bin"
         "/usr/local/sbin"
         "/usr/local/bin"
         "/usr/sbin"
         "/usr/bin"
         "/sbin"
         "/bin"
-        "/usr/local/share/npm-global/bin"
-        "/run/current-system/sw/bin"
     ]
     let nix_settings = [
         "experimental-features = nix-command flakes"
@@ -176,7 +176,7 @@ def agent [...args] {
         NO_BROWSER: true
         NIX_REMOTE: "daemon"
         NIX_CONFIG: ($nix_settings | str join "\n")
-        PATH: ($paths | append $env.PATH)
+        PATH: ($env.PATH | append $paths)
         # HOME: "/home/node"
     } { 
         gemini --yolo ...$processed_args 
