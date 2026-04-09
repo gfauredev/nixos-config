@@ -281,7 +281,7 @@
       # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
       # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
       # winetricks # Execute Window$ programs (config tool)
-      winboat # Seamless Windows VM app Linux
+      # winboat # Seamless Windows VM app Linux
     ]
     # Machine learning & AI
     ++ [
