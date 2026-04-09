@@ -37,6 +37,8 @@ let
     bd = "br --sort-by-date";
     bs = "br --sort-by-size";
     bc = "br --sort-by-count";
+    g = "rg --smart-case"; # --color=always"; # Fast full-text search
+    ga = "rga --smart-case"; # --color=always"; # Full text search inside every file
     # Bluetooth & Network
     bt = "bluetoothctl";
     wi = "nmcli device wifi";
@@ -105,7 +107,6 @@ in
     lt = "ls -l -h";
     # List, single letter
     l = "ls -l -h"; # Better ls
-    g = "\\rga --smart-case --color=always"; # Better grep
     # Open, single letter
     x = "xdg-open"; # Open with the default tool
     o = "xdg-open"; # Open with the default tool
@@ -130,6 +131,5 @@ in
     l = "ls"; # Quickly list files in current directory
     ll = "ls --long"; # List all the data of the files in current directory
     la = "ls --all --long"; # List all the data of all files, hidden included
-    g = "rga --smart-case --color=always"; # Search full text inside every file
   };
 }
