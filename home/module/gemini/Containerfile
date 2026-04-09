@@ -1,5 +1,5 @@
 # FROM nixos/nix:latest
-FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.33.1
+FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.36.0
 
 USER root
 RUN apt-get update
