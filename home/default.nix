@@ -210,6 +210,7 @@
   home.packages =
     with pkgs;
     [
+      gitbutler
       nix-update # Auto update flakes, FODs hashes…
       # streamrip # Download music
       # spotdl # Download music and playlists from Spotify
