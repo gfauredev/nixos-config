@@ -64,6 +64,6 @@
     ];
   };
 
-  xdg.configFile."zed/settings.json".source =
+  xdg.configFile."zed/settings.link.json".source =
     config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/editor/zed/settings.json";
 }
