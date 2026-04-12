@@ -7,6 +7,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
+    # jail-nix.url = "sourcehut:~alexdavid/jail.nix";
+    # llm-agents.url = "github:numtide/llm-agents.nix";
+    # agents-jail.url = "github:gfauredev/nix-agents-jail";
     # nixpak = {
     #   url = "github:nixpak/nixpak"; # Declarative bubblewrap (sandboxing)
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -31,9 +34,9 @@
         f:
         nixpkgs.lib.genAttrs
           [
-            # "riscv64-linux" # 64-bit RISC-V Linux
-            "aarch64-linux" # 64-bit ARM Linux
             "x86_64-linux" # 64-bit Intel/AMD Linux
+            # "riscv64-linux" # 64-bit RISC-V Linux
+            # "aarch64-linux" # 64-bit ARM Linux
           ]
           (
             system:
@@ -45,10 +48,11 @@
       system = nixpkgs.lib.nixosSystem;
       home = home-manager.lib.homeManagerConfiguration;
       unfreepkgs = [
-        "albert"
-        "crush" # FSL
-        "github-copilot-cli" # "github-copilot-cli-0.0.362"
-        "unrar"
+        "albert" # Manuel Schneider Albert license v1.1
+        "crush" # Functional Source License, Version 1.1, MIT Future License
+        "github-copilot-cli" # Unfree (commercial) Redistributable
+        "gitbutler" # Functional Source License, Version 1.1, MIT Future License
+        "unrar" # Unfree (commercial) Redistributable
       ];
     in
     {
