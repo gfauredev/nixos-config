@@ -20,6 +20,7 @@
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
     cores = lib.mkDefault 8; # Save some threads for rest of system
+    narinfo-cache-negative-ttl = 60; # Check caches more frequently
     min-free = "4G";
     max-free = "16G";
     allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
