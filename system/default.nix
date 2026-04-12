@@ -4,7 +4,7 @@
     experimental-features = [
       "nix-command"
       "flakes"
-      "ca-derivations"
+      # "ca-derivations"
     ];
     substituters = [
       "https://cache.garnix.io"
@@ -23,8 +23,11 @@
     narinfo-cache-negative-ttl = 60; # Check caches more frequently
     min-free = "4G";
     max-free = "16G";
-    allowed-users = [ "@wheel" ]; # Restrict Nix to wheel
-    trusted-users = [ "root" ]; # No trusted users
+    allowed-users = [
+      "@nix"
+      "@wheel"
+    ];
+    trusted-users = [ ]; # No trusted users (root always)
     download-buffer-size = 268435456; # 256MiB, increased to reduce build times
   };
 
