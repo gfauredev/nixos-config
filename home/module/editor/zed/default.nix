@@ -6,6 +6,11 @@
     package = pkgs-unstable.zed-editor;
     # defaultEditor = true;
     extraPackages = config.editor.commonPackages;
+    installRemoteServer = true;
+    mutableUserDebug = true;
+    mutableUserKeymaps = true;
+    mutableUserSettings = true;
+    mutableUserTasks = true;
     extensions = [
       # "bash"
       # "biome-zed"
@@ -48,6 +53,8 @@
       "typst"
       # "zig"
     ];
-    installRemoteServer = true;
   };
+
+  xdg.configFile."zed/settings.zson".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/home/module/editor/zed/settings.zson";
 }
