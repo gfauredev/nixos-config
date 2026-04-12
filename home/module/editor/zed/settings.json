@@ -1,4 +1,24 @@
 {
+  "agent_servers": {
+    "pi-acp": {
+      "type": "registry"
+    },
+    "opencode": {
+      "type": "registry"
+    },
+    "kimi": {
+      "type": "registry"
+    },
+    "goose": {
+      "type": "registry"
+    },
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "gemini": {
+      "type": "registry"
+    }
+  },
   "base_keymap": "VSCode",
   "vim_mode": false,
   "icon_theme": {
