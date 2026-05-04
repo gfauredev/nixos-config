@@ -55,6 +55,7 @@
         "unrar" # Unfree (commercial) Redistributable
         "corefonts" # Required by OnlyOffice
       ];
+      user-def = import ./private/user.nix; # Common users configurations
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
@@ -129,6 +130,7 @@
             config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreepkgs;
           };
           modules = [
+            { user = nixpkgs.lib.mkDefault user-def.default; }
             { home.stateVersion = "25.05"; } # TODO Define it from corresponding system.stateVersion
             ./home/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
@@ -139,6 +141,7 @@
             system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
           };
           modules = [
+            { user = nixpkgs.lib.mkDefault user-def.default; }
             { home.stateVersion = "25.11"; } # TODO Define it from corresponding system.stateVersion
             ./home/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts

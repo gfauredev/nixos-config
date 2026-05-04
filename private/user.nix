@@ -5,7 +5,7 @@ rec {
       name = "gf"; # Initials # Used by Home-Manager before NixOS sets it
       home = "/home/${name}"; # Used by Home-Manager before NixOS sets it
       isNormalUser = true;
-      hashedPassword = "KEEP ENCRYPTED IN PRIVATE CONFIG"; # Mandatory for impermanence to work
+      hashedPassword = "KEEP_HASHED_IN_PRIVATE_CONFIG"; # Mandatory for impermanence to work
       description = "Guilhem"; # Myself
       homeMode = "700"; # No permissions for others
       useDefaultShell = true; # The only one allowed
@@ -14,7 +14,7 @@ rec {
         "wheel" # Act as root
         "fuse" # Mount USB keys and other filesystems
         "podman" # Use Podman container manager
-        "…" # …
+        # …
       ];
     };
   };
