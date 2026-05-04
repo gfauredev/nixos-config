@@ -106,12 +106,12 @@
         #   ];
         # };
         # NixOS live (install) ISO image, build with `nix build` thanks to defaultPackage
-        live = system {
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            ./system/live.nix
-          ];
-        };
+        # live = system {
+        #   modules = [
+        #     "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+        #     ./system/live.nix
+        #   ];
+        # };
       };
       defaultPackage.x86_64-linux = self.nixosConfigurations.live.config.system.build.isoImage;
       # home-manager config, enable: `home-manager --flake .#username@hostname`
