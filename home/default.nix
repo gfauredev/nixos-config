@@ -247,6 +247,7 @@
       # kalker # Evaluate math expression
       # comma # Run any command from Nixpkgs
       # czkawka # Duplicate file finder, image deduplicator, and more
+      pkgs-unstable.corefonts # Required by onlyoffice
     ]
     # Passwords & Secrets
     ++ [
