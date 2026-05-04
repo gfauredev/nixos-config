@@ -110,6 +110,7 @@
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;
+    onlyoffice.enable = true;
     ananicy = {
       package = pkgs.ananicy-cpp;
       rulesProvider = pkgs.ananicy-rules-cachyos; # Highly optimized CachyOS rule set
