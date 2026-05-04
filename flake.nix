@@ -41,7 +41,14 @@
           (
             system:
             f {
-              pkgs = import nixpkgs { inherit system; };
+              pkgs = import nixpkgs {
+                inherit system;
+                config.allowUnfreePredicate =
+                  pkg:
+                  builtins.elem (nixpkgs.lib.getName pkg) [
+                    "corefonts" # Required by OnlyOffice
+                  ];
+              };
               pkgs-unstable = import unstablepkgs { inherit system; };
             }
           );
@@ -53,7 +60,6 @@
         "github-copilot-cli" # Unfree (commercial) Redistributable
         "gitbutler" # Functional Source License, Version 1.1, MIT Future License
         "unrar" # Unfree (commercial) Redistributable
-        "corefonts"
       ];
     in
     {
