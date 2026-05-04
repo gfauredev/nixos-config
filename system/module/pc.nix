@@ -157,6 +157,9 @@
       relay.enable = false;
       openFirewall = false;
     };
+    onlyoffice = {
+      securityNonceFile = "/run/keys/onlyoffice-nginx-nonce.conf";
+    };
   };
   location.provider = "geoclue2";
   systemd.oomd = {
