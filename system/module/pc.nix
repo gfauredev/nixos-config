@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   ...
 }: # Personal Computer
 {
@@ -158,6 +159,7 @@
       openFirewall = false;
     };
     onlyoffice = {
+      package = pkgs-unstable.onlyoffice-documentserver;
       securityNonceFile = "/run/keys/onlyoffice-nginx-nonce.conf";
     };
   };
@@ -216,5 +218,6 @@
     # tree # Tree ls
     treecat # Dir structure <-> ASCII representation
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
+    pkgs-unstable.corefonts # Required by OnlyOffice
   ];
 }

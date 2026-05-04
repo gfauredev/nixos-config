@@ -41,14 +41,7 @@
           (
             system:
             f {
-              pkgs = import nixpkgs {
-                inherit system;
-                config.allowUnfreePredicate =
-                  pkg:
-                  builtins.elem (nixpkgs.lib.getName pkg) [
-                    "corefonts" # Required by OnlyOffice
-                  ];
-              };
+              pkgs = import nixpkgs { inherit system; };
               pkgs-unstable = import unstablepkgs { inherit system; };
             }
           );
@@ -60,6 +53,7 @@
         "github-copilot-cli" # Unfree (commercial) Redistributable
         "gitbutler" # Functional Source License, Version 1.1, MIT Future License
         "unrar" # Unfree (commercial) Redistributable
+        "corefonts" # Required by OnlyOffice
       ];
     in
     {
@@ -67,7 +61,6 @@
       nixosConfigurations = {
         # Laptop: Griffin, a powerful flying creature
         griffin = system {
-          # specialArgs = { inherit unstablepkgs; };
           modules = [
             {
               system.stateVersion = "25.05";
@@ -77,6 +70,10 @@
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
+          specialArgs.pkgs-unstable = import unstablepkgs {
+            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreepkgs;
+          };
         };
         # Laptop: Chimera, a flying creature
         chimera = system {
