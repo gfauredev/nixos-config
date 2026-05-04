@@ -38,7 +38,7 @@
 
   users = {
     defaultUserShell = pkgs.dash; # Only allow dash shell, reduce attack surface
-    mutableUsers = lib.mkDefault false;
+    mutableUsers = lib.mkDefault true;
   };
 
   services = {
