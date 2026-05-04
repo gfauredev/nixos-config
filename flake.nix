@@ -113,7 +113,7 @@
         #   ];
         # };
       };
-      defaultPackage.x86_64-linux = self.nixosConfigurations.live.config.system.build.isoImage;
+      # defaultPackage.x86_64-linux = self.nixosConfigurations.live.config.system.build.isoImage;
       # home-manager config, enable: `home-manager --flake .#username@hostname`
       homeConfigurations = {
         "gf@griffin" = home {
