@@ -6,16 +6,18 @@
       "flakes"
       # "ca-derivations"
     ];
+    trusted-substituters = [
+      "https://gfauredev.cachix.org"
+    ];
     substituters = [
       "https://cache.garnix.io"
-      "https://gfauredev.cachix.org"
       # "https://cache.nixos.org" # Always added
       # "https://hydra.nixos.org"
     ];
     trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "gfauredev.cachix.org-1:mGOZ5I0bDVatgwLhbuTasIiWpVjgCyMFjfIZEPjmQfM="
-      # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # Always added
       # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     ];
     max-jobs = lib.mkDefault 8; # Save some threads for rest of system
