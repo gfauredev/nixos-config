@@ -210,7 +210,7 @@
   home.packages =
     with pkgs;
     [
-      pkgs-unstable.gitbutler # VCS
+      # pkgs-unstable.gitbutler # VCS
       pijul # VCS
       nix-update # Auto update flakes, FODs hashes…
       # streamrip # Download music
