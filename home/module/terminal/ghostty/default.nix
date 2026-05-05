@@ -19,5 +19,8 @@
     command = config.home.sessionVariables.SHELL;
     background-opacity = ".8"; # TODO with Stylix
     background = lib.mkForce "#000000"; # TODO with Stylix
+    window-inherit-working-directory = false;
+    tab-inherit-working-directory = true;
+    split-inherit-working-directory = true;
   };
 }
