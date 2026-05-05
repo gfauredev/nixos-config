@@ -53,7 +53,7 @@
         "github-copilot-cli" # Unfree (commercial) Redistributable
         "gitbutler" # Functional Source License, Version 1.1, MIT Future License
         "unrar" # Unfree (commercial) Redistributable
-        "corefonts" # Required by OnlyOffice
+        # "corefonts" # Required by OnlyOffice
       ];
       user-def = import ./private/user.nix; # Common users configurations
     in

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }: # Personal Computer
 {
@@ -111,7 +110,7 @@
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;
-    onlyoffice.enable = true;
+    # onlyoffice.enable = true;
     ananicy = {
       package = pkgs.ananicy-cpp;
       rulesProvider = pkgs.ananicy-rules-cachyos; # Highly optimized CachyOS rule set
@@ -158,10 +157,10 @@
       relay.enable = false;
       openFirewall = false;
     };
-    onlyoffice = {
-      package = pkgs-unstable.onlyoffice-documentserver;
-      securityNonceFile = "/run/keys/onlyoffice-nginx-nonce.conf";
-    };
+    # onlyoffice = {
+    #   package = pkgs-unstable.onlyoffice-documentserver;
+    #   securityNonceFile = "/run/keys/onlyoffice-nginx-nonce.conf";
+    # };
   };
   location.provider = "geoclue2";
   systemd.oomd = {
@@ -218,6 +217,6 @@
     # tree # Tree ls
     treecat # Dir structure <-> ASCII representation
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
-    pkgs-unstable.corefonts # Required by OnlyOffice
+    # pkgs-unstable.corefonts # Required by OnlyOffice
   ];
 }
