@@ -210,9 +210,9 @@
   home.packages =
     with pkgs;
     [
-      # pkgs-unstable.gitbutler # VCS
-      pijul # VCS
-      nix-update # Auto update flakes, FODs hashes…
+      # pkgs-unstable.gitbutler # VCS TEST me
+      # pijul # VCS TEST me
+      nix-update # Auto update flakes, FODs hashes… TEST
       # streamrip # Download music
       # spotdl # Download music and playlists from Spotify
       spotube # Open source Spotify and more client
@@ -275,9 +275,9 @@
     ]
     # Emulation & Compatibility
     ++ [
-      # bottles # Easier wine management
       umu-launcher # Easier wine management
-      quickemu # Quickly create optimized VMs
+      pkgs-unstable.quickemu # Quickly create optimized VMs
+      # bottles # Easier wine management
       # lima # Quickly create optimized VMs
       # wine # Execute Window$ programs
       # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)

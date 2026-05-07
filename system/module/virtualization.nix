@@ -4,11 +4,11 @@
     libvirtd.enable = true; # KVM/QEMU daemon
     podman.enable = true;
     docker.enable = false; # INSECURE
-    virtualbox.host.enable = true;
+    virtualbox.host.enable = false;
     spiceUSBRedirection.enable = true; # Allow pass USB devices to VM
     libvirtd = {
       qemu = {
-        runAsRoot = false;
+        # runAsRoot = false;
         swtpm.enable = true; # Software emulated TMP
         vhostUserPackages = with pkgs; [ virtiofsd ];
       };
@@ -27,9 +27,9 @@
   programs.virt-manager.enable = true; # Libvirt GUI, prefer serial
 
   environment.systemPackages = with pkgs; [
+    gvisor # Sandbox runtime for containers
+    # gvproxy
     # cloud-init # Cloud instance initialization tool
     # docker-compose # YAML files defining container(s)
-    gvisor # Sandbox runtime for containers
-    gvproxy
   ];
 }
