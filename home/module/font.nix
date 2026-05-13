@@ -15,6 +15,9 @@
     # fira-go # Great sans with icons
     # carlito # Calibri equivalent
     # noto-fonts-cjk-sans # Chinese, Japanese, Korean Sans
+    ### Stencil fonts
+    beon
+    blackout
     ## Mono fonts
     nerd-fonts.jetbrains-mono
     # nerd-fonts.fira-code
