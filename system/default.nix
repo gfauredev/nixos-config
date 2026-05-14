@@ -142,6 +142,7 @@
         #   type = "basic";
         # }];
       };
+      # nftables.enable = lib.mkDefault true; # TODO
       firewall = {
         allowedTCPPorts = [
           # 22000 # Syncthing
