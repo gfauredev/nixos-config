@@ -120,10 +120,8 @@ def commit_with_scope [type: string, args: list<string>] {
 }
 def feat [...message: string] { commit_with_scope 'feat' $message }
 def fix [...message: string] { commit_with_scope 'fix' $message }
-def build [...message: string] { commit_with_scope 'build' $message }
 def ci [...message: string] { commit_with_scope 'ci' $message }
 def chore [...message: string] { commit_with_scope 'chore' $message }
-def doc [...message: string] { commit_with_scope 'docs' $message }
 def docs [...message: string] { commit_with_scope 'docs' $message }
 def ops [...message: string] { commit_with_scope 'ops' $message }
 def perf [...message: string] { commit_with_scope 'perf' $message }
@@ -133,6 +131,7 @@ def style [...message: string] { commit_with_scope 'style' $message }
 def test [...message: string] { commit_with_scope 'test' $message }
 def wip [...message: string] { commit_with_scope 'wip' $message }
 def upsub [] {git commit -am 'chore: update submodule(s)'; git push}
+# def build [...message: string] { commit_with_scope 'build' $message }
 # def pupu [] {git pull --recurse-submodules --jobs=8; git push}
 
 # Mount usb and Android devices easily
