@@ -156,30 +156,45 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 
 def agent [...args] {
     let paths = [
-        "/run/current-system/sw/bin"
-        "/usr/local/share/npm-global/bin"
-        "/usr/local/sbin"
-        "/usr/local/bin"
-        "/usr/sbin"
-        "/usr/bin"
-        "/sbin"
-        "/bin"
+      "/run/current-system/sw/bin"
+      "/usr/local/share/npm-global/bin"
+      "/usr/local/sbin"
+      "/usr/local/bin"
+      "/usr/sbin"
+      "/usr/bin"
+      "/sbin"
+      "/bin"
+    ]
+    let sandbox_flags = [
+      "--volume /nix/store:/nix/store:O"
+      "--volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw"
+      "--volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro"
+      "--volume /etc/ssl/certs:/etc/ssl/certs:ro"
+      "--volume /etc/static/ssl:/etc/static/ssl:ro"
+      "--volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro"
+      $"--volume /home/($env.USER)/.cargo:/home/($env.USER)/.cargo:O"
+      $"--volume /home/($env.USER)/.android:/home/($env.USER)/.android:O"
+      "--env NIX_CONFIG"
+      "--env NIX_REMOTE"
+      "--env PATH"
+      "--entrypoint=''"
     ]
     let nix_settings = [
-        "experimental-features = nix-command flakes"
-        "accept-flake-config = true"
+      "experimental-features = nix-command flakes"
+      "accept-flake-config = true"
     ]
     let processed_args = ($args | str replace --regex '^\./' '@')
     with-env {
-        GEMINI_SANDBOX: "podman"
-        NO_BROWSER: true
-        NIX_CONFIG: ($nix_settings | str join "\n")
-        NIX_REMOTE: "daemon"
-        PATH: ($env.PATH | append $paths)
-        # HOME: "/home/node"
-    } { 
-        gemini --yolo ...$processed_args 
-    }
+      GEMINI_SANDBOX: "podman"
+      SANDBOX_SET_UID_GID: true
+      SANDBOX_FLAGS: ($sandbox_flags | str join " ")
+      NO_BROWSER: true
+      NIX_CONFIG: ($nix_settings | str join "\n")
+      NIX_REMOTE: "daemon"
+      PATH: ($env.PATH | append $paths)
+      # GEMINI_SANDBOX_IMAGE: "gemini-sandbox"
+      # HOME: "/home/node"
+    } { gemini --yolo ...$processed_args }
 }
 
 # Display a welcome message for the first five minutes after login
