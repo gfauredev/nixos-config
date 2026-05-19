@@ -1,4 +1,4 @@
-FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.42.0
+FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.41.0
 # FROM nixos/nix:latest
 
 USER root
@@ -25,7 +25,7 @@ ENV USER=node
 # ENV PATH="$HOME/.nix-profile/bin:$PATH"
 # RUN echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
 
-RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> $HOME/.bashrc
-RUN echo '  export NIX_DEV_ENTERED=1;' >> $HOME/.bashrc
-RUN echo '  exec nix develop;' >> $HOME/.bashrc
-RUN echo 'fi' >> $HOME/.bashrc
+# RUN echo 'if [ -z "$NIX_DEV_ENTERED" ]; then' >> $HOME/.bashrc
+# RUN echo '  export NIX_DEV_ENTERED=1;' >> $HOME/.bashrc
+# RUN echo '  exec nix develop;' >> $HOME/.bashrc
+# RUN echo 'fi' >> $HOME/.bashrc
