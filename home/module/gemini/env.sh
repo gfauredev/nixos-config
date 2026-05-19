@@ -1,7 +1,7 @@
 # NIX_REMOTE="daemon"
 # NIX_CONFIG="accept-flake-config = true"
 # NO_BROWSER=true
-# GEMINI_SANDBOX_IMAGE=gemini-sandbox
+GEMINI_SANDBOX_IMAGE=gemini-sandbox
 SANDBOX_SET_UID_GID=true
 SANDBOX_FLAGS="--volume /nix/store:/nix/store:O --volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw --volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro --volume /etc/ssl/certs:/etc/ssl/certs:ro --volume /etc/static/ssl:/etc/static/ssl:ro --volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro --volume /home/gf/.cargo:/home/gf/.cargo:O --volume /home/gf/.android:/home/gf/.android:O --env NIX_CONFIG --env NIX_REMOTE --env PATH"
 # TODO Variabilise home dir, use it for .cargo , .android…
