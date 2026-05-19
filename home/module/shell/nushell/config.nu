@@ -173,9 +173,9 @@ def agent [...args] {
     with-env {
         GEMINI_SANDBOX: "podman"
         NO_BROWSER: true
-        NIX_REMOTE: "daemon"
         NIX_CONFIG: ($nix_settings | str join "\n")
-        PATH: ($env.PATH | append $paths)
+        # NIX_REMOTE: "daemon"
+        # PATH: ($env.PATH | append $paths)
         # HOME: "/home/node"
     } { 
         gemini --yolo ...$processed_args 
