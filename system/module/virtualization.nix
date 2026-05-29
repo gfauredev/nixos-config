@@ -8,7 +8,6 @@
     spiceUSBRedirection.enable = true; # Allow pass USB devices to VM
     libvirtd = {
       qemu = {
-        # runAsRoot = false;
         swtpm.enable = true; # Software emulated TMP
         vhostUserPackages = with pkgs; [ virtiofsd ];
       };
@@ -19,17 +18,32 @@
       dockerCompat = true;
       dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
-      # autoPrune.enable = true;
+    };
+    containers.containersConf.settings = {
+      engine.runtimes = {
+        runsc = [ "${pkgs.gvisor}/bin/runsc" ];
+      };
     };
   };
 
   services.spice-webdavd.enable = true; # WebDav daemon to share files with VMs
   programs.virt-manager.enable = true; # Libvirt GUI, prefer serial
 
-  environment.systemPackages = with pkgs; [
-    gvisor # Sandbox runtime for containers
-    # gvproxy
-    # cloud-init # Cloud instance initialization tool
-    # docker-compose # YAML files defining container(s)
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/libvirt 0755 root root - +C"
   ];
+
+  boot.kernelParams = [
+    "intel_iommu=on"
+    "iommu=pt"
+  ];
+
+  # environment.systemPackages = with pkgs; [
+  #   gvisor # Sandbox runtime for containers
+  #   gvproxy
+  #   cloud-init # Cloud instance initialization tool
+  #   docker-compose # YAML files defining container(s)
+  # ];
 }
