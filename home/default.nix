@@ -276,9 +276,7 @@
     # Emulation & Compatibility
     ++ [
       umu-launcher # Easier wine management
-      pkgs-unstable.quickemu # Quickly create optimized VMs
-      pkgs-unstable.samba
-      # pkgs-unstable.virtiofsd
+      # pkgs-unstable.quickemu # Quickly create optimized VMs
       # bottles # Easier wine management
       # lima # Quickly create optimized VMs
       # wine # Execute Window$ programs
