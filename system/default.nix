@@ -20,8 +20,8 @@
       # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # Always added
       # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
     ];
-    max-jobs = lib.mkDefault 8; # Save some threads for rest of system
-    cores = lib.mkDefault 8; # Save some threads for rest of system
+    max-jobs = lib.mkDefault 4; # Never start more than 16 processes
+    cores = lib.mkDefault 4; # Never start more than 16 processes
     narinfo-cache-negative-ttl = 60; # Check caches more frequently
     min-free = "4G";
     max-free = "16G";
@@ -123,8 +123,16 @@
       ];
     in
     {
-      nameservers =
-        dns4eu.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
+      networking.nameservers = [
+        "127.0.0.1" # Local dnscrypt proxy
+        "::1" # Local dnscrypt proxy
+      ]
+      ++ dns4eu.open
+      ++ cloudflare.open
+      ++ quad9.open
+      ++ fdn.open
+      ++ mullvad.hard
+      ++ shaft.open;
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         enable = lib.mkDefault true;

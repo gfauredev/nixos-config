@@ -8,8 +8,11 @@
 {
   programs.home-manager.enable = true; # MANDATORY
   news.display = "notify"; # Notify for new home manager options
-  nix.settings.max-jobs = 12; # Limit threads usage of nix builds
-  nix.package = pkgs.nix;
+  nix.settings = {
+    package = pkgs.nix;
+    max-jobs = lib.mkDefault 4; # Never start more than 16 processes
+    cores = lib.mkDefault 4; # Never start more than 16 processes
+  };
   manual = {
     html.enable = true;
     json.enable = true;
