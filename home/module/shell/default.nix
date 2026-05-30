@@ -18,7 +18,7 @@
       archive = writeScriptBin "archive" (readFile ./script/archive.sh);
       backup = writeScriptBin "back" (readFile ./script/backup.sh);
       # TODO make this script a package available in this flake’s nix shell (dev environment)
-      # FIXME allow the script itself to sleep / poweroff / reboot
+      # TODO Ensure the script itself can sleep / poweroff / reboot
       configure = writeScriptBin "cfg" ''
         cd ${config.location}
         systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring --mode=block \
@@ -26,12 +26,6 @@
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
-      # init-dev-env = writeScriptBin "dev-env" ''
-      #   stack="${config.dev-templates}#$1"
-      #   shift
-      #   nix flake init --template "$stack" "$@"
-      #   direnv allow
-      # '';
       present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
       smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
       smart-terminal = writeScriptBin "t" ''
@@ -40,6 +34,9 @@
       '';
       typst-compile = writeScriptBin "typ" (readFile ./script/typ.sh);
       usb-mount = writeScriptBin "mount.usb" (readFile ./script/usb.sh);
+      timezone = writeScriptBin "tz" ''
+        timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+      '';
     in
     [
       archive # Quickly move a directory inside ~/archive/
@@ -57,6 +54,7 @@
       rust-script # Use Rust in single file scripts
       teamtype # Local text file collaboration
       trash-cli # Manage a trash from CLI, used in scripts, not nush
+      timezone # Set timezone according to IP geolocation
       inshellisense # Command line autocomplete
     ];
 

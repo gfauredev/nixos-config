@@ -132,19 +132,8 @@
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         enable = lib.mkDefault true;
+        dns = "none"; # Don’t care about lying/spying DHCP provided DNS servers
         # insertNameservers = config.networking.nameservers;
-        # dns = "none"; # Static name servers, we don’t want DHCP ones
-        # dispatcherScripts = [{ FIXME dispatcher /etc/NetworkManager/dispatcher.d/03userscript0001 failed (exec failed): Failed to execute child process “/etc/NetworkManager/dispatcher.d/03userscript0001” (Permission denied)
-        #   source = pkgs.writeShellScript "09-timezone" ''
-        #     case "$2" in
-        #     # connectivity-change) # Prevent change with VPNs
-        #     up)
-        #       timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
-        #       ;;
-        #     esac
-        #   '';
-        #   type = "basic";
-        # }];
       };
       nftables.enable = lib.mkDefault true; # TEST If don’t break things
       firewall = {
