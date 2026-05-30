@@ -123,7 +123,7 @@
       ];
     in
     {
-      networking.nameservers = [
+      nameservers = [
         "127.0.0.1" # Local dnscrypt proxy
         "::1" # Local dnscrypt proxy
       ]
