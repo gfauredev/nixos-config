@@ -132,7 +132,7 @@
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         enable = lib.mkDefault true;
-        dns = "none"; # Don’t care about lying/spying DHCP provided DNS servers
+        dns = lib.mkForce "none"; # Don’t care about lying/spying DHCP provided DNS servers
         # insertNameservers = config.networking.nameservers;
       };
       nftables.enable = lib.mkDefault true; # TEST If don’t break things
