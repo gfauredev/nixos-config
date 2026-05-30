@@ -61,6 +61,10 @@
     let
       # TODO ensure DoH, DoT or better ODoH is used
       # See https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
+      local = [
+        "127.0.0.1" # Local IPv4 (DNSCrypt Proxy)
+        "::1" # Local IPv6 (DNSCrypt Proxy)
+      ];
       dns4eu.open = [
         # Unfiltered modern European public DNS
         "86.54.11.100" # IPv4
@@ -123,16 +127,8 @@
       ];
     in
     {
-      nameservers = [
-        "127.0.0.1" # Local dnscrypt proxy
-        "::1" # Local dnscrypt proxy
-      ]
-      ++ dns4eu.open
-      ++ cloudflare.open
-      ++ quad9.open
-      ++ fdn.open
-      ++ mullvad.hard
-      ++ shaft.open;
+      nameservers =
+        local ++ dns4eu.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         enable = lib.mkDefault true;

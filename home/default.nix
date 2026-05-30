@@ -8,8 +8,8 @@
 {
   programs.home-manager.enable = true; # MANDATORY
   news.display = "notify"; # Notify for new home manager options
+  nix.package = pkgs.nix;
   nix.settings = {
-    package = pkgs.nix;
     max-jobs = lib.mkDefault 4; # Never start more than 16 processes
     cores = lib.mkDefault 4; # Never start more than 16 processes
   };
