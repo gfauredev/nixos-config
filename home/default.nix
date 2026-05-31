@@ -314,7 +314,7 @@
     # Electronics
     ++ [
       dfu-util # Device Firmware Upgrade USB utility
-      # rpi-imager # Raspberry Pi OS imager
+      rpi-imager # Raspberry Pi OS imager
       # horizon-eda # Modern EDA to develop printed circuit boards
       # kicad # Electronics (EDA) software BUG building
       # librepcb # Modern EDA software

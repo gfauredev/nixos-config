@@ -1,9 +1,9 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # NixOS Stable
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05"; # NixOS Stable
     unstablepkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
     lanzaboote.url = "github:nix-community/lanzaboote"; # Secure Boot
     hardware.url = "github:NixOS/nixos-hardware/master"; # Hardware Configs
@@ -56,6 +56,19 @@
         # "corefonts" # Required by OnlyOffice
       ];
       user-def = import ./private/user.nix; # Common users configurations
+      # Machines configs
+      griffin = {
+        stateVersion = "25.05";
+        system = "x86_64-linux";
+      };
+      chimera = {
+        stateVersion = "26.05";
+        system = "x86_64-linux";
+      };
+      live = {
+        stateVersion = "26.05";
+        system = "x86_64-linux";
+      };
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
@@ -64,15 +77,15 @@
         griffin = system {
           modules = [
             {
-              system.stateVersion = "25.05";
-              nixpkgs.hostPlatform = "x86_64-linux";
+              system.stateVersion = griffin.stateVersion;
+              nixpkgs.hostPlatform = griffin.system;
             }
             ./system/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
           ];
           specialArgs.pkgs-unstable = import unstablepkgs {
-            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            system = griffin.system;
             config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreepkgs;
           };
         };
@@ -80,8 +93,8 @@
         chimera = system {
           modules = [
             {
-              system.stateVersion = "25.11";
-              nixpkgs.hostPlatform = "x86_64-linux";
+              system.stateVersion = chimera.stateVersion;
+              nixpkgs.hostPlatform = chimera.system;
             }
             ./system/chimera.nix
           ];
@@ -90,8 +103,8 @@
         # muses = system {
         #   modules = [
         #     {
-        #       system.stateVersion = "25.11";
-        #       nixpkgs.hostPlatform = "x86_64-linux";
+        #       system.stateVersion = ?;
+        #       nixpkgs.hostPlatform = ?;
         #     }
         #     ./system/desktop/muses.nix
         #   ];
@@ -100,8 +113,8 @@
         # cerberus = system {
         #   modules = [
         #     {
-        #       system.stateVersion = "25.11";
-        #       nixpkgs.hostPlatform = "x86_64-linux";
+        #       system.stateVersion = ?;
+        #       nixpkgs.hostPlatform = ?;
         #     }
         #     ./system/server/cerberus.nix
         #   ];
@@ -110,8 +123,8 @@
         live = system {
           modules = [
             {
-              system.stateVersion = "25.11";
-              nixpkgs.hostPlatform = "x86_64-linux";
+              system.stateVersion = live.stateVersion;
+              nixpkgs.hostPlatform = live.system;
             }
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
@@ -123,26 +136,27 @@
       homeConfigurations = {
         "gf@griffin" = home {
           pkgs = import nixpkgs {
-            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            # Machines configs
+            system = griffin.system;
           };
           extraSpecialArgs.pkgs-unstable = import unstablepkgs {
-            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            system = griffin.system;
             config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreepkgs;
           };
           modules = [
             { user = nixpkgs.lib.mkDefault user-def.default; }
-            { home.stateVersion = "25.05"; } # TODO Define it from corresponding system.stateVersion
+            { home.stateVersion = griffin.stateVersion; }
             ./home/griffin.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
         "gf@chimera" = home {
           pkgs = import nixpkgs {
-            system = "x86_64-linux"; # TODO Define it from corresponding system’s hostPlatform
+            system = chimera.system;
           };
           modules = [
             { user = nixpkgs.lib.mkDefault user-def.default; }
-            { home.stateVersion = "25.11"; } # TODO Define it from corresponding system.stateVersion
+            { home.stateVersion = chimera.stateVersion; }
             ./home/chimera.nix
             stylix.homeModules.stylix # Colors & Fonts
           ];
