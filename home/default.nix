@@ -213,40 +213,41 @@
   home.packages =
     with pkgs;
     [
-      # pkgs-unstable.gitbutler # VCS TEST me
-      # pijul # VCS TEST me
-      nix-update # Auto update flakes, FODs hashes… TEST
-      # streamrip # Download music
-      # spotdl # Download music and playlists from Spotify
       spotube # Open source Spotify and more client
-      # widevine-cdm
       klick # Metronome
-      # viu # CLI image viewer
       imagemagick # CLI image edition
       cheese # Webcam capture
-      # meld # Graphical merge tool
-      # f3d # Minimalist 3D viewer
-      # lpac # Manage eSIMs in a chip (eUICC LPA)
       sherlock # Search people on social media accounts
-      # wayback # Web archiving tool
-      # drawio # Diagramming software
-      # qgis # Maps TODO https://www.mypermagarden.app/fr/download
-      # guile # Scheme compiler and runtime
       pre-commit # Git hook manager
-      # pre-pre-commit-hook-ensure-sops # Ensure sops is used for secrets
       pkgs-unstable.unrar # Compression / Decompression (RAR)
       fuc # Perf cpz rmz
       mediainfo # info about audio or video
-      # exercism # CLI for the programming exercises website
-      # localsend # Share files on local network
       captive-browser # Browser for captive portals
       scc # Better alternative to cloc for counting lines of code
       adwaita-icon-theme # Icons for GTK
       nixpkgs-review # Quickly review pull requests to nixpkgs
       watchexec # Run command when file changes
       hyperfine # Benchmark commands
-      # nickel # Modern configuration Nickel, Nix improvement
       commitlint-rs # Be consistent in commit messages
+      android-tools # ADB and Fastboot
+      # widevine-cdm
+      # pkgs-unstable.gitbutler # VCS TEST me
+      # pijul # VCS TEST me
+      # nix-update # Auto update flakes, FODs hashes…
+      # streamrip # Download music
+      # spotdl # Download music and playlists from Spotify
+      # viu # CLI image viewer
+      # meld # Graphical merge tool
+      # f3d # Minimalist 3D viewer
+      # lpac # Manage eSIMs in a chip (eUICC LPA)
+      # wayback # Web archiving tool
+      # drawio # Diagramming software
+      # qgis # Maps TODO https://www.mypermagarden.app/fr/download
+      # guile # Scheme compiler and runtime
+      # pre-pre-commit-hook-ensure-sops # Ensure sops is used for secrets
+      # exercism # CLI for the programming exercises website
+      # localsend # Share files on local network
+      # nickel # Modern configuration Nickel, Nix improvement
       # kalker # Evaluate math expression
       # comma # Run any command from Nixpkgs
       # czkawka # Duplicate file finder, image deduplicator, and more
@@ -254,23 +255,23 @@
     # Passwords & Secrets
     ++ [
       pkgs-unstable.proton-pass # Proton password manager
+      gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
+      git-filter-repo # Quickly rewrite history
       # bitwarden-cli # Modern password manager, replaced by rbw
       # bitwarden-desktop
       # keepassxc # Password manager
       # keepassxc-go # CLI to interacet with KeepassXC
       # git-credential-keepassxc # Use KeepassXC with Git
-      gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
-      git-filter-repo # Quickly rewrite history
     ]
     # Storage & Backup & Encryption
     ++ [
       restic # Efficient backup tool
       rustic # Restic compatible pure Rust backup tool TEST me
-      # ventoy-full # Multiboot keys FIX disable as insecure/closed source blobs
       testdisk # Recover deleted files
       exfatprogs # Tools for exfat FS
       smartmontools # Monitor health of drives
       android-file-transfer # Media Transfer Protocol (Android…)
+      # ventoy-full # Multiboot keys FIX disable as insecure/closed source blobs
       # jmtpfs # Media Transfer Protocol (Android…)
       # mtpfs # Media Transfer Protocol (Android…)
       # dislocker # Decrypt BitLocker disks
@@ -298,17 +299,17 @@
       # aichat # Any LLM Agent CLI
       # ollama # LLM server with GPU support
       # vllm # Efficient LLM server with GPU support
-      whisper-cpp # STT
+      # whisper-cpp # STT
     ]
     # Spell Checking
     ++ [
+      ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
+      ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
       # hunspell # Classic spell checker
       # hunspellDicts.fr-any # French
       # hunspellDicts.en_US # American
       # hunspellDicts.en_GB-ise # British
       # hunspellDicts.es_ES # Spanish
-      ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
-      ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
       # vale # Linter for prose
     ]
     # Electronics
@@ -332,20 +333,20 @@
       freecad-wayland # Popular parametric 3D CAD
       openscad-unstable # Code CAD
       openscad-lsp # LSP
+      orca-slicer # G-code generator for 3D printers…
       # dune3d # New simple parametric CAD
       # solvespace # Simple parametric 3D CAD
       # brlcad # Combinatorial solid modeling system
       # blender # Most popular 3D, animation & video editor
       # blenderWithPySlvs # Patched popular 3D, animation & video editor
       # meshlab # 3D mesh processing tool
-      orca-slicer # G-code generator for 3D printers…
       # cura # Popular 3D printer slicer
       # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
     ]
     # VPN
     ++ [
-      # amnezia-vpn # Anonymous VPN service
       protonvpn-gui # Swiss VPN service (Python GUI)
+      # amnezia-vpn # Anonymous VPN service
       # calyx-vpn # (bitmask client) Free VPN service
       # riseup-vpn # (bitmask client) Free VPN service
       # nym # Super-anonymous routing protocol FIXME lacks desktop apps
@@ -367,17 +368,17 @@
     # P2P & Web3
     ++ [
       qbittorrent # Bittorrent client
+      lnd # Lightning Network Daemon
+      go-ethereum # Ethereum CLI
       # transmission_4 # Bittorrent client
       # iroh # Efficient IPFS, p2p file sharing
       # bitcoin # Bitcoin Core
-      lnd # Lightning Network Daemon
       # monero-gui # Private cryptocurrency
       # monero-cli # Monero CLI
       # electrum # Light Bitcoin Wallet
       # sparrow # Bitcoin wallet
       # ord # Ordinals CLI
       # cointop # Cryptocurrencies monitor
-      go-ethereum # Ethereum CLI
     ];
 
   home.file.".gemini/tmp/bin/rg".source = "${pkgs.ripgrep}/bin/rg";

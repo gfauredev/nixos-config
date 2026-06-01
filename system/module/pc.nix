@@ -196,7 +196,6 @@
     gnupg.agent.enable = true;
     ssh.startAgent = !config.services.gnome.gnome-keyring.enable;
     firejail.enable = true; # See https://wiki.nixos.org/wiki/Firejail TODO
-    adb.enable = lib.mkDefault true; # Talk to Android devices
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
     fuse.enable = true;
