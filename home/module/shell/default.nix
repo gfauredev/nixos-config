@@ -87,7 +87,7 @@
     jq.enable = true; # JSON parsing and request tool
     translate-shell.enable = true; # Google Translate CLI
     fastfetch.enable = true; # Quick system info
-    yazi.enable = true;
+    # yazi.enable = true;
     less.enable = false; # Bugged, don’t respects lesskeys
     lesspipe.enable = false;
     distrobox.enable = false; # Quick tightly integrated containers
