@@ -345,7 +345,7 @@
     ]
     # VPN
     ++ [
-      protonvpn-gui # Swiss VPN service (Python GUI)
+      proton-vpn # Swiss VPN service (Python GUI)
       # amnezia-vpn # Anonymous VPN service
       # calyx-vpn # (bitmask client) Free VPN service
       # riseup-vpn # (bitmask client) Free VPN service
@@ -449,12 +449,12 @@
           fetchjobs = 8;
         };
         credential.helper = "cache 36000"; # Cache for 10 hours
-        filter.lfs = {
-          required = true;
-          clean = "git-lfs clean -- %f";
-          smudge = "git-lfs smudge -- %f";
-          process = "git-lfs filter-process";
-        };
+        # filter.lfs = {
+        #   required = true;
+        #   clean = "git-lfs clean -- %f";
+        #   smudge = "git-lfs smudge -- %f";
+        #   process = "git-lfs filter-process";
+        # };
         merge.conflictstyle = "zdiff3";
       };
       settings.alias = {

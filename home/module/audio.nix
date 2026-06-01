@@ -65,7 +65,7 @@
     distrho-ports # Collection of audio plugins, contains Vitalium
     # drumgizmo # High quality drums sampler
     # iannix # Graphical sequencer
-    surge-XT # Great hybrid substractive synth
+    surge-xt # Great hybrid substractive synth
     # stochas # Polyrithmic sequencer
     # lsp-plugins # Collection of audio plugins
     # zam-plugins # A collection of LV2/LADSPA/VST/JACK plugins
