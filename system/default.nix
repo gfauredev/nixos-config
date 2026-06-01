@@ -211,7 +211,7 @@
       dhcpdump # DHCP debugging
       inetutils # Things like FTP command
       nmap # Scan ports
-      dogdns # CLI DNS Client
+      doggo # CLI DNS Client
       # dig # CLI DNS Client
       tshark # Wireshark CLI
       termshark # Wireshark TUI
