@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   programs.zsh.enable = true;
   programs.zsh = {
@@ -21,6 +21,7 @@
       share = true;
     };
     historySubstringSearch.enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
   };
   services.gpg-agent.enableZshIntegration = true;
   programs = {

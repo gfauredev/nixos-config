@@ -420,11 +420,13 @@
     rclone.enable = true; # Backup using cloud services
     delta.enable = true; # Better diff view (integrates with Git)
     radicle.enable = true; # Decentralized code collaboration
+    mergiraf = {
+      enableGitIntegration = true;
+      enableJujutsuIntegration = true;
+    };
     git = {
       lfs.enable = true;
-      attributes = [
-        "* merge=mergiraf"
-      ];
+      # attributes = ["* merge=mergiraf"];
       ignores = [
         "*.ignore"
         "*.ignore.*"

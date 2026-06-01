@@ -44,6 +44,7 @@
     chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
       package = pkgs-unstable.firefox;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       languagePacks = [
         "en-GB"
         "fr"
