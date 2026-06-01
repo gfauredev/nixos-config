@@ -144,29 +144,29 @@
         isDefault = true;
         containers = {
           perso = {
-            id = 0;
+            id = 1;
             color = "blue";
             icon = "chill";
           };
           tech = {
-            id = 1;
+            id = 2;
             color = "purple";
             icon = "briefcase";
           };
           music = {
-            id = 2;
+            id = 3;
             color = "yellow";
             icon = "circle";
           };
           bank = {
             color = "green";
             icon = "dollar";
-            id = 3;
+            id = 4;
           };
           shop = {
             color = "pink";
             icon = "cart";
-            id = 4;
+            id = 5;
           };
         };
         containersForce = true; # Forces overrides containers config

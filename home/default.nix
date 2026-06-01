@@ -406,7 +406,7 @@
       frame_width = 0; # No borders
       corner_radius = 12; # Rounded corners
     };
-    podman.settings.containers.containers.userns = "keep-id";
+    # podman.settings.containers.containers.userns = "keep-id"; FIX
     gpg-agent.pinentry.package = pkgs.pinentry-qt; # pkgs.pinentry-gnome3;
   };
 
