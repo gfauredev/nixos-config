@@ -25,9 +25,9 @@ _restic() {
 }
 
 _prompt() {
-  printf "\n%s (y/N, 5s timeout): " "$1"
+  printf "\n%s (y/N, 15min timeout): " "$1"
   stty_save=$(stty -g)
-  stty -icanon min 0 time 50
+  stty -icanon min 0 time 900
   res=$(dd bs=1 count=1 2>/dev/null)
   stty "$stty_save"
   echo
