@@ -64,9 +64,14 @@
         DisplayMenuBar = false;
         DontCheckDefaultBrowser = true;
         ExtensionSettings = {
+          "adnauseam@rednoise.org" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adnauseam/latest.xpi";
+            installation_mode = "force_installed";
+            private_browsing = true;
+          };
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "allow";
             private_browsing = true;
           };
           "78272b6fa58f4a1abaac99321d503a20@proton.me" = {

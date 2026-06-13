@@ -16,7 +16,7 @@
     # };
     # impermanence.url = "github:nix-community/impermanence"; # Amnesiac root
     # musnix.url = "github:musnix/musnix"; # Music production, audio perf
-    stylix.url = "github:danth/stylix/release-25.11"; # Color themes & fonts
+    stylix.url = "github:danth/stylix/release-26.05"; # Color themes & fonts
     stylix.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
   };
   outputs =

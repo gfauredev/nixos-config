@@ -11,8 +11,8 @@
     description = "Main Personal Information Management app";
   };
 
-  config.home.packages = with pkgs; [
-    anki # Best memorization tool
+  config.home.packages = [
+    # anki # Best memorization tool
     # markdown-anki-decks
     pkgs-unstable.xournalpp # Handwriting notetaking
     # pkgs-unstable.rnote # Modern handwriten note taking app
@@ -30,7 +30,7 @@
 
   config.programs = {
     thunderbird.enable = true;
-    # anki.enable = true; # Best memorization TODO 25.11
+    anki.enable = true; # Best memorization
     himalaya.enable = true;
     khal.enable = false; # Seems to need an explicit config file
     khard.enable = false; # too
