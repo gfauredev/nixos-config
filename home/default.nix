@@ -294,6 +294,7 @@
       pkgs-unstable.opencode # Any LLM Open Source Agent CLI
       pkgs-unstable.crush # Any LLM Open Source Agent CLI
       pkgs-unstable.gemini-cli-bin # Google Gemini Agent CLI
+      pkgs-unstable.antigravity-cli # Google Coding Agent CLI
       pkgs-unstable.github-copilot-cli # GitHub Copilot Agent CLI
       # pkgs-unstable.codex # OpenAI Codex Agent CLI
       # aichat # Any LLM Agent CLI
