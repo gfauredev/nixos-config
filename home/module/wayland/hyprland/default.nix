@@ -59,6 +59,7 @@ in
     enable = true; # See https://wiki.hyprland.org/Configuring
     systemd.enable = true;
     xwayland.enable = true; # Backwards compatibility
+    configType = "hyprlang"; # TODO Update to "lua";
     settings =
       let
         _base07 = config.stylix.base16Scheme.base07;

@@ -15,7 +15,7 @@
       show_banner = false;
     };
     plugins = with pkgs.nushellPlugins; [
-      skim # Fuzzy finder
+      # skim # Fuzzy finder
       query # Query JSON, XML, web data
       # net # List network interfaces
       # dbus # Communicate with D-BUS
