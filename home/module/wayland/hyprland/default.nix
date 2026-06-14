@@ -87,15 +87,15 @@ in
           tablet.output = "current";
         };
         dwindle = {
-          pseudotile = true; # master switch for pseudotiling TEST
+          # pseudotile = true; # master switch for pseudotiling
           preserve_split = true; # you probably want this
         };
         windowrule = [
-          "noborder, floating:0, onworkspace:w[t1]" # No border for single tiled
-          "noborder, title:Albert" # No border for launcher
-          "idleinhibit fullscreen, workspace:name:dpp" # Inhibit while presenting
-          "idleinhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
-          "idleinhibit fullscreen, workspace:name:int" # Inhibit while presenting
+          # "noborder, floating:0, onworkspace:w[t1]" # No border for single tiled FIXME
+          # "noborder, title:Albert" # No border for launcher
+          # "idleinhibit fullscreen, workspace:name:dpp" # Inhibit while presenting FIXME
+          # "idleinhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
+          # "idleinhibit fullscreen, workspace:name:int" # Inhibit while presenting
           # "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
           # "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
           # "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
@@ -248,7 +248,7 @@ in
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
-          vfr = true; # Save power, less tearing
+          # vfr = true; # Save power, less tearing
           background_color = lib.mkForce "0x000000"; # Stylix
         };
         env = [
