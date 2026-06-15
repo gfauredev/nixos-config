@@ -91,11 +91,11 @@ in
           preserve_split = true; # you probably want this
         };
         windowrule = [
-          "border_size 0, floating:0, onworkspace:w[t1]" # No border for single tiled
-          "border_size 0, title:Albert" # No border for launcher
-          "idle_inhibit fullscreen, workspace:name:dpp" # Inhibit while presenting
-          "idle_inhibit fullscreen, workspace:name:hdm" # Inhibit while presenting
-          "idle_inhibit fullscreen, workspace:name:int" # Inhibit while presenting
+          "border_size 0, match:float false, onworkspace:w[t1]" # No border for single tiled
+          "border_size 0, match:title Albert" # No border for launcher
+          "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
+          "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
+          "idle_inhibit fullscreen, match:workspace name:int" # Inhibit while presenting
           # "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
           # "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
           # "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
