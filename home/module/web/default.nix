@@ -145,7 +145,7 @@
           "sidebar.animation.enabled" = false; # Too slow
         };
       };
-      profiles.default = {
+      profiles.${config.user.name} = {
         id = 0;
         isDefault = true;
         containers = {
