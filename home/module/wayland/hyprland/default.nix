@@ -91,7 +91,7 @@ in
           preserve_split = true; # you probably want this
         };
         windowrule = [
-          "border_size 0, match:float false, onworkspace:w[t1]" # No border for single tiled
+          "border_size 0, match:float false, match:workspace w[t1]" # No border for single tiled
           "border_size 0, match:title Albert" # No border for launcher
           "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
           "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
