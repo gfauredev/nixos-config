@@ -185,16 +185,16 @@ def agent [...args] {
     ]
     let processed_args = ($args | str replace --regex '^\./' '@')
     with-env {
-      GEMINI_SANDBOX: "podman"
-      SANDBOX_SET_UID_GID: true
-      SANDBOX_FLAGS: ($sandbox_flags | str join " ")
-      NO_BROWSER: true
-      NIX_CONFIG: ($nix_settings | str join "\n")
-      NIX_REMOTE: "daemon"
-      PATH: ($env.PATH | append $paths)
-      # GEMINI_SANDBOX_IMAGE: "gemini-sandbox"
+      # SANDBOX: "podman"
+      # SANDBOX_SET_UID_GID: true
+      # SANDBOX_FLAGS: ($sandbox_flags | str join " ")
+      # NO_BROWSER: true
+      # NIX_CONFIG: ($nix_settings | str join "\n")
+      # NIX_REMOTE: "daemon"
+      # PATH: ($env.PATH | append $paths)
       # HOME: "/home/node"
-    } { gemini --yolo ...$processed_args }
+      # TODO https://antigravity.google/docs/cli-sandbox --sandbox
+    } { agy --prompt-interactive ...$processed_args }
 }
 
 # Display a welcome message for the first five minutes after login

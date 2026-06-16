@@ -293,7 +293,6 @@
     ++ [
       pkgs-unstable.opencode # Any LLM Open Source Agent CLI
       pkgs-unstable.crush # Any LLM Open Source Agent CLI
-      pkgs-unstable.gemini-cli-bin # Google Gemini Agent CLI
       pkgs-unstable.antigravity-cli # Google Coding Agent CLI
       pkgs-unstable.github-copilot-cli # GitHub Copilot Agent CLI
       # pkgs-unstable.codex # OpenAI Codex Agent CLI
@@ -383,9 +382,9 @@
       # cointop # Cryptocurrencies monitor
     ];
 
-  home.file.".gemini/tmp/bin/rg".source = "${pkgs.ripgrep}/bin/rg";
-  home.file.".gemini/tmp/bin/fd".source = "${pkgs.fd}/bin/fd";
-  home.file.".gemini/tmp/bin/sd".source = "${pkgs.sd}/bin/sd";
+  # home.file.".gemini/tmp/bin/rg".source = "${pkgs.ripgrep}/bin/rg";
+  # home.file.".gemini/tmp/bin/fd".source = "${pkgs.fd}/bin/fd";
+  # home.file.".gemini/tmp/bin/sd".source = "${pkgs.sd}/bin/sd";
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
@@ -413,7 +412,6 @@
   };
 
   programs = {
-    # gemini-cli.enable = true; # Breaks sandbox
     git.enable = true; # MANDATORY
     direnv.enable = true; # Auto load nix shell when cd
     gpg.enable = true; # Useful cryptography tool
@@ -473,26 +471,6 @@
       email = config.user.email;
     };
     direnv.nix-direnv.enable = true;
-    # gemini-cli = {
-    #   settings = {
-    #     context.fileFiltering.respectGitIgnore = false;
-    #     general = {
-    #       sessionRetention = {
-    #         enabled = true;
-    #         maxAge = "30d";
-    #         warningAcknowledged = true;
-    #       };
-    #       plan.directory = "";
-    #     };
-    #     ui = {
-    #       hideBanner = true;
-    #       showUserIdentity = false;
-    #       showShortcutsHint = false;
-    #     };
-    #     experimental.modelSteering = true;
-    #     security.auth.selectedType = "oauth-personal";
-    #   };
-    # };
   };
 
   gtk = {
