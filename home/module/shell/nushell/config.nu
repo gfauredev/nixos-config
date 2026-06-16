@@ -155,34 +155,34 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
 }
 
 def agent [...args] {
-    let paths = [
-      "/run/current-system/sw/bin"
-      "/usr/local/share/npm-global/bin"
-      "/usr/local/sbin"
-      "/usr/local/bin"
-      "/usr/sbin"
-      "/usr/bin"
-      "/sbin"
-      "/bin"
-    ]
-    let sandbox_flags = [
-      "--volume /nix/store:/nix/store:O"
-      "--volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw"
-      "--volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro"
-      "--volume /etc/ssl/certs:/etc/ssl/certs:ro"
-      "--volume /etc/static/ssl:/etc/static/ssl:ro"
-      "--volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro"
-      $"--volume /home/($env.USER)/.cargo:/home/($env.USER)/.cargo:O"
-      $"--volume /home/($env.USER)/.android:/home/($env.USER)/.android:O"
-      "--env NIX_CONFIG"
-      "--env NIX_REMOTE"
-      "--env PATH"
-      "--entrypoint=''"
-    ]
-    let nix_settings = [
-      "experimental-features = nix-command flakes"
-      "accept-flake-config = true"
-    ]
+    # let paths = [
+    #   "/run/current-system/sw/bin"
+    #   "/usr/local/share/npm-global/bin"
+    #   "/usr/local/sbin"
+    #   "/usr/local/bin"
+    #   "/usr/sbin"
+    #   "/usr/bin"
+    #   "/sbin"
+    #   "/bin"
+    # ]
+    # let sandbox_flags = [
+    #   "--volume /nix/store:/nix/store:O"
+    #   "--volume /nix/var/nix/daemon-socket/socket:/nix/var/nix/daemon-socket/socket:rw"
+    #   "--volume /etc/nix/nix.conf:/etc/nix/nix.conf:ro"
+    #   "--volume /etc/ssl/certs:/etc/ssl/certs:ro"
+    #   "--volume /etc/static/ssl:/etc/static/ssl:ro"
+    #   "--volume /run/current-system/sw/bin:/run/current-system/sw/bin:ro"
+    #   $"--volume /home/($env.USER)/.cargo:/home/($env.USER)/.cargo:O"
+    #   $"--volume /home/($env.USER)/.android:/home/($env.USER)/.android:O"
+    #   "--env NIX_CONFIG"
+    #   "--env NIX_REMOTE"
+    #   "--env PATH"
+    #   "--entrypoint=''"
+    # ]
+    # let nix_settings = [
+    #   "experimental-features = nix-command flakes"
+    #   "accept-flake-config = true"
+    # ]
     let processed_args = ($args | str replace --regex '^\./' '@')
     with-env {
       # SANDBOX: "podman"
@@ -192,8 +192,6 @@ def agent [...args] {
       # NIX_CONFIG: ($nix_settings | str join "\n")
       # NIX_REMOTE: "daemon"
       # PATH: ($env.PATH | append $paths)
-      # HOME: "/home/node"
-      # TODO https://antigravity.google/docs/cli-sandbox --sandbox
     } { agy --prompt-interactive ...$processed_args }
 }
 
