@@ -1,5 +1,7 @@
 {
+  "artifactReviewPolicy": "always-proceed",
   "enableTelemetry": false,
   "enableTerminalSandbox": true,
-  "notifications": true
+  "notifications": true,
+  "toolPermission": "proceed-in-sandbox"
 }
