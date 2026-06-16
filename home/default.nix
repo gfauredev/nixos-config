@@ -335,6 +335,7 @@
       openscad-unstable # Code CAD
       openscad-lsp # LSP
       orca-slicer # G-code generator for 3D printers…
+      bambu-studio # Crap
       # dune3d # New simple parametric CAD
       # solvespace # Simple parametric 3D CAD
       # brlcad # Combinatorial solid modeling system
