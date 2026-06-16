@@ -26,6 +26,7 @@
     ./module/editor # CLI and GUI text editors
     ./module/remap # Ergonomy
     ./module/launcher # Quick keyboard launcher(s)
+    ./module/agent # AI Agents config
   ];
 
   home = {
