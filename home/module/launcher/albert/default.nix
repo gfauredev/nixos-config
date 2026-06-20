@@ -1,15 +1,13 @@
-{ pkgs-unstable, ... }:
+{ pkgs-unstable, config, ... }:
 {
   home.packages = [ pkgs-unstable.albert ]; # Full-featured launcher
   xdg.configFile = {
-    "albert/config.static" = {
-      source = ./config;
-      # source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/albert/config";
+    "albert/config.link" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/albert/config";
     };
-    "albert/websearch.static" = {
+    "albert/websearch.link" = {
       recursive = true;
-      source = ./websearch;
-      # source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/albert/websearch";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/albert/websearch";
     };
   };
 }

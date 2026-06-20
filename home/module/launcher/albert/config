@@ -1,7 +1,7 @@
 [General]
 memoryDecay=0.75
 showTray=false
-telemetry=true
+telemetry=false
 
 [application]
 enabled=true
@@ -15,6 +15,9 @@ use_generic_name=true
 use_keywords=true
 use_non_localized_name=false
 
+[bluetooth]
+enabled=true
+
 [caffeine]
 enabled=true
 trigger="inhib "
@@ -27,10 +30,14 @@ parsing_mode=2
 units_in_global_query=true
 
 [chromium]
-enabled=true
+enabled=false
+profile_path=/home/gf/.config/BraveSoftware/Brave-Browser/Default
 trigger="bm "
 
 [clipboard]
+enabled=true
+
+[commandline]
 enabled=true
 
 [datetime]
@@ -99,6 +106,9 @@ home\gf\project\useFileSystemWatches=false
 paths=/home/gf/data, /home/gf/data.local, /home/gf/life, /home/gf/project
 trigger="file "
 
+[github]
+enabled=true
+
 [hash]
 enabled=true
 
@@ -134,7 +144,21 @@ enabled=true
 [python.emoji]
 enabled=true
 
+[python.firefox]
+current_profile_path=default
+enabled=false
+index_history=false
+
+[python.goldendict]
+enabled=false
+
+[python.kill]
+enabled=false
+
 [python.pomodoro]
+enabled=true
+
+[python.syncthing]
 enabled=true
 
 [python.wikipedia]
@@ -151,7 +175,7 @@ enabled=true
 hibernate_enabled=false
 lock_enabled=false
 logout_enabled=false
-suspend_enabled=false
+suspend_enabled=true
 title_poweroff=off
 title_reboot=boot
 trigger="sys "
@@ -175,16 +199,38 @@ enabled=true
 trigger="web "
 
 [widgetsboxmodel]
+action_item_padding=6
+action_item_selection_border_radius=11
+action_item_selection_border_width=0
 alwaysOnTop=true
 clearOnHide=false
 clientShadow=false
-darkTheme=Spotlight Dark
+darkTheme=Nord Dark
+disable_input_method=true
 displayScrollbar=false
 followCursor=true
 hideOnFocusLoss=true
 historySearch=true
+input_border_radius=11
+input_font_size=18
+input_padding=5
 itemCount=10
-lightTheme=Spotlight Dark
+lightTheme=Nord Dark
 quitOnClose=false
+result_item_horizontal_spacing=6
+result_item_icon_size=39
+result_item_padding=6
+result_item_selection_border_radius=11
+result_item_selection_border_width=0
+result_item_subtext_font_size=8
+result_item_text_font_size=13
+result_item_vertical_spacing=2
 showCentered=true
 systemShadow=false
+window_border_radius=18
+window_border_width=0
+window_padding=7
+window_shadow_offset=8
+window_shadow_size=80
+window_spacing=7
+window_width=640
