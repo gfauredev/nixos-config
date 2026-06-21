@@ -119,7 +119,7 @@
       wireplumber.enable = true;
       alsa.enable = true; # Support kernel audio
       alsa.support32Bit = true; # Support kernel audio
-      jack.enable = true; # Support advanced audio
+      jack.enable = lib.mkForce true; # Support advanced audio FIX
       pulse.enable = true; # Support previous audio system
     };
     udev = {
