@@ -38,6 +38,7 @@
 
   home.packages = with pkgs; [
     ardour # Full fledged digital audio workstation
+    pipewire # PipeWire CLI tools
     pkgs-unstable.bespokesynth # Software modular synth, controllers support
     carla # VST Host & audio router
     cardinal # Standalone and VST modular synthesizer

@@ -23,10 +23,10 @@
         (tree-sitter.withPlugins (p: builtins.attrValues p)) # Every grammar
         deno # Runtime for LSPs and formatters
         # Language Models
-        # helix-gpt # Add LLMs support through LSP
         # copilot-language-server # GitHub Copilot LSP
         # lsp-ai # Language server for language models
         # tabby # Self-hosted AI code assistant
+        # TODO AI Autocomplete
         # Spell Checking
         harper # Grammar/spell checker LSP (Rust, fast)
         # vale-ls # LSP Vale implementation
