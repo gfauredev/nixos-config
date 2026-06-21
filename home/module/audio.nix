@@ -19,22 +19,6 @@
     VST3_PATH = "${config.user.home}/.nix-profile/lib/vst3";
     VST_PATH = "${config.user.home}/.nix-profile/lib/vst";
   };
-  # home.sessionVariables = let
-  #   pluginPath = dir:
-  #     "${config.user.home}/.${dir}:" + (lib.makeSearchPath dir [
-  #       "${config.user.home}/.nix-profile/lib"
-  #       "/run/current-system/sw/lib"
-  #       "/etc/profiles/per-user/${config.user.name}/lib"
-  #     ]);
-  #   in {
-  #     CLAP_PATH = lib.mkDefault (pluginPath "clap");
-  #     DSSI_PATH = lib.mkDefault (pluginPath "dssi");
-  #     LADSPA_PATH = lib.mkDefault (pluginPath "ladspa");
-  #     LV2_PATH = lib.mkDefault (pluginPath "lv2");
-  #     LXVST_PATH = lib.mkDefault (pluginPath "lxvst");
-  #     VST3_PATH = lib.mkDefault (pluginPath "vst3");
-  #     VST_PATH = lib.mkDefault (pluginPath "vst");
-  #   };
 
   home.packages = with pkgs; [
     ardour # Full fledged digital audio workstation
@@ -108,6 +92,6 @@
       "AudioVideo"
       "X-AudioEditing"
     ];
-    mimetype = "application/x-carla-project";
+    mimeType = "application/x-carla-project";
   };
 }
