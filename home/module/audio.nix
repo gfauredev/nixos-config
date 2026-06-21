@@ -92,6 +92,6 @@
       "AudioVideo"
       "X-AudioEditing"
     ];
-    mimeType = "application/x-carla-project";
+    mimeType = [ "application/x-carla-project" ];
   };
 }
