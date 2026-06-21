@@ -45,7 +45,9 @@
     # giada # Live electronic music platform
     glicol-cli # Music live coding
     helio-workstation # Sequencer / DAW
-    crosspipe # Audio patchbay
+    # crosspipe # Audio patchbay
+    hyprpwcenter # Hypr’s PipeWire control center TEST me
+    pwvucontrol # PipeWire volume control TEST me
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
     # patchage # JACK router
@@ -90,4 +92,22 @@
   #   ".Surge XT".source =
   #     mkOutOfStoreSymlink "${config.user.home}/life/softwareTools+myData/music.large/SurgeXT/";
   # };
+
+  xdg.desktopEntries.carla = {
+    name = "Carla";
+    genericName = "Audio Plugin Host";
+    comment = "Carla audio plugin host (PipeWire JACK wrapper)";
+    # genericName[fr] = "Hôte de greffon Carla";
+    # comment[fr] = "Hôte de greffon audio";
+    exec = "${pkgs.pipewire.jack}/bin/pw-jack carla %u"; # FIX Find PW’s JACK
+    icon = "carla";
+    terminal = false;
+    type = "Application";
+    categories = [
+      "Audio"
+      "AudioVideo"
+      "X-AudioEditing"
+    ];
+    mimetype = "application/x-carla-project";
+  };
 }
