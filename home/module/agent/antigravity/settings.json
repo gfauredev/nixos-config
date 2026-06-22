@@ -9,9 +9,12 @@
       "unsandboxed(nix develop)",
       "unsandboxed(nix build)",
       "unsandboxed(nix flake)",
+      "unsandboxed(nix eval)",
       "unsandboxed(git diff)",
       "unsandboxed(git log)",
-      "unsandboxed(cmake)"
+      "unsandboxed(cmake)",
+      "unsandboxed(ninja)",
+      "unsandboxed(make)"
     ]
   },
   "toolPermission": "proceed-in-sandbox"
