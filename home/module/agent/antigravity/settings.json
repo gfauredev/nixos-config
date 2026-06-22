@@ -2,6 +2,17 @@
   "artifactReviewPolicy": "always-proceed",
   "enableTelemetry": false,
   "enableTerminalSandbox": true,
+  "model": "Gemini 3.1 Pro (High)",
   "notifications": true,
+  "permissions": {
+    "allow": [
+      "unsandboxed(nix develop)",
+      "unsandboxed(nix build)",
+      "unsandboxed(nix flake)",
+      "unsandboxed(git diff)",
+      "unsandboxed(git log)",
+      "unsandboxed(cmake)"
+    ]
+  },
   "toolPermission": "proceed-in-sandbox"
 }
