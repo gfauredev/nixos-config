@@ -183,7 +183,7 @@ def agent [...args] {
     #   "experimental-features = nix-command flakes"
     #   "accept-flake-config = true"
     # ]
-    let processed_args = ($args | str replace --regex '^\./' '@')
+    let processed_args = ($args | str replace --regex '^\./' '@' | str join ' ')
     with-env {
       # SANDBOX: "podman"
       # SANDBOX_SET_UID_GID: true
@@ -192,7 +192,7 @@ def agent [...args] {
       # NIX_CONFIG: ($nix_settings | str join "\n")
       # NIX_REMOTE: "daemon"
       # PATH: ($env.PATH | append $paths)
-    } { agy --prompt-interactive ...$processed_args }
+    } { agy --prompt-interactive $processed_args }
 }
 
 # Display a welcome message for the first five minutes after login
