@@ -3,7 +3,7 @@
   imports = [ ./filesystem.nix ];
 
   nix.gc = {
-    automatic = lib.mkDefault true;
+    automatic = lib.mkDefault false;
     dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 15d"; # +3";
   };

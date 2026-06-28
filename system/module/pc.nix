@@ -221,7 +221,7 @@
     hydra-cli # CLI for Hydra CI
     hydra-check # Quickly check derivation status in Hydra
     tio # Serial
-    # pipewire # PipeWire CLI tools
+    killall # Quickly kill corresponding names
     nsjail # Process isolation tool
     treecat # Dir structure <-> ASCII representation
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
