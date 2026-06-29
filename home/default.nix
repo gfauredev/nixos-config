@@ -112,6 +112,7 @@
         "x-scheme-handler/https" = "${web}.desktop";
         "x-scheme-handler/http" = "${web}.desktop";
         # Email & Calendar
+        "x-scheme-handler/net.thunderbird" = "${pim}.desktop";
         "x-scheme-handler/mailto" = "${pim}.desktop";
         "x-scheme-handler/webcal" = "${pim}.desktop";
         "x-scheme-handler/webcals" = "${pim}.desktop";
