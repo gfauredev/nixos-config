@@ -1,0 +1,15 @@
+[submodule "home/module/typst/slide"]
+	path = home/module/typst/slide
+	url = git@gitlab.com:gfauredev/typst-slide.git
+[submodule "home/module/typst/typst-report"]
+	path = home/module/typst/report
+	url = git@gitlab.com:gfauredev/typst-report.git
+[submodule "home/module/typst/lib"]
+	path = home/module/typst/lib
+	url = git@gitlab.com:gfauredev/typst-lib.git
+[submodule "home/module/typst/cv"]
+	path = home/module/typst/cv
+	url = git@gitlab.com:gfauredev/typst-cv.git
+[submodule "home/module/typst/letter"]
+	path = home/module/typst/letter
+	url = git@gitlab.com:gfauredev/typst-letter.git

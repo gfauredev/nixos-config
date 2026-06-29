@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [ ./font.nix ]; # Additional fonts
 
@@ -27,6 +27,11 @@
     plantuml-c4 # UML diagrams from text with additions
     plantuml-server # Server for PlantUML
   ];
+
+  xdg.dataFile."typst/packages/local" = {
+    recursive = true; # Link Typst library
+    source = config.lib.file.mkOutOfStoreSymlink "${config.location}/home/module/typst/";
+  };
 
   programs = {
     # zathura.enable = true; # Minimal PDF reader
