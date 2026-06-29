@@ -29,7 +29,7 @@
   ];
 
   xdg.dataFile."typst/packages/local" = {
-    recursive = true; # Link Typst library
+    # recursive = true; # Link Typst library
     source = config.lib.file.mkOutOfStoreSymlink "${config.location}/home/module/typst/";
   };
 
