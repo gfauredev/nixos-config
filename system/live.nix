@@ -1,4 +1,4 @@
-{ pkgs, ... }: # Live ISO to install NixOS
+{ pkgs, lib, ... }: # Live ISO to install NixOS
 {
   networking.hostName = "LiveNixOS";
   # networking.hostId = "acabacab";
@@ -32,7 +32,7 @@
     };
   };
 
-  networking.wireless.enable = false; # Prefer NetworkManager
+  networking.wireless.enable = lib.mkForce false; # Prefer NetworkManager
 
   services = {
     openssh.enable = true; # Enable the OpenSSH daemon

@@ -62,14 +62,14 @@
         stateVersion = "25.05";
         system = "x86_64-linux";
       };
-      chimera = {
-        stateVersion = "26.05";
-        system = "x86_64-linux";
-      };
       live = {
         stateVersion = "26.05";
         system = "x86_64-linux";
       };
+      # chimera = {
+      #   stateVersion = "26.05";
+      #   system = "x86_64-linux";
+      # };
     in
     {
       # NixOS config, enable: `nixos-rebuild --flake .#hostname` as root
@@ -91,15 +91,15 @@
           };
         };
         # Laptop: Chimera, a flying creature
-        chimera = system {
-          modules = [
-            {
-              system.stateVersion = chimera.stateVersion;
-              nixpkgs.hostPlatform = chimera.system;
-            }
-            ./system/chimera.nix
-          ];
-        };
+        # chimera = system {
+        #   modules = [
+        #     {
+        #       system.stateVersion = chimera.stateVersion;
+        #       nixpkgs.hostPlatform = chimera.system;
+        #     }
+        #     ./system/chimera.nix
+        #   ];
+        # };
         # Desktop: Muses, goddess of arts and music
         # muses = system {
         #   modules = [
@@ -151,17 +151,17 @@
             stylix.homeModules.stylix # Colors & Fonts
           ];
         };
-        "gf@chimera" = home {
-          pkgs = import nixpkgs {
-            system = chimera.system;
-          };
-          modules = [
-            { user = nixpkgs.lib.mkDefault user-def.default; }
-            { home.stateVersion = chimera.stateVersion; }
-            ./home/chimera.nix
-            stylix.homeModules.stylix # Colors & Fonts
-          ];
-        };
+        # "gf@chimera" = home {
+        #   pkgs = import nixpkgs {
+        #     system = chimera.system;
+        #   };
+        #   modules = [
+        #     { user = nixpkgs.lib.mkDefault user-def.default; }
+        #     { home.stateVersion = chimera.stateVersion; }
+        #     ./home/chimera.nix
+        #     stylix.homeModules.stylix # Colors & Fonts
+        #   ];
+        # };
       };
       # This configuration’s development shell, preferably enabled with direnv
       devShells = systems (
