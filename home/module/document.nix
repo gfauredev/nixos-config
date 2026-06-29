@@ -1,11 +1,13 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
-  imports = [ ./font.nix ]; # Additional fonts
+  imports = [
+    ./typst # Typst config
+    ./font.nix # Additional fonts
+  ];
 
   home.packages = with pkgs; [
     # calibre # Ebook management
     # Document & Spreadsheet & Presentation
-    typst # Advanced document processor TODO Typst packages nixpkgs
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations
     onlyoffice-desktopeditors # Full office suite
@@ -27,11 +29,6 @@
     plantuml-c4 # UML diagrams from text with additions
     plantuml-server # Server for PlantUML
   ];
-
-  xdg.dataFile."typst/packages/local" = {
-    # recursive = true; # Link Typst library
-    source = config.lib.file.mkOutOfStoreSymlink "${config.location}/home/module/typst/";
-  };
 
   programs = {
     # zathura.enable = true; # Minimal PDF reader
