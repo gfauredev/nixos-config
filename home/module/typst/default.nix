@@ -5,6 +5,6 @@
 
   xdg.dataFile."typst/packages/local" = {
     # recursive = true; # Link Typst library
-    source = config.lib.file.mkOutOfStoreSymlink "${config.location}/home/module/typst/";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/typst/";
   };
 }
