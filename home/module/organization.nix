@@ -104,38 +104,5 @@
     # echo "- Graph: Linked and non-hierarchical data, typically managed through a dedicated app"
   };
 
-  config.services.syncthing.settings.folders =
-    let
-      default = {
-        type = "sendreceive";
-        devices = [ "shiba" ];
-        versioning = {
-          type = "simple";
-          params.keep = "4";
-          params.cleanoutDays = "180";
-        };
-      };
-    in
-    {
-      project = default // {
-        path = "${config.user.home}/project";
-      };
-      life = default // {
-        path = "${config.user.home}/life";
-      };
-      camera = default // {
-        # Store picture when taken, synced with phone’s DCIM/Camera
-        path = "${config.home.sessionVariables.XDG_PICTURES_DIR}/camera";
-      };
-      screenshots = default // {
-        # Store screenshot when taken, synced with phone’s Pictures/Screenshots
-        path = "${config.home.sessionVariables.XDG_PICTURES_DIR}/screenshot";
-      };
-      projectArchive = default // {
-        path = "${config.user.home}/archive/project";
-      };
-      lifeArchive = default // {
-        path = "${config.user.home}/archive/life";
-      };
-    };
+  # TODO Put some Syncthing config here publicly
 }
