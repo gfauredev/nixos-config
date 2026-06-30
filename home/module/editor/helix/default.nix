@@ -172,6 +172,10 @@
               "md"
             ];
           };
+          google-java-format = {
+            command = "google-java-format";
+            args = [ "-" ];
+          };
         in
         [
           {
@@ -271,6 +275,7 @@
               "jdtls"
               "llm"
             ];
+            formatter = google-java-format;
             auto-format = true;
           }
           {
