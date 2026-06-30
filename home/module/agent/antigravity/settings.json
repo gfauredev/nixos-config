@@ -11,10 +11,15 @@
       "unsandboxed(nix flake)",
       "unsandboxed(nix eval)",
       "unsandboxed(git diff)",
+      "unsandboxed(git status)",
       "unsandboxed(git log)",
       "unsandboxed(cmake)",
       "unsandboxed(ninja)",
-      "unsandboxed(make)"
+      "unsandboxed(make)",
+      "unsandboxed(cc)",
+      "unsandboxed(mvn)",
+      "unsandboxed(http)",
+      "unsandboxed(https)"
     ]
   },
   "toolPermission": "proceed-in-sandbox"

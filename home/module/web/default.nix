@@ -206,8 +206,8 @@
     firefoxpwa.package = pkgs-unstable.firefoxpwa; # Gecko web browser PWA support
 
   };
-  config.home.file."${config.programs.firefox.configPath}/${config.user.name}/chrome/userChrome.css".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
+  # config.home.file."${config.programs.firefox.configPath}/${config.user.name}/chrome/userChrome.css".source =
+  #   config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
 
   config.home.sessionVariables.BROWSER = config.browser.command; # Set default web browser
 }
