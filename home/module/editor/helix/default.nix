@@ -176,6 +176,15 @@
             command = "google-java-format";
             args = [ "-" ];
           };
+          sql-formatter.command = "sql-formatter";
+          typstyle = {
+            command = "typstyle";
+            args = [
+              "--line-width=80"
+              "--indent-width=2"
+              "--wrap-text"
+            ];
+          };
         in
         [
           {
@@ -227,15 +236,8 @@
               "ltex"
               "llm"
             ];
+            formatter = typstyle;
             auto-format = true;
-            formatter = {
-              command = "typstyle";
-              args = [
-                "--line-width=80"
-                "--indent-width=2"
-                "--wrap-text"
-              ];
-            };
           }
           {
             name = "markdown";
@@ -246,8 +248,8 @@
               "ltex"
               "llm"
             ];
-            auto-format = true;
             formatter = deno-fmt;
+            auto-format = true;
           }
           {
             name = "cpp";
@@ -286,7 +288,6 @@
               "llm"
             ];
             auto-format = true;
-            # formatter.command = "shfmt";
           }
           {
             name = "javascript";
@@ -352,6 +353,11 @@
           {
             name = "verilog";
             language-servers = [ "svls" ];
+            auto-format = true;
+          }
+          {
+            name = "sql";
+            formatter = sql-formatter;
             auto-format = true;
           }
         ];
