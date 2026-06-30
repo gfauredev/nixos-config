@@ -40,10 +40,10 @@
     "iommu=pt"
   ];
 
-  # environment.systemPackages = with pkgs; [
-  #   gvisor # Sandbox runtime for containers
-  #   gvproxy
-  #   cloud-init # Cloud instance initialization tool
-  #   docker-compose # YAML files defining container(s)
-  # ];
+  environment.systemPackages = with pkgs; [
+    # gvisor # Sandbox runtime for containers
+    # gvproxy
+    # cloud-init # Cloud instance initialization tool
+    podman-compose # YAML files defining container(s)
+  ];
 }
