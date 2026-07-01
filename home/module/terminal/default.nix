@@ -1,4 +1,9 @@
-{ lib, config, ... }: # Terminal emulators
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: # Terminal emulators
 {
   imports = [
     ./ghostty
@@ -70,4 +75,7 @@
     TERM = config.term.cmd; # Default terminal emulator
     TERMINAL = config.term.cmd; # Default terminal emulator
   };
+  config.home.packages = with pkgs; [
+    kitty
+  ];
 }
