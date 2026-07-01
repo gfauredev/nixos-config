@@ -59,22 +59,22 @@ in
     enable = true; # See https://wiki.hyprland.org/Configuring
     systemd.enable = true;
     xwayland.enable = true; # Backwards compatibility
-    configType = "hyprlang"; # TODO Update to "lua";
+    configType = "lua";
     settings =
-      let
-        _base07 = config.stylix.base16Scheme.base07;
-        base07 = "rgb(${builtins.substring 1 (builtins.stringLength _base07) _base07})";
-        black = "rgb(000000)"; # Pitch black background for OLED
-      in
+      # let
+      #   _base07 = config.stylix.base16Scheme.base07;
+      #   base07 = "rgb(${builtins.substring 1 (builtins.stringLength _base07) _base07})";
+      #   black = "rgb(000000)"; # Pitch black background for OLED
+      # in
       {
-        monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
         debug.disable_logs = false; # Enable logs
         xwayland.force_zero_scaling = true;
-        exec-once = [
-          "waybar" # Status bar
-          "albert" # General quick launcher
-          "systemctl --user start hyprpolkitagent" # Polkit authentication agent
-        ];
+        # monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
+        # exec-once = [
+        #   "waybar" # Status bar
+        #   "albert" # General quick launcher
+        #   "systemctl --user start hyprpolkitagent" # Polkit authentication agent
+        # ];
         input = {
           kb_layout = "fr,us";
           kb_variant = "bepo_afnor,";
@@ -86,25 +86,54 @@ in
           touchpad.natural_scroll = false; # Going up goes up
           tablet.output = "current";
         };
-        dwindle = {
-          # pseudotile = true; # master switch for pseudotiling
-          preserve_split = true; # you probably want this
-        };
-        windowrule = [
-          "border_size 0, match:float false, match:workspace w[t1]" # No border for single tiled
-          "border_size 0, match:title Albert" # No border for launcher
-          "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
-          "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
-          "idle_inhibit fullscreen, match:workspace name:int" # Inhibit while presenting
-          # "noinitialfocus, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t auto focus reminders
-          # "float, initialClass:thunderbird, initialTitle:.* Reminders?" # Don’t tile reminders
-          # "move 100%-557 100%-360, initialClass:thunderbird, initialTitle:.* Reminders?" # Right bottom
-          # "size 555 333, initialClass:thunderbird, initialTitle:.* Reminders?" # Small rectangle
-          # "opacity 0.7, initialClass:thunderbird, initialTitle:.* Reminders?" # Transparent
-          # "float, class:com.github.com.woxlauncer.wox, title:Wox"
-          # "size 1337 800, class:com.github.com.woxlauncer.wox, title:Wox"
-        ];
+        # dwindle.preserve_split = true; # you probably want this
+        # windowrule = [
+        #   "border_size 0, match:float false, match:workspace w[t1]" # No border for single tiled
+        #   "border_size 0, match:title Albert" # No border for launcher
+        #   "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
+        #   "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
+        #   "idle_inhibit fullscreen, match:workspace name:int" # Inhibit while presenting
+        # ];
         bindd = [
+          {
+            _args = [
+              # ${mod}, RETURN, Open a default terminal, exec, ${config.term.cmd}
+              "${mod} + RETURN"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.cmd}\")")
+            ];
+          }
+          {
+            _args = [
+              # ${mod} CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}
+              "${mod} + CONTROL + RETURN"
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.alt.cmd}\")")
+            ];
+          }
+          {
+            # ${mod}, q, Close current window, killactive,
+            _args = [
+              (lib.generators.mkLuaInline "${mod} .. \" + q\"")
+              (lib.generators.mkLuaInline "hl.dsp.window.close()")
+              { locked = true; } # Why?
+            ];
+          }
+          {
+            # ${mod}, BackSpace, Close current window, killactive,
+            _args = [
+              (lib.generators.mkLuaInline "${mod} .. \" + BackSpace\"")
+              (lib.generators.mkLuaInline "hl.dsp.window.close()")
+              { locked = true; } # Why?
+            ];
+          }
+          {
+            # ${mod}, Delete, Close current window, killactive,
+            _args = [
+              (lib.generators.mkLuaInline "${mod} .. \" + Delete\"")
+              (lib.generators.mkLuaInline "hl.dsp.window.close()")
+              { locked = true; } # Why?
+            ];
+          }
+          # TODO Convert remaining binds like examples above
           "${mod} CONTROL SHIFT, q, Exit Hyprland (user session), exit,"
           "${mod}, comma, Lock session and obfuscates display, exec, ${config.wayland.lock}"
           "${mod} CONTROL, comma, Lock session with loginctl, exec, ${config.wayland.lock-session}"
@@ -122,16 +151,8 @@ in
           ", XF86HomePage, Open launcher with media key, exec, ${config.launch.all}"
           ", XF86Calculator, Quick calculator with media key, exec, ${config.launch.calc}"
           ", XF86Search, Quick search with media key, exec, ${config.launch.all}"
-          "${mod}, RETURN, Open a default terminal, exec, ${config.term.cmd}"
-          "${mod} SHIFT, RETURN, Open a floating default terminal, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL}" # FIX Bare ghostty command refuses to be launched tiled
-          "${mod} CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}"
-          "${mod} CONTROL SHIFT, Open floating alt terminal, RETURN, exec, [float; center; size 888 420] ${config.term.alt.cmd} ${config.term.exec} ${config.home.sessionVariables.SHELL}" # FIX Bare ghostty command refuses to be launched tiled
           "${mod}, f, Toggle window floating, togglefloating,"
           "${mod}, w, Toggle window fullscreen, fullscreen,"
-          "${mod}, q, Close current window, killactive,"
-          "${mod}, BackSpace, Close current window, killactive,"
-          "${mod}, Delete, Close current window, killactive,"
-          "${mod} CONTROL, q, Close another window by clicking it, execr, hyprctl kill"
           "${mod}, c, Focus the window on the left, movefocus, l"
           "${mod}, t, Focus the window below, movefocus, d"
           "${mod}, s, Focus the window above, movefocus, u"
@@ -158,10 +179,10 @@ in
           "SHIFT, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
           "CONTROL, XF86AudioMedia, Open bluetooth manager, exec, [float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl"
           "CONTROL, XF86Tools, Open bluetooth manager, exec, [float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl"
-        ]
-        ++ (import ./lib.nix { inherit lib config; }).genBinds mod (
-          import ./workspaces.nix { inherit lib config; }
-        );
+        ];
+        # ++ (import ./lib.nix { inherit lib config; }).genBinds mod (
+        #   import ./workspaces.nix { inherit lib config; }
+        # );
         binde = [
           "${mod} SHIFT, c, moveactive, -10 0" # Move left
           "${mod} SHIFT, t, moveactive, 0 10" # Move down
@@ -180,13 +201,9 @@ in
           "SHIFT, XF86AudioMicMute, exec, ${audio.speaker.toggle}"
           "CONTROL, XF86AudioMicMute, exec, ${audio.speaker.toggle}"
           ", XF86AudioPlay, exec, ${audio.play.toggle}"
-          # "SHIFT, XF86AudioPlay, exec, ${audio.media.toggle}"
           ", XF86AudioPause, exec, ${audio.play.toggle}"
-          # "SHIFT, XF86AudioPause, exec, ${audio.media.toggle}"
           ", XF86AudioNext, exec, ${audio.play.next}"
-          # "SHIFT, XF86AudioNext, exec, ${audio.media.next}"
           ", XF86AudioPrev, exec, ${audio.play.previous}"
-          # "SHIFT, XF86AudioPrev, exec, ${audio.media.previous}"
           ", XF86RFKill, exec, ${plane-mode}"
         ];
         bindle = [
@@ -205,57 +222,56 @@ in
           "SHIFT, XF86AudioLowerVolume, exec, ${audio.mic.LOWER}"
           "CONTROL SHIFT, XF86AudioLowerVolume, exec, ${audio.mic.lower}"
         ];
-        bindm = [
-          "${mod}, mouse:272, movewindow"
-          "${mod}, mouse:273, resizewindow"
-        ];
-        general = {
-          gaps_in = 0; # Keep only borders, spare screen surface
-          gaps_out = 0; # Keep only borders, spare screen surface
-          border_size = 2; # Keep only borders, spare screen surface
-          layout = "dwindle"; # Default new window placement algorithm
-          "col.inactive_border" = lib.mkForce black; # Low-cost gaps
-        };
-        cursor = {
-          no_hardware_cursors = false;
-          inactive_timeout = 1;
-          enable_hyprcursor = true;
-          hide_on_key_press = true;
-          hide_on_touch = true;
-        };
-        group.groupbar.enabled = false; # Don’t eat my screen space
-        group = {
-          "col.border_active" = lib.mkForce base07; # Stylix
-          "col.border_inactive" = lib.mkForce black; # Low-cost gaps
-        };
-        decoration = {
-          rounding = 6;
-          blur.enabled = lib.mkDefault false; # Save power
-          shadow.enabled = false; # Save power
-        };
-        animations = {
-          enabled = lib.mkDefault false; # Save power
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-          animation = [
-            "windows, 1, 7, myBezier"
-            "windowsOut, 1, 7, default, popin 80%"
-            "border, 1, 10, default"
-            "borderangle, 1, 8, default"
-            "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
-          ];
-        };
-        misc = {
-          disable_hyprland_logo = true;
-          disable_splash_rendering = true;
-          # vfr = true; # Save power, less tearing
-          background_color = lib.mkForce "0x000000"; # Stylix
-        };
-        env = [
-          "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
-          "GTK_IM_MODULE,simple" # Simple GTK input method (use builtin deadkeys)
-        ]
-        ++ lib.mapAttrsToList (var: val: "${var},${toString val}") config.home.sessionVariables;
+        # bindm = [
+        #   "${mod}, mouse:272, movewindow"
+        #   "${mod}, mouse:273, resizewindow"
+        # ];
+        # general = {
+        #   gaps_in = 0; # Keep only borders, spare screen surface
+        #   gaps_out = 0; # Keep only borders, spare screen surface
+        #   border_size = 2; # Keep only borders, spare screen surface
+        #   layout = "dwindle"; # Default new window placement algorithm
+        #   "col.inactive_border" = lib.mkForce black; # Low-cost gaps
+        # };
+        # cursor = {
+        #   no_hardware_cursors = false;
+        #   inactive_timeout = 1;
+        #   enable_hyprcursor = true;
+        #   hide_on_key_press = true;
+        #   hide_on_touch = true;
+        # };
+        # group.groupbar.enabled = false; # Don’t eat my screen space
+        # group = {
+        #   "col.border_active" = lib.mkForce base07; # Stylix
+        #   "col.border_inactive" = lib.mkForce black; # Low-cost gaps
+        # };
+        # decoration = {
+        #   rounding = 6;
+        #   blur.enabled = lib.mkDefault false; # Save power
+        #   shadow.enabled = false; # Save power
+        # };
+        # animations = {
+        #   enabled = lib.mkDefault false; # Save power
+        #   bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        #   animation = [
+        #     "windows, 1, 7, myBezier"
+        #     "windowsOut, 1, 7, default, popin 80%"
+        #     "border, 1, 10, default"
+        #     "borderangle, 1, 8, default"
+        #     "fade, 1, 7, default"
+        #     "workspaces, 1, 6, default"
+        #   ];
+        # };
+        # misc = {
+        #   disable_hyprland_logo = true;
+        #   disable_splash_rendering = true;
+        #   background_color = lib.mkForce "0x000000"; # Stylix
+        # };
+        # env = [
+        #   "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
+        #   "GTK_IM_MODULE,simple" # Simple GTK input method (use builtin deadkeys)
+        # ];
+        # ++ lib.mapAttrsToList (var: val: "${var},${toString val}") config.home.sessionVariables;
       };
   };
 
