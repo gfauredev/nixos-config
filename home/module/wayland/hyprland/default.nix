@@ -60,20 +60,14 @@ in
     xwayland.enable = true; # Backwards compatibility
     configType = "lua";
     settings =
-      # let
-      #   _base07 = config.stylix.base16Scheme.base07;
-      #   base07 = "rgb(${builtins.substring 1 (builtins.stringLength _base07) _base07})";
-      #   black = "rgb(000000)"; # Pitch black background for OLED
-      # in
+      let
+        _base07 = config.stylix.base16Scheme.base07;
+        base07 = "rgb(${builtins.substring 1 (builtins.stringLength _base07) _base07})";
+        black = "rgb(000000)"; # Pitch black background for OLED
+      in
       {
         config.debug.disable_logs = false; # Enable logs
         config.xwayland.force_zero_scaling = true;
-        # monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
-        # exec-once = [
-        #   "waybar" # Status bar TODO Launch it from waybar config
-        #   "albert" # General quick launcher TODO Launch it from launcher conf
-        #   "systemctl --user start hyprpolkitagent" # Polkit authentication agent
-        # ];
         config.input = {
           kb_layout = "fr,us";
           kb_variant = "bepo_afnor,";
@@ -85,14 +79,6 @@ in
           touchpad.natural_scroll = false; # Going up goes up
           tablet.output = "current";
         };
-        # dwindle.preserve_split = true; # you probably want this
-        # windowrule = [
-        #   "border_size 0, match:float false, match:workspace w[t1]" # No border for single tiled
-        #   "border_size 0, match:title Albert" # No border for launcher
-        #   "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
-        #   "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
-        #   "idle_inhibit fullscreen, match:workspace name:int" # Inhibit while presenting
-        # ];
         bind = [
           {
             _args = [
@@ -706,57 +692,72 @@ in
               }
             ];
           }
+          {
+            _args = [
+              (lib.generators.mkLuaInline "\"SUPER + mouse:272\"")
+              (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+              { mouse = true; }
+            ];
+          }
+          {
+            _args = [
+              (lib.generators.mkLuaInline "\"SUPER + mouse:273\"")
+              (lib.generators.mkLuaInline "hl.dsp.window.resize()")
+              { mouse = true; }
+            ];
+          }
         ];
-        # bindm = [
-        #   "${mod}, mouse:272, movewindow"
-        #   "${mod}, mouse:273, resizewindow"
+        monitor = lib.mkDefault [
+          {
+            output = "";
+            mode = "preferred";
+            position = "auto";
+            scale = 1;
+          }
+        ];
+        config.general = {
+          gaps_in = 0; # Keep only borders, spare screen surface
+          gaps_out = 0; # Keep only borders, spare screen surface
+          border_size = 2; # Keep only borders, spare screen surface
+          layout = "dwindle"; # Default new window placement algorithm
+          "col.inactive_border" = lib.mkForce black; # Low-cost gaps
+        };
+        config.cursor = {
+          no_hardware_cursors = false;
+          inactive_timeout = 1;
+          enable_hyprcursor = true;
+          hide_on_key_press = true;
+          hide_on_touch = true;
+        };
+        config.dwindle.preserve_split = true; # you probably want this
+        config.group = {
+          groupbar.enabled = false; # Don’t eat my screen space
+          "col.border_active" = lib.mkForce base07; # Stylix
+          "col.border_inactive" = lib.mkForce black; # Low-cost gaps
+        };
+        config.decoration = {
+          rounding = 6;
+          blur.enabled = lib.mkDefault false; # Save power
+          shadow.enabled = false; # Save power
+        };
+        config.animations.enabled = lib.mkDefault false; # Save power
+        config.misc.background_color = lib.mkForce "0x000000"; # Stylix
+        # exec-once = [
+        #   "waybar" # Status bar TODO Launch it from waybar config
+        #   "albert" # General quick launcher TODO Launch it from launcher conf
+        #   "systemctl --user start hyprpolkitagent" # Polkit authentication agent
         # ];
-        # general = {
-        #   gaps_in = 0; # Keep only borders, spare screen surface
-        #   gaps_out = 0; # Keep only borders, spare screen surface
-        #   border_size = 2; # Keep only borders, spare screen surface
-        #   layout = "dwindle"; # Default new window placement algorithm
-        #   "col.inactive_border" = lib.mkForce black; # Low-cost gaps
-        # };
-        # cursor = {
-        #   no_hardware_cursors = false;
-        #   inactive_timeout = 1;
-        #   enable_hyprcursor = true;
-        #   hide_on_key_press = true;
-        #   hide_on_touch = true;
-        # };
-        # group.groupbar.enabled = false; # Don’t eat my screen space
-        # group = {
-        #   "col.border_active" = lib.mkForce base07; # Stylix
-        #   "col.border_inactive" = lib.mkForce black; # Low-cost gaps
-        # };
-        # decoration = {
-        #   rounding = 6;
-        #   blur.enabled = lib.mkDefault false; # Save power
-        #   shadow.enabled = false; # Save power
-        # };
-        # animations = {
-        #   enabled = lib.mkDefault false; # Save power
-        #   bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        #   animation = [
-        #     "windows, 1, 7, myBezier"
-        #     "windowsOut, 1, 7, default, popin 80%"
-        #     "border, 1, 10, default"
-        #     "borderangle, 1, 8, default"
-        #     "fade, 1, 7, default"
-        #     "workspaces, 1, 6, default"
-        #   ];
-        # };
-        # misc = {
-        #   disable_hyprland_logo = true;
-        #   disable_splash_rendering = true;
-        #   background_color = lib.mkForce "0x000000"; # Stylix
-        # };
+        # windowrule = [
+        #   "border_size 0, match:float false, match:workspace w[t1]" # No border for single tiled
+        #   "border_size 0, match:title Albert" # No border for launcher
+        #   "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
+        #   "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
+        #   "idle_inhibit fullscreen, match:workspace name:int" # Inhibit while presenting
+        # ];
         # env = [
         #   "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
         #   "GTK_IM_MODULE,simple" # Simple GTK input method (use builtin deadkeys)
-        # ];
-        # ++ lib.mapAttrsToList (var: val: "${var},${toString val}") config.home.sessionVariables;
+        # ] ++ lib.mapAttrsToList (var: val: "${var},${toString val}") config.home.sessionVariables;
       };
   };
 
