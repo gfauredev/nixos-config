@@ -207,7 +207,7 @@ extract_last_commit_msg() {
   regular # Standard text
 }
 
-amend_all() { # Amend top-level and submodule flake repositories
+amend_all() {                          # Amend top-level and submodule flake repositories
   if protected_amend "$SUBFLAKE"; then # May amend the sub flake
     git -C $SUBFLAKE push              # Nix needs the sub flake pushed
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
@@ -327,28 +327,28 @@ while [ "$#" -gt 0 ]; do
 done
 strong # Bold text
 printf 'Update flake inputs: %s\n' $update_inputs
-regular    # Standard text
-strong # Bold text
+regular # Standard text
+strong  # Bold text
 printf 'Rebuild NixOS system: %s\n' $rebuild_system
-regular    # Standard text
-strong # Bold text
+regular # Standard text
+strong  # Bold text
 printf 'Commit message: "%s"\n' "$commit_msg"
-regular                                # Standard text
+regular                            # Standard text
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
 strong                             # Bold text
 printf 'Commit type: "%s"\n' "$commit_type"
-regular    # Standard text
-strong # Bold text
+regular # Standard text
+strong  # Bold text
 printf 'Push Git repositories: %s\n' $push_repositories
-regular    # Standard text
-strong # Bold text
+regular # Standard text
+strong  # Bold text
 printf 'Power state change: "%s"\n' $power_state
 regular # Standard text
 
 strong # Bold text
 printf 'Limit memory usage to %skb for the following commands\n' $MEM_LIMIT
 ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
-regular                  # Back to standard text
+regular              # Back to standard text
 
 pull_recurse # Always pull the latest configuration before doing anything
 if $update_inputs; then
@@ -361,7 +361,7 @@ if [ -n "$commit_msg" ]; then
   printf 'Start default text editor\n'
   regular
   # FIXME Don’t load the environment properly, LSPs don’t reliably work
-  $EDITOR . # Edit the configuration before commiting,
+  $EDITOR .                # Edit the configuration before commiting,
   commit_all "$commit_msg" # then commit public and private flakes
 else                       # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
@@ -372,7 +372,7 @@ else                       # Defaults to try amending changes
     direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
   fi
   git -C $SUBFLAKE push # Nix needs it pushed
-  amend_all # Amend or commit public and private flakes
+  amend_all             # Amend or commit public and private flakes
 fi
 if $rebuild_system; then     # Always rebuild system if explicitly set
   wait                       # Wait for eventual pull or push to finish
@@ -401,5 +401,8 @@ if $push_repositories; then # Push repositories if explicit argument
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
   wait                         # Wait for eventual pull or push to finish
-  (sleep 1; systemctl $power_state) & # Bypass systemd-inhibit to change power state
+  (
+    sleep 1
+    systemctl $power_state
+  ) & # Bypass systemd-inhibit to change power state
 fi
