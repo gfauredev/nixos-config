@@ -10,6 +10,7 @@
     # ./ulauncher
     # ./rofi
     ./albert
+    ./vicinae
   ];
 
   options.launch = {
