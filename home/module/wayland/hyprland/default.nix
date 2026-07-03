@@ -367,21 +367,21 @@ in
           {
             _args = [
               (lib.generators.mkLuaInline "\"Print\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${screenshot.region} ${screenshot.dest-zone}\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd([[${screenshot.region} ${screenshot.dest-zone}]])")
               { description = "Take a zoned screenshot"; }
             ];
           }
           {
             _args = [
               (lib.generators.mkLuaInline "\"CONTROL + Print\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${screenshot.region} - | wl-copy\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd([[${screenshot.region} - | wl-copy]])")
               { description = "Copy screen zone to clipboard"; }
             ];
           }
           {
             _args = [
               (lib.generators.mkLuaInline "\"SHIFT + Print\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${screenshot.fullscreen} ${screenshot.dest-ws}\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd([[${screenshot.fullscreen} ${screenshot.dest-ws}]])")
               { description = "Full screenshot"; }
             ];
           }
