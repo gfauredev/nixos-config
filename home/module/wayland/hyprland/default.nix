@@ -78,8 +78,8 @@ in
           kb_layout = "fr,us";
           kb_variant = "bepo_afnor,";
           kb_options = "grp:alt_altgr_toggle"; # ctrls_toggle alt_shift_toggle shifts_toggle alts_toggle
-          repeat_delay = "190";
-          repeat_rate = "50";
+          repeat_delay = 190;
+          repeat_rate = 50;
           follow_mouse = 1;
           sensitivity = 0;
           touchpad.natural_scroll = false; # Going up goes up
