@@ -71,8 +71,8 @@ in
         config.xwayland.force_zero_scaling = true;
         # monitor = lib.mkDefault ", preferred, auto, 1"; # Auto
         # exec-once = [
-        #   "waybar" # Status bar
-        #   "albert" # General quick launcher
+        #   "waybar" # Status bar TODO Launch it from waybar config
+        #   "albert" # General quick launcher TODO Launch it from launcher conf
         #   "systemctl --user start hyprpolkitagent" # Polkit authentication agent
         # ];
         config.input = {
@@ -201,20 +201,6 @@ in
               (lib.generators.mkLuaInline "${mod} .. \" + SPACE\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt}\")")
               { description = "alternative/fallback launcher"; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SPACE\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.calc}\")")
-              { description = "Quick calculator"; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + SPACE\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.pass}\")")
-              { description = "Quick password manager"; }
             ];
           }
           {
