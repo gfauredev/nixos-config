@@ -227,14 +227,14 @@ in
           {
             _args = [
               (lib.generators.mkLuaInline "\"XF86Calculator\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.calc}\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\'${config.launch.calc}\')")
               { description = "Quick calculator with media key"; }
             ];
           }
           {
             _args = [
               (lib.generators.mkLuaInline "\"XF86Search\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.all}\")")
+              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\'${config.launch.all}\')")
               { description = "Quick search with media key"; }
             ];
           }
