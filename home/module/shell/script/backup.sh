@@ -7,6 +7,8 @@ EXCLUDE_COMMON="$CONFIG/backup-exclude/common"
 EXCLUDE_IMG="$CONFIG/backup-exclude/img"
 LAST_RESTIC_REPO=""
 
+# TODO Store password to reuse it for check
+
 _inhibit() {
   systemd-inhibit --what=shutdown:sleep --who="backup.sh" --why="Backup in progress" "$@"
 }
