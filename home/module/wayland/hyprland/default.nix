@@ -5,7 +5,6 @@
   ...
 }:
 let
-  mod = "SUPER"; # Main modifier, SUPER
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   pick = "hyprpicker --autocopy"; # Color picker
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
@@ -98,21 +97,21 @@ in
           {
             _args = [
               # ${mod}, RETURN, Open a default terminal, exec, ${config.term.cmd}
-              (lib.generators.mkLuaInline "${mod} .. \" + RETURN\"")
+              (lib.generators.mkLuaInline "\"SUPER + RETURN\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.cmd}\")")
             ];
           }
           {
             _args = [
               # ${mod} CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + RETURN\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + RETURN\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.alt.cmd}\")")
             ];
           }
           {
             # ${mod}, q, Close current window, killactive,
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + q\"")
+              (lib.generators.mkLuaInline "\"SUPER + q\"")
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
               { locked = true; } # Why?
             ];
@@ -120,7 +119,7 @@ in
           {
             # ${mod}, BackSpace, Close current window, killactive,
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + BackSpace\"")
+              (lib.generators.mkLuaInline "\"SUPER + BackSpace\"")
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
               { locked = true; } # Why?
             ];
@@ -128,35 +127,35 @@ in
           {
             # ${mod}, Delete, Close current window, killactive,
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + Delete\"")
+              (lib.generators.mkLuaInline "\"SUPER + Delete\"")
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
               { locked = true; } # Why?
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SHIFT + q\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + SHIFT + q\"")
               (lib.generators.mkLuaInline "hl.dsp.exit()")
               { description = "Exit Hyprland (user session)"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + comma\"")
+              (lib.generators.mkLuaInline "\"SUPER + comma\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.wayland.lock}\")")
               { description = "Lock session and obfuscates display"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + comma\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + comma\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.wayland.lock-session}\")")
               { description = "Lock session with loginctl"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + comma\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + comma\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.wayland.suspend}\")")
               { description = "Suspend computer to sleep"; }
             ];
@@ -184,21 +183,21 @@ in
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + Super_L\"")
+              (lib.generators.mkLuaInline "\"SUPER + Super_L\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.all}\")")
               { description = "Default launcher"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + Super_L\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + Super_L\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt2}\")")
               { description = "alternative/fallback launcher"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SPACE\"")
+              (lib.generators.mkLuaInline "\"SUPER + SPACE\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt}\")")
               { description = "alternative/fallback launcher"; }
             ];
@@ -240,126 +239,126 @@ in
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + f\"")
+              (lib.generators.mkLuaInline "\"SUPER + f\"")
               (lib.generators.mkLuaInline "hl.dsp.window.float({ action = \"toggle\" })")
               { description = "Toggle window floating"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + w\"")
+              (lib.generators.mkLuaInline "\"SUPER + w\"")
               (lib.generators.mkLuaInline "hl.dsp.window.fullscreen()")
               { description = "Toggle window fullscreen"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + c\"")
+              (lib.generators.mkLuaInline "\"SUPER + c\"")
               (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"l\" })")
               { description = "Focus the window on the left"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + t\"")
+              (lib.generators.mkLuaInline "\"SUPER + t\"")
               (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"d\" })")
               { description = "Focus the window below"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + s\"")
+              (lib.generators.mkLuaInline "\"SUPER + s\"")
               (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"u\" })")
               { description = "Focus the window above"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + r\"")
+              (lib.generators.mkLuaInline "\"SUPER + r\"")
               (lib.generators.mkLuaInline "hl.dsp.focus({ direction = \"r\" })")
               { description = "Focus the window on the right"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + c\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + c\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"l\" })")
               { description = "Move focused window to the left"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + t\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + t\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"d\" })")
               { description = "Move focused window below"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + s\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + s\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"u\" })")
               { description = "Move focused window above"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + r\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + r\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"r\" })")
               { description = "Move focused window to the right"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SHIFT + c\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + SHIFT + c\"")
               (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"l\" })")
               { description = "Move focused window to the left"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SHIFT + t\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + SHIFT + t\"")
               (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"d\" })")
               { description = "Move focused window below"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SHIFT + s\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + SHIFT + s\"")
               (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"u\" })")
               { description = "Move focused window to the right"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SHIFT + r\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + SHIFT + r\"")
               (lib.generators.mkLuaInline "hl.dsp.window.swap({ direction = \"r\" })")
               { description = "Move focused window to the right"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + g\"")
+              (lib.generators.mkLuaInline "\"SUPER + g\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${cycleOrToggleGroup}\")")
               { description = "Toggle group or focus next window in group if there’s one"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + g\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + g\"")
               (lib.generators.mkLuaInline "hl.dsp.group.toggle()")
               { description = "Toggle grouping"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + g\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + g\"")
               (lib.generators.mkLuaInline "hl.dsp.group.next()")
               { description = "Focus next window in group"; }
             ];
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + SHIFT + g\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + SHIFT + g\"")
               (lib.generators.mkLuaInline "hl.dsp.group.prev()")
               { description = "Focus previous window in group"; }
             ];
@@ -387,7 +386,7 @@ in
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + k\"")
+              (lib.generators.mkLuaInline "\"SUPER + k\"")
               (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pick}\")")
               { description = "Pick a color anywhere on the screen"; }
             ];
@@ -436,56 +435,56 @@ in
           }
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + c\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + c\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ x = -10, y = 0, relative = true })")
               { repeating = true; }
             ];
           } # Move left
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + t\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + t\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 0, y = 10, relative = true })")
               { repeating = true; }
             ];
           } # Move down
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + s\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + s\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 0, y = -10, relative = true })")
               { repeating = true; }
             ];
           } # Move up
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + SHIFT + r\"")
+              (lib.generators.mkLuaInline "\"SUPER + SHIFT + r\"")
               (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 10, y = 0, relative = true })")
               { repeating = true; }
             ];
           } # Move right
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + c\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + c\"")
               (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -10, y = 0, relative = true })")
               { repeating = true; }
             ];
           } # Resize to the left
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + t\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + t\"")
               (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = 10, relative = true })")
               { repeating = true; }
             ];
           } # Resize to the bottom
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + s\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + s\"")
               (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = -10, relative = true })")
               { repeating = true; }
             ];
           } # Resize to the top
           {
             _args = [
-              (lib.generators.mkLuaInline "${mod} .. \" + CONTROL + r\"")
+              (lib.generators.mkLuaInline "\"SUPER + CONTROL + r\"")
               (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 10, y = 0, relative = true })")
               { repeating = true; }
             ];
