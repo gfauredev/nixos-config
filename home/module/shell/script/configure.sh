@@ -66,6 +66,43 @@ pull_one() { # Git pull a (sub)directory (eg. private or public config)
   regular # Return to normal text
 }
 
+check_branch() {
+  printf '%s: Check which branch we use to build\n' "$1"
+  current_branch=$(git -C "$1" symbolic-ref --short HEAD 2>/dev/null)
+  if [ -z "$current_branch" ]; then
+    echo "Result: Detached HEAD state (not on any branch)."
+    return 1
+  fi
+  # Read server’s default branch
+  default_branch=$(git -C "$1" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null)
+  # If origin/HEAD is missing locally, ask git to query/update it
+  if [ -z "$default_branch" ]; then
+    echo "Querying 'origin', local cache missing default branch ref" >&2
+    git -C "$1" remote set-head origin --auto >/dev/null 2>&1
+    default_branch=$(git -C "$1" symbolic-ref refs/remotes/origin/HEAD 2>/dev/null)
+  fi
+  if [ -z "$default_branch" ]; then
+    echo "Cannot determine remote default branch (no 'origin' remote?)" >&2
+    exit 2
+  fi
+  # Strip 'refs/remotes/origin/' to get just the branch name
+  # POSIX parameter expansion handles this perfectly without needing sed/grep
+  default_branch=${default_branch#refs/remotes/origin/}
+  echo "Current branch: $current_branch"
+  echo "Server default branch: $default_branch"
+  if [ "$current_branch" != "$default_branch" ]; then
+    printf "WARN: Not on the server’s default branch (%s), but %s!\n" \
+      "$default_branch" "$current_branch"
+    printf "Press y to continue rebuild, any other to cancel (25s timeout): "
+    stty_save=$(stty -g)
+    stty -icanon min 0 time 255
+    res=$(dd bs=1 count=1 2>/dev/null)
+    stty "$stty_save"
+    echo
+    case "$res" in [yY]*) return 0 ;; *) exit 0 ;; esac
+  fi
+}
+
 # Pull the current Git repository, recursing into submodules
 pull_recurse() { # Git pull private or public config
   emph           # Italic text
@@ -77,8 +114,7 @@ pull_recurse() { # Git pull private or public config
   if ping -c 1 -w 3 "$remote"; then
     printf '%s reached, pull latest changes from it\n' "$remote"
     git pull --recurse-submodules=yes
-    printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
-    git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
+    check_branch "$SUBFLAKE"
   else
     printf '%s non reachable, move on\n' "$remote"
   fi
@@ -88,8 +124,7 @@ pull_recurse() { # Git pull private or public config
 # Update public config flake inputs
 update_subflake_inputs() {
   emph # Italic text
-  printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
-  git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
+  check_branch "$SUBFLAKE"
   regular
   emph # Italic text
   printf '%s: Update flake inputs\n' $SUBFLAKE
@@ -154,8 +189,7 @@ commit_all_changes() { # Commit $1 config with message $2
 # @param 1 Git commit message
 commit_all() { # Git commit top-level and submodule flake repositories
   emph         # Italic text
-  printf '%s: Make sure to be on main branch\n' "$SUBFLAKE"
-  git -C $SUBFLAKE checkout main # Ensure we don’t end up in detached HEAD
+  check_branch "$SUBFLAKE"
   regular
   emph # Italic text
   printf '%s: Commit flake repository\n' "$SUBFLAKE"
