@@ -742,18 +742,51 @@ in
         };
         config.animations.enabled = lib.mkDefault false; # Save power
         config.misc.background_color = lib.mkForce "0x000000"; # Stylix
-        windowrule = [
-          "border_size 0, match:float false, match:workspace w[t1]" # No border for single tiled
-          "border_size 0, match:title Albert" # No border for launcher
-          "idle_inhibit fullscreen, match:workspace name:dpp" # Inhibit while presenting
-          "idle_inhibit fullscreen, match:workspace name:hdm" # Inhibit while presenting
-          "idle_inhibit fullscreen, match:workspace name:int" # Inhibit while presenting
+        window_rule = [
+          {
+            match = {
+              float = false;
+              workspace = "w[t1]";
+            };
+            border_size = 0; # No border for single tiled
+          }
+          {
+            match.title = "Albert";
+            border_size = 0; # No border for launcher
+          }
+          {
+            match.workspace = "name:dpp";
+            idle_inhibit = "fullscreen"; # Inhibit while presenting
+          }
+          {
+            match.workspace = "name:hdm";
+            idle_inhibit = "fullscreen"; # Inhibit while presenting
+          }
+          {
+            match.workspace = "name:int";
+            idle_inhibit = "fullscreen"; # Inhibit while presenting
+          }
         ];
         env = [
-          "NIXOS_OZONE_WL,1" # Force Wayland support for some apps (Chromium)
-          "GTK_IM_MODULE,simple" # Simple GTK input method (use builtin deadkeys)
+          {
+            _args = [
+              "NIXOS_OZONE_WL"
+              "1" # Force Wayland support for some apps (Chromium)
+            ];
+          }
+          {
+            _args = [
+              "GTK_IM_MODULE"
+              "simple" # Simple GTK input method (use builtin deadkeys)
+            ];
+          }
         ]
-        ++ lib.mapAttrsToList (var: val: "${var},${toString val}") config.home.sessionVariables;
+        ++ lib.mapAttrsToList (var: val: {
+          _args = [
+            var
+            (toString val)
+          ];
+        }) config.home.sessionVariables;
         # exec-once = [
         #   "waybar" # Status bar TODO Launch it from waybar config
         #   "albert" # General quick launcher TODO Launch it from launcher conf
