@@ -5,6 +5,8 @@
   ...
 }:
 let
+  hlLib = import ./lib.nix { inherit lib config; };
+  workspaceSet = import ./workspaces.nix { inherit lib config; };
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   pick = "hyprpicker --autocopy"; # Color picker
   plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
@@ -706,7 +708,8 @@ in
               { mouse = true; }
             ];
           }
-        ];
+        ]
+        ++ (hlLib.genBinds "SUPER" workspaceSet);
         monitor = lib.mkDefault [
           {
             output = "";
