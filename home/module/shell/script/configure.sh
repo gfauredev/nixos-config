@@ -66,7 +66,7 @@ pull_one() { # Git pull a (sub)directory (eg. private or public config)
   regular # Return to normal text
 }
 
-check_branch() {
+ensure_default_branch() {
   printf '%s: Check which branch we use to build\n' "$1"
   current_branch=$(git -C "$1" symbolic-ref --short HEAD 2>/dev/null)
   if [ -z "$current_branch" ]; then
@@ -93,13 +93,13 @@ check_branch() {
   if [ "$current_branch" != "$default_branch" ]; then
     printf "WARN: Not on the server’s default branch (%s), but %s!\n" \
       "$default_branch" "$current_branch"
-    printf "Press y to continue rebuild, any other to cancel (25s timeout): "
+    printf "Press n to cancel rebuild, any other to continue (25s timeout): "
     stty_save=$(stty -g)
     stty -icanon min 0 time 255
     res=$(dd bs=1 count=1 2>/dev/null)
     stty "$stty_save"
     echo
-    case "$res" in [yY]*) return 0 ;; *) exit 0 ;; esac
+    case "$res" in [nN]*) exit 0 ;; *) return 0 ;; esac
   fi
 }
 
@@ -114,7 +114,7 @@ pull_recurse() { # Git pull private or public config
   if ping -c 1 -w 3 "$remote"; then
     printf '%s reached, pull latest changes from it\n' "$remote"
     git pull --recurse-submodules=yes
-    check_branch "$SUBFLAKE"
+    # ensure_attached_head "$SUBFLAKE" TODO
   else
     printf '%s non reachable, move on\n' "$remote"
   fi
@@ -124,7 +124,7 @@ pull_recurse() { # Git pull private or public config
 # Update public config flake inputs
 update_subflake_inputs() {
   emph # Italic text
-  check_branch "$SUBFLAKE"
+  # ensure_attached_head "$SUBFLAKE" TODO
   regular
   emph # Italic text
   printf '%s: Update flake inputs\n' $SUBFLAKE
@@ -189,7 +189,7 @@ commit_all_changes() { # Commit $1 config with message $2
 # @param 1 Git commit message
 commit_all() { # Git commit top-level and submodule flake repositories
   emph         # Italic text
-  check_branch "$SUBFLAKE"
+  ensure_default_branch "$SUBFLAKE"
   regular
   emph # Italic text
   printf '%s: Commit flake repository\n' "$SUBFLAKE"
