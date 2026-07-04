@@ -49,9 +49,9 @@ in
   home.packages = with pkgs; [
     jq # Interpret `hyprctl -j` JSON in keybindings
     hyprutils # Hypr ecosystem utilities
-    hyprpolkitagent # Hypr Polkit auth agent
     hyprcursor # Modern cursor engine
     hyprshell # Window switcher & application launcher TODO configure
+    # hyprpolkitagent # Hypr Polkit auth agent
   ];
 
   wayland.windowManager.hyprland = {
@@ -787,11 +787,6 @@ in
             (toString val)
           ];
         }) config.home.sessionVariables;
-        # exec-once = [
-        #   "waybar" # Status bar TODO Launch it from waybar config
-        #   "albert" # General quick launcher TODO Launch it from launcher conf
-        #   "systemctl --user start hyprpolkitagent" # Polkit authentication agent
-        # ];
       };
   };
 
@@ -806,4 +801,6 @@ in
       ignore_systemd_inhibit = false;
     };
   };
+
+  services.hyprpolkitagent.enable = true;
 }
