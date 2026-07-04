@@ -205,52 +205,52 @@
         # max-length = 30;
       };
     };
-  };
-  style = ''
-    * {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      min-height: 0;
-      font-family:
-        "${config.stylix.fonts.monospace.name}",
-        "FontAwesome", "Symbols Nerd Font";
-      font-size: 14;
-    }
-    @keyframes warn {
-      to {
+    style = ''
+      * {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        min-height: 0;
+        font-family:
+          "${config.stylix.fonts.monospace.name}",
+          "FontAwesome", "Symbols Nerd Font";
+        font-size: 14;
+      }
+      @keyframes warn {
+        to {
+          color: red;
+        }
+      }
+      @keyframes crit {
+        to {
+          background-color: red;
+        }
+      }
+      #battery.low:not(.charging) {
         color: red;
       }
-    }
-    @keyframes crit {
-      to {
-        background-color: red;
+      #battery.warning:not(.charging),
+      #cpu.warning,
+      #memory.warning {
+        animation-name: warn;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
       }
-    }
-    #battery.low:not(.charging) {
-      color: red;
-    }
-    #battery.warning:not(.charging),
-    #cpu.warning,
-    #memory.warning {
-      animation-name: warn;
-      animation-duration: 0.5s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-    #battery.critical:not(.charging),
-    #temperature.critical,
-    #cpu.critical,
-    #memory.critical {
-      animation-name: crit;
-      animation-duration: 0.5s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-    #workspaces button {
-      padding-left: 0;
-      padding-right: 5px;
-    }
-  '';
+      #battery.critical:not(.charging),
+      #temperature.critical,
+      #cpu.critical,
+      #memory.critical {
+        animation-name: crit;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+      #workspaces button {
+        padding-left: 0;
+        padding-right: 5px;
+      }
+    '';
+  };
 }
