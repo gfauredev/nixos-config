@@ -19,13 +19,13 @@ lang: en
 
 <!--toc:end-->
 
-**NixOS** allows me to have a system perfectly tailored to my
-needs and expectations. I’m highly demandant on ergonomics, so I use a lot of
-tools that make interacting with the computer more efficient and comfortable.
-Having to use the mouse is a chore, so I live mostly in the terminal and in
-keyboard-driven apps. I also hate when choices are made for me, things like
-default (bloat) software or common configuration, and **NixOS** allows me to
-configure my system at the very level of detail I want.
+**NixOS** allows me to have a system perfectly tailored to my needs and
+expectations. I’m highly demandant on ergonomics, so I use a lot of tools that
+make interacting with the computer more efficient and comfortable. Having to use
+the mouse is a chore, so I live mostly in the terminal and in keyboard-driven
+apps. I also hate when choices are made for me, things like default (bloat)
+software or common configuration, and **NixOS** allows me to configure my system
+at the very level of detail I want.
 
 First, I use the [bépo](https://bepo.fr) ergonomic **keyboard layout**, which is
 optimized for writing French, as well as english and code. There are other
@@ -119,26 +119,29 @@ effortlessly with my [dev](./home/module/shell/script/dev-env) script.
 
 Build a custom live NixOS ISO image from this flake with `nix build` (default).
 
-Boot it from a bootable USB stick (preferably a multi-ISO one like with Ventoy).
+Boot it from a bootable USB stick (I recommend a multi-ISO one, using a tool
+like [Ventoy]).
 
 It should contain a `cfg` installation helper script that among other niceties
 brings you to this current flake copied in `/etc/flake`.
 
 ### _1._ Partition, encrypt, format disks
 
-If the choosen file system doesn’t support its own encryption, use
-`cryptsetup luksFormat /dev/…` to create an encrypted partition and
-`cryptsetup open /dev/… cryptroot` open (decrypt) it.
-
 Partition the disks (and label them), like `fdisk /dev/mapper/cryptroot` or
 `cfdisk /dev/mapper/cryptroot` for the LUKS encrypted partition.
 
+Setup encryption, like `cryptsetup luksFormat /dev/…` if the choosen file system
+doesn’t support its own encryption. Use `cryptsetup open /dev/… cryptroot` to
+open (decrypt) it.
+
 Format the partitions, like `mkfs.fat -F 32 /dev/… -n ESP` for the `/boot` one.
 
-Consider creating and mountig **subvolumes** with file system specific commands
-and creating and setting a swap partition.
+Consider creating and mountig **subvolumes** (for root, [Nix] store, users,
+logs …) with file system specific commands, and creating and setting a swap file
+(so it can be placed within an encrypted partition or its own subvolue) or
+partition.
 
-### _2._ Handle hardware configuration
+### _2._ Other hardware configuration
 
 Run the command `nixos-generate-config --root /mnt --dir .` to create a hardware
 config in the working directory. Then, compare with choosen system hardware
@@ -207,3 +210,6 @@ is needed, as depicted for example in `private/`.
 - [Gvolpe’s flake article](https://gvolpe.com/blog/private-flake)
 - [Yelite’s cfg article](https://greenfield.blog/posts/private-nix-flake-with-public-subtree)
 - [Mitchellh’s config](https://github.com/mitchellh/nixos-config)
+
+[Nix]: https://nixos.org
+[Ventoy]: https://www.ventoy.net
