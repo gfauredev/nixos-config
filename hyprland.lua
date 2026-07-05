@@ -1,0 +1,1 @@
+/home/gf/.config/hypr/hyprland.lua
