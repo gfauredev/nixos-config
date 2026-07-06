@@ -13,6 +13,3 @@
 [submodule "home/module/typst/letter"]
 	path = home/module/typst/letter
 	url = git@gitlab.com:gfauredev/typst-letter.git
-[submodule "hyprland-wiki"]
-	path = hyprland-wiki
-	url = https://github.com/hyprwm/hyprland-wiki.git
