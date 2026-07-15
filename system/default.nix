@@ -10,11 +10,12 @@
       "https://gfauredev.cachix.org"
     ];
     substituters = [
-      # "https://cache.garnix.io" # FIXME Find alternative
+      "https://cache.nix-ci.com"
       # "https://cache.nixos.org" # Always added
       # "https://hydra.nixos.org"
     ];
     trusted-public-keys = [
+      "nix-ci:g3xV5BDTLtIBZr/A00IU1x0EtKKlb7YLgBN2SgYgM6A="
       "gfauredev.cachix.org-1:mGOZ5I0bDVatgwLhbuTasIiWpVjgCyMFjfIZEPjmQfM="
       # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # Always added
       # "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
