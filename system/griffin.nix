@@ -22,7 +22,15 @@ in
   ];
 
   boot = {
-    kernelModules = [ "kvm-intel" ];
+    kernelModules = [
+      "kvm-intel"
+      "snd-seq" # TEST relevance, used by musnix
+      "snd-rawmidi" # TEST relevance, used by musnix
+    ];
+    blacklistedKernelModules = [
+      # https://community.frame.work/t/12th-gen-not-sending-xf86monbrightnessup-down/20605/11
+      "hid-sensor-hub" # FIX brightness and airplane keys
+    ];
     kernelParams = [ "resume_offset=5776640" ];
     initrd = {
       availableKernelModules = [
@@ -32,10 +40,6 @@ in
         # "usb_storage"
         "uas"
         "sd_mod"
-      ];
-      kernelModules = [
-        "snd-seq" # TEST relevance, used by musnix
-        "snd-rawmidi" # TEST relevance, used by musnix
       ];
       luks.devices."cryptroot".device = nvme0n1.p2;
     };
