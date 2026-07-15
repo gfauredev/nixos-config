@@ -14,22 +14,28 @@ SUBFLAKE='public' # Sub flake (usually public config) location
 HOME_CFG='home'   # Home (Manager) configuration location
 # ESP='/boot'     # EFI System Partition
 # Global variables
-home_changed=false # Have changes been made to home config
 commit_msg=''      # Message to be constructed with remaining arguments
 commit_type=''     # Type of commit, new feature, bugfix…
+home_changed=false # Have changes been made to home config
 
 show_help() {
   echo "Default: edit the configuration, amend or commit the changes, rebuild."
   echo "The following arguments can be passed in any order."
   echo
-  echo "- [--]h[elp]: Show this help message (and exit)."
-  echo "- u[pgrade]:  Update every flake inputs (don’t edit the configuration)."
-  echo "- p[ush]:     Push the Git repositories after sucessful rebuild."
+  echo "- c[d]:       Open the default shell ($SHELL) in the flake config dir."
   echo "- l[og]:      Display Git logs and status of the configuration’s repo."
-  echo "- c|d|cd:     Open the default shell ($SHELL) in the flake config dir."
-  echo "- [power]off: Poweroff after all actions, cancels previous power args."
-  echo "- [re]boot:   Reboot after all actions, cancels previous power args."
-  echo "- sus[pend]|sleep: Suspend after all actions, cancels prevs power args."
+  echo "- p[ush]:     Push the Git repositories after sucessful rebuild."
+  echo
+  echo "- re[build]:  Force home config rebuild even if no edits."
+  echo "- s[ystem]:   Rebuild the NixOS system with nixos-rebuild (asks sudo)."
+  echo "- u[pdate]:   Update every flake inputs (don’t edit the configuration)."
+  echo
+  echo "- [--]h[elp]: Show this help message (and exit)."
+  echo
+  echo "Power state change (last argument superseedes if several):"
+  echo "  - [power]off: Turn computer off after all actions."
+  echo "  - [re]boot:   Reboot computer after all actions."
+  echo "  - sleep|sus:  Suspend computer after all actions."
   echo
   echo "Any remaining argument is appended to the Git commit message,"
   echo "and thus indicates that the configuration should be edited."
@@ -311,6 +317,7 @@ fi
 
 update_inputs=false     # Whether to update flake inputs
 rebuild_system=false    # Has the user explicitly asked to rebuild the system
+rebuild_home=false      # Has the user explicitly asked to rebuild the home
 push_repositories=false # Whether to push the Git repositories after update
 power_state=''          # Whether to suspend, turn off or reboot the computer
 while [ "$#" -gt 0 ]; do
@@ -339,6 +346,9 @@ while [ "$#" -gt 0 ]; do
     sudo echo 'Asked sudo now for later' # ask sudo preventively
     rebuild_system=true
     ;;
+  re | rebuild) # Rebuild the Home Manager home
+    rebuild_home=true
+    ;;
   p | pu | push) # Push the flake’s repository
     push_repositories=true
     ;;
@@ -348,7 +358,7 @@ while [ "$#" -gt 0 ]; do
   off | poweroff) # Turn off the system at the end of the script
     power_state="poweroff"
     ;;
-  re | boot | reboot) # Restart the system at the end of the script
+  boot | reboot) # Restart the system at the end of the script
     power_state="reboot"
     ;;
   *) # Append any other arguments to the Git commit message
@@ -359,23 +369,18 @@ while [ "$#" -gt 0 ]; do
   esac
   shift # Next argument
 done
-strong # Bold text
-printf 'Update flake inputs: %s\n' $update_inputs
-regular # Standard text
-strong  # Bold text
-printf 'Rebuild NixOS system: %s\n' $rebuild_system
-regular # Standard text
-strong  # Bold text
-printf 'Commit message: "%s"\n' "$commit_msg"
-regular                            # Standard text
+
 commit_type="${commit_msg%%[(:]*}" # Infer the commit type based on its message
-strong                             # Bold text
+
+strong # Bold text
+printf 'Update Nix Flake inputs: %s\n' $update_inputs
+printf 'Rebuild NixOS system: %s\n' $rebuild_system
+printf 'Rebuild Home Manager home: %s\n' $rebuild_home
+printf 'Commit message: "%s"\n' "$commit_msg"
 printf 'Commit type: "%s"\n' "$commit_type"
-regular # Standard text
-strong  # Bold text
 printf 'Push Git repositories: %s\n' $push_repositories
-regular # Standard text
-strong  # Bold text
+# regular # Standard text
+# strong  # Bold text
 printf 'Power state change: "%s"\n' $power_state
 regular # Standard text
 
@@ -408,16 +413,17 @@ else                       # Defaults to try amending changes
   git -C $SUBFLAKE push # Nix needs it pushed
   amend_all             # Amend or commit public and private flakes
 fi
-if $rebuild_system; then     # Always rebuild system if explicitly set
+if $rebuild_system; then     # Rebuild system if explicitly set
   wait                       # Wait for eventual pull or push to finish
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
-# Rebuild home/ if
+# Previously, home/ rebuilded if
 # - It was changed for a new feature or a bugfix
 # - Flake inputs were updated FIXME
-if [ $home_changed = true ] &&
-  { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; } ||
-  [ $update_inputs = true ]; then
+# if [ $home_changed = true ] &&
+#   { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; } ||
+#   [ $update_inputs = true ]; then
+if $rebuild_home; then     # Only rebuild explicitly to encourage CI/CD builds
   wait                     # Wait for eventual pull or push to finish
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
