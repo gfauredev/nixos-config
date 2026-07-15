@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     keyd.enable = true; # A key remapping daemon for Linux, see man keyd(1)
@@ -40,10 +40,10 @@
               };
               plane-mode = "rfkill toggle all"; # Disable every wireless
               brightness = {
-                raise = "brightnessctl set 1%+"; # "light -A 1";
-                RAISE = "brightnessctl set 5%+"; # "light -A 5";
-                lower = "brightnessctl set 1%-"; # "light -U 1";
-                LOWER = "brightnessctl set 5%-"; # "light -U 5";
+                raise = "${pkgs.brightnessctl}/bin/brightnessctl set 1%+"; # "light -A 1";
+                RAISE = "${pkgs.brightnessctl}/bin/brightnessctl set 5%+"; # "light -A 5";
+                lower = "${pkgs.brightnessctl}/bin/brightnessctl set 1%-"; # "light -U 1";
+                LOWER = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"; # "light -U 5";
               };
               audio = {
                 speaker.toggle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
