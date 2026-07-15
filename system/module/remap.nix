@@ -11,6 +11,12 @@
           ids = [ "*" ];
           settings =
             let
+              user = "gf"; # FIXME Don’t hardcode
+              uid = "1000"; # FIXME Don’t hardcode
+              runAsUser =
+                cmd:
+                "${pkgs.sudo}/bin/sudo -u ${user} env XDG_RUNTIME_DIR=/run/user/${uid} DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/${uid}/bus ${cmd}";
+              device = "intel_backlight";
               motionSelect = {
                 # Helix-like motions (adapted to BÉPO keyboard layout)
                 h = "left";
@@ -40,25 +46,25 @@
               };
               plane-mode = "rfkill toggle all"; # Disable every wireless
               brightness = {
-                raise = "${pkgs.brightnessctl}/bin/brightnessctl set 1%+"; # "light -A 1";
-                RAISE = "${pkgs.brightnessctl}/bin/brightnessctl set 5%+"; # "light -A 5";
-                lower = "${pkgs.brightnessctl}/bin/brightnessctl set 1%-"; # "light -U 1";
-                LOWER = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"; # "light -U 5";
+                raise = "${pkgs.brightnessctl}/bin/brightnessctl -d ${device} set 1%+"; # "light -A 1";
+                RAISE = "${pkgs.brightnessctl}/bin/brightnessctl -d ${device} set 5%+"; # "light -A 5";
+                lower = "${pkgs.brightnessctl}/bin/brightnessctl -d ${device} set 1%-"; # "light -U 1";
+                LOWER = "${pkgs.brightnessctl}/bin/brightnessctl -d ${device} set 5%-"; # "light -U 5";
               };
               audio = {
-                speaker.toggle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
-                speaker.raise = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; # Wireplumber
-                speaker.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; # Wireplumber
-                speaker.lower = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"; # Wireplumber
-                speaker.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; # Wireplumber
-                mic.toggle = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; # Wireplumber
-                mic.raise = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"; # Wireplumber
-                mic.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"; # Wireplumber
-                mic.lower = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"; # Wireplumber
-                mic.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"; # Wireplumber
-                play.toggle = "playerctl play-pause"; # -p ${config.media}";
-                play.next = "playerctl next"; # -p ${config.media}";
-                play.previous = "playerctl previous";
+                speaker.toggle = runAsUser "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
+                speaker.raise = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; # Wireplumber
+                speaker.RAISE = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; # Wireplumber
+                speaker.lower = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"; # Wireplumber
+                speaker.LOWER = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; # Wireplumber
+                mic.toggle = runAsUser "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; # Wireplumber
+                mic.raise = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"; # Wireplumber
+                mic.RAISE = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"; # Wireplumber
+                mic.lower = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"; # Wireplumber
+                mic.LOWER = runAsUser "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"; # Wireplumber
+                play.toggle = runAsUser "${pkgs.playerctl}/bin/playerctl play-pause"; # -p ${config.media}";
+                play.next = runAsUser "${pkgs.playerctl}/bin/playerctl next"; # -p ${config.media}";
+                play.previous = runAsUser "${pkgs.playerctl}/bin/playerctl previous";
               };
             in
             {
