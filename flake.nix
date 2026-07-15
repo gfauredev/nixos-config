@@ -171,9 +171,10 @@
             packages = with pkgs; [
               bash-language-server # Bash, shell script LSP
               # cachix # CLI for Nix binary cache
+              evtest # Input debugging
               # go # For Gitleaks
               pkgs.home-manager # FIXME Not nixpkgs’ version
-              # lorri # Your project's nix-env, to test
+              libinput # Input debugging
               marksman # Wikilinks, ToC generation…
               pkgs-unstable.nixd # "Official" Nix LSP
               # niv # Easy dependency management, to test
