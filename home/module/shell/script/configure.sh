@@ -346,7 +346,7 @@ while [ "$#" -gt 0 ]; do
     sudo echo 'Asked sudo now for later' # ask sudo preventively
     rebuild_system=true
     ;;
-  re | rebuild) # Rebuild the Home Manager home
+  r | re | rebuild) # Rebuild the Home Manager home
     rebuild_home=true
     ;;
   p | pu | push) # Push the flake’s repository
@@ -355,10 +355,10 @@ while [ "$#" -gt 0 ]; do
   sus | sleep | suspend) # Suspend the system at the end of the script
     power_state="suspend"
     ;;
-  off | poweroff) # Turn off the system at the end of the script
+  off | poweroff | shutdown) # Turn off the system at the end of the script
     power_state="poweroff"
     ;;
-  boot | reboot) # Restart the system at the end of the script
+  boot | reboot | restart) # Restart the system at the end of the script
     power_state="reboot"
     ;;
   *) # Append any other arguments to the Git commit message
