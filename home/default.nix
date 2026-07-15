@@ -233,7 +233,7 @@
       hyperfine # Benchmark commands
       commitlint-rs # Be consistent in commit messages
       android-tools # ADB and Fastboot
-      # widevine-cdm
+      worktrunk # Git worktree management
       # pkgs-unstable.gitbutler # VCS TEST me
       # pijul # VCS TEST me
       # nix-update # Auto update flakes, FODs hashes…
