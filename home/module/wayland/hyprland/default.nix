@@ -9,30 +9,8 @@ let
   workspaceSet = import ./workspaces.nix { inherit lib config; };
   cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   pick = "hyprpicker --autocopy"; # Color picker
-  plane-mode = "rfkill toggle all; sleep 1"; # Disable every wireless
   timestamp = "$(date +'%Y-%m-%d-%Hh%Mm%S')"; # Current date as string
-  audio = {
-    speaker.toggle = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; # Wireplumber
-    speaker.raise = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; # Wireplumber
-    speaker.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; # Wireplumber
-    speaker.lower = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"; # Wireplumber
-    speaker.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; # Wireplumber
-    mic.toggle = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; # Wireplumber
-    mic.raise = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%+"; # Wireplumber
-    mic.RAISE = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+"; # Wireplumber
-    mic.lower = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"; # Wireplumber
-    mic.LOWER = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"; # Wireplumber
-    play.toggle = "playerctl play-pause"; # -p ${config.media}";
-    play.pause = "playerctl pause"; # -p ${config.media}";
-    play.next = "playerctl next"; # -p ${config.media}";
-    play.previous = "playerctl previous";
-  };
-  brightness = {
-    raise = "brightnessctl set 1%+"; # "light -A 1";
-    RAISE = "brightnessctl set 5%+"; # "light -A 5";
-    lower = "brightnessctl set 1%-"; # "light -U 1";
-    LOWER = "brightnessctl set 5%-"; # "light -U 5";
-  };
+  audio.play.pause = "playerctl pause"; # -p ${config.media}";
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
     region = "wl-present set-region"; # Change mirrored output or region
@@ -101,7 +79,6 @@ in
             _args = [
               (lib.generators.mkLuaInline "\"SUPER + q\"")
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
-              { locked = true; } # Why?
             ];
           }
           {
@@ -109,7 +86,6 @@ in
             _args = [
               (lib.generators.mkLuaInline "\"SUPER + BackSpace\"")
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
-              { locked = true; } # Why?
             ];
           }
           {
@@ -117,7 +93,6 @@ in
             _args = [
               (lib.generators.mkLuaInline "\"SUPER + Delete\"")
               (lib.generators.mkLuaInline "hl.dsp.window.close()")
-              { locked = true; } # Why?
             ];
           }
           {
@@ -477,223 +452,6 @@ in
               { repeating = true; }
             ];
           } # Resize to the right
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioMute\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMute\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMute\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioMicMute\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMicMute\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMicMute\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioPlay\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioPause\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.toggle}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioNext\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.next}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioPrev\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.previous}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86RFKill\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${plane-mode}\")")
-              { locked = true; }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86MonBrightnessUp\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.RAISE}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86MonBrightnessDown\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.LOWER}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"SHIFT + XF86MonBrightnessUp\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.raise}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"SHIFT + XF86MonBrightnessDown\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.lower}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + XF86MonBrightnessUp\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.raise}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + XF86MonBrightnessDown\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.lower}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioRaiseVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.RAISE}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + XF86AudioRaiseVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.raise}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"SHIFT + XF86AudioRaiseVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.RAISE}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + SHIFT + XF86AudioRaiseVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.raise}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"XF86AudioLowerVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.LOWER}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + XF86AudioLowerVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.lower}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"SHIFT + XF86AudioLowerVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.LOWER}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
-          {
-            _args = [
-              (lib.generators.mkLuaInline "\"CONTROL + SHIFT + XF86AudioLowerVolume\"")
-              (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.lower}\")")
-              {
-                repeating = true;
-                locked = true;
-              }
-            ];
-          }
           {
             _args = [
               (lib.generators.mkLuaInline "\"SUPER + mouse:272\"")
