@@ -11,15 +11,8 @@
   #   SuspendState=mem
   # '';
 
-  hardware = {
-    acpilight.enable = true; # TEST Brightness control
-    brillo.enable = true; # TEST Brightness control
-  };
-
   services = {
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
-    illum.enable = true; # TEST Brightness control
+    illum.enable = true; # Brightness control
   };
-
-  # environment.systemPackages = [ pkgs.brightnessctl ]; # Kbd brightness control
 }

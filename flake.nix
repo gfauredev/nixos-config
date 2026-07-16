@@ -171,7 +171,7 @@
             packages = with pkgs; [
               bash-language-server # Bash, shell script LSP
               # cachix # CLI for Nix binary cache
-              # evtest # Input debugging
+              brightnessctl # Emergency brightness control
               # go # For Gitleaks
               pkgs.home-manager # FIXME Not nixpkgs’ version
               # libinput # Input debugging
