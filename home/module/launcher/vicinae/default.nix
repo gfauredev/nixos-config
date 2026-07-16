@@ -27,7 +27,26 @@
 
   programs.vicinae.settings = {
     close_on_focus_loss = true;
+    search_files_in_root = true;
+    font = {
+      rendering = "qt";
+      normal.size = 11;
+    };
+    launcher_window = {
+      opacity = 0.8; # TEST
+      client_side_decorations.enabled = false;
+      compact_mode.enabled = true;
+    };
     providers = {
+      core = {
+        entrypoints = {
+          about.enabled = false;
+          open-config-file.enabled = false;
+          open-default-config.enabled = false;
+          sponsor.enabled = false;
+          store.enabled = false;
+        };
+      };
       files = {
         preferences = {
           autoIndexing = true;
@@ -39,12 +58,22 @@
           ];
         };
       };
+      power = {
+        entrypoints = {
+          power-off.alias = "off";
+          reboot.alias = "boot";
+        };
+      };
+      raycast-compat = {
+        entrypoints = {
+          store.enabled = false;
+        };
+      };
     };
     # theme = {
     #   light.name = "stylix";
     #   dark.name = "stylix";
     # };
-    # launcher_window.opacity = 0.8;
   };
 
   xdg.configFile = {
