@@ -1,0 +1,13 @@
+{
+  "launcher_window": {
+    "opacity": 1.0
+  },
+  "theme": {
+    "dark": {
+      "name": "stylix"
+    },
+    "light": {
+      "name": "stylix"
+    }
+  }
+}

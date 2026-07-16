@@ -2,7 +2,6 @@
   pkgs,
   pkgs-unstable,
   lib,
-  config,
   ...
 }: # Email, Calendar, Task, Contact, Note, Organization
 {
@@ -105,4 +104,7 @@
   };
 
   # TODO Put some Syncthing config here publicly
+
+  config.services.activitywatch.enable = true; # TEST me
+  config.services.conky.enable = true; # TEST me
 }
