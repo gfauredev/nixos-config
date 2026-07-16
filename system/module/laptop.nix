@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   ...
 }: # Common configuration for laptops
@@ -11,8 +12,16 @@
   #   SuspendState=mem
   # '';
 
+  hardware.sensor.iio.enable = true; # Gyroscope & light sensor
+
   services = {
     fprintd.enable = lib.mkDefault true; # Support fingerprint readers
     illum.enable = true; # Brightness control
   };
+
+  # programs.iio-hyprland.enable = true; # Auto orient Hyprland
+
+  environment.systemPackages = with pkgs; [
+    wluma # Auto brightness screen content ambient light TODO configure
+  ];
 }

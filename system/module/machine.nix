@@ -34,6 +34,8 @@
     consoleLogLevel = 0; # Don’t clutter screen at boot
   };
 
+  hardware.sensor.hddtemp.enable = true; # Support HDD/SSD temperature sensors
+
   security.apparmor.enable = lib.mkDefault true; # See https://search.nixos.org/options?channel=25.05&query=apparmor TODO configure
 
   users = {
