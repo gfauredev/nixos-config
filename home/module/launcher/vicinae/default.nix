@@ -27,8 +27,8 @@
 
   # programs.vicinae.settings = { See https://docs.vicinae.com/config };
 
-  xdg.configFile.vicinae = {
-    "settings.json.mutable" = {
+  xdg.configFile = {
+    "vicinae/settings.json.mutable" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.json";
     };
   };
