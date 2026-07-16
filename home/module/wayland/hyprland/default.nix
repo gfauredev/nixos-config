@@ -25,12 +25,12 @@ let
     play.next = "playerctl next"; # -p ${config.media}";
     play.previous = "playerctl previous";
   };
-  brightness = {
-    raise = "brightnessctl --device=intel_backlight set 1%+";
-    RAISE = "brightnessctl --device=intel_backlight set 5%+";
-    lower = "brightnessctl --device=intel_backlight set 1%-";
-    LOWER = "brightnessctl --device=intel_backlight set 5%-";
-  };
+  # brightness = {
+  #   raise = "+1%";
+  #   RAISE = "+5%";
+  #   lower = "-1%";
+  #   LOWER = "-5%";
+  # };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
     region = "wl-present set-region"; # Change mirrored output or region
@@ -81,7 +81,11 @@ in
         };
         bind =
           let
-            exec_cmd = cmd: lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${cmd}\")";
+            exec_cmd =
+              cmd:
+              lib.generators.mkLuaInline ''
+                hl.dsp.exec_cmd("${cmd}")
+              '';
           in
           [
             {
@@ -370,8 +374,8 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SUPER + k\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${pick}\")")
+                "SUPER + k"
+                (exec_cmd pick)
                 { description = "Pick a color anywhere on the screen"; }
               ];
             }
@@ -543,66 +547,8 @@ in
                 { locked = true; }
               ];
             }
-            {
-              _args = [
-                "XF86MonBrightnessUp"
-                (exec_cmd brightness.RAISE)
-                {
-                  repeating = true;
-                  locked = true;
-                }
-              ];
-            }
-            {
-              _args = [
-                "XF86MonBrightnessDown"
-                (exec_cmd brightness.LOWER)
-                {
-                  repeating = true;
-                  locked = true;
-                }
-              ];
-            }
-            {
-              _args = [
-                "SHIFT + XF86MonBrightnessUp"
-                (exec_cmd brightness.raise)
-                {
-                  repeating = true;
-                  locked = true;
-                }
-              ];
-            }
-            {
-              _args = [
-                "SHIFT + XF86MonBrightnessDown"
-                (exec_cmd brightness.lower)
-                {
-                  repeating = true;
-                  locked = true;
-                }
-              ];
-            }
-            {
-              _args = [
-                "CONTROL + XF86MonBrightnessUp"
-                (exec_cmd brightness.raise)
-                {
-                  repeating = true;
-                  locked = true;
-                }
-              ];
-            }
-            {
-              _args = [
-                "CONTROL + XF86MonBrightnessDown"
-                (exec_cmd brightness.lower)
-                {
-                  repeating = true;
-                  locked = true;
-                }
-              ];
-            }
+            # { _args = [ "XF86MonBrightnessUp" (exec_cmd brightness.RAISE)
+            # { repeating = true; locked = true; } ]; }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"XF86AudioRaiseVolume\"")

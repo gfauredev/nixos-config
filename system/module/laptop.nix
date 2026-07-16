@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   ...
 }: # Common configuration for laptops
 {
@@ -12,10 +11,15 @@
   #   SuspendState=mem
   # '';
 
-  services = {
-    fprintd.enable = lib.mkDefault true; # Support fingerprint readers
-    # power-profiles-daemon.enable = true; # Suspend the Hibernate
+  hardware = {
+    acpilight.enable = true; # TEST Brightness control
+    brillo.enable = true; # TEST Brightness control
   };
 
-  environment.systemPackages = [ pkgs.brightnessctl ]; # Kbd brightness control
+  services = {
+    fprintd.enable = lib.mkDefault true; # Support fingerprint readers
+    illum.enable = true; # TEST Brightness control
+  };
+
+  # environment.systemPackages = [ pkgs.brightnessctl ]; # Kbd brightness control
 }
