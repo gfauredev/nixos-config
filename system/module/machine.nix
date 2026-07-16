@@ -34,8 +34,6 @@
     consoleLogLevel = 0; # Don’t clutter screen at boot
   };
 
-  hardware.sensor.hddtemp.enable = true; # Support HDD/SSD temperature sensors
-
   security.apparmor.enable = lib.mkDefault true; # See https://search.nixos.org/options?channel=25.05&query=apparmor TODO configure
 
   users = {
@@ -51,6 +49,7 @@
     ntp.enable = lib.mkDefault true;
     dnscrypt-proxy.enable = true; # See https://wiki.nixos.org/wiki/Encrypted_DNS TEST it
     usbguard.enable = true;
+    smartd.enable = true; # SMART Hard drive monitoring
     logind.settings.Login = {
       HandlePowerKey = "hibernate";
       HandlePowerKeyLongPress = "reboot";
@@ -98,5 +97,9 @@
       require_nofilter = true;
     };
     usbguard.IPCAllowedGroups = [ "wheel" ];
+    smartd = {
+      autodetect = true;
+      notifications.systembus-notify.enable = true;
+    };
   };
 }
