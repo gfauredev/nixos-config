@@ -1,4 +1,4 @@
-# Search engines configs TODO use these engines definition as SST (Albert config…)
+# Search engines configs
 {
   alternativeto = {
     name = "AlternativeTo";
@@ -247,24 +247,6 @@
     definedAliases = [ "gl" ];
   };
   google.metaData.alias = "g"; # Builtin, only supports adding an alias
-  # google = {
-  # name = "Google";
-  #   urls = [
-  #     {
-  #       template = "https://www.google.com/search";
-  #       params = [
-  #         {
-  #           name = "q";
-  #           value = "{searchTerms}";
-  #         }
-  #       ];
-  #     }
-  #   ];
-  #   definedAliases = [
-  #     "g"
-  #     "ggl"
-  #   ];
-  # };
   googlemaps = {
     name = "Google Maps";
     urls = [
@@ -338,6 +320,21 @@
     ];
     definedAliases = [ "hmissue" ];
   };
+  homemanageroptions = {
+    name = "Home Manager Options";
+    urls = [
+      {
+        template = "https://nix-community.github.io/home-manager/options/home-manager/index.html";
+        params = [
+          {
+            name = "search";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "hm" ];
+  };
   idealo = {
     name = "Idealo";
     urls = [
@@ -351,7 +348,10 @@
         ];
       }
     ];
-    definedAliases = [ "idea" ];
+    definedAliases = [
+      "idea"
+      "shop"
+    ];
   };
   leboncoin = {
     name = "LeBonCoin";
