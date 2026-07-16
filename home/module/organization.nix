@@ -106,5 +106,5 @@
   # TODO Put some Syncthing config here publicly
 
   config.services.activitywatch.enable = true; # TEST me
-  config.services.conky.enable = true; # TEST me
+  # config.services.conky.enable = true; # FIXME Display as wallpaper
 }
