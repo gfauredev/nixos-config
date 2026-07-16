@@ -26,6 +26,13 @@
     }
   },
   "providers": {
+    "browser-extension": {
+      "entrypoints": {
+        "browse-tabs": {
+          "alias": "s "
+        }
+      }
+    },
     "core": {
       "entrypoints": {
         "about": {

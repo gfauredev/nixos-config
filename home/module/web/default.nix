@@ -89,6 +89,11 @@
             installation_mode = "force_installed";
             private_browsing = false;
           };
+          "firefox@vicinae.com" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/vicinae/latest.xpi";
+            installation_mode = "force_installed";
+            private_browsing = true;
+          };
           "faststream@andrews" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/faststream/latest.xpi";
             installation_mode = "normal_installed";

@@ -1,7 +1,7 @@
 { config, ... }: {
   programs.vicinae.enable = true;
 
-  # programs.vicinae.enableFirefoxIntegration = true;
+  # programs.vicinae.enableFirefoxIntegration = true; TODO
 
   # programs.vicinae.extensions = [
   #   (config.lib.vicinae.mkExtension {
