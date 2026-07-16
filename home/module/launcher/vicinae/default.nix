@@ -25,7 +25,27 @@
   #   See https://docs.vicinae.com/extensions/introduction
   # ];
 
-  # programs.vicinae.settings = { See https://docs.vicinae.com/config };
+  programs.vicinae.settings = {
+    close_on_focus_loss = true;
+    providers = {
+      files = {
+        preferences = {
+          autoIndexing = true;
+          excludedIndexingPaths = [ ];
+          indexingPaths = [
+            "/home/gf/project"
+            "/home/gf/life"
+            "/home/gf/image"
+          ];
+        };
+      };
+    };
+    # theme = {
+    #   light.name = "stylix";
+    #   dark.name = "stylix";
+    # };
+    # launcher_window.opacity = 0.8;
+  };
 
   xdg.configFile = {
     "vicinae/settings.json.mutable" = {
