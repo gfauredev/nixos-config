@@ -11,8 +11,8 @@
           ids = [ "*" ];
           settings =
             let
-              user = "gf"; # FIXME Don’t hardcode
-              uid = "1000"; # FIXME Don’t hardcode
+              user = "gf"; # Don’t hardcode
+              uid = "1000"; # Don’t hardcode
               runAsUser =
                 cmd:
                 "${pkgs.sudo}/bin/sudo -u ${user} env XDG_RUNTIME_DIR=/run/user/${uid} DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/${uid}/bus ${cmd}";
@@ -78,39 +78,39 @@
                 # - press space, press a symbol: use a helixmode binding
                 # - press a symbol, < 35ms, press space: type space
                 space = "overloadi(space, overloadt2(helixmode, space, 150), 35)";
-                mute = "command(${audio.speaker.toggle})";
-                micmute = "command(${audio.mic.toggle})";
-                playpause = "command(${audio.play.toggle})";
-                play = "command(${audio.play.toggle})";
-                pause = "command(${audio.play.toggle})";
-                nextsong = "command(${audio.play.next})";
-                previoussong = "command(${audio.play.previous})";
                 rfkill = "command(${plane-mode})";
-                brightnessup = "command(${brightness.RAISE})";
-                brightnessdown = "command(${brightness.LOWER})";
-                volumeup = "command(${audio.speaker.RAISE})";
-                volumedown = "command(${audio.speaker.LOWER})";
+                # brightnessup = "command(${brightness.RAISE})";
+                # brightnessdown = "command(${brightness.LOWER})";
+                # mute = "command(${audio.speaker.toggle})";
+                # micmute = "command(${audio.mic.toggle})";
+                # playpause = "command(${audio.play.toggle})";
+                # play = "command(${audio.play.toggle})";
+                # pause = "command(${audio.play.toggle})";
+                # nextsong = "command(${audio.play.next})";
+                # previoussong = "command(${audio.play.previous})";
+                # volumeup = "command(${audio.speaker.RAISE})";
+                # volumedown = "command(${audio.speaker.LOWER})";
               };
-              shift = {
-                mute = "command(${audio.mic.toggle})";
-                micmute = "command(${audio.speaker.toggle})";
-                brightnessup = "command(${brightness.raise})";
-                brightnessdown = "command(${brightness.lower})";
-                volumeup = "command(${audio.mic.RAISE})";
-                volumedown = "command(${audio.mic.LOWER})";
-              };
-              control = {
-                mute = "command(${audio.mic.toggle})";
-                micmute = "command(${audio.speaker.toggle})";
-                brightnessup = "command(${brightness.raise})";
-                brightnessdown = "command(${brightness.lower})";
-                volumeup = "command(${audio.speaker.raise})";
-                volumedown = "command(${audio.speaker.lower})";
-              };
-              "control+shift" = {
-                volumeup = "command(${audio.mic.raise})";
-                volumedown = "command(${audio.mic.lower})";
-              };
+              # shift = {
+              #   brightnessup = "command(${brightness.raise})";
+              #   brightnessdown = "command(${brightness.lower})";
+              #   mute = "command(${audio.mic.toggle})";
+              #   micmute = "command(${audio.speaker.toggle})";
+              #   volumeup = "command(${audio.mic.RAISE})";
+              #   volumedown = "command(${audio.mic.LOWER})";
+              # };
+              # control = {
+              #   brightnessup = "command(${brightness.raise})";
+              #   brightnessdown = "command(${brightness.lower})";
+              #   mute = "command(${audio.mic.toggle})";
+              #   micmute = "command(${audio.speaker.toggle})";
+              #   volumeup = "command(${audio.speaker.raise})";
+              #   volumedown = "command(${audio.speaker.lower})";
+              # };
+              # "control+shift" = {
+              #   volumeup = "command(${audio.mic.raise})";
+              #   volumedown = "command(${audio.mic.lower})";
+              # };
               # Capslock within 80ms of previous capslock enables Helix mode
               # capslock.capslock = "toggle(helixmode)"; # TODO
               helixmode = motionSelect // control;
