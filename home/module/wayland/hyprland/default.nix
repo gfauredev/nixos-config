@@ -26,10 +26,10 @@ let
     play.previous = "playerctl previous";
   };
   brightness = {
-    raise = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 1%+";
-    RAISE = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 5%+";
-    lower = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 1%-";
-    LOWER = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 5%-";
+    raise = "brightnessctl --device=intel_backlight set 1%+";
+    RAISE = "brightnessctl --device=intel_backlight set 5%+";
+    lower = "brightnessctl --device=intel_backlight set 1%-";
+    LOWER = "brightnessctl --device=intel_backlight set 5%-";
   };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
@@ -66,7 +66,7 @@ in
         black = "rgb(000000)"; # Pitch black background for OLED
       in
       {
-        config.debug.disable_logs = false; # Enable logs
+        # config.debug.disable_logs = false; # Enable logs (performance hit)
         config.xwayland.force_zero_scaling = true;
         config.input = {
           kb_layout = "fr,us";
@@ -546,7 +546,7 @@ in
             {
               _args = [
                 "XF86MonBrightnessUp"
-                (exec_cmd "notify-send $(${brightness.RAISE})")
+                (exec_cmd brightness.RAISE)
                 {
                   repeating = true;
                   locked = true;
@@ -566,7 +566,7 @@ in
             {
               _args = [
                 "SHIFT + XF86MonBrightnessUp"
-                (exec_cmd "notify-send $(${brightness.raise})")
+                (exec_cmd brightness.raise)
                 {
                   repeating = true;
                   locked = true;
