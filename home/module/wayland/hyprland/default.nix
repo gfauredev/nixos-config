@@ -7,7 +7,6 @@
 let
   hlLib = import ./lib.nix { inherit lib config; };
   workspaceSet = import ./workspaces.nix { inherit lib config; };
-  cycleOrToggleGroup = "hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup";
   pick = "hyprpicker --autocopy"; # Color picker
   timestamp = "$(date +'%Y-%m-%d-%Hh%Mm%S')"; # Current date as string
   audio = {
@@ -27,10 +26,10 @@ let
     play.previous = "playerctl previous";
   };
   brightness = {
-    raise = "brightnessctl --device intel_backlight set 1%+";
-    RAISE = "brightnessctl --device intel_backlight set 5%+";
-    lower = "brightnessctl --device intel_backlight set 1%-";
-    LOWER = "brightnessctl --device intel_backlight set 5%-";
+    raise = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 1%+";
+    RAISE = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 5%+";
+    lower = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 1%-";
+    LOWER = "${pkgs.brightnessctl}/bin/brightnessctl --device intel_backlight set 5%-";
   };
   mirror = {
     default = "wl-present mirror"; # Mirror an output or region
@@ -322,7 +321,8 @@ in
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + g\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${cycleOrToggleGroup}\")")
+                # FIXME Do in Lua
+                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup\")")
                 { description = "Toggle group or focus next window in group if there’s one"; }
               ];
             }
@@ -543,40 +543,20 @@ in
                 { locked = true; }
               ];
             }
-            # {
-            #   _args = [
-            #     (lib.generators.mkLuaInline "\"XF86MonBrightnessUp\"")
-            #     (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.RAISE}\")")
-            #     {
-            #       repeating = true;
-            #       locked = true;
-            #     }
-            #   ];
-            # }
             {
               _args = [
                 "XF86MonBrightnessUp"
-                (exec_cmd "notify-send brightness up")
+                (exec_cmd brightness.RAISE)
                 {
                   repeating = true;
                   locked = true;
                 }
               ];
             }
-            # {
-            #   _args = [
-            #     (lib.generators.mkLuaInline "\"XF86MonBrightnessDown\"")
-            #     (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.LOWER}\")")
-            #     {
-            #       repeating = true;
-            #       locked = true;
-            #     }
-            #   ];
-            # }
             {
               _args = [
                 "XF86MonBrightnessDown"
-                (exec_cmd "notify-send brightness down")
+                (exec_cmd brightness.LOWER)
                 {
                   repeating = true;
                   locked = true;
@@ -585,8 +565,8 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86MonBrightnessUp\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.raise}\")")
+                "SHIFT + XF86MonBrightnessUp"
+                (exec_cmd brightness.raise)
                 {
                   repeating = true;
                   locked = true;
@@ -595,8 +575,8 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86MonBrightnessDown\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.lower}\")")
+                "SHIFT + XF86MonBrightnessDown"
+                (exec_cmd brightness.lower)
                 {
                   repeating = true;
                   locked = true;
@@ -605,8 +585,8 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86MonBrightnessUp\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.raise}\")")
+                "CONTROL + XF86MonBrightnessUp"
+                (exec_cmd brightness.raise)
                 {
                   repeating = true;
                   locked = true;
@@ -615,8 +595,8 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86MonBrightnessDown\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.lower}\")")
+                "CONTROL + XF86MonBrightnessDown"
+                (exec_cmd brightness.lower)
                 {
                   repeating = true;
                   locked = true;
