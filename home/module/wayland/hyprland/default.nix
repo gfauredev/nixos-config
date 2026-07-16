@@ -181,13 +181,6 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SHIFT + Super_L\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt2}\")")
-                { description = "alternative/fallback launcher"; }
-              ];
-            }
-            {
-              _args = [
                 (lib.generators.mkLuaInline "\"SUPER + SPACE\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt}\")")
                 { description = "alternative/fallback launcher"; }
@@ -563,17 +556,27 @@ in
             {
               _args = [
                 "XF86MonBrightnessUp"
-                (exec_cmd brightness.RAISE)
+                (exec_cmd "notify-send brightness up")
                 {
                   repeating = true;
                   locked = true;
                 }
               ];
             }
+            # {
+            #   _args = [
+            #     (lib.generators.mkLuaInline "\"XF86MonBrightnessDown\"")
+            #     (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.LOWER}\")")
+            #     {
+            #       repeating = true;
+            #       locked = true;
+            #     }
+            #   ];
+            # }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"XF86MonBrightnessDown\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${brightness.LOWER}\")")
+                "XF86MonBrightnessDown"
+                (exec_cmd "notify-send brightness down")
                 {
                   repeating = true;
                   locked = true;
