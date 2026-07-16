@@ -18,7 +18,7 @@
     };
     alt = lib.mkOption {
       type = str;
-      default = "${pkgs.albert}/bin/albert toggle"; # Fallback, must already run
+      default = "albert toggle"; # Fallback, must already run
       description = "Alternative general launcher";
     };
     app = lib.mkOption {
