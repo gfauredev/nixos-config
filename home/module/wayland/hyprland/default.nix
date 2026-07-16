@@ -546,7 +546,7 @@ in
             {
               _args = [
                 "XF86MonBrightnessUp"
-                (exec_cmd brightness.RAISE)
+                (exec_cmd "notify-send $(${brightness.RAISE})")
                 {
                   repeating = true;
                   locked = true;
@@ -566,7 +566,7 @@ in
             {
               _args = [
                 "SHIFT + XF86MonBrightnessUp"
-                (exec_cmd brightness.raise)
+                (exec_cmd "notify-send $(${brightness.raise})")
                 {
                   repeating = true;
                   locked = true;
