@@ -52,7 +52,6 @@
                 # - press a symbol, < 35ms, press space: type space
                 space = "overloadi(space, overloadt2(helixmode, space, 150), 35)";
                 rfkill = "command(${plane-mode})";
-                "M-S-comma" = "${pkgs.systemd}/bin/systemctl suspend";
               };
               # Capslock within 80ms of previous capslock enables Helix mode
               # capslock.capslock = "toggle(helixmode)"; # TODO
@@ -64,6 +63,9 @@
                 f = "C-end"; # Go to the document’s end (e)
               }
               // exit;
+              "M-S" = {
+                "," = "command(${pkgs.systemd}/bin/systemctl suspend)";
+              };
             };
           # h = S-home # Selects to the line’s beginning
           # j = pagedown # One screen down
