@@ -18,9 +18,16 @@
       "unsandboxed(make)",
       "unsandboxed(cc)",
       "unsandboxed(mvn)",
+      "unsandboxed(bun)",
+      "unsandboxed(npm)",
       "unsandboxed(http)",
       "unsandboxed(https)"
     ]
   },
-  "toolPermission": "proceed-in-sandbox"
+  "toolPermission": "proceed-in-sandbox",
+  "trustedWorkspaces": [
+    "/home/gf/dev/config/public",
+    "/home/gf/dev/planAffectationIntelligent",
+    "/home/gf/dev/fetePerchee.cac/site"
+  ]
 }
