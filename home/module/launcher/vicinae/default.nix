@@ -134,7 +134,7 @@
       normal.size = 11;
     };
     launcher_window = {
-      opacity = 0.8; # TEST
+      # opacity = 0.8;
       client_side_decorations.enabled = false;
       compact_mode.enabled = true;
     };
