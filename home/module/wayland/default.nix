@@ -47,18 +47,6 @@
     programs = {
       swayimg.enable = true;
       hyprlock.enable = true;
-      # swayimg.settings = {
-      #   viewer = {
-      #     window = "#10000010";
-      #     scale = "fill";
-      #   };
-      #   "info.viewer" = {
-      #     top_left = "+name,+format";
-      #   };
-      #   "keys.viewer" = {
-      #     "Shift+r" = "rand_file";
-      #   };
-      # };
     };
 
     services.hypridle.settings.listener = [
@@ -68,9 +56,7 @@
       }
       {
         timeout = 180; # Put the computer to sleep after 3 minutes
-        on-timeout = config.wayland.suspend;
-        # NOTE hacky way to prevent sleep with eGPU as it crashes the system
-        # on-timeout = "[ -L $XDG_CONFIG_HOME/hypr/egpu ] || ${config.wayland.suspend}";
+        on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
   };
