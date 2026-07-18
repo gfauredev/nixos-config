@@ -64,7 +64,7 @@
               }
               // exit;
               "M-S" = {
-                "," = "command(${pkgs.systemd}/bin/systemctl suspend)";
+                "g" = "command(${pkgs.systemd}/bin/systemctl suspend)";
               };
             };
           # h = S-home # Selects to the line’s beginning
