@@ -7,7 +7,7 @@
 {
   imports = [
     ./vicinae
-    ./albert
+    # ./albert
   ];
 
   options.launch = with lib.types; {
