@@ -4,18 +4,18 @@
   # programs.vicinae.enableFirefoxIntegration = true; TODO
 
   programs.vicinae.extensions = [
-    (config.lib.vicinae.mkExtension {
-      name = "bluetooth";
-      npmDepsHash = pkgs.lib.fakeHash;
-      src =
-        pkgs.fetchFromGitHub {
-          owner = "vicinaehq";
-          repo = "extensions";
-          rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-          sha256 = pkgs.lib.fakeSha256;
-        }
-        + "/extensions/bluetooth";
-    })
+    # (config.lib.vicinae.mkExtension {
+    #   name = "bluetooth";
+    #   npmDepsHash = pkgs.lib.fakeHash;
+    #   src =
+    #     pkgs.fetchFromGitHub {
+    #       owner = "vicinaehq";
+    #       repo = "extensions";
+    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
+    #       sha256 = pkgs.lib.fakeSha256;
+    #     }
+    #     + "/extensions/bluetooth";
+    # })
     (config.lib.vicinae.mkExtension {
       name = "process-manager";
       npmDepsHash = pkgs.lib.fakeHash;
