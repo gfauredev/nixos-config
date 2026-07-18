@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     keyd.enable = true; # A key remapping daemon for Linux, see man keyd(1)
@@ -52,6 +52,7 @@
                 # - press a symbol, < 35ms, press space: type space
                 space = "overloadi(space, overloadt2(helixmode, space, 150), 35)";
                 rfkill = "command(${plane-mode})";
+                "M-S-comma" = "${pkgs.systemd}/bin/systemctl suspend";
               };
               # Capslock within 80ms of previous capslock enables Helix mode
               # capslock.capslock = "toggle(helixmode)"; # TODO

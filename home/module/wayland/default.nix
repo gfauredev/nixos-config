@@ -12,17 +12,14 @@
 
   options.wayland = {
     lock = lib.mkOption {
-      # type = lib.types.str;
+      type = lib.types.str;
       default = "${pkgs.hyprlock}/bin/hyprlock";
       description = "Screen/session lock command";
     };
     lock-session = lib.mkOption {
+      type = lib.types.str;
       default = "${pkgs.systemd}/bin/loginctl lock-session";
       description = "Standard session lock command";
-    };
-    suspend = lib.mkOption {
-      default = "${pkgs.systemd}/bin/systemctl suspend";
-      description = "Standard system suspend command";
     };
   };
 

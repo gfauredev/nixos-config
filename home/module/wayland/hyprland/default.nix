@@ -90,40 +90,32 @@ in
           [
             {
               _args = [
-                # ${mod}, RETURN, Open a default terminal, exec, ${config.term.cmd}
                 (lib.generators.mkLuaInline "\"SUPER + RETURN\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.cmd}\")")
               ];
             }
             {
               _args = [
-                # ${mod} CONTROL, RETURN, Open an alternative/fallback terminal, exec, ${config.term.alt.cmd}
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + RETURN\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.alt.cmd}\")")
               ];
             }
             {
-              # ${mod}, q, Close current window, killactive,
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + q\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.close()")
-                { locked = true; } # Why?
               ];
             }
             {
-              # ${mod}, BackSpace, Close current window, killactive,
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + BackSpace\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.close()")
-                { locked = true; } # Why?
               ];
             }
             {
-              # ${mod}, Delete, Close current window, killactive,
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + Delete\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.close()")
-                { locked = true; } # Why?
               ];
             }
             {
@@ -138,20 +130,6 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + comma\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.wayland.lock}\")")
                 { description = "Lock session and obfuscates display"; }
-              ];
-            }
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SUPER + CONTROL + comma\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.wayland.lock-session}\")")
-                { description = "Lock session with loginctl"; }
-              ];
-            }
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SHIFT + comma\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.wayland.suspend}\")")
-                { description = "Suspend computer to sleep"; }
               ];
             }
             {
