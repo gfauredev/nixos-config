@@ -48,12 +48,10 @@
       system = nixpkgs.lib.nixosSystem;
       home = home-manager.lib.homeManagerConfiguration;
       unfreepkgs = [
-        "albert" # Manuel Schneider Albert license v1.1
         "crush" # Functional Source License, Version 1.1, MIT Future License
-        "github-copilot-cli" # Unfree (commercial) Redistributable
         "gitbutler" # Functional Source License, Version 1.1, MIT Future License
         "unrar" # Unfree (commercial) Redistributable
-        "antigravity-cli" # Unfree (commercial)
+        # "albert" # Manuel Schneider Albert license v1.1
         # "bambu-studio" # To publish sliced models on Maker World
       ];
       user-def = import ./private/user.nix; # Common users configurations

@@ -294,11 +294,8 @@
     ]
     # Machine learning & AI
     ++ [
-      pkgs-unstable.opencode # Any LLM Open Source Agent CLI
-      pkgs-unstable.crush # Any LLM Open Source Agent CLI
-      pkgs-unstable.antigravity-cli # Google Coding Agent CLI
-      pkgs-unstable.github-copilot-cli # GitHub Copilot Agent CLI
-      # pkgs-unstable.codex # OpenAI Codex Agent CLI
+      crush # Any LLM Open Source Agent CLI
+      # opencode # Any LLM Open Source Agent CLI
       # aichat # Any LLM Agent CLI
       # ollama # LLM server with GPU support
       # vllm # Efficient LLM server with GPU support
