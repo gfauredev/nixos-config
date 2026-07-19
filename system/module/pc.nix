@@ -105,7 +105,6 @@
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     pipewire.enable = true; # Enable modern audio system PipeWire
     geoclue2.enable = true; # Location provider
-    rustdesk-server.enable = false; # See https://rustdesk.com/docs/en/self-host
     protonmail-bridge.enable = true; # Use Proton Mail inside client
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
@@ -160,15 +159,6 @@
       # geoProviderUrl="https://www.googleapis.com/geolocation/v1/geolocate?key=MY_KEY";
     };
     protonmail-bridge.path = [ pkgs.gnome-keyring ];
-    rustdesk-server = {
-      signal.enable = false;
-      relay.enable = false;
-      openFirewall = false;
-    };
-    # onlyoffice = {
-    #   package = pkgs-unstable.onlyoffice-documentserver;
-    #   securityNonceFile = "/run/keys/onlyoffice-nginx-nonce.conf";
-    # };
   };
   location.provider = "geoclue2";
   systemd.oomd = {

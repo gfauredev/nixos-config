@@ -274,7 +274,6 @@
       exfatprogs # Tools for exfat FS
       smartmontools # Monitor health of drives
       android-file-transfer # Media Transfer Protocol (Android…)
-      # ventoy-full # Multiboot keys FIX disable as insecure/closed source blobs
       # jmtpfs # Media Transfer Protocol (Android…)
       # mtpfs # Media Transfer Protocol (Android…)
       # dislocker # Decrypt BitLocker disks
