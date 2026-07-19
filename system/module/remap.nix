@@ -63,7 +63,7 @@
                 f = "C-end"; # Go to the document’s end (e)
               }
               // exit;
-              "M-S" = {
+              "meta+shift" = {
                 "g" = "command(${pkgs.systemd}/bin/systemctl suspend)";
               };
             };
