@@ -293,7 +293,7 @@
     ]
     # Machine learning & AI
     ++ [
-      crush # Any LLM Open Source Agent CLI
+      pkgs-unstable.crush # Any LLM Open Source Agent CLI
       # opencode # Any LLM Open Source Agent CLI
       # aichat # Any LLM Agent CLI
       # ollama # LLM server with GPU support
