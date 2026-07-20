@@ -303,6 +303,7 @@ in
             {
               _args = [
                 "SUPER + g"
+                # FIXME Condition seems always false
                 (lib.generators.mkLuaInline ''
                   function()
                     local aw = hl.get_active_window()

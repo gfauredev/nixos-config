@@ -129,38 +129,34 @@
   programs.vicinae.settings = {
     close_on_focus_loss = true;
     search_files_in_root = true;
-    font = {
-      normal.size = 11;
-      # rendering = "qt";
-    };
-    # telemetry.system_info = true;
+    font.normal.size = 11;
+    telemetry.system_info = true; # Ease the team’s work
     launcher_window = {
       client_side_decorations.enabled = true;
       compact_mode.enabled = true;
       # opacity = 0.8;
     };
+    fallbacks = [
+      "shortcuts:sct-ecosia"
+      "files:search"
+    ];
     providers = {
       calculator.entrypoints.history.alias = "=";
-      core = {
-        entrypoints = {
-          about.enabled = false;
-          open-config-file.enabled = false;
-          open-default-config.enabled = false;
-          search-emojis.alias = ":";
-          sponsor.enabled = false;
-          store.enabled = false;
-        };
+      core.entrypoints = {
+        about.enabled = false;
+        open-config-file.enabled = false;
+        open-default-config.enabled = false;
+        search-emojis.alias = ":";
+        store.enabled = false;
       };
-      files = {
-        preferences = {
-          autoIndexing = true;
-          indexingPaths = [
-            "/home/gf/project"
-            "/home/gf/life"
-            "/home/gf/image"
-          ];
-          excludedIndexingPaths = [ ];
-        };
+      files.preferences = {
+        autoIndexing = true;
+        indexingPaths = [
+          "/home/gf/project"
+          "/home/gf/life"
+          "/home/gf/image"
+        ];
+        # excludedIndexingPaths = [ ];
       };
       power.entrypoints = {
         power-off.alias = "off";
@@ -172,19 +168,23 @@
   };
 
   xdg.dataFile = {
-    "vicinae/inhib.sh" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts/inhib.sh";
+    "vicinae/scripts" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts";
+    };
+    "vicinae/shortcuts" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/shortcuts";
+    };
+    "vicinae/snippets" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/snippets";
     };
   };
 
   xdg.configFile = {
-    "vicinae/settings.mut.json" = {
+    "vicinae/settings.mut.jsonc" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.jsonc";
     };
   };
 
   programs.vicinae.systemd.enable = true;
   programs.vicinae.systemd.autoStart = true;
-
-  # programs.vicinae.themes = { managed by stylix };
 }

@@ -58,14 +58,18 @@ public_logs_status() {
   git -C $SUBFLAKE status || exit
 }
 
-# @param 1 (sub)directory containing Git repo to pull
-pull_one() { # Git pull a (sub)directory (eg. private or public config)
-  remote=$(git -C "$1" remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
+# Fetch the current Git repository’s origin, recursing into submodules
+fetch_recurse() { # Git fetch private or public config
+  emph            # Italic text
+  printf 'top-level: Fetch latest changes (Fetches submodules too)\n'
+  regular # Normal text
+  remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
   emph # Italic text
   printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
   if ping -c 1 -w 3 "$remote"; then
-    printf '%s reached, pull latest changes from it\n' "$remote"
-    git -C "$1" pull
+    printf '%s reached, fetch latest changes from it\n' "$remote"
+    git fetch --all --recurse-submodules=yes
+    # WARN Manually checkout / merge if wanted
   else
     printf '%s non reachable, move on\n' "$remote"
   fi
@@ -107,24 +111,6 @@ ensure_default_branch() {
     echo
     case "$res" in [nN]*) exit 0 ;; *) return 0 ;; esac
   fi
-}
-
-# Pull the current Git repository, recursing into submodules
-pull_recurse() { # Git pull private or public config
-  emph           # Italic text
-  printf 'top-level: Pull latest changes (pulls submodules too)\n'
-  regular # Normal text
-  remote=$(git remote get-url origin | cut -d'@' -f2 | cut -d':' -f1)
-  emph # Italic text
-  printf 'Test if remote %s is reachable (in less than %ss)\n' "$remote" 3
-  if ping -c 1 -w 3 "$remote"; then
-    printf '%s reached, pull latest changes from it\n' "$remote"
-    git pull --recurse-submodules=yes
-    # ensure_attached_head "$SUBFLAKE" TODO
-  else
-    printf '%s non reachable, move on\n' "$remote"
-  fi
-  regular # Return to normal text
 }
 
 # Update public config flake inputs
@@ -389,13 +375,12 @@ printf 'Limit memory usage to %skb for the following commands\n' $MEM_LIMIT
 ulimit -v $MEM_LIMIT # Limit memory usage to $MEM_LIMIT kb
 regular              # Back to standard text
 
-pull_recurse # Always pull the latest configuration before doing anything
+fetch_recurse & # Fetch the latest configuration when running this script
 if $update_inputs; then
   update_subflake_inputs
 fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
-  wait # Wait for eventual pull or push to finish
   emph
   printf 'Start default text editor\n'
   regular
@@ -404,7 +389,7 @@ if [ -n "$commit_msg" ]; then
   commit_all "$commit_msg" # then commit public and private flakes
 else                       # Defaults to try amending changes
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
-    wait # Wait for eventual pull or push to finish
+    wait # Wait for eventual async operation (pull, push…) to finish
     emph
     printf 'Start default text editor\n'
     regular
@@ -414,7 +399,7 @@ else                       # Defaults to try amending changes
   amend_all             # Amend or commit public and private flakes
 fi
 if $rebuild_system; then     # Rebuild system if explicitly set
-  wait                       # Wait for eventual pull or push to finish
+  wait                       # Wait for eventual async operation to finish
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
 # Previously, home/ rebuilded if
@@ -424,7 +409,7 @@ fi
 #   { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; } ||
 #   [ $update_inputs = true ]; then
 if $rebuild_home; then     # Only rebuild explicitly to encourage CI/CD builds
-  wait                     # Wait for eventual pull or push to finish
+  wait                     # Wait for eventual async operation to finish
   rebuild_home_cmd || exit # Don’t continue if the build failed
 fi
 if $push_repositories; then # Push repositories if explicit argument
@@ -440,7 +425,7 @@ if $push_repositories; then # Push repositories if explicit argument
   git push &
 fi
 if [ -n "$power_state" ]; then # Change power state after other operations
-  wait                         # Wait for eventual pull or push to finish
+  wait                         # Wait for eventual async operation to finish
   (
     sleep 1
     systemctl $power_state

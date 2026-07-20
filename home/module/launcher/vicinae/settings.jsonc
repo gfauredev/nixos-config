@@ -36,6 +36,10 @@
       "enabled": true
     }
   },
+  "fallbacks": [
+    "shortcuts:sct-ecosia",
+    "files:search"
+  ],
   "providers": {
     "calculator": {
       "entrypoints": {
