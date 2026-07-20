@@ -17,8 +17,8 @@ let
     dfa = "duf -all";
     wcp = "wl-copy";
     wpt = "wl-paste";
-    inhib = "systemd-inhibit sleep";
     compose = "podman compose";
+    # inhib = "systemd-inhibit sleep";
     # Files
     a = "bat"; # Prettier cat to quickly display files in term
     restore = "trash-restore";

@@ -178,7 +178,7 @@
   };
 
   xdg.configFile = {
-    "vicinae/settings.json.mutable" = {
+    "vicinae/settings.mutable.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.json";
     };
   };
