@@ -25,16 +25,26 @@
       "name": "stylix"
     }
   },
+  "telemetry": {
+    "system_info": true
+  },
   "launcher_window": {
     "opacity": 1,
     "client_side_decorations": {
-      "enabled": false
+      "enabled": true
     },
     "compact_mode": {
       "enabled": true
     }
   },
   "providers": {
+    "calculator": {
+      "entrypoints": {
+        "history": {
+          "alias": "="
+        }
+      }
+    },
     "core": {
       "entrypoints": {
         "about": {
