@@ -163,6 +163,7 @@
         reboot.alias = "boot";
       };
       raycast-compat.entrypoints.store.enabled = false;
+      shortcuts.entrypoints.sct-ecosia.alias = "e ";
       system.entrypoints.run.alias = "$";
     };
   };

@@ -98,6 +98,13 @@
         }
       }
     },
+    "shortcuts": {
+      "entrypoints": {
+        "sct-ecosia": {
+          "alias": "e "
+        }
+      }
+    },
     "system": {
       "entrypoints": {
         "run": {
