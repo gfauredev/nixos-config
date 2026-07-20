@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
   programs.vicinae.enable = true;
 
   # programs.vicinae.enableFirefoxIntegration = true; TODO
@@ -130,20 +130,23 @@
     close_on_focus_loss = true;
     search_files_in_root = true;
     font = {
-      rendering = "qt";
       normal.size = 11;
+      # rendering = "qt";
     };
+    # telemetry.system_info = true;
     launcher_window = {
-      # opacity = 0.8;
-      client_side_decorations.enabled = false;
+      client_side_decorations.enabled = true;
       compact_mode.enabled = true;
+      # opacity = 0.8;
     };
     providers = {
+      calculator.entrypoints.history.alias = "=";
       core = {
         entrypoints = {
           about.enabled = false;
           open-config-file.enabled = false;
           open-default-config.enabled = false;
+          search-emojis.alias = ":";
           sponsor.enabled = false;
           store.enabled = false;
         };
@@ -151,30 +154,21 @@
       files = {
         preferences = {
           autoIndexing = true;
-          excludedIndexingPaths = [ ];
           indexingPaths = [
             "/home/gf/project"
             "/home/gf/life"
             "/home/gf/image"
           ];
+          excludedIndexingPaths = [ ];
         };
       };
-      power = {
-        entrypoints = {
-          power-off.alias = "off";
-          reboot.alias = "boot";
-        };
+      power.entrypoints = {
+        power-off.alias = "off";
+        reboot.alias = "boot";
       };
-      raycast-compat = {
-        entrypoints = {
-          store.enabled = false;
-        };
-      };
+      raycast-compat.entrypoints.store.enabled = false;
+      system.entrypoints.run.alias = "$";
     };
-    # theme = {
-    #   light.name = "stylix";
-    #   dark.name = "stylix";
-    # };
   };
 
   xdg.dataFile = {
