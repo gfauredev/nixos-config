@@ -178,8 +178,8 @@
   };
 
   xdg.configFile = {
-    "vicinae/settings.mutable.json" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.json";
+    "vicinae/settings.mut.json" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.jsonc";
     };
   };
 
