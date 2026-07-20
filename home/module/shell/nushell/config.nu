@@ -195,10 +195,10 @@ def agent [...args] {
     } { agy --prompt-interactive $processed_args }
 }
 
-def inhib [duration: string] {
-  notify-send $"Inhibiting sleep for ($duration)"
-  job spawn { systemd-inhibt sleep $duration }
-}
+# def inhib [duration: string] {
+#   notify-send $"Inhibiting sleep for ($duration)"
+#   job spawn { systemd-inhibt sleep $duration }
+# }
 
 # Display a welcome message for the first five minutes after login
 if (date now) - (who -H | from ssv | get TIME | first | into datetime) < 5min {

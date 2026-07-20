@@ -177,6 +177,12 @@
     # };
   };
 
+  xdg.dataFile = {
+    "vicinae/inhib.sh" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts/inhib.sh";
+    };
+  };
+
   xdg.configFile = {
     "vicinae/settings.mut.json" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.jsonc";
