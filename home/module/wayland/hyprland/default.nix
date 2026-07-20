@@ -302,9 +302,17 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SUPER + g\"")
-                # FIXME Do in Lua
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"hyprctl -j activewindow | jq -e '.grouped[0,1]' && hyprctl dispatch changegroupactive f || hyprctl dispatch togglegroup\")")
+                "SUPER + g"
+                (lib.generators.mkLuaInline ''
+                  function()
+                    local aw = hl.get_active_window()
+                    if aw and type(aw.grouped) == "table" and #aw.grouped > 1 then
+                      hl.dispatch(hl.dsp.group.next())
+                    else
+                      hl.dispatch(hl.dsp.group.toggle())
+                    end
+                  end
+                '')
                 { description = "Toggle group or focus next window in group if there’s one"; }
               ];
             }
