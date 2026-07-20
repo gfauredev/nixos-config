@@ -1,4 +1,50 @@
-{ config, ... }: {
+{ config, lib, ... }:
+let
+  searchEngines = import ../../web/search.nix;
+  validEngines = lib.filterAttrs (n: v: v ? urls) searchEngines;
+
+  getDomain =
+    url:
+    let
+      m = builtins.match "^https?://([^/]+).*$" url;
+    in
+    if m != null then builtins.head m else "localhost";
+
+  buildUrl =
+    {
+      template,
+      params ? [ ],
+    }:
+    let
+      queryString = builtins.concatStringsSep "&" (
+        map (
+          p: "${p.name}=${builtins.replaceStrings [ "{searchTerms}" ] [ "{argument}" ] (toString p.value)}"
+        ) params
+      );
+    in
+    if params == [ ] then
+      builtins.replaceStrings [ "{searchTerms}" ] [ "{argument}" ] template
+    else
+      template + (if builtins.match ".*\\?.*" template != null then "&" else "?") + queryString;
+
+  shortcutsList = lib.mapAttrsToList (id: engine: {
+    id = "sct-${id}";
+    name = engine.name or id;
+    icon = "icon://favicon/${getDomain (builtins.head engine.urls).template}?fallback=icon://omnicast/image?fill%3Dprimary-text";
+    url = buildUrl (builtins.head engine.urls);
+    app = "firefox.desktop";
+    # openCount = 0; createdAt = 0; updatedAt = 0; lastUsedAt = 0;
+  }) validEngines;
+
+  shortcutAliases = lib.mapAttrs' (
+    id: engine:
+    lib.nameValuePair "sct-${id}" {
+      alias = (builtins.head engine.definedAliases) + " ";
+    }
+  ) validEngines;
+
+in
+{
   programs.vicinae.enable = true;
 
   # programs.vicinae.enableFirefoxIntegration = true; TODO
@@ -163,28 +209,23 @@
         reboot.alias = "boot";
       };
       raycast-compat.entrypoints.store.enabled = false;
-      shortcuts.entrypoints.sct-ecosia.alias = "e ";
+      shortcuts.entrypoints = shortcutAliases;
       system.entrypoints.run.alias = "$";
     };
   };
 
   xdg.dataFile = {
-    "vicinae/scripts" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts";
-    };
-    "vicinae/shortcuts" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/shortcuts";
-    };
-    "vicinae/snippets" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/snippets";
-    };
+    "vicinae/scripts".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts";
+    "vicinae/shortcuts/shortcuts.jsonc".text = builtins.toJSON shortcutsList;
+    "vicinae/shortcuts/shortcuts.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.sessionVariables.XDG_DATA_DIR}/vicinae/shortcuts/shortcuts.jsonc";
+    "vicinae/snippets".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/snippets";
   };
 
-  xdg.configFile = {
-    "vicinae/settings.mut.jsonc" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.jsonc";
-    };
-  };
+  xdg.configFile."vicinae/settings.mut.jsonc".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.jsonc";
 
   programs.vicinae.systemd.enable = true;
   programs.vicinae.systemd.autoStart = true;

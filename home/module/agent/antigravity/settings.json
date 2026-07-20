@@ -10,6 +10,7 @@
       "unsandboxed(nix build)",
       "unsandboxed(nix flake)",
       "unsandboxed(nix eval)",
+      "unsandboxed(nix-instanciate)",
       "unsandboxed(git diff)",
       "unsandboxed(git status)",
       "unsandboxed(git log)",

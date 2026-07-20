@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 # @vicinae.schemaVersion 1
 # @vicinae.title inhib
 # @vicinae.mode fullOutput
-# @vicinae.exec ["/bin/bash"]
+# @vicinae.exec ["/bin/sh"]
 
-notify-send "Inhibiting sleep for $1"
-systemd-inhibt sleep "$1" &
+notify-send "Trying to inhibit sleep for $1"
+(systemd-inhibit --why="inhib.sh, notably used by Vicinae launcher" sleep "$1" || notify-send "Failed to inhibit sleep") &
