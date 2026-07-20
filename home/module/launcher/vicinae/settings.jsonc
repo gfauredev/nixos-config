@@ -12,7 +12,6 @@
   "close_on_focus_loss": true,
   "search_files_in_root": true,
   "font": {
-    "rendering": "qt",
     "normal": {
       "size": 11
     }
@@ -26,7 +25,7 @@
     }
   },
   "telemetry": {
-    "system_info": true
+    "system_info": false
   },
   "launcher_window": {
     "opacity": 1,
