@@ -23,7 +23,7 @@
     };
     app = lib.mkOption {
       type = str;
-      default = "${pkgs.vicinae}/bin/vicinae open --query ''";
+      default = "${pkgs.vicinae}/bin/vicinae vicinae://launch/applications";
       # default = ''albert show "app "''; # Application launcher
       description = "Application launcer";
     };
@@ -35,7 +35,7 @@
     };
     calc = lib.mkOption {
       type = str;
-      default = "${pkgs.vicinae}/bin/vicinae open --query '= '";
+      default = "${pkgs.vicinae}/bin/vicinae vicinae://launch/calculator";
       # default = ''albert show "= "''; # Quick calculator
       description = "Quick calculator";
     };
