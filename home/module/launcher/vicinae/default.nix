@@ -6,15 +6,14 @@
 }:
 let
   searchEngines = import ../../web/search.nix;
-  validEngines = lib.filterAttrs (n: v: v ? urls) searchEngines;
-
+  additionalSearchEngines = import ../../web/search-more.nix;
+  validEngines = lib.filterAttrs (n: v: v ? urls) searchEngines // additionalSearchEngines;
   getDomain =
     url:
     let
       m = builtins.match "^https?://([^/]+).*$" url;
     in
     if m != null then builtins.head m else "localhost";
-
   buildUrl =
     {
       template,
@@ -31,7 +30,6 @@ let
       builtins.replaceStrings [ "{searchTerms}" ] [ "{argument}" ] template
     else
       template + (if builtins.match ".*\\?.*" template != null then "&" else "?") + queryString;
-
   shortcutsList = lib.mapAttrsToList (id: engine: {
     id = "sct-${id}";
     name = engine.name or id;
@@ -40,14 +38,12 @@ let
     app = "firefox.desktop";
     # openCount = 0; createdAt = 0; updatedAt = 0; lastUsedAt = 0;
   }) validEngines;
-
   shortcutAliases = lib.mapAttrs' (
     id: engine:
     lib.nameValuePair "sct-${id}" {
       alias = (builtins.head engine.definedAliases) + " ";
     }
   ) validEngines;
-
 in
 {
   programs.vicinae.enable = true;
@@ -120,7 +116,7 @@ in
         npmDepsHash = "sha256-C6IA0csz32kG+wxVcmstJ6ucXzSnNm+ceC1MhXI+ugI=";
         src = vicinae-store + "/extensions/wiktionary";
       })
-      # (config.lib.vicinae.mkRayCastExtension {
+      # (config.lib.vicinae.mkRayCastExtension { FIXME Build error
       #   name = "google-translate";
       #   sha256 = "sha256-1ZOWLf83IZYRiUX0fG44ESuTCQwhEVh47gVHEKpagII=";
       #   rev = "c3fcc8dae82df61b27d5e508c20fd6d0c183097b";
