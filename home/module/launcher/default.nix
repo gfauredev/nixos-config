@@ -23,25 +23,19 @@
     };
     app = lib.mkOption {
       type = str;
-      default = "${pkgs.vicinae}/bin/vicinae toggle"; # TODO Properly
+      default = "${pkgs.vicinae}/bin/vicinae open --query ''";
       # default = ''albert show "app "''; # Application launcher
       description = "Application launcer";
     };
-    category = lib.mkOption {
-      type = str;
-      default = "${pkgs.vicinae}/bin/vicinae toggle"; # TODO Properly
-      # default = "rofi -show drun -drun-categories";
-      description = "Launch application by category";
-    };
     pass = lib.mkOption {
       type = str;
-      default = "${pkgs.vicinae}/bin/vicinae toggle"; # TODO Properly
+      default = "${pkgs.vicinae}/bin/vicinae open --query 'pass '";
       # default = ''albert show "pass "'';
       description = "Quick password manager";
     };
     calc = lib.mkOption {
       type = str;
-      default = "${pkgs.vicinae}/bin/vicinae toggle"; # TODO Properly
+      default = "${pkgs.vicinae}/bin/vicinae open --query '= '";
       # default = ''albert show "= "''; # Quick calculator
       description = "Quick calculator";
     };
