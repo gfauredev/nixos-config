@@ -54,127 +54,127 @@ in
 
   # programs.vicinae.enableFirefoxIntegration = true; TODO
 
-  programs.vicinae.extensions = [
+  programs.vicinae.extensions = with pkgs; [
     (config.lib.vicinae.mkExtension {
       name = "bluetooth";
       npmDepsHash = "sha256-F/vURwdEPwzZwlS4j0lGV8aN7VDGmdiV+WCy2vXN2Eo=";
       src =
-        pkgs.fetchFromGitHub {
+        fetchFromGitHub {
           owner = "vicinaehq";
           repo = "extensions";
-          rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-          sha256 = "sha256-Non+frT3WG0TN60zCq63m8+d7yNmCCMaI363kZaDmPM=";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
         }
         + "/extensions/bluetooth";
     })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "process-manager";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/process-manager";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "wifi-commander";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/wifi-commander";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "systemd";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/systemd";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "it-tools";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/it-tools";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "firefox";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/firefox";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "hypr-keybinds";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/hypr-keybinds";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "nix";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/nix";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "wikipedia";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/wikipedia";
-    # })
-    # (config.lib.vicinae.mkExtension {
-    #   name = "wiktionary";
-    #   npmDepsHash = pkgs.lib.fakeHash;
-    #   src =
-    #     pkgs.fetchFromGitHub {
-    #       owner = "vicinaehq";
-    #       repo = "extensions";
-    #       rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-    #       sha256 = pkgs.lib.fakeSha256;
-    #     }
-    #     + "/extensions/wiktionary";
-    # })
+    (config.lib.vicinae.mkExtension {
+      name = "process-manager";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/process-manager";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "wifi-commander";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/wifi-commander";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "systemd";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/systemd";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "it-tools";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/it-tools";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "firefox";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/firefox";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "hypr-keybinds";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/hypr-keybinds";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "nix";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/nix";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "wikipedia";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/wikipedia";
+    })
+    (config.lib.vicinae.mkExtension {
+      name = "wiktionary";
+      npmDepsHash = pkgs.lib.fakeHash;
+      src =
+        fetchFromGitHub {
+          owner = "vicinaehq";
+          repo = "extensions";
+          rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
+          hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
+        }
+        + "/extensions/wiktionary";
+    })
   ];
 
   programs.vicinae.settings = {
