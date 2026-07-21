@@ -176,7 +176,8 @@
               keyd # Input debugging
               marksman # Wikilinks, ToC generation…
               pkgs-unstable.nixd # "Official" Nix LSP
-              # niv # Easy dependency management, to test
+              nix-update # Easily update whole flake, including FOD’s hashes
+              nurl # Get FOD’s hashes without rebuilding everything
               pkgs-unstable.nixfmt # Formatter
               pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
               # nls # Nickel LSP
