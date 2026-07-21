@@ -57,7 +57,7 @@ in
   programs.vicinae.extensions = [
     (config.lib.vicinae.mkExtension {
       name = "bluetooth";
-      npmDepsHash = pkgs.lib.fakeHash;
+      npmDepsHash = "sha256-Non+frT3WG0TN60zCq63m8+d7yNmCCMaI363kZaDmPM=";
       src =
         pkgs.fetchFromGitHub {
           owner = "vicinaehq";
