@@ -120,12 +120,12 @@ in
         npmDepsHash = "sha256-C6IA0csz32kG+wxVcmstJ6ucXzSnNm+ceC1MhXI+ugI=";
         src = vicinae-store + "/extensions/wiktionary";
       })
-      # (config.lib.vicinae.mkRayCastExtension { TODO Sparse checkout, repo 18GB
-      #   name = "google-translate";
-      #   sha256 = "";
-      #   rev = "";
-      #   npmDepsHash = lib.fakeHash;
-      # })
+      (config.lib.vicinae.mkRayCastExtension {
+        name = "google-translate";
+        sha256 = "sha256-1ZOWLf83IZYRiUX0fG44ESuTCQwhEVh47gVHEKpagII=";
+        rev = "c3fcc8dae82df61b27d5e508c20fd6d0c183097b";
+        npmDepsHash = "sha256-YrLnA+iah+pkY0une2SyrtPQUqwjX2aELbWL1w6DPDs=";
+      })
       # (config.lib.vicinae.mkExtension { Isn’t it already in the core Vicinae?
       #   name = "firefox";
       #   npmDepsHash = "sha256-i2rOeiCSoS/dCQ746TCRQnpQ8BOndVkstWTs1rRmGEg=";
