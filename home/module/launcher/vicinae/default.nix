@@ -82,22 +82,22 @@ in
       )
       (config.lib.vicinae.mkExtension {
         name = "process-manager";
-        npmDepsHash = lib.fakeHash;
+        npmDepsHash = "sha256-qHDcvlh4pIZaMdvrRy0il5ItVI7dh4HBXRTYXjI51/s=";
         src = vicinae-store + "/extensions/process-manager";
       })
       (config.lib.vicinae.mkExtension {
         name = "wifi-commander";
-        npmDepsHash = lib.fakeHash;
+        npmDepsHash = "sha256-jwqICwIlJPRV3UdFBtA5ltjR8dImPFtsOqda1MqPMY4=";
         src = vicinae-store + "/extensions/wifi-commander";
       })
       (config.lib.vicinae.mkExtension {
         name = "systemd";
-        npmDepsHash = lib.fakeHash;
+        npmDepsHash = "sha256-g7A5sImj9GRMpn4q8aovgTw3wyHDiDglZilE0qYXlZM=";
         src = vicinae-store + "/extensions/systemd";
       })
       (config.lib.vicinae.mkExtension {
         name = "it-tools";
-        npmDepsHash = lib.fakeHash;
+        npmDepsHash = "sha256-Z621hregr+twor+4idzIf/d9F7R5DPu5/vlAXOnt/c0=";
         src = vicinae-store + "/extensions/it-tools";
       })
       (config.lib.vicinae.mkExtension {
@@ -112,14 +112,20 @@ in
       })
       (config.lib.vicinae.mkExtension {
         name = "wikipedia";
-        npmDepsHash = lib.fakeHash;
+        npmDepsHash = "sha256-3OjunlyOsXZe1MBT90tZlUSOZk+PUwFcXRtCple+fEc=";
         src = vicinae-store + "/extensions/wikipedia";
       })
       (config.lib.vicinae.mkExtension {
         name = "wiktionary";
-        npmDepsHash = lib.fakeHash;
+        npmDepsHash = "sha256-C6IA0csz32kG+wxVcmstJ6ucXzSnNm+ceC1MhXI+ugI=";
         src = vicinae-store + "/extensions/wiktionary";
       })
+      # (config.lib.vicinae.mkRayCastExtension { TODO Sparse checkout, repo 18GB
+      #   name = "google-translate";
+      #   sha256 = "";
+      #   rev = "";
+      #   npmDepsHash = lib.fakeHash;
+      # })
       # (config.lib.vicinae.mkExtension { Isn’t it already in the core Vicinae?
       #   name = "firefox";
       #   npmDepsHash = "sha256-i2rOeiCSoS/dCQ746TCRQnpQ8BOndVkstWTs1rRmGEg=";
