@@ -57,13 +57,13 @@ in
   programs.vicinae.extensions = [
     (config.lib.vicinae.mkExtension {
       name = "bluetooth";
-      npmDepsHash = "sha256-Non+frT3WG0TN60zCq63m8+d7yNmCCMaI363kZaDmPM=";
+      npmDepsHash = "sha256-F/vURwdEPwzZwlS4j0lGV8aN7VDGmdiV+WCy2vXN2Eo=";
       src =
         pkgs.fetchFromGitHub {
           owner = "vicinaehq";
           repo = "extensions";
           rev = "afb84fe4b5253777ff82db8e19e6cc0c9b7f811f";
-          sha256 = pkgs.lib.fakeSha256;
+          sha256 = "sha256-Non+frT3WG0TN60zCq63m8+d7yNmCCMaI363kZaDmPM=";
         }
         + "/extensions/bluetooth";
     })
