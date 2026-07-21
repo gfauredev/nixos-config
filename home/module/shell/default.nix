@@ -26,6 +26,7 @@
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
+      inhibit = writeScriptBin "inhib" (readFile ../launcher/vicinae/scripts/inhib.sh);
       present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
       smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
       smart-terminal = writeScriptBin "t" ''
@@ -44,7 +45,7 @@
       configure # Configure this flake config
       date-edit # Open text files, prepend current date to the first one
       extract # Extract any compressed file
-      # mtp-mount # Quickly mount or unmount Android device(s) mounted in ~/mtp
+      inhibit # Quickly inhibit sleep, idle, shutdown
       present-pdf # Open detached pdfpc to present a PDF slide
       smart-commit # Quickly commit or amend, lint message
       smart-terminal # Open a terminal quickly with first parameter always cd

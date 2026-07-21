@@ -3,6 +3,10 @@
 # @vicinae.title inhib
 # @vicinae.mode fullOutput
 # @vicinae.exec ["/bin/sh"]
+# @vicinae.argument1 { "type": "text", "placeholder": "1h" }
 
-notify-send "Trying to inhibit sleep for $1"
-(systemd-inhibit --why="inhib.sh, notably used by Vicinae launcher" sleep "$1" || notify-send "Failed to inhibit sleep") &
+(if systemd-inhibit --why="inhib.sh, notably used by Vicinae launcher" sleep "$1"; then
+  notify-send "Inhibiting sleep" "For $1"
+else
+  notify-send "Failed to inhibit sleep" "$(systemd-inhibit)"
+fi) &
