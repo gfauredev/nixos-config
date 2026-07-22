@@ -181,9 +181,8 @@ in
   xdg.dataFile = {
     "vicinae/scripts".source =
       config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts";
-    "vicinae/shortcuts/shortcuts.jsonc".text = builtins.toJSON shortcutsList;
-    "vicinae/shortcuts/shortcuts.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.sessionVariables.XDG_DATA_HOME}/vicinae/shortcuts/shortcuts.jsonc";
+    "vicinae/shortcuts/shortcuts.json".text = builtins.toJSON shortcutsList;
+    # "vicinae/shortcuts/shortcuts.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.sessionVariables.XDG_DATA_HOME}/vicinae/shortcuts/shortcuts.jsonc";
     "vicinae/snippets".source =
       config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/snippets";
   };
