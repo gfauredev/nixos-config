@@ -176,7 +176,13 @@
             command = "google-java-format";
             args = [ "-" ];
           };
-          sql-formatter.command = "sql-formatter";
+          sql-formatter = {
+            command = "sql-formatter";
+            args = [
+              "-l"
+              "postgresql"
+            ];
+          };
           typstyle = {
             command = "typstyle";
             args = [
@@ -357,6 +363,7 @@
           }
           {
             name = "sql";
+            language-servers = [ "sqls" ];
             formatter = sql-formatter;
             auto-format = true;
           }
@@ -435,6 +442,7 @@
           args = [ "server" ];
         };
         svls.command = "svls";
+        sqls.command = "sqls";
         tinymist.config = {
           lint.enabled = true;
           projectResolution = "lockDatabase"; # FIXME define project main file
