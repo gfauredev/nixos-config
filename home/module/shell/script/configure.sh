@@ -233,7 +233,14 @@ extract_last_commit_msg() {
   regular # Standard text
 }
 
-amend_all() {                          # Amend top-level and submodule flake repositories
+edit() {
+  emph
+  printf 'Start default text editor\n'
+  regular
+  nix develop --command "$EDITOR" .
+}
+
+amend_all() {                # Amend top-level and submodule flake repositories
   if protected_amend "$SUBFLAKE"; then # May amend the sub flake
     git -C $SUBFLAKE push              # Nix needs the sub flake pushed
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
@@ -377,37 +384,23 @@ regular              # Back to standard text
 
 fetch_recurse & # Fetch the latest configuration when running this script
 if $update_inputs; then
-  update_subflake_inputs
+  update_subflake_inputs & # Update Nix Flake inputs
 fi
 # Always edit and commit if commit message is not empty
 if [ -n "$commit_msg" ]; then
-  emph
-  printf 'Start default text editor\n'
-  regular
-  # FIXME Don’t load the environment properly, LSPs don’t reliably work
-  $EDITOR .                # Edit the configuration before commiting,
-  commit_all "$commit_msg" # then commit public and private flakes
-else                       # Defaults to try amending changes
+  edit                     # Edit the configuration before commiting,
+  commit_all "$commit_msg" # Commit public and private flakes with commit msg
+else                       # Try amending changes if no explicit commit message
   if [ $update_inputs = false ] && [ $push_repositories = false ]; then
-    wait # Wait for eventual async operation (pull, push…) to finish
-    emph
-    printf 'Start default text editor\n'
-    regular
-    direnv exec . $EDITOR . # Edit the configuration if not doing other tasks
+    edit # Edit the configuration if not doing other tasks
   fi
-  git -C $SUBFLAKE push # Nix needs it pushed
-  amend_all             # Amend or commit public and private flakes
+  amend_all             # Amend or commit public and private flakes FIXME
+  git -C $SUBFLAKE push # Nix needs the sub-flake pushed to build
 fi
 if $rebuild_system; then     # Rebuild system if explicitly set
   wait                       # Wait for eventual async operation to finish
   rebuild_system_cmd || exit # Don’t continue if the build failed
 fi
-# Previously, home/ rebuilded if
-# - It was changed for a new feature or a bugfix
-# - Flake inputs were updated FIXME
-# if [ $home_changed = true ] &&
-#   { [ "$commit_type" = "feat" ] || [ "$commit_type" = "fix" ]; } ||
-#   [ $update_inputs = true ]; then
 if $rebuild_home; then     # Only rebuild explicitly to encourage CI/CD builds
   wait                     # Wait for eventual async operation to finish
   rebuild_home_cmd || exit # Don’t continue if the build failed
