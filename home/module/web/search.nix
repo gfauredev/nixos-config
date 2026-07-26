@@ -15,6 +15,14 @@
     ];
     definedAliases = [ "alt" ];
   };
+  aliexpress = {
+    name = "AliExpress";
+    urls = [ { template = "https://fr.aliexpress.com/w/wholesale-{searchTerms}.html"; } ];
+    definedAliases = [
+      "al"
+      "ali"
+    ];
+  };
   amazon = {
     name = "Amazon";
     urls = [
