@@ -48,6 +48,7 @@
       options kvm ignore_msrs=1
     '';
     swraid.enable = lib.mkDefault false; # FIX for some issue with mdadm
+    zfs.forceImportRoot = false; # FIX data loss risk
   };
 
   console.keyMap = "fr-bepo";
