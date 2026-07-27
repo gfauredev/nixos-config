@@ -13,13 +13,13 @@
       password = "root"; # FIXME
       # hashedPasswordFile = null;
     };
-    users.nixos = {
-      # initialHashedPassword = hashedPassword;
-      # hashedPassword = null;
-      # initialPassword = password;
-      password = "nixos"; # FIXME
-      # hashedPasswordFile = null;
-    };
+    # users.nixos = {
+    # initialHashedPassword = hashedPassword;
+    # hashedPassword = null;
+    # initialPassword = password;
+    # password = "nixos"; # FIXME
+    # hashedPasswordFile = null;
+    # };
   };
 
   systemd = {
