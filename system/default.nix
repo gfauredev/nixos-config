@@ -53,6 +53,23 @@
 
   console.keyMap = "fr-bepo";
 
+  users = {
+    defaultUserShell = pkgs.dash; # Only allow dash shell, reduce attack surface
+    mutableUsers = false;
+    users = {
+      root = {
+        hashedPassword = null; # Disable root login
+        password = null; # Disable root login
+      };
+      nixos = lib.mkForce { }; # Remove it
+      # { hashedPassword = null; # Disable nixos login
+      #   password = null; # Disable nixos login
+      #   isSystemUser = true;
+      #   group = "nixos"; };
+    };
+    groups.nixos = lib.mkForce { };
+  };
+
   time = {
     timeZone = lib.mkDefault "Europe/Paris";
     hardwareClockInLocalTime = lib.mkDefault false; # True for compatibility with Window$

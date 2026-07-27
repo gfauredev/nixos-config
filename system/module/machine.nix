@@ -36,11 +36,6 @@
 
   security.apparmor.enable = lib.mkDefault true; # See https://search.nixos.org/options?channel=25.05&query=apparmor TODO configure
 
-  users = {
-    defaultUserShell = pkgs.dash; # Only allow dash shell, reduce attack surface
-    mutableUsers = lib.mkDefault true;
-  };
-
   services = {
     auto-cpufreq.enable = lib.mkDefault true; # Save battery, smarter than TLP
     tlp.enable = false; # Not with auto-cpufreq
