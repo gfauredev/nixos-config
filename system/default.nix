@@ -61,13 +61,14 @@
         hashedPassword = null; # Disable root login
         password = null; # Disable root login
       };
-      nixos = lib.mkForce { }; # Remove it
-      # { hashedPassword = null; # Disable nixos login
-      #   password = null; # Disable nixos login
-      #   isSystemUser = true;
-      #   group = "nixos"; };
+      nixos = {
+        hashedPassword = null; # FIXME Completely disable/remove this user if not useful
+        password = null; # Completely disable/remove this user if not useful
+        isSystemUser = true; # Completely disable/remove this user if not useful
+        group = "nixos"; # Completely disable/remove this user if not useful
+      };
     };
-    groups.nixos = lib.mkForce { };
+    groups.nixos = { }; # Completely disable/remove this user if not useful
   };
 
   time = {
