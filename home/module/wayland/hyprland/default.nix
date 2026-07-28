@@ -92,30 +92,35 @@ in
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + RETURN\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.cmd}\")")
+                { description = "Open terminal emulator"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + RETURN\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.term.alt.cmd}\")")
+                { description = "Open alternative terminal emulator"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + q\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.close()")
+                { description = "Close focused window"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + BackSpace\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.close()")
+                { description = "Close focused window"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + Delete\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.close()")
+                { description = "Close focused window"; }
               ];
             }
             {
@@ -413,6 +418,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + c\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.move({ x = -10, y = 0, relative = true })")
                 { repeating = true; }
+                { description = "Move floating window left"; }
               ];
             } # Move left
             {
@@ -420,6 +426,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + t\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 0, y = 10, relative = true })")
                 { repeating = true; }
+                { description = "Move floating window down"; }
               ];
             } # Move down
             {
@@ -427,6 +434,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + s\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 0, y = -10, relative = true })")
                 { repeating = true; }
+                { description = "Move floating window up"; }
               ];
             } # Move up
             {
@@ -434,6 +442,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + r\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 10, y = 0, relative = true })")
                 { repeating = true; }
+                { description = "Move floating window right"; }
               ];
             } # Move right
             {
@@ -441,6 +450,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + c\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -10, y = 0, relative = true })")
                 { repeating = true; }
+                { description = "Resize floating window left"; }
               ];
             } # Resize to the left
             {
@@ -448,6 +458,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + t\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = 10, relative = true })")
                 { repeating = true; }
+                { description = "Resize floating window down"; }
               ];
             } # Resize to the bottom
             {
@@ -455,6 +466,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + s\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 0, y = -10, relative = true })")
                 { repeating = true; }
+                { description = "Resize floating window up"; }
               ];
             } # Resize to the top
             {
@@ -462,6 +474,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + r\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = 10, y = 0, relative = true })")
                 { repeating = true; }
+                { description = "Resize floating window right"; }
               ];
             } # Resize to the right
             {
@@ -469,6 +482,7 @@ in
                 (lib.generators.mkLuaInline "\"XF86AudioMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
                 { locked = true; }
+                { description = "Mute default speaker"; }
               ];
             }
             {
@@ -476,6 +490,7 @@ in
                 (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
                 { locked = true; }
+                { description = "Mute default microphone"; }
               ];
             }
             {
@@ -483,6 +498,7 @@ in
                 (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
                 { locked = true; }
+                { description = "Mute default microphone"; }
               ];
             }
             {
@@ -490,6 +506,7 @@ in
                 (lib.generators.mkLuaInline "\"XF86AudioMicMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
                 { locked = true; }
+                { description = "Mute default microphone"; }
               ];
             }
             {
@@ -497,6 +514,7 @@ in
                 (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMicMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
                 { locked = true; }
+                { description = "Mute default speaker"; }
               ];
             }
             {
@@ -504,6 +522,7 @@ in
                 (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMicMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
                 { locked = true; }
+                { description = "Mute default speaker"; }
               ];
             }
             {
@@ -511,6 +530,7 @@ in
                 (lib.generators.mkLuaInline "\"XF86AudioPlay\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.toggle}\")")
                 { locked = true; }
+                { description = "Toggle media playing"; }
               ];
             }
             {
@@ -518,6 +538,7 @@ in
                 (lib.generators.mkLuaInline "\"XF86AudioPause\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.toggle}\")")
                 { locked = true; }
+                { description = "Toggle media playing"; }
               ];
             }
             {
@@ -525,6 +546,7 @@ in
                 (lib.generators.mkLuaInline "\"XF86AudioNext\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.next}\")")
                 { locked = true; }
+                { description = "Skip to next media"; }
               ];
             }
             {
@@ -532,10 +554,9 @@ in
                 (lib.generators.mkLuaInline "\"XF86AudioPrev\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.play.previous}\")")
                 { locked = true; }
+                { description = "Revert to previous media"; }
               ];
             }
-            # { _args = [ "XF86MonBrightnessUp" (exec_cmd brightness.RAISE)
-            # { repeating = true; locked = true; } ]; }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"XF86AudioRaiseVolume\"")
@@ -544,6 +565,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Increase strongly default speaker volume"; }
               ];
             }
             {
@@ -554,6 +576,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Increase default speaker volume"; }
               ];
             }
             {
@@ -564,6 +587,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Increase strongly default microphone volume"; }
               ];
             }
             {
@@ -574,6 +598,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Increase default microphone volume"; }
               ];
             }
             {
@@ -584,6 +609,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Reduce strongly default speaker volume"; }
               ];
             }
             {
@@ -594,6 +620,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Reduce default speaker volume"; }
               ];
             }
             {
@@ -604,6 +631,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Reduce strongly default microphone volume"; }
               ];
             }
             {
@@ -614,6 +642,7 @@ in
                   repeating = true;
                   locked = true;
                 }
+                { description = "Reduce default microphone volume"; }
               ];
             }
             {
@@ -621,6 +650,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + mouse:272\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.drag()")
                 { mouse = true; }
+                { description = "Drag window with mouse (left click)"; }
               ];
             }
             {
@@ -628,6 +658,7 @@ in
                 (lib.generators.mkLuaInline "\"SUPER + mouse:273\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.resize()")
                 { mouse = true; }
+                { description = "Resize window with mouse (right click)"; }
               ];
             }
           ]
