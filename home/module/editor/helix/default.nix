@@ -21,7 +21,7 @@
             timeout = 3000;
           };
         };
-        soft-wrap.enable = true;
+        # soft-wrap.enable = true;
         line-number = "relative";
         cursor-shape = {
           normal = "underline";
