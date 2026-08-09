@@ -26,7 +26,6 @@ let
     d = "rm --recursive --verbose"; # Remove file(s) (thrash them in Nushell)
     shred = "shred -vu";
     wx = "watchexec";
-    br = "broot";
     ## Quickly launch default text editor
     e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
     "." = "${config.home.sessionVariables.EDITOR} ."; # Open editor in work dir
@@ -98,6 +97,7 @@ in
     ts = "trash -v";
     rm = "echo 'Use ts to trash instead of removing'; rm -irv";
     mv = "mv -uv";
+    # br = "broot";
     # List
     sl = "ls --reverse";
     lsd = "ls -l -h --sort=time";
