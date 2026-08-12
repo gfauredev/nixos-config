@@ -7,13 +7,10 @@
       # "ca-derivations"
     ];
     trusted-substituters = [
+      "https://cache.nix-ci.com"
       "https://gfauredev.cachix.org"
     ];
-    substituters = [
-      "https://cache.nix-ci.com"
-      # "https://cache.nixos.org" # Always added
-      # "https://hydra.nixos.org"
-    ];
+    # substituters = [ # Default: https://cache.nixos.org ];
     trusted-public-keys = [
       "nix-ci:g3xV5BDTLtIBZr/A00IU1x0EtKKlb7YLgBN2SgYgM6A="
       "gfauredev.cachix.org-1:mGOZ5I0bDVatgwLhbuTasIiWpVjgCyMFjfIZEPjmQfM="
