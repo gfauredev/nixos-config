@@ -10,20 +10,19 @@
     description = "Main Personal Information Management app";
   };
 
-  config.home.packages = [
+  config.home.packages = with pkgs-unstable; [
     # anki # Best memorization tool
     # markdown-anki-decks
-    pkgs-unstable.xournalpp # Handwriting notetaking
-    # pkgs-unstable.rnote # Modern handwriten note taking app
-    # appflowy # Notion alternative
+    xournalpp # Handwriting notetaking
+    rnote # Modern handwriten note taking app
+    appflowy # Notion alternative TEST
+    logseq # Knowledge base TEST
     # affine # Knowledge base # No Android app
-    # logseq # Knowledge base
     # anytype # Knowledge base
     # siyuan # Knowledge management # No p2p sync
     # silverbullet # Knowledge management # No p2p sync
     # mindforger # Outliner note taking
     # emanote # Structured view text notes
-    # rnote # Note tool
     # memos # Atomic memo hub
   ];
 
