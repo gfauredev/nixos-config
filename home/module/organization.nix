@@ -15,7 +15,6 @@
     # markdown-anki-decks
     xournalpp # Handwriting notetaking
     rnote # Modern handwriten note taking app
-    logseq # Knowledge base TEST
     # affine # Knowledge base # No Android app
     # anytype # Knowledge base
     # siyuan # Knowledge management # No p2p sync
