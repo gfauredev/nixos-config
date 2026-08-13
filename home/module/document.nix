@@ -23,7 +23,7 @@
     # ocrmypdf # Add a layer of text on scanned PDFs
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
-    # pdfpc # PDF Presentator Console
+    pdfpc # PDF Presentator Console
     # Diagrams
     mermaid-cli # Markdown-like diagrams
     plantuml-c4 # UML diagrams from text with additions
