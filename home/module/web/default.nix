@@ -130,6 +130,7 @@
           #   private_browsing = false;
           # };
         };
+        ImportEnterpriseRoots = true;
         NoDefaultBookmarks = true;
         OfferToSaveLogins = false; # Use password manager extension instead
         OverrideFirstRunPage = "";
