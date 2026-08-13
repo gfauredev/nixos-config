@@ -98,6 +98,7 @@
   networking.useDHCP = lib.mkDefault true;
   services = {
     actual.enable = true; # Finances software, see https://search.nixos.org/options?channel=unstable&query=services.actual&show=services.actual.enable
+    caddy.enable = true; # Reverse proxy
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     udisks2.enable = true; # Mount USB without privileges
@@ -109,7 +110,14 @@
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;
-    # onlyoffice.enable = true;
+    caddy = {
+      virtualHosts."localhost" = {
+        extraConfig = ''
+          tls internal
+          reverse_proxy 127.0.0.1:3000
+        '';
+      };
+    };
     ananicy = {
       package = pkgs.ananicy-cpp;
       rulesProvider = pkgs.ananicy-rules-cachyos; # Highly optimized CachyOS rule set

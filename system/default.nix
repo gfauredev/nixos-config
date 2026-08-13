@@ -154,6 +154,8 @@
       nftables.enable = lib.mkDefault true; # TEST If don’t break things
       firewall = {
         allowedTCPPorts = [
+          80 # Self hosted HTTP app
+          443 # Self hosted HTTPS app
           # 22000 # Syncthing
           2049 # Vagrant
         ];
