@@ -111,7 +111,7 @@
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;
     caddy = {
-      virtualHosts."localhost" = {
+      virtualHosts."actual.localhost" = {
         extraConfig = ''
           tls internal
           reverse_proxy 127.0.0.1:3000
