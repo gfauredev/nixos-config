@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   ...
 }: # Personal Computer
 {
@@ -110,6 +111,7 @@
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;
+    actual.package = pkgs-unstable.actual-server;
     caddy = {
       virtualHosts."actual.localhost" = {
         extraConfig = ''
