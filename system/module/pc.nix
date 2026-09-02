@@ -225,5 +225,6 @@
     nsjail # Process isolation tool
     treecat # Dir structure <-> ASCII representation
     xwayland-satellite # Wayland container that can run X11 apps TEST relevance
+    nss # Security tools
   ];
 }
