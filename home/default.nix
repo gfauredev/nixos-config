@@ -234,6 +234,7 @@
       commitlint-rs # Be consistent in commit messages
       android-tools # ADB and Fastboot
       worktrunk # Git worktree management
+      # spacedrive # Modern file manager
       # pkgs-unstable.gitbutler # VCS TEST me
       # pijul # VCS TEST me
       # nix-update # Auto update flakes, FODs hashes…
