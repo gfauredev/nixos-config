@@ -258,6 +258,7 @@
     # Passwords & Secrets
     ++ [
       pkgs-unstable.proton-pass # Proton password manager
+      pkgs-unstable.proton-authenticator # Proton 2FA
       gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
       git-filter-repo # Quickly rewrite history
       # bitwarden-cli # Modern password manager, replaced by rbw
@@ -345,7 +346,8 @@
     ]
     # VPN
     ++ [
-      proton-vpn # Swiss VPN service (Python GUI)
+      pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
+      pkgs-unstable.proton-vpn-cli # Swiss VPN service (CLI)
       # amnezia-vpn # Anonymous VPN service
       # calyx-vpn # (bitmask client) Free VPN service
       # riseup-vpn # (bitmask client) Free VPN service

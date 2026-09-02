@@ -13,6 +13,7 @@
   config.home.packages = with pkgs-unstable; [
     # anki # Best memorization tool
     # markdown-anki-decks
+    protonmail-desktop
     xournalpp # Handwriting notetaking
     rnote # Modern handwriten note taking app
     # affine # Knowledge base # No Android app
