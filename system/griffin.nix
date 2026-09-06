@@ -47,12 +47,11 @@ in
     let
       execHomes = [ "/home/gf" ];
       execDirs = [
-        ".arduino15"
-        ".arduinoIDE"
         "dev"
-        # ".eclipse" ".swt" ".local/share/bottles"
+        # ".arduino15" ".arduinoIDE"
+        # ".eclipse" ".swt"
+        # ".local/share/bottles" ".local/share/umu"
         ".local/share/Steam"
-        ".local/share/umu"
       ];
       execBind = path: {
         depends = [ "/home" ];

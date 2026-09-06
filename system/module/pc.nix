@@ -98,7 +98,7 @@
   networking.firewall.enable = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
   services = {
-    actual.enable = true; # Finances software, see https://search.nixos.org/options?channel=unstable&query=services.actual&show=services.actual.enable
+    # actual.enable = true; # Finances software
     caddy.enable = true; # Reverse proxy
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
@@ -113,12 +113,12 @@
     ananicy.enable = true;
     actual.package = pkgs-unstable.actual-server;
     caddy = {
-      virtualHosts."actual.localhost" = {
-        extraConfig = ''
-          tls internal
-          reverse_proxy 127.0.0.1:3000
-        '';
-      };
+      # virtualHosts."actual.localhost" = {
+      #   extraConfig = ''
+      #     tls internal
+      #     reverse_proxy 127.0.0.1:3000
+      #   '';
+      # };
     };
     ananicy = {
       package = pkgs.ananicy-cpp;

@@ -11,6 +11,7 @@
   };
 
   config.home.packages = with pkgs-unstable; [
+    actual-client # Finance management
     # anki # Best memorization tool
     # markdown-anki-decks
     protonmail-desktop
