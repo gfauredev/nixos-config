@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
-IMPORTANT="$HOME/life $HOME/project $HOME/.graph"
-ARCHIVE="$HOME/archive/life $HOME/archive/project"
+IMPORTANT="$HOME/author $HOME/collect"
+ARCHIVE="$HOME/shelve"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 EXCLUDE_COMMON="$CONFIG/backup-exclude/common"
 EXCLUDE_IMG="$CONFIG/backup-exclude/img"

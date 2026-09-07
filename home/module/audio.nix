@@ -64,17 +64,8 @@
     # alsa-scarlett-gui
   ];
 
-  # home.file = with config.lib.file; { TODO
-  #   ".local/share/vital".source =
-  #     mkOutOfStoreSymlink "${config.user.home}/life/softwareTools+myData/music.large/vital/";
-  #   ".local/share/Vital".source =
-  #     mkOutOfStoreSymlink "${config.user.home}/life/softwareTools+myData/music.large/vital/";
-  #   ".local/share/vitalium".source =
-  #     mkOutOfStoreSymlink "${config.user.home}/life/softwareTools+myData/music.large/vital/";
-  #   ".local/share/Vitalium".source =
-  #     mkOutOfStoreSymlink "${config.user.home}/life/softwareTools+myData/music.large/vital/";
-  #   ".Surge XT".source =
-  #     mkOutOfStoreSymlink "${config.user.home}/life/softwareTools+myData/music.large/SurgeXT/";
+  # home.file = with config.lib.file; {
+  #   ".local/share/vital".source = mkOutOfStoreSymlink "${config.user.home}/…/vital/";
   # };
 
   xdg.desktopEntries.carla = {

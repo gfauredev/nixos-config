@@ -47,7 +47,8 @@ in
     let
       execHomes = [ "/home/gf" ];
       execDirs = [
-        "dev"
+        "author"
+        "dev" # TODO Move into Author, remove
         # ".arduino15" ".arduinoIDE"
         # ".eclipse" ".swt"
         # ".local/share/bottles" ".local/share/umu"

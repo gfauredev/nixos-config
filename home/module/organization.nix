@@ -73,10 +73,9 @@
     home-folders = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir --mode=700 --parents --verbose ~/author ~/collect ~/shelve
       mkdir --mode=700 --parents --verbose ~/image/camera ~/image/screenshot
-      bat ${config.location}/public/home/module/orga.md
+      ${pkgs.bat}/bin/bat ${config.location}/public/home/module/orga.md
     '';
   };
-
   # TODO Put some Syncthing config here publicly
 
   config.services.activitywatch.enable = true; # TEST me

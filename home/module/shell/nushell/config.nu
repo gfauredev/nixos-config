@@ -71,15 +71,15 @@ def --env mirror [
   print $"($wd_abs) (ansi red)not found(ansi reset) in any of ($mirrored_roots | append $mirror_root)"
 }
 
-def --env dev [...args: path] { # Quickly edit code related to project/life or dev env
-  if not ($args | is-empty) {
-    if not ($args.0 | path exists) { # An argument that’s not a file is certainly a stack 
-      nix flake init --template $"($env.HOME)/dev/dev-templates#($args.0)" ...($args | skip 1)
-      return
-    }
-  }
-  mirror "~/dev" [ "~/project" "~/life" ] ...$args
-}
+# def --env dev [...args: path] { # Quickly edit code related to project/life or dev env
+#   if not ($args | is-empty) {
+#     if not ($args.0 | path exists) { # An argument that’s not a file is certainly a stack 
+#       nix flake init --template $"($env.HOME)/dev/dev-templates#($args.0)" ...($args | skip 1)
+#       return
+#     }
+#   }
+#   mirror "~/dev" [ "~/project" "~/life" ] ...$args
+# }
 
 # Open in background with default app
 def x [file] {

@@ -75,8 +75,8 @@
         "autoIndexing": true,
         "excludedIndexingPaths": [],
         "indexingPaths": [
-          "/home/gf/project",
-          "/home/gf/life",
+          "/home/gf/author",
+          "/home/gf/collect",
           "/home/gf/image"
         ]
       }
