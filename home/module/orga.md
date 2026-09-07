@@ -1,3 +1,5 @@
+# Data Organization Conventions
+
 - **author**: Deliberately created or modified, potentially indirectly
   - Gathering: Reason of the creation, pursued goal that led to it
     - Non-authored can be referenced in a references register (e.g. `bib.md`)
@@ -11,6 +13,8 @@
 - **shelve**: Deliberately created or modified, won’t be modified/used anymore
   - Gathering: Reason of the creation, pursued goal that led to it
     - Non-authored can be referenced in a references register (e.g. `bib.md`)
+
+## Naming Conventions
 
 - Gathering names are concise, camelCase, preferrably only `[a-zA-Z0-9_-]`
   - Eventual _project_ or area of _responsibility_ name after a `+` (NO SPACES)

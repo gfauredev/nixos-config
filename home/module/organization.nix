@@ -72,7 +72,9 @@
     # lib.hm.dag.entryAfter ensures it runs after necessary setup steps
     home-folders = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir --mode=700 --parents --verbose ~/author ~/collect ~/shelve
+      echo "Existence of ~/author ~/collect ~/shelve ensured"
       mkdir --mode=700 --parents --verbose ~/image/camera ~/image/screenshot
+      echo "Existence of ~/image/camera ~/image/screenshot ensured"
       ${pkgs.bat}/bin/bat ${config.location}/public/home/module/orga.md
     '';
   };
