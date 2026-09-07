@@ -2,6 +2,7 @@
   pkgs,
   pkgs-unstable,
   lib,
+  config,
   ...
 }: # Email, Calendar, Task, Contact, Note, Organization
 {
@@ -70,36 +71,10 @@
   config.home.activation = {
     # lib.hm.dag.entryAfter ensures it runs after necessary setup steps
     home-folders = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      mkdir --mode=700 --parents --verbose ~/project ~/life
+      mkdir --mode=700 --parents --verbose ~/author ~/collect ~/shelve
       mkdir --mode=700 --parents --verbose ~/image/camera ~/image/screenshot
-      mkdir --mode=700 --parents --verbose ~/archive/project ~/archive/life
-
-      echo "Existence of Home folders (~/project, ~/life, …) ensured"
-      echo
-      echo "Subdirectories (mostly Projects and Life areas) naming convention :"
-      echo "- camelCase noun representing the thing(s) to improve or increase,"
-      echo "  or camelCase verb representing the action to do or get better at"
-      echo "  - Eventually, several related ones separated by + (NO SPACES)"
-      echo "- Eventual tag (or property) after the nouns, beginning with a ."
-      echo "  - Eventually, several ones separated by . (NO SPACES)"
-      echo "  - .git: It’s a Git repository, should not be synced otherwise"
-      echo "  - .large: Should not be synced with lower capacity devices"
-      echo "  - .local: Should not be synced at all, specific to this device"
-      echo "  - .byIssuer: Subdirectories are nouns representing data sources"
-      echo
-      echo "Subdirectories (Projects, Life areas, …) organization conventions :"
-      echo "- ~/life: Records of important areas needing continuous monitoring,"
-      echo "          or data that might be recurrently needed, throughout life"
-      echo "- ~/project: Data possibly required to progress towards an"
-      echo "             ultimate goal or a precise, defined milestone"
-      echo "- ~/archive: Definitively complete or discontinued projects,"
-      echo "             or expired or no longer useful documents"
-      echo "- If some data might go to several (sub)directories"
-      echo "  - Put it in the most specific (often the less frequently used)"
-      echo "  - Eventually symlink it to other relevant (sub)directories"
-      echo
+      bat ${config.location}/public/home/module/orga.md
     '';
-    # echo "- Graph: Linked and non-hierarchical data, typically managed through a dedicated app"
   };
 
   # TODO Put some Syncthing config here publicly
