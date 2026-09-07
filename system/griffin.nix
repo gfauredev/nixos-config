@@ -48,7 +48,6 @@ in
       execHomes = [ "/home/gf" ];
       execDirs = [
         "author"
-        "dev" # TODO Move into Author, remove
         # ".arduino15" ".arduinoIDE"
         # ".eclipse" ".swt"
         # ".local/share/bottles" ".local/share/umu"
