@@ -20,6 +20,6 @@
   - Eventual _project_ or area of _responsibility_ name after a `+` (NO SPACES)
   - Eventual alternate names, acronyms or abreviations after `+`s (NO SPACES)
 - For filesystems, eventual tag(s) before filetype, beginning with `.`s
-  - `.git`: It’s a Git repository, should not be synced otherwise
+  - `.synced`: Synced via its specific method (Git…), ignored by generic one
   - `.large`: Should not be synced with lower capacity devices
   - `.local`: Should not be synced at all, specific to this device
