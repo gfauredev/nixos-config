@@ -51,6 +51,9 @@
         "crush" # Functional Source License, Version 1.1, MIT Future License
         "gitbutler" # Functional Source License, Version 1.1, MIT Future License
         "steam" # Gaming
+        "steam-original" # Gaming
+        "steam-unwrapped" # Gaming
+        "steam-run" # Gaming
         "unrar" # Unfree (commercial) Redistributable
         # "albert" # Manuel Schneider Albert license v1.1
         # "bambu-studio" # To publish sliced models on Maker World
