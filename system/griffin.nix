@@ -18,6 +18,7 @@ in
     ./. # Systems defaults
     ./module/laptop.nix # Laptops specifics
     ./module/virtualization.nix # Virtualization tools
+    ./module/gaming.nix # Gaming
     (modulesPath + "/installer/scan/not-detected.nix") # Why ?
   ];
 
