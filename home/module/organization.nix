@@ -12,7 +12,13 @@
   };
 
   config.home.packages = with pkgs-unstable; [
-    actual-client # Finance management
+    (actual-client.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        wrapProgram $out/bin/actual --prefix LD_LIBRARY_PATH : "${
+          lib.makeLibraryPath [ pkgs-unstable.stdenv.cc.cc.lib ]
+        }"
+      '';
+    })) # Finance management
     # anki # Best memorization tool
     # markdown-anki-decks
     protonmail-desktop
