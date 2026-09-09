@@ -1,7 +1,6 @@
 #set text(lang: "fr")
 // LTeX: language=fr
 #import "@local/lib:1.0.0": coll, date, fig, fullpage, i18n, info, rc, res, sign
-#let serif = ("Libertinus Serif",) // "Libre Baskerville", "Vollkorn")
 #let sans = ("Aileron", "Inter") // "Nacelle")
 #let mono = ("JetBrainsMono Nerd Font",) // "FiraCode Nerd Font")
 // Glossary (initialization)
@@ -13,8 +12,7 @@
 // #import "@preview/physica:0.9.5" // Engineering
 #import "@preview/lovelace:0.3.0": * // Pseudocode rendering
 #let pseudo = pseudocode-list // Shortcut
-#set page(margin: margin, paper: paper)
+#set page(margin: 2cm, paper: "a4")
 #set par(justify: true)
-#set text(font: serif, lang: lang)
+#set text(font: "Libertinus Serif") // "Libre Baskerville", "Vollkorn")
 #show link: underline
-
