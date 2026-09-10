@@ -99,7 +99,7 @@
   networking.useDHCP = lib.mkDefault true;
   services = {
     # actual.enable = true; # Finances software
-    caddy.enable = true; # Reverse proxy
+    # caddy.enable = true; # Reverse proxy
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
     fwupd.enable = lib.mkDefault true; # Update firmwares
     udisks2.enable = true; # Mount USB without privileges
@@ -111,15 +111,16 @@
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;
+    languagetool.enable = true;
     actual.package = pkgs-unstable.actual-server;
-    caddy = {
-      # virtualHosts."actual.localhost" = {
-      #   extraConfig = ''
-      #     tls internal
-      #     reverse_proxy 127.0.0.1:3000
-      #   '';
-      # };
-    };
+    # caddy = {
+    #   virtualHosts."actual.localhost" = {
+    #     extraConfig = ''
+    #       tls internal
+    #       reverse_proxy 127.0.0.1:3000
+    #     '';
+    #   };
+    # };
     ananicy = {
       package = pkgs.ananicy-cpp;
       rulesProvider = pkgs.ananicy-rules-cachyos; # Highly optimized CachyOS rule set
