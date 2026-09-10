@@ -304,7 +304,7 @@
     ]
     # Spell Checking
     ++ [
-      ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
+      # ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
       ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
       # hunspell # Classic spell checker
       # hunspellDicts.fr-any # French

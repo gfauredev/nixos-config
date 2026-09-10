@@ -397,6 +397,7 @@
           config.ltex =
             # let ltexConfig = "${config.home.sessionVariables.XDG_CONFIG_HOME}/ltex"; in
             {
+              languageToolHttpServerUri = "http://localhost:8081";
               # Change language for the rest of the document with a comment like
               # LTeX: language=en-GB
               language = "fr";
