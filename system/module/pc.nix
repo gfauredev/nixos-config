@@ -90,6 +90,7 @@
     ];
   };
   users.groups = {
+    plugdev = { };
     mtp = { };
     uinput = { };
     wg = { };
