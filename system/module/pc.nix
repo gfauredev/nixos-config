@@ -133,10 +133,13 @@
       pulse.enable = true; # Support previous audio system
     };
     udev = {
-      # packages = [ pkgs.android-udev-rules ]; # Talk to Android devices
+      packages = [
+        pkgs.openocd
+        # pkgs.android-udev-rules # Talk to Android devices
+      ];
       # 1. Uinput device for virtual input (keyboards, mice…)
-      # 2. Used in Musnix for audio latency reduction
-      # 3. USB Blaster for FPGA programming
+      # 2-4. Used in Musnix for audio latency reduction
+      # 5. USB Blaster for FPGA programming
       extraRules = ''
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
 
@@ -154,11 +157,9 @@
         SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666", GROUP="wheel"
         SUBSYSTEM=="usb", ATTRS{idVendor}=="0955", ATTRS{idProduct}=="7321", MODE="0666", GROUP="wheel"
 
-        # Altera USB-Blaster rule
         SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
         SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
         SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
-        # Altera USB-Blaster II rule
         SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
         SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0666"
       '';
