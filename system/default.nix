@@ -150,6 +150,8 @@
         enable = lib.mkDefault true;
         dns = lib.mkForce "none"; # Don’t care about lying/spying DHCP provided DNS servers
         # insertNameservers = config.networking.nameservers;
+        ethernet.macAddress = "random";
+        wifi.macAddress = "stable-ssid";
       };
       nftables.enable = lib.mkDefault true; # TEST If don’t break things
       firewall = {
