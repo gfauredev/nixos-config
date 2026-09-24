@@ -99,6 +99,7 @@
   networking.firewall.enable = lib.mkDefault true;
   networking.useDHCP = lib.mkDefault true;
   services = {
+    flatpak.enable = true;
     actual.enable = true; # Finances software
     caddy.enable = true; # Reverse proxy
     fstrim.enable = lib.mkDefault true; # Trim SSDs (better lifespan)
