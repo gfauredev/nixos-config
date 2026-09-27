@@ -12,13 +12,13 @@
   };
 
   config.home.packages = with pkgs-unstable; [
-    (actual-client.overrideAttrs (old: {
-      postInstall = (old.postInstall or "") + ''
-        wrapProgram $out/bin/actual --prefix LD_LIBRARY_PATH : "${
-          lib.makeLibraryPath [ pkgs-unstable.stdenv.cc.cc.lib ]
-        }"
-      '';
-    })) # Finance management
+    # (actual-client.overrideAttrs (old: {
+    #   postInstall = (old.postInstall or "") + ''
+    #     wrapProgram $out/bin/actual --prefix LD_LIBRARY_PATH : "${
+    #       lib.makeLibraryPath [ pkgs-unstable.stdenv.cc.cc.lib ]
+    #     }"
+    #   '';
+    # })) # Finance management BUG cannot import self-signed certificate
     # anki # Best memorization tool
     # markdown-anki-decks
     protonmail-desktop

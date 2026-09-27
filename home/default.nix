@@ -250,7 +250,7 @@
       # guile # Scheme compiler and runtime
       # pre-pre-commit-hook-ensure-sops # Ensure sops is used for secrets
       # exercism # CLI for the programming exercises website
-      # localsend # Share files on local network
+      localsend # Share files on local network
       # nickel # Modern configuration Nickel, Nix improvement
       # kalker # Evaluate math expression
       # comma # Run any command from Nixpkgs
