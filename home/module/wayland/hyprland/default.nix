@@ -76,7 +76,7 @@ in
           repeat_rate = 50;
           follow_mouse = 1;
           sensitivity = 0;
-          touchpad.natural_scroll = false; # Going up goes up
+          # touchpad.natural_scroll = true;
           tablet.output = "current";
         };
         bind =
