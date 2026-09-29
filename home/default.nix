@@ -295,7 +295,9 @@
     ]
     # Machine learning & AI
     ++ [
-      # pkgs-unstable.crush # Any LLM Open Source Agent CLI
+      pkgs-unstable.goose-cli # TEST
+      pkgs-unstable.openspec # TEST
+      pkgs-unstable.open-interpreter # TEST
       # opencode # Any LLM Open Source Agent CLI
       # aichat # Any LLM Agent CLI
       # ollama # LLM server with GPU support
