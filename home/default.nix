@@ -34,13 +34,12 @@
     homeDirectory = config.user.home;
     sessionVariables = {
       XDG_DESKTOP_DIR = config.user.home;
-      XDG_DOCUMENTS_DIR = "${config.user.home}/data";
-      XDG_MUSIC_DIR = "${config.user.home}/data";
+      XDG_DOCUMENTS_DIR = "${config.user.home}/collect";
+      XDG_MUSIC_DIR = "${config.user.home}/collect";
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
       XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
-      CODE_DIR = "${config.user.home}/dev";
       CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
     };
     file = {
