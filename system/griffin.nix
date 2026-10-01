@@ -49,7 +49,8 @@ in
       execHomes = [ "/home/gf" ];
       execDirs = [
         "author"
-        # ".arduino15" ".arduinoIDE"
+        ".arduino15"
+        ".arduinoIDE"
         # ".eclipse" ".swt"
         # ".local/share/bottles" ".local/share/umu"
         ".local/share/Steam"
