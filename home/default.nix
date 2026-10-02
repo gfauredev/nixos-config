@@ -297,10 +297,10 @@
       pkgs-unstable.goose-cli # TEST
       pkgs-unstable.openspec # TEST
       pkgs-unstable.open-interpreter # TEST
-      # opencode # Any LLM Open Source Agent CLI
-      # aichat # Any LLM Agent CLI
-      # ollama # LLM server with GPU support
-      # vllm # Efficient LLM server with GPU support
+      pkgs-unstable.pi-coding-agent # TEST
+      pkgs-unstable.opencode # TEST Any LLM Open Source Agent CLI
+      pkgs-unstable.whale # TEST
+      pkgs-unstable.llama-cpp
       # whisper-cpp # STT
     ]
     # Spell Checking
