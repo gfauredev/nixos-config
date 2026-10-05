@@ -387,28 +387,28 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMedia\"")
+                (lib.generators.mkLuaInline "\"F20\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl\")")
                 { description = "Open bluetooth manager"; }
               ];
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86Tools\"")
+                (lib.generators.mkLuaInline "\"F22\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl\")")
                 { description = "Open bluetooth manager"; }
               ];
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMedia\"")
+                (lib.generators.mkLuaInline "\"F21\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl\")")
                 { description = "Open bluetooth manager"; }
               ];
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86Tools\"")
+                (lib.generators.mkLuaInline "\"F23\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl\")")
                 { description = "Open bluetooth manager"; }
               ];
@@ -538,7 +538,7 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86AudioRaiseVolume\"")
+                (lib.generators.mkLuaInline "\"F14\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.raise}\")")
                 {
                   repeating = true;
@@ -549,7 +549,7 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86AudioRaiseVolume\"")
+                (lib.generators.mkLuaInline "\"F16\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.RAISE}\")")
                 {
                   repeating = true;
@@ -560,7 +560,7 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + SHIFT + XF86AudioRaiseVolume\"")
+                (lib.generators.mkLuaInline "\"F18\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.raise}\")")
                 {
                   repeating = true;
@@ -582,7 +582,7 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86AudioLowerVolume\"")
+                (lib.generators.mkLuaInline "\"F15\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.lower}\")")
                 {
                   repeating = true;
@@ -593,7 +593,7 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86AudioLowerVolume\"")
+                (lib.generators.mkLuaInline "\"F17\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.LOWER}\")")
                 {
                   repeating = true;
@@ -604,7 +604,7 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + SHIFT + XF86AudioLowerVolume\"")
+                (lib.generators.mkLuaInline "\"F19\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.lower}\")")
                 {
                   repeating = true;

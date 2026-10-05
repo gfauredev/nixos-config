@@ -68,16 +68,24 @@
               };
               control = {
                 mute = "micmute";
+                volumeup = "f14";
+                volumedown = "f15";
+                media = "f21";
+                config = "f23";
               };
               shift = {
                 mute = "micmute";
+                volumeup = "f16";
+                volumedown = "f17";
+                media = "f20";
+                config = "f22";
               };
             };
-          # h = S-home # Selects to the line’s beginning
-          # j = pagedown # One screen down
-          # k = pageup # One screen up
-          # l = S-end  # Selects to the line’s end
           extraConfig = ''
+            [control+shift]
+            volumeup=f18
+            volumedown=f19
+
             [helixmode+shift]
             q=S-home
             h=S-left
