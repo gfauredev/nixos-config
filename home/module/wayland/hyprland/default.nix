@@ -486,6 +486,7 @@ in
               ];
             }
             {
+              # FIXME
               _args = [
                 (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
@@ -494,6 +495,7 @@ in
               ];
             }
             {
+              # FIXME
               _args = [
                 (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")

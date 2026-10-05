@@ -472,7 +472,7 @@
     };
     direnv.nix-direnv.enable = true;
     password-store.settings = {
-      PASSWORD_STORE_DIR = "$XDG_DATA_HOME/password-store";
+      PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_DIR}/password-store";
     };
   };
 
