@@ -66,6 +66,12 @@
               "meta+shift" = {
                 "g" = "command(${pkgs.systemd}/bin/systemctl suspend)";
               };
+              control = {
+                mute = "micmute";
+              };
+              shift = {
+                mute = "micmute";
+              };
             };
           # h = S-home # Selects to the line’s beginning
           # j = pagedown # One screen down

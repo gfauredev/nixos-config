@@ -486,45 +486,11 @@ in
               ];
             }
             {
-              # FIXME
-              _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMute\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
-                { locked = true; }
-                { description = "Mute default microphone"; }
-              ];
-            }
-            {
-              # FIXME
-              _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMute\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
-                { locked = true; }
-                { description = "Mute default microphone"; }
-              ];
-            }
-            {
               _args = [
                 (lib.generators.mkLuaInline "\"XF86AudioMicMute\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.mic.toggle}\")")
                 { locked = true; }
                 { description = "Mute default microphone"; }
-              ];
-            }
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SHIFT + XF86AudioMicMute\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
-                { locked = true; }
-                { description = "Mute default speaker"; }
-              ];
-            }
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"CONTROL + XF86AudioMicMute\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${audio.speaker.toggle}\")")
-                { locked = true; }
-                { description = "Mute default speaker"; }
               ];
             }
             {
