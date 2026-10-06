@@ -109,7 +109,7 @@
     gnome.gnome-keyring.enable = true; # Manage secrets for apps
     pipewire.enable = true; # Enable modern audio system PipeWire
     geoclue2.enable = true; # Location provider
-    protonmail-bridge.enable = true; # Use Proton Mail inside client
+    protonmail-bridge.enable = false; # Use Proton Mail client directly
     hardware.bolt.enable = lib.mkDefault false; # Thunderbolt devices manager
     gvfs.enable = lib.mkDefault true; # Samba client
     ananicy.enable = true;

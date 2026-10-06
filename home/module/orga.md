@@ -8,6 +8,7 @@
   - Gathering: Origin, entity considered author/creator or containing it, entity
     type or group, or if unknown, channel or entity from which it was obtained
     - Sub-gathering: Eventual second layer of more precise origin, if needed
+    - If origin would end with something like provider or editor, ignore it
   - **collect** (sub)gatherings should be synced between browser bookmarks,
     filesystem directories, email (or messaging app) directories…
 - **shelve**: Deliberately created or modified, won’t be modified/used anymore
