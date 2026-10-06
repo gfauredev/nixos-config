@@ -7,7 +7,7 @@
 }: # Email, Calendar, Task, Contact, Note, Organization
 {
   options.organization.pim = lib.mkOption {
-    default = "thunderbird";
+    default = "proton-mail";
     description = "Main Personal Information Management app";
   };
 
