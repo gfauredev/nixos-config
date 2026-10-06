@@ -20,7 +20,6 @@
     #   '';
     # })) # Finance management BUG cannot import self-signed certificate
     # anki # Best memorization tool
-    # calcurse # TEST Me
     protonmail-desktop
     xournalpp # Handwriting notetaking
     rnote # Modern handwriten note taking app
@@ -61,6 +60,6 @@
   };
   # TODO Put some Syncthing config here publicly
 
-  config.services.activitywatch.enable = true; # TEST me
-  # config.services.conky.enable = true; # FIXME Display as wallpaper
+  config.services.activitywatch.enable = false; # To configure
+  config.services.etesync-dav.enable = false; # E2E PIM sync
 }
