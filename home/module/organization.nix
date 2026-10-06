@@ -20,7 +20,7 @@
     #   '';
     # })) # Finance management BUG cannot import self-signed certificate
     # anki # Best memorization tool
-    # markdown-anki-decks
+    # calcurse # TEST Me
     protonmail-desktop
     xournalpp # Handwriting notetaking
     rnote # Modern handwriten note taking app
@@ -36,40 +36,15 @@
   config.programs = {
     thunderbird.enable = true;
     anki.enable = true; # Best memorization
-    himalaya.enable = true;
-    khal.enable = false; # Seems to need an explicit config file
-    khard.enable = false; # too
-    # anki = {
-    #   addons = with pkgs.ankiAddons; [ anki-connect ];
-    #   answerKeys = [
-    #     {
-    #       ease = 1;
-    #       key = "left";
-    #     }
-    #     {
-    #       ease = 2;
-    #       key = "up";
-    #     }
-    #     {
-    #       ease = 3;
-    #       key = "right";
-    #     }
-    #     {
-    #       ease = 4;
-    #       key = "down";
-    #     }
-    #   ];
-    #   spacebarRatesCard = true;
-    #   language = "fr_FR"; https://nix-community.github.io/home-manager/options.xhtml#opt-programs.anki.addons
-    # };
-    thunderbird.profiles.default = {
-      isDefault = true;
-      # search.engines = config.programs.firefox.profiles.default.search.engines;
-      # TODO LanguageTool extension; en-GB, fr-FR, en-US languages packs (in this order)
-    };
+    todoman.enable = true; # TODO Config
+    himalaya.enable = true; # TODO Config
+    khal.enable = false; # TODO Seems to need an explicit config file
+    khard.enable = false; # TODO Config
+    pimsync.enable = true; # TODO Config
+    thunderbird.profiles.default.isDefault = true;
     thunderbird.package = pkgs.thunderbird-bin;
     khal.settings.default = {
-      default_calendar = "perso";
+      default_calendar = "perso-important";
       timedelta = "7d";
     };
   };
