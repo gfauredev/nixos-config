@@ -36,7 +36,7 @@
     thunderbird.enable = true;
     anki.enable = true; # Best memorization
     todoman.enable = true; # TODO Config
-    himalaya.enable = true; # TODO Config
+    himalaya.enable = true;
     khal.enable = false; # TODO Seems to need an explicit config file
     khard.enable = false; # TODO Config
     pimsync.enable = true; # TODO Config
@@ -46,6 +46,7 @@
       default_calendar = "perso-important";
       timedelta = "7d";
     };
+    himalaya.settings = { }; # FIX HM Complaints
   };
 
   config.home.activation = {
