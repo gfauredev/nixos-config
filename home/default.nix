@@ -472,9 +472,7 @@
       email = config.user.email;
     };
     direnv.nix-direnv.enable = true;
-    password-store.settings = {
-      PASSWORD_STORE_DIR = "${config.home.sessionVariables.XDG_DATA_DIR}/password-store";
-    };
+    password-store.settings.PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
   };
 
   gtk = {
