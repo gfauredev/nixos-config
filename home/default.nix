@@ -220,6 +220,7 @@
       imagemagick # CLI image edition
       cheese # Webcam capture
       sherlock # Search people on social media accounts
+      maigret # Search people on social media accounts
       pre-commit # Git hook manager
       pkgs-unstable.unrar # Compression / Decompression (RAR)
       fuc # Perf cpz rmz
