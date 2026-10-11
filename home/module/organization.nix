@@ -20,7 +20,7 @@
     #   '';
     # })) # Finance management BUG cannot import self-signed certificate
     # anki # Best memorization tool
-    protonmail-desktop
+    # protonmail-desktop # Electron app worse than web app, no extensions
     xournalpp # Handwriting notetaking
     rnote # Modern handwriten note taking app
     # affine # Knowledge base # No Android app
