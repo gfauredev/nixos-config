@@ -67,21 +67,27 @@
     himalaya.settings = { }; # FIX HM Complaints
   };
 
-  config.xdg.desktopEntries.proton-framagenda = {
-    name = "Proton Mail & Framagenda";
-    genericName = "Mail & Calendar";
-    comment = "Open Proton Mail and Framagenda in a dedicated Firefox window";
-    icon = "firefox";
-    terminal = false;
-    categories = [
-      "Network"
-      "Email"
-      "Calendar"
-    ];
-    exec = ''
-      ${pkgs.bash}/bin/bash -c '${pkgs.firefox}/bin/firefox --new-window "https://mail.proton.me" && ${pkgs.firefox}/bin/firefox -new-tab "https://framagenda.org"'
-    '';
-  };
+  config.xdg.desktopEntries.proton-framagenda =
+    let
+      launchWebApps = pkgs.writeShellScript "launch-proton-framagenda" ''
+        ${pkgs.firefox}/bin/firefox --new-window "https://mail.proton.me"
+        ${pkgs.firefox}/bin/firefox -new-tab "https://framagenda.org"
+      '';
+    in
+    {
+      name = "Proton Mail & Framagenda";
+      genericName = "Mail & Calendar";
+      comment = "Open Proton Mail and Framagenda in a dedicated Firefox window";
+      icon = "firefox";
+      terminal = false;
+      categories = [
+        "Network"
+        "Email"
+        "Office"
+        "Calendar"
+      ];
+      exec = "${launchWebApps}";
+    };
 
   config.home.activation = {
     # lib.hm.dag.entryAfter ensures it runs after necessary setup steps
