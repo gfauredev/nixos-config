@@ -69,7 +69,7 @@ rec {
   };
   p = {
     name = "pim"; # Personal information management
-    empty = "${config.organization.email.cmd}; ${config.organization.calendar.cmd}"; # Exec if focused + empty
+    empty = config.organization.email.cmd; # Exec if focused + empty
     icon = "";
   };
   XF86Mail = p;

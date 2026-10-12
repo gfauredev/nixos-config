@@ -9,21 +9,21 @@
   options.organization = {
     email = {
       entry = lib.mkOption {
-        default = "FFPWA-0000000000PR0T0NMA11000000";
+        default = "proton-framagenda";
         description = "Email (progressive web) app";
       };
       cmd = lib.mkOption {
-        default = "firefoxpwa site launch 0000000000PR0T0NMA11000000";
+        default = config.xdg.desktopEntries.proton-framagenda.exec;
         description = "Email (progressive web) app";
       };
     };
     calendar = {
       entry = lib.mkOption {
-        default = "FFPWA-0000000000FRAMAGENDA000000";
+        default = "proton-framagenda";
         description = "Calendar (progressive web) app";
       };
       cmd = lib.mkOption {
-        default = "firefoxpwa site launch 0000000000FRAMAGENDA000000";
+        default = config.xdg.desktopEntries.proton-framagenda.exec;
         description = "Calendar (progressive web) app";
       };
     };
@@ -65,6 +65,20 @@
       timedelta = "7d";
     };
     himalaya.settings = { }; # FIX HM Complaints
+  };
+
+  xdg.desktopEntries.proton-framagenda = {
+    name = "Proton Mail & Framagenda";
+    genericName = "Mail & Calendar";
+    comment = "Open Proton Mail and Framagenda in a dedicated Firefox window";
+    icon = "firefox";
+    terminal = false;
+    categories = [
+      "Network"
+      "Email"
+      "Calendar"
+    ];
+    exec = "${pkgs.firefox}/bin/firefox --new-window \"https://mail.proton.me\" \"https://framagenda.org\"";
   };
 
   config.home.activation = {

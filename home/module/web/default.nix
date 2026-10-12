@@ -218,18 +218,9 @@
     };
     firefoxpwa = {
       package = pkgs-unstable.firefoxpwa; # Gecko web browser PWA support
-      profiles."01M4QHM8WQW6C4KWDN83WMP28Z" = {
+      profiles."00000000000000000000000001" = {
         name = "default";
         sites = {
-          "0000000000MDNWEBD0CS000000" = {
-            name = "MDN Web Docs";
-            url = "https://developer.mozilla.org";
-            manifestUrl = "https://developer.mozilla.org/manifest.json";
-            desktopEntry.icon = pkgs.fetchurl {
-              url = "https://developer.mozilla.org/favicon-192x192.png";
-              sha256 = "0p8zgf2ba48l2pq1gjcffwzmd9kfmj9qc0v7zpwf2qd54fndifxr";
-            };
-          };
           "0000000000PR0T0NMA11000000" = {
             name = "Proton Mail";
             url = "https://mail.proton.me";
