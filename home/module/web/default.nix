@@ -38,9 +38,8 @@
 
   config.programs = {
     firefox.enable = true; # Gecko web browser
-    firefoxpwa.enable = true; # Gecko web browser PWA support
     chromium.enable = true; # Blink web browser
-    # chromium.package = pkgs.brave; # Better privacy and security than Chromium
+    firefoxpwa.enable = false; # Gecko web browser PWA support
     chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
       package = pkgs-unstable.firefox.override {
