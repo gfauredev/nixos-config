@@ -43,8 +43,9 @@
     # chromium.package = pkgs.brave; # Better privacy and security than Chromium
     chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
-      package = pkgs-unstable.firefox;
-      nativeMessagingHosts.packages = [ pkgs-unstable.firefoxpwa ];
+      package = pkgs-unstable.firefox.override {
+        nativeMessagingHosts.packages = [ pkgs-unstable.firefoxpwa ];
+      };
       configPath = "${config.xdg.configHome}/mozilla/firefox"; # Hardcoded in FF
       languagePacks = [
         "en-GB"
