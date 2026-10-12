@@ -44,7 +44,7 @@
     chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
       package = pkgs-unstable.firefox.override {
-        nativeMessagingHosts.packages = [ pkgs-unstable.firefoxpwa ];
+        nativeMessagingHosts = [ pkgs-unstable.firefoxpwa ];
       };
       configPath = "${config.xdg.configHome}/mozilla/firefox"; # Hardcoded in FF
       languagePacks = [
