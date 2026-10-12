@@ -191,6 +191,7 @@
               shellcheck # Shell script analysis
               shfmt # Shell script formatter
               taplo # TOML LSP
+              ulid # Universally Unique Lexicographically Sortable Identifier generator
               vscode-langservers-extracted # HTML/CSS/JS(ON)
               wev # Evaluate inputs sent to wayland to debug
               yaml-language-server # YAML LSP

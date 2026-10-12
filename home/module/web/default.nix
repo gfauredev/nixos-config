@@ -44,6 +44,7 @@
     chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
       package = pkgs-unstable.firefox;
+      nativeMessagingHosts.packages = [ pkgs-unstable.firefoxpwa ];
       configPath = "${config.xdg.configHome}/mozilla/firefox"; # Hardcoded in FF
       languagePacks = [
         "en-GB"
@@ -72,6 +73,11 @@
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "allow";
+            private_browsing = true;
+          };
+          "firefoxpwa@filips.si" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefoxpwa/latest.xpi"; # FIXME
+            installation_mode = "force_installed";
             private_browsing = true;
           };
           "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
@@ -209,7 +215,49 @@
         };
       };
     };
-    firefoxpwa.package = pkgs-unstable.firefoxpwa; # Gecko web browser PWA support
+    firefoxpwa = {
+      package = pkgs-unstable.firefoxpwa; # Gecko web browser PWA support
+      profiles."01M4QHM8WQW6C4KWDN83WMP28Z" = {
+        name = "default";
+        sites = {
+          "01M4QHP62X5MXXWEKYT2PPJGCD" = {
+            name = "MDN Web Docs";
+            url = "https://developer.mozilla.org/";
+            manifestUrl = "https://developer.mozilla.org/manifest.f42880861b394dd4dc9b.json";
+            desktopEntry.icon = pkgs.fetchurl {
+              url = "https://developer.mozilla.org/favicon-192x192.png";
+              sha256 = "0p8zgf2ba48l2pq1gjcffwzmd9kfmj9qc0v7zpwf2qd54fndifxr";
+            };
+          };
+          "01M4QJ0V92SFM4X262C675WSTA" = {
+            name = "Proton Mail";
+            url = "https://mail.proton.me";
+            manifestUrl = null;
+            desktopEntry = {
+              enable = true;
+              categories = [ "Email" ];
+              icon = pkgs.fetchurl {
+                url = "https://mail.proton.me/assets/favicon.ico";
+                sha256 = "1dv73irmxzhmhk8x9b7xq82y866csa5zpzapn2ahmdjg4qcrg2m8";
+              };
+            };
+          };
+          "01M4QJ8D5RXXQDCBP0QACJ6ZG0" = {
+            name = "Framagenda";
+            url = "https://framagenda.org";
+            manifestUrl = null;
+            desktopEntry = {
+              enable = true;
+              categories = [ "Calendar" ];
+              icon = pkgs.fetchurl {
+                url = "https://framagenda.org/apps/theming/favicon/calendar?v=ce284119";
+                sha256 = "1n4pn2wzhrg2gg9mj20mg6sws2kyzks4gbq8v5k2a8y6dhh1jnsf";
+              };
+            };
+          };
+        };
+      };
+    };
 
   };
   # config.home.file."${config.programs.firefox.configPath}/${config.user.name}/chrome/userChrome.css".source =
