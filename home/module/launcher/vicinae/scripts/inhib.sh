@@ -3,25 +3,40 @@
 # @vicinae.title inhib
 # @vicinae.mode fullOutput
 # @vicinae.exec ["/bin/sh"]
-# @vicinae.argument1 { "type": "text", "placeholder": "30m", "optional": true }
+# @vicinae.argument1 { "type": "text", "placeholder": "30m (optional)", "optional": true }
 
-DURATION="${1:-30m}"
+DEFAULT_DURATION="30m"
+KILLED_ANY=0
 
-(
-  # Check if sleep is already being inhibited across the system
-  # Matches any active systemd-inhibit line containing the 'sleep' operation
-  EXISTING_PIDS=$(systemd-inhibit --list | awk -F '|' '$4 ~ /sleep/ { gsub(/[[:space:]]/, "", $3); if ($3 ~ /^[0-9]+$/) print $3 }')
+# Kill any existing sleep inhibitors
+PIDS="$(pgrep -f "systemd-inhibit.*sleep" 2>/dev/null)"
+if [ -n "$PIDS" ]; then
+  kill $PIDS 2>/dev/null
+  KILLED_ANY=1
+  notify-send -u low "Inhibition Cancelled" "Terminated active sleep inhibitor(s)."
+fi
 
-  if [ -z "$1" ] && [ -n "$EXISTING_PIDS" ]; then
-    for pid in $EXISTING_PIDS; do
-      kill "$pid" 2>/dev/null
-    done
-    notify-send "Sleep inhibition stopped" "Terminated active sleep inhibitor process(es)."
+# - If an argument: inhibit for the provided duration
+# - If no argument and no prior inhibitor: inhibit for 30 minutes
+# - If no argument and prior inhibitors (killed): stop inhibition
+DURATION="$1"
+if [ -z "$DURATION" ]; then
+  if [ "$KILLED_ANY" -eq 1 ]; then
     exit 0
   fi
+  DURATION="$DEFAULT_DURATION"
+fi
 
-  notify-send "Inhibiting sleep" "For $DURATION"
-  if ! systemd-inhibit --why="inhib.sh, notably used by Vicinae launcher" sleep "$DURATION"; then
-    notify-send "Failed to inhibit sleep" "$(systemd-inhibit --list)"
+# Spawn inhibitor in background
+(
+  notify-send "Inhibiting Sleep" "Sleep disabled for ${DURATION}."
+
+  if ! systemd-inhibit \
+    --what="sleep:idle" \
+    --who="inhib.sh" \
+    --why="Inhibit sleep requested via Vicinae launcher" \
+    --mode="block" \
+    sleep "$DURATION"; then
+    notify-send -u critical "Failed to Inhibit Sleep" "Execution failed. Check system permissions."
   fi
 ) &
