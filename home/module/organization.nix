@@ -6,9 +6,27 @@
   ...
 }: # Email, Calendar, Task, Contact, Note, Organization
 {
-  options.organization.pim = lib.mkOption {
-    default = "proton-mail";
-    description = "Main Personal Information Management app";
+  options.organization = {
+    email = {
+      entry = lib.mkOption {
+        default = "FFPWA-0000000000PR0T0NMA1L000000";
+        description = "Email (progressive web) app";
+      };
+      cmd = lib.mkOption {
+        default = "firefoxpwa site launch 0000000000PR0T0NMA1L000000";
+        description = "Email (progressive web) app";
+      };
+    };
+    calendar = {
+      entry = lib.mkOption {
+        default = "FFPWA-0000000000FRAMAGENDA000000";
+        description = "Calendar (progressive web) app";
+      };
+      cmd = lib.mkOption {
+        default = "firefoxpwa site launch 0000000000FRAMAGENDA000000";
+        description = "Calendar (progressive web) app";
+      };
+    };
   };
 
   config.home.packages = with pkgs-unstable; [

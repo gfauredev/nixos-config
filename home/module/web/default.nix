@@ -17,7 +17,7 @@
         default = "firefox"; # TODO Consider full path
         description = "Main web browser command";
       };
-      desktop = mkOption {
+      entry = mkOption {
         type = str;
         default = "firefox";
         description = "Main web browser desktop entry (without .desktop)";
@@ -28,7 +28,7 @@
           default = "chromium";
           description = "Alternative web browser command";
         };
-        desktop = mkOption {
+        entry = mkOption {
           type = str;
           default = "chromium";
           description = "Alternative web browser desktop entry (without .desktop)";
@@ -221,16 +221,16 @@
       profiles."01M4QHM8WQW6C4KWDN83WMP28Z" = {
         name = "default";
         sites = {
-          "01M4QHP62X5MXXWEKYT2PPJGCD" = {
+          "0000000000MDNWEBD0CS000000" = {
             name = "MDN Web Docs";
-            url = "https://developer.mozilla.org/";
+            url = "https://developer.mozilla.org";
             manifestUrl = "https://developer.mozilla.org/manifest.json";
             desktopEntry.icon = pkgs.fetchurl {
               url = "https://developer.mozilla.org/favicon-192x192.png";
               sha256 = "0p8zgf2ba48l2pq1gjcffwzmd9kfmj9qc0v7zpwf2qd54fndifxr";
             };
           };
-          "01M4QJ0V92SFM4X262C675WSTA" = {
+          "0000000000PR0T0NMA1L000000" = {
             name = "Proton Mail";
             url = "https://mail.proton.me";
             manifestUrl = "https://mail.proton.me/assets/manifest.webmanifest";
@@ -243,7 +243,7 @@
               };
             };
           };
-          "01M4QJ8D5RXXQDCBP0QACJ6ZG0" = {
+          "0000000000FRAMAGENDA000000" = {
             name = "Framagenda";
             url = "https://framagenda.org";
             manifestUrl = "https://framagenda.org/apps/theming/manifest/calendar?v=ce284119";

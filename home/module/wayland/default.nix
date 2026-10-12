@@ -25,13 +25,14 @@
 
   config = {
     home.packages = with pkgs; [
+      # gtk4 # Graphic’s toolkit, gtk-launch desktop entry
+      grim # Take screenshots
+      hyprpicker # Better color picker
+      libnotify # Notifications management
+      slurp # Select a screen zone with mouse
+      wayland-utils # wayland info
       wl-clipboard # Copy from CLI
       wl-mirror # Mirror wayland output
-      grim # Take screenshots
-      slurp # Select a screen zone with mouse
-      libnotify # Notifications management
-      hyprpicker # Better color picker
-      wayland-utils # wayland info
     ];
 
     fonts.fontconfig = {

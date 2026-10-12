@@ -60,9 +60,6 @@
         image = "qimgv";
         audio = "mpv";
         video = "mpv";
-        web = config.browser.desktop;
-        pdf = web; # "org.pwmt.zathura";
-        pim = config.organization.pim;
       in
       {
         # Text & Code
@@ -88,7 +85,7 @@
         "application/vnd.ms-powerpoint" = "onlyoffice-desktopeditors.desktop";
         "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
           "onlyoffice-desktopeditors.desktop";
-        "application/pdf" = "${pdf}.desktop";
+        "application/pdf" = "${config.browser.entry}.desktop";
         # Image
         "image/avif" = "${image}.desktop";
         "image/webp" = "${image}.desktop";
@@ -108,22 +105,22 @@
         "video/mp4" = "${video}.desktop";
         "video/avi" = "${video}.desktop";
         # Web
-        "x-scheme-handler/https" = "${web}.desktop";
-        "x-scheme-handler/http" = "${web}.desktop";
+        "x-scheme-handler/https" = "${config.browser.entry}.desktop";
+        "x-scheme-handler/http" = "${config.browser.entry}.desktop";
         # Email & Calendar
-        "x-scheme-handler/net.thunderbird" = "${pim}.desktop";
-        "x-scheme-handler/mailto" = "${pim}.desktop";
-        "x-scheme-handler/webcal" = "${pim}.desktop";
-        "x-scheme-handler/webcals" = "${pim}.desktop";
-        "x-scheme-handler/mid" = "${pim}.desktop";
-        "x-scheme-handler/news" = "${pim}.desktop";
-        "x-scheme-handler/snews" = "${pim}.desktop";
-        "x-scheme-handler/nntp" = "${pim}.desktop";
-        "x-scheme-handler/feed" = "${pim}.desktop";
-        "application/rss+xml" = "${pim}.desktop";
-        "application/x-extension-rss" = "${pim}.desktop";
-        "application/x-extension-ics" = "${pim}.desktop";
-        "text/calender" = "${pim}.desktop";
+        "x-scheme-handler/net.thunderbird" = "thunderbird.desktop";
+        "x-scheme-handler/mailto" = "${config.organization.email.entry}.desktop";
+        "x-scheme-handler/webcal" = "${config.organization.calendar.entry}.desktop";
+        "x-scheme-handler/webcals" = "${config.organization.calendar.entry}.desktop";
+        "application/x-extension-ics" = "${config.organization.calendar.entry}.desktop";
+        "text/calendar" = "${config.organization.calendar.entry}.desktop";
+        # "x-scheme-handler/mid" = "?.desktop";
+        # "x-scheme-handler/news" = "?.desktop";
+        # "x-scheme-handler/snews" = "?.desktop";
+        # "x-scheme-handler/nntp" = "?.desktop";
+        # "x-scheme-handler/feed" = "?.desktop";
+        # "application/rss+xml" = "?.desktop";
+        # "application/x-extension-rss" = "?.desktop";
         # App Specific
         "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
         "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
