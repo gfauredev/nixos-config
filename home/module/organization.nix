@@ -67,7 +67,7 @@
     himalaya.settings = { }; # FIX HM Complaints
   };
 
-  xdg.desktopEntries.proton-framagenda = {
+  config.xdg.desktopEntries.proton-framagenda = {
     name = "Proton Mail & Framagenda";
     genericName = "Mail & Calendar";
     comment = "Open Proton Mail and Framagenda in a dedicated Firefox window";
