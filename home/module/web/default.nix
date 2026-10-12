@@ -77,7 +77,7 @@
             private_browsing = true;
           };
           "firefoxpwa@filips.si" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefoxpwa/latest.xpi"; # FIXME
+            # install_url = "https://addons.mozilla.org/firefox/downloads/latest/TODO/latest.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
           };
@@ -230,7 +230,7 @@
               sha256 = "0p8zgf2ba48l2pq1gjcffwzmd9kfmj9qc0v7zpwf2qd54fndifxr";
             };
           };
-          "0000000000PR0T0NMA1L000000" = {
+          "0000000000PR0T0NMA11000000" = {
             name = "Proton Mail";
             url = "https://mail.proton.me";
             manifestUrl = "https://mail.proton.me/assets/manifest.webmanifest";

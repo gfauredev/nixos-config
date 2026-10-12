@@ -9,11 +9,11 @@
   options.organization = {
     email = {
       entry = lib.mkOption {
-        default = "FFPWA-0000000000PR0T0NMA1L000000";
+        default = "FFPWA-0000000000PR0T0NMA11000000";
         description = "Email (progressive web) app";
       };
       cmd = lib.mkOption {
-        default = "firefoxpwa site launch 0000000000PR0T0NMA1L000000";
+        default = "firefoxpwa site launch 0000000000PR0T0NMA11000000";
         description = "Email (progressive web) app";
       };
     };
