@@ -12,9 +12,6 @@ let
     limit = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit resources
     restrict = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit resources aggressively
     # egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
-    du = "dust";
-    df = "duf -hide special";
-    dfa = "duf -all";
     wcp = "wl-copy";
     wpt = "wl-paste";
     compose = "podman compose";

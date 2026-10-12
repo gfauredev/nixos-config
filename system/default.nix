@@ -210,7 +210,7 @@
       acpi # Information about hardware
       sysstat # Monitoring CLI tools
       nix-tree # Find Nix dependencies
-      duf # Global disk usage
+      dysk # Global disk usage
       dust # Detailed disk usage of a directory
       bottom # Dashboard with hardware usage, processes…
       nix-du # Determine which gc-roots take space
