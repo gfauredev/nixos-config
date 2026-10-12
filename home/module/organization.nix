@@ -78,7 +78,9 @@
       "Email"
       "Calendar"
     ];
-    exec = "${pkgs.firefox}/bin/firefox --new-window \"https://mail.proton.me\" \"https://framagenda.org\"";
+    exec = ''
+      ${pkgs.bash}/bin/bash -c '${pkgs.firefox}/bin/firefox --new-window "https://mail.proton.me" && ${pkgs.firefox}/bin/firefox -new-tab "https://framagenda.org"'
+    '';
   };
 
   config.home.activation = {
