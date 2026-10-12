@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs-unstable,
   config,
   lib,
   ...
@@ -47,11 +47,11 @@ let
 in
 {
   programs.vicinae.enable = true;
-
-  # programs.vicinae.enableFirefoxIntegration = true; TODO
+  programs.vicinae.enableFirefoxIntegration = true;
+  programs.vicinae.package = pkgs-unstable.vicinae;
 
   programs.vicinae.extensions =
-    with pkgs;
+    with pkgs-unstable;
     let
       vicinae-store = fetchFromGitHub {
         owner = "vicinaehq";
@@ -67,14 +67,14 @@ in
           npmDepsHash = "sha256-F/vURwdEPwzZwlS4j0lGV8aN7VDGmdiV+WCy2vXN2Eo=";
           src = vicinae-store + "/extensions/bluetooth";
         }).overrideAttrs
-        (oldAttrs: {
-          preBuild = (oldAttrs.preBuild or "") + ''
-            echo "Patching node_modules for missing debug dependency..."
-            mkdir -p node_modules/debug
-            echo 'module.exports = function() { return function() {}; };' > node_modules/debug/index.js
-            echo '{"name": "debug", "version": "9.9.9", "main": "index.js"}' > node_modules/debug/package.json
-          '';
-        })
+          (oldAttrs: {
+            preBuild = (oldAttrs.preBuild or "") + ''
+              echo "Patching node_modules for missing debug dependency..."
+              mkdir -p node_modules/debug
+              echo 'module.exports = function() { return function() {}; };' > node_modules/debug/index.js
+              echo '{"name": "debug", "version": "9.9.9", "main": "index.js"}' > node_modules/debug/package.json
+            '';
+          })
       )
       (config.lib.vicinae.mkExtension {
         name = "process-manager";
