@@ -56,6 +56,7 @@ in
       vicinae-store = fetchFromGitHub {
         owner = "vicinaehq";
         repo = "extensions";
+        # rev = "56b0e02307f7dea3ca013e8a5c96128c700eec75"; # TODO Update
         rev = "ca74eede9a778a9373c8f5fd221b0a5026dcd1ef";
         hash = "sha256-fzPBEJZiRvc/FNMdpbdcfaZzF01U4IQenHW9IQFzhos=";
       };
@@ -116,6 +117,11 @@ in
         npmDepsHash = "sha256-C6IA0csz32kG+wxVcmstJ6ucXzSnNm+ceC1MhXI+ugI=";
         src = vicinae-store + "/extensions/wiktionary";
       })
+      # (config.lib.vicinae.mkExtension {
+      #   name = "timer";
+      #   npmDepsHash = "TODO";
+      #   src = vicinae-store + "/extensions/timer";
+      # })
       # (config.lib.vicinae.mkRayCastExtension { FIXME Build error
       #   name = "google-translate";
       #   sha256 = "sha256-1ZOWLf83IZYRiUX0fG44ESuTCQwhEVh47gVHEKpagII=";
