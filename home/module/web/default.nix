@@ -224,7 +224,7 @@
           "01M4QHP62X5MXXWEKYT2PPJGCD" = {
             name = "MDN Web Docs";
             url = "https://developer.mozilla.org/";
-            manifestUrl = "https://developer.mozilla.org/manifest.f42880861b394dd4dc9b.json";
+            manifestUrl = "https://developer.mozilla.org/manifest.json";
             desktopEntry.icon = pkgs.fetchurl {
               url = "https://developer.mozilla.org/favicon-192x192.png";
               sha256 = "0p8zgf2ba48l2pq1gjcffwzmd9kfmj9qc0v7zpwf2qd54fndifxr";
@@ -233,7 +233,7 @@
           "01M4QJ0V92SFM4X262C675WSTA" = {
             name = "Proton Mail";
             url = "https://mail.proton.me";
-            manifestUrl = null;
+            manifestUrl = "https://mail.proton.me/assets/manifest.webmanifest";
             desktopEntry = {
               enable = true;
               categories = [ "Email" ];
@@ -246,7 +246,7 @@
           "01M4QJ8D5RXXQDCBP0QACJ6ZG0" = {
             name = "Framagenda";
             url = "https://framagenda.org";
-            manifestUrl = null;
+            manifestUrl = "https://framagenda.org/apps/theming/manifest/calendar?v=ce284119";
             desktopEntry = {
               enable = true;
               categories = [ "Calendar" ];
