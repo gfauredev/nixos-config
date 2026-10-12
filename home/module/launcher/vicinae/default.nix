@@ -47,8 +47,8 @@ let
 in
 {
   programs.vicinae.enable = true;
-  programs.vicinae.enableFirefoxIntegration = true;
   programs.vicinae.package = pkgs-unstable.vicinae;
+  # programs.vicinae.enableFirefoxIntegration = true; # TODO
 
   programs.vicinae.extensions =
     with pkgs-unstable;
