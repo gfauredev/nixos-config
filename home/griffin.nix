@@ -8,7 +8,7 @@
     ./module/document.nix # Document, Spreadsheet, Presentation, PDF
     ./module/audio.nix # Audio Production & Creation
     ./module/qimgv # Fully-featured image and video viewer
-    ./module/photo.nix # Photo & Image Edition
+    # ./module/photo.nix # Photo & Image Edition
     ./module/video.nix # Video Edition
   ];
   # home.packages = with pkgs; [ geteduroam-cli ];

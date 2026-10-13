@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   config,
   ...
 }: # Audio and Music production and consumption
@@ -23,7 +22,7 @@
   home.packages = with pkgs; [
     ardour # Full fledged digital audio workstation
     pipewire.jack # PipeWire JACK CLI tools
-    pkgs-unstable.bespokesynth # Software modular synth, controllers support
+    # bespokesynth # Software modular synth, controllers support
     carla # VST Host & audio router
     cardinal # Standalone and VST modular synthesizer
     # giada # Live electronic music platform
@@ -40,7 +39,6 @@
     # vcv-rack # Standalone modular synthesizer
     # vmpk # Virtual keyboard
     knobkraft-orm # MIDI SysEx librarian
-    # TODO Package https://github.com/eclab/edisyn
     # DAW & Editors
     # audacity # Simple audio editor
     musescore # Music writing

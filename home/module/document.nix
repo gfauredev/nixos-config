@@ -11,13 +11,13 @@
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations
     onlyoffice-desktopeditors # Full office suite
-    libreoffice-fresh # Office suite
+    # libreoffice-fresh # Office suite
     # PDF Reading & Editing & Scan
     # mupdf # Minimalist PDF reader
     # sioyek # Minimalist PDF reader
     # poppler-utils # PDF metadata reading/editing
     qpdf # More modern CLI PDF manipulation
-    # pdf-sign # Automated PDF signing TODO config
+    # pdf-sign # Automated PDF signing
     # pdfmixtool # Simple GUI to edit PDFs structure
     naps2 # Scan PDFs with OCR
     # ocrmypdf # Add a layer of text on scanned PDFs
@@ -25,9 +25,9 @@
     # gnome.simple-scan # Document scanner
     pdfpc # PDF Presentator Console
     # Diagrams
-    mermaid-cli # Markdown-like diagrams
-    plantuml-c4 # UML diagrams from text with additions
-    plantuml-server # Server for PlantUML
+    # mermaid-cli # Markdown-like diagrams
+    # plantuml-c4 # UML diagrams from text with additions
+    # plantuml-server # Server for PlantUML
   ];
 
   programs = {

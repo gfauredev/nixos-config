@@ -30,17 +30,10 @@
   };
 
   config.home.packages = with pkgs-unstable; [
-    # (actual-client.overrideAttrs (old: {
-    #   postInstall = (old.postInstall or "") + ''
-    #     wrapProgram $out/bin/actual --prefix LD_LIBRARY_PATH : "${
-    #       lib.makeLibraryPath [ pkgs-unstable.stdenv.cc.cc.lib ]
-    #     }"
-    #   '';
-    # })) # Finance management BUG cannot import self-signed certificate
     # anki # Best memorization tool
     # protonmail-desktop # Electron app worse than web app, no extensions
     xournalpp # Handwriting notetaking
-    rnote # Modern handwriten note taking app
+    # rnote # Modern handwriten note taking app
     # affine # Knowledge base # No Android app
     # anytype # Knowledge base
     # siyuan # Knowledge management # No p2p sync
@@ -48,6 +41,13 @@
     # mindforger # Outliner note taking
     # emanote # Structured view text notes
     # memos # Atomic memo hub
+    # (actual-client.overrideAttrs (old: {
+    #   postInstall = (old.postInstall or "") + ''
+    #     wrapProgram $out/bin/actual --prefix LD_LIBRARY_PATH : "${
+    #       lib.makeLibraryPath [ pkgs-unstable.stdenv.cc.cc.lib ]
+    #     }"
+    #   '';
+    # })) # Finance management BUG cannot import self-signed certificate
   ];
 
   config.programs = {
