@@ -13,7 +13,7 @@ PIDS="$(pgrep -f "systemd-inhibit.*sleep" 2>/dev/null)"
 if [ -n "$PIDS" ]; then
   kill $PIDS 2>/dev/null
   KILLED_ANY=1
-  notify-send -u low "Inhibition Cancelled" "Terminated active sleep inhibitor(s)."
+  notify-send -u low "Inhibition cancelled" "Terminated active sleep inhibitor(s)"
 fi
 
 # - If an argument: inhibit for the provided duration
@@ -29,14 +29,14 @@ fi
 
 # Spawn inhibitor in background
 (
-  notify-send "Inhibiting Sleep" "Sleep disabled for ${DURATION}."
+  notify-send "Inhibiting Sleep & Idle" "Will be disabled for ${DURATION}"
 
   if ! systemd-inhibit \
     --what="sleep:idle" \
     --who="inhib.sh" \
-    --why="Inhibit sleep requested via Vicinae launcher" \
+    --why="Inhibit sleep (often used by Vicinae launcher)" \
     --mode="block" \
     sleep "$DURATION"; then
-    notify-send -u critical "Failed to Inhibit Sleep" "Execution failed. Check system permissions."
+    notify-send -u critical "Failed to inhibit" "Check system permissions"
   fi
 ) &
