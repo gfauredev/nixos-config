@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: # Configuration for actual machines, not VMs or live ISOs
+{ lib, ... }: # Configuration for actual machines, not VMs or live ISOs
 {
   imports = [ ./filesystem.nix ];
 
@@ -9,9 +9,6 @@
   };
   nix.settings = {
     auto-optimise-store = true; # Auto hard-link identical files in Nix store
-    connect-timeout = 3; # Quickly go offline if substitute not reachable
-    stalled-download-timeout = 10; # Quickly go offline if substitute not reachable
-    download-attempts = 3; # Quickly go offline if substitute not reachable
   };
 
   documentation = {

@@ -32,6 +32,10 @@
     ];
     trusted-users = [ ]; # No trusted users (root always)
     download-buffer-size = 268435456; # 256MiB, increased to reduce build times
+    fallback = true; # Build from source if a binary substitute fails
+    connect-timeout = 3; # Quickly go offline if substitute not reachable
+    stalled-download-timeout = 10; # Quickly go offline if substitute not reachable
+    download-attempts = 3; # Quickly go offline if substitute not reachable
   };
 
   boot = {
