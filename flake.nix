@@ -1,6 +1,7 @@
 {
   description = "Guilhem Fauré’s NixOS and Home-manager Configurations";
   inputs = {
+    self.submodules = true; # Git submodules for Typst templates
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05"; # NixOS Stable
     unstablepkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # NixOS Unstable
     home-manager.url = "github:nix-community/home-manager/release-26.05";
@@ -18,6 +19,12 @@
     # musnix.url = "github:musnix/musnix"; # Music production, audio perf
     stylix.url = "github:danth/stylix/release-26.05"; # Color themes & fonts
     stylix.inputs.nixpkgs.follows = "nixpkgs"; # Follow NixOS Stable
+    # typst-cv.url = ./home/module/typst/cv;
+    # typst-letter.url = ./home/module/typst/letter;
+    # typst-lib.url = ./home/module/typst/lib;
+    # typst-polytech.url = ./home/module/typst/polytech;
+    # typst-slide.url = ./home/module/typst/slide;
+    # typst-report.url = ./home/module/typst/report;
   };
   outputs =
     {
