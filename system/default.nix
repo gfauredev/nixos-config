@@ -1,5 +1,9 @@
 { lib, pkgs, ... }:
 {
+  imports = [
+    ./options.nix
+  ];
+
   nix.settings = {
     experimental-features = [
       "nix-command"

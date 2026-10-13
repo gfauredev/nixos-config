@@ -47,7 +47,7 @@ in
 
   fileSystems =
     let
-      execHomes = [ config.user.home ];
+      execHomes = [ config.user-def.default.home ];
       execDirs = [
         "author"
         ".arduino15"
