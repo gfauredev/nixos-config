@@ -66,6 +66,7 @@
     };
     himalaya.settings = { }; # FIX HM Complaints
   };
+  config.accounts.calendar.basePath = ".calendar";
 
   config.xdg.desktopEntries.proton-framagenda =
     let
