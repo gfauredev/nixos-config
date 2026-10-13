@@ -10,7 +10,8 @@
       };
       location = mkOption {
         type = str;
-        default = "${config.user.home}/author/nixOsConfig";
+        default = "${config.user.home}/.nix-config";
+        # default = "${config.user.home}/author/nixOsConfig";
         description = "Configuration Flake repository full path";
       };
       dev-templates = mkOption {

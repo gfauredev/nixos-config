@@ -168,9 +168,9 @@ in
       files.preferences = {
         autoIndexing = true;
         indexingPaths = [
-          "/home/gf/author"
-          "/home/gf/collect"
-          "/home/gf/image"
+          "${config.user.home}/author"
+          "${config.user.home}/collect"
+          "${config.user.home}/image"
         ];
         # excludedIndexingPaths = [ ];
       };

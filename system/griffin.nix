@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   modulesPath,
   ...
 }: # My main laptop, a Framework Laptop 13
@@ -46,7 +47,7 @@ in
 
   fileSystems =
     let
-      execHomes = [ "/home/gf" ];
+      execHomes = [ config.user.home ];
       execDirs = [
         "author"
         ".arduino15"
