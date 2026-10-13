@@ -34,7 +34,7 @@ fi
   if ! systemd-inhibit \
     --what="sleep:idle" \
     --who="inhib.sh" \
-    --why="Inhibit sleep (often used by Vicinae launcher)" \
+    --why="$(date +%R) Inhibit sleep for ${DURATION}" \
     --mode="block" \
     sleep "$DURATION"; then
     notify-send -u critical "Failed to inhibit" "Check system permissions"
