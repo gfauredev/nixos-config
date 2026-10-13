@@ -55,6 +55,7 @@ in
         # ".eclipse" ".swt"
         # ".local/share/bottles" ".local/share/umu"
         ".local/share/Steam"
+        ".local/share/flatpak"
       ];
       execBind = path: {
         depends = [ "/home" ];
