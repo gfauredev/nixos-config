@@ -292,11 +292,11 @@
     ]
     # Machine learning & AI
     ++ [
+      pkgs-unstable.opencode # Any LLM Open Source Agent CLI
       pkgs-unstable.goose-cli # TEST
       pkgs-unstable.openspec # TEST
       pkgs-unstable.open-interpreter # TEST
       pkgs-unstable.pi-coding-agent # TEST
-      pkgs-unstable.opencode # TEST Any LLM Open Source Agent CLI
       pkgs-unstable.whale # TEST
       pkgs-unstable.llama-cpp
       # whisper-cpp # STT
@@ -331,8 +331,8 @@
     # 3D (CAD, Engineering, Artistic, Animation, Slicing)
     ++ [
       freecad-wayland # Popular parametric 3D CAD
-      openscad-unstable # Code CAD
-      openscad-lsp # LSP
+      # openscad-unstable # Code CAD
+      # openscad-lsp # LSP
       orca-slicer # G-code generator for 3D printers…
       # pkgs-unstable.bambu-studio # Crap
       # dune3d # New simple parametric CAD
