@@ -356,8 +356,7 @@
     ]
     # Messaging & Social
     ++ [
-      # signal-desktop # Secure messaging FIXME Insecure pnpm dependency
-      # signal-cli # Secure messaging
+      signal-cli # Secure messaging
       # simplex-chat-desktop # Anonymous secure messaging
       # olvid # French anonymous secure messaging
       # element-desktop # Secure group messaging and calls
