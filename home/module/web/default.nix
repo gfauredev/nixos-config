@@ -65,39 +65,39 @@
         DisplayMenuBar = false;
         DontCheckDefaultBrowser = true;
         ExtensionSettings = {
-          "adnauseam@rednoise.org" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adnauseam/latest.xpi";
-            installation_mode = "force_installed";
-            private_browsing = true;
-          };
-          "uBlock0@raymondhill.net" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "allow";
-            private_browsing = true;
-          };
-          "firefoxpwa@filips.si" = {
-            # install_url = "https://addons.mozilla.org/firefox/downloads/latest/TODO/latest.xpi";
-            installation_mode = "force_installed";
-            private_browsing = true;
-          };
           "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
             installation_mode = "force_installed";
             private_browsing = true;
           };
+          "adnauseam@rednoise.org" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adnauseam/latest.xpi";
+            installation_mode = "force_installed";
+            private_browsing = true;
+          };
           "addon@darkreader.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "normal_installed";
             private_browsing = true;
           };
           "languagetool-webextension@languagetool.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "normal_installed";
             private_browsing = false;
           };
           "firefox@vicinae.com" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/vicinae/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "simple-translate@sienori" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/simple-translate/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "{e58d3966-3d76-4cd9-8552-1582fbc800c1}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi";
+            installation_mode = "normal_installed";
             private_browsing = true;
           };
           "faststream@andrews" = {
@@ -105,36 +105,36 @@
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          "ATBC@EasonWong" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
+          "firefoxpwa@filips.si" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/pwas-for-firefox/latest.xpi";
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          # "DeepL" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/…/latest.xpi";
-          #   installation_mode = "force_installed";
-          #   private_browsing = true;
-          # };
-          # "Buster" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/…/latest.xpi";
-          #   installation_mode = "force_installed";
-          #   private_browsing = true;
-          # };
-          # "{26ef8318-6349-483c-affa-6c6db6d30517}" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
-          # "jid1-MnnxcxisBPnSXQ@jetpack" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = true;
-          # };
-          # "{74145f27-f039-47ce-a470-a662b129930a}" = {
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
-          #   installation_mode = "allow";
-          #   private_browsing = false;
-          # };
+          "uBlock0@raymondhill.net" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            installation_mode = "allow";
+            private_browsing = true;
+          };
+          "firefox-extension@deepl.com" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/deepl-translate/latest.xpi";
+            installation_mode = "allow";
+            private_browsing = true;
+          };
+          "{26ef8318-6349-483c-affa-6c6db6d30517}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/automa/latest.xpi";
+            installation_mode = "allow";
+            private_browsing = true;
+          };
+          "jid1-MnnxcxisBPnSXQ@jetpack" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+            installation_mode = "allow";
+            private_browsing = true;
+          };
+          "ATBC@EasonWong" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi";
+            installation_mode = "allow";
+            private_browsing = true;
+          };
         };
         ImportEnterpriseRoots = true;
         NoDefaultBookmarks = true;
