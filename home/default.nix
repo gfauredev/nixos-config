@@ -57,9 +57,9 @@
     mimeApps.enable = true;
     mimeApps.defaultApplications =
       let
-        image = "qimgv";
-        audio = "mpv";
         video = "mpv";
+        image = "mpv";
+        audio = "mpv";
       in
       {
         # Text & Code

@@ -95,7 +95,7 @@ def sld [] {ls | sort-by modified | reverse}
 def al [] {ls --all --long | reverse}
 # Create a directory and cd into it TODO open terms inside each dir if several
 def --env md [dir: path] {mkdir -v ($dir); cd ($dir)}
-def img [dir: path = "."] { job spawn { qimgv ($dir | path expand) } }
+# def img [dir: path = "."] { job spawn { qimgv ($dir | path expand) } }
 
 # Git
 def commit_with_scope [type: string, args: list<string>] {
