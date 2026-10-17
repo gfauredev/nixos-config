@@ -368,10 +368,8 @@
     ]
     # P2P & Web3
     ++ [
-      qbittorrent # Bittorrent client
       lnd # Lightning Network Daemon
       go-ethereum # Ethereum CLI
-      # transmission_4 # Bittorrent client
       # iroh # Efficient IPFS, p2p file sharing
       # bitcoin # Bitcoin Core
       # monero-gui # Private cryptocurrency
