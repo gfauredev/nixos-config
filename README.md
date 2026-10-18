@@ -79,11 +79,10 @@ fallback, which is less featurefull, but robust.
 I launch apps, web searches, do calculations, quickly copy passwords, search for
 emojies…
 
-[Thunderbird](https://www.thunderbird.net) for **personal information
-management**. Not exactly keyboard-driven, but very comprehensive and
-standards-based. I’m considering CLI tools such as
+I’m considering CLI tools such as
 [himalaya](https://github.com/pimalaya/himalaya) and
-[khal](https://github.com/pimutils/khal).
+[khal](https://github.com/pimutils/khal) for **personal information
+management**.
 
 [Stylix](https://stylix.danth.me) Flake to enforce my favorite color theme, my
 favorite fonts and other style settings everywhere. To fully leverage OLED
