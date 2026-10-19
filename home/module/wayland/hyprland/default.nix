@@ -252,28 +252,28 @@ in
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + c\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"l\" })")
+                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"l\", group_aware = true })")
                 { description = "Move focused window to the left"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + t\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"d\" })")
+                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"d\", group_aware = true })")
                 { description = "Move focused window below"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + s\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"u\" })")
+                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"u\", group_aware = true })")
                 { description = "Move focused window above"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"SUPER + SHIFT + r\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"r\" })")
+                (lib.generators.mkLuaInline "hl.dsp.window.move({ direction = \"r\", group_aware = true })")
                 { description = "Move focused window to the right"; }
               ];
             }
@@ -308,11 +308,22 @@ in
             {
               _args = [
                 "SUPER + g"
-                # FIXME Condition seems always false
                 (lib.generators.mkLuaInline ''
                   function()
+                    local function get(o, k)
+                      local ok, v = pcall(function() return o[k] end)
+                      if ok then return v end
+                    end
                     local aw = hl.get_active_window()
-                    if aw and type(aw.grouped) == "table" and #aw.grouped > 1 then
+                    local g = aw and get(aw, "group")
+                    local size = 0
+                    if g then
+                      local s, ws = get(g, "size"), get(g, "windows")
+                      if type(s) == "number" then size = s
+                      elseif type(ws) == "table" then size = #ws
+                      else size = 2 end -- Grouped but size unknown: cycle
+                    end
+                    if size > 1 then
                       hl.dispatch(hl.dsp.group.next())
                     else
                       hl.dispatch(hl.dsp.group.toggle())
