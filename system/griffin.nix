@@ -91,7 +91,37 @@ in
     ));
 
   services.fwupd.extraRemotes = [ "lvfs-testing" ]; # Necessary for Framework
-  # services.fwupd.uefiCapsuleSettings.DisableCapsuleUpdateOnDisk = true;
+
+  # Fixes for too loud saturating mic
+  services.pipewire.wireplumber.extraConfig."51-framework-mic" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          {
+            "node.name" = "~alsa_input.*analog-stereo"; # "alsa_input.pci-0000_00_1f.3.analog-stereo"
+          }
+        ];
+        actions = {
+          update-props = {
+            "api.alsa.soft-mixer" = true;
+          };
+        };
+      }
+    ];
+  };
+  systemd.services.set-framework-mic-gain = {
+    description = "Set Framework microphone ALSA capture gain to 50%";
+    wantedBy = [
+      "sound.target"
+      "multi-user.target"
+    ];
+    after = [ "sound.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.alsa-utils}/bin/amixer -c PCH set Capture 50%"; # HDA Intel PCH at 0x605d1b8000 irq 211
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     framework-tool # Hardware related tools for framework laptops
