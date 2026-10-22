@@ -155,6 +155,8 @@
     ];
     definedAliases = [ "ds" ];
   };
+  duckduckgo.metaData.alias = "ddg"; # Builtin, only supports adding alias
+  ebay.metaData.alias = "bay"; # Builtin, only supports adding alias
   ecosia = {
     name = "Ecosia";
     urls = [
@@ -559,6 +561,7 @@
     ];
     definedAliases = [ "six" ];
   };
+  startpage.metaData.alias = "sp"; # Builtin, only supports adding an alias
   typstdocs = {
     name = "Typst Docs";
     urls = [
