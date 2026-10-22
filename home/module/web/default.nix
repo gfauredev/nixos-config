@@ -110,6 +110,11 @@
             installation_mode = "normal_installed";
             private_browsing = true;
           };
+          "{5384767E-00D9-40E9-B72F-9CC39D655D6F}" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/epubreader/latest.xpi";
+            installation_mode = "normal_installed";
+            private_browsing = true;
+          };
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "allow";
