@@ -252,8 +252,7 @@
       # kalker # Evaluate math expression
       # comma # Run any command from Nixpkgs
       # czkawka # Duplicate file finder, image deduplicator, and more
-    ]
-    # Passwords & Secrets
+    ] # Passwords & Secrets
     ++ [
       pkgs-unstable.proton-pass # Proton password manager
       pkgs-unstable.proton-authenticator # Proton 2FA
@@ -264,8 +263,7 @@
       # keepassxc # Password manager
       # keepassxc-go # CLI to interacet with KeepassXC
       # git-credential-keepassxc # Use KeepassXC with Git
-    ]
-    # Storage & Backup & Encryption
+    ] # Storage & Backup & Encryption
     ++ [
       restic # Efficient backup tool
       rustic # Restic compatible pure Rust backup tool TEST me
@@ -277,8 +275,7 @@
       # mtpfs # Media Transfer Protocol (Android…)
       # dislocker # Decrypt BitLocker disks
       # cdrkit # ISO tools and misc
-    ]
-    # Emulation & Compatibility
+    ] # Emulation & Compatibility
     ++ [
       umu-launcher # Easier wine management
       # pkgs-unstable.quickemu # Quickly create optimized VMs
@@ -289,8 +286,7 @@
       # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
       # winetricks # Execute Window$ programs (config tool)
       # winboat # Seamless Windows VM app Linux
-    ]
-    # Machine learning & AI
+    ] # Machine learning & AI
     ++ [
       pkgs-unstable.opencode # Any LLM Open Source Agent CLI
       pkgs-unstable.goose-cli # TEST
@@ -300,8 +296,7 @@
       pkgs-unstable.whale # TEST
       pkgs-unstable.llama-cpp
       # whisper-cpp # STT
-    ]
-    # Spell Checking
+    ] # Spell Checking
     ++ [
       # ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
       ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
@@ -311,8 +306,7 @@
       # hunspellDicts.en_GB-ise # British
       # hunspellDicts.es_ES # Spanish
       # vale # Linter for prose
-    ]
-    # Electronics
+    ] # Electronics
     ++ [
       dfu-util # Device Firmware Upgrade USB utility
       rpi-imager # Raspberry Pi OS imager
@@ -327,8 +321,7 @@
       # scilab-bin # Scientific computations TODO install imperatively
       # stm32flash # Open source flash program for the STM32 ARM processors
       # stm32cubemx # Graphical tool for configuring STM32 microcontrollers
-    ]
-    # 3D (CAD, Engineering, Artistic, Animation, Slicing)
+    ] # 3D (CAD, Engineering, Artistic, Animation, Slicing)
     ++ [
       freecad-wayland # Popular parametric 3D CAD
       # openscad-unstable # Code CAD
@@ -343,8 +336,7 @@
       # meshlab # 3D mesh processing tool
       # cura # Popular 3D printer slicer
       # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
-    ]
-    # VPN
+    ] # VPN
     ++ [
       pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
       pkgs-unstable.proton-vpn-cli # Swiss VPN service (CLI)
@@ -353,8 +345,7 @@
       # riseup-vpn # (bitmask client) Free VPN service
       # nym # Super-anonymous routing protocol FIXME lacks desktop apps
       # mullvad # Anonymous VPN service
-    ]
-    # Messaging & Social
+    ] # Messaging & Social
     ++ [
       signal-cli # Secure messaging
       # simplex-chat-desktop # Anonymous secure messaging
@@ -365,19 +356,6 @@
       # nak # Nostr CLI
       # gossip # Nostr GUI
       # nostr-rs-relay # Rust Nostr relay
-    ]
-    # P2P & Web3
-    ++ [
-      lnd # Lightning Network Daemon
-      go-ethereum # Ethereum CLI
-      # iroh # Efficient IPFS, p2p file sharing
-      # bitcoin # Bitcoin Core
-      # monero-gui # Private cryptocurrency
-      # monero-cli # Monero CLI
-      # electrum # Light Bitcoin Wallet
-      # sparrow # Bitcoin wallet
-      # ord # Ordinals CLI
-      # cointop # Cryptocurrencies monitor
     ];
 
   services = {
