@@ -219,7 +219,6 @@
       sherlock # Search people on social media accounts
       maigret # Search people on social media accounts
       pre-commit # Git hook manager
-      pkgs-unstable.unrar # Compression / Decompression (RAR)
       fuc # Perf cpz rmz
       mediainfo # info about audio or video
       captive-browser # Browser for captive portals
@@ -231,6 +230,9 @@
       commitlint-rs # Be consistent in commit messages
       android-tools # ADB and Fastboot
       worktrunk # Git worktree management
+      pkgs-unstable._7zz-rar
+      # zpaq # (De)compression
+      # squashfuse
       # spacedrive # Modern file manager
       # pkgs-unstable.gitbutler # VCS TEST me
       # pijul # VCS TEST me

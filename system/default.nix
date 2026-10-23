@@ -208,6 +208,7 @@
       hexyl # hex viewer
       sd # Intuitive find & replace
       grex # Regex generator from test cases
+      coreutils-full # Additional Unix utilities
       moreutils # Additional Unix utilities
       gitlab-shell # GitLab CLI
       gitmoji-cli # Use emojis in commit messages
@@ -251,14 +252,19 @@
       lynis # System security auditing TEST me
       vulnix # NixOS vulnerability scanner TEST me
       # wireguard-tools # CLI for WireGuard
-      # Storage
-      zip # Universal compression
-      unzip # Universal decompression
-      _7zz # Compression / Decompression (7zip)
-      gzip # Compression / Decompression
-      bzip2 # Compression / Decompression
+      # FS
       exfat # USB sticks filesystem
       ntfs3g # Window$s filesystem
+      squashfsTools
+      # (De)Compression
+      libarchive # Multiformat smart (de)compression utility
+      gzip
+      bzip2
+      xz
+      zstd
+      lz4
+      brotli
+      # _7zz # UNFREE _7zz-rar installed in user homes
     ];
   };
 }
