@@ -62,6 +62,7 @@
         "steam-unwrapped" # Gaming
         "steam-run" # Gaming
         "7zz" # Unfree RAR module
+        "uasm" # Unfree RAR module
         # "albert" # Manuel Schneider Albert license v1.1
         # "bambu-studio" # To publish sliced models on Maker World
       ];
