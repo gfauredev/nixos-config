@@ -11,6 +11,7 @@
     # quarto # Scientific and technical publishing system
     # hovercraft # impress.js presentations
     onlyoffice-desktopeditors # Full office suite
+    kiwix # Offline reader for web
     # libreoffice-fresh # Office suite
     # PDF Reading & Editing & Scan
     # mupdf # Minimalist PDF reader
