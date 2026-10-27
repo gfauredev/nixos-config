@@ -42,6 +42,9 @@
   ],
   "providers": {
     "calculator": {
+      "preferences": {
+        "backend": "qalculate"
+      },
       "entrypoints": {
         "history": {
           "alias": "="
