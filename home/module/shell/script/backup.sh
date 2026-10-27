@@ -10,7 +10,7 @@ LAST_RESTIC_REPO=""
 # TODO Store password to reuse it for check
 
 _inhibit() {
-  systemd-inhibit --what=shutdown:sleep --who="backup.sh" --why="Backup in progress" "$@"
+  systemd-inhibit --what=shutdown:sleep --who="backup.sh" --why="Backup started at $(date +%R) in progress" "$@"
 }
 
 _rsync() {
