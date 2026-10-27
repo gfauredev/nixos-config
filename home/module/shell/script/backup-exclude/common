@@ -1,11 +1,15 @@
 .stversions/
 .stfolder/
-.venv*/
-.vagrant/
+.venv*
+.vagrant
 .git/
+(?d)**/.git
 node_modules/
 .direnv/
 *.local
 *thumbnails*
 *cache*
-# *.lock
+Trash
+.Trash-*
+lib.typ
+.direnv
