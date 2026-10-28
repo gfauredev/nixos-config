@@ -32,7 +32,7 @@ fi
   notify-send "Inhibiting Sleep & Idle" "Will be disabled for ${DURATION}"
 
   if ! systemd-inhibit \
-    --what="sleep:idle" \
+    --what="sleep:idle:handle-lid-switch" \
     --who="inhib.sh" \
     --why="$(date +%R) Inhibit sleep for ${DURATION}" \
     --mode="block" \
