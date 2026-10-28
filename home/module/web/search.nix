@@ -56,6 +56,24 @@
     ];
     definedAliases = [ "aw" ];
   };
+  brave = {
+    name = "Brave Search";
+    urls = [
+      {
+        template = "https://search.brave.com/search";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [
+      "bs"
+      "br"
+    ];
+  };
   bluesky = {
     name = "Bluesky";
     urls = [
@@ -70,7 +88,6 @@
       }
     ];
     definedAliases = [
-      "bs"
       "bsky"
     ];
   };
@@ -267,11 +284,41 @@
     ];
     definedAliases = [ "gt" ];
   };
+  gigablast = {
+    name = "Gigablast";
+    urls = [
+      {
+        template = "https://gigablast.org/web";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "gb" ];
+  };
+  hister = {
+    name = "Hister";
+    urls = [
+      {
+        template = "https://demo.hister.org";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "hi" ];
+  };
   helixdocs = {
     name = "Helix Docs";
     urls = [
       {
-        template = "https://docs.helix-editor.com/";
+        template = "https://docs.helix-editor.com";
         params = [
           {
             name = "search";
@@ -359,6 +406,20 @@
       }
     ];
     definedAliases = [ "mdn" ];
+  };
+  mojeek = {
+    urls = [
+      {
+        template = "https://www.mojeek.com/search";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "mj" ];
   };
   mistral = {
     name = "Mistral";
@@ -562,6 +623,51 @@
     definedAliases = [ "six" ];
   };
   startpage.metaData.alias = "sp"; # Builtin, only supports adding an alias
+  searxng1 = {
+    name = "Ononoky SearxNG";
+    urls = [
+      {
+        template = "https://searx.ononoki.org/search";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "ono" ];
+  };
+  searxng2 = {
+    name = "Hbubli SearxNG";
+    urls = [
+      {
+        template = "https://search.hbubli.cc";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "hbb" ];
+  };
+  searxng3 = {
+    name = "Utilibre SearxNG";
+    urls = [
+      {
+        template = "https://search.utilibre.org";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "ul" ];
+  };
   typstdocs = {
     name = "Typst Docs";
     urls = [
