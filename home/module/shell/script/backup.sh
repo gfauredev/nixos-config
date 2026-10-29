@@ -1,4 +1,5 @@
 #!/bin/sh
+
 set -eu
 IMPORTANT="$HOME/author $HOME/collect"
 ARCHIVE="$HOME/shelve"
@@ -8,6 +9,7 @@ EXCLUDE_IMG="$CONFIG/backup-exclude/img"
 LAST_RESTIC_REPO=""
 
 # TODO Store password to reuse it for check
+# TODO Inhibit in separate process at script start, kill at script end
 
 _inhibit() {
   systemd-inhibit --what="shutdown:sleep:handle-lid-switch" --who="backup.sh" --why="Backup started at $(date +%R) in progress" "$@"
@@ -42,14 +44,14 @@ case "${1:-}" in
     printf "Starting backup to %s\n" "$dest"
     for dir in $IMPORTANT; do
       dirname=$(basename "$dir")
-      rclone sync --progress \
+      _inhibit rclone sync --progress \
         --exclude-from="$EXCLUDE_COMMON" --exclude-from="$EXCLUDE_IMG" \
         --backup-dir "$dest:$USER-trash/$(date +%Y-%m-%d-%H)/$dirname" \
         "$dir" "$dest:$USER-back/$dirname"
     done
     for dir in $ARCHIVE; do
       dirname=$(basename "$dir")
-      rclone copy --progress \
+      _inhibit rclone copy --progress \
         --exclude-from="$EXCLUDE_COMMON" --exclude-from="$EXCLUDE_IMG" \
         "$dir" "$dest:$USER-back/archive/$dirname"
     done
@@ -76,7 +78,7 @@ case "${1:-}" in
       *:) rclone_dest="$drive_dest$USER-restic" ;;
       *) rclone_dest="$drive_dest:$USER-restic" ;;
       esac
-      rclone sync --verbose --stats 30s $flags "$local_repo" "$rclone_dest" &
+      _inhibit rclone sync --verbose --stats 30s $flags "$local_repo" "$rclone_dest" &
     done
     printf "Cloud syncs backgrounded.\n"
   else
