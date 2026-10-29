@@ -273,6 +273,7 @@
       exfatprogs # Tools for exfat FS
       smartmontools # Monitor health of drives
       android-file-transfer # Media Transfer Protocol (Android…)
+      (pkgs.callPackage ./module/protonDrive.nix { })
       # jmtpfs # Media Transfer Protocol (Android…)
       # mtpfs # Media Transfer Protocol (Android…)
       # dislocker # Decrypt BitLocker disks
