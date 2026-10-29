@@ -146,36 +146,50 @@ case "$1" in
   printf "Available: %s MiB, Needed (max): %s MiB\n" \
     "$((avail / 1024))" "$((used / 1024))"
 
-  if [ "$avail" -gt "$used" ]; then
-    _restic_password "$local_repo"
-    if [ ! -f "$local_repo/config" ]; then
-      if _prompt "No restic repo at $local_repo, initialize one?"; then
-        restic --repo "$local_repo" init
-      else
-        printf "Aborting\n"
-        exit 1
-      fi
+  low_space=""
+  if [ "$avail" -le "$used" ]; then
+    low_space=1
+    # shellcheck disable=SC2086
+    used=$(du -skc --exclude='*.large' $IMPORTANT $ARCHIVE 2>/dev/null | tail -n1 | cut -f1)
+    printf "Space low on %s, excluding *.large (needed (max): %s MiB)\n" \
+      "$local_repo" "$((used / 1024))"
+    if [ "$avail" -le "$used" ] &&
+      ! _prompt "Still possibly not enough space (dedup may save it), continue?"; then
+      printf "Aborting\n"
+      exit 1
     fi
-    printf "Backing up incrementally to %s (restic)\n" "$local_repo"
+  fi
+
+  _restic_password "$local_repo"
+  if [ ! -f "$local_repo/config" ]; then
+    if _prompt "No restic repo at $local_repo, initialize one?"; then
+      restic --repo "$local_repo" init
+    else
+      printf "Aborting\n"
+      exit 1
+    fi
+  fi
+  printf "Backing up incrementally to %s (restic)\n" "$local_repo"
+  if [ -n "$low_space" ]; then
+    # shellcheck disable=SC2086
+    _restic "$local_repo" --exclude='*.large' $IMPORTANT $ARCHIVE
+    # *.large files in ARCHIVE were not saved, so don't offer to trash them
+  else
     # shellcheck disable=SC2086
     _restic "$local_repo" $IMPORTANT $ARCHIVE
     ARCHIVE_BACKED_UP=1
-    for drive_dest in "$@"; do
-      printf "Syncing restic repo to %s\n" "$drive_dest"
-      case "$drive_dest" in
-      *proton* | *pdrive*) flags="--transfers 1 --checkers 1 --tpslimit 1 --retries 20 --low-level-retries 10 --protondrive-replace-existing-draft" ;;
-      *) flags="--fast-list --drive-chunk-size 128M" ;;
-      esac
-      # shellcheck disable=SC2086
-      _bg rclone sync --verbose --stats 30s $flags \
-        "$local_repo" "$(_remote "$drive_dest" "$USER-restic")"
-    done
-    [ -n "$BG_PIDS" ] && printf "Cloud syncs backgrounded.\n"
-  else
-    printf "Space low on %s. Using rsync fallback (ARCHIVE not included).\n" "$local_repo"
-    # shellcheck disable=SC2086
-    _rsync --exclude="*.large" $IMPORTANT "$local_repo/"
   fi
+  for drive_dest in "$@"; do
+    printf "Syncing restic repo to %s\n" "$drive_dest"
+    case "$drive_dest" in
+    *proton* | *pdrive*) flags="--transfers 1 --checkers 1 --tpslimit 1 --retries 20 --low-level-retries 10 --protondrive-replace-existing-draft" ;;
+    *) flags="--fast-list --drive-chunk-size 128M" ;;
+    esac
+    # shellcheck disable=SC2086
+    _bg rclone sync --verbose --stats 30s $flags \
+      "$local_repo" "$(_remote "$drive_dest" "$USER-restic")"
+  done
+  [ -n "$BG_PIDS" ] && printf "Cloud syncs backgrounded.\n"
   ;;
 *)
   printf "Backing up %s to %s\n" "$IMPORTANT" "$1"
