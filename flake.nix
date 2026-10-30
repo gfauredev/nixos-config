@@ -63,8 +63,6 @@
         "steam-run" # Gaming
         "7zz" # Unfree RAR module
         "uasm" # Unfree RAR module
-        # "albert" # Manuel Schneider Albert license v1.1
-        # "bambu-studio" # To publish sliced models on Maker World
       ];
       user-def = import ./private/user.nix; # Common users configurations
       # Machines configs
@@ -186,13 +184,14 @@
               pkgs.home-manager # FIXME Not nixpkgs’ version
               # libinput # Input debugging
               keyd # Input debugging
+              # lpac # Manage eSIMs in a chip (eUICC LPA)
               marksman # Wikilinks, ToC generation…
               pkgs-unstable.nixd # "Official" Nix LSP
               nix-update # Easily update whole flake, including FOD’s hashes
               nurl # Get FOD’s hashes without rebuilding everything
               pkgs-unstable.nixfmt # Formatter
               pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
-              # nls # Nickel LSP
+              nix-update # Auto update flakes, FODs hashes…
               nufmt # Nushell formatter
               nvme-cli # NVMe utilities
               sbctl # SecureBoot key manager, used for install with Lanzaboote
@@ -204,8 +203,6 @@
               wev # Evaluate inputs sent to wayland to debug
               yaml-language-server # YAML LSP
             ];
-            # env = { }; # Environment variable
-            # shellHook = ""; # Shell commands activated when entering dev env
           };
         }
       );

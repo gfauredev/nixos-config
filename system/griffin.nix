@@ -52,8 +52,7 @@ in
         "author"
         ".arduino15"
         ".arduinoIDE"
-        # ".eclipse" ".swt"
-        # ".local/share/bottles" ".local/share/umu"
+        ".local/share/bottles"
         ".local/share/Steam"
         ".local/share/flatpak"
       ];

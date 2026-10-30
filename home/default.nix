@@ -212,16 +212,10 @@
   home.packages =
     with pkgs;
     [
-      spotube # Open source Spotify and more client
       klick # Metronome
-      imagemagick # CLI image edition
       cheese # Webcam capture
-      sherlock # Search people on social media accounts
-      maigret # Search people on social media accounts
       pre-commit # Git hook manager
       fuc # Perf cpz rmz
-      mediainfo # info about audio or video
-      captive-browser # Browser for captive portals
       scc # Better alternative to cloc for counting lines of code
       adwaita-icon-theme # Icons for GTK
       nixpkgs-review # Quickly review pull requests to nixpkgs
@@ -230,41 +224,13 @@
       commitlint-rs # Be consistent in commit messages
       android-tools # ADB and Fastboot
       worktrunk # Git worktree management
-      pkgs-unstable._7zz-rar
-      # zpaq # (De)compression
-      # squashfuse
-      # spacedrive # Modern file manager
-      # pkgs-unstable.gitbutler # VCS TEST me
-      # pijul # VCS TEST me
-      # nix-update # Auto update flakes, FODs hashes…
-      # streamrip # Download music
-      # spotdl # Download music and playlists from Spotify
-      # viu # CLI image viewer
-      # meld # Graphical merge tool
-      # f3d # Minimalist 3D viewer
-      # lpac # Manage eSIMs in a chip (eUICC LPA)
-      # wayback # Web archiving tool
-      # drawio # Diagramming software
-      # qgis # Maps TODO https://www.mypermagarden.app/fr/download
-      # guile # Scheme compiler and runtime
-      # pre-pre-commit-hook-ensure-sops # Ensure sops is used for secrets
-      # exercism # CLI for the programming exercises website
-      localsend # Share files on local network
-      # nickel # Modern configuration Nickel, Nix improvement
-      # kalker # Evaluate math expression
-      # comma # Run any command from Nixpkgs
-      # czkawka # Duplicate file finder, image deduplicator, and more
+      bottles # Easier wine management
     ] # Passwords & Secrets
     ++ [
       pkgs-unstable.proton-pass # Proton password manager
       pkgs-unstable.proton-authenticator # Proton 2FA
       gitleaks # Better tool to discover secrets in Git repo TODO Auto for config
       git-filter-repo # Quickly rewrite history
-      # bitwarden-cli # Modern password manager, replaced by rbw
-      # bitwarden-desktop
-      # keepassxc # Password manager
-      # keepassxc-go # CLI to interacet with KeepassXC
-      # git-credential-keepassxc # Use KeepassXC with Git
     ] # Storage & Backup & Encryption
     ++ [
       restic # Efficient backup tool
@@ -274,22 +240,11 @@
       smartmontools # Monitor health of drives
       android-file-transfer # Media Transfer Protocol (Android…)
       (pkgs.callPackage ./module/protonDrive.nix { })
-      # jmtpfs # Media Transfer Protocol (Android…)
-      # mtpfs # Media Transfer Protocol (Android…)
-      # dislocker # Decrypt BitLocker disks
-      # cdrkit # ISO tools and misc
-    ] # Emulation & Compatibility
-    ++ [
-      umu-launcher # Easier wine management
-      # pkgs-unstable.quickemu # Quickly create optimized VMs
-      # bottles # Easier wine management
-      # lima # Quickly create optimized VMs
-      # wine # Execute Window$ programs
-      # wineWowPackages.stable # Execute Window$ programs (32 and 64 bits)
-      # wineWowPackages.waylandFull # Execute Window$ programs (32 and 64 bits)
-      # winetricks # Execute Window$ programs (config tool)
-      # winboat # Seamless Windows VM app Linux
-    ] # Machine learning & AI
+      imagemagick # CLI image edition
+      mediainfo # info about audio or video
+      pkgs-unstable._7zz-rar
+      localsend # Share files on local network
+    ] # NLP
     ++ [
       pkgs-unstable.opencode # Any LLM Open Source Agent CLI
       pkgs-unstable.goose-cli # TEST
@@ -298,72 +253,36 @@
       pkgs-unstable.pi-coding-agent # TEST
       pkgs-unstable.whale # TEST
       pkgs-unstable.llama-cpp
-      # whisper-cpp # STT
-    ] # Spell Checking
-    ++ [
-      # ltex-ls # Text grammar checker LSP using Languagetool (Java, slow)
+      pkgs-unstable.whisper-cpp # STT
       ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
-      # hunspell # Classic spell checker
-      # hunspellDicts.fr-any # French
-      # hunspellDicts.en_US # American
-      # hunspellDicts.en_GB-ise # British
-      # hunspellDicts.es_ES # Spanish
-      # vale # Linter for prose
-    ] # Electronics
+    ] # Engineering & Electronics
     ++ [
       dfu-util # Device Firmware Upgrade USB utility
       rpi-imager # Raspberry Pi OS imager
-      # horizon-eda # Modern EDA to develop printed circuit boards
       kicad # Electronics (EDA) software
-      # librepcb # Modern EDA software
-      # fritzing # Elecronics (EDA) software
-      # xschem # Schematic editor TODO imperative install
-      # xyce # -parallel # Analog circuit simulator TODO imperative install
-      # gnucap-full # Circuit analysis
-      # ngspice # Electronic circuit simulator
-      # scilab-bin # Scientific computations TODO install imperatively
-      # stm32flash # Open source flash program for the STM32 ARM processors
-      # stm32cubemx # Graphical tool for configuring STM32 microcontrollers
-    ] # 3D (CAD, Engineering, Artistic, Animation, Slicing)
-    ++ [
+      ngspice # Electronic circuit simulator
+      qucs-s # Electronics simulations
       freecad-wayland # Popular parametric 3D CAD
-      # openscad-unstable # Code CAD
-      # openscad-lsp # LSP
       orca-slicer # G-code generator for 3D printers…
-      # pkgs-unstable.bambu-studio # Crap
-      # dune3d # New simple parametric CAD
-      # solvespace # Simple parametric 3D CAD
-      # brlcad # Combinatorial solid modeling system
-      # blender # Most popular 3D, animation & video editor
-      # blenderWithPySlvs # Patched popular 3D, animation & video editor
-      # meshlab # 3D mesh processing tool
-      # cura # Popular 3D printer slicer
-      # super-slicer # Popular 3D printer slicer, fork of prusa-slicer
+      # pkgs-unstable.openscad-unstable # Code CAD
+      # pkgs-unstable.openscad-lsp # LSP
     ] # VPN
     ++ [
       pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
       pkgs-unstable.proton-vpn-cli # Swiss VPN service (CLI)
-      # amnezia-vpn # Anonymous VPN service
-      # calyx-vpn # (bitmask client) Free VPN service
-      # riseup-vpn # (bitmask client) Free VPN service
-      # nym # Super-anonymous routing protocol FIXME lacks desktop apps
-      # mullvad # Anonymous VPN service
+      pkgs-unstable.nym # Super-anonymous routing protocol FIXME lacks desktop apps
+      mullvad # Anonymous VPN service (CLI)
+      mullvad-vpn # Anonymous VPN service (GUI)
     ] # Messaging & Social
     ++ [
-      signal-cli # Secure messaging
-      # simplex-chat-desktop # Anonymous secure messaging
-      # olvid # French anonymous secure messaging
-      # element-desktop # Secure group messaging and calls
-      # element-web # Secure messaging and calls
-      # telegram-desktop # "Secure" messaging
-      # nak # Nostr CLI
-      # gossip # Nostr GUI
-      # nostr-rs-relay # Rust Nostr relay
+      pkgs-unstable.signal-cli # Secure messaging
+      pkgs-unstable.signal-desktop # Secure messaging
+      sherlock # Search people on social media accounts
+      maigret # Search people on social media accounts
     ];
 
   services = {
     syncthing.enable = true; # Efficient P2P Syncing
-    # restic.enable = true; # Efficient backup tool TEST service instead of CLI
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
     podman.enable = true; # Containerization for development and more
