@@ -15,8 +15,10 @@ in
   };
 
   boot = {
-    initrd.luks.devices.${luksDev}.device = lib.mkDefault "/dev/nvme0n1p2";
-    initrd.luks.devices.${luksDev}.allowDiscards = true;
+    initrd.luks.devices.${luksDev} = {
+      device = lib.mkDefault "/dev/nvme0n1p2";
+      allowDiscards = true;
+    };
     resumeDevice = lib.mkDefault "/dev/mapper/${luksDev}"; # Use UUID=… instead
     # WARN Set resume_offset in kernelParams to allow resuming from swapfile
   };
