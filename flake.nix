@@ -194,7 +194,7 @@
               pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
               # nls # Nickel LSP
               nufmt # Nushell formatter
-              # statix # Lints & suggestions for Nix, to test
+              nvme-cli # NVMe utilities
               sbctl # SecureBoot key manager, used for install with Lanzaboote
               shellcheck # Shell script analysis
               shfmt # Shell script formatter
