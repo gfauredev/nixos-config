@@ -2,8 +2,7 @@
 .stfolder/
 .venv*
 .vagrant
-.git/
-(?d)**/.git
+.git/**
 node_modules/
 .direnv/
 *.local
