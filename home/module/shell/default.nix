@@ -25,6 +25,7 @@
         ${writeScript "configure" (readFile ./script/configure.sh)} "$@"
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
+      drive = writeScriptBin "drive" (readFile ./script/drive.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
       inhibit = writeScriptBin "inhib" (readFile ../launcher/vicinae/scripts/inhib.sh);
       present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
@@ -44,6 +45,7 @@
       backup # Backup with restic or rsync
       configure # Configure this flake config
       date-edit # Open text files, prepend current date to the first one
+      drive # Rclone sync to drive (like proton)
       extract # Extract any compressed file
       inhibit # Quickly inhibit sleep, idle, shutdown
       present-pdf # Open detached pdfpc to present a PDF slide
