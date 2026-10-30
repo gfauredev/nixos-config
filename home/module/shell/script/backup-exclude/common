@@ -27,6 +27,7 @@ CMakeFiles/**
 *cache*/**
 *thumbnails*/**
 *.local
+*.local/**
 *.log
 *.tmp
 lib.typ
