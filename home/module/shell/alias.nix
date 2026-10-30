@@ -18,9 +18,10 @@ let
     # inhib = "systemd-inhibit sleep";
     # Files
     a = "bat"; # Prettier cat to quickly display files in term
-    restore = "trash-restore";
-    empty = "trash-empty -i";
     d = "rm --recursive --verbose"; # Remove file(s) (thrash them in Nushell)
+    dust = "dust --skip-total";
+    empty = "trash-empty -i";
+    restore = "trash-restore";
     shred = "shred -vu";
     wx = "watchexec";
     ## Quickly launch default text editor
