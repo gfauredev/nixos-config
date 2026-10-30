@@ -7,8 +7,7 @@ let
     off = "systemctl poweroff";
     sys = "systemctl";
     jo = "journalctl -xfe";
-    gc = "nix store gc";
-    # gc = "nix-collect-garbage";
+    gc = "systemd-inhibit nix-collect-garbage --delete-older-than 3d; systemd-inhibit sudo nix-collect-garbage --delete-older-than 3d";
     limit = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit resources
     restrict = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit resources aggressively
     # egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor

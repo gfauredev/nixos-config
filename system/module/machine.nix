@@ -2,13 +2,11 @@
 {
   imports = [ ./filesystem.nix ];
 
+  nix.settings.auto-optimise-store = true; # Auto hard-link identical files in Nix store
   nix.gc = {
     automatic = lib.mkDefault false;
     dates = lib.mkDefault "weekly";
-    options = lib.mkDefault "--delete-older-than 15d"; # +3";
-  };
-  nix.settings = {
-    auto-optimise-store = true; # Auto hard-link identical files in Nix store
+    options = lib.mkDefault "--delete-older-than 7d";
   };
 
   documentation = {

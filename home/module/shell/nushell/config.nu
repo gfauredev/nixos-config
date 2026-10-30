@@ -204,7 +204,7 @@ def agent [...args] {
 # Display a welcome message for the first five minutes after login
 if (date now) - (who -H | from ssv | get TIME | first | into datetime) < 5min {
   fastfetch
-  print "Remember to clean Nix garbage: nix store gc" # TODO Better, indicate time since last clean
+  print "Remember to clean Nix garbage (gc alias)"
 }
 
 if ("~/Downloads" | path type) == "dir" {
