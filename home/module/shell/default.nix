@@ -162,7 +162,7 @@
   };
 
   xdg.configFile = {
-    "backup-exclude".source = ./script/backup-exclude;
+    "backup".source = ./script/backup;
     "commitlintrc.yaml".source = ./commitlintrc.yaml;
     "ov/config.yaml".source = ./ov.yaml;
     "tio/config".source = ./tio.ini;

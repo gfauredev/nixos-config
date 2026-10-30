@@ -2,8 +2,8 @@
 Trash/**
 trash/**
 
-.stfolder/
-.stversions/
+.stfolder/**
+.stversions/**
 
 *ignore*
 
@@ -12,8 +12,6 @@ trash/**
 .venv*/**
 .vagrant/**
 node_modules/**
-.stversions/**
-.stfolder/**
 
 .build/**
 build/**

@@ -4,8 +4,8 @@ set -eu
 IMPORTANT="$HOME/author $HOME/collect"
 ARCHIVE="$HOME/shelve"
 CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
-EXCLUDE_COMMON="$CONFIG/backup-exclude/common"
-EXCLUDE_IMG="$CONFIG/backup-exclude/img"
+EXCLUDE_COMMON="$CONFIG/backup/exclude-common.glob"
+EXCLUDE_IMG="$CONFIG/backup/exclude-img.glob"
 LAST_RESTIC_REPO=""
 ARCHIVE_BACKED_UP="" # Only offer to clean ARCHIVE once it has been saved
 BG_PIDS=""           # Background jobs (cloud syncs) to wait for
