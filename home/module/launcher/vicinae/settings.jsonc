@@ -62,6 +62,9 @@
         "open-default-config": {
           "enabled": false
         },
+        "report-bug": {
+          "enabled": false
+        },
         "search-emojis": {
           "alias": ":"
         },
@@ -76,11 +79,19 @@
     "files": {
       "preferences": {
         "autoIndexing": true,
-        "excludedIndexingPaths": [],
         "indexingPaths": [
           "/home/gf/author",
           "/home/gf/collect",
           "/home/gf/image"
+        ],
+        "excludedIndexingPaths": [
+          "/home/gf/collect/07provider/software.large",
+          "/home/gf/collect/07provider/proton.large",
+          "/home/gf/collect/03nonprofit+community/software.large",
+          "/home/gf/author/polytechDiploma/a4.large",
+          "/home/gf/author/polytechDiploma/a3.local",
+          "/home/gf/author/polytechDiploma/a5code.large",
+          "/home/gf/author/polytechDiploma/a4code.local"
         ]
       }
     },
@@ -98,13 +109,6 @@
       "entrypoints": {
         "store": {
           "enabled": false
-        }
-      }
-    },
-    "shortcuts": {
-      "entrypoints": {
-        "sct-ecosia": {
-          "alias": "e "
         }
       }
     },
