@@ -29,8 +29,8 @@
     glicol-cli # Music live coding
     helio-workstation # Sequencer / DAW
     # crosspipe # Audio patchbay
-    hyprpwcenter # Hypr’s PipeWire control center TEST me
-    pwvucontrol # PipeWire volume control TEST me
+    hyprpwcenter # Hypr’s PipeWire control center
+    # pwvucontrol # PipeWire volume control
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
     # patchage # JACK router
