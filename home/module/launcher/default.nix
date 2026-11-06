@@ -1,13 +1,11 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }:
 {
   imports = [
     ./vicinae
-    # ./albert
   ];
 
   options.launch = with lib.types; {
@@ -41,7 +39,7 @@
     };
     mix = lib.mkOption {
       type = str;
-      default = "${config.term.cmd} ${config.term.exec} pulsemixer"; # Audio mixer
+      default = "${pkgs.pwvucontrol}/bin/pwvucontrol"; # Audio mixer
       description = "Audio mixer";
     };
   };

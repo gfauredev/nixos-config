@@ -9,7 +9,6 @@
     ./alias.nix
     ./nushell
     ./zsh.nix
-    ./pulsemixer
   ];
   home.packages =
     with pkgs;

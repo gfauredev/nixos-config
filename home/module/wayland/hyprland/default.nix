@@ -413,15 +413,15 @@ in
             {
               _args = [
                 (lib.generators.mkLuaInline "\"F21\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420] ${config.term.cmd} ${config.term.exec} bluetoothctl\")")
-                { description = "Open bluetooth manager"; }
+                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420] qpwgraph\")")
+                { description = "Open pipewire grap"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"F23\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420]  ${config.term.cmd} ${config.term.exec} bluetoothctl\")")
-                { description = "Open bluetooth manager"; }
+                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420]  qpwgraph\")")
+                { description = "Open pipewire grap"; }
               ];
             }
             {

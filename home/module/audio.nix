@@ -20,8 +20,12 @@
   };
 
   home.packages = with pkgs; [
-    ardour # Full fledged digital audio workstation
     pipewire.jack # PipeWire JACK CLI tools
+    wiremix # TUI mixer
+    qpwgraph # PipeWire router
+    pwvucontrol # GUI PipeWire volume control
+    coppwr # TEST
+    ardour # Full fledged digital audio workstation
     # bespokesynth # Software modular synth, controllers support
     carla # VST Host & audio router
     cardinal # Standalone and VST modular synthesizer
@@ -29,12 +33,9 @@
     glicol-cli # Music live coding
     helio-workstation # Sequencer / DAW
     # crosspipe # Audio patchbay
-    hyprpwcenter # Hypr’s PipeWire control center
-    # pwvucontrol # PipeWire volume control
     # ingen # Modular audio environment
     # ossia-score # Interactive sequencer
     # patchage # JACK router
-    # qpwgraph # PipeWire router
     # supercollider # Audio synthesis and algorithmic composition
     # vcv-rack # Standalone modular synthesizer
     # vmpk # Virtual keyboard

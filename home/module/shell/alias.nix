@@ -46,7 +46,6 @@ let
     mtp = "aft-mtp-cli";
     clic = "klick --auto-connect --interactive";
     clicmap = "klick --auto-connect --tempo-map";
-    mix = "pulsemixer";
     scanpdf = "scanimage --format=pdf --batch --batch-prompt --progress --mode=color --resolution=400";
     compile-commands = "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"; # For LSP
     calc = "kalker"; # Do calculations
