@@ -9,27 +9,15 @@
       monitor = [
         {
           output = "eDP-1"; # Griffin’s internal monitor, scale 1.333
-          mode = "2256x1504";
+          mode = "2256x1504@60.00";
           position = "0x0";
           scale = 1.333;
         }
         # Center above internal display: (3440-(2256/1.333))/2≃873,78…
         {
           output = "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622";
-          mode = "3440x1440@144";
+          mode = "3440x1440@59.97"; # Higher rates causes micro blanks
           position = "-874x-1440";
-          scale = 1;
-        }
-        {
-          output = "desc:IGM Communi L238DPH-NS-BU 0x01010101";
-          mode = "1920x1080@60";
-          position = "-1920x-540";
-          scale = 1;
-        }
-        {
-          output = "desc:NEC Corporation EA221WM 0x01010101";
-          mode = "1680x1050@60";
-          position = "auto-up";
           scale = 1;
         }
         {
