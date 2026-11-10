@@ -28,7 +28,7 @@ show_help() {
   echo
   echo "- re[build]:  Force home config rebuild even if no edits."
   echo "- s[ystem]:   Rebuild the NixOS system with nixos-rebuild (asks sudo)."
-  echo "- u[pdate]:   Update every flake inputs (don’t edit the configuration)."
+  # echo "- u[pdate]:   Update every flake inputs (don’t edit the configuration)." FIXME
   echo
   echo "- [--]h[elp]: Show this help message (and exit)."
   echo
@@ -115,9 +115,6 @@ ensure_default_branch() {
 
 # Update public config flake inputs
 update_subflake_inputs() {
-  emph # Italic text
-  # ensure_attached_head "$SUBFLAKE" TODO
-  regular
   emph # Italic text
   printf '%s: Update flake inputs\n' $SUBFLAKE
   regular
@@ -240,7 +237,7 @@ edit() {
   nix develop --command "$EDITOR" .
 }
 
-amend_all() {                # Amend top-level and submodule flake repositories
+amend_all() {                          # Amend top-level and submodule flake repositories
   if protected_amend "$SUBFLAKE"; then # May amend the sub flake
     git -C $SUBFLAKE push              # Nix needs the sub flake pushed
     extract_last_commit_msg $SUBFLAKE  # Set commit msg to the last one
@@ -333,7 +330,10 @@ while [ "$#" -gt 0 ]; do
     exit
     ;;
   u | up | update | upgrade) # Update the flake’s inputs, no rebuild by default
-    update_inputs=true
+    emph                     # Italic text
+    printf 'FIXME (Sub)flake inputs update function borked, doesn’t update top-level properly\n'
+    regular
+    # update_inputs=true
     ;;
   s | sy | sys | system | os)            # Rebuild the NixOS system
     sudo echo 'Asked sudo now for later' # ask sudo preventively
