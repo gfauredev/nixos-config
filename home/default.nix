@@ -242,6 +242,7 @@
       (pkgs.callPackage ./module/protonDrive.nix { })
       imagemagick # CLI image edition
       mediainfo # info about audio or video
+      exiftool # Edit EXIF
       pkgs-unstable._7zz-rar
       localsend # Share files on local network
       samba
