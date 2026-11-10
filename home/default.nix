@@ -271,7 +271,7 @@
     ++ [
       pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
       pkgs-unstable.proton-vpn-cli # Swiss VPN service (CLI)
-      pkgs-unstable.nym # Super-anonymous routing protocol FIXME lacks desktop apps
+      # pkgs-unstable.nym # Super-anonymous routing protocol FIXME lacks desktop apps
       mullvad-vpn # Anonymous VPN service (GUI)
     ] # Messaging & Social
     ++ [
