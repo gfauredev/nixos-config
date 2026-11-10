@@ -157,7 +157,7 @@
       networkmanager = {
         enable = lib.mkDefault true;
         dns = lib.mkForce "none"; # Don’t care about lying/spying DHCP provided DNS servers
-        # insertNameservers = config.networking.nameservers;
+        plugins = [ pkgs.networkmanager-openvpn ];
         ethernet.macAddress = "random";
         wifi.macAddress = "stable-ssid";
       };
