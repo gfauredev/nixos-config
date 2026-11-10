@@ -248,11 +248,11 @@
     ] # NLP
     ++ [
       pkgs-unstable.opencode # Any LLM Open Source Agent CLI
-      pkgs-unstable.goose-cli # TEST
-      pkgs-unstable.openspec # TEST
-      pkgs-unstable.open-interpreter # TEST
-      pkgs-unstable.pi-coding-agent # TEST
-      pkgs-unstable.whale # TEST
+      # pkgs-unstable.goose-cli
+      # pkgs-unstable.openspec
+      pkgs-unstable.open-interpreter
+      pkgs-unstable.pi-coding-agent
+      # pkgs-unstable.whale
       pkgs-unstable.llama-cpp
       pkgs-unstable.whisper-cpp # STT
       ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
