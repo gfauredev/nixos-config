@@ -27,14 +27,16 @@ if [ -z "$DURATION" ]; then
   DURATION="$DEFAULT_DURATION"
 fi
 
+UNTIL=$(date -d "now + $(echo "$DURATION" | sed -E 's/d/ days /g; s/h/ hours /g; s/m/ minutes /g; s/s/ seconds /g')" "+%H:%M:%S")
+
 # Spawn inhibitor in background
 (
-  notify-send "Inhibiting Sleep & Idle" "Will be disabled for ${DURATION}"
+  notify-send "Inhibiting Sleep & Idle" "Will be disabled for $DURATION"
 
   if ! systemd-inhibit \
     --what="sleep:idle:handle-lid-switch" \
     --who="inhib.sh" \
-    --why="$(date +%R) Inhibit sleep for ${DURATION}" \
+    --why="Inhibit sleep for $DURATION (until $UNTIL)" \
     --mode="block" \
     sleep "$DURATION"; then
     notify-send -u critical "Failed to inhibit" "Check system permissions"
