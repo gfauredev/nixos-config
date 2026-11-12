@@ -2,7 +2,7 @@
   "artifactReviewPolicy": "always-proceed",
   "enableTelemetry": false,
   "enableTerminalSandbox": true,
-  "model": "Gemini 3.1 Pro (High)",
+  "model": "Claude Opus 5.5 (Medium)",
   "notifications": true,
   "permissions": {
     "allow": [
@@ -24,14 +24,16 @@
       "unsandboxed(bun)",
       "unsandboxed(npm)",
       "unsandboxed(http)",
-      "unsandboxed(https)"
+      "unsandboxed(https)",
+      "unsandboxed(./gradlew)",
+      "unsandboxed(cat)",
+      "unsandboxed(which)",
+      "unsandboxed(ls)",
+      "unsandboxed(grep)"
     ]
   },
   "toolPermission": "proceed-in-sandbox",
   "trustedWorkspaces": [
-    "/home/gf/dev/config/public",
-    "/home/gf/dev/planAffectationIntelligent",
-    "/home/gf/dev/fetePerchee.cac/site",
-    "/home/gf/dev/planAffectationIntelligent/core/main"
+    "/home/gf/author/nixOsConfig/public"
   ]
 }
