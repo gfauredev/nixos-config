@@ -1,9 +1,11 @@
 {
-  "artifactReviewPolicy": "always-proceed",
-  "enableTelemetry": false,
-  "enableTerminalSandbox": true,
   "model": "Claude Opus 5.5 (Medium)",
+  "agentMode": "auto",
+  "enableTerminalSandbox": true,
+  "toolPermission": "proceed-in-sandbox",
+  "artifactReviewPolicy": "always-proceed",
   "notifications": true,
+  "enableTelemetry": false,
   "permissions": {
     "allow": [
       "unsandboxed(nix develop)",
@@ -29,7 +31,8 @@
       "unsandboxed(cat)",
       "unsandboxed(which)",
       "unsandboxed(ls)",
-      "unsandboxed(grep)"
+      "unsandboxed(grep)",
+      "unsandboxed(tail)"
     ]
   },
   "toolPermission": "proceed-in-sandbox",
