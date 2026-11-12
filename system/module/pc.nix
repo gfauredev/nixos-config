@@ -20,6 +20,7 @@
     graphics.enable = true;
     bluetooth.enable = lib.mkDefault true;
     bluetooth.powerOnBoot = lib.mkDefault true;
+    flipperzero.enable = true;
   };
   # Run non native binaries seamlessly
   boot.binfmt.emulatedSystems = [
