@@ -153,10 +153,10 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
   }
 }
 
-def agent [...args] {
-    let processed_args = ($args | str replace --regex '^\./' '@' | str join ' ')
-    agy --prompt-interactive $processed_args
-}
+# def agent [...args] {
+#     let processed_args = ($args | str replace --regex '^\./' '@' | str join ' ')
+#     agy --prompt-interactive $processed_args
+# }
 
 # Display a welcome message for the first five minutes after login
 if (date now) - (who -H | from ssv | get TIME | first | into datetime) < 5min {

@@ -38,7 +38,7 @@
         }
         {
           workspace = "name:dpp"; # Top Left: Desk monitor, Hub…
-          monitor = "DP-4";
+          monitor = "DP-6"; # Sometimes DP-4?
           default = true;
         }
         {
