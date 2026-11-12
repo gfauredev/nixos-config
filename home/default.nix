@@ -266,8 +266,7 @@
       qucs-s # Electronics simulations
       freecad-wayland # Popular parametric 3D CAD
       orca-slicer # G-code generator for 3D printers…
-      # pkgs-unstable.openscad-unstable # Code CAD
-      # pkgs-unstable.openscad-lsp # LSP
+      pkgs-unstable.qFlipper # Flipper Zero Software
     ] # VPN
     ++ [
       pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
