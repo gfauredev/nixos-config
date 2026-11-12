@@ -55,6 +55,7 @@ in
         ".bun"
         ".cargo"
         ".npm"
+        ".local/bin"
         ".local/share/bottles"
         ".local/share/Steam"
         ".local/share/flatpak"
