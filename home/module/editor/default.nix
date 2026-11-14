@@ -22,35 +22,30 @@
       default = with pkgs; [
         (tree-sitter.withPlugins (p: builtins.attrValues p)) # Every grammar
         deno # Runtime for LSPs and formatters
-        # Language Models
-        # copilot-language-server # GitHub Copilot LSP
-        # lsp-ai # Language server for language models
-        # tabby # Self-hosted AI code assistant
-        # TODO AI Autocomplete
-        # Spell Checking
+        # Natural Language
         harper # Grammar/spell checker LSP (Rust, fast)
+        ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
+        # markdown-oxide # PKM (links, tags, dates…)
+        marksman # Wikilinks, ToC generation…
         # vale-ls # LSP Vale implementation
         # Language Servers & Linters
         bash-language-server # Bash, shell script LSP
         # lorri # Your project's nix-env, to test
-        marksman # Wikilinks, ToC generation…
-        # markdown-oxide # PKM (links, tags, dates…)
         pkgs-unstable.nixd # "Official" Nix LSP
         pkgs-unstable.nil # Nix LSP
-        # niv # Easy dependency management, to test
+        nurl # Get FOD’s hashes without rebuilding everything
+        nix-update # Auto update flakes, FODs hashes…
+        nufmt # Nushell formatter
         pkgs-unstable.nixfmt # Formatter
         pkgs-unstable.nixfmt-tree # Format a whole directory of nix files
-        # nls # Nickel LSP
-        # pkgs-unstable.rumdl # Fast markdown linter & formatter
+        openscad-lsp # Code based 3D CAD LSP
         rust-analyzer # Globally for rust-script
-        # statix # Lints & suggestions for Nix, to test
-        sbctl # SecureBoot key manager, used for install with Lanzaboote
         shellcheck # Shell script analysis
         shfmt # Shell script formatter
         taplo # TOML LSP
         tinymist # Typst LSP
         typstyle # Typst formatter
-        # vscode-langservers-extracted # HTML/CSS/JS(ON)
+        vscode-langservers-extracted # HTML/CSS/JS(ON)
         yaml-language-server # YAML LSP
       ];
       description = ''

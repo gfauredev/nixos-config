@@ -255,7 +255,6 @@
       # pkgs-unstable.whale
       pkgs-unstable.llama-cpp
       pkgs-unstable.whisper-cpp # STT
-      ltex-ls-plus # Text grammar checker LSP using Languagetool (Java, slow)
     ] # Engineering & Electronics
     ++ [
       dfu-util # Device Firmware Upgrade USB utility
@@ -264,6 +263,7 @@
       ngspice # Electronic circuit simulator
       qucs-s # Electronics simulations
       freecad-wayland # Popular parametric 3D CAD
+      openscad-unstable # Code based 3D CAD
       orca-slicer # G-code generator for 3D printers…
       pkgs-unstable.qFlipper # Flipper Zero Software
     ] # VPN
