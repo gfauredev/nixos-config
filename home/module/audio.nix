@@ -7,6 +7,95 @@
   services = {
     playerctld.enable = true;
     mpris-proxy.enable = true;
+    pipewire.enable = true;
+    pipewire.wireplumber.enable = config.services.pipewire.enable;
+    configs =
+      let
+        baseConfiguredPriority = 2500;
+      in
+      {
+        "50-device-priorities" = {
+          "monitor.alsa.rules" = [
+            # Audio/Sink (Speakers/Headphones)
+            # AfterShokz Loop 100
+            {
+              matches = [
+                { "node.name" = "alsa_output.usb-0a12_AfterShokz_Loop_100-00.analog-stereo"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 8;
+            }
+            # Built-in Audio
+            {
+              matches = [
+                { "node.name" = "alsa_output.pci-0000_00_1f.3.analog-stereo"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 4;
+            }
+            # Generic USB Audio
+            {
+              matches = [
+                { "node.name" = "alsa_output.usb-Generic_USB_Audio_201604140001-00.analog-stereo"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 2;
+            }
+            # Audio/Source (Microphones)
+            # AfterShokz Loop 100
+            {
+              matches = [
+                { "node.name" = "alsa_input.usb-0a12_AfterShokz_Loop_100-00.mono-fallback"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 8;
+            }
+            # Creative Live! Cam Sync 1080p V2 Mic
+            {
+              matches = [
+                {
+                  "node.name" =
+                    "alsa_input.usb-Creative_Technology_Ltd._Creative_Live__Cam_Sync_1080p_V2_Creative_Live__Cam_Sync_1080p_V2_Audio-02.analog-stereo";
+                }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 4;
+            }
+            # Built-in Audio Mic
+            {
+              matches = [
+                { "node.name" = "alsa_input.pci-0000_00_1f.3.analog-stereo"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 2;
+            }
+            # Generic USB Audio Mic
+            {
+              matches = [
+                { "node.name" = "alsa_input.usb-Generic_USB_Audio_201604140001-00.analog-stereo"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 1;
+            }
+          ];
+          # Video/Source (Cameras)
+          "monitor.v4l2.rules" = [
+            # Creative Live! Cam Sync 1080p V2
+            {
+              matches = [
+                { "node.nick" = "Creative Live! Cam Sync 1080p V2"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 8;
+            }
+            # Laptop Camera
+            {
+              matches = [
+                { "node.nick" = "Laptop Camera"; }
+              ];
+              actions.update-props."priority.session" = baseConfiguredPriority + 4;
+            }
+          ];
+        };
+        # Prevent WirePlumber's saved user selections from overriding those
+        "51-strict-priority-selection" = {
+          "wireplumber.settings" = {
+            "node.restore-default-targets" = false;
+          };
+        };
+      };
   };
 
   home.sessionVariables = {

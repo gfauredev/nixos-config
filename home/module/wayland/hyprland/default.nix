@@ -414,14 +414,14 @@ in
               _args = [
                 (lib.generators.mkLuaInline "\"F21\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420] qpwgraph\")")
-                { description = "Open pipewire grap"; }
+                { description = "Open PipeWire graph"; }
               ];
             }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"F23\"")
                 (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"[float; center; size 888 420]  qpwgraph\")")
-                { description = "Open pipewire grap"; }
+                { description = "Open PipeWire graph"; }
               ];
             }
             {
