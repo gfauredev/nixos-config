@@ -9,7 +9,7 @@
     mpris-proxy.enable = true;
     pipewire.enable = true;
     pipewire.wireplumber.enable = config.services.pipewire.enable;
-    configs =
+    pipewire.wireplumber.configs =
       let
         baseConfiguredPriority = 2500;
       in
