@@ -278,6 +278,7 @@
       pkgs-unstable.signal-desktop # Secure messaging
       sherlock # Search people on social media accounts
       maigret # Search people on social media accounts
+      john # Ripper
     ];
 
   services = {
