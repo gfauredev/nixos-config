@@ -245,6 +245,7 @@
       pkgs-unstable._7zz-rar
       localsend # Share files on local network
       samba
+      libguestfs
     ] # NLP
     ++ [
       pkgs-unstable.opencode # Any LLM Open Source Agent CLI
