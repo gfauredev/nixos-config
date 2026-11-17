@@ -287,6 +287,7 @@
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
     podman.enable = true; # Containerization for development and more
+    gnome-keyring.enable = true;
     syncthing = {
       overrideDevices = lib.mkDefault true; # No imperative config
       overrideFolders = lib.mkDefault true; # No imperative config
