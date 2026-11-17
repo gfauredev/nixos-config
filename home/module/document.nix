@@ -21,7 +21,7 @@
     # pdf-sign # Automated PDF signing
     # pdfmixtool # Simple GUI to edit PDFs structure
     naps2 # Scan PDFs with OCR
-    # ocrmypdf # Add a layer of text on scanned PDFs
+    ocrmypdf # Add a layer of text on scanned PDFs
     # tesseract # OCR on PDF or images
     # gnome.simple-scan # Document scanner
     pdfpc # PDF Presentator Console
