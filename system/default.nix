@@ -89,70 +89,117 @@
         "127.0.0.1" # Local IPv4 (DNSCrypt Proxy)
         "::1" # Local IPv6 (DNSCrypt Proxy)
       ];
-      dns4eu.open = [
-        # Unfiltered modern European public DNS
+      # Modern European public DNS
+      dns4eu.ip.open = [
+        "2a13:1001::86:54:11:100" # IPv6
         "86.54.11.100" # IPv4
+        "2a13:1001::86:54:11:200" # IPv6
+        "86.54.11.200" # IPv4
       ];
-      dns4eu.normal = [
-        # Modern European public DNS
+      dns4eu.doh.open = "unfiltered.joindns4.eu/dns-query";
+      dns4eu.dot.open = "unfiltered.joindns4.eu";
+      dns4eu.ip.normal = [
+        "2a13:1001::86:54:11:1" # IPv6
         "86.54.11.1" # IPv4
+        "2a13:1001::86:54:11:201" # IPv6
+        "86.54.11.201" # IPv4
       ];
-      dns4eu.hard = [
-        # Hardened modern European public DNS
+      dns4eu.doh.normal = "protective.joindns4.eu/dns-query";
+      dns4eu.dot.normal = "protective.joindns4.eu";
+      dns4eu.ip.hard = [
+        "2a13:1001::86:54:11:13" # IPv6
         "86.54.11.13" # IPv4
+        "2a13:1001::86:54:11:213" # IPv6
+        "86.54.11.213" # IPv4
       ];
-      fdn.open = [
-        # Non-profit public DNS
+      dns4eu.doh.hard = "noads.joindns4.eu/dns-query";
+      dns4eu.dot.hard = "noads.joindns4.eu";
+      # French nonprofit public DNS
+      fdn.ip.open = [
         "2001:910:800::12" # ns0.fdn.fr" # IPv6
         "80.67.169.12" # ns0.fdn.fr" # IPv4
         "2001:910:800::40" # ns1.fdn.fr" # IPv6
         "80.67.169.40" # ns1.fdn.fr" # IPv4
       ];
-      cloudflare.open = [
-        # Quick public DNS
+      fdn.doh.open = [
+        "ns0.fdn.fr/dns-query"
+        "ns1.fdn.fr/dns-query"
+      ];
+      fdn.dot.open = [
+        "ns0.fdn.fr" # Port TCP/853
+        "ns1.fdn.fr" # Port TCP/853
+      ];
+      # Privacy oriented Sweden public DNS
+      mullvad.ip.open = [
+        "2a07:e340::2" # dns.mullvad.net # IPv6
+        "194.242.2.2" # dns.mullvad.net # IPv4
+      ];
+      mullvad.doh.open = "dns.mullvad.net"; # Port 443
+      mullvad.dot.open = mullvad.doh.open; # Port 853
+      mullvad.ip.hard = [
+        "2a07:e340::4" # base.dns.mullvad.net # IPv6
+        "194.242.2.4" # base.dns.mullvad.net # IPv4
+      ];
+      mullvad.doh.hard = "base.dns.mullvad.net"; # Port 443
+      mullvad.dot.hard = mullvad.doh.hard; # Port 853
+      # Independent DNS
+      shaft.ip.open = [
+        "2001:bc8:2c86:853::853" # dns.shaftinc.fr # IPv6
+      ];
+      # Fast American public DNS
+      cloudflare.ip.open = [
         "2606:4700:4700::1111" # one.one.one.one" # IPv6
         "1.1.1.1" # one.one.one.one" # IPv4
         "2606:4700:4700::1001" # one.one.one.one" # IPv6
         "1.0.0.1" # one.one.one.one" # IPv4
       ];
-      quad9.open = [
-        # Public DNS
+      cloudflare.doh.open = [
+        "one.one.one.one/dns-query" # Port 443
+        "cloudflare-dns.com/dns-query" # Port 443
+      ];
+      cloudflare.dot.open = [
+        "one.one.one.one" # Port 853
+        "cloudflare-dns.com" # Port 853
+      ];
+      # Swiss nonprofit public DNS
+      quad9.ip.open = [
         "2620:fe::10" # dns.quad9.net" # IPv6
         "9.9.9.10" # dns.quad9.net" # IPv4
         "2620:fe::fe:10" # dns.quad9.net" # IPv6
         "149.112.112.10" # dns.quad9.net" # IPv4
       ];
-      quad9.normal = [
-        # Public DNS
+      quad9.doh.open = "dns10.quad9.net/dns-query";
+      quad9.dot.open = "dns10.quad9.net";
+      quad9.ip.normal = [
         "2620:fe::fe" # dns.quad9.net" # IPv6
         "9.9.9.9" # dns.quad9.net" # IPv4
         "2620:fe::9" # dns.quad9.net" # IPv6
         "149.112.112.112" # dns.quad9.net" # IPv4
       ];
-      quad9.hard = [
-        # Hardened public DNS
+      quad9.doh.normal = "dns.quad9.net/dns-query";
+      quad9.dot.normal = "dns.quad9.net";
+      quad9.ip.hard = [
         "2620:fe::11" # dns11.quad9.net" # IPv6
         "9.9.9.11" # dns11.quad9.net" # IPv4
         "2620:fe::fe:11" # dns11.quad9.net" # IPv6
         "149.112.112.11" # dns11.quad9.net" # IPv4
       ];
-      mullvad.open = [
-        # Privacy oriented public DNS
-        "2a07:e340::2" # dns.mullvad.net # IPv6
-        "194.242.2.2" # dns.mullvad.net # IPv4
-      ];
-      mullvad.hard = [
-        # Privacy and security oriented public DNS
-        "2a07:e340::4" # base.dns.mullvad.net # IPv6
-        "194.242.2.4" # base.dns.mullvad.net # IPv4
-      ];
-      shaft.open = [
-        "2001:bc8:2c86:853::853" # dns.shaftinc.fr # IPv6
-      ];
+      quad9.doh.hard = "dns11.quad9.net/dns-query";
+      quad9.dot.hard = "dns11.quad9.net";
     in
     {
       nameservers =
-        local ++ dns4eu.open ++ cloudflare.open ++ quad9.open ++ fdn.open ++ mullvad.hard ++ shaft.open;
+        local
+        ++ dns4eu.ip.hard
+        ++ mullvad.ip.hard
+        ++ fdn.ip.hard
+        ++ cloudflare.ip.hard
+        ++ shaft.ip.open
+        ++ dns4eu.ip.open
+        ++ mullvad.ip.open
+        ++ fdn.ip.open
+        ++ cloudflare.ip.open
+        ++ quad9.ip.hard;
       wireguard.enable = lib.mkDefault true;
       networkmanager = {
         enable = lib.mkDefault true;
