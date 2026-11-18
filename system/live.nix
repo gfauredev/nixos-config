@@ -10,14 +10,15 @@
       # initialHashedPassword = hashedPassword;
       # hashedPassword = null;
       # initialPassword = password;
-      password = "root"; # FIXME
+      password = lib.mkForce "root";
       # hashedPasswordFile = null;
     };
+    users.nixos.isSystemUser = lib.mkForce false; # Normal user from installation-cd-minimal
     # users.nixos = {
     # initialHashedPassword = hashedPassword;
     # hashedPassword = null;
     # initialPassword = password;
-    # password = "nixos"; # FIXME
+    # password = "nixos";
     # hashedPasswordFile = null;
     # };
   };

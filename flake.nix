@@ -89,6 +89,8 @@
               system.stateVersion = griffin.stateVersion;
               nixpkgs.hostPlatform = griffin.system;
             }
+            { user-def = nixpkgs.lib.mkDefault user-def; } # Example, overridden by private flake
+            ./private/system # Example, overridden by private flake
             ./system/griffin.nix
             lanzaboote.nixosModules.lanzaboote # Secure boot
             hardware.nixosModules.framework-12th-gen-intel # The laptop
@@ -135,6 +137,8 @@
               system.stateVersion = live.stateVersion;
               nixpkgs.hostPlatform = live.system;
             }
+            { user-def = nixpkgs.lib.mkDefault user-def; } # Example, overridden by private flake
+            ./private/system # Example, overridable by private flake
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./system/live.nix
           ];
