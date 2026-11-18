@@ -11,12 +11,11 @@
       location = mkOption {
         type = str;
         default = "${config.user.home}/.nix-config";
-        # default = "${config.user.home}/author/nixOsConfig";
         description = "Configuration Flake repository full path";
       };
       dev-templates = mkOption {
         type = str; # Hardcoded in config.nu
-        default = "${config.home.sessionVariables}/author/initDevEnv/main";
+        default = "${config.user.home}/author/initDevEnv/main";
         description = "Dev environments templates Flake repository full path";
       };
     };
