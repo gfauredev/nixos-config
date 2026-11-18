@@ -15,8 +15,8 @@
         description = "Configuration Flake repository full path";
       };
       dev-templates = mkOption {
-        type = str; # Hardcoded in config.nu TODO Use this in nushell, not via env var
-        default = "${config.home.sessionVariables}/author/initDevEnv";
+        type = str; # Hardcoded in config.nu
+        default = "${config.home.sessionVariables}/author/initDevEnv/main";
         description = "Dev environments templates Flake repository full path";
       };
     };

@@ -17,11 +17,14 @@
       archive = writeScriptBin "archive" (readFile ./script/archive.sh);
       backup = writeScriptBin "back" (readFile ./script/backup.sh);
       # TODO make this script a package available in this flake’s nix shell (dev environment)
-      # TODO Ensure the script itself can sleep / poweroff / reboot
       configure = writeScriptBin "cfg" ''
         cd ${config.location}
         systemd-inhibit --what=shutdown:sleep --who=cfg --why=Configuring --mode=block \
         ${writeScript "configure" (readFile ./script/configure.sh)} "$@"
+      '';
+      develop = writeScriptBin "dev" ''
+        nix flake init --template ${config.dev-templates}#"$1"
+        direnv allow
       '';
       date-edit = writeScriptBin "de" (readFile ./script/date-edit.sh);
       drive = writeScriptBin "drive" (readFile ./script/drive.sh);
@@ -42,6 +45,7 @@
     [
       archive # Quickly move a directory inside ~/archive/
       backup # Backup with restic or rsync
+      develop # Quickly copy and start dev template
       configure # Configure this flake config
       date-edit # Open text files, prepend current date to the first one
       drive # Rclone sync to drive (like proton)
