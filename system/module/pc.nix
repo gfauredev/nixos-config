@@ -207,7 +207,7 @@
     xwayland.enable = false; # Use xwayland-satellite instead
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
-    ssh.startAgent = lib.mkDefault true;
+    # ssh.startAgent = lib.mkDefault true;
     firejail.enable = true; # See https://wiki.nixos.org/wiki/Firejail TODO
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
