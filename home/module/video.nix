@@ -1,5 +1,28 @@
 { pkgs, ... }:
 {
+  programs = {
+    obs-studio.enable = true;
+    obs-studio.plugins = with pkgs.obs-studio-plugins; [
+      obs-pipewire-audio-capture
+      waveform
+      # wlrobs
+      # advanced-scene-switcher
+      # obs-text-pthread
+      # obs-markdown
+      # obs-source-record
+      # obs-replay-source
+      # obs-command-source
+      # obs-composite-blur
+      # obs-vintage-filter
+      # obs-scale-to-sound
+      # obs-source-switcher
+      # obs-plugin-countdown
+      # obs-media-controls
+      # obs-noise
+      # obs-color-monitor
+    ];
+  };
+
   home.packages = with pkgs; [
     ffmpeg # media conversion
     yt-dlp # download videos from YouTube or other video site
@@ -11,8 +34,5 @@
     # shotcut # video editor
     # flowblade # non linear video editor
     # olive-editor # non linear video editor
-    # obs-wlrobs
-    # obs-studio-plugins.wlrobs # OBS for Wayland
-    # obs-studio # Screen recorder and streaming
   ];
 }

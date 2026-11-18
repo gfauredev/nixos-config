@@ -267,6 +267,7 @@
       openscad-unstable # Code based 3D CAD
       orca-slicer # G-code generator for 3D printers…
       pkgs-unstable.qFlipper # Flipper Zero Software
+      pkgs-unstable.snapmaker-luban # SnapMaker Slicer
     ] # VPN
     ++ [
       pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
