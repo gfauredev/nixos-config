@@ -1,4 +1,4 @@
-{ lib, ... }: # Configuration for actual machines, not VMs or live ISOs
+{ pkgs, lib, ... }: # Configuration for actual machines, not VMs or live ISOs
 {
   imports = [ ./filesystem.nix ];
 
@@ -92,4 +92,8 @@
       notifications.systembus-notify.enable = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    bubblewrap # Unprivileged sandboxing
+  ];
 }

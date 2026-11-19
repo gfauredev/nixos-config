@@ -321,7 +321,6 @@ in
     systemPackages = with pkgs; [
       man-pages # Documentation, maybe install only for users
       man-pages-posix # Documentation, maybe install only for users
-      # navi # Cheat sheet for CLIs
       # Shell utilities
       helix # Post-modern modal text editor
       dash # Only login and script shell
@@ -347,7 +346,6 @@ in
       lsof # List opened files (remember, everything’s a file here)
       usbutils # lsusb command
       pciutils # lspci command
-      # sbctl # Secure Boot key manager, used for installing with Lanzaboote
       # Remote control
       rsync # Copy through network & with superpowers
       browsh # 6ixel CLI web browser
@@ -372,7 +370,6 @@ in
       socat # Multipurpose relay (like netcat but better)
       lynis # System security auditing TEST me
       vulnix # NixOS vulnerability scanner TEST me
-      # wireguard-tools # CLI for WireGuard
       # FS
       exfat # USB sticks filesystem
       ntfs3g # Window$s filesystem
