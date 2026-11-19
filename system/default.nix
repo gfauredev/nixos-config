@@ -317,7 +317,6 @@ in
       grex # Regex generator from test cases
       coreutils-full # Additional Unix utilities
       moreutils # Additional Unix utilities
-      gitlab-shell # GitLab CLI
       gitmoji-cli # Use emojis in commit messages
       convmv # Converts filenames from one encoding to another
       cpulimit # Limit CPU usage of a command

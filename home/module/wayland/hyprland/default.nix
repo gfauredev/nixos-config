@@ -715,13 +715,14 @@ in
               "simple" # Simple GTK input method (use builtin deadkeys)
             ];
           }
-        ]
-        ++ lib.mapAttrsToList (var: val: {
-          _args = [
-            var
-            (toString val)
-          ];
-        }) config.home.sessionVariables;
+        ];
+        # FIX Seemingly not properly exported by modules that should
+        # ++ lib.mapAttrsToList (var: val: {
+        #   _args = [
+        #     var
+        #     (toString val)
+        #   ];
+        # }) config.home.sessionVariables;
       };
   };
 

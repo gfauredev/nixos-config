@@ -2,8 +2,8 @@
 
 cd=true # Don’t change directory by default
 cmd=""
-if which "$TERM"; then # Try to find the default terminal command
-  cmd=$TERM
+if which "$TERMINAL"; then # Try to find the default terminal command
+  cmd=$TERMINAL
 else
   cmd=$TERM_PROGRAM
 fi
@@ -18,6 +18,6 @@ fi
 if [ -n "$*" ]; then       # If there are remaining arguments,
   cmd="$cmd $TERM_EXEC $*" # pass them to the new terminal as a command to run
 fi
-echo "Running: nohup $TERM $cmd &"
+echo "Running: nohup $TERMINAL $cmd &"
 $cd || exit
 nohup $cmd >/dev/null &

@@ -8,7 +8,6 @@
   imports = [
     ./ghostty
     ./foot
-    # ./alacritty
   ];
   options.term =
     with lib;
@@ -71,10 +70,7 @@
       #   };
       # };
     };
-  config.home.sessionVariables = {
-    TERM = config.term.cmd; # Default terminal emulator
-    TERMINAL = config.term.cmd; # Default terminal emulator
-  };
+  config.home.sessionVariables.TERMINAL = config.term.cmd; # Default terminal emulator
   config.home.packages = with pkgs; [
     kitty
   ];
