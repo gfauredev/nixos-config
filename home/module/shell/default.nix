@@ -41,7 +41,6 @@
       '';
     in
     [
-      archive # Quickly move a directory inside ~/archive/
       backup # Backup with restic or rsync
       develop # Quickly copy and start dev template
       configure # Configure this flake config
@@ -49,24 +48,20 @@
       drive # Rclone sync to drive (like proton)
       extract # Extract any compressed file
       inhibit # Quickly inhibit sleep, idle, shutdown
-      present-pdf # Open detached pdfpc to present a PDF slide
       smart-commit # Quickly commit or amend, lint message
       smart-terminal # Open a terminal quickly with first parameter always cd
       typst-compile # Compile the latest edited Typst file in current dir
       usb-mount # Quickly mount or unmount a USB device in ~/usb
       ripgrep-all # ripgrep for non-text files
-      rust-script # Use Rust in single file scripts
-      teamtype # Local text file collaboration
       trash-cli # Manage a trash from CLI, used in scripts, not nush
       timezone # Set timezone according to IP geolocation
-      inshellisense # Command line autocomplete
+      # inshellisense # Command line autocomplete
+      # rust-script # Use Rust in single file scripts
+      # teamtype # Local text file collaboration
     ];
 
   home = {
-    sessionVariables = {
-      PAGER = "${pkgs.ov}/bin/ov";
-      # BAT_PAGING = "never";
-    };
+    sessionVariables.PAGER = "${pkgs.ov}/bin/ov";
     shell = {
       enableShellIntegration = false; # Only for the following
       enableNushellIntegration = true;
