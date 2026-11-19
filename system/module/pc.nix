@@ -24,9 +24,9 @@
   # Run non native binaries seamlessly
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
-    "wasm32-wasi"
-    "wasm64-wasi"
-    "x86_64-windows"
+    # "wasm32-wasi"
+    # "wasm64-wasi"
+    # "x86_64-windows"
   ];
   boot.kernel.sysctl = {
     "vm.dirty_background_bytes" = 268435456; # 256 MB
@@ -46,17 +46,17 @@
       hyprlock = { }; # Hyprland screen locker
     };
     loginLimits = [
-      {
-        domain = "@audio"; # Increased PAM limits for audio group for realtime
-        item = "memlock";
-        type = "-";
-        value = "unlimited";
-      }
+      # {
+      #   domain = "@audio";
+      #   item = "memlock";
+      #   type = "-";
+      #   value = "unlimited";
+      # }
       {
         domain = "@audio";
         item = "rtprio";
         type = "-";
-        value = "99";
+        value = "90";
       }
       {
         domain = "@audio";
@@ -120,9 +120,6 @@
         pkgs.openocd
         # pkgs.android-udev-rules # Talk to Android devices
       ];
-      # 1. Uinput device for virtual input (keyboards, mice…)
-      # 2-4. Used in Musnix for audio latency reduction
-      # 5. USB Blaster for FPGA programming
       extraRules = ''
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
 
@@ -130,21 +127,15 @@
         KERNEL=="hpet", GROUP="audio"
         DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
 
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0666"
+        SUBSYSTEM=="usb", ATTRS{manufacturer}=="NVIDIA Corp.", ATTRS{product}=="APX", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0660", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0955", ATTRS{idProduct}=="7321", MODE="0660", GROUP="plugdev"
 
-        SUBSYSTEM=="usb", ATTRS{manufacturer}=="NVIDIA Corp.", ATTRS{product}=="APX", GROUP="wheel"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666", GROUP="wheel"
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="0955", ATTRS{idProduct}=="7321", MODE="0666", GROUP="wheel"
-
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
-        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0666"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0660", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0660", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0660", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0660", GROUP="plugdev"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0660", GROUP="plugdev"
       '';
     };
     geoclue2 = {
@@ -190,7 +181,6 @@
     xwayland.enable = true; # Consider xwayland-satellite instead
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
-    firejail.enable = true; # See https://wiki.nixos.org/wiki/Firejail TODO
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
     fuse.enable = true;
@@ -209,7 +199,7 @@
     hydra-check # Quickly check derivation status in Hydra
     tio # Serial
     killall # Quickly kill corresponding names
-    nsjail # Process isolation tool
+    # nsjail # Process isolation tool
     treecat # Dir structure <-> ASCII representation
     nss # Security tools
   ];

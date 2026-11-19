@@ -3,11 +3,11 @@
   services = {
     nfs.server.enable = lib.mkDefault true;
     openssh = {
-      enable = lib.mkDefault true; # Do not enable the OpenSSH daemon by default
+      enable = lib.mkDefault false; # Do not enable the OpenSSH daemon by default
       settings = {
         PermitRootLogin = lib.mkDefault "no";
         LogLevel = "VERBOSE"; # For fail2ban
-        PasswordAuthentication = lib.mkDefault true;
+        PasswordAuthentication = lib.mkDefault false;
       };
     };
     fail2ban.enable = lib.mkDefault true;

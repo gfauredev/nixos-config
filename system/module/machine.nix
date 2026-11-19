@@ -29,7 +29,7 @@
     consoleLogLevel = 0; # Don’t clutter screen at boot
   };
 
-  security.apparmor.enable = lib.mkDefault true; # See https://search.nixos.org/options?channel=25.05&query=apparmor TODO configure
+  # security.apparmor.enable = lib.mkDefault true; # To configure when available
 
   services = {
     auto-cpufreq.enable = lib.mkDefault true; # Save battery, smarter than TLP

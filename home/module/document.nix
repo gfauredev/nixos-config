@@ -37,7 +37,6 @@
     # imv.enable = true; # Minimal image viewer
     zathura = {
       extraConfig = ''
-        set sandbox none
         set selection-clipboard clipboard
 
         set scroll-step 50

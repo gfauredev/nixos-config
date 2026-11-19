@@ -38,10 +38,7 @@
     "h /var/lib/libvirt/images - - - - +C"
   ];
 
-  boot.kernelParams = [
-    "intel_iommu=on"
-    "iommu=pt"
-  ];
+  boot.kernelParams = [ "intel_iommu=on" ];
 
   environment.systemPackages = with pkgs; [
     # gvisor # Sandbox runtime for containers
