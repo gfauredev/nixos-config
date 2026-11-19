@@ -8,7 +8,6 @@
   imports = [
     ./alias.nix
     ./nushell
-    ./zsh.nix
   ];
   home.packages =
     with pkgs;

@@ -349,6 +349,7 @@
     urls = [
       {
         template = "https://nix-community.github.io/home-manager/options/home-manager/index.html";
+        # template = "https://nix-community.github.io/home-manager/options.xhtml";
         params = [
           {
             name = "search";

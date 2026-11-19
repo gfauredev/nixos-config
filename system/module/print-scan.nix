@@ -5,6 +5,7 @@
     avahi.enable = lib.mkDefault true; # Discover printers & scanners on network
     printing.cups-pdf.enable = true; # Printing to PDF
     avahi.nssmdns4 = true;
+    avahi.publish.enable = false;
     ipp-usb.enable = lib.mkDefault true; # USB printers
   };
 

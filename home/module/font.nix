@@ -1,8 +1,27 @@
 { pkgs, ... }: # Additional fonts
 {
+  stylix.fonts = {
+    serif = {
+      package = pkgs.libertinus;
+      name = "Libertinus Serif";
+    };
+    sansSerif = {
+      package = pkgs.inter;
+      name = "Inter";
+    };
+    monospace = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono Nerd Font";
+    };
+    emoji = {
+      package = pkgs.noto-fonts-color-emoji;
+      name = "Noto Color Emoji";
+    };
+  };
+
   home.packages = with pkgs; [
     ## Serif fonts
-    libertinus
+    # libertinus
     libre-baskerville # Great, stylish serif
     # vollkorn # Great serif font
     # merriweather # Serif readable on low res screens
@@ -11,15 +30,15 @@
     ## Sans fonts
     aileron # Helvetica equivalent
     # nacelle # Helvetica equivalent
-    inter # Interesting sans font
+    # inter # Interesting sans font
     # fira-go # Great sans with icons
-    # carlito # Calibri equivalent
+    carlito # Calibri equivalent
     # noto-fonts-cjk-sans # Chinese, Japanese, Korean Sans
     ### Stencil fonts
     beon
     blackout
     ## Mono fonts
-    nerd-fonts.jetbrains-mono
+    # nerd-fonts.jetbrains-mono
     # nerd-fonts.fira-code
     ## Packages of multiple fonts
     # liberation_ttf # ≃ Times New Roman, Arial, Courier New equivalents

@@ -27,7 +27,7 @@
     pdfpc # PDF Presentator Console
     # Diagrams
     # mermaid-cli # Markdown-like diagrams
-    # plantuml-c4 # UML diagrams from text with additions
+    plantuml-c4 # UML diagrams from text with additions
     # plantuml-server # Server for PlantUML
   ];
 

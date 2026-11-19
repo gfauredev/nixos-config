@@ -188,13 +188,9 @@ in
     "vicinae/scripts".source =
       config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/scripts";
     "vicinae/shortcuts/shortcuts.json".text = builtins.toJSON shortcutsList;
-    # "vicinae/shortcuts/shortcuts.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.sessionVariables.XDG_DATA_HOME}/vicinae/shortcuts/shortcuts.jsonc";
     "vicinae/snippets".source =
       config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/snippets";
   };
-
-  xdg.configFile."vicinae/settings.mut.jsonc".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/launcher/vicinae/settings.jsonc";
 
   programs.vicinae.systemd.enable = true;
   programs.vicinae.systemd.autoStart = true;

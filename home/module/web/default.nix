@@ -60,6 +60,17 @@
         # DownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
         DefaultDownloadDirectory = null; # Enforce intentional file placement
         DownloadDirectory = null; # Enforce intentional file placement
+        DNSOverHTTPS.Enabled = false;
+        DisableTelemetry = true;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        HttpsOnlyMode = "enabled";
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
         DisplayBookmarksToolbar = false;
         DisplayMenuBar = false;
         DontCheckDefaultBrowser = true;
@@ -193,7 +204,7 @@
         };
         containersForce = true; # Forces overrides containers config
         search.force = true; # Forces overrides containers config
-        search.engines = import ../web/search.nix;
+        search.engines = import ./search.nix;
         search.default = "ecosia"; # Ecosia
         search.privateDefault = "ddg"; # DuckDuckGo
         search.order = [

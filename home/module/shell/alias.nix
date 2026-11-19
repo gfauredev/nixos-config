@@ -8,8 +8,8 @@ let
     sys = "systemctl";
     jo = "journalctl -xfe";
     gc = "systemd-inhibit nix-collect-garbage --delete-older-than 3d";
-    limit = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit resources
-    restrict = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit resources aggressively
+    limit = "systemd-run --scope -p MemoryHigh=66% -p CPUQuota=888%"; # Limit resources
+    restrict = "systemd-run --scope -p MemoryHigh=33% -p CPUQuota=444%"; # Limit resources aggressively
     # egpu = "hyprctl keyword monitor eDP-1,disable"; # Disable internal monitor
     wcp = "wl-copy";
     wpt = "wl-paste";
@@ -21,8 +21,9 @@ let
     dust = "dust --skip-total";
     empty = "trash-empty -i";
     restore = "trash-restore";
-    shred = "shred -vu";
+    shred = "shred -vu"; # WARN Not useful on CoW FS, use LUKS2 FDE
     wx = "watchexec";
+    "7z" = "7zz";
     ## Quickly launch default text editor
     e = "${config.home.sessionVariables.EDITOR}"; # Default text editor
     "." = "${config.home.sessionVariables.EDITOR} ."; # Open editor in work dir
@@ -109,9 +110,6 @@ in
     p = "${config.home.sessionVariables.PAGER}"; # Default pager
     # Edit, single letter
     m = "mkdir -pv"; # mkdir with parents if needed
-    # Git
-    upsub = "git commit -am 'build: update submodule(s)'; git push";
-    pupu = "git pull --recurse-submodules --jobs=8; git push";
   };
   programs.nushell.shellAliases = common // {
     # System

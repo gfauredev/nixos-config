@@ -165,6 +165,23 @@ in
     kernel.sysctl = {
       "kernel.sysrq" = 212; # kbd control, read-only remount, nicing, power
       "vm.swappiness" = 50; # Reduce memory swap to disk TEST relevance
+      # Kernel hardening TODO Consider enabling
+      # "kernel.kptr_restrict" = 2;
+      # "kernel.dmesg_restrict" = 1;
+      # "kernel.yama.ptrace_scope" = 1;
+      # "kernel.unprivileged_bpf_disabled" = 1;
+      # "net.core.bpf_jit_harden" = 2;
+      # "kernel.kexec_load_disabled" = 1;
+      # Network stack hardening TODO Consider enabling
+      # "net.ipv4.conf.all.rp_filter" = 1;
+      # "net.ipv4.conf.default.rp_filter" = 1;
+      # "net.ipv4.conf.all.accept_redirects" = 0;
+      # "net.ipv6.conf.all.accept_redirects" = 0;
+      # "net.ipv4.conf.all.send_redirects" = 0;
+      # "net.ipv4.conf.all.accept_source_route" = 0;
+      # "net.ipv6.conf.all.accept_source_route" = 0;
+      # "net.ipv4.tcp_syncookies" = 1;
+      # "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
     };
     supportedFilesystems = [
       "bcachefs"

@@ -359,7 +359,7 @@
         };
         clangd = {
           command = "clangd";
-          args = [ "--query-driver=/nix/store/**/*" ];
+          args = [ "--query-driver=/nix/store/*-gcc-*/bin/*,/nix/store/*-clang-*/bin/*" ];
           config.fallbackFlags = [
             "-Wall"
             "-Wextra"

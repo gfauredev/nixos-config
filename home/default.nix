@@ -39,7 +39,7 @@
       XDG_VIDEOS_DIR = "${config.user.home}/image";
       XDG_DOWNLOAD_DIR = "${config.user.home}"; # Consider ephemeral (RAM-backed) dir
       XDG_PUBLICSHARE_DIR = "${config.user.home}";
-      CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
+      CARAPACE_BRIDGES = "inshellisense,fish,bash";
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
   };
@@ -61,14 +61,6 @@
         "text/markdown" = "${config.editor.desktop}.desktop";
         "text/code" = "${config.editor.desktop}.desktop";
         # "inode/directory" = "${term}.desktop"; # Use broot ?
-        # Document (Open)
-        "application/vnd.oasis.opendocument.text" = "writer.desktop";
-        "application/vnd.oasis.opendocument.spreadsheet" = "calc.desktop";
-        "application/vnd.oasis.opendocument.presentation" = "impress.desktop";
-        "application/vnd.oasis.opendocument.graphics" = "draw.desktop";
-        "application/vnd.oasis.opendocument.chart" = "calc.desktop";
-        "application/vnd.oasis.opendocument.formula" = "math.desktop";
-        "application/vnd.oasis.opendocument.image" = "draw.desktop";
         # Document
         "application/msword" = "onlyoffice-desktopeditors.desktop";
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
@@ -84,20 +76,19 @@
         "image/avif" = "${image}.desktop";
         "image/webp" = "${image}.desktop";
         "image/png" = "${image}.desktop";
-        "image/jpg" = "${image}.desktop";
         "image/jpeg" = "${image}.desktop";
         "image/bmp" = "${image}.desktop";
-        "image/ico" = "${image}.desktop";
+        "image/x-icon" = "${image}.desktop";
         "image/gif" = "${image}.desktop";
         # Audio
         "audio/flac" = "${audio}.desktop";
         "audio/ogg" = "${audio}.desktop";
         "audio/wav" = "${audio}.desktop";
-        "audio/mp3" = "${audio}.desktop";
+        "audio/mpeg" = "${audio}.desktop";
         # Video
-        "video/mkv" = "${video}.desktop";
+        "video/x-matroska" = "${video}.desktop";
         "video/mp4" = "${video}.desktop";
-        "video/avi" = "${video}.desktop";
+        "video/x-msvideo" = "${video}.desktop";
         # Web
         "x-scheme-handler/https" = "${config.browser.entry}.desktop";
         "x-scheme-handler/http" = "${config.browser.entry}.desktop";
@@ -108,20 +99,10 @@
         "x-scheme-handler/webcals" = "${config.organization.calendar.entry}.desktop";
         "application/x-extension-ics" = "${config.organization.calendar.entry}.desktop";
         "text/calendar" = "${config.organization.calendar.entry}.desktop";
-        # "x-scheme-handler/mid" = "?.desktop";
-        # "x-scheme-handler/news" = "?.desktop";
-        # "x-scheme-handler/snews" = "?.desktop";
-        # "x-scheme-handler/nntp" = "?.desktop";
-        # "x-scheme-handler/feed" = "?.desktop";
-        # "application/rss+xml" = "?.desktop";
-        # "application/x-extension-rss" = "?.desktop";
         # App Specific
-        "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
-        "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
         "application/x-colpkg" = "anki.desktop";
         "application/x-apkg" = "anki.desktop";
         "application/x-ankiaddon" = "anki.desktop";
-        "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
       };
     # portal.config.common.default = [ "hyprland" "gtk" ];
     configFile = {
@@ -136,24 +117,6 @@
   stylix = {
     enable = true; # Manage all things style & appearance
     polarity = "dark";
-    fonts = {
-      serif = {
-        package = pkgs.libertinus;
-        name = "Libertinus Serif";
-      };
-      sansSerif = {
-        package = pkgs.aileron;
-        name = "Aileron";
-      };
-      monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
-      };
-      emoji = {
-        package = pkgs.nerd-fonts.symbols-only;
-        name = "Symbols Nerd Font";
-      };
-    };
     # Based on Catppuccin Mocha, but with pitch black #000 background for OLED, https://catppuccin.com/palette
     base16Scheme = {
       base00 = "#000000"; # base00 = "#1e1e2e"; # pitch black, default background
@@ -214,6 +177,7 @@
       android-tools # ADB and Fastboot
       worktrunk # Git worktree management
       bottles # Easier wine management
+      kalker # Calculator
     ] # Passwords & Secrets
     ++ [
       pkgs-unstable.proton-pass # Proton password manager
@@ -314,7 +278,9 @@
     };
     git = {
       lfs.enable = true;
-      # attributes = ["* merge=mergiraf"];
+      transfer.fsckObjects = true;
+      fetch.fsckObjects = true;
+      receive.fsckObjects = true;
       ignores = [
         "*.ignore"
         "*.ignore.*"
