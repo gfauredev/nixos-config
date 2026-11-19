@@ -1,3 +1,4 @@
+# FIXME Replace by GitLab / GitHub CI/CD
 builds:
 - branch: main
   include:

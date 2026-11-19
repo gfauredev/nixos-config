@@ -14,7 +14,6 @@
     with pkgs;
     with lib;
     let
-      archive = writeScriptBin "archive" (readFile ./script/archive.sh);
       backup = writeScriptBin "back" (readFile ./script/backup.sh);
       # TODO make this script a package available in this flake’s nix shell (dev environment)
       configure = writeScriptBin "cfg" ''
@@ -30,7 +29,6 @@
       drive = writeScriptBin "drive" (readFile ./script/drive.sh);
       extract = writeScriptBin "ex" (readFile ./script/extract.sh);
       inhibit = writeScriptBin "inhib" (readFile ../launcher/vicinae/scripts/inhib.sh);
-      present-pdf = writeScriptBin "present" (readFile ./script/present.sh);
       smart-commit = writeScriptBin "cmt" (readFile ./script/smart-commit.sh);
       smart-terminal = writeScriptBin "t" ''
         TERM_EXEC=${config.term.exec}
