@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   pkgs-unstable,
@@ -40,23 +39,6 @@
   security = {
     polkit.enable = lib.mkDefault true; # Allow GUI apps to get privileges
     rtkit.enable = lib.mkDefault true; # Tools for realtime (preemption)
-    sudo.extraRules = [
-      {
-        groups = [ "wg" ]; # VPN without password
-        runAs = "root";
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/wg-quick";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/wg";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
-    sudo-rs.extraRules = config.security.sudo.extraRules; # To TEST
   };
   security.pam = {
     services = {
@@ -116,14 +98,12 @@
     ananicy.enable = true;
     languagetool.enable = true;
     actual.package = pkgs-unstable.actual-server;
-    caddy = {
-      virtualHosts."actual.localhost" = {
-        extraConfig = ''
-          tls internal
-          reverse_proxy 127.0.0.1:3000
-        '';
-      };
-    };
+    actual.settings.hostname = "127.0.0.1";
+    caddy.virtualHosts."actual.localhost".extraConfig = ''
+      bind 127.0.0.1 ::1
+      tls internal
+      reverse_proxy 127.0.0.1:3000
+    '';
     ananicy = {
       package = pkgs.ananicy-cpp;
       rulesProvider = pkgs.ananicy-rules-cachyos; # Highly optimized CachyOS rule set

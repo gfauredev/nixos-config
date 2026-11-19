@@ -37,14 +37,9 @@
       XDG_MUSIC_DIR = "${config.user.home}/collect";
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
-      XDG_DOWNLOAD_DIR = "${config.user.home}/tmp";
-      XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp";
+      XDG_DOWNLOAD_DIR = "${config.user.home}/tmp"; # TODO Ephemeral (RAM-backed) hardened
+      XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp"; # TODO Ephemeral (RAM-backed) hardened
       CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
-    };
-    file = {
-      tmp.source = config.lib.file.mkOutOfStoreSymlink "/run/user/1000"; # TODO Parametric user number, or elsewhere writable temporary
-      # Downloads.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOWNLOAD_DIR; # for reluctant apps…
-      # Documents.source = config.lib.file.mkOutOfStoreSymlink config.home.sessionVariables.XDG_DOCUMENTS_DIR;
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
   };

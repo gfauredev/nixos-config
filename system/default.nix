@@ -214,20 +214,7 @@ in
       ethernet.macAddress = "random";
       wifi.macAddress = "stable-ssid";
     };
-    nftables.enable = lib.mkDefault true; # TEST If don’t break things
-    firewall = {
-      allowedTCPPorts = [
-        80 # Self hosted HTTP app
-        443 # Self hosted HTTPS app
-        # 22000 # Syncthing
-        2049 # Vagrant
-      ];
-      allowedUDPPorts = [
-        # 22000 # Syncthing
-        # 21027 # Syncthing
-        2049 # Vagrant
-      ];
-    };
+    nftables.enable = lib.mkDefault true;
   };
 
   # Local DNS resolver: encrypted → unencrypted → AP provided (captive portals, filtering LANs…)

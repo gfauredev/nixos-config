@@ -16,7 +16,7 @@
     };
     podman = {
       dockerCompat = true;
-      dockerSocket.enable = true;
+      dockerSocket.enable = false; # INSECURE
       defaultNetwork.settings.dns_enabled = true;
     };
     containers.containersConf.settings = {

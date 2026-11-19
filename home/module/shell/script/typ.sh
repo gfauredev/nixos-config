@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Quickly compile Typst files
 if [ "$#" -eq 0 ]; then
   # By default: compiles the most recently modified Typst file

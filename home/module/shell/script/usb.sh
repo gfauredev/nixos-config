@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ "$1" ]; then
   devs=$*
 else

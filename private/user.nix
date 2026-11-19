@@ -13,7 +13,6 @@ rec {
       extraGroups = [
         "wheel" # Act as root
         "fuse" # Mount USB keys and other filesystems
-        "podman" # Use Podman container manager
         # …
       ];
     };

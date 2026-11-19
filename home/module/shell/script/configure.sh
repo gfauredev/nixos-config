@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # This script allows to easily manage Nix flake system & home configs.
 # It supports having a sub flake (eg. public) used as input by the top-level.
 # TODO make this script able to install NixOS from live ISO if autodected in

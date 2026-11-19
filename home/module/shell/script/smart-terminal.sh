@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cd=true # Don’t change directory by default
 cmd=""
 if which "$TERM"; then # Try to find the default terminal command

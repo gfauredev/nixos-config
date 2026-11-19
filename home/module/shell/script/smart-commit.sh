@@ -1,8 +1,10 @@
+#!/bin/sh
+
 case $0 in
-  feat:|fix:|doc:|docs:|style:|refactor:|perf:|test:|chore:|build:|ci:|revert:|wip:)
-    git commit --all --message "$0 $*" # TODO
-    exit 0
-    ;;
+feat: | fix: | doc: | docs: | style: | refactor: | perf: | test: | chore: | build: | ci: | revert: | wip:)
+  git commit --all --message "$0 $*" # TODO
+  exit 0
+  ;;
 esac
 if [ -n "$*" ]; then
   # echo "$*" | $COMMITLINT_CMD &&
