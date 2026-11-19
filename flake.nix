@@ -37,21 +37,20 @@
       stylix,
     }:
     let
-      systems =
+      systems = [
+        "x86_64-linux" # 64-bit Intel/AMD Linux
+        # "riscv64-linux" # 64-bit RISC-V Linux
+        # "aarch64-linux" # 64-bit ARM Linux
+      ];
+      pkgsFor =
         f:
-        nixpkgs.lib.genAttrs
-          [
-            "x86_64-linux" # 64-bit Intel/AMD Linux
-            # "riscv64-linux" # 64-bit RISC-V Linux
-            # "aarch64-linux" # 64-bit ARM Linux
-          ]
-          (
-            system:
-            f {
-              pkgs = import nixpkgs { inherit system; };
-              pkgs-unstable = import unstablepkgs { inherit system; };
-            }
-          );
+        nixpkgs.lib.genAttrs systems (
+          system:
+          f {
+            pkgs = import nixpkgs { inherit system; };
+            pkgs-unstable = import unstablepkgs { inherit system; };
+          }
+        );
       system = nixpkgs.lib.nixosSystem;
       home = home-manager.lib.homeManagerConfiguration;
       unfreepkgs = [
@@ -176,7 +175,7 @@
         # };
       };
       # This configuration’s development shell, preferably enabled with direnv
-      devShells = systems (
+      devShells = pkgsFor (
         { pkgs, pkgs-unstable }:
         {
           default = pkgs.mkShell {
@@ -209,5 +208,7 @@
           };
         }
       );
+      # checks = TODO format check (all languages in this repo) statix checks, deadnix checks, shellchecks, gitleaks…
+      formatter = nixpkgs.lib.genAttrs systems (system: pkgsFor.${system}.nixfmt-tree);
     };
 }
