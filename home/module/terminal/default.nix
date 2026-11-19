@@ -71,7 +71,5 @@
       # };
     };
   config.home.sessionVariables.TERMINAL = config.term.cmd; # Default terminal emulator
-  config.home.packages = with pkgs; [
-    kitty
-  ];
+  # config.home.packages = with pkgs; [ kitty ];
 }

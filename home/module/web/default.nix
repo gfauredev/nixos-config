@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   lib,
   config,
   ...
@@ -39,12 +38,10 @@
   config.programs = {
     firefox.enable = true; # Gecko web browser
     chromium.enable = true; # Blink web browser
-    firefoxpwa.enable = false; # Gecko web browser PWA support
     chromium.package = pkgs.ungoogled-chromium; # Extremely standard
     firefox = {
-      package = pkgs-unstable.firefox.override {
-        nativeMessagingHosts = [ pkgs-unstable.firefoxpwa ];
-      };
+      # package = pkgs-unstable.firefox.override {
+      #   nativeMessagingHosts = [ pkgs-unstable.firefoxpwa ]; };
       configPath = "${config.xdg.configHome}/mozilla/firefox"; # Hardcoded in FF
       languagePacks = [
         "en-GB"
@@ -107,14 +104,14 @@
             installation_mode = "normal_installed";
             private_browsing = true;
           };
-          "firefoxpwa@filips.si" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/pwas-for-firefox/latest.xpi";
-            installation_mode = "normal_installed";
-            private_browsing = true;
-          };
           "{5384767E-00D9-40E9-B72F-9CC39D655D6F}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/epubreader/latest.xpi";
             installation_mode = "normal_installed";
+            private_browsing = true;
+          };
+          "firefoxpwa@filips.si" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/pwas-for-firefox/latest.xpi";
+            installation_mode = "allow";
             private_browsing = true;
           };
           "uBlock0@raymondhill.net" = {
@@ -222,44 +219,6 @@
         };
       };
     };
-    firefoxpwa = {
-      package = pkgs-unstable.firefoxpwa; # Gecko web browser PWA support
-      profiles."00000000000000000000000001" = {
-        name = "default";
-        sites = {
-          "0000000000PR0T0NMA11000000" = {
-            name = "Proton Mail";
-            url = "https://mail.proton.me";
-            manifestUrl = "https://mail.proton.me/assets/manifest.webmanifest";
-            desktopEntry = {
-              enable = true;
-              categories = [ "Email" ];
-              icon = pkgs.fetchurl {
-                url = "https://mail.proton.me/assets/favicon.ico";
-                sha256 = "1dv73irmxzhmhk8x9b7xq82y866csa5zpzapn2ahmdjg4qcrg2m8";
-              };
-            };
-          };
-          "0000000000FRAMAGENDA000000" = {
-            name = "Framagenda";
-            url = "https://framagenda.org";
-            manifestUrl = "https://framagenda.org/apps/theming/manifest/calendar?v=ce284119";
-            desktopEntry = {
-              enable = true;
-              categories = [ "Calendar" ];
-              icon = pkgs.fetchurl {
-                url = "https://framagenda.org/apps/theming/favicon/calendar?v=ce284119";
-                sha256 = "1n4pn2wzhrg2gg9mj20mg6sws2kyzks4gbq8v5k2a8y6dhh1jnsf";
-              };
-            };
-          };
-        };
-      };
-    };
-
   };
-  # config.home.file."${config.programs.firefox.configPath}/${config.user.name}/chrome/userChrome.css".source =
-  #   config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/web/firefoxUserChrome.css";
-
   config.home.sessionVariables.BROWSER = config.browser.command; # Set default web browser
 }

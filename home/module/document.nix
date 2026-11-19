@@ -31,35 +31,5 @@
     # plantuml-server # Server for PlantUML
   ];
 
-  programs = {
-    # zathura.enable = true; # Minimal PDF reader
-    mpv.enable = true; # Audio and video player
-    # imv.enable = true; # Minimal image viewer
-    zathura = {
-      extraConfig = ''
-        set selection-clipboard clipboard
-
-        set scroll-step 50
-        set scroll-hstep 10
-
-        map t scroll down
-        map s scroll up
-        map T navigate next
-        map S navigate previous
-        map c scroll left
-        map r scroll right
-
-        map R rotate rotate-cw
-        map C rotate rotate-ccw
-
-        map b recolor
-
-        map D set "first-page-column 1"
-        map <A-d> set "first-page-column 2"
-
-        map [fullscreen] D set "first-page-column 1"
-        map [fullscreen] <A-d> set "first-page-column 2"
-      '';
-    };
-  };
+  programs.mpv.enable = true; # Audio and video player
 }

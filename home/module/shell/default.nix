@@ -87,24 +87,6 @@
     fastfetch.enable = true; # Quick system info
     less.enable = false; # Bugged, don’t respects lesskeys
     lesspipe.enable = false;
-    # yazi.enable = true;
-    # distrobox.enable = false; # Quick tightly integrated containers
-    distrobox = {
-      enableSystemdUnit = true; # Auto rebuild containers
-      containers = {
-        cad = {
-          image = "archlinux";
-          # image = "alpine:3";
-          # entry = true; # ?
-          additional_packages = "mesa uv ruff python-lsp-server python-rope helix";
-          init_hooks = ''
-            cd
-            uv init
-            uv add cadquery build123d yacv-server
-          '';
-        };
-      };
-    };
     broot.settings = {
       default_flags = "g"; # Git
       special_paths = lib.mkForce { }; # Remove them
@@ -124,36 +106,6 @@
       enter_accept = true; # Don’t currently work on Nushell
       workspaces = true; # Filter commands executed in Git repo
       ctrl_n_shortcuts = true; # Ctrl+[1-9] quickly select cmd
-      # filter_mode_shell_up_key_binding = "session";
-    };
-    yazi = {
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
-      enableFishIntegration = false;
-      keymap = {
-        mgr.prepend_keymap = [
-          {
-            on = [ "c" ];
-            run = "leave";
-            desc = "Parent directory";
-          }
-          {
-            on = [ "t" ];
-            run = "arrow next";
-            desc = "Next file";
-          }
-          {
-            on = [ "s" ];
-            run = "arrow prev";
-            desc = "Previous file";
-          }
-          {
-            on = [ "r" ];
-            run = "enter";
-            desc = "Child directory";
-          }
-        ];
-      };
     };
   };
 
