@@ -37,8 +37,8 @@
       XDG_MUSIC_DIR = "${config.user.home}/collect";
       XDG_PICTURES_DIR = "${config.user.home}/image";
       XDG_VIDEOS_DIR = "${config.user.home}/image";
-      XDG_DOWNLOAD_DIR = "${config.user.home}/tmp"; # TODO Ephemeral (RAM-backed) hardened
-      XDG_PUBLICSHARE_DIR = "${config.user.home}/tmp"; # TODO Ephemeral (RAM-backed) hardened
+      XDG_DOWNLOAD_DIR = "${config.user.home}"; # Consider ephemeral (RAM-backed) dir
+      XDG_PUBLICSHARE_DIR = "${config.user.home}";
       CARAPACE_BRIDGES = "inshellisense,fish,zsh,bash";
     };
     enableNixpkgsReleaseCheck = true; # May become annoying around releases
@@ -46,7 +46,7 @@
 
   xdg = {
     enable = true;
-    portal.enable = true;
+    # portal.enable = true; # System wide
     mime.enable = true;
     mimeApps.enable = true;
     mimeApps.defaultApplications =
@@ -123,12 +123,7 @@
         "application/x-ankiaddon" = "anki.desktop";
         "x-scheme-handler/appflowy-flutter" = "appflowy.desktop";
       };
-    portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    portal.config.common.default = [
-      "hyprland"
-      "gtk"
-    ];
-    # portal.xdgOpenUsePortal = true; # Always prompt for which app to use
+    # portal.config.common.default = [ "hyprland" "gtk" ];
     configFile = {
       "ltex/fr.dict".source = config.lib.file.mkOutOfStoreSymlink "${config.location}/home/ltex/fr.dict";
       "ltex/en-GB.dict".source =
@@ -283,7 +278,7 @@
     dunst.enable = true; # Notifications daemon
     gpg-agent.enable = true; # Keeps your gpg key loaded
     podman.enable = true; # Containerization for development and more
-    gnome-keyring.enable = true;
+    # gnome-keyring.enable = true; # Managed in NixOS
     syncthing = {
       overrideDevices = lib.mkDefault true; # No imperative config
       overrideFolders = lib.mkDefault true; # No imperative config
@@ -341,14 +336,14 @@
           recurse = true;
           fetchjobs = 8;
         };
-        credential.helper = "cache 36000"; # Cache for 10 hours
+        credential.helper = "cache --timeout=36000"; # Cache for 10 hours
         # filter.lfs = {
         #   required = true;
         #   clean = "git-lfs clean -- %f";
         #   smudge = "git-lfs smudge -- %f";
         #   process = "git-lfs filter-process";
         # };
-        merge.conflictstyle = "zdiff3";
+        merge.conflictStyle = lib.mkForce "zdiff3";
       };
       settings.alias = {
         lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";

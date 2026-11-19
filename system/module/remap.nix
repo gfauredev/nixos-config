@@ -38,7 +38,7 @@
                 esc = "clear()"; # Leave helix like mode (the default)
                 space = "clear()"; # Leave helix like mode (the default)
               };
-              plane-mode = "rfkill toggle all"; # Disable every wireless
+              plane-mode = "${pkgs.util-linux}/bin/rfkill toggle all"; # Disable every wireless
             in
             {
               # global.layer_indicator = 1; # Turn on capslock led when layer

@@ -6,7 +6,7 @@
     bottomBar = {
       layer = "top";
       position = "bottom";
-      margin = "0";
+      margin = 0;
 
       modules-left = [
         "battery"
@@ -72,7 +72,7 @@
         in
         {
           hwmon-path = griffin.cpu-temps;
-          critical-threshold = "75";
+          critical-threshold = 75;
           format = "{icon} {temperatureC}";
           format-icons = [
             ""
@@ -198,7 +198,7 @@
       };
 
       clock = {
-        timezone = "Europe/Paris"; # TODO Use same timezone as system
+        # timezone = "Europe/Paris"; # Should use localtimed provided one
         # format = "{: %H:%M  %a %d %b}";
         format = "{:%H:%M %a %d %b}";
         tooltip = false;
@@ -216,7 +216,7 @@
       font-family:
         "${config.stylix.fonts.monospace.name}",
         "FontAwesome", "Symbols Nerd Font";
-      font-size: 14;
+      font-size: 14px;
     }
     @keyframes warn {
       to {

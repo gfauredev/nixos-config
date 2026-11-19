@@ -75,9 +75,8 @@ My main **terminal** emulator is [Ghostty](https://ghostty.org) which is modern,
 quick and feature-complete, but I use [Alacritty](https://alacritty.org) as a
 fallback, which is less featurefull, but robust.
 
-[Albert](https://albertlauncher.github.io) is my general **launcher** with which
-I launch apps, web searches, do calculations, quickly copy passwords, search for
-emojies…
+Vicinae is my general **launcher** with which I launch apps, web searches, do
+calculations, quickly copy passwords, search for emojies…
 
 I’m considering CLI tools such as
 [himalaya](https://github.com/pimalaya/himalaya) and

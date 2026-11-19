@@ -136,7 +136,13 @@ def --env --wrapped mtp [...arg] { # Android devices over USB
   if ($env.PWD | str downcase | str ends-with "mtp") {
     cd ~; # Change directory to home to let ~/mtp/ alone
   }
-  mount.mtp ...$arg # Mount or unmount Android device
+  # TODO Unmount or mount Android based on the existance of mount point
+  # if [ -d $HOME/mtp ]; then
+  #   fusermount -u $HOME/mtp
+  #   rmdir $HOME/mtp
+  # else
+  #   mkdir $HOME/mtp
+  #   aft-mtp-mount $HOME/mtp
   if ("~/mtp" | path type) == "dir" {
     cd ~/mtp # Change to the mount directory, will fail if it was an unmount
   }

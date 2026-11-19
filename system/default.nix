@@ -224,7 +224,7 @@ in
       ports.dns = map (ip: if lib.hasInfix ":" ip then "[${ip}]:53" else "${ip}:53") local;
       upstreams = {
         strategy = "strict"; # In order, next one only on error, timeout or SERVFAIL
-        timeout = "1s"; # Retried 3 times on timeout before next upstream
+        timeout = "5s"; # Try hard before falling back unencrypted
         init.strategy = "fast"; # Don’t block or fail boot when offline
         groups.default = dns.encrypted ++ dns.unencrypted ++ dns.provided;
       };
@@ -285,10 +285,7 @@ in
     )
   );
 
-  services.syncthing.openDefaultPorts = lib.mkForce true; # TEST if sufficient
-
   security.sudo.enable = lib.mkDefault true;
-  # security.sudo-rs.enable = lib.mkDefault true; # To TEST
 
   programs = {
     git.enable = lib.mkForce true; # MANDATORY

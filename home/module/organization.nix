@@ -72,7 +72,7 @@
     let
       launchWebApps = pkgs.writeShellScript "launch-proton-framagenda" ''
         ${pkgs.firefox}/bin/firefox --new-window "https://mail.proton.me"
-        ${pkgs.firefox}/bin/firefox -new-tab "https://framagenda.org"
+        ${pkgs.firefox}/bin/firefox --new-tab "https://framagenda.org"
       '';
     in
     {
@@ -97,7 +97,7 @@
       echo "Existence of ~/author ~/collect ~/shelve ensured"
       mkdir --mode=700 --parents --verbose ~/image/camera ~/image/screenshot
       echo "Existence of ~/image/camera ~/image/screenshot ensured"
-      ${pkgs.bat}/bin/bat ${config.location}/public/home/module/orga.md
+      ${pkgs.bat}/bin/bat ${./orga.md}
     '';
   };
   # TODO Put some Syncthing config here publicly

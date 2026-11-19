@@ -179,15 +179,17 @@
     };
   };
 
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
   # dejavu_fonts, freefont_ttf, gyre-fonts, TrueType substitutes
   # liberation_ttf, unifont, noto-fonts-color-emoji
   fonts.enableDefaultPackages = true;
   programs = {
     hyprland.enable = true; # Main Window Manager
-    xwayland.enable = false; # Use xwayland-satellite instead
+    xwayland.enable = true; # Consider xwayland-satellite instead
     dconf.enable = true; # Recommended by virtualization wiki
     gnupg.agent.enable = true;
-    # ssh.startAgent = lib.mkDefault true;
     firejail.enable = true; # See https://wiki.nixos.org/wiki/Firejail TODO
     wireshark.enable = true; # Network analysis
     ghidra.enable = true; # Reverse engineering tool
@@ -209,7 +211,6 @@
     killall # Quickly kill corresponding names
     nsjail # Process isolation tool
     treecat # Dir structure <-> ASCII representation
-    xwayland-satellite # Wayland container that can run X11 apps TEST relevance
     nss # Security tools
   ];
 }

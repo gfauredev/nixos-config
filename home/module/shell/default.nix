@@ -37,7 +37,7 @@
       typst-compile = writeScriptBin "typ" (readFile ./script/typ.sh);
       usb-mount = writeScriptBin "mount.usb" (readFile ./script/usb.sh);
       timezone = writeScriptBin "tz" ''
-        timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+        tz=$(${pkgs.curl}/bin/curl -fsS https://ipapi.co/timezone)" && [ -n "$tz" ] && timedatectl set-timezone "$tz"
       '';
     in
     [

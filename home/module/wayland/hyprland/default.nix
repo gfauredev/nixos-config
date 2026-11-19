@@ -426,38 +426,6 @@ in
             }
             {
               _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SHIFT + c\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ x = -10, y = 0, relative = true })")
-                { repeating = true; }
-                { description = "Move floating window left"; }
-              ];
-            } # Move left
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SHIFT + t\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 0, y = 10, relative = true })")
-                { repeating = true; }
-                { description = "Move floating window down"; }
-              ];
-            } # Move down
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SHIFT + s\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 0, y = -10, relative = true })")
-                { repeating = true; }
-                { description = "Move floating window up"; }
-              ];
-            } # Move up
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SHIFT + r\"")
-                (lib.generators.mkLuaInline "hl.dsp.window.move({ x = 10, y = 0, relative = true })")
-                { repeating = true; }
-                { description = "Move floating window right"; }
-              ];
-            } # Move right
-            {
-              _args = [
                 (lib.generators.mkLuaInline "\"SUPER + CONTROL + c\"")
                 (lib.generators.mkLuaInline "hl.dsp.window.resize({ x = -10, y = 0, relative = true })")
                 { repeating = true; }
@@ -686,10 +654,6 @@ in
             border_size = 0; # No border for single tiled
           }
           {
-            match.title = "Albert";
-            border_size = 0; # No border for launcher
-          }
-          {
             match.workspace = "name:dpp";
             idle_inhibit = "fullscreen"; # Inhibit while presenting
           }
@@ -729,9 +693,9 @@ in
   services.hypridle = {
     enable = true;
     settings.general = {
-      lock_cmd = "${config.wayland.lock}";
+      lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${config.wayland.lock}";
       unlock_cmd = "pkill -USR1 hyprlock";
-      before_sleep_cmd = "${audio.play.pause}; ${config.wayland.lock}";
+      before_sleep_cmd = "${audio.play.pause}; ${config.wayland.lock-session}";
       after_sleep_cmd = "hyprctl dispatch dpms on";
       ignore_dbus_inhibit = false;
       ignore_systemd_inhibit = false;

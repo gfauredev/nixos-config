@@ -53,7 +53,4 @@
       '';
     };
   };
-
-  config.home.file.".dprint.jsonc".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.location}/public/home/module/editor/dprint.jsonc";
 }

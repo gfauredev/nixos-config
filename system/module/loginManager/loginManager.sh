@@ -1,11 +1,14 @@
-if [ -z "$DISPLAY" ]; then
-  if [ "$XDG_VTNR" -eq 1 ]; then           # Leave eGPU passthrough available
-    exec "$HOME/.nix-profile/bin/start-hyprland" # TODO consider using UWSM
-    # AQ_DRM_DEVICES="$HOME/.config/hypr/igpu" exec "$HOME/.nix-profile/bin/hyprland"
-  elif [ "$XDG_VTNR" -eq 2 ]; then # Force boot on eGPU
-    exec "$HOME/.nix-profile/bin/start-hyprland"
-    # AQ_DRM_DEVICES="$HOME/.config/hypr/egpu" exec "$HOME/.nix-profile/bin/hyprland"
-  elif [ "$XDG_VTNR" -eq 3 ]; then
-    exec "$HOME/.nix-profile/bin/niri" --session
-  fi
+if [ -z "${WAYLAND_DISPLAY:-}" ] && [ -z "${DISPLAY:-}" ]; then
+  case "${XDG_VTNR:-}" in
+  1 | 2)
+    if command -v start-hyprland >/dev/null 2>&1; then
+      exec start-hyprland
+    fi
+    ;;
+  3)
+    if command -v niri >/dev/null 2>&1; then
+      exec niri --session
+    fi
+    ;;
+  esac
 fi

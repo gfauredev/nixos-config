@@ -108,7 +108,7 @@
               space = "command_palette"; # Show all the commands
               w = window;
               # Print current line git blame
-              B = ":echo %sh{git show --no-patch --format='%%h (%%an: %%ar): %%s' $(git blame -p %{buffer_name} -L%{cursor_line},+1 | head -1 | cut -d' ' -f1)}";
+              B = ":echo %sh{git show --no-patch --format='%%h (%%an: %%ar): %%s' $(git blame -p '%{buffer_name}' -L%{cursor_line},+1 | head -1 | cut -d' ' -f1)}";
             };
             g = {
               # GO TO
@@ -132,7 +132,7 @@
             "#" = {
               # "#" sub mode (shell or files related commands)
               # Open most recently edited PDF file
-              p = ":run-shell-command xdg-open $(ls --sort=time *.pdf|head -n1)";
+              p = '':run-shell-command xdg-open "$(ls --sort=time *.pdf|head -n1)"'';
             };
             z = {
               # View mode
@@ -196,10 +196,8 @@
           {
             name = "nix";
             language-servers = [
-              "nixd"
-              "nil"
+              "nixd" # "nil"
               "harper"
-              "llm"
             ];
             auto-format = true;
             formatter.command = "nixfmt";
@@ -222,7 +220,6 @@
             };
             language-servers = [
               "nu-lsp"
-              "llm"
             ];
           }
           {
@@ -231,7 +228,6 @@
               "ty"
               "ruff"
               "pylsp"
-              "llm"
             ];
             auto-format = true;
           }
@@ -240,7 +236,6 @@
             language-servers = [
               "tinymist"
               "ltex"
-              "llm"
             ];
             formatter = typstyle;
             auto-format = true;
@@ -252,7 +247,6 @@
               # "markdown-oxide"
               # "rumdl"
               "ltex"
-              "llm"
             ];
             formatter = deno-fmt;
             auto-format = true;
@@ -261,7 +255,6 @@
             name = "cpp";
             language-servers = [
               "clangd"
-              "llm"
             ];
             auto-format = true;
           }
@@ -273,7 +266,6 @@
             ];
             language-servers = [
               "clangd"
-              "llm"
             ];
             auto-format = true;
           }
@@ -281,7 +273,6 @@
             name = "java";
             language-servers = [
               "jdtls"
-              "llm"
             ];
             formatter = google-java-format;
             auto-format = true;
@@ -291,7 +282,6 @@
             language-servers = [
               "bash-language-server"
               "harper"
-              "llm"
             ];
             auto-format = true;
           }
@@ -300,7 +290,6 @@
             language-servers = [
               ts-lsp
               "biome"
-              "llm"
             ];
             auto-format = true;
           }
@@ -309,7 +298,6 @@
             language-servers = [
               ts-lsp
               "biome"
-              "llm"
             ];
             auto-format = true;
           }
@@ -318,7 +306,6 @@
             language-servers = [
               ts-lsp
               "biome"
-              "llm"
             ];
             auto-format = true;
           }
@@ -326,7 +313,6 @@
             name = "git-commit";
             language-servers = [
               "harper"
-              "llm"
             ];
             auto-format = true;
           }
@@ -334,7 +320,6 @@
             name = "git-rebase";
             language-servers = [
               "harper"
-              "llm"
             ];
             auto-format = true;
           }
@@ -348,7 +333,6 @@
             ];
             comment-token = "'";
             language-servers = [
-              "llm"
             ];
             indent = {
               tab-width = 2;
@@ -382,10 +366,7 @@
             "-Wpedantic"
           ];
         };
-        dprint = {
-          command = "dprint";
-          args = [ "lsp" ];
-        };
+        # dprint = { command = "dprint"; args = [ "lsp" ]; };
         harper = {
           command = "harper-ls";
           args = [ "--stdio" ];

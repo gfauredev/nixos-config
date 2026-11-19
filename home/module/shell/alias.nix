@@ -43,7 +43,6 @@ let
     http = "xh";
     https = "xh --https";
     # Media & Documents
-    mtp = "aft-mtp-cli";
     clic = "klick --auto-connect --interactive";
     clicmap = "klick --auto-connect --tempo-map";
     scanpdf = "scanimage --format=pdf --batch --batch-prompt --progress --mode=color --resolution=400";
@@ -89,9 +88,9 @@ in
     se = "sudoedit ";
     re = "exec zsh";
     # Files
-    cp = "echo You might prefer using rsync alias 'c'; cp -urv"; # Reminder
+    cp = "cp -urv"; # Reminder
     ts = "trash -v";
-    rm = "echo 'Use ts to trash instead of removing'; rm -irv";
+    rm = "rm -irv";
     mv = "mv -uv";
     # br = "broot";
     # List

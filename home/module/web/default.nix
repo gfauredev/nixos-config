@@ -59,8 +59,10 @@
         BlockAboutConfig = false; # May be set to true when finished config
         BlockAboutProfiles = false; # May be set to true when configured
         BlockAboutSupport = false; # May be set to true when configured
-        DefaultDownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
-        DownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+        # DefaultDownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+        # DownloadDirectory = config.home.sessionVariables.XDG_DOWNLOAD_DIR;
+        DefaultDownloadDirectory = null; # Enforce intentional file placement
+        DownloadDirectory = null; # Enforce intentional file placement
         DisplayBookmarksToolbar = false;
         DisplayMenuBar = false;
         DontCheckDefaultBrowser = true;

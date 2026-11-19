@@ -2,7 +2,7 @@
 
 case $0 in
 feat: | fix: | doc: | docs: | style: | refactor: | perf: | test: | chore: | build: | ci: | revert: | wip:)
-  git commit --all --message "$0 $*" # TODO
+  git commit --all --message "$0 $*" # If called from alias
   exit 0
   ;;
 esac

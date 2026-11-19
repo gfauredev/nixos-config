@@ -7,7 +7,9 @@ in
     device = lib.mkDefault "/dev/nvme0n1p1"; # WARN Replace by actual part UUID
     fsType = "vfat";
     options = [
-      "noexec"
+      "noexec" # Security hardening
+      "nodev" # Security hardening
+      "nosuid" # Security hardening
       "uid=0" # Ensure everything in the partition belongs to root
       "gid=0" # Ensure everything in the partition belongs to root
       "umask=077" # Make root the only one able to read or write into it
@@ -79,7 +81,6 @@ in
         "nodev" # Security hardening
         "nosuid" # Security hardening
         "noatime" # Reduce writes (preserve SSDs)
-        "compress=zstd" # Reduce writes and space usage
       ];
     };
     "/tmp" = {

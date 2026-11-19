@@ -71,7 +71,6 @@ in
           "nosuid" # Security hardening
           "noatime" # Reduce writes (preserve SSDs)
           "nofail" # Don't fail if not present
-          "compress=zstd" # Reduce writes and space usage
         ];
       };
     in

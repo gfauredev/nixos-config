@@ -32,7 +32,10 @@
   networking.firewall.trustedInterfaces = [ "virbr0" ];
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/libvirt 0755 root root - +C"
+    "d /var/lib/libvirt 0755 root root -"
+    "h /var/lib/libvirt - - - - +C"
+    "d /var/lib/libvirt/images 0711 root root -"
+    "h /var/lib/libvirt/images - - - - +C"
   ];
 
   boot.kernelParams = [
