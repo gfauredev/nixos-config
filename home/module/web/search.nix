@@ -608,6 +608,21 @@
     ];
     definedAliases = [ "m" ];
   };
+  pcpartpicker = {
+    name = "PC Part Picker";
+    urls = [
+      {
+        template = "https://fr.pcpartpicker.com/search";
+        params = [
+          {
+            name = "q";
+            value = "{searchTerms}";
+          }
+        ];
+      }
+    ];
+    definedAliases = [ "pcpp" ];
+  };
   searchix = {
     name = "Searchix";
     urls = [
