@@ -15,7 +15,7 @@
       };
       dev-templates = mkOption {
         type = str; # Hardcoded in config.nu
-        default = "${config.user.home}/author/initDevEnv/main";
+        default = "${config.user.home}/author/initDevEnv.large/main";
         description = "Dev environments templates Flake repository full path";
       };
     };
