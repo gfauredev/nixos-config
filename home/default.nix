@@ -278,9 +278,6 @@
     };
     git = {
       lfs.enable = true;
-      transfer.fsckObjects = true;
-      fetch.fsckObjects = true;
-      receive.fsckObjects = true;
       ignores = [
         "*.ignore"
         "*.ignore.*"
@@ -289,11 +286,16 @@
         user.email = config.user.email;
         user.name = config.user.description;
         init.defaultBranch = "main";
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          fsckObjects = true;
+        };
         pull.rebase = true;
-        fetch.prune = true;
-        fetch.pruneTags = true;
+        receive.fsckObjects = true;
         push.autoSetupRemote = true;
         push.followTags = true;
+        transfer.fsckObjects = true;
         lfs.locksverify = true;
         diff.algorithm = "histogram";
         diff.colorMoved = "plain";
