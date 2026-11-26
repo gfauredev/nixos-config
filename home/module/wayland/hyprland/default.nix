@@ -165,13 +165,13 @@ in
                 { description = "Default launcher"; }
               ];
             }
-            {
-              _args = [
-                (lib.generators.mkLuaInline "\"SUPER + SPACE\"")
-                (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt}\")")
-                { description = "alternative/fallback launcher"; }
-              ];
-            }
+            # {
+            #   _args = [
+            #     (lib.generators.mkLuaInline "\"SUPER + SPACE\"")
+            #     (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${config.launch.alt}\")")
+            #     { description = "alternative/fallback launcher"; }
+            #   ];
+            # }
             {
               _args = [
                 (lib.generators.mkLuaInline "\"Menu\"")
