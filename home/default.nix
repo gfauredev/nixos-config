@@ -217,9 +217,9 @@
       kicad # Electronics (EDA) software
       ngspice # Electronic circuit simulator
       qucs-s # Electronics simulations
-      freecad-wayland # Popular parametric 3D CAD
-      openscad-unstable # Code based 3D CAD
-      orca-slicer # G-code generator for 3D printers…
+      # freecad-wayland # Popular parametric 3D CAD
+      pkgs-unstable.openscad-unstable # Code based 3D CAD
+      pkgs-unstable.orca-slicer # G-code generator for 3D printers…
       pkgs-unstable.qFlipper # Flipper Zero Software
       # pkgs-unstable.snapmaker-luban # SnapMaker Slicer INSECURE
     ] # VPN
@@ -227,7 +227,7 @@
       pkgs-unstable.proton-vpn # Swiss VPN service (Python GUI)
       pkgs-unstable.proton-vpn-cli # Swiss VPN service (CLI)
       # pkgs-unstable.nym # Super-anonymous routing protocol FIXME lacks desktop apps
-      mullvad-vpn # Anonymous VPN service (GUI)
+      # mullvad-vpn # Anonymous VPN service (GUI)
     ] # Messaging & Social
     ++ [
       pkgs-unstable.signal-cli # Secure messaging
