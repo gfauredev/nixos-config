@@ -6,7 +6,7 @@
     bottomBar = {
       layer = "top";
       position = "bottom";
-      margin = 0;
+      margin = null;
 
       modules-left = [
         "battery"
