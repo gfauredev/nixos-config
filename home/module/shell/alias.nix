@@ -78,7 +78,7 @@ let
     unamend = "git reset --soft HEAD@{1}";
     unstage = "git restore --staged";
     untrack = "git rm -r --cached";
-    leak = "gitleaks dir --config ${../../../../..gitleaks.toml} --max-target-megabytes 1 --verbose";
+    leak = "gitleaks dir --max-target-megabytes 1 --verbose";
   };
 in
 {
