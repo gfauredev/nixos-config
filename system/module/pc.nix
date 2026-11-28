@@ -199,7 +199,7 @@
     hydra-check # Quickly check derivation status in Hydra
     tio # Serial
     killall # Quickly kill corresponding names
-    # nsjail # Process isolation tool
+    tree # Tree listing
     treecat # Dir structure <-> ASCII representation
     nss # Security tools
   ];
